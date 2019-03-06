@@ -24,7 +24,7 @@
     "docz:deploy": "gh-pages -d .docz/dist",
     "lint": "npm-run-all --parallel lint:*",
     "lint:css": "stylelint --fix 'src/**/*.css'",
-    "lint:js": "eslint --fix src --ext=js,json,jsm",
+    "lint:js": "eslint --fix --ext=.js,.jsx src",
     "husky:pre-commit": "npm-run-all --sequential prettify lint test"
   },
   "husky": {
@@ -33,9 +33,14 @@
     }
   },
   "lint-staged": {
-    "./src/**/*.{js,jsx,css,jsm,json}": [
+    "./src/**/*.{js,jsx}": [
       "npm run prettify",
       "npm run lint:js",
+      "npm run test",
+      "git add"
+    ],
+    "./src/**/*.css": [
+      "npm run prettify",
       "npm run lint:css",
       "npm run test",
       "git add"
