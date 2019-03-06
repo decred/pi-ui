@@ -3,6 +3,8 @@ import { css } from "docz-plugin-css";
 export default {
   title: "pi-ui",
   description: "Politeia UI library",
+  base: "/pi-ui/",
+  hashRouter: true,
   plugins: [css({ preprocessor: "postcss", cssmodules: true })],
   themeConfig: {
     showPlaygroundEditor: true,
