@@ -1,22 +1,8 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import "./css/base.css";
 
-import styles from './styles.css'
-
-export default class ExampleComponent extends Component {
-  static propTypes = {
-    text: PropTypes.string
-  }
-
-  render() {
-    const {
-      text
-    } = this.props
-
-    return (
-      <div className={styles.test}>
-        Example Component: {text}
-      </div>
-    )
-  }
-}
+export { default as H1 } from "./components/Typography/H1.jsx";
+export { default as H2 } from "./components/Typography/H2.jsx";
+export { default as H3 } from "./components/Typography/H3.jsx";
+export { default as H4 } from "./components/Typography/H4.jsx";
+export { default as P } from "./components/Typography/P.jsx";
+export { default as Button } from "./components/Button/Button.jsx";

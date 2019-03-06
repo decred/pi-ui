@@ -1,0 +1,55 @@
+.btn,
+.btn:link,
+.btn:visited {
+  font-size: var(--font-size-normal);
+  line-height: var(--spacing-2);
+  padding: 1rem 2.5rem;
+  cursor: pointer;
+  text-decoration: none;
+  border-radius: 0.5rem;
+  transition: all 0.2s;
+  backface-visibility: hidden;
+}
+
+.btn:not(:last-child):not(:only-child) {
+  margin-right: var(--spacing-2);
+}
+
+.primary {
+  composes: btn;
+  color: var(--color-white);
+  background-color: var(--color-primary);
+  border: 1px solid var(--color-primary);
+  box-shadow: 1px 1px 5px 1px var(--color-shadow-light);
+}
+
+.secondary {
+  composes: btn;
+  color: var(--color-primary);
+  background-color: var(--color-white);
+  border: 1px solid var(--color-primary);
+  box-shadow: 1px 1px 5px 2px var(--color-shadow-light);
+}
+
+.disabled {
+  composes: btn;
+  cursor: not-allowed;
+  color: var(--color-gray);
+  background-color: var(--color-gray-lighter);
+  border: 1px solid var(--color-gray-lighter);
+}
+
+.primary:focus,
+.primary:hover,
+.secondary:focus,
+.secondary:hover {
+  outline: 0;
+  transform: scale(1.01);
+  box-shadow: 1px 1px 10px 4px var(--color-shadow-light);
+}
+
+.primary:active,
+.secondary:active {
+  transform: scale(1);
+  box-shadow: 0 0 0;
+}

@@ -1,0 +1,68 @@
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
+
+body {
+  font-size: var(--font-size-normal);
+  color: var(--color-primary-dark);
+}
+
+:root {
+  /** PRIMARY COLORS */
+  /** Key Blue*/
+  --color-primary: #2970ff;
+  /** Dark Blue */
+  --color-primary-dark: #091440;
+  /** Turqouise */
+  --color-primary-light: #2ed8a3;
+
+  /** COMPLEMENTARY COLORS */
+  --color-blue-light: #70cbff;
+  --color-green: #41bf53;
+  --color-green-light: #c4ecca;
+  --color-orange: #ed6d47;
+  --color-orange-light: #feb8a5;
+  --color-yellow: #ffc84e;
+  --color-yellow-light: #ffe4a7;
+  --color-gray-dark: #3d5873;
+  --color-gray: #8997a5;
+  --color-gray-light: #c4cbd2;
+  --color-gray-lighter: #e6eaed;
+  --color-gray-lightest: #f3f5f6;
+  --color-white: #ffffff;
+
+  /** SHADOWS */
+  --color-shadow-light: rgba(0, 0, 0, 0.2);
+
+  /** FONTS */
+  --font-family-tag: "Segoe UI", sans-serif;
+  --font-family-text: "Source Sans Pro";
+
+  --font-size-xxxlarge: 3.6rem;
+  --font-size-xxlarge: 2.6rem;
+  --font-size-xlarge: 2.3rem;
+  --font-size-large: 2rem;
+  --font-size-normal: 1.7rem;
+
+  --font-weight-extra-light: 200;
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-semi-bold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extra-bold: 900;
+
+  /** VERTICAL SPACINGS */
+  --spacing-1: 1.1rem; /* 10px */
+  --spacing-2: 2.2rem; /* 20px */
+  --spacing-3: 3.3rem; /* 30px */
+  --spacing-4: 4.4rem; /* 40px */
+}

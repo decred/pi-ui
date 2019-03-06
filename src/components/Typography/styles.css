@@ -1,0 +1,75 @@
+font-face {
+  font-family: "Segoe UI";
+  src: url("../../assets/fonts/segoeui/segoeui.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Source Sans Pro";
+  src: url("../../assets/fonts/source_sans_pro/SourceSansPro-SemiBold.ttf")
+    format("ttf");
+  font-weight: var(--font-weight-semi-bold);
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Source Sans Pro";
+  src: url("../../assets/fonts/source_sans_pro/SourceSansPro-Regular.ttf")
+    format("ttf");
+  font-weight: var(--font-weight-regular);
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Source Sans Pro";
+  src: url("../../assets/fonts/source_sans_pro/SourceSansPro-Light.ttf")
+    format("ttf");
+  font-weight: var(--font-weight-light);
+  font-style: normal;
+}
+
+.textSourceSansPro {
+  font-family: var(--font-family-text);
+}
+
+.header1 {
+  composes: textSourceSansPro;
+  font-size: 3.6rem;
+  font-weight: var(--font-weight-semi-bold);
+  line-height: var(--spacing-4);
+  color: var(--color-gray-dark);
+}
+
+.header2 {
+  composes: textSourceSansPro;
+  font-size: 2.6rem;
+  font-weight: var(--font-weight-regular);
+  line-height: var(--spacing-3);
+  color: var(--color-primary-dark);
+}
+
+.header3 {
+  composes: textSourceSansPro;
+  font-size: 2.3rem;
+  font-weight: var(--font-weight-semi-bold);
+  line-height: var(--spacing-3);
+  color: var(--color-primary-dark);
+}
+
+.header4 {
+  composes: textSourceSansPro;
+  font-size: 2rem;
+  font-weight: var(--font-weight-semi-bold);
+  line-height: var(--spacing-2);
+  color: var(--color-primary-dark);
+}
+
+.paragraph {
+  composes: textSourceSansPro;
+  font-size: 1.7rem;
+  font-weight: var(--font-weight-regular);
+  line-height: var(--spacing-2);
+  margin-bottom: var(--spacing-2);
+  hyphens: auto;
+}

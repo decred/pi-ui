@@ -1,0 +1,43 @@
+{
+  "extends": "stylelint-config-recommended",
+  "rules": {
+    "block-no-empty": null,
+    "no-empty-source": null,
+    "unit-blacklist": [
+      "cm",
+      "mm",
+      "in",
+      "pt",
+      "pc",
+      "ch",
+      "vmin",
+      "vmax",
+      "ex"
+    ],
+    "max-empty-lines": 2,
+    "indentation": 2,
+    "max-nesting-depth": 3,
+    "font-family-no-missing-generic-family-keyword": null,
+    "rule-empty-line-before": [
+      "always",
+      {
+        "ignore": ["after-comment", "first-nested"],
+        "severity": "warning"
+      }
+    ],
+    "at-rule-no-unknown": null,
+    "property-no-unknown": [
+      true,
+      {
+        "ignoreProperties": ["composes"]
+      }
+    ],
+    "selector-pseudo-class-no-unknown": [
+      true,
+      {
+        "ignorePseudoClasses": ["global"]
+      }
+    ]
+  },
+  "ignoreFiles": "**/*.js"
+}
