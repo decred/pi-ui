@@ -40,7 +40,8 @@ body {
   --color-gray-lightest: #f3f5f6;
   --color-white: #ffffff;
 
-  /** CUSTOM THEME COLORS */
+  /* CUSTOM THEME COLORS */
+  --color-secondary-btn-background: var(--color-white);
 
   /** SHADOWS */
   --color-shadow-light: rgba(0, 0, 0, 0.2);
