@@ -1,0 +1,21 @@
+---
+name: Card
+route: /card
+---
+
+import { Playground, PropsTable } from "docz";
+import Card from "./Card.jsx";
+
+# Button
+
+## Properties
+
+<PropsTable of={Card} />
+
+## Usage
+
+<Playground  style={{ background: "#c4cbd2" }}>
+     <Card>I am a Card</Card>
+     <br />
+     <Card style={{ padding: "10px" }}>I am a Card with padding</Card>
+</Playground>
