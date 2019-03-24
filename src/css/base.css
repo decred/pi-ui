@@ -14,6 +14,7 @@ html {
 body {
   font-size: var(--font-size-normal);
   color: var(--color-primary-dark);
+  line-height: var(--spacing-2);
 }
 
 :root {
@@ -31,6 +32,7 @@ body {
   --color-green-light: #c4ecca;
   --color-orange: #ed6d47;
   --color-orange-light: #feb8a5;
+  --color-gold: #cfa03f;
   --color-yellow: #ffc84e;
   --color-yellow-light: #ffe4a7;
   --color-gray-dark: #3d5873;
@@ -41,7 +43,17 @@ body {
   --color-white: #ffffff;
 
   /** COMPONENTS COLORS **/
+  /*Card*/
   --card-background: var(--color-white);
+  /*Message*/
+  --error-message-background: var(--color-orange-light);
+  --error-message-color: var(--color-orange);
+  --warning-message-background: var(--color-yellow-light);
+  --warning-message-color: var(--color-gold);
+  --info-message-background: var(--color-blue-light);
+  --info-message-color: var(--color-primary);
+  --success-message-background: var(--color-green-light);
+  --success-message-color: var(--color-green);
 
   /** SHADOWS */
   --color-shadow-light: rgba(0, 0, 0, 0.2);

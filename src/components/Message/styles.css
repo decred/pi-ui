@@ -1,0 +1,47 @@
+.message {
+  padding: 20px 40px;
+}
+
+.info {
+  composes: message;
+  background-color: var(--info-message-background);
+  color: var(--info-message-color);
+}
+
+.info:before {
+  content: "\0024D8";
+  margin-right: 10px;
+}
+
+.error {
+  composes: message;
+  background-color: var(--error-message-background);
+  color: var(--error-message-color);
+}
+
+.error:before {
+  content: "\002718";
+  margin-right: 10px;
+}
+
+.warning {
+  composes: message;
+  background-color: var(--warning-message-background);
+  color: var(--warning-message-color);
+}
+
+.warning:before {
+  content: "\0026A0";
+  margin-right: 10px;
+}
+
+.success {
+  composes: message;
+  background-color: var(--success-message-background);
+  color: var(--success-message-color);
+}
+
+.success:before {
+  content: "\002714";
+  margin-right: 10px;
+}
