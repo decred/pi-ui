@@ -40,6 +40,9 @@ body {
   --color-gray-lightest: #f3f5f6;
   --color-white: #ffffff;
 
+  /** COMPONENTS COLORS **/
+  --card-background: var(--color-white);
+
   /** SHADOWS */
   --color-shadow-light: rgba(0, 0, 0, 0.2);
 
