@@ -1,3 +1,7 @@
+:root {
+  --card-background: var(--color-white);
+}
+
 .card {
   background: var(--card-background);
 }
