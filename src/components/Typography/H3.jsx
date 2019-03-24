@@ -14,4 +14,8 @@ H3.propTypes = {
   style: PropTypes.object
 };
 
+H3.defaultProps = {
+  className: ""
+};
+
 export default H3;

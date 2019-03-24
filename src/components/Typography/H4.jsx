@@ -14,4 +14,8 @@ H4.propTypes = {
   style: PropTypes.object
 };
 
+H4.defaultProps = {
+  className: ""
+};
+
 export default H4;

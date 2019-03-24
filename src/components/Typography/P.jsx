@@ -14,4 +14,8 @@ P.propTypes = {
   style: PropTypes.object
 };
 
+P.defaultProps = {
+  className: ""
+};
+
 export default P;

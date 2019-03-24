@@ -14,4 +14,8 @@ H2.propTypes = {
   style: PropTypes.object
 };
 
+H2.defaultProps = {
+  className: ""
+};
+
 export default H2;

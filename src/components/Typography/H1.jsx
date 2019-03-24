@@ -14,4 +14,8 @@ H1.propTypes = {
   style: PropTypes.object
 };
 
+H1.defaultProps = {
+  className: ""
+};
+
 export default H1;
