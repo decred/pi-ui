@@ -8,3 +8,4 @@ export { default as P } from "./components/Typography/P.jsx";
 export { default as Button } from "./components/Button/Button.jsx";
 export { default as Card } from "./components/Card/Card.jsx";
 export { default as Message } from "./components/Message/Message.jsx";
+export { default as Modal } from "./components/Modal/Modal.jsx";

@@ -1,0 +1,85 @@
+---
+name: Modal
+menu: Components
+route: /components/modal
+---
+
+import { useState } from "react";
+import { Playground, Props } from "docz";
+import { Modal, Button, P } from "../index";
+
+# Modal
+
+## Properties
+
+<Props of={Modal} />
+
+## Usage
+
+### Simple Modal
+<Playground>
+  {() => {
+    const [showModal, setShowModal] = useState(false);
+    const openModal = () => setShowModal(true);
+    const closeModal = () => setShowModal(false);
+    return (
+      <>
+        <Button onClick={openModal}>Open Modal</Button>
+        <Modal show={showModal} onClose={closeModal}>
+          Simple Modal
+        </Modal>
+      </>
+    );
+  }}
+</Playground>
+
+### Modal with title
+<Playground>
+  {() => {
+    const [showModal, setShowModal] = useState(false);
+    const openModal = () => setShowModal(true);
+    const closeModal = () => setShowModal(false);
+    return (
+      <>
+        <Button onClick={openModal}>Open Modal</Button>
+        <Modal title="Title" show={showModal} onClose={closeModal}>
+          Content!
+        </Modal>
+      </>
+    );
+  }}
+</Playground>
+
+### Modal with huge contet
+<Playground>
+  {() => {
+    const [showModal, setShowModal] = useState(false);
+    const openModal = () => setShowModal(true);
+    const closeModal = () => setShowModal(false);
+    return (
+      <>
+        <Button onClick={openModal}>Open Modal</Button>
+        <Modal title="Title" show={showModal} onClose={closeModal}>
+          <P>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita, veniam distinctio illum, nesciunt dolorum tempore minus voluptate omnis facilis illo earum inventore quibusdam iste dolores id unde neque ipsum rerum?
+          </P>
+          <P>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam beatae perspiciatis, natus dolorum adipisci repellendus debitis temporibus fuga dicta dolorem veniam doloribus maxime nostrum? Dolores ullam at voluptate saepe ipsa!
+          </P>
+          <P>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt, eligendi! Cum vero non saepe eius ratione quam ea laudantium dolor autem, illo aliquam commodi sequi iure at totam fugit dolores.
+          </P>
+          <P>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita, veniam distinctio illum, nesciunt dolorum tempore minus voluptate omnis facilis illo earum inventore quibusdam iste dolores id unde neque ipsum rerum?
+          </P>
+          <P>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam beatae perspiciatis, natus dolorum adipisci repellendus debitis temporibus fuga dicta dolorem veniam doloribus maxime nostrum? Dolores ullam at voluptate saepe ipsa!
+          </P>
+          <P>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt, eligendi! Cum vero non saepe eius ratione quam ea laudantium dolor autem, illo aliquam commodi sequi iure at totam fugit dolores.
+          </P>
+        </Modal>
+      </>
+    );
+  }}
+</Playground>

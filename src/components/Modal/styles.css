@@ -1,0 +1,60 @@
+.modalWrapper {
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: var(--z-index-big);
+  transition: all 0.2s;
+  background-color: rgba(0, 0, 0, 0.3);
+  visibility: hidden;
+  opacity: 0;
+}
+
+.modalWrapperVisible {
+  composes: modalWrapper;
+  visibility: visible;
+  opacity: 1;
+}
+
+.modal {
+  min-width: 50rem;
+  max-width: 100rem;
+  max-height: 70vh;
+  min-height: 36vh;
+  padding: 4rem 6rem;
+  position: relative;
+  background: var(--color-white);
+  transition: transform 0.5s;
+  transform: scale(0.3);
+  overflow-y: auto;
+}
+
+.modalVisible {
+  composes: modal;
+  transform: scale(1);
+}
+
+.modalClose,
+.modalClose:link,
+.modalClose:visited {
+  position: absolute;
+  font-size: var(--font-size-xxlarge);
+  top: 2rem;
+  right: 3rem;
+  color: var(--text-color-light);
+  transition: all 0.3s;
+}
+
+.modalClose:hover,
+.modalClose:link:hover,
+.modalClose:visited:hover {
+  color: var(--color-primary);
+}
+
+.modalTitle {
+  margin-bottom: var(--spacing-2);
+}

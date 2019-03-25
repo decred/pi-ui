@@ -13,8 +13,14 @@ html {
 
 body {
   font-size: var(--font-size-normal);
-  color: var(--color-primary-dark);
+  color: var(--text-color);
   line-height: var(--spacing-2);
+}
+
+a,
+a:link,
+a:visited {
+  text-decoration: none;
 }
 
 :root {
@@ -48,6 +54,8 @@ body {
   /** FONTS */
   --font-family-tag: "Segoe UI", sans-serif;
   --font-family-text: "Source Sans Pro";
+  --text-color: var(--color-primary-dark);
+  --text-color-light: var(--color-gray);
 
   --font-size-xxxlarge: 3.6rem;
   --font-size-xxlarge: 2.6rem;
@@ -63,8 +71,17 @@ body {
   --font-weight-extra-bold: 900;
 
   /** VERTICAL SPACINGS */
-  --spacing-1: 1.1rem; /* 10px */
-  --spacing-2: 2.2rem; /* 20px */
-  --spacing-3: 3.3rem; /* 30px */
-  --spacing-4: 4.4rem; /* 40px */
+  --spacing-1: 1.1rem; /* 11px */
+  --spacing-2: 2.2rem; /* 22px */
+  --spacing-3: 3.3rem; /* 33px */
+  --spacing-4: 4.4rem; /* 44px */
+
+  /** Z-INDEX SCALE */
+  --z-index-0: 0;
+  --z-index-1: 1;
+  --z-index-2: 2;
+  --z-index-3: 4;
+  --z-index-5: 5;
+  --z-index-small: -9999;
+  --z-index-big: 9999;
 }
