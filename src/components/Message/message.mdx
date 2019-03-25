@@ -1,0 +1,25 @@
+---
+name: Message
+route: /message
+---
+
+import { Playground, PropsTable } from "docz";
+import Message from "./Message.jsx";
+
+# Message
+
+## Properties
+
+<PropsTable of={Message} />
+
+## Usage
+
+<Playground>
+  <Message kind="info">Info</Message>
+  <br/>
+  <Message kind="warning">Warning</Message>
+  <br/>
+  <Message kind="error">Error</Message>
+  <br/>
+  <Message kind="success">Success</Message>
+</Playground>

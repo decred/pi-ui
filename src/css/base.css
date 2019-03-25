@@ -14,6 +14,7 @@ html {
 body {
   font-size: var(--font-size-normal);
   color: var(--color-primary-dark);
+  line-height: var(--spacing-2);
 }
 
 :root {
@@ -31,6 +32,7 @@ body {
   --color-green-light: #c4ecca;
   --color-orange: #ed6d47;
   --color-orange-light: #feb8a5;
+  --color-gold: #cfa03f;
   --color-yellow: #ffc84e;
   --color-yellow-light: #ffe4a7;
   --color-gray-dark: #3d5873;
@@ -39,9 +41,6 @@ body {
   --color-gray-lighter: #e6eaed;
   --color-gray-lightest: #f3f5f6;
   --color-white: #ffffff;
-
-  /** COMPONENTS COLORS **/
-  --card-background: var(--color-white);
 
   /** SHADOWS */
   --color-shadow-light: rgba(0, 0, 0, 0.2);
