@@ -9,3 +9,5 @@ export { default as Button } from "./components/Button/Button.jsx";
 export { default as Card } from "./components/Card/Card.jsx";
 export { default as Message } from "./components/Message/Message.jsx";
 export { default as Modal } from "./components/Modal/Modal.jsx";
+export { default as Tabs } from "./components/Tabs/Tabs.jsx";
+export { default as Tab } from "./components/Tabs/Tab.jsx";

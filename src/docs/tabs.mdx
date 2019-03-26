@@ -1,0 +1,69 @@
+---
+name: Tabs
+menu: Components
+route: /components/tabs
+---
+
+import { useState } from "react";
+import { Playground, Props } from "docz";
+import { Tabs, Tab } from "../index";
+
+# Tabs
+
+## Properties
+<Props of={Tabs} />
+
+## Usage
+
+### Simple Tabs
+
+<Playground>
+  {() => {
+    const [activeTabIndex, setActiveTabIndex] = useState(0);
+    return (
+      <>
+        <Tabs style={{ width: "200px" }} onSelectTab={setActiveTabIndex} activeTabIndex={activeTabIndex}>
+            <Tab label="tab 1" />
+            <Tab label="tab 2" />
+            <Tab label="tab 3" />
+        </Tabs>
+      </>
+    );
+  }}
+</Playground>
+
+### Tabs with counting 
+
+<Playground>
+  {() => {
+    const [activeTabIndex, setActiveTabIndex] = useState(0);
+    return (
+      <>
+        <Tabs style={{ width: "140px" }} onSelectTab={setActiveTabIndex} activeTabIndex={activeTabIndex}>
+            <Tab label="tab 1" count={1} />
+            <Tab label="tab 2" count={4} />
+        </Tabs>
+      </>
+    );
+  }}
+</Playground>
+
+### Tabs with content
+
+<Playground>
+  {() => {
+    const [activeTabIndex, setActiveTabIndex] = useState(0);
+    return (
+      <>
+        <Tabs style={{ width: "140px" }} onSelectTab={setActiveTabIndex} activeTabIndex={activeTabIndex}>
+            <Tab label="tab 1" count={1}>
+                tab content 1
+            </Tab>
+            <Tab label="tab 2" count={4} >
+                tab content 2
+            </Tab>
+        </Tabs>
+      </>
+    );
+  }}
+</Playground>

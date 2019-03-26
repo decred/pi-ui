@@ -1,0 +1,34 @@
+:root {
+  --tab-active-underline-color: var(--color-yellow);
+  --tab-count-background: var(--color-gray-lighter);
+}
+
+.tab {
+  padding-bottom: 0.5rem;
+  display: flex;
+  font-size: var(--font-size-normal);
+  align-items: center;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+}
+
+.tabsNav {
+  list-style-type: none;
+  display: flex;
+  justify-content: space-between;
+}
+
+.tabActive {
+  composes: tab;
+  border-bottom: 2px solid var(--tab-active-underline-color);
+}
+
+.tabCount {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--tab-count-background);
+  height: 20px;
+  width: 20px;
+  margin-left: 5px;
+}
