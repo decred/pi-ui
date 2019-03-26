@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Card from "../Card/Card";
+import Card from "../Card/Card.jsx";
 import styles from "./styles.css";
 
 // TODO: use svg icons when we have them
