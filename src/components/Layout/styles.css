@@ -1,0 +1,165 @@
+/*
+  * BREAKPOINTS
+  * xs: < 560px
+  * sm: 561 - 768px
+  * md: 769 - 1000px
+  * lg: > 1000px
+*/
+
+:root {
+  --layout-column-gap-sm: 1.9rem;
+  --layout-column-gap-md: 2.4rem;
+  --layout-column-gap-lg: 2.6rem;
+
+  /** 561px - 768px */
+  --min-column-size-sm: 1rem;
+  --max-column-size-sm: 4.2rem;
+
+  /** 769px - 1000px */
+  --min-column-size-md: 1rem;
+  --max-column-size-md: 6rem;
+
+  /** > 1000px */
+  --min-column-size-lg: 5rem;
+  --max-column-size-lg: 8rem;
+
+  /** COLORS */
+  --header-color: var(--color-gray-lightest);
+  --container-color: var(--color-gray-lightest);
+  --header-border-color: var(--color-gray-light);
+  --topbanner-color: var(--color-white);
+  --main-color: var(--color-white);
+
+  /** GRID */
+  --margin-horizontal: 6rem;
+
+  --grid-center-padding: minmax(
+    calc(var(--margin-horizontal) - var(--layout-column-gap)),
+    1fr
+  );
+
+  --layout-grid-columns: [full-start] var(--grid-center-padding) [center-start]
+    repeat(
+      12,
+      [col-start] minmax(var(--min-column-size-lg), var(--max-column-size-lg))
+      [col-end]
+    )
+    [center-end] var(--grid-center-padding) [full-end];
+
+  --layout-column-gap: var(--layout-column-gap-lg);
+
+  --layout-grid-rows: 6rem 12rem 3rem minmax(30rem, max-content);
+}
+
+.container {
+  display: grid;
+  min-height: 100vh;
+  background-color: var(--container-color);
+  column-gap: var(--layout-column-gap-lg);
+  grid-template-columns: var(--layout-grid-columns);
+  grid-template-rows: var(--layout-grid-rows);
+}
+
+.header {
+  grid-column: full-start / full-end;
+  grid-row: 1 / span 1;
+  background-color: var(--header-color);
+  border-bottom: 0.2rem solid var(--header-border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 6rem;
+}
+
+.topBanner {
+  grid-column: full-start / full-end;
+  grid-row: 2 / span 1;
+  background-color: var(--topbanner-color);
+
+  /* Pass grid down. This is necessary because children of TopBanner does not have access to the container grid */
+  display: grid;
+  column-gap: var(--layout-column-gap-lg);
+  grid-template-columns: var(--layout-grid-columns);
+}
+
+.pageDetails {
+  grid-column: center-start / col-end 8;
+}
+
+.searchBox {
+  grid-column: col-start 9 / center-end;
+}
+
+.sidebar {
+  background-color: transparent;
+  grid-row: 4 / span 1;
+  grid-column: col-start 9 / center-end;
+}
+
+.main {
+  background-color: var(--main-color);
+  grid-row: 4 / span 1;
+  grid-column: center-start / col-end 8;
+}
+
+/* MEDIUM */
+@media screen and (max-width: 1000px) {
+  :root {
+    --margin-horizontal: 5rem;
+
+    --layout-grid-columns: [full-start] var(--grid-center-padding)
+      [center-start]
+      repeat(
+        12,
+        [col-start] minmax(var(--min-column-size-md), var(--max-column-size-md))
+        [col-end]
+      )
+      [center-end] var(--grid-center-padding) [full-end];
+
+    --layout-column-gap: var(--layout-column-gap-md);
+  }
+
+  .header {
+    padding: 0 var(--margin-horizontal);
+  }
+
+  .sidebar,
+  .searchBox {
+    display: none;
+  }
+
+  .pageDetails,
+  .main {
+    grid-column: center-start / center-end;
+  }
+}
+
+/* SMALL */
+@media screen and (max-width: 768px) {
+  :root {
+    --margin-horizontal: 3rem;
+
+    --layout-grid-columns: [full-start] 1fr [center-start]
+      repeat(
+        12,
+        [col-start] minmax(var(--min-column-size-sm), var(--max-column-size-sm))
+        [col-end]
+      )
+      [center-end] 1fr [full-end];
+
+    --layout-column-gap: var(--layout-column-gap-sm);
+  }
+}
+
+/* EXTRA SMALL */
+@media screen and (max-width: 560px) {
+  :root {
+    --layout-grid-columns: [full-start] 1fr [full-end];
+    --layout-column-gap: 1fr;
+  }
+
+  .pageDetails,
+  .main {
+    grid-column: full-start / full-end;
+  }
+}

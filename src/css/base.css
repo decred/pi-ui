@@ -11,8 +11,16 @@ html {
   box-sizing: border-box;
 }
 
+/* SMALL */
+@media screen and (max-width: 768px) {
+  html {
+    font-size: 50%;
+  }
+}
+
 body {
   font-size: var(--font-size-normal);
+  font-family: var(--font-family-text);
   color: var(--text-color);
   line-height: var(--spacing-2);
 }
@@ -46,6 +54,7 @@ a:visited {
   --color-gray-light: #c4cbd2;
   --color-gray-lighter: #e6eaed;
   --color-gray-lightest: #f3f5f6;
+  --color-gray-lightest-2: #f9fafa;
   --color-white: #ffffff;
 
   /** SHADOWS */
