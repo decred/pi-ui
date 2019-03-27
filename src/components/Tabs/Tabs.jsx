@@ -41,7 +41,7 @@ Tabs.propTypes = {
   style: PropTypes.object,
   onSelectTab: PropTypes.func.isRequired,
   activeTabIndex: PropTypes.number.isRequired,
-  children: PropTypes.element.isRequired
+  children: PropTypes.node.isRequired
 };
 
 Tabs.defaultProps = {

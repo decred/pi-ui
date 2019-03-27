@@ -11,23 +11,25 @@ const Tab = ({
   label,
   count,
   ...props
-}) => (
-  <li
-    className={`${isActive ? styles.tabActive : styles.tab} ${className}`}
-    style={style}
-    onClick={(e) => {
-      e.preventDefault();
-      onSelect(tabIndex);
-    }}
-    {...props}>
-    <span className={styles.tabLabel} style={style}>
-      {label}
-    </span>
-    {typeof count === "number" && count >= 0 ? (
-      <span className={styles.tabCount}>{count}</span>
-    ) : null}
-  </li>
-);
+}) => {
+  const handleOnClick = (e) => {
+    e.preventDefault();
+    onSelect(tabIndex);
+  };
+
+  return (
+    <li
+      className={`${isActive ? styles.tabActive : styles.tab} ${className}`}
+      style={style}
+      onClick={handleOnClick}
+      {...props}>
+      <span className={styles.tabLabel} style={style}>
+        {label}
+      </span>
+      {count >= 0 && <span className={styles.tabCount}>{count}</span>}
+    </li>
+  );
+};
 
 Tab.propTypes = {
   onSelect: PropTypes.func.isRequired,

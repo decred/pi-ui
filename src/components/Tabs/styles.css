@@ -4,23 +4,23 @@
 }
 
 .tab {
-  padding-bottom: 0.5rem;
+  padding-bottom: 0.6rem;
   display: flex;
+  margin-right: 5rem;
   font-size: var(--font-size-normal);
   align-items: center;
-  border-bottom: 2px solid transparent;
+  border-bottom: 0.4rem solid transparent;
   cursor: pointer;
 }
 
 .tabsNav {
   list-style-type: none;
   display: flex;
-  justify-content: space-between;
 }
 
 .tabActive {
   composes: tab;
-  border-bottom: 2px solid var(--tab-active-underline-color);
+  border-color: var(--tab-active-underline-color);
 }
 
 .tabCount {
@@ -28,7 +28,7 @@
   align-items: center;
   justify-content: center;
   background: var(--tab-count-background);
-  height: 20px;
-  width: 20px;
-  margin-left: 5px;
+  height: 2rem;
+  width: 2rem;
+  margin-left: 0.5rem;
 }

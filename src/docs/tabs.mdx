@@ -22,7 +22,7 @@ import { Tabs, Tab } from "../index";
     const [activeTabIndex, setActiveTabIndex] = useState(0);
     return (
       <>
-        <Tabs style={{ width: "200px" }} onSelectTab={setActiveTabIndex} activeTabIndex={activeTabIndex}>
+        <Tabs onSelectTab={setActiveTabIndex} activeTabIndex={activeTabIndex}>
             <Tab label="tab 1" />
             <Tab label="tab 2" />
             <Tab label="tab 3" />
@@ -39,7 +39,7 @@ import { Tabs, Tab } from "../index";
     const [activeTabIndex, setActiveTabIndex] = useState(0);
     return (
       <>
-        <Tabs style={{ width: "140px" }} onSelectTab={setActiveTabIndex} activeTabIndex={activeTabIndex}>
+        <Tabs onSelectTab={setActiveTabIndex} activeTabIndex={activeTabIndex}>
             <Tab label="tab 1" count={1} />
             <Tab label="tab 2" count={4} />
         </Tabs>
@@ -55,7 +55,7 @@ import { Tabs, Tab } from "../index";
     const [activeTabIndex, setActiveTabIndex] = useState(0);
     return (
       <>
-        <Tabs style={{ width: "140px" }} onSelectTab={setActiveTabIndex} activeTabIndex={activeTabIndex}>
+        <Tabs onSelectTab={setActiveTabIndex} activeTabIndex={activeTabIndex}>
             <Tab label="tab 1" count={1}>
                 tab content 1
             </Tab>
