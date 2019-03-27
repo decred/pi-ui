@@ -8,6 +8,7 @@ const Tabs = ({
   style,
   className,
   children,
+  vertical,
   ...props
 }) => {
   const renderChildrenTabs = () => {
@@ -15,7 +16,8 @@ const Tabs = ({
       return React.cloneElement(child, {
         onSelect: onSelectTab,
         tabIndex: index,
-        isActive: index === activeTabIndex
+        isActive: index === activeTabIndex,
+        vertical: vertical
       });
     });
   };
@@ -28,7 +30,12 @@ const Tabs = ({
 
   return (
     <>
-      <ul className={`${styles.tabsNav} ${className}`} style={style} {...props}>
+      <ul
+        className={`${
+          vertical ? styles.tabsNavVertical : styles.tabsNav
+        } ${className}`}
+        style={style}
+        {...props}>
         {renderChildrenTabs()}
       </ul>
       {renderActiveTabContent()}
@@ -41,11 +48,13 @@ Tabs.propTypes = {
   style: PropTypes.object,
   onSelectTab: PropTypes.func.isRequired,
   activeTabIndex: PropTypes.number.isRequired,
-  children: PropTypes.node.isRequired
+  children: PropTypes.node.isRequired,
+  vertical: PropTypes.bool
 };
 
 Tabs.defaultProps = {
-  className: ""
+  className: "",
+  vertical: false
 };
 
 export default Tabs;

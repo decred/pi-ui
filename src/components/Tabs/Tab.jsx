@@ -10,6 +10,7 @@ const Tab = ({
   style,
   label,
   count,
+  vertical,
   ...props
 }) => {
   const handleOnClick = (e) => {
@@ -19,7 +20,9 @@ const Tab = ({
 
   return (
     <li
-      className={`${isActive ? styles.tabActive : styles.tab} ${className}`}
+      className={`${vertical ? styles.tabVertical : styles.tabHorizontal} ${
+        isActive ? styles.active : ""
+      } ${className}`}
       style={style}
       onClick={handleOnClick}
       {...props}>
@@ -38,11 +41,13 @@ Tab.propTypes = {
   className: PropTypes.string,
   style: PropTypes.object,
   label: PropTypes.string,
-  count: PropTypes.number
+  count: PropTypes.number,
+  vertical: PropTypes.bool
 };
 
 Tab.defaultProps = {
-  className: ""
+  className: "",
+  vertical: false
 };
 
 export default Tab;

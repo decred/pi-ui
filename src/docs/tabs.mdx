@@ -32,6 +32,23 @@ import { Tabs, Tab } from "../index";
   }}
 </Playground>
 
+### Vertical Tabs
+
+<Playground>
+  {() => {
+    const [activeTabIndex, setActiveTabIndex] = useState(0);
+    return (
+      <>
+        <Tabs vertical onSelectTab={setActiveTabIndex} activeTabIndex={activeTabIndex}>
+            <Tab label="What is Politeia?" />
+            <Tab label="Proposals?" />
+            <Tab label="Censorship" />
+        </Tabs>
+      </>
+    );
+  }}
+</Playground>
+
 ### Tabs with counting 
 
 <Playground>
