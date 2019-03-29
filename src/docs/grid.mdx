@@ -1,10 +1,75 @@
 ---
-name: Grid
-route: /grid
+name: Layout
+route: /layout
 ---
 
-import { Container } from "../index";
+import { Container, Header, TopBanner, PageDetails, SearchBox, Sidebar, Main } from "../index";
+import { Playground, Props } from "docz";
 
-# Grid
+# Layout
 
-<Container/>
+Pi-ui has a fluid 2-dimensional CSS Grid Layout great to build modern applications.
+
+## Container
+
+Container implements a default grid to position `pi-ui` layout elements.
+
+For screens width bigger than 560px:
+
+```css
+--layout-grid-columns: [full-start] var(--grid-center-padding) [center-start]
+    repeat(
+      12,
+      [col-start]
+      minmax(var(--min-column-size), var(--max-column-size))
+      [col-end]
+    )
+    [center-end] var(--grid-center-padding) [full-end];
+```
+```css
+--layout-grid-rows: 6rem 12rem 3rem minmax(30rem, max-content);
+```
+
+For screens width smaller or equal than 560px:
+
+```css
+--layout-grid-columns: [full-start] 1fr [full-end];
+```
+```css
+--layout-grid-rows: 6rem 12rem 3rem minmax(30rem, max-content);
+```
+
+## Breakpoints
+
+| **Extra Small** | **Small** | **Medium** | **Large** |
+|      :---:      |   :---:   |    :---:   |   :---:   |
+|      <= 560px   |  > 560px  |   > 768px  |  > 1000px |
+|      xs         |    sm     |     md     |     lg    |
+
+## Header
+
+Header goes from `full-start` to `full-end` and occupies the first row of the grid.
+
+## TopBanner
+
+TopBanner goes from `full-start` to `full-end` and occupies the second row of the grid.
+
+## PageDetails
+
+PageDetails is a child of TopBanner and goes from from `center-start` to `col-end 8`.
+
+## SearchBox
+
+SearchBox is a child of TopBanner and goes from from `col-start 9` to `center-end`.
+
+## Main
+
+TopBanner goes from `center-start` to `col-end 8` and occupies the fourth row of the grid.
+
+## Sidebar
+
+Sidebar goes from `col-start 9` to `center-end` and occupies the fourth row of the grid.
+
+## Example
+
+Take a look at the [example app](https://github.com/tiagoalvesdulce/pi-ui/tree/master/examples/layout).

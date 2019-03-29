@@ -1,11 +1,3 @@
-/*
-  * BREAKPOINTS
-  * xs: < 560px
-  * sm: 561 - 768px
-  * md: 769 - 1000px
-  * lg: > 1000px
-*/
-
 :root {
   --layout-column-gap-sm: 1.9rem;
   --layout-column-gap-md: 2.4rem;
@@ -41,12 +33,15 @@
   --layout-grid-columns: [full-start] var(--grid-center-padding) [center-start]
     repeat(
       12,
-      [col-start] minmax(var(--min-column-size-lg), var(--max-column-size-lg))
+      [col-start] minmax(var(--min-column-size), var(--max-column-size))
       [col-end]
     )
     [center-end] var(--grid-center-padding) [full-end];
 
   --layout-column-gap: var(--layout-column-gap-lg);
+
+  --min-column-size: var(--min-column-size-lg);
+  --max-column-size: var(--max-column-size-lg);
 
   --layout-grid-rows: 6rem 12rem 3rem minmax(30rem, max-content);
 }
@@ -106,16 +101,8 @@
 @media screen and (max-width: 1000px) {
   :root {
     --margin-horizontal: 5rem;
-
-    --layout-grid-columns: [full-start] var(--grid-center-padding)
-      [center-start]
-      repeat(
-        12,
-        [col-start] minmax(var(--min-column-size-md), var(--max-column-size-md))
-        [col-end]
-      )
-      [center-end] var(--grid-center-padding) [full-end];
-
+    --min-column-size: var(--min-column-size-md);
+    --max-column-size: var(--max-column-size-md);
     --layout-column-gap: var(--layout-column-gap-md);
   }
 
@@ -138,15 +125,8 @@
 @media screen and (max-width: 768px) {
   :root {
     --margin-horizontal: 3rem;
-
-    --layout-grid-columns: [full-start] 1fr [center-start]
-      repeat(
-        12,
-        [col-start] minmax(var(--min-column-size-sm), var(--max-column-size-sm))
-        [col-end]
-      )
-      [center-end] 1fr [full-end];
-
+    --min-column-size: var(--min-column-size-sm);
+    --max-column-size: var(--max-column-size-sm);
     --layout-column-gap: var(--layout-column-gap-sm);
   }
 }
@@ -155,7 +135,6 @@
 @media screen and (max-width: 560px) {
   :root {
     --layout-grid-columns: [full-start] 1fr [full-end];
-    --layout-column-gap: 1fr;
   }
 
   .pageDetails,
