@@ -17,4 +17,4 @@ export { default as Sidebar } from "./components/Layout/Sidebar.jsx";
 export { default as TopBanner } from "./components/Layout/TopBanner.jsx";
 export { default as Main } from "./components/Layout/Main.jsx";
 export { default as PageDetails } from "./components/Layout/PageDetails.jsx";
-export { default as SearchBox } from "./components/Layout/SearchBox.jsx";
+export { default as SideBanner } from "./components/Layout/SideBanner.jsx";

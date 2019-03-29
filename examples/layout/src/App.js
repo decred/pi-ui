@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Header, Sidebar, TopBanner, Main, PageDetails, SearchBox  } from "pi-ui";
+import { Container, Header, Sidebar, TopBanner, Main, PageDetails, SideBanner  } from "pi-ui";
 
 class App extends Component {
   render() {
@@ -11,11 +11,11 @@ class App extends Component {
         </Header>
         <TopBanner style={{ backgroundColor: "pink" }}>
           <PageDetails style={{ backgroundColor: "lightsalmon" }}>
-            Header
+            Page Details
           </PageDetails>
-          <SearchBox style={{ backgroundColor: "palegreen" }}>
+          <SideBanner style={{ backgroundColor: "palegreen" }}>
             Search Box
-          </SearchBox>
+          </SideBanner>
         </TopBanner>
         <Sidebar style={{ backgroundColor: "palegoldenrod" }}>
           Sidebar

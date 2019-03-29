@@ -5,7 +5,7 @@ import styles from "./styles.css";
 const SearchBox = ({ children, style, className, ...props }) => {
   return (
     <div
-      className={`${styles.searchBox} ${className}`}
+      className={`${styles.sideBanner} ${className}`}
       style={style}
       {...props}>
       {children}

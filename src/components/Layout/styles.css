@@ -81,7 +81,7 @@
   grid-column: center-start / col-end 8;
 }
 
-.searchBox {
+.sideBanner {
   grid-column: col-start 9 / center-end;
 }
 
@@ -111,7 +111,7 @@
   }
 
   .sidebar,
-  .searchBox {
+  .sideBanner {
     display: none;
   }
 
