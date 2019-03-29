@@ -4,47 +4,24 @@ import { Container, Header, Sidebar, TopBanner, Main, PageDetails, SearchBox, Bu
 class App extends Component {
   render() {
     return (
-      <Container className="container">
-        <Header className="header">
+      <Container style={{backgroundColor: "darkseagreen" }}>
+        <Header style={{ backgroundColor: "paleturquoise" }}>
           <div>Logo</div>
-          <div>
-            <span>credits</span>
-            <span>user</span>
-          </div>
+          <div>User</div>
         </Header>
-        <TopBanner className="topBanner">
-          <PageDetails className="pageDetails">
-            <H1>Big Header</H1>
+        <TopBanner style={{ backgroundColor: "pink" }}>
+          <PageDetails style={{ backgroundColor: "lightsalmon" }}>
+            Header
           </PageDetails>
-          <SearchBox className="searchBox">
-            Search
+          <SearchBox style={{ backgroundColor: "palegreen" }}>
+            Search Box
           </SearchBox>
         </TopBanner>
-        <Sidebar className="sidebar">
-          <Button style={{ width: "100%", marginBottom: "10px" }}>
-            Test
-          </Button>
-          <div style={{ marginBottom: "10px", backgroundColor: "#fff"}}>
-            <H2>About Politeia</H2>
-            <P>Details</P>
-            <P>Details</P>
-            <P>Details</P>
-          </div>
-          <div style={{ backgroundColor: "#fff" }}>
-            <H2>Resources</H2>
-            <P>Details</P>
-            <P>Details</P>
-            <P>Details</P>
-            <P>Details</P>
-            <P>Details</P>
-          </div>
+        <Sidebar style={{ backgroundColor: "palegoldenrod" }}>
+          Sidebar
         </Sidebar>
-        <Main className="main">
-          <P>Stuff</P>
-          <P>Stuff</P>
-          <P>Stuff</P>
-          <P>Stuff</P>
-          <P>Stuff</P>
+        <Main style={{ backgroundColor: "palevioletred" }}>
+          Main Content
         </Main>
       </Container>
     );
