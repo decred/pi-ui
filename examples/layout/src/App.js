@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Header, Sidebar, TopBanner, Main, PageDetails, SearchBox, Button, P, H1, H2  } from "pi-ui";
+import { Container, Header, Sidebar, TopBanner, Main, PageDetails, SearchBox  } from "pi-ui";
 
 class App extends Component {
   render() {
