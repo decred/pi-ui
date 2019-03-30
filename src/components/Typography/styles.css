@@ -70,6 +70,9 @@ font-face {
   font-size: 1.7rem;
   font-weight: var(--font-weight-regular);
   line-height: var(--spacing-2);
-  margin-bottom: var(--spacing-2);
   hyphens: auto;
+}
+
+.paragraph:not(:last-of-type) {
+  margin-bottom: var(--spacing-2);
 }
