@@ -1,10 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styles from "./styles.css";
+import { classNames } from "../../utils";
 
 const Button = ({ children, className, style, kind, onClick, ...props }) => (
   <button
-    className={`${styles[kind]} ${className}`}
+    className={classNames(styles[kind], className)}
     style={style}
     disabled={kind === "disabled"}
     onClick={onClick}
@@ -22,8 +23,7 @@ Button.propTypes = {
 };
 
 Button.defaultProps = {
-  kind: "primary",
-  className: ""
+  kind: "primary"
 };
 
 export default Button;

@@ -1,11 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styles from "./styles.css";
+import { classNames } from "../../utils";
 
 const TopBanner = ({ children, style, className, ...props }) => {
   return (
     <div
-      className={`${styles.topBanner} ${className}`}
+      className={classNames(styles.topBanner, className)}
       style={style}
       {...props}>
       {children}
@@ -17,10 +18,6 @@ TopBanner.propTypes = {
   children: PropTypes.node.isRequired,
   style: PropTypes.object,
   className: PropTypes.string
-};
-
-TopBanner.defaultProps = {
-  className: ""
 };
 
 export default TopBanner;

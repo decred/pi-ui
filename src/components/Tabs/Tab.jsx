@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styles from "./styles.css";
+import { classNames } from "../../utils";
 
 const Tab = ({
   onSelect,
@@ -20,9 +21,11 @@ const Tab = ({
 
   return (
     <li
-      className={`${vertical ? styles.tabVertical : styles.tabHorizontal} ${
-        isActive ? styles.active : ""
-      } ${className}`}
+      className={classNames(
+        vertical ? styles.tabVertical : styles.tabHorizontal,
+        isActive && styles.active,
+        className
+      )}
       style={style}
       onClick={handleOnClick}
       {...props}>
@@ -46,7 +49,6 @@ Tab.propTypes = {
 };
 
 Tab.defaultProps = {
-  className: "",
   vertical: false
 };
 

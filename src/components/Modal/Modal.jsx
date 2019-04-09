@@ -4,6 +4,7 @@ import { createPortal } from "react-dom";
 import ModalWrapper from "./ModalWrapper.jsx";
 import styles from "./styles.css";
 import H1 from "../Typography/H1.jsx";
+import { classNames } from "../../utils";
 
 const root = document.getElementById("root");
 
@@ -30,9 +31,12 @@ const Modal = ({
       show={show}
       style={wrapperStyle}
       onClose={onClose}
-      className={wrapperClassName}>
+      className={classNames(wrapperClassName)}>
       <div
-        className={show ? styles.modalVisible : styles.modal}
+        className={classNames(
+          show ? styles.modalVisible : styles.modal,
+          className
+        )}
         style={style}
         {...props}>
         {title && <H1 className={styles.modalTitle}>{title}</H1>}
@@ -54,10 +58,6 @@ Modal.propTypes = {
   show: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
   title: PropTypes.string
-};
-Modal.defaultProps = {
-  className: "",
-  wrapperClassName: ""
 };
 
 export default Modal;
