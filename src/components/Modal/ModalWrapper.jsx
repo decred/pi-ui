@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styles from "./styles.css";
+import { classNames } from "../../utils";
 
 const ModalWrapper = ({
   children,
@@ -19,9 +20,10 @@ const ModalWrapper = ({
     <div
       id="modal-wrapper"
       onClick={handleClickOverlay}
-      className={`${
-        show ? styles.modalWrapperVisible : styles.modalWrapper
-      } ${className}`}>
+      className={classNames(
+        show ? styles.modalWrapperVisible : styles.modalWrapper,
+        className
+      )}>
       {children}
     </div>
   );
@@ -33,10 +35,6 @@ ModalWrapper.propTypes = {
   show: PropTypes.bool.isRequired,
   className: PropTypes.string,
   onClose: PropTypes.func.isRequired
-};
-
-ModalWrapper.defaultProps = {
-  className: ""
 };
 
 export default ModalWrapper;

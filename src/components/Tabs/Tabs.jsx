@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styles from "./styles.css";
+import { classNames } from "../../utils";
 
 const Tabs = ({
   onSelectTab,
@@ -31,9 +32,10 @@ const Tabs = ({
   return (
     <>
       <ul
-        className={`${
-          vertical ? styles.tabsNavVertical : styles.tabsNav
-        } ${className}`}
+        className={classNames(
+          vertical ? styles.tabsNavVertical : styles.tabsNav,
+          className
+        )}
         style={style}
         {...props}>
         {renderChildrenTabs()}
@@ -53,7 +55,6 @@ Tabs.propTypes = {
 };
 
 Tabs.defaultProps = {
-  className: "",
   vertical: false
 };
 

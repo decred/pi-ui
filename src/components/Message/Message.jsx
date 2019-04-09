@@ -2,11 +2,15 @@ import React from "react";
 import PropTypes from "prop-types";
 import Card from "../Card/Card.jsx";
 import styles from "./styles.css";
+import { classNames } from "../../utils";
 
 // TODO: use svg icons when we have them
 const Message = ({ style, className, children, kind, ...props }) => {
   return (
-    <Card className={styles[kind]} style={style} {...props}>
+    <Card
+      className={classNames(styles[kind], className)}
+      style={style}
+      {...props}>
       {children}
     </Card>
   );
@@ -19,8 +23,7 @@ Message.propTypes = {
   kind: PropTypes.oneOf(["info", "warning", "error", "success"])
 };
 Message.defaultProps = {
-  kind: "info",
-  className: ""
+  kind: "info"
 };
 
 export default Message;

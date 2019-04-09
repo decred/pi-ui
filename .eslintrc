@@ -1,10 +1,17 @@
 {
   "parser": "babel-eslint",
-  "extends": ["standard", "standard-react", "prettier"],
+  "extends": [
+    "standard",
+    "standard-react",
+    "prettier"
+  ],
   "env": {
     "es6": true
   },
-  "plugins": ["prettier", "react"],
+  "plugins": [
+    "prettier",
+    "react"
+  ],
   "parserOptions": {
     "sourceType": "module",
     "ecmaVersion": 6
@@ -17,15 +24,20 @@
   "rules": {
     // don't force es6 functions to include space before paren
     "space-before-function-paren": 0,
-
     // allow specifying true explicitly for boolean props
     "react/jsx-boolean-value": 0,
-
-    "prettier/prettier": "error"
+    // prettier config
+    "prettier/prettier": "error",
+    "eqeqeq": [
+      "error",
+      "smart"
+    ]
   },
   "overrides": [
     {
-      "files": ["*test.js"],
+      "files": [
+        "*test.js"
+      ],
       "rules": {
         "no-undef": "off"
       }
