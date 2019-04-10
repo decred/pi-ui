@@ -18,16 +18,16 @@
 .primary {
   composes: btn;
   color: var(--color-white);
-  background-color: var(--color-primary);
-  border: 1px solid var(--color-primary);
+  background-color: var(--btn-color);
+  border: 1px solid var(--btn-color);
   box-shadow: 1px 1px 5px 1px var(--color-shadow-light);
 }
 
 .secondary {
   composes: btn;
-  color: var(--color-primary);
+  color: var(--btn-color);
   background-color: transparent;
-  border: 1px solid var(--color-primary);
+  border: 1px solid var(--btn-color);
   box-shadow: 1px 1px 5px 1px var(--color-shadow-light);
 }
 

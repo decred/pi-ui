@@ -10,3 +10,5 @@ export const classNames = (...args) =>
     .join(" ");
 
 export const isString = (arg) => typeof arg == "string";
+export const isObject = (arg) =>
+  arg && !Array.isArray(arg) && typeof arg == "object";

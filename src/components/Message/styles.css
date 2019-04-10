@@ -1,14 +1,3 @@
-:root {
-  --error-message-background: var(--color-orange-light);
-  --error-message-color: var(--color-orange);
-  --warning-message-background: var(--color-yellow-light);
-  --warning-message-color: var(--color-gold);
-  --info-message-background: var(--color-blue-light);
-  --info-message-color: var(--color-primary);
-  --success-message-background: var(--color-green-light);
-  --success-message-color: var(--color-green);
-}
-
 .message {
   padding: 20px 40px;
 }
