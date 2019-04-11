@@ -4,6 +4,7 @@ export default {
   title: "pi-ui",
   description: "Politeia UI library",
   src: "./src",
+  wrapper: "src/docs/Wrapper",
   plugins: [css({ preprocessor: "postcss", cssmodules: true })],
   themeConfig: {
     showPlaygroundEditor: true,

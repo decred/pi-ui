@@ -1,4 +1,4 @@
-import { classNames, isString } from "./utils";
+import { classNames, isString, isObject } from "./utils";
 
 describe("classNames util", () => {
   it("returns empty if argument is falsy", () => {
@@ -27,5 +27,19 @@ describe("isString util", () => {
     expect(isString({})).toBeFalsy();
     expect(isString(null)).toBeFalsy();
     expect(isString(undefined)).toBeFalsy();
+  });
+});
+
+describe("isObject util", () => {
+  it("returns true if argument is an object", () => {
+    expect(isObject({})).toBeTruthy();
+    expect(isObject({ key: "value" })).toBeTruthy();
+  });
+  it("returns false if argument is not an object", () => {
+    expect(isObject(["abc"])).toBeFalsy();
+    expect(isObject("test")).toBeFalsy();
+    expect(isObject(3)).toBeFalsy();
+    expect(isObject(null)).toBeFalsy();
+    expect(isObject(undefined)).toBeFalsy();
   });
 });

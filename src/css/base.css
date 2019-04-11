@@ -31,66 +31,33 @@ a:visited {
   text-decoration: none;
 }
 
-:root {
-  /** PRIMARY COLORS */
-  /** Key Blue*/
-  --color-primary: #2970ff;
-  /** Dark Blue */
-  --color-primary-dark: #091440;
-  /** Turqouise */
-  --color-primary-light: #2ed8a3;
+@font-face {
+  font-family: "Segoe UI";
+  src: url("../assets/fonts/segoeui/segoeui.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
 
-  /** COMPLEMENTARY COLORS */
-  --color-blue-light: #70cbff;
-  --color-green: #41bf53;
-  --color-green-light: #c4ecca;
-  --color-orange: #ed6d47;
-  --color-orange-light: #feb8a5;
-  --color-gold: #cfa03f;
-  --color-yellow: #ffc84e;
-  --color-yellow-light: #ffe4a7;
-  --color-gray-dark: #3d5873;
-  --color-gray: #8997a5;
-  --color-gray-light: #c4cbd2;
-  --color-gray-lighter: #e6eaed;
-  --color-gray-lightest: #f3f5f6;
-  --color-gray-lightest-2: #f9fafa;
-  --color-white: #ffffff;
+@font-face {
+  font-family: "Source Sans Pro";
+  src: url("../assets/fonts/source_sans_pro/SourceSansPro-SemiBold.ttf")
+    format("ttf");
+  font-weight: var(--font-weight-semi-bold);
+  font-style: normal;
+}
 
-  /** SHADOWS */
-  --color-shadow-light: rgba(0, 0, 0, 0.2);
+@font-face {
+  font-family: "Source Sans Pro";
+  src: url("../assets/fonts/source_sans_pro/SourceSansPro-Regular.ttf")
+    format("ttf");
+  font-weight: var(--font-weight-regular);
+  font-style: normal;
+}
 
-  /** FONTS */
-  --font-family-tag: "Segoe UI", sans-serif;
-  --font-family-text: "Source Sans Pro";
-  --text-color: var(--color-primary-dark);
-  --text-color-light: var(--color-gray);
-
-  --font-size-xxxlarge: 3.6rem;
-  --font-size-xxlarge: 2.6rem;
-  --font-size-xlarge: 2.3rem;
-  --font-size-large: 2rem;
-  --font-size-normal: 1.7rem;
-
-  --font-weight-extra-light: 200;
-  --font-weight-light: 300;
-  --font-weight-regular: 400;
-  --font-weight-semi-bold: 600;
-  --font-weight-bold: 700;
-  --font-weight-extra-bold: 900;
-
-  /** VERTICAL SPACINGS */
-  --spacing-1: 1.1rem; /* 11px */
-  --spacing-2: 2.2rem; /* 22px */
-  --spacing-3: 3.3rem; /* 33px */
-  --spacing-4: 4.4rem; /* 44px */
-
-  /** Z-INDEX SCALE */
-  --z-index-0: 0;
-  --z-index-1: 1;
-  --z-index-2: 2;
-  --z-index-3: 4;
-  --z-index-5: 5;
-  --z-index-small: -9999;
-  --z-index-big: 9999;
+@font-face {
+  font-family: "Source Sans Pro";
+  src: url("../assets/fonts/source_sans_pro/SourceSansPro-Light.ttf")
+    format("ttf");
+  font-weight: var(--font-weight-light);
+  font-style: normal;
 }
