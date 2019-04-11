@@ -1,0 +1,71 @@
+---
+name: Theming
+route: /theming
+---
+
+# Theming
+
+## Create a custom theme
+
+The recommended way to create a custom theme is to create a file named `theme.js`, you can add your custom values and override existing ones.
+
+```js
+// theme.js
+
+export default {
+  "color-primary": "red",
+  "btn-color": "var(--color-primary)"
+};
+```
+
+## Use your theme in your application
+
+Pi-ui exposes an `useTheme` hook that accepts a `theme` argument. All CSS properties will be updated accordingly.
+
+
+```js
+import React from "react";
+import { render } from "react-dom";
+import { useTheme } from "pi-ui";
+import theme from "./theme";
+
+const App = () => {
+  useTheme(theme);
+  return (
+    // App jsx
+  )
+};
+
+render(<App />, document.getElementById("root"));
+```
+
+## Default theme
+
+There are two default themes, `defaultThemeLight` and `defaultThemeDark`. They are both name exported from pi-ui.
+
+```js
+import { defaultThemeLight, defaultThemeDark } from "pi-ui";
+```
+
+## Use theme property
+
+You can use any property from a theme in your code:
+
+```js
+import React from "react";
+import { useTheme, defaultThemeLight } from "pi-ui";
+
+const Test = () => {
+  const theme = useTheme(defaultThemeLight);
+  /*
+  theme = {
+    "color-primary": "#2970ff",
+    "color-primary-dark": "#091440",
+    "color-primary-light": "#2ed8a3"
+    ...
+  }
+  */
+}
+```
+
+* Note that you **have** to pass a theme to `useTheme` everytime if you are using a custom theme, otherwise it will be set to the `defaultLightTheme`.
