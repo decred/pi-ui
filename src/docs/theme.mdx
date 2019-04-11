@@ -41,10 +41,10 @@ render(<App />, document.getElementById("root"));
 
 ## Default theme
 
-There are two default themes, `defaultThemeLight` and `defaultThemeDark`. They are both name exported from pi-ui.
+There are two default themes, `defaultLightTheme` and `defaultDarkTheme`. They are both name exported from pi-ui.
 
 ```js
-import { defaultThemeLight, defaultThemeDark } from "pi-ui";
+import { defaultLightTheme, defaultDarkTheme } from "pi-ui";
 ```
 
 ## Use theme property
@@ -53,10 +53,10 @@ You can use any property from a theme in your code:
 
 ```js
 import React from "react";
-import { useTheme, defaultThemeLight } from "pi-ui";
+import { useTheme, defaultLightTheme } from "pi-ui";
 
 const Test = () => {
-  const theme = useTheme(defaultThemeLight);
+  const theme = useTheme(defaultLightTheme);
   /*
   theme = {
     "color-primary": "#2970ff",
