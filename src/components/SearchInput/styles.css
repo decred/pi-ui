@@ -8,6 +8,7 @@
   transition: all 0.25s;
   line-height: var(--spacing-4);
   padding: 0 2.5rem 0 2rem;
+  border-radius: 0.5rem;
 }
 
 .searchinput::placeholder {
