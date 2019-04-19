@@ -1,0 +1,28 @@
+.searchinput {
+  background-color: transparent;
+  border: 1px solid var(--color-gray-lighter);
+  outline: 0;
+  width: 100%;
+  font-size: var(--font-size-normal);
+  font-weight: var(--font-weight-extra-light);
+  transition: all 0.25s;
+  line-height: var(--spacing-4);
+  padding: 0 2.5rem 0 2rem;
+}
+
+.searchinput::placeholder {
+  color: var(--color-gray-light);
+}
+
+.searchinputWrapper {
+  position: relative;
+}
+
+.searchinputButton {
+  cursor: pointer;
+  position: absolute;
+  right: 2rem;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  user-select: none;
+}

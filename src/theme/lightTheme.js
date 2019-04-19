@@ -30,6 +30,7 @@ const lightTheme = {
   "font-size-xlarge": "2.3rem",
   "font-size-large": "2rem",
   "font-size-normal": "1.7rem",
+  "font-size-small": "1.5rem",
 
   "font-weight-extra-light": "200",
   "font-weight-light": "300",

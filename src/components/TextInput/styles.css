@@ -1,0 +1,38 @@
+.textinput {
+  background-color: transparent;
+  outline: 0;
+  border: 0;
+  width: 100%;
+  border-bottom: 0.1rem solid var(--color-gray-lighter);
+  font-size: var(--font-size-normal);
+  transition: all 0.25s;
+  line-height: var(--spacing-2);
+}
+
+.textinputWrapper {
+  width: 100%;
+  position: relative;
+}
+
+.textinputWrapper:not(:first-child) {
+  margin-top: 2.2rem;
+}
+
+.textinputLabel {
+  position: absolute;
+  top: -0.1rem;
+  left: 0;
+  color: var(--color-gray);
+  font-size: var(--font-size-normal);
+  transition: all 0.25s;
+}
+
+.textinput:focus {
+  border-bottom: 0.1rem solid var(--color-primary);
+}
+
+.textinput:focus + .textinputLabel,
+.textinput:not(:placeholder-shown) + .textinputLabel {
+  top: -2rem;
+  font-size: var(--font-size-small);
+}
