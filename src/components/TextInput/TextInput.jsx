@@ -2,10 +2,16 @@ import React from "react";
 import PropTypes from "prop-types";
 import styles from "./styles.css";
 
-const TextInput = ({ type, label, id }) => {
+const TextInput = ({ type, label, id, ...props }) => {
   return (
     <div className={styles.textinputWrapper}>
-      <input id={id} placeholder=" " className={styles.textinput} type={type} />
+      <input
+        id={id}
+        placeholder=" "
+        className={styles.textinput}
+        type={type}
+        {...props}
+      />
       <label htmlFor={id} className={styles.textinputLabel}>
         {label}
       </label>

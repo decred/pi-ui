@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import styles from "./styles.css";
 
 // TODO: use SVG icon when we have it
-const SearchInput = ({ placeholder, id, onSubmit }) => {
+const SearchInput = ({ placeholder, id, onSubmit, ...props }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     onSubmit && onSubmit();
@@ -15,6 +15,7 @@ const SearchInput = ({ placeholder, id, onSubmit }) => {
         type="text"
         id={id}
         placeholder={placeholder}
+        {...props}
       />
       <input
         type="submit"
