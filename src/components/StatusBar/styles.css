@@ -1,0 +1,53 @@
+.statusWrapper {
+  display: flex;
+  border-radius: 10rem;
+  overflow: hidden;
+  margin-top: 1rem;
+}
+
+.statusInfo {
+  display: flex;
+  justify-content: space-between;
+}
+
+.infoTotal {
+  font-weight: var(--font-weight-extra-bold);
+  color: var(--color-gray);
+}
+
+.legendLine {
+  display: flex;
+  align-items: center;
+}
+
+.legendLine:not(:last-child) {
+  margin-right: 3rem;
+}
+
+.legend {
+  display: flex;
+}
+
+.legendColor {
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+}
+
+.legendLabel {
+  font-weight: var(--font-weight-extra-bold);
+  margin-right: 0.5rem;
+}
+
+.legendAmount {
+  margin-right: 0.5rem;
+}
+
+.marker {
+  height: 20px;
+  width: 2px;
+  background-color: var(--color-gray-light);
+  position: absolute;
+  transform: translate(0, -25%);
+}
