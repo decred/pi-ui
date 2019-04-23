@@ -1,0 +1,33 @@
+.searchinput {
+  background-color: transparent;
+  border: 1px solid var(--color-gray-lighter);
+  outline: 0;
+  width: 100%;
+  font-size: inherit;
+  font-weight: var(--font-weight-extra-light);
+  transition: all 0.25s;
+  line-height: var(--spacing-4);
+  padding: 0 2.5rem 0 2rem;
+  border-radius: 0.5rem;
+}
+
+.searchinput::placeholder {
+  color: var(--color-gray-light);
+}
+
+.searchinputWrapper {
+  font-size: var(--font-size-normal);
+  position: relative;
+}
+
+.searchinputButton {
+  cursor: pointer;
+  border: 0;
+  outline: 0;
+  position: absolute;
+  font-size: inherit;
+  right: 2rem;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  user-select: none;
+}

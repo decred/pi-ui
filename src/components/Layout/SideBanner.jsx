@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import styles from "./styles.css";
 import { classNames } from "../../utils";
 
-const SearchBox = ({ children, style, className, ...props }) => {
+const SideBanner = ({ children, style, className, ...props }) => {
   return (
     <div
       className={classNames(styles.sideBanner, className)}
@@ -14,10 +14,10 @@ const SearchBox = ({ children, style, className, ...props }) => {
   );
 };
 
-SearchBox.propTypes = {
+SideBanner.propTypes = {
   children: PropTypes.node.isRequired,
   style: PropTypes.object,
   className: PropTypes.string
 };
 
-export default SearchBox;
+export default SideBanner;

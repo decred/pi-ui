@@ -36,7 +36,7 @@
 
 .paragraph {
   composes: textSourceSansPro;
-  font-size: 1.7rem;
+  font-size: var(--font-size-normal);
   font-weight: var(--font-weight-regular);
   line-height: var(--spacing-2);
   hyphens: auto;
