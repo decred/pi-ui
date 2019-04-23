@@ -1,8 +1,7 @@
 .statusWrapper {
   display: flex;
-  border-radius: 10rem;
-  overflow: hidden;
   margin-top: 1rem;
+  position: relative;
 }
 
 .statusInfo {
@@ -11,7 +10,6 @@
 }
 
 .infoTotal {
-  font-weight: var(--font-weight-extra-bold);
   color: var(--color-gray);
 }
 
@@ -42,6 +40,18 @@
 
 .legendAmount {
   margin-right: 0.5rem;
+}
+
+.statusOption {
+  height: 8px;
+}
+
+.firstStatusOption {
+  border-radius: 10rem 0 0 10rem;
+}
+
+.lastStatusOption {
+  border-radius: 0 10rem 10rem 0;
 }
 
 .marker {

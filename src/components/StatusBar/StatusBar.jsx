@@ -1,8 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styles from "./styles.css";
+import { classNames } from "../../utils";
 
-const StatusBar = ({ status, markerPosition, max }) => {
+const StatusBar = ({ status, markerPosition, max, showMarker }) => {
   const currentTotal = status.reduce((acc, cur) => acc + cur.amount, 0);
   const statusWithPercentages = status.map((item) => ({
     ...item,
@@ -25,26 +26,35 @@ const StatusBar = ({ status, markerPosition, max }) => {
           ))}
         </div>
         <span>
-          <span>{currentTotal}</span>
+          <span className={styles.infoCurrent}>{currentTotal}</span>
           <span className={styles.infoTotal}>/{max} votes</span>
         </span>
       </div>
       <div className={styles.statusWrapper}>
-        {statusWithPercentages.map((st) => (
+        {statusWithPercentages.map((st, i) => (
           <div
+            className={classNames(
+              styles.statusOption,
+              i === 0
+                ? styles.firstStatusOption
+                : i === statusWithPercentages.length - 1
+                ? styles.lastStatusOption
+                : null
+            )}
             style={{
-              height: "8px",
               width: `${st.percentage}%`,
               backgroundColor: st.color
             }}
           />
         ))}
-        <div
-          className={styles.marker}
-          style={{
-            left: markerPosition
-          }}
-        />
+        {showMarker && (
+          <div
+            className={styles.marker}
+            style={{
+              left: markerPosition
+            }}
+          />
+        )}
       </div>
     </div>
   );
@@ -53,12 +63,14 @@ const StatusBar = ({ status, markerPosition, max }) => {
 StatusBar.propTypes = {
   status: PropTypes.array.isRequired,
   markerPosition: PropTypes.string,
-  max: PropTypes.number
+  max: PropTypes.number,
+  showMarker: PropTypes.bool
 };
 
 StatusBar.defaultProps = {
   markerPosition: "0%",
-  max: 0
+  max: 0,
+  showMarker: true
 };
 
 export default StatusBar;

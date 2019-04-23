@@ -34,7 +34,7 @@ import { StatusBar } from "../index";
         color: "blue"
       }
     ]}
-    markerPercentage = "50%"
+    markerPosition = "50%"
     max={5000}
   />
   <br/>
@@ -52,7 +52,24 @@ import { StatusBar } from "../index";
         color: "orange"
       }
     ]}
-    markerPercentage = "50%"
+    markerPosition = "50%"
     max={5000}
+  />
+  <br/>
+  <br/>
+  <StatusBar
+    status = {[
+      {
+        label: "Yes",
+        amount: 300,
+        color: "green"
+      },
+      {
+        label: "No",
+        amount: 200,
+        color: "orange"
+      }
+    ]}
+    showMarker={false}
   />
 </Playground>
