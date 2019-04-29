@@ -72,4 +72,22 @@ import { StatusBar } from "../index";
     ]}
     showMarker={false}
   />
+  <br/>
+  <br/>
+  <StatusBar
+    status = {[
+      {
+        label: "Yes",
+        amount: 300,
+        color: "green"
+      },
+      {
+        label: "No",
+        amount: 200,
+        color: "orange"
+      }
+    ]}
+    renderStatusInfoComponent={<div>I am custom</div>}
+    showMarker={false}
+  />
 </Playground>

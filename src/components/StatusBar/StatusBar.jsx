@@ -8,19 +8,25 @@ const StatusBar = ({
   markerPosition,
   max,
   showMarker,
-  renderStatusInfo
+  renderStatusInfoComponent
 }) => {
-  const currentTotal = status.reduce((acc, cur) => acc + cur.amount, 0);
+  const currenttotal = status.reduce((acc, cur) => acc + cur.amount, 0);
   const statusWithPercentages = status.map((item) => ({
     ...item,
-    percentage: (item.amount / currentTotal) * 100
+    percentage: (item.amount / currenttotal) * 100
   }));
+  const createInfoComp = (props) =>
+    renderStatusInfoComponent ? (
+      React.cloneElement(renderStatusInfoComponent, props)
+    ) : (
+      <DefaultInfoComp {...props} />
+    );
   return (
     <div>
       <div className={styles.statusInfo}>
         <div className={styles.legend}>
           {statusWithPercentages.map((st, i) => (
-            <div className={styles.legendLine}>
+            <div className={styles.legendLine} key={i + Math.random()}>
               <div
                 style={{ backgroundColor: st.color }}
                 className={styles.legendColor}
@@ -31,16 +37,12 @@ const StatusBar = ({
             </div>
           ))}
         </div>
-        {!renderStatusInfo && (
-          <span>
-            <span className={styles.infoCurrent}>{currentTotal}</span>
-            <span className={styles.infoTotal}>/{max} votes</span>
-          </span>
-        )}
+        {createInfoComp({ currenttotal, max })}
       </div>
       <div className={styles.statusWrapper}>
         {statusWithPercentages.map((st, i) => (
           <div
+            key={i + Math.random()}
             className={classNames(
               styles.statusOption,
               i === 0
@@ -69,10 +71,22 @@ const StatusBar = ({
   );
 };
 
+const DefaultInfoComp = ({ currenttotal, max }) => (
+  <span>
+    <span className={styles.infoCurrent}>{currenttotal}</span>
+    <span className={styles.infoTotal}>/{max} votes</span>
+  </span>
+);
+
+DefaultInfoComp.propTypes = {
+  currenttotal: PropTypes.number,
+  max: PropTypes.number
+};
+
 StatusBar.propTypes = {
   status: PropTypes.array.isRequired,
   markerPosition: PropTypes.string,
-  renderStatusInfo: PropTypes.node,
+  renderStatusInfoComponent: PropTypes.element,
   max: PropTypes.number,
   showMarker: PropTypes.bool
 };
