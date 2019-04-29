@@ -3,7 +3,13 @@ import PropTypes from "prop-types";
 import styles from "./styles.css";
 import { classNames } from "../../utils";
 
-const StatusBar = ({ status, markerPosition, max, showMarker }) => {
+const StatusBar = ({
+  status,
+  markerPosition,
+  max,
+  showMarker,
+  renderStatusInfo
+}) => {
   const currentTotal = status.reduce((acc, cur) => acc + cur.amount, 0);
   const statusWithPercentages = status.map((item) => ({
     ...item,
@@ -25,10 +31,12 @@ const StatusBar = ({ status, markerPosition, max, showMarker }) => {
             </div>
           ))}
         </div>
-        <span>
-          <span className={styles.infoCurrent}>{currentTotal}</span>
-          <span className={styles.infoTotal}>/{max} votes</span>
-        </span>
+        {!renderStatusInfo && (
+          <span>
+            <span className={styles.infoCurrent}>{currentTotal}</span>
+            <span className={styles.infoTotal}>/{max} votes</span>
+          </span>
+        )}
       </div>
       <div className={styles.statusWrapper}>
         {statusWithPercentages.map((st, i) => (
@@ -50,6 +58,7 @@ const StatusBar = ({ status, markerPosition, max, showMarker }) => {
         {showMarker && (
           <div
             className={styles.marker}
+            title={markerPosition}
             style={{
               left: markerPosition
             }}
@@ -63,6 +72,7 @@ const StatusBar = ({ status, markerPosition, max, showMarker }) => {
 StatusBar.propTypes = {
   status: PropTypes.array.isRequired,
   markerPosition: PropTypes.string,
+  renderStatusInfo: PropTypes.node,
   max: PropTypes.number,
   showMarker: PropTypes.bool
 };

@@ -6,7 +6,9 @@
 
 .statusInfo {
   display: flex;
+  flex-wrap: wrap-reverse;
   justify-content: space-between;
+  align-items: center;
 }
 
 .infoTotal {
@@ -57,7 +59,15 @@
 .marker {
   height: 20px;
   width: 2px;
+  cursor: pointer;
   background-color: var(--color-gray-light);
   position: absolute;
-  transform: translate(0, -25%);
+  transform: translate(-50%, -25%);
+}
+
+/* EXTRA SMALL */
+@media screen and (max-width: 560px) {
+  .legend {
+    flex-direction: column;
+  }
 }
