@@ -23,6 +23,7 @@ export { default as TopBanner } from "./components/Layout/TopBanner.jsx";
 export { default as Main } from "./components/Layout/Main.jsx";
 export { default as PageDetails } from "./components/Layout/PageDetails.jsx";
 export { default as SideBanner } from "./components/Layout/SideBanner.jsx";
+export { default as StatusBar } from "./components/StatusBar/StatusBar.jsx";
 export { default as defaultLightTheme } from "./theme/lightTheme";
 export { default as defaultDarkTheme } from "./theme/darkTheme";
 export { default as useTheme } from "./theme/useTheme";

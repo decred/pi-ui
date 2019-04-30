@@ -1,0 +1,93 @@
+---
+name: StatusBar
+menu: Components
+route: /components/statusbar
+---
+
+import { Playground, Props } from "docz";
+import { StatusBar } from "../index";
+
+# StatusBar
+
+## Properties
+
+<Props of={StatusBar} />
+
+## Usage
+
+<Playground>
+  <StatusBar
+    status = {[
+      {
+        label: "Yes",
+        amount: 300,
+        color: "green"
+      },
+      {
+        label: "No",
+        amount: 200,
+        color: "orange"
+      },
+      {
+        label: "Maybe",
+        amount: 500,
+        color: "blue"
+      }
+    ]}
+    markerPosition = "50%"
+    max={5000}
+  />
+  <br/>
+  <br/>
+  <StatusBar
+    status = {[
+      {
+        label: "Yes",
+        amount: 300,
+        color: "green"
+      },
+      {
+        label: "No",
+        amount: 200,
+        color: "orange"
+      }
+    ]}
+    markerPosition = "50%"
+    max={5000}
+  />
+  <br/>
+  <br/>
+  <StatusBar
+    status = {[
+      {
+        label: "Yes",
+        amount: 300,
+        color: "green"
+      },
+      {
+        label: "No",
+        amount: 200,
+        color: "orange"
+      }
+    ]}
+    showMarker={false}
+  />
+  <br/>
+  <br/>
+  <StatusBar
+    status = {[
+      {
+        label: "Yes",
+        amount: 300,
+        color: "green"
+      },
+      {
+        label: "No",
+        amount: 200,
+        color: "orange"
+      }
+    ]}
+    renderStatusInfoComponent={<div>I am custom</div>}
+    showMarker={false}
+  />
+</Playground>

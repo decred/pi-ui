@@ -1,0 +1,73 @@
+.statusWrapper {
+  display: flex;
+  margin-top: 1rem;
+  position: relative;
+}
+
+.statusInfo {
+  display: flex;
+  flex-wrap: wrap-reverse;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.infoTotal {
+  color: var(--color-gray);
+}
+
+.legendLine {
+  display: flex;
+  align-items: center;
+}
+
+.legendLine:not(:last-child) {
+  margin-right: 3rem;
+}
+
+.legend {
+  display: flex;
+}
+
+.legendColor {
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+}
+
+.legendLabel {
+  font-weight: var(--font-weight-extra-bold);
+  margin-right: 0.5rem;
+}
+
+.legendAmount {
+  margin-right: 0.5rem;
+}
+
+.statusOption {
+  height: 8px;
+}
+
+.firstStatusOption {
+  border-radius: 10rem 0 0 10rem;
+}
+
+.lastStatusOption {
+  border-radius: 0 10rem 10rem 0;
+}
+
+.marker {
+  height: 20px;
+  width: 2px;
+  cursor: pointer;
+  background-color: var(--color-gray-light);
+  position: absolute;
+  transform: translate(-50%, -25%);
+}
+
+/* EXTRA SMALL */
+@media screen and (max-width: 560px) {
+  .legend {
+    flex-direction: column;
+  }
+}
