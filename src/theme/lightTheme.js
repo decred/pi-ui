@@ -79,25 +79,18 @@ const lightTheme = {
   "main-color": "var(--color-white)",
 
   /** GRID */
-  "margin-horizontal": "6rem",
-
   "grid-center-padding": `minmax(
-    calc(var(--margin-horizontal) - var(--layout-column-gap)),
+    calc(6rem - var(--layout-column-gap-lg)),
     1fr
   )`,
 
   "layout-grid-columns": `[full-start] var(--grid-center-padding) [center-start]
     repeat(
       12,
-      [col-start] minmax(var(--min-column-size), var(--max-column-size))
+      [col-start] minmax(var(--min-column-size-lg), var(--max-column-size-lg))
       [col-end]
     )
     [center-end] var(--grid-center-padding) [full-end]`,
-
-  "layout-column-gap": "var(--layout-column-gap-lg)",
-
-  "min-column-size": "var(--min-column-size-lg)",
-  "max-column-size": "var(--max-column-size-lg)",
 
   "layout-grid-rows": "6rem 12rem 3rem minmax(30rem, max-content)",
 

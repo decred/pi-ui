@@ -11,13 +11,6 @@ html {
   box-sizing: border-box;
 }
 
-/* SMALL */
-@media screen and (max-width: 768px) {
-  html {
-    font-size: 50%;
-  }
-}
-
 body {
   font-size: var(--font-size-normal);
   font-family: var(--font-family-text);

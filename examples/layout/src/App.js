@@ -1,7 +1,8 @@
 import React from 'react';
-import { Container, Header, Sidebar, TopBanner, Main, PageDetails, SideBanner } from "pi-ui";
+import { Container, Header, Sidebar, TopBanner, Main, PageDetails, SideBanner, useTheme } from "pi-ui";
 
 const App = () => {
+  useTheme();
   return (
     <Container style={{backgroundColor: "darkseagreen" }}>
       <Header style={{ backgroundColor: "paleturquoise" }}>
