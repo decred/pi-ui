@@ -3,8 +3,15 @@ import PropTypes from "prop-types";
 import styles from "./styles.css";
 import { classNames } from "../../utils";
 
-const Card = ({ children, className, style, ...props }) => (
-  <div className={classNames(styles.card, className)} style={style} {...props}>
+const Card = ({ children, className, style, paddingSize, ...props }) => (
+  <div
+    className={classNames(
+      styles.card,
+      styles[`padding-${paddingSize}`],
+      className
+    )}
+    style={style}
+    {...props}>
     {children}
   </div>
 );
@@ -12,6 +19,7 @@ const Card = ({ children, className, style, ...props }) => (
 Card.propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
+  paddingSize: PropTypes.oneOf(["small", "medium", "large"]),
   style: PropTypes.object
 };
 

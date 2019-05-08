@@ -1,3 +1,15 @@
 .card {
   background: var(--card-background);
 }
+
+.padding-small {
+  padding: 2rem 3rem;
+}
+
+.padding-medium {
+  padding: 4rem 6rem;
+}
+
+.padding-large {
+  padding: 6rem 9rem;
+}
