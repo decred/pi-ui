@@ -49,17 +49,46 @@
   grid-column: center-start / col-end 8;
 }
 
+.mainfill {
+  grid-column: center-start / center-end;
+}
+
 /* MEDIUM */
 @media screen and (max-width: 1000px) {
-  :root {
-    --margin-horizontal: 5rem;
-    --min-column-size: var(--min-column-size-md);
-    --max-column-size: var(--max-column-size-md);
-    --layout-column-gap: var(--layout-column-gap-md);
+  .container {
+    --grid-center-padding: minmax(
+      calc(5rem - var(--layout-column-gap-md)),
+      1fr
+    );
+    grid-template-columns:
+      [full-start] var(--grid-center-padding) [center-start]
+      repeat(
+        12,
+        [col-start] minmax(var(--min-column-size-md), var(--max-column-size-md))
+        [col-end]
+      )
+      [center-end] var(--grid-center-padding) [full-end];
+    column-gap: var(--layout-column-gap-md);
+  }
+
+  .topBanner {
+    --grid-center-padding: minmax(
+      calc(5rem - var(--layout-column-gap-md)),
+      1fr
+    );
+    grid-template-columns:
+      [full-start] var(--grid-center-padding) [center-start]
+      repeat(
+        12,
+        [col-start] minmax(var(--min-column-size-md), var(--max-column-size-md))
+        [col-end]
+      )
+      [center-end] var(--grid-center-padding) [full-end];
+    column-gap: var(--layout-column-gap-md);
   }
 
   .header {
-    padding: 0 var(--margin-horizontal);
+    padding: 0 5rem;
   }
 
   .sidebar,
@@ -75,18 +104,55 @@
 
 /* SMALL */
 @media screen and (max-width: 768px) {
-  :root {
-    --margin-horizontal: 3rem;
-    --min-column-size: var(--min-column-size-sm);
-    --max-column-size: var(--max-column-size-sm);
-    --layout-column-gap: var(--layout-column-gap-sm);
+  .container {
+    --grid-center-padding: minmax(
+      calc(3rem - var(--layout-column-gap-sm)),
+      1fr
+    );
+    grid-template-columns:
+      [full-start] var(--grid-center-padding) [center-start]
+      repeat(
+        12,
+        [col-start] minmax(var(--min-column-size-sm), var(--max-column-size-sm))
+        [col-end]
+      )
+      [center-end] var(--grid-center-padding) [full-end];
+    column-gap: var(--layout-column-gap-sm);
+  }
+
+  .header {
+    padding: 0 3rem;
+  }
+
+  .topBanner {
+    --grid-center-padding: minmax(
+      calc(5rem - var(--layout-column-gap-sm)),
+      1fr
+    );
+    grid-template-columns:
+      [full-start] var(--grid-center-padding) [center-start]
+      repeat(
+        12,
+        [col-start] minmax(var(--min-column-size-sm), var(--max-column-size-sm))
+        [col-end]
+      )
+      [center-end] var(--grid-center-padding) [full-end];
+    column-gap: var(--layout-column-gap-sm);
   }
 }
 
 /* EXTRA SMALL */
 @media screen and (max-width: 560px) {
-  :root {
-    --layout-grid-columns: [full-start] 1fr [full-end];
+  .container {
+    grid-template-columns: [full-start] 1fr [full-end];
+  }
+
+  .header {
+    padding: 0 3rem;
+  }
+
+  .topBanner {
+    grid-template-columns: [full-start] 1fr [full-end];
   }
 
   .pageDetails,
