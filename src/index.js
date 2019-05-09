@@ -16,6 +16,7 @@ export { default as Message } from "./components/Message/Message.jsx";
 export { default as Modal } from "./components/Modal/Modal.jsx";
 export { default as Tabs } from "./components/Tabs/Tabs.jsx";
 export { default as Tab } from "./components/Tabs/Tab.jsx";
+export { default as Table } from "./components/Table/Table.jsx";
 export { default as Container } from "./components/Layout/Container.jsx";
 export { default as Header } from "./components/Layout/Header.jsx";
 export { default as Sidebar } from "./components/Layout/Sidebar.jsx";
