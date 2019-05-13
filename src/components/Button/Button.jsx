@@ -16,7 +16,7 @@ const Button = ({
   <button
     className={classNames(styles[kind], className)}
     style={style}
-    disabled={kind === "disabled"}
+    disabled={kind === "disabled" || loading}
     onClick={onClick}
     {...props}>
     {loading ? <Spinner /> : children}
