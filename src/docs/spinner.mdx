@@ -1,0 +1,42 @@
+---
+name: Spinner
+menu: Components
+route: /components/spinner
+---
+
+import { Playground, Props } from "docz";
+import { Spinner } from "../index";
+
+# Spinner
+
+## Usage
+
+### Normal
+
+<Playground>
+  {() =>
+    <>
+      <div style={{ backgroundColor: "#000", padding: "20px" }}>
+        <Spinner />
+      </div>
+      <div style={{ backgroundColor: "#000", padding: "20px" }}>
+        <Spinner width="4rem" height="4rem" />
+      </div>
+    </>
+  }
+</Playground>
+
+### Inverted
+
+<Playground>
+  {() =>
+    <>
+      <div style={{ backgroundColor: "#fff", padding: "20px" }}>
+        <Spinner invert />
+      </div>
+      <div style={{ backgroundColor: "#fff", padding: "20px" }}>
+        <Spinner width="4rem" height="4rem" invert />
+      </div>
+    </>
+  }
+</Playground>
