@@ -7,11 +7,10 @@
   font-size: 1rem;
   padding: 0em 0.4em;
   max-height: 28px;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   border-radius: 2px;
-  max-width: 60px;
 }
 
 .statusTagIcon {
@@ -21,6 +20,10 @@
 
 .iconpending {
   height: 2px;
+}
+
+.iconwaiting {
+  height: 7px;
 }
 
 .pending {
@@ -45,4 +48,12 @@
 
 .wrapperfinished {
   border: 1px solid var(--color-gray);
+}
+
+.waiting {
+  color: var(--color-yellow);
+}
+
+.wrapperwaiting {
+  border: 1px solid var(--color-yellow);
 }

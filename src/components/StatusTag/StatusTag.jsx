@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import activeIcon from "./green_check.png";
 import finishedIcon from "./finished.png";
 import pendingIcon from "./pending.png";
+import watchIcon from "./watch.svg";
 import styles from "./styles.css";
 import { classNames } from "../../utils";
 
@@ -10,13 +11,14 @@ const getIcon = (type) =>
   ({
     pending: pendingIcon,
     finished: finishedIcon,
-    active: activeIcon
+    active: activeIcon,
+    waiting: watchIcon
   }[type]);
 
-// TODO: replace icons with SVG when we have them
-const StatusTag = ({ type }) => {
+// TODO: replace icons with SVG sprite file ones when we have them
+const StatusTag = ({ type, text }) => {
   return (
-    <div
+    <span
       className={classNames(styles.statusTagWrapper, styles[`wrapper${type}`])}>
       <img
         src={getIcon(type)}
@@ -24,14 +26,15 @@ const StatusTag = ({ type }) => {
         className={classNames(styles.statusTagIcon, styles[`icon${type}`])}
       />
       <span className={classNames(styles.statusTagSpan, styles[type])}>
-        {type}
+        {text || type}
       </span>
-    </div>
+    </span>
   );
 };
 
 StatusTag.propTypes = {
-  type: PropTypes.string
+  type: PropTypes.string,
+  text: PropTypes.string
 };
 
 StatusTag.defaultProps = {
