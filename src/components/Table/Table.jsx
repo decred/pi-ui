@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import TableHeader from "./TableHeader";
-import TableBody from "./TableBody";
+import TableHeader from "./TableHeader.jsx";
+import TableBody from "./TableBody.jsx";
 import styles from "./styles.css";
 
 const Table = ({ data, headers, linesPerPage }) => {
