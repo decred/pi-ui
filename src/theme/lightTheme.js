@@ -72,7 +72,7 @@ const lightTheme = {
   "max-column-size-lg": "8rem",
 
   /** COLORS */
-  "header-color": "var(--color-gray-lightest)",
+  "header-color": "var(--color-gray-lightest2)",
   "container-color": "var(--color-gray-lightest)",
   "header-border-color": "var(--color-gray-light)",
   "topbanner-color": "var(--color-white)",
