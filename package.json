@@ -62,7 +62,7 @@
     "babel-loader": "^8.0.5",
     "cross-env": "^5.1.4",
     "deepmerge": "^3.2.0",
-    "docz": "^1.0.0-rc.3",
+    "docz": "^1.2.0",
     "docz-plugin-css": "^0.11.0",
     "docz-theme-default": "^1.0.0-rc.3",
     "eslint": "5.12.0",
