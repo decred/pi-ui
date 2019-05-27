@@ -30,3 +30,4 @@ export { default as StatusTag } from "./components/StatusTag/StatusTag.jsx";
 export { default as defaultLightTheme } from "./theme/lightTheme";
 export { default as defaultDarkTheme } from "./theme/darkTheme";
 export { default as useTheme } from "./theme/useTheme";
+export * from "./utils";
