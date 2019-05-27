@@ -1,0 +1,54 @@
+---
+name: Icon
+menu: Components
+route: /components/Icon
+---
+
+import { Playground, Props } from "docz";
+import { Icon } from "../index";
+
+# Icon
+
+## Properties
+
+<Props of={Icon} />
+
+## Usage
+
+<Playground>
+  <Icon type="alert" />
+  <Icon type="chain" />
+  <Icon type="checkmark" />
+  <Icon type="discuss" />
+  <Icon type="down" />
+  <Icon type="proposal" />
+  <Icon type="questionmark" />
+  <Icon type="right" />
+  <Icon type="left" />
+  <Icon type="star" />
+  <Icon type="timer" />
+  <Icon type="transaction" />
+  <Icon type="trash" />
+  <Icon type="up" />
+  <Icon type="user" />
+  <Icon type="wallet" />
+</Playground>
+
+## Sizes
+
+<Playground>
+  <h4>sm</h4>
+  <Icon type="alert" size="sm" />
+  <h4>md</h4>
+  <Icon type="alert" size="md" />
+  <h4>lg</h4>
+  <Icon type="alert" size="lg" />
+</Playground>
+
+## Adding new icons
+
+To add new icons, take the inside of the `svg` tag, adapt it to React and paste it in the `icons` function return object with a descriptive key.
+
+## Adding new sizes
+
+Update the sizes object and the size prop PropType.
