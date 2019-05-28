@@ -21,6 +21,7 @@
 }
 
 .modal {
+  min-width: 50rem;
   max-width: 100rem;
   max-height: 70vh;
   min-height: 36vh;
@@ -56,4 +57,10 @@
 
 .modalTitle {
   margin-bottom: var(--spacing-2);
+}
+
+@media screen and (max-width: 50rem) {
+  .modal {
+    min-width: 100%;
+  }
 }
