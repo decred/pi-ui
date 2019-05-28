@@ -6,7 +6,7 @@
   left: 0;
   display: flex;
   justify-content: center;
-  align-items: center;
+  padding-top: 15vh;
   z-index: var(--z-index-big);
   transition: all 0.2s;
   background-color: rgba(0, 0, 0, 0.3);
@@ -57,4 +57,15 @@
 
 .modalTitle {
   margin-bottom: var(--spacing-2);
+}
+
+@media screen and (max-width: 560px) {
+  .modal {
+    min-width: 100%;
+    min-height: 100%;
+  }
+
+  .modalWrapper {
+    padding-top: 0;
+  }
 }
