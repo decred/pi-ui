@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styles from "./styles.css";
+import Icon from "../Icon/Icon.jsx";
 import { classNames } from "../../utils";
 
-// TODO: Replace warning icon
 const TextInput = ({ type, label, id, error, ...props }) => {
   return (
     <div className={styles.textinputWrapper}>
@@ -19,7 +19,12 @@ const TextInput = ({ type, label, id, error, ...props }) => {
       </label>
       {error && (
         <>
-          <i className={styles.errorIcon}>&#9888;</i>
+          <Icon
+            type="alert"
+            backgroundColor="#ed6d47"
+            iconColor="#feb8a5"
+            className={styles.errorIcon}
+          />
           <p className={styles.errorMsg}>{error}</p>
         </>
       )}

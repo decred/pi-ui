@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import TableHeader from "./TableHeader.jsx";
 import TableBody from "./TableBody.jsx";
+import Icon from "../Icon/Icon.jsx";
 import styles from "./styles.css";
 
 const Table = ({ data, headers, linesPerPage }) => {
@@ -28,7 +29,12 @@ const Table = ({ data, headers, linesPerPage }) => {
             canGoBack ? styles.pageItemArrow : styles.pageItemArrowDisabled
           }
           onClick={previousPage}>
-          &larr;
+          <Icon
+            type="left"
+            size="lg"
+            backgroundColor="#fff"
+            iconColor={canGoBack ? "#2970ff" : "#8997a5"}
+          />
         </span>
         {pagesArr.map((item) => (
           <span
@@ -42,7 +48,12 @@ const Table = ({ data, headers, linesPerPage }) => {
             canGoNext ? styles.pageItemArrow : styles.pageItemArrowDisabled
           }
           onClick={nextPage}>
-          &rarr;
+          <Icon
+            type="right"
+            size="lg"
+            backgroundColor="#fff"
+            iconColor={canGoNext ? "#2970ff" : "#8997a5"}
+          />
         </span>
       </div>
     </div>
