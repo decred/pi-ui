@@ -6,6 +6,7 @@
   left: 0;
   display: flex;
   justify-content: center;
+  align-items: flex-start;
   padding-top: 15vh;
   z-index: var(--z-index-big);
   transition: all 0.2s;
@@ -24,7 +25,6 @@
   min-width: 50rem;
   max-width: 100rem;
   max-height: 70vh;
-  min-height: 36vh;
   padding: 4rem 6rem;
   position: relative;
   background: var(--color-white);
@@ -59,6 +59,7 @@
   margin-bottom: var(--spacing-2);
 }
 
+/* EXTRA SMALL */
 @media screen and (max-width: 560px) {
   .modal {
     min-width: 100%;
