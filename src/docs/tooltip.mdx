@@ -1,0 +1,34 @@
+---
+name: Tooltip
+menu: Components
+route: /components/tooltip
+---
+
+import { Playground, Props } from "docz";
+import { Tooltip } from "../index";
+
+# Tooltip
+
+## Properties
+
+<Props of={Tooltip} />
+
+## Usage
+
+<Playground>
+  <Tooltip content="top" placement="top">
+    Hover me
+  </Tooltip>
+  <br/>
+  <Tooltip content="left" placement="left">
+    Hover me
+  </Tooltip>
+  <br/>
+  <Tooltip content="right" placement="right">
+    Hover me
+  </Tooltip>
+  <br/>
+  <Tooltip content="bottom" placement="bottom">
+    Hover me
+  </Tooltip>
+</Playground>
