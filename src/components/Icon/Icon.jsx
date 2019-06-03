@@ -96,6 +96,18 @@ const icons = (type, backgroundColor, iconColor) => {
         />
       </>
     ),
+    info: (
+      <>
+        <path
+          d="M225.24,24.86c-110.46,0-200,89.55-200,200s89.54,200,200,200,200-89.55,200-200S335.69,24.86,225.24,24.86Z"
+          fill={backgroundColor}
+        />
+        <path
+          d="M166.61,177.49h80.61v140h38v32H164.81v-32h41.57v-108H166.61Zm60.82-77a26.19,26.19,0,0,1,9.9,1.89,27.78,27.78,0,0,1,8.18,5,23.68,23.68,0,0,1,5.58,7.47,21.39,21.39,0,0,1,0,18.36,24.83,24.83,0,0,1-5.58,7.55,25.32,25.32,0,0,1-8.18,5,27.34,27.34,0,0,1-9.9,1.8,28.06,28.06,0,0,1-10-1.8,25.15,25.15,0,0,1-8.28-5,24.8,24.8,0,0,1-5.57-7.55,21,21,0,0,1-2.07-9.18,23.74,23.74,0,0,1,1.62-8.55,22.19,22.19,0,0,1,4.85-7.56,24.55,24.55,0,0,1,8.1-5.4A28.94,28.94,0,0,1,227.43,100.47Z"
+          fill={iconColor}
+        />
+      </>
+    ),
     right: (
       <>
         <path
@@ -308,9 +320,13 @@ const icons = (type, backgroundColor, iconColor) => {
     )
   }[type];
 };
-const Icon = ({ type, size, backgroundColor, iconColor }) => {
+const Icon = ({ type, size, backgroundColor, iconColor, className }) => {
   return (
-    <svg viewBox="0 0 450 450" width={sizes[size]} height={sizes[size]}>
+    <svg
+      viewBox="0 0 450 450"
+      width={sizes[size]}
+      className={className}
+      height={sizes[size]}>
       {icons(type, backgroundColor, iconColor)}
     </svg>
   );
@@ -318,6 +334,7 @@ const Icon = ({ type, size, backgroundColor, iconColor }) => {
 
 Icon.propTypes = {
   type: PropTypes.string.isRequired,
+  className: PropTypes.string,
   size: PropTypes.oneOf(["sm", "md", "lg"]),
   backgroundColor: PropTypes.string,
   iconColor: PropTypes.string

@@ -5,8 +5,10 @@
 }
 
 .pages {
-  text-align: right;
   margin-top: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 .pageItem {
@@ -19,15 +21,12 @@
 
 .pageItemArrow {
   cursor: pointer;
-  color: var(--color-primary);
   user-select: none;
-  font-size: var(--font-size-large);
 }
 
 .pageItemArrowDisabled {
   composes: pageItemArrow;
   cursor: not-allowed;
-  color: var(--color-gray);
 }
 
 .pageItemActive {

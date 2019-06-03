@@ -1,5 +1,7 @@
 .message {
   padding: 20px 40px;
+  display: flex;
+  align-items: center;
 }
 
 .info {
@@ -8,9 +10,16 @@
   color: var(--info-message-color);
 }
 
-.info:before {
-  content: "\0024D8";
+.icon-info {
   margin-right: 10px;
+}
+
+.icon-info > path:first-of-type {
+  fill: var(--info-message-color);
+}
+
+.icon-info > path:last-of-type {
+  fill: var(--info-message-background);
 }
 
 .error {
@@ -19,9 +28,16 @@
   color: var(--error-message-color);
 }
 
-.error:before {
-  content: "\002718";
+.icon-error {
   margin-right: 10px;
+}
+
+.icon-error > path:first-of-type {
+  fill: var(--error-message-color);
+}
+
+.icon-error > path:last-of-type {
+  fill: var(--error-message-background);
 }
 
 .warning {
@@ -30,9 +46,16 @@
   color: var(--warning-message-color);
 }
 
-.warning:before {
-  content: "\0026A0";
+.icon-warning {
   margin-right: 10px;
+}
+
+.icon-warning > path:first-of-type {
+  fill: var(--warning-message-color);
+}
+
+.icon-warning > path:last-of-type {
+  fill: var(--warning-message-background);
 }
 
 .success {
@@ -41,7 +64,15 @@
   color: var(--success-message-color);
 }
 
-.success:before {
-  content: "\002714";
+.icon-success {
   margin-right: 10px;
+}
+
+.icon-success > path:first-of-type,
+.icon-success > circle:first-of-type {
+  fill: var(--success-message-color);
+}
+
+.icon-success > path:last-of-type {
+  fill: var(--success-message-background);
 }

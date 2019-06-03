@@ -54,6 +54,6 @@
   color: var(--color-orange);
   position: absolute;
   right: 0;
-  top: 0;
+  top: 4px;
   font-size: var(--font-size-large);
 }
