@@ -23,34 +23,3 @@ a:link,
 a:visited {
   text-decoration: none;
 }
-
-@font-face {
-  font-family: "Segoe UI";
-  src: url("../assets/fonts/segoeui/segoeui.woff") format("woff");
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Source Sans Pro";
-  src: url("../assets/fonts/source_sans_pro/SourceSansPro-SemiBold.ttf")
-    format("ttf");
-  font-weight: var(--font-weight-semi-bold);
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Source Sans Pro";
-  src: url("../assets/fonts/source_sans_pro/SourceSansPro-Regular.ttf")
-    format("ttf");
-  font-weight: var(--font-weight-regular);
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Source Sans Pro";
-  src: url("../assets/fonts/source_sans_pro/SourceSansPro-Light.ttf")
-    format("ttf");
-  font-weight: var(--font-weight-light);
-  font-style: normal;
-}

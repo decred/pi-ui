@@ -27,7 +27,11 @@ export default {
     postcss({
       modules: true
     }),
-    url(),
+    url({
+      include: ["**/*.woff", "**/*.ttf", "**/*.png", "**/*.svg"],
+      limit: Infinity // This allows files from any size to be bundled. If we want larger files copied
+      // we need to reduce the limit.
+    }),
     svgr(),
     babel({
       exclude: "node_modules/**"
