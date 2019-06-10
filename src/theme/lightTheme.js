@@ -10,6 +10,7 @@ const lightTheme = {
   "color-gold": "#cfa03f",
   "color-yellow": "#ffc84e",
   "color-yellow-light": "#ffe4a7",
+  "color-gray-blueish": "#596D81",
   "color-gray-dark": "#3d5873",
   "color-gray": "#8997a5",
   "color-gray-light": "#c4cbd2",
