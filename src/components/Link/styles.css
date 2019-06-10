@@ -1,3 +1,12 @@
 .link {
   color: var(--color-primary);
+  font-weight: var(--font-weight-regular);
+}
+
+.gray {
+  color: var(--color-gray);
+}
+
+.link:hover {
+  font-weight: var(--font-weight-semi-bold);
 }
