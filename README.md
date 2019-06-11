@@ -1,7 +1,7 @@
 # pi-ui
 
 > Politeia UI library
-[documentation](https://github.com/tiagoalvesdulce/pi-ui)
+[documentation](https://compassionate-lalande-d3ef5d.netlify.com/)
 
 [![NPM](https://img.shields.io/npm/v/pi-ui.svg)](https://www.npmjs.com/package/pi-ui) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
