@@ -15,6 +15,21 @@ import { Link } from "../index";
 
 ## Usage
 
+### Simple link
 <Playground>
   <Link href="#">Click me</Link>
 </Playground>
+
+### Simple grey link
+<Playground>
+  <Link gray href="#">Click me</Link>
+</Playground>
+
+### Link with a custom element 
+This is useful for specifying a custom element such as a React-Router Link
+
+<Playground>
+  <Link href="#" customComponent={(props) => <div {...props} />}>Click me</Link>
+</Playground>
+
+

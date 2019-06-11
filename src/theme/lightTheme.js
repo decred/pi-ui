@@ -10,6 +10,7 @@ const lightTheme = {
   "color-gold": "#cfa03f",
   "color-yellow": "#ffc84e",
   "color-yellow-light": "#ffe4a7",
+  "color-gray-blueish": "#596D81",
   "color-gray-dark": "#3d5873",
   "color-gray": "#8997a5",
   "color-gray-light": "#c4cbd2",
@@ -29,8 +30,8 @@ const lightTheme = {
   "font-size-xxlarge": "2.6rem",
   "font-size-xlarge": "2.3rem",
   "font-size-large": "2rem",
-  "font-size-normal": "1.7rem",
-  "font-size-small": "1.5rem",
+  "font-size-normal": "1.6rem",
+  "font-size-small": "1.3rem",
 
   "font-weight-extra-light": "200",
   "font-weight-light": "300",

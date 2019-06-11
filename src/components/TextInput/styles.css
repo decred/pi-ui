@@ -24,6 +24,7 @@
   left: 0;
   color: var(--color-gray);
   font-size: var(--font-size-normal);
+  font-weight: var(--font-weight-regular);
   transition: all 0.25s;
 }
 
