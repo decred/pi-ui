@@ -1,6 +1,7 @@
 # pi-ui
 
 > Politeia UI library
+[documentation](https://github.com/tiagoalvesdulce/pi-ui)
 
 [![NPM](https://img.shields.io/npm/v/pi-ui.svg)](https://www.npmjs.com/package/pi-ui) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
