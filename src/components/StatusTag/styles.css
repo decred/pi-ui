@@ -1,6 +1,6 @@
 .statusTagSpan {
   text-transform: capitalize;
-  font-family: var(--font-family-tag);
+  font-family: var(--font-family-text);
 }
 
 .statusTagWrapper {

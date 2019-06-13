@@ -1,4 +1,3 @@
-import SegoeUI from "./assets/fonts/segoeui/segoeui.woff";
 import SourceSansProRegular from "./assets/fonts/source_sans_pro/SourceSansPro-Regular.ttf";
 import SourceSansProSemiBold from "./assets/fonts/source_sans_pro/SourceSansPro-SemiBold.ttf";
 import SourceSansProLight from "./assets/fonts/source_sans_pro/SourceSansPro-Light.ttf";
@@ -6,13 +5,6 @@ import SourceSansProLight from "./assets/fonts/source_sans_pro/SourceSansPro-Lig
 import "./css/base.css";
 
 document.documentElement.style = `
-@font-face {
-  font-family: "Segoe UI";
-  src: url(${SegoeUI}) format("woff");
-  font-weight: normal;
-  font-style: normal;
-}
-
 @font-face {
   font-family: "Source Sans Pro";
   src: url(${SourceSansProSemiBold})
@@ -37,6 +29,7 @@ document.documentElement.style = `
   font-style: normal;
 }
 `;
+
 export { default as H1 } from "./components/Typography/H1.jsx";
 export { default as H2 } from "./components/Typography/H2.jsx";
 export { default as H3 } from "./components/Typography/H3.jsx";
