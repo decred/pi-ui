@@ -1,3 +1,7 @@
+.statusBar {
+  width: 100%;
+}
+
 .statusWrapper {
   display: flex;
   margin-top: 1rem;

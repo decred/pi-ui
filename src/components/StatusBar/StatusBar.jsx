@@ -8,12 +8,14 @@ const StatusBar = ({
   markerPosition,
   max,
   showMarker,
-  renderStatusInfoComponent
+  renderStatusInfoComponent,
+  className,
+  decimalPlaces
 }) => {
   const currenttotal = status.reduce((acc, cur) => acc + cur.amount, 0);
   const statusWithPercentages = status.map((item) => ({
     ...item,
-    percentage: (item.amount / currenttotal) * 100
+    percentage: ((item.amount / currenttotal) * 100).toFixed(decimalPlaces)
   }));
   const createInfoComp = (props) =>
     renderStatusInfoComponent ? (
@@ -22,7 +24,7 @@ const StatusBar = ({
       <DefaultInfoComp {...props} />
     );
   return (
-    <div>
+    <div className={classNames(styles.statusBar, className)}>
       <div className={styles.statusInfo}>
         <div className={styles.legend}>
           {statusWithPercentages.map((st, i) => (
@@ -88,13 +90,16 @@ StatusBar.propTypes = {
   markerPosition: PropTypes.string,
   renderStatusInfoComponent: PropTypes.element,
   max: PropTypes.number,
-  showMarker: PropTypes.bool
+  showMarker: PropTypes.bool,
+  className: PropTypes.string,
+  decimalPlaces: PropTypes.number
 };
 
 StatusBar.defaultProps = {
   markerPosition: "0%",
   max: 0,
-  showMarker: true
+  showMarker: true,
+  decimalPlaces: 1
 };
 
 export default StatusBar;
