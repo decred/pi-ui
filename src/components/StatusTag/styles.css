@@ -1,12 +1,12 @@
 .statusTagSpan {
   text-transform: capitalize;
-  font-family: SegoeUI;
+  font-family: var(--font-family-tag);
 }
 
 .statusTagWrapper {
   font-size: 1rem;
   padding: 0em 0.4em;
-  max-height: 28px;
+  max-height: 19px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
