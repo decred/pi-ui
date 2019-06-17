@@ -26,7 +26,7 @@ const StatusTag = ({ type, text }) => {
   return (
     <span className={classNames(styles.statusTagWrapper, styles[type])}>
       <img src={getIcon(type)} alt={type} />
-      <span className={classNames(styles.statusTagSpan)}>{text || type}</span>
+      <span>{text || type}</span>
     </span>
   );
 };

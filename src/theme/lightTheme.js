@@ -25,10 +25,10 @@ const lightTheme = {
   "text-color": "var(--color-primary-dark)",
   "text-color-light": "var(--color-gray)",
 
-  "font-size-xxxlarge": "3.6rem",
-  "font-size-xxlarge": "2.6rem",
-  "font-size-xlarge": "2.3rem",
-  "font-size-large": "2rem",
+  "font-size-xxxlarge": "2.8rem",
+  "font-size-xxlarge": "2.4rem",
+  "font-size-xlarge": "2.0rem",
+  "font-size-large": "1.8rem",
   "font-size-normal": "1.6rem",
   "font-size-small": "1.3rem",
 
@@ -39,10 +39,10 @@ const lightTheme = {
   "font-weight-bold": "700",
   "font-weight-extra-bold": "900",
 
-  "spacing-1": "1.1rem",
-  "spacing-2": "2.2rem",
-  "spacing-3": "3.3rem",
-  "spacing-4": "4.4rem",
+  "spacing-1": "1.7rem",
+  "spacing-2": "2rem",
+  "spacing-3": "3.1rem",
+  "spacing-4": "3.6rem",
 
   "z-index-0": "0",
   "z-index-1": "1",

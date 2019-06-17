@@ -10,7 +10,7 @@ const H4 = ({ children, className, style }) => (
 );
 
 H4.propTypes = {
-  children: PropTypes.string,
+  children: PropTypes.node,
   className: PropTypes.string,
   style: PropTypes.object
 };

@@ -35,6 +35,7 @@ export { default as H2 } from "./components/Typography/H2.jsx";
 export { default as H3 } from "./components/Typography/H3.jsx";
 export { default as H4 } from "./components/Typography/H4.jsx";
 export { default as P } from "./components/Typography/P.jsx";
+export { default as Text } from "./components/Typography/Text/Text.jsx";
 export { default as Link } from "./components/Link/Link.jsx";
 export { default as Button } from "./components/Button/Button.jsx";
 export { default as TextInput } from "./components/TextInput/TextInput.jsx";
