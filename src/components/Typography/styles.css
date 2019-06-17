@@ -13,7 +13,7 @@
 .header2 {
   composes: textSourceSansPro;
   font-size: var(--font-size-xxlarge);
-  font-weight: var(--font-weight-regular);
+  font-weight: var(--font-weight-semi-bold);
   line-height: var(--spacing-3);
   color: var(--color-primary-dark);
 }
