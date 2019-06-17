@@ -6,6 +6,8 @@
   display: flex;
   margin-top: 1rem;
   position: relative;
+  border: 1px solid var(--color-gray-light);
+  border-radius: 10rem;
 }
 
 .statusInfo {
