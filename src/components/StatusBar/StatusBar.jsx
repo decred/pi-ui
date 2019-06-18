@@ -16,7 +16,7 @@ const StatusBar = ({
   const totalPercentage = max ? (currenttotal / max) * 100 : 100;
   const maxWidth = Math.min(100, totalPercentage);
   const statusWithPercentages = status.map((item) => {
-    const fraction = item.amount / currenttotal;
+    const fraction = item.amount ? item.amount / currenttotal : 0;
     const percentage = (fraction * 100).toFixed(decimalPlaces);
     const widthPercentage = fraction * maxWidth;
     return {
