@@ -10,7 +10,7 @@ const P = ({ children, className, style }) => (
 );
 
 P.propTypes = {
-  children: PropTypes.string,
+  children: PropTypes.node,
   className: PropTypes.string,
   style: PropTypes.object
 };
