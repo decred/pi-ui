@@ -4,56 +4,50 @@
 }
 
 .statusTagWrapper {
-  font-size: var(--font-size-small);
   padding: 0em 0.4em;
-  max-height: 19px;
+  height: 20px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   border-radius: 2px;
-}
-
-.statusTagIcon {
-  margin-right: 4px;
-  height: 5px;
-}
-
-.iconpending {
-  height: 2px;
-}
-
-.iconwaiting {
-  height: 7px;
-}
-
-.pending {
-  color: var(--color-primary);
-}
-
-.wrapperpending {
-  border: 1px solid var(--color-primary);
-}
-
-.active {
-  color: var(--color-primary-light);
-}
-
-.wrapperactive {
-  border: 1px solid var(--color-primary-light);
-}
-
-.finished {
-  color: var(--color-gray);
-}
-
-.wrapperfinished {
   border: 1px solid var(--color-gray);
 }
 
-.waiting {
-  color: var(--color-yellow);
+.statusTagWrapper > span {
+  font-size: var(--font-size-small);
+  line-height: var(--spacing-1);
 }
 
-.wrapperwaiting {
-  border: 1px solid var(--color-yellow);
+.statusTagWrapper > img {
+  margin-right: 0.5rem;
+}
+
+.greenCheck {
+  color: var(--color-primary-light);
+  border-color: var(--color-primary-light);
+}
+
+.grayNegative {
+  color: var(--color-gray);
+  border-color: var(--color-gray);
+}
+
+.orangeNegativeCircled {
+  color: var(--color-orange);
+  border-color: var(--color-orange);
+}
+
+.bluePending {
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.yellowTime {
+  color: var(--color-yellow);
+  border-color: var(--color-yellow);
+}
+
+.blackTime {
+  color: var(--color-primary-dark);
+  border-color: var(--color-primary-dark);
 }
