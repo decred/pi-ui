@@ -4,7 +4,7 @@
 
 .statusWrapper {
   display: flex;
-  margin-top: 1rem;
+  margin-top: 0.5rem;
   position: relative;
   border: 1px solid var(--color-gray-light);
   border-radius: 10rem;
@@ -17,7 +17,14 @@
   align-items: center;
 }
 
+.infoCurrent {
+  font-size: var(--font-size-small);
+  line-height: var(--spacing-1);
+  font-weight: var(--font-weight-regular);
+}
+
 .infoTotal {
+  composes: infoCurrent;
   color: var(--color-gray);
 }
 
@@ -31,6 +38,7 @@
 }
 
 .legend {
+  composes: infoCurrent;
   display: flex;
 }
 
@@ -42,7 +50,6 @@
 }
 
 .legendLabel {
-  font-weight: var(--font-weight-extra-bold);
   margin-right: 0.5rem;
 }
 
@@ -69,11 +76,4 @@
   background-color: var(--color-gray-light);
   position: absolute;
   transform: translate(-50%, -25%);
-}
-
-/* EXTRA SMALL */
-@media screen and (max-width: 560px) {
-  .legend {
-    flex-direction: column;
-  }
 }
