@@ -10,6 +10,7 @@ const Tabs = ({
   className,
   children,
   vertical,
+  wrap,
   ...props
 }) => {
   const renderChildrenTabs = () => {
@@ -34,6 +35,7 @@ const Tabs = ({
       <ul
         className={classNames(
           vertical ? styles.tabsNavVertical : styles.tabsNav,
+          wrap && styles.wrap,
           className
         )}
         style={style}
@@ -51,11 +53,13 @@ Tabs.propTypes = {
   onSelectTab: PropTypes.func.isRequired,
   activeTabIndex: PropTypes.number.isRequired,
   children: PropTypes.node.isRequired,
-  vertical: PropTypes.bool
+  vertical: PropTypes.bool,
+  wrap: PropTypes.bool
 };
 
 Tabs.defaultProps = {
-  vertical: false
+  vertical: false,
+  wrap: false
 };
 
 export default Tabs;

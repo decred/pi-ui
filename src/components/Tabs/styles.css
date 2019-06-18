@@ -31,6 +31,10 @@
   display: flex;
 }
 
+.wrap {
+  flex-wrap: wrap;
+}
+
 .tabsNavVertical {
   composes: tabsNav;
   flex-direction: column;

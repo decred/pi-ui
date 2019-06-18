@@ -13,10 +13,19 @@ const StatusBar = ({
   decimalPlaces
 }) => {
   const currenttotal = status.reduce((acc, cur) => acc + cur.amount, 0);
-  const statusWithPercentages = status.map((item) => ({
-    ...item,
-    percentage: ((item.amount / currenttotal) * 100).toFixed(decimalPlaces)
-  }));
+  const totalPercentage = max ? (currenttotal / max) * 100 : 100;
+  const maxWidth = Math.min(100, totalPercentage);
+  const statusWithPercentages = status.map((item) => {
+    const fraction = item.amount ? item.amount / currenttotal : 0;
+    const percentage = (fraction * 100).toFixed(decimalPlaces);
+    const widthPercentage = fraction * maxWidth;
+    return {
+      ...item,
+      percentage,
+      widthPercentage
+    };
+  });
+
   const createInfoComp = (props) =>
     renderStatusInfoComponent ? (
       React.cloneElement(renderStatusInfoComponent, props)
@@ -54,7 +63,7 @@ const StatusBar = ({
                 : null
             )}
             style={{
-              width: `${st.percentage}%`,
+              width: `${st.widthPercentage}%`,
               backgroundColor: st.color
             }}
           />

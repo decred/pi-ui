@@ -1,44 +1,43 @@
 import React from "react";
 import PropTypes from "prop-types";
-import activeIcon from "./green_check.png";
-import finishedIcon from "./finished.png";
-import pendingIcon from "./pending.png";
-import watchIcon from "./watch.svg";
 import styles from "./styles.css";
 import { classNames } from "../../utils";
 
-const getIcon = (type) =>
-  ({
-    pending: pendingIcon,
-    finished: finishedIcon,
-    active: activeIcon,
-    waiting: watchIcon
-  }[type]);
+import greenCheckIcon from "./green_check.svg";
+import negativeIcon from "./negative.svg";
+import negativeCircleIcon from "./negative_circle.svg";
+import pendingIcon from "./waiting.svg";
+import timeYellowIcon from "./time_yellow.svg";
+import timeBlackIcon from "./time_black.svg";
+
+const ICONS_MAP = {
+  greenCheck: greenCheckIcon,
+  grayNegative: negativeIcon,
+  orangeNegativeCircled: negativeCircleIcon,
+  bluePending: pendingIcon,
+  yellowTime: timeYellowIcon,
+  blackTime: timeBlackIcon
+};
+
+const getIcon = (type) => ICONS_MAP[type];
 
 // TODO: replace icons with SVG sprite file ones when we have them
 const StatusTag = ({ type, text }) => {
   return (
-    <span
-      className={classNames(styles.statusTagWrapper, styles[`wrapper${type}`])}>
-      <img
-        src={getIcon(type)}
-        alt={type}
-        className={classNames(styles.statusTagIcon, styles[`icon${type}`])}
-      />
-      <span className={classNames(styles.statusTagSpan, styles[type])}>
-        {text || type}
-      </span>
+    <span className={classNames(styles.statusTagWrapper, styles[type])}>
+      <img src={getIcon(type)} alt={type} />
+      <span className={classNames(styles.statusTagSpan)}>{text || type}</span>
     </span>
   );
 };
 
 StatusTag.propTypes = {
-  type: PropTypes.string,
+  type: PropTypes.oneOf(Object.keys(ICONS_MAP)),
   text: PropTypes.string
 };
 
 StatusTag.defaultProps = {
-  type: "active"
+  type: "grayNegative"
 };
 
 export default StatusTag;
