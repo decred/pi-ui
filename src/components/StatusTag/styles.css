@@ -12,6 +12,9 @@
   font-family: var(--font-family-text);
   font-size: var(--font-size-small);
   line-height: var(--spacing-1);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .statusTagWrapper > img {

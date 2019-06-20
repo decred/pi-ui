@@ -77,3 +77,9 @@
   position: absolute;
   transform: translate(-50%, -25%);
 }
+
+@media screen and (max-width: 768px) {
+  .legendLine:not(:last-child) {
+    margin-right: 1rem;
+  }
+}
