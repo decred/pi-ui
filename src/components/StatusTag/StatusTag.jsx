@@ -22,9 +22,10 @@ const ICONS_MAP = {
 const getIcon = (type) => ICONS_MAP[type];
 
 // TODO: replace icons with SVG sprite file ones when we have them
-const StatusTag = ({ type, text }) => {
+const StatusTag = ({ type, text, className }) => {
   return (
-    <span className={classNames(styles.statusTagWrapper, styles[type])}>
+    <span
+      className={classNames(styles.statusTagWrapper, styles[type], className)}>
       <img src={getIcon(type)} alt={type} />
       <span>{text || type}</span>
     </span>
@@ -33,7 +34,8 @@ const StatusTag = ({ type, text }) => {
 
 StatusTag.propTypes = {
   type: PropTypes.oneOf(Object.keys(ICONS_MAP)),
-  text: PropTypes.string
+  text: PropTypes.string,
+  className: PropTypes.string
 };
 
 StatusTag.defaultProps = {
