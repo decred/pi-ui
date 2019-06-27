@@ -1,7 +1,8 @@
-import React from "react";
 import PropTypes from "prop-types";
-import styles from "./styles.css";
+import React from "react";
+import { animated, useSpring } from "react-spring";
 import { classNames } from "../../utils";
+import styles from "./styles.css";
 
 const Tab = ({
   onSelect,
@@ -19,21 +20,26 @@ const Tab = ({
     onSelect(tabIndex);
   };
 
+  const slide = useSpring({
+    borderColor: isActive ? "#ffc84e" : "#fff",
+    color: isActive ? "#091440" : "#3d5873",
+    duration: 350
+  });
+
   return (
-    <li
+    <animated.li
       className={classNames(
         vertical ? styles.tabVertical : styles.tabHorizontal,
-        isActive && styles.active,
         className
       )}
-      style={style}
+      style={{ ...slide, style }}
       onClick={handleOnClick}
       {...props}>
       <span className={styles.tabLabel} style={style}>
         {label}
       </span>
       {count >= 0 && <span className={styles.tabCount}>{count}</span>}
-    </li>
+    </animated.li>
   );
 };
 
