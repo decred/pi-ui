@@ -3,7 +3,7 @@
 .btn:visited {
   font-size: var(--font-size-normal);
   line-height: var(--spacing-2);
-  padding: 1rem 2.5rem;
+  padding: 1rem 3rem;
   cursor: pointer;
   text-decoration: none;
   border-radius: 0.5rem;
