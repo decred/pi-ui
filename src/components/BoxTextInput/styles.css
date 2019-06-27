@@ -1,4 +1,4 @@
-.searchinput {
+.boxtextinput {
   background-color: transparent;
   border: 1px solid var(--color-gray-lighter);
   outline: 0;
@@ -6,28 +6,47 @@
   font-size: inherit;
   font-weight: var(--font-weight-extra-light);
   transition: all 0.25s;
-  line-height: var(--spacing-4);
-  padding: 0 2.5rem 0 2rem;
+  line-height: var(--spacing-2);
+  padding: 1rem 2rem;
+}
+
+.boxTextInputRounded {
   border-radius: 0.5rem;
 }
 
-.searchinput::placeholder {
+.boxTextInputError {
+  border-color: var(--color-orange);
+}
+
+.errorMsg {
+  visibility: hidden;
+  color: var(--color-orange);
+  font-size: var(--font-size-small);
+  min-height: 2rem;
+  margin-top: 3px;
+}
+
+.errorMsgActive {
+  visibility: visible;
+}
+
+.boxtextinput::placeholder {
   color: var(--color-gray-light);
 }
 
-.searchinputWrapper {
+.boxtextinputWrapper {
   font-size: var(--font-size-normal);
   position: relative;
 }
 
-.searchinputButton {
+.boxtextinputButton {
   cursor: pointer;
   border: 0;
   outline: 0;
   position: absolute;
   font-size: inherit;
   right: 2rem;
-  top: 50%;
+  top: calc(50% - 1rem);
   transform: translate(-50%, -50%);
   user-select: none;
 }

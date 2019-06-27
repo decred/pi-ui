@@ -40,8 +40,8 @@ export { default as Link } from "./components/Link/Link.jsx";
 export { default as Button } from "./components/Button/Button.jsx";
 export { default as TextInput } from "./components/TextInput/TextInput.jsx";
 export {
-  default as SearchInput
-} from "./components/SearchInput/SearchInput.jsx";
+  default as BoxTextInput
+} from "./components/BoxTextInput/BoxTextInput.jsx";
 export { default as Card } from "./components/Card/Card.jsx";
 export { default as Message } from "./components/Message/Message.jsx";
 export { default as Modal } from "./components/Modal/Modal.jsx";

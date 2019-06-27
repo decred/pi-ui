@@ -17,17 +17,19 @@ const TextInput = ({ type, label, id, error, ...props }) => {
       <label htmlFor={id} className={styles.textinputLabel}>
         {label}
       </label>
-      {error && (
-        <>
-          <Icon
-            type="alert"
-            backgroundColor="#ed6d47"
-            iconColor="#feb8a5"
-            className={styles.errorIcon}
-          />
-          <p className={styles.errorMsg}>{error}</p>
-        </>
-      )}
+      <Icon
+        type="alert"
+        backgroundColor="#ed6d47"
+        iconColor="#feb8a5"
+        className={classNames(
+          styles.errorIcon,
+          error && styles.errorIconActive
+        )}
+      />
+      <p
+        className={classNames(styles.errorMsg, error && styles.errorMsgActive)}>
+        {error}
+      </p>
     </div>
   );
 };
