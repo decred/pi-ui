@@ -8,5 +8,9 @@
 }
 
 .link:hover {
-  font-weight: var(--font-weight-semi-bold);
+  text-decoration: underline;
+}
+
+.noHover:hover {
+  text-decoration: none;
 }
