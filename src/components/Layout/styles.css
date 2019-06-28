@@ -130,6 +130,7 @@
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-template-areas: "details details details details details side" ". . . . . ." ". . . . . .";
     column-gap: 0;
+    padding: 0 4rem;
   }
 
   .pageDetails {
@@ -158,6 +159,7 @@
   .topBanner {
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-areas: "details details details side" ". . . ." ". . . .";
+    padding: 0 2.5rem;
   }
 
   /* .pageDetails {
