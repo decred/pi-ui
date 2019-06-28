@@ -1,7 +1,8 @@
-import React from "react";
 import PropTypes from "prop-types";
-import styles from "./styles.css";
+import React from "react";
+import { animated, useTransition } from "react-spring";
 import { classNames } from "../../utils";
+import styles from "./styles.css";
 
 const Tabs = ({
   onSelectTab,
@@ -24,11 +25,12 @@ const Tabs = ({
     });
   };
 
-  const renderActiveTabContent = () => {
-    if (children[activeTabIndex]) {
-      return children[activeTabIndex].props.children;
-    }
-  };
+  const transitions = useTransition(activeTabIndex, null, {
+    from: { opacity: 0 },
+    enter: { opacity: 1 },
+    leave: { opacity: 0 },
+    config: { duration: 350 }
+  });
 
   return (
     <>
@@ -42,7 +44,15 @@ const Tabs = ({
         {...props}>
         {renderChildrenTabs()}
       </ul>
-      {renderActiveTabContent()}
+      {transitions.map(({ item, key, props }) => {
+        return (
+          item === activeTabIndex && (
+            <animated.div style={props}>
+              {children[item].props.children}
+            </animated.div>
+          )
+        );
+      })}
     </>
   );
 };

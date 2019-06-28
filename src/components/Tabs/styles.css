@@ -21,11 +21,6 @@
   margin-top: 3rem;
 }
 
-.active {
-  border-color: var(--tab-active-underline-color) !important;
-  color: var(--tab-active-font-color);
-}
-
 .tabsNav {
   list-style-type: none;
   display: flex;

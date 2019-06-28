@@ -49,7 +49,7 @@ import { Tabs, Tab } from "../index";
   }}
 </Playground>
 
-### Tabs with counting 
+### Tabs with counting
 
 <Playground>
   {() => {
@@ -74,10 +74,10 @@ import { Tabs, Tab } from "../index";
       <>
         <Tabs onSelectTab={setActiveTabIndex} activeTabIndex={activeTabIndex}>
             <Tab label="tab 1" count={1}>
-                tab content 1
+                <div>tab content 1</div>
             </Tab>
             <Tab label="tab 2" count={4} >
-                tab content 2
+                <div>tab content 2</div>
             </Tab>
         </Tabs>
       </>

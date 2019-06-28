@@ -103,5 +103,7 @@
   "files": [
     "dist"
   ],
-  "dependencies": {}
+  "dependencies": {
+    "react-spring": "^8.0.25"
+  }
 }
