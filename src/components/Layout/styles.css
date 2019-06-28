@@ -20,7 +20,7 @@
 
 .topBanner {
   grid-column: full-start / full-end;
-  grid-row: 2 / span 1;
+  grid-template-rows: 1fr;
   background-color: var(--topbanner-color);
 
   /* Pass grid down. This is necessary because children of TopBanner does not have access to the container grid */
@@ -91,12 +91,10 @@
     padding: 0 5rem;
   }
 
-  .sidebar,
-  .sideBanner {
+  .sidebar {
     display: none;
   }
 
-  .pageDetails,
   .main {
     grid-column: center-start / center-end;
   }
@@ -129,15 +127,21 @@
       calc(5rem - var(--layout-column-gap-sm)),
       1fr
     );
-    grid-template-columns:
-      [full-start] var(--grid-center-padding) [center-start]
-      repeat(
-        12,
-        [col-start] minmax(var(--min-column-size-sm), var(--max-column-size-sm))
-        [col-end]
-      )
-      [center-end] var(--grid-center-padding) [full-end];
-    column-gap: var(--layout-column-gap-sm);
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-areas: "details details details details details side" ". . . . . ." ". . . . . .";
+    column-gap: 0;
+  }
+
+  .pageDetails {
+    grid-area: details;
+  }
+
+  .sideBanner {
+    grid-area: side;
+  }
+
+  .main {
+    grid-column: full-start / full-end;
   }
 }
 
@@ -152,11 +156,15 @@
   }
 
   .topBanner {
-    grid-template-columns: [full-start] 1fr [full-end];
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-areas: "details details details side" ". . . ." ". . . .";
   }
 
-  .pageDetails,
-  .main {
-    grid-column: full-start / full-end;
+  /* .pageDetails {
+    grid-area: details;
   }
+
+  .sideBanner {
+    grid-area: side;
+  } */
 }
