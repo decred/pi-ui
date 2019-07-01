@@ -15,7 +15,7 @@
 }
 
 .textinputWrapper:not(:first-child) {
-  margin-top: 1.2rem;
+  margin-top: 2rem;
 }
 
 .textinputLabel {
