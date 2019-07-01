@@ -30,11 +30,7 @@
 }
 
 .pageDetails {
-  grid-column: center-start / col-end 8;
-}
-
-.sideBanner {
-  grid-column: col-start 9 / center-end;
+  grid-column: center-start / center-end;
 }
 
 .sidebar {
@@ -128,17 +124,13 @@
       1fr
     );
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-    grid-template-areas: "details details details details details side" ". . . . . ." ". . . . . .";
+    grid-template-areas: "details details details details details details" ". . . . . ." ". . . . . .";
     column-gap: 0;
     padding: 0 4rem;
   }
 
   .pageDetails {
     grid-area: details;
-  }
-
-  .sideBanner {
-    grid-area: side;
   }
 
   .main {
@@ -157,16 +149,6 @@
   }
 
   .topBanner {
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-areas: "details details details side" ". . . ." ". . . .";
     padding: 0 2.5rem;
   }
-
-  /* .pageDetails {
-    grid-area: details;
-  }
-
-  .sideBanner {
-    grid-area: side;
-  } */
 }
