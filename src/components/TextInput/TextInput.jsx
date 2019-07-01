@@ -1,8 +1,8 @@
-import React from "react";
 import PropTypes from "prop-types";
-import styles from "./styles.css";
-import Icon from "../Icon/Icon.jsx";
+import React from "react";
 import { classNames } from "../../utils";
+import Icon from "../Icon/Icon.jsx";
+import styles from "./styles.css";
 
 const TextInput = ({ type, label, id, error, ...props }) => {
   return (
@@ -37,7 +37,7 @@ const TextInput = ({ type, label, id, error, ...props }) => {
 TextInput.propTypes = {
   type: PropTypes.string,
   label: PropTypes.string,
-  id: PropTypes.string,
+  id: PropTypes.string.isRequired,
   error: PropTypes.string
 };
 
