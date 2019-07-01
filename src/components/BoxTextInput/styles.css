@@ -8,6 +8,7 @@
   transition: all 0.25s;
   line-height: var(--spacing-2);
   padding: 1rem 2rem;
+  margin-top: 1.2rem;
 }
 
 .boxTextInputRounded {

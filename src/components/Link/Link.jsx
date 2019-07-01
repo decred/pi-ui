@@ -11,11 +11,23 @@ DefaultLinkComponent.propTypes = {
   children: PropTypes.node
 };
 
-const Link = ({ gray, className, customComponent, children, ...props }) => {
+const Link = ({
+  gray,
+  className,
+  customComponent,
+  children,
+  noHoverEffect,
+  ...props
+}) => {
   const Comp = customComponent || DefaultLinkComponent;
   return (
     <Comp
-      className={classNames(styles.link, gray && styles.gray, className)}
+      className={classNames(
+        styles.link,
+        gray && styles.gray,
+        noHoverEffect && styles.noHover,
+        className
+      )}
       {...props}>
       {children}
     </Comp>
@@ -26,7 +38,8 @@ Link.propTypes = {
   customComponent: PropTypes.node,
   children: PropTypes.node,
   gray: PropTypes.bool,
-  className: PropTypes.string
+  className: PropTypes.string,
+  noHoverEffect: PropTypes.bool
 };
 
 export default Link;
