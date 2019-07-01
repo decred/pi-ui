@@ -1,14 +1,15 @@
-import React from "react";
 import PropTypes from "prop-types";
+import React from "react";
+import { classNames } from "../../utils";
 import Spinner from "../Spinner/Spinner.jsx";
 import styles from "./styles.css";
-import { classNames } from "../../utils";
 
 const Button = ({
   children,
   className,
   style,
   kind,
+  size,
   onClick,
   loading,
   fullWidth,
@@ -17,6 +18,7 @@ const Button = ({
   <button
     className={classNames(
       styles[kind],
+      styles[size],
       fullWidth && styles.fullWidth,
       className
     )}
@@ -35,11 +37,13 @@ Button.propTypes = {
   onClick: PropTypes.func,
   loading: PropTypes.bool,
   fullWidth: PropTypes.bool,
+  size: PropTypes.oneOf(["sm", "md", "lg"]),
   kind: PropTypes.oneOf(["primary", "secondary", "disabled"])
 };
 
 Button.defaultProps = {
   kind: "primary",
+  size: "md",
   loading: false,
   fullWidth: false
 };
