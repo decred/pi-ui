@@ -10,6 +10,7 @@ const Button = ({
   style,
   kind,
   size,
+  icon,
   onClick,
   loading,
   fullWidth,
@@ -20,6 +21,7 @@ const Button = ({
     className={classNames(
       styles[kind],
       styles[size],
+      icon && styles.icon,
       fullWidth && styles.fullWidth,
       className
     )}
@@ -38,6 +40,7 @@ Button.propTypes = {
   onClick: PropTypes.func,
   loading: PropTypes.bool,
   fullWidth: PropTypes.bool,
+  icon: PropTypes.bool,
   width: PropTypes.number,
   size: PropTypes.oneOf(["sm", "md", "lg"]),
   kind: PropTypes.oneOf(["primary", "secondary", "disabled"])
@@ -46,6 +49,7 @@ Button.propTypes = {
 Button.defaultProps = {
   kind: "primary",
   size: "md",
+  icon: false,
   loading: false,
   fullWidth: false
 };
