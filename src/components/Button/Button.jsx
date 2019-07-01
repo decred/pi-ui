@@ -13,6 +13,7 @@ const Button = ({
   onClick,
   loading,
   fullWidth,
+  width,
   ...props
 }) => (
   <button
@@ -22,7 +23,7 @@ const Button = ({
       fullWidth && styles.fullWidth,
       className
     )}
-    style={style}
+    style={width ? { width: `${width}px`, ...style } : style}
     disabled={kind === "disabled" || loading}
     onClick={onClick}
     {...props}>
@@ -37,6 +38,7 @@ Button.propTypes = {
   onClick: PropTypes.func,
   loading: PropTypes.bool,
   fullWidth: PropTypes.bool,
+  width: PropTypes.number,
   size: PropTypes.oneOf(["sm", "md", "lg"]),
   kind: PropTypes.oneOf(["primary", "secondary", "disabled"])
 };

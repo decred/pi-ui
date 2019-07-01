@@ -3,12 +3,25 @@
 .btn:visited {
   font-size: var(--font-size-normal);
   line-height: var(--spacing-2);
-  padding: 1rem 3rem;
   cursor: pointer;
   text-decoration: none;
-  border-radius: 0.5rem;
   transition: all 0.2s;
   backface-visibility: hidden;
+}
+
+.sm {
+  padding: 0.6rem 1rem;
+  border-radius: 0.5rem;
+}
+
+.md {
+  padding: 1rem 3rem;
+  border-radius: 0.5rem;
+}
+
+.lg {
+  padding: 1.5rem 3.6rem;
+  border-radius: 0.5rem;
 }
 
 .btn:not(:last-child):not(:only-child) {
