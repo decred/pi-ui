@@ -40,7 +40,6 @@
 }
 
 .main {
-  background-color: var(--main-color);
   grid-row: 4 / span 1;
   grid-column: center-start / col-end 8;
 }
