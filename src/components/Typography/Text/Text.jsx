@@ -1,7 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styles from "./styles.css";
-import { classNames } from "../../../utils";
+import { useTruncate } from "../../../hooks";
+import {
+  classNames,
+  idPropTypeCheckForTruncatedComponents
+} from "../../../utils";
 
 const TEXT_ALIGN_MAP = {
   center: styles.textAlignCenter,
@@ -36,25 +40,27 @@ const COLOR_MAP = {
 };
 
 const Text = ({
+  id,
   textAlign,
-  truncate,
   weight,
   color,
   size,
   className,
+  truncate,
+  linesBeforeTruncate,
   ...props
 }) => {
+  useTruncate(id, truncate, linesBeforeTruncate);
   const textAlignClass = TEXT_ALIGN_MAP[textAlign];
   const weightClass = WEIGHT_MAP[weight];
   const sizeClass = SIZE_MAP[size];
-  const truncateClass = truncate && styles.truncate;
   const colorClass = COLOR_MAP[color];
 
   return (
     <span
+      id={id}
       className={classNames(
         textAlignClass,
-        truncateClass,
         weightClass,
         sizeClass,
         colorClass,
@@ -71,7 +77,9 @@ Text.propTypes = {
   size: PropTypes.oneOf(Object.keys(SIZE_MAP)),
   color: PropTypes.oneOf(Object.keys(COLOR_MAP)),
   className: PropTypes.string,
-  truncate: PropTypes.bool
+  truncate: PropTypes.bool,
+  linesBeforeTruncate: PropTypes.number,
+  id: idPropTypeCheckForTruncatedComponents
 };
 
 Text.defaultProps = {
@@ -79,7 +87,8 @@ Text.defaultProps = {
   weight: "regular",
   size: "normal",
   color: "default",
-  truncate: false
+  truncate: false,
+  linesBeforeTruncate: 1
 };
 
 export default Text;

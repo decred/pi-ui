@@ -33,7 +33,7 @@
     }
   },
   "lint-staged": {
-    "./src/**/*.{js,jsx}": [
+    "./src/**/*.{js,jsx},!./src/vendors/*": [
       "yarn prettify",
       "yarn lint:js",
       "yarn test",
