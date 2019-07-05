@@ -93,7 +93,7 @@ const lightTheme = {
     )
     [center-end] var(--grid-center-padding) [full-end]`,
 
-  "layout-grid-rows": "6rem 12rem 3rem minmax(30rem, max-content)",
+  "layout-grid-rows": "6rem 14rem 3rem minmax(30rem, max-content)",
 
   /** Card */
   "card-background": "var(--color-white)",

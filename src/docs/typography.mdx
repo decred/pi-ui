@@ -4,24 +4,41 @@ route: /typography
 ---
 
 import { H1, H2, H3, H4, P } from "../index";
+import { Playground, Props } from "docz";
 
 # Typography
 
-<React.Fragment>
-  <H1>Header1 - 27pt - SemiBold</H1>
-  <H2>Header2 - 19pt - Regular</H2>
-  <H3>Header3 - 17pt - SemiBold</H3>
-  <H4>Header4 - 15pt - SemiBold</H4>
-  <P>
-    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Alias voluptate
-    delectus eius nesciunt porro! Eum expedita voluptate dolor dignissimos autem
-    recusandae quia, quasi, beatae asperiores, aliquam maxime reiciendis earum
-    voluptatum.
-  </P>
-  <P>
-    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Alias voluptate
-    delectus eius nesciunt porro! Eum expedita voluptate dolor dignissimos autem
-    recusandae quia, quasi, beatae asperiores, aliquam maxime reiciendis earum
-    voluptatum.
-  </P>
-</React.Fragment>
+## Usage
+
+<Playground>
+  {() => {
+    return (
+      <>
+        <H1>Header1 - 27pt - SemiBold</H1>
+        <H2 id="truncated-header" truncate >This component is truncated</H2>
+        <H2>Header2 - 19pt - Regular</H2>
+        <H3>Header3 - 17pt - SemiBold</H3>
+        <H4>Header4 - 15pt - SemiBold</H4>
+        <P>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Alias voluptate
+          delectus eius nesciunt porro! Eum expedita voluptate dolor dignissimos autem
+          recusandae quia, quasi, beatae asperiores, aliquam maxime reiciendis earum
+          voluptatum.
+        </P>
+        <P id="truncated-paragraph" truncate linesBeforeTruncate={2}>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Alias voluptate
+          delectus eius nesciunt porro! Eum expedita voluptate dolor dignissimos autem
+          recusandae quia, quasi, beatae asperiores, aliquam maxime reiciendis earum
+          voluptatum.
+        </P>
+        <P>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Alias voluptate
+          delectus eius nesciunt porro! Eum expedita voluptate dolor dignissimos autem
+          recusandae quia, quasi, beatae asperiores, aliquam maxime reiciendis earum
+          voluptatum.
+        </P>
+      </>
+    );
+  }}
+</Playground>
+

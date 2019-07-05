@@ -42,6 +42,13 @@
   hyphens: auto;
 }
 
+.header1,
+.header2,
+.header3,
+.header4 {
+  word-wrap: break-word;
+}
+
 .paragraph:not(:last-of-type) {
   margin-bottom: var(--spacing-2);
 }
