@@ -9,8 +9,8 @@ const H1 = ({
   children,
   className,
   style,
-  truncate = false,
-  linesBeforeTruncate = 1
+  truncate,
+  linesBeforeTruncate
 }) => {
   useTruncate(id, truncate, linesBeforeTruncate);
   return (
