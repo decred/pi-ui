@@ -60,6 +60,7 @@ const Text = ({
     <span
       id={id}
       className={classNames(
+        styles.text,
         textAlignClass,
         weightClass,
         sizeClass,
