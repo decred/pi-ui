@@ -1,8 +1,8 @@
-import { useEffect } from "react";
+import { useLayoutEffect } from "react";
 import { clamp } from "../utils";
 
 export default function useTruncate(elementID, truncate, linesBeforeTruncate) {
-  useEffect(
+  useLayoutEffect(
     function handleTruncate() {
       if (truncate) {
         const element = document.getElementById(elementID);
