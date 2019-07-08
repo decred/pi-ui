@@ -46,8 +46,9 @@
   outline: 0;
   position: absolute;
   font-size: inherit;
+  background: none !important;
   right: 2rem;
-  top: calc(50% - 1rem);
+  top: calc(50% - 0.5rem);
   transform: translate(-50%, -50%);
   user-select: none;
 }
