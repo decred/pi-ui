@@ -15,7 +15,7 @@ const PageDetails = ({ children, style, className, ...props }) => {
 };
 
 PageDetails.propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   style: PropTypes.object,
   className: PropTypes.string
 };

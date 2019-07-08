@@ -24,7 +24,7 @@ const Container = ({
 };
 
 Container.propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   style: PropTypes.object,
   className: PropTypes.string
 };

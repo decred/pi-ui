@@ -4,6 +4,7 @@
   font-size: var(--font-size-normal);
   color: var(--tab-font-color);
   cursor: pointer;
+  white-space: nowrap;
 }
 
 .tabHorizontal {
@@ -24,6 +25,7 @@
 .tabsNav {
   list-style-type: none;
   display: flex;
+  overflow: auto;
 }
 
 .wrap {

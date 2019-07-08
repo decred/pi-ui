@@ -15,7 +15,7 @@ const Main = ({ children, style, className, fill, ...props }) => {
 };
 
 Main.propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   style: PropTypes.object,
   fill: PropTypes.bool,
   className: PropTypes.string
