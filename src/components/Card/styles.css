@@ -1,5 +1,6 @@
 .card {
   background: var(--card-background);
+  position: relative;
 }
 
 .padding-small {
@@ -12,4 +13,14 @@
 
 .padding-large {
   padding: 6rem 9rem;
+}
+
+.marker {
+  border-left: 12px solid;
+  border-top: 12px solid;
+  border-right: 12px solid transparent;
+  border-bottom: 12px solid transparent;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
