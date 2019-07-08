@@ -35,11 +35,15 @@ const Link = ({
 };
 
 Link.propTypes = {
-  customComponent: PropTypes.node,
+  customComponent: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
   children: PropTypes.node,
   gray: PropTypes.bool,
   className: PropTypes.string,
   noHoverEffect: PropTypes.bool
+};
+
+Link.defaultProps = {
+  customComponent: null
 };
 
 export default Link;

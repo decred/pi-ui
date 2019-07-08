@@ -47,7 +47,7 @@ const Tabs = ({
       {transitions.map(({ item, key, props }) => {
         return (
           item === activeTabIndex && (
-            <animated.div style={props}>
+            <animated.div key={key} style={props}>
               {children[item].props.children}
             </animated.div>
           )

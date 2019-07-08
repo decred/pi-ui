@@ -50,7 +50,7 @@ Tab.propTypes = {
   className: PropTypes.string,
   style: PropTypes.object,
   label: PropTypes.string,
-  count: PropTypes.number,
+  count: PropTypes.node,
   vertical: PropTypes.bool
 };
 
