@@ -126,7 +126,11 @@ module.exports = function clamp(element, options) {
    */
   function getLastChild(elem) {
     // Current element has children, need to go deeper and get last child as a text node
-    if (elem.lastChild.children && elem.lastChild.children.length > 0) {
+    if (
+      element.lastChild &&
+      elem.lastChild.children &&
+      elem.lastChild.children.length > 0
+    ) {
       return getLastChild(Array.prototype.slice.call(elem.children).pop());
     }
     // This is the absolute last child, a text node, but something's wrong with it. Remove it and keep trying
