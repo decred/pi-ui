@@ -3979,6 +3979,11 @@ circular-json@^0.5.9:
   resolved "https://registry.yarnpkg.com/circular-json/-/circular-json-0.5.9.tgz#932763ae88f4f7dead7a0d09c8a51a4743a53b1d"
   integrity sha512-4ivwqHpIFJZBuhN3g/pEcdbnGUywkBblloGbkglyloVjjR3uT6tieI89MVOfbP2tHX5sgb01FuLgAOzebNlJNQ==
 
+clamp-js-main@^0.11.5:
+  version "0.11.5"
+  resolved "https://registry.yarnpkg.com/clamp-js-main/-/clamp-js-main-0.11.5.tgz#624172c66f8ad0a982bcf10189fd081de7acea0f"
+  integrity sha512-XjwTIP0HtHR9Vf0B1X6Yc/ma9qkcvCDHnEKX07v6EgtpA1t9Nb2d0CEzes+/UT2pPpZ9RdBAHrya7+roFspABA==
+
 class-utils@^0.3.5:
   version "0.3.6"
   resolved "https://registry.yarnpkg.com/class-utils/-/class-utils-0.3.6.tgz#f93369ae8b9a7ce02fd41faad0ca83033190c463"
