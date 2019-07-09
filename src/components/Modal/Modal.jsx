@@ -1,10 +1,10 @@
-import React from "react";
 import PropTypes from "prop-types";
+import React from "react";
 import { createPortal } from "react-dom";
+import { classNames } from "../../utils";
+import H1 from "../Typography/H1.jsx";
 import ModalWrapper from "./ModalWrapper.jsx";
 import styles from "./styles.css";
-import H1 from "../Typography/H1.jsx";
-import { classNames } from "../../utils";
 
 const root = document.getElementById("root");
 
@@ -20,6 +20,7 @@ const Modal = ({
   show,
   onClose,
   title,
+  titleStyle,
   ...props
 }) => {
   const onCloseClick = (e) => {
@@ -39,7 +40,11 @@ const Modal = ({
         )}
         style={style}
         {...props}>
-        {title && <H1 className={styles.modalTitle}>{title}</H1>}
+        {title && (
+          <H1 style={titleStyle} className={styles.modalTitle}>
+            {title}
+          </H1>
+        )}
         <a className={styles.modalClose} onClick={onCloseClick} href="#">
           &times;
         </a>
@@ -52,6 +57,7 @@ const Modal = ({
 
 Modal.propTypes = {
   wrapperStyle: PropTypes.object,
+  titleStyle: PropTypes.object,
   style: PropTypes.object,
   className: PropTypes.string,
   children: PropTypes.node.isRequired,
