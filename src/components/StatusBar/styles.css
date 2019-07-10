@@ -69,13 +69,21 @@
   border-radius: 0 10rem 10rem 0;
 }
 
+.markerWrapper {
+  position: absolute;
+  transform: translate(-50%, -25%);
+}
+
 .marker {
   height: 20px;
   width: 2px;
   cursor: pointer;
   background-color: var(--color-gray-light);
-  position: absolute;
-  transform: translate(-50%, -25%);
+}
+
+.markerTooltip {
+  color: var(--color-green);
+  font-size: var(--font-size-small);
 }
 
 @media screen and (max-width: 768px) {
