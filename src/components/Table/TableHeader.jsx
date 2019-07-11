@@ -6,8 +6,11 @@ const TableHeader = ({ headers }) => {
   return (
     <thead className={styles.tableHead}>
       <tr className={styles.tableRow}>
-        {headers.map((header) => (
-          <th className={styles.tableHeadCell} scope="col">
+        {headers.map((header, idx) => (
+          <th
+            key={`header-${idx}`}
+            className={styles.tableHeadCell}
+            scope="col">
             {header}
           </th>
         ))}

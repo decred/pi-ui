@@ -5,7 +5,7 @@ import TableBody from "./TableBody.jsx";
 import Icon from "../Icon/Icon.jsx";
 import styles from "./styles.css";
 
-const Table = ({ data, headers, linesPerPage }) => {
+const Table = ({ data, headers, linesPerPage, disablePagination }) => {
   if (linesPerPage < 1) {
     throw new Error("Invalid prop. linesPerPage should be bigger than 1");
   }
@@ -23,49 +23,54 @@ const Table = ({ data, headers, linesPerPage }) => {
         <TableHeader headers={headers} />
         <TableBody data={data.slice(startIndex, startIndex + linesPerPage)} />
       </table>
-      <div className={styles.pages}>
-        <span
-          className={
-            canGoBack ? styles.pageItemArrow : styles.pageItemArrowDisabled
-          }
-          onClick={previousPage}>
-          <Icon
-            type="left"
-            size="lg"
-            backgroundColor="#fff"
-            iconColor={canGoBack ? "#2970ff" : "#8997a5"}
-          />
-        </span>
-        {pagesArr.map((item) => (
+      {!disablePagination && (
+        <div className={styles.pages}>
           <span
-            className={item === page ? styles.pageItemActive : styles.pageItem}
-            onClick={() => setPage(item)}>
-            {item}
+            className={
+              canGoBack ? styles.pageItemArrow : styles.pageItemArrowDisabled
+            }
+            onClick={previousPage}>
+            <Icon
+              type="left"
+              size="lg"
+              backgroundColor="#fff"
+              iconColor={canGoBack ? "#2970ff" : "#8997a5"}
+            />
           </span>
-        ))}
-        <span
-          className={
-            canGoNext ? styles.pageItemArrow : styles.pageItemArrowDisabled
-          }
-          onClick={nextPage}>
-          <Icon
-            type="right"
-            size="lg"
-            backgroundColor="#fff"
-            iconColor={canGoNext ? "#2970ff" : "#8997a5"}
-          />
-        </span>
-      </div>
+          {pagesArr.map((item) => (
+            <span
+              className={
+                item === page ? styles.pageItemActive : styles.pageItem
+              }
+              onClick={() => setPage(item)}>
+              {item}
+            </span>
+          ))}
+          <span
+            className={
+              canGoNext ? styles.pageItemArrow : styles.pageItemArrowDisabled
+            }
+            onClick={nextPage}>
+            <Icon
+              type="right"
+              size="lg"
+              backgroundColor="#fff"
+              iconColor={canGoNext ? "#2970ff" : "#8997a5"}
+            />
+          </span>
+        </div>
+      )}
     </div>
   );
 };
 
 Table.defaultProps = {
-  linesPerPage: 10
+  linesPerPage: 10,
+  disablePagination: false
 };
 
 Table.propTypes = {
-  data: PropTypes.object.isRequired,
+  data: PropTypes.array.isRequired,
   headers: PropTypes.arrayOf(PropTypes.string).isRequired,
   linesPerPage: PropTypes.number
 };
