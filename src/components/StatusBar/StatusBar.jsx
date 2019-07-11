@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import styles from "./styles.css";
 import { classNames } from "../../utils";
+import Tooltip from "../Tooltip/Tooltip.jsx";
 
 const StatusBar = ({
   status,
@@ -70,12 +71,14 @@ const StatusBar = ({
         ))}
         {showMarker && (
           <div
-            className={styles.marker}
-            title={markerPosition}
+            className={styles.markerWrapper}
             style={{
               left: markerPosition
-            }}
-          />
+            }}>
+            <Tooltip content={markerPosition} className={styles.markerTooltip}>
+              <div className={styles.marker} />
+            </Tooltip>
+          </div>
         )}
       </div>
     </div>
