@@ -1,0 +1,12 @@
+.addressWrapper {
+  padding: 0.3rem 1rem;
+  background-color: var(--color-blue-lighter);
+}
+
+.copyToClipboard {
+  width: 1.4rem;
+  height: 1.4rem;
+  cursor: pointer;
+  margin-left: 5px;
+  user-select: none;
+}

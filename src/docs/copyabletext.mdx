@@ -1,0 +1,29 @@
+---
+name: CopyableText
+menu: Components
+route: /components/text
+---
+
+
+import { Playground, Props } from "docz";
+import { CopyableText } from "../index";
+
+# CopyableText
+
+## Properties
+
+<Props of={CopyableText} />
+
+## Usage
+
+### Basic
+
+<Playground>
+  <CopyableText>Copyable Text</CopyableText>
+</Playground>
+
+### Truncate
+
+<Playground>
+  <CopyableText truncate>I am a big big big big big text, please truncate me</CopyableText>
+</Playground>

@@ -3,6 +3,7 @@ const lightTheme = {
   "color-primary-dark": "#091440",
   "color-primary-light": "#2ed8a3",
   "color-blue-light": "#70cbff",
+  "color-blue-lighter": "#d4f0fd",
   "color-blue-alt": "#1A59F7",
   "color-green": "#41bf53",
   "color-green-light": "#c4ecca",
@@ -110,6 +111,7 @@ const lightTheme = {
 
   /** Tabs */
   "tab-font-color": "var(--color-gray-dark)",
+  "tab-hover-color": "var(--color-primary-dark)",
   "tab-active-underline-color": "var(--color-yellow)",
   "tab-active-font-color": "var(--color-primary-dark)",
   "tab-count-background": "var(--color-gray-lighter)",
