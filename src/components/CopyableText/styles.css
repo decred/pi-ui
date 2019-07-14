@@ -1,5 +1,12 @@
+.copyableWrapper {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
 .addressWrapper {
   padding: 0.3rem 1rem;
+  word-break: break-all;
   background-color: var(--color-blue-lighter);
 }
 

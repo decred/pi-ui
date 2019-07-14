@@ -19,14 +19,23 @@ const setStylesOnElement = function(styles, element) {
 const simpleClamp = (element) => {
   setStylesOnElement(
     {
+      display: "block",
       overflow: "hidden",
-      wordWrap: "normal",
+      whiteSpace: "nowrap",
       textOverflow: "ellipsis"
     },
     element
   );
 };
 
+/**
+ * useTruncate is a hook which will truncate the element with the provided ID.
+ * It is possible to specify after how many lines the truncate effect will be
+ * applied though the 'linesBeforeTruncate' parameter.
+ * @param {String} elementID
+ * @param {Boolean} truncate
+ * @param {number} linesBeforeTruncate
+ */
 export default function useTruncate(elementID, truncate, linesBeforeTruncate) {
   useLayoutEffect(
     function handleTruncate() {
