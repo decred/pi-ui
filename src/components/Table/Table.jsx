@@ -64,15 +64,16 @@ const Table = ({ data, headers, linesPerPage, disablePagination }) => {
   );
 };
 
-Table.defaultProps = {
-  linesPerPage: 10,
-  disablePagination: false
-};
-
 Table.propTypes = {
   data: PropTypes.array.isRequired,
   headers: PropTypes.arrayOf(PropTypes.string).isRequired,
-  linesPerPage: PropTypes.number
+  linesPerPage: PropTypes.number,
+  disablePagination: PropTypes.bool
+};
+
+Table.defaultProps = {
+  linesPerPage: 10,
+  disablePagination: false
 };
 
 export default Table;
