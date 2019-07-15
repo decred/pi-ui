@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import React from "react";
 import { animated, useSpring } from "react-spring";
+import { useTheme, getThemeProperty } from "../../theme";
 import { classNames } from "../../utils";
 import styles from "./styles.css";
 
@@ -15,13 +16,15 @@ const Tab = ({
   vertical,
   ...props
 }) => {
+  const theme = useTheme();
   const handleOnClick = (e) => {
     e.preventDefault();
     onSelect(tabIndex);
   };
 
+  const tabSelectedColor = getThemeProperty(theme, "tab-selected-color");
   const slide = useSpring({
-    borderColor: isActive ? "#ffc84e" : "#fff",
+    borderColor: isActive ? tabSelectedColor : "#fff",
     color: isActive ? "#091440" : "#3d5873",
     duration: 350
   });
