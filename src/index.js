@@ -62,7 +62,5 @@ export { default as H4 } from "./components/Typography/H4.jsx";
 export { default as P } from "./components/Typography/P.jsx";
 export { default as Text } from "./components/Typography/Text/Text.jsx";
 export * from "./hooks";
-export { default as defaultDarkTheme } from "./theme/darkTheme";
-export { default as defaultLightTheme } from "./theme/lightTheme";
-export { default as useTheme } from "./theme/useTheme";
+export * from "./theme";
 export * from "./utils";
