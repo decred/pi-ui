@@ -17,6 +17,7 @@ const Link = ({
   customComponent,
   children,
   noHoverEffect,
+  truncate,
   ...props
 }) => {
   const Comp = customComponent || DefaultLinkComponent;
@@ -26,6 +27,7 @@ const Link = ({
         styles.link,
         gray && styles.gray,
         noHoverEffect && styles.noHover,
+        truncate && styles.truncate,
         className
       )}
       {...props}>
@@ -39,7 +41,8 @@ Link.propTypes = {
   children: PropTypes.node,
   gray: PropTypes.bool,
   className: PropTypes.string,
-  noHoverEffect: PropTypes.bool
+  noHoverEffect: PropTypes.bool,
+  truncate: PropTypes.bool
 };
 
 Link.defaultProps = {

@@ -30,6 +30,7 @@
 
 .pageDetails {
   grid-column: center-start / center-end;
+  overflow: hidden;
 }
 
 .sidebar {

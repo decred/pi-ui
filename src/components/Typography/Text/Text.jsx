@@ -47,10 +47,11 @@ const Text = ({
   size,
   className,
   truncate,
+  truncateTrigger,
   linesBeforeTruncate,
   ...props
 }) => {
-  useTruncate(id, truncate, linesBeforeTruncate);
+  useTruncate(id, truncate, linesBeforeTruncate, truncateTrigger);
   const textAlignClass = TEXT_ALIGN_MAP[textAlign];
   const weightClass = WEIGHT_MAP[weight];
   const sizeClass = SIZE_MAP[size];
@@ -80,7 +81,8 @@ Text.propTypes = {
   className: PropTypes.string,
   truncate: PropTypes.bool,
   linesBeforeTruncate: PropTypes.number,
-  id: idPropTypeCheckForTruncatedComponents
+  id: idPropTypeCheckForTruncatedComponents,
+  truncateTrigger: PropTypes.bool
 };
 
 Text.defaultProps = {

@@ -14,3 +14,10 @@
 .noHover:hover {
   text-decoration: none;
 }
+
+.truncate {
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

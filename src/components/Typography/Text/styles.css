@@ -14,12 +14,6 @@
   text-align: right;
 }
 
-.truncate {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
 .sizeSmall {
   font-size: var(--font-size-small);
   line-height: var(--spacing-1);

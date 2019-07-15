@@ -3,12 +3,13 @@ import React from "react";
 import Text from "../Typography/Text/Text.jsx";
 import CopyToClipboard from "./assets/CopyToClipboard.svg";
 import { copyToClipboard as copy } from "./helpers";
+import { classNames, idPropTypeCheckForTruncatedComponents } from "../../utils";
 import styles from "./styles.css";
 
-const CopyableText = ({ truncate, children }) => {
+const CopyableText = ({ id, truncate, children, className, ...props }) => {
   return (
-    <div>
-      <Text className={styles.addressWrapper} truncate={truncate}>
+    <div className={classNames(styles.copyableWrapper, className)} {...props}>
+      <Text id={id} className={styles.addressWrapper}>
         {children}
       </Text>
       <img
@@ -23,7 +24,9 @@ const CopyableText = ({ truncate, children }) => {
 
 CopyableText.propTypes = {
   truncate: PropTypes.bool,
-  children: PropTypes.string.isRequired
+  children: PropTypes.string.isRequired,
+  className: PropTypes.string,
+  id: idPropTypeCheckForTruncatedComponents
 };
 
 CopyableText.defaultProps = {
