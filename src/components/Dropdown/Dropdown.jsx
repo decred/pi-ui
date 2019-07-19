@@ -8,7 +8,7 @@ const Dropdown = ({
   show,
   ...props
 }) => {
-  const renderChildrenTabs = () => {
+  const renderChildrenItems = () => {
     return React.Children.map(children, (child, index) => {
       return React.cloneElement(child);
     });
@@ -19,7 +19,7 @@ const Dropdown = ({
     	<span onClick={handleClick}>{title}</span>
     	{ show &&
 	      <ul {...props}>
-	        {renderChildrenTabs()}
+	        {renderChildrenItems()}
 	      </ul>
     	}
     </>

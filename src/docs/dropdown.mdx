@@ -20,9 +20,32 @@ import { Dropdown, Tabs, Tab } from "../index";
 <Playground>
   {() => {
     const [activeTabIndex, setActiveTabIndex] = useState(0);
+    const [showDropdown, setShowDropdown] = useState(false)
+    const openDropdown = () => setShowDropdown(true)
+    const closeDropdown = () => setShowDropdown(false)
     return (
       <>
-      	<Dropdown title='click me'>
+      	<Dropdown title='click me' show={showDropdown} handleClick={showDropdown ? closeDropdown : openDropdown}>
+	        <li>My proposals</li>
+	        <li>Account</li>
+	        <li>Logout</li>
+        </Dropdown>
+      </>
+    );
+  }}
+</Playground>
+
+### Dropdown with Tabs
+
+<Playground>
+  {() => {
+    const [activeTabIndex, setActiveTabIndex] = useState(0);
+    const [showDropdown, setShowDropdown] = useState(false)
+    const openDropdown = () => setShowDropdown(true)
+    const closeDropdown = () => setShowDropdown(false)
+    return (
+      <>
+      	<Dropdown title='click me' show={showDropdown} handleClick={showDropdown ? closeDropdown : openDropdown}>
 	        <Tabs onSelectTab={setActiveTabIndex} activeTabIndex={activeTabIndex} vertical>
 	            <Tab label="tab 1" />
 	            <Tab label="tab 2" />
@@ -34,13 +57,16 @@ import { Dropdown, Tabs, Tab } from "../index";
   }}
 </Playground>
 
-### Simple Dropdown with Count
+### Dropdown with Tabs + Count
 <Playground>
   {() => {
     const [activeTabIndex, setActiveTabIndex] = useState(0);
+    const [showDropdown, setShowDropdown] = useState(false)
+    const openDropdown = () => setShowDropdown(true)
+    const closeDropdown = () => setShowDropdown(false)
     return (
       <>
-      	<Dropdown>
+      	<Dropdown title='click me' show={showDropdown} handleClick={showDropdown ? closeDropdown : openDropdown}>
 	        <Tabs onSelectTab={setActiveTabIndex} activeTabIndex={activeTabIndex} vertical>
 	            <Tab label="tab 1" count={5} />
 	            <Tab label="tab 2" count={5} />
