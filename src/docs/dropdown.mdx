@@ -6,7 +6,7 @@ route: /components/dropdown
 
 import { useState } from "react";
 import { Playground, Props } from "docz";
-import { Dropdown, Tabs, Tab } from "../index";
+import { Dropdown, DropdownItem, Tabs, Tab } from "../index";
 
 # Dropdown
 
@@ -25,10 +25,10 @@ import { Dropdown, Tabs, Tab } from "../index";
     const closeDropdown = () => setShowDropdown(false)
     return (
       <>
-      	<Dropdown title='click me' show={showDropdown} handleClick={showDropdown ? closeDropdown : openDropdown}>
-	        <li>My proposals</li>
-	        <li>Account</li>
-	        <li>Logout</li>
+      	<Dropdown title='mariamaria' show={showDropdown} handleClick={showDropdown ? closeDropdown : openDropdown}>
+	        <DropdownItem label='My proposals'/>
+	        <DropdownItem label='Account'/>
+	        <DropdownItem label='Logout'/>
         </Dropdown>
       </>
     );
@@ -47,9 +47,12 @@ import { Dropdown, Tabs, Tab } from "../index";
       <>
       	<Dropdown title='click me' show={showDropdown} handleClick={showDropdown ? closeDropdown : openDropdown}>
 	        <Tabs onSelectTab={setActiveTabIndex} activeTabIndex={activeTabIndex} vertical>
-	            <Tab label="tab 1" />
-	            <Tab label="tab 2" />
-	            <Tab label="tab 3" />
+	            <Tab label="All Proposals" />
+	            <Tab label="In discussion" />
+	            <Tab label="Voting" />
+	            <Tab label="Approved" />
+	            <Tab label="Rejected" />
+	            <Tab label="Abandoned" />
 	        </Tabs>
         </Dropdown>
       </>
@@ -68,9 +71,12 @@ import { Dropdown, Tabs, Tab } from "../index";
       <>
       	<Dropdown title='click me' show={showDropdown} handleClick={showDropdown ? closeDropdown : openDropdown}>
 	        <Tabs onSelectTab={setActiveTabIndex} activeTabIndex={activeTabIndex} vertical>
-	            <Tab label="tab 1" count={5} />
-	            <Tab label="tab 2" count={5} />
-	            <Tab label="tab 3" count={5} />
+	           <Tab label="All Proposals" count={32}/>
+	            <Tab label="In discussion" count={32}/>
+	            <Tab label="Voting" count={32}/>
+	            <Tab label="Approved" count={32}/>
+	            <Tab label="Rejected" count={32}/>
+	            <Tab label="Abandoned" count={32}/>
 	        </Tabs>
         </Dropdown>
       </>

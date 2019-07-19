@@ -1,0 +1,32 @@
+.dropdownHeader {
+  display: flex;
+}
+
+.dropdownHeader:hover {
+  cursor: pointer;
+}
+
+.dropdownList {
+  align-self: flex-start;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-end;
+  padding: 15px 15px 15px 15px !important;
+  -webkit-box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.16);
+  -moz-box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.16);
+  box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.16);
+}
+
+.dropdownItem {
+  list-style-type: none;
+  display: flex;
+  overflow: auto;
+  padding: 15px 15px 15px 15px !important;
+  text-align: left;
+}
+
+.dropdownItem:hover {
+  cursor: pointer;
+  color: var(--tab-hover-color) !important;
+}
