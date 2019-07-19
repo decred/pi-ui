@@ -1,11 +1,12 @@
 import PropTypes from "prop-types";
 import React from "react";
 import styles from './styles.css';
+import Icon from '../Icon/Icon';
 
 const Dropdown = ({
   children,
   title,
-  handleClick,
+  handleDropdown,
   show,
   style,
   onSelectItem,
@@ -23,7 +24,10 @@ const Dropdown = ({
 
   return (
     <>
-    	<span className={styles.dropdownHeader} onClick={handleClick}>{title}</span>
+    	<div className={styles.headerWrapper} onClick={handleDropdown}>
+	    	<span className={styles.dropdownHeader}>{title}</span>
+	    	<Icon className={show && styles.dropdownIconRotated} type="up" />
+    	</div>
     	{ show &&
 	      <ul className={styles.dropdownList} {...props}>
 	        {renderChildrenItems()}
@@ -39,7 +43,7 @@ Dropdown.propTypes = {
 	show: PropTypes.bool.isRequired,
   children: PropTypes.node.isRequired,
   title: PropTypes.string.isRequired,
-  handleClick: PropTypes.func.isRequired,
+  handleDropdown: PropTypes.func.isRequired,
 };
 
 export default Dropdown;

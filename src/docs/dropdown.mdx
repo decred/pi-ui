@@ -25,10 +25,10 @@ import { Dropdown, DropdownItem, Tabs, Tab } from "../index";
     const closeDropdown = () => setShowDropdown(false)
     return (
       <>
-      	<Dropdown title='mariamaria' show={showDropdown} handleClick={showDropdown ? closeDropdown : openDropdown}>
-	        <DropdownItem label='My proposals'/>
-	        <DropdownItem label='Account'/>
-	        <DropdownItem label='Logout'/>
+      	<Dropdown title='mariamaria' show={showDropdown} handleDropdown={showDropdown ? closeDropdown : openDropdown}>
+	        <DropdownItem label='My proposals' handleItemClick={() => alert('my props')}/>
+	        <DropdownItem label='Account' handleItemClick={() => alert('account')}/>
+	        <DropdownItem label='Logout' handleItemClick={() => alert('my props')}/>
         </Dropdown>
       </>
     );
@@ -45,7 +45,7 @@ import { Dropdown, DropdownItem, Tabs, Tab } from "../index";
     const closeDropdown = () => setShowDropdown(false)
     return (
       <>
-      	<Dropdown title='click me' show={showDropdown} handleClick={showDropdown ? closeDropdown : openDropdown}>
+      	<Dropdown title='click me' show={showDropdown} handleDropdown={showDropdown ? closeDropdown : openDropdown}>
 	        <Tabs onSelectTab={setActiveTabIndex} activeTabIndex={activeTabIndex} vertical>
 	            <Tab label="All Proposals" />
 	            <Tab label="In discussion" />
@@ -69,14 +69,13 @@ import { Dropdown, DropdownItem, Tabs, Tab } from "../index";
     const closeDropdown = () => setShowDropdown(false)
     return (
       <>
-      	<Dropdown title='click me' show={showDropdown} handleClick={showDropdown ? closeDropdown : openDropdown}>
+      	<Dropdown title='click me' show={showDropdown} handleDropdown={showDropdown ? closeDropdown : openDropdown}>
 	        <Tabs onSelectTab={setActiveTabIndex} activeTabIndex={activeTabIndex} vertical>
 	           <Tab label="All Proposals" count={32}/>
-	            <Tab label="In discussion" count={32}/>
-	            <Tab label="Voting" count={32}/>
-	            <Tab label="Approved" count={32}/>
-	            <Tab label="Rejected" count={32}/>
-	            <Tab label="Abandoned" count={32}/>
+	            <Tab label="Development" count={32}/>
+	            <Tab label="Marketing & PR" count={32}/>
+	            <Tab label="Research" count={32}/>
+	            <Tab label="Misc" count={32}/>
 	        </Tabs>
         </Dropdown>
       </>

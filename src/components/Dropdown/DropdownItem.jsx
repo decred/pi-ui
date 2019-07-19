@@ -6,16 +6,14 @@ const DropdownItem = ({
 	style,
 	label,
 	itemIndex,
-	onSelect,
+	handleItemClick,
   ...props,
 }) => {
-  const handleOnClick = (e) => {
-    e.preventDefault();
-
- };
-
+	const handleClick = () => {
+		handleItemClick()
+	}
   return (
-    <li onClick={handleOnClick} className={styles.dropdownItem}
+    <li onClick={handleClick} className={styles.dropdownItem}
       {...props}>
       <span style={style}>
         {label}
@@ -25,12 +23,11 @@ const DropdownItem = ({
 };
 
 DropdownItem.propTypes = {
-  onSelect: PropTypes.func.isRequired,
   tabIndex: PropTypes.number.isRequired,
+  handleItemClick: PropTypes.func,
   className: PropTypes.string,
   style: PropTypes.object,
   label: PropTypes.string,
-  vertical: PropTypes.bool
 };
 
 export default DropdownItem;

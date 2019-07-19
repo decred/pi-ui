@@ -1,9 +1,19 @@
+.headerWrapper {
+  display: flex;
+}
+
+.headerWrapper:hover {
+  cursor: pointer;
+}
+
 .dropdownHeader {
   display: flex;
 }
 
-.dropdownHeader:hover {
-  cursor: pointer;
+.dropdownIconRotated {
+  transform: rotate(180deg);
+  -webkit-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
 }
 
 .dropdownList {
@@ -12,7 +22,8 @@
   flex-direction: column;
   justify-content: space-around;
   align-items: flex-end;
-  padding: 15px 15px 15px 15px !important;
+  margin-top: 1rem;
+  padding: 0 2.5rem 1.75rem 1.75rem !important;
   -webkit-box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.16);
   -moz-box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.16);
   box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.16);
@@ -22,8 +33,10 @@
   list-style-type: none;
   display: flex;
   overflow: auto;
-  padding: 15px 15px 15px 15px !important;
   text-align: left;
+  font-size: var(--font-size-normal);
+  color: var(--tab-font-color);
+  padding: 1.75rem 0 1.75rem 0 !important;
 }
 
 .dropdownItem:hover {
