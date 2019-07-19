@@ -1,0 +1,35 @@
+---
+name: Dropdown
+menu: Components
+route: /components/dropdown
+---
+
+import { useState } from "react";
+import { Playground, Props } from "docz";
+import { Dropdown, Tabs, Tab } from "../index";
+
+# Dropdown
+
+## Properties
+<Props of={Dropdown} />
+
+## Usage
+
+### Simple Dropdown
+
+<Playground>
+  {() => {
+    const [activeTabIndex, setActiveTabIndex] = useState(0);
+    return (
+      <>
+      	<Dropdown>
+	        <Tabs onSelectTab={setActiveTabIndex} activeTabIndex={activeTabIndex}>
+	            <Tab label="tab 1" />
+	            <Tab label="tab 2" />
+	            <Tab label="tab 3" />
+	        </Tabs>
+        </Dropdown>
+      </>
+    );
+  }}
+</Playground>
