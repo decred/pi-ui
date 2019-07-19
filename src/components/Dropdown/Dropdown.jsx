@@ -3,6 +3,9 @@ import React from "react";
 
 const Dropdown = ({
   children,
+  title,
+  handleClick,
+  show,
   ...props
 }) => {
   const renderChildrenTabs = () => {
@@ -13,15 +16,20 @@ const Dropdown = ({
 
   return (
     <>
-      <ul {...props}>
-        {renderChildrenTabs()}
-      </ul>
+    	<span onClick={handleClick}>{title}</span>
+    	{ show &&
+	      <ul {...props}>
+	        {renderChildrenTabs()}
+	      </ul>
+    	}
     </>
   );
 };
 
 Dropdown.propTypes = {
   children: PropTypes.node.isRequired,
+  title: PropTypes.string.isRequired,
+  handleClick: PropTypes.func.isRequired,
 };
 
 export default Dropdown;

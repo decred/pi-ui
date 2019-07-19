@@ -22,11 +22,29 @@ import { Dropdown, Tabs, Tab } from "../index";
     const [activeTabIndex, setActiveTabIndex] = useState(0);
     return (
       <>
-      	<Dropdown>
-	        <Tabs onSelectTab={setActiveTabIndex} activeTabIndex={activeTabIndex}>
+      	<Dropdown title='click me'>
+	        <Tabs onSelectTab={setActiveTabIndex} activeTabIndex={activeTabIndex} vertical>
 	            <Tab label="tab 1" />
 	            <Tab label="tab 2" />
 	            <Tab label="tab 3" />
+	        </Tabs>
+        </Dropdown>
+      </>
+    );
+  }}
+</Playground>
+
+### Simple Dropdown with Count
+<Playground>
+  {() => {
+    const [activeTabIndex, setActiveTabIndex] = useState(0);
+    return (
+      <>
+      	<Dropdown>
+	        <Tabs onSelectTab={setActiveTabIndex} activeTabIndex={activeTabIndex} vertical>
+	            <Tab label="tab 1" count={5} />
+	            <Tab label="tab 2" count={5} />
+	            <Tab label="tab 3" count={5} />
 	        </Tabs>
         </Dropdown>
       </>
