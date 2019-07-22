@@ -4,26 +4,38 @@ import Card from "../Card/Card.jsx";
 import styles from "./styles.css";
 import Icon from "../Icon/Icon.jsx";
 import { classNames } from "../../utils";
+import H2 from "../Typography/H2.jsx";
 
 const typeToIcons = {
   info: "info",
   warning: "alert",
   success: "checkmark",
-  error: "alert"
+  error: "alert",
+  blocked: "blocked"
 };
 
-const Message = ({ style, className, children, kind, ...props }) => {
+const Message = ({ style, className, children, kind, title, ...props }) => {
+  const renderIcon = () => (
+    <Icon
+      type={typeToIcons[kind]}
+      className={styles[`icon-${kind}`]}
+      size="lg"
+    />
+  );
   return (
     <Card
-      className={classNames(styles[kind], className)}
+      className={classNames(
+        styles[kind],
+        !!title && styles.withTitle,
+        className
+      )}
       style={style}
       {...props}>
-      <Icon
-        type={typeToIcons[kind]}
-        className={styles[`icon-${kind}`]}
-        size="lg"
-      />
-      {children}
+      <div className={classNames(styles.iconContainer)}>{renderIcon()}</div>
+      <div className={styles.content}>
+        {!!title && <H2>{title}</H2>}
+        {children}
+      </div>
     </Card>
   );
 };
@@ -32,7 +44,8 @@ Message.propTypes = {
   style: PropTypes.object,
   className: PropTypes.string,
   children: PropTypes.element.isRequired,
-  kind: PropTypes.oneOf(["info", "warning", "error", "success"])
+  kind: PropTypes.oneOf(["info", "warning", "error", "success", "blocked"]),
+  title: PropTypes.string
 };
 Message.defaultProps = {
   kind: "info"

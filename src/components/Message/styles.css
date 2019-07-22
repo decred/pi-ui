@@ -2,12 +2,35 @@
   padding: 20px 40px;
   display: flex;
   align-items: center;
+  color: var(--text-color) !important;
+}
+
+.withTitle {
+  align-items: flex-start;
+}
+
+.iconContainer {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.withTitle .iconContainer {
+  padding-top: 6px;
+}
+
+.iconForTitle {
+  align-items: flex-start;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
 }
 
 .info {
   composes: message;
   background-color: var(--info-message-background);
-  color: var(--info-message-color);
 }
 
 .icon-info {
@@ -25,7 +48,6 @@
 .error {
   composes: message;
   background-color: var(--error-message-background);
-  color: var(--error-message-color);
 }
 
 .icon-error {
@@ -43,7 +65,6 @@
 .warning {
   composes: message;
   background-color: var(--warning-message-background);
-  color: var(--warning-message-color);
 }
 
 .icon-warning {
@@ -61,7 +82,21 @@
 .success {
   composes: message;
   background-color: var(--success-message-background);
-  color: var(--success-message-color);
+}
+
+.blocked {
+  composes: message;
+  background-color: var(--blocked-message-background);
+}
+
+.icon-blocked {
+  margin-right: 10px;
+}
+
+.icon-blocked line,
+.icon-blocked circle {
+  fill: none;
+  stroke: var(--blocked-message-color);
 }
 
 .icon-success {
