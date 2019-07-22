@@ -5,6 +5,29 @@
   color: var(--text-color) !important;
 }
 
+.withTitle {
+  align-items: flex-start;
+}
+
+.iconContainer {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.withTitle .iconContainer {
+  padding-top: 6px;
+}
+
+.iconForTitle {
+  align-items: flex-start;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+}
+
 .info {
   composes: message;
   background-color: var(--info-message-background);
