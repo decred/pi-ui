@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import React, { useRef, useEffect } from "react";
 import styles from './styles.css';
-import Icon from '../Icon/Icon';
+import Icon from '../Icon/Icon.jsx';
 
 const Dropdown = ({
   children,
