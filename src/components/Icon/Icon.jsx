@@ -554,6 +554,53 @@ const icons = (type, backgroundColor, iconColor) => {
           </g>
         </g>
       </>
+    ),
+    blocked: (
+      <>
+        <g
+          id="Group_3170"
+          data-name="Group 3170"
+          transform="translate(-231 -2136)">
+          <g
+            id="Path_954"
+            data-name="Path 954"
+            transform="translate(231 2136)"
+            fill="none">
+            <circle
+              cx="225"
+              cy="225"
+              r="220"
+              stroke={iconColor}
+              stroke-width="10"
+              fill={backgroundColor}
+            />
+          </g>
+          <g
+            id="Group_3169"
+            data-name="Group 3169"
+            transform="translate(380 2285)">
+            <line
+              id="Line_33"
+              data-name="Line 33"
+              x2="152.55"
+              y2="152.55"
+              fill="none"
+              stroke={iconColor}
+              stroke-width="10"
+            />
+            <line
+              id="Line_34"
+              data-name="Line 34"
+              x2="152.55"
+              y2="152.55"
+              transform="translate(152.55) rotate(90)"
+              fill="none"
+              stroke={iconColor}
+              stroke-width="10"
+            />
+          </g>
+        </g>
+      </>
     )
   }[type];
 };

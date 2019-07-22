@@ -9,7 +9,8 @@ const typeToIcons = {
   info: "info",
   warning: "alert",
   success: "checkmark",
-  error: "alert"
+  error: "alert",
+  blocked: "blocked"
 };
 
 const Message = ({ style, className, children, kind, ...props }) => {

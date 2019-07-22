@@ -8,7 +8,9 @@ const lightTheme = {
   "color-green": "#41bf53",
   "color-green-light": "#c4ecca",
   "color-orange": "#ed6d47",
+  "color-orange-alt": "#f8a085",
   "color-orange-light": "#feb8a5",
+  "color-orange-lighter": "#fff5f3",
   "color-gold": "#cfa03f",
   "color-yellow": "#ffc84e",
   "color-yellow-light": "#ffe4a7",
@@ -109,6 +111,8 @@ const lightTheme = {
   "info-message-color": "var(--color-primary)",
   "success-message-background": "var(--color-green-light)",
   "success-message-color": "var(--color-green)",
+  "blocked-message-background": "var(--color-orange-lighter)",
+  "blocked-message-color": "var(--color-orange-alt)",
 
   /** Tabs */
   "tab-font-color": "var(--color-gray-dark)",
