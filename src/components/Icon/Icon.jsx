@@ -601,6 +601,33 @@ const icons = (type, backgroundColor, iconColor) => {
           </g>
         </g>
       </>
+    ),
+    edit: (
+      <>
+        <rect fill="none" class="cls-1" width="450" height="450" />
+        <polygon
+          class="cls-2"
+          fill={iconColor}
+          points="343.9 381.15 68.85 381.15 68.85 106.17 237.77 106.17 262.77 81.17 43.85 81.17 43.85 406.15 368.9 406.15 368.9 187.16 343.9 212.16 343.9 381.15"
+        />
+        <polygon
+          fill="#c4cbd2"
+          points="353.12 61.53 335.44 43.85 149.03 230.26 131.35 318.65 140.65 272.14 177.86 309.35 131.35 318.65 219.74 300.97 166.71 247.94 353.12 61.53"
+        />
+        <rect
+          fill={backgroundColor}
+          x="154.62"
+          y="143.75"
+          width="263.62"
+          height="75"
+          transform="translate(-44.27 255.62) rotate(-45)"
+        />
+        <polygon
+          fill={backgroundColor}
+          class="cls-3"
+          points="140.65 272.14 131.35 318.65 177.86 309.35 140.65 272.14"
+        />
+      </>
     )
   }[type];
 };
