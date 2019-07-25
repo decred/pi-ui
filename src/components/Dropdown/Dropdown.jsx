@@ -11,6 +11,7 @@ const Dropdown = ({
   style,
   onSelectItem,
   closeOnOutsideClick,
+  dropdownTrigger,
   ...props
 }) => {
 	const renderChildrenItems = () => {
@@ -55,10 +56,16 @@ const Dropdown = ({
 
   return (
     <WithRef show={show} className={styles.dropdownWrapper} closeOnOutsideClick={closeOnOutsideClick}>
+    { title ?
     	<div className={styles.headerWrapper} onClick={onDropdownClick}>
 	    	<span className={styles.dropdownHeader}>{title}</span>
 	    	<Icon className={show && styles.dropdownIconRotated} type="up" />
     	</div>
+    	: 
+    	<div className={styles.headerWrapper} onClick={onDropdownClick}>
+    		{dropdownTrigger}
+    	</div>
+    }
     	{ show &&
 	      <ul className={styles.dropdownList}  {...props}>
 	        {renderChildrenItems()}
@@ -71,9 +78,10 @@ const Dropdown = ({
 Dropdown.propTypes = {
 	style: PropTypes.object,
 	onSelectItem: PropTypes.func,
+	dropdownTrigger: PropTypes.node,
+	title: PropTypes.string,
 	show: PropTypes.bool.isRequired,
   children: PropTypes.node.isRequired,
-  title: PropTypes.string.isRequired,
   onDropdownClick: PropTypes.func.isRequired,
   closeOnOutsideClick: PropTypes.bool.isRequired,
 };

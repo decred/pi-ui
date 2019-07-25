@@ -6,7 +6,7 @@ route: /components/dropdown
 
 import { useState } from "react";
 import { Playground, Props } from "docz";
-import { Dropdown, DropdownItem, Tabs, Tab } from "../index";
+import { Dropdown, DropdownItem, Tabs, Tab, Button } from "../index";
 
 # Dropdown
 
@@ -29,6 +29,30 @@ import { Dropdown, DropdownItem, Tabs, Tab } from "../index";
       <>
       	<Dropdown 
       		title='mariamaria' 
+      		show={showDropdown} 
+      		onDropdownClick={showDropdown ? closeDropdown : openDropdown}
+      		closeOnOutsideClick={true}>
+	        <DropdownItem label='My proposals' handleItemClick={() => alert('my proposals')}/>
+	        <DropdownItem label='Account' handleItemClick={() => alert('account')}/>
+	        <DropdownItem label='Logout' handleItemClick={() => alert('my props')}/>
+        </Dropdown>
+      </>
+    );
+  }}
+</Playground>
+
+### Dropdown with Alternative Dropdown Trigger
+
+<Playground>
+  {() => {
+    const [activeTabIndex, setActiveTabIndex] = useState(0);
+    const [showDropdown, setShowDropdown] = useState(false)
+    const openDropdown = () => setShowDropdown(true)
+    const closeDropdown = () => setShowDropdown(false)
+    return (
+      <>
+      	<Dropdown 
+      		dropdownTrigger={<Button>Click me</Button>}
       		show={showDropdown} 
       		onDropdownClick={showDropdown ? closeDropdown : openDropdown}
       		closeOnOutsideClick={true}>
