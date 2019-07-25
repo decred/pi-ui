@@ -1,19 +1,21 @@
 import PropTypes from "prop-types";
 import React from "react";
 import styles from "./styles.css";
+import { classNames } from '../../utils';
+
 
 const DropdownItem = ({
 	style,
 	label,
-	itemIndex,
 	handleItemClick,
+	className,
   ...props,
 }) => {
 	const handleClick = () => {
 		handleItemClick()
 	}
   return (
-    <li onClick={handleClick} className={styles.dropdownItem}
+    <li onClick={handleClick} className={classNames(styles.dropdownItem)}
       {...props}>
       <span style={style}>
         {label}
@@ -23,8 +25,6 @@ const DropdownItem = ({
 };
 
 DropdownItem.propTypes = {
-  tabIndex: PropTypes.number.isRequired,
-  handleItemClick: PropTypes.func,
   className: PropTypes.string,
   style: PropTypes.object,
   label: PropTypes.string,

@@ -6,11 +6,11 @@ import Icon from '../Icon/Icon.jsx';
 const Dropdown = ({
   children,
   title,
-  handleDropdown,
+  onDropdownClick,
   show,
   style,
   onSelectItem,
-  closeOutsideClick,
+  closeOnOutsideClick,
   ...props
 }) => {
 	const renderChildrenItems = () => {
@@ -26,7 +26,7 @@ const Dropdown = ({
 	function useOutsideAlerter(ref) {
 	  function handleClickOutside(event) {
 	    if (ref.current && !ref.current.contains(event.target)) {
-	      handleDropdown();
+	      onDropdownClick();
 	    }
 	  }
 
@@ -41,8 +41,8 @@ const Dropdown = ({
 	const wrapperRef = useRef(null);
   useOutsideAlerter(wrapperRef);
 
-  const WithRef = ({ show, children, className, closeOutsideClick }) => (
-  	show && closeOutsideClick
+  const WithRef = ({ show, children, className, closeOnOutsideClick }) => (
+  	show && closeOnOutsideClick
   	?
 		  <div ref={wrapperRef} className={className}>
 		    {children}
@@ -54,8 +54,8 @@ const Dropdown = ({
 	);
 
   return (
-    <WithRef show={show} className={styles.dropdownWrapper} closeOutsideClick={closeOutsideClick}>
-    	<div className={styles.headerWrapper} onClick={handleDropdown}>
+    <WithRef show={show} className={styles.dropdownWrapper} closeOnOutsideClick={closeOnOutsideClick}>
+    	<div className={styles.headerWrapper} onClick={onDropdownClick}>
 	    	<span className={styles.dropdownHeader}>{title}</span>
 	    	<Icon className={show && styles.dropdownIconRotated} type="up" />
     	</div>
@@ -74,8 +74,8 @@ Dropdown.propTypes = {
 	show: PropTypes.bool.isRequired,
   children: PropTypes.node.isRequired,
   title: PropTypes.string.isRequired,
-  handleDropdown: PropTypes.func.isRequired,
-  closeOutsideClick: PropTypes.bool.isRequired,
+  onDropdownClick: PropTypes.func.isRequired,
+  closeOnOutsideClick: PropTypes.bool.isRequired,
 };
 
 export default Dropdown;

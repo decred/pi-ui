@@ -12,6 +12,8 @@ import { Dropdown, DropdownItem, Tabs, Tab } from "../index";
 
 ## Properties
 <Props of={Dropdown} />
+<Props of={DropdownItem} />
+
 
 ## Usage
 
@@ -28,8 +30,8 @@ import { Dropdown, DropdownItem, Tabs, Tab } from "../index";
       	<Dropdown 
       		title='mariamaria' 
       		show={showDropdown} 
-      		handleDropdown={showDropdown ? closeDropdown : openDropdown}
-      		closeOutsideClick={true}>
+      		onDropdownClick={showDropdown ? closeDropdown : openDropdown}
+      		closeOnOutsideClick={true}>
 	        <DropdownItem label='My proposals' handleItemClick={() => alert('my proposals')}/>
 	        <DropdownItem label='Account' handleItemClick={() => alert('account')}/>
 	        <DropdownItem label='Logout' handleItemClick={() => alert('my props')}/>
@@ -52,8 +54,8 @@ import { Dropdown, DropdownItem, Tabs, Tab } from "../index";
       	<Dropdown 
       		title='click me' 
       		show={showDropdown} 
-      		handleDropdown={showDropdown ? closeDropdown : openDropdown}
-      		closeOutsideClick={true}>
+      		onDropdownClick={showDropdown ? closeDropdown : openDropdown}
+      		closeOnOutsideClick={true}>
 	        <Tabs onSelectTab={setActiveTabIndex} activeTabIndex={activeTabIndex} vertical>
 	            <Tab label="All Proposals" />
 	            <Tab label="In discussion" />
@@ -80,8 +82,8 @@ import { Dropdown, DropdownItem, Tabs, Tab } from "../index";
       	<Dropdown 
       		title='click me' 
       		show={showDropdown} 
-      		handleDropdown={showDropdown ? closeDropdown : openDropdown}
-      		closeOutsideClick={true}>
+      		onDropdownClick={showDropdown ? closeDropdown : openDropdown}
+      		closeOnOutsideClick={true}>
 	        <Tabs onSelectTab={setActiveTabIndex} activeTabIndex={activeTabIndex} vertical>
 	           <Tab label="All Proposals" count={32}/>
 	            <Tab label="Development" count={32}/>
