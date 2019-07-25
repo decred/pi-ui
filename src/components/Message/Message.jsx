@@ -43,7 +43,7 @@ const Message = ({ style, className, children, kind, title, ...props }) => {
 Message.propTypes = {
   style: PropTypes.object,
   className: PropTypes.string,
-  children: PropTypes.element.isRequired,
+  children: PropTypes.node.isRequired,
   kind: PropTypes.oneOf(["info", "warning", "error", "success", "blocked"]),
   title: PropTypes.string
 };
