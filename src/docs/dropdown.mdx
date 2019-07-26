@@ -1,0 +1,122 @@
+---
+name: Dropdown
+menu: Components
+route: /components/dropdown
+---
+
+import { useState } from "react";
+import { Playground, Props } from "docz";
+import { Dropdown, DropdownItem, Tabs, Tab, Button } from "../index";
+
+# Dropdown
+
+## Properties
+<Props of={Dropdown} />
+<Props of={DropdownItem} />
+
+
+## Usage
+
+### Simple Dropdown
+
+<Playground>
+  {() => {
+    const [activeTabIndex, setActiveTabIndex] = useState(0);
+    const [showDropdown, setShowDropdown] = useState(false)
+    const openDropdown = () => setShowDropdown(true)
+    const closeDropdown = () => setShowDropdown(false)
+    return (
+      <>
+      	<Dropdown 
+      		title='mariamaria' 
+      		show={showDropdown} 
+      		onDropdownClick={showDropdown ? closeDropdown : openDropdown}
+      		closeOnOutsideClick={true}>
+	        <DropdownItem label='My proposals' handleItemClick={() => alert('my proposals')}/>
+	        <DropdownItem label='Account' handleItemClick={() => alert('account')}/>
+	        <DropdownItem label='Logout' handleItemClick={() => alert('my props')}/>
+        </Dropdown>
+      </>
+    );
+  }}
+</Playground>
+
+### Dropdown with Alternative Dropdown Trigger
+
+<Playground>
+  {() => {
+    const [activeTabIndex, setActiveTabIndex] = useState(0);
+    const [showDropdown, setShowDropdown] = useState(false)
+    const openDropdown = () => setShowDropdown(true)
+    const closeDropdown = () => setShowDropdown(false)
+    return (
+      <>
+      	<Dropdown 
+      		dropdownTrigger={<Button>Click me</Button>}
+      		show={showDropdown} 
+      		onDropdownClick={showDropdown ? closeDropdown : openDropdown}
+      		closeOnOutsideClick={true}>
+	        <DropdownItem label='My proposals' handleItemClick={() => alert('my proposals')}/>
+	        <DropdownItem label='Account' handleItemClick={() => alert('account')}/>
+	        <DropdownItem label='Logout' handleItemClick={() => alert('my props')}/>
+        </Dropdown>
+      </>
+    );
+  }}
+</Playground>
+
+### Dropdown with Tabs
+
+<Playground>
+  {() => {
+    const [activeTabIndex, setActiveTabIndex] = useState(0);
+    const [showDropdown, setShowDropdown] = useState(false)
+    const openDropdown = () => setShowDropdown(true)
+    const closeDropdown = () => setShowDropdown(false)
+    return (
+      <>
+      	<Dropdown 
+      		title='click me' 
+      		show={showDropdown} 
+      		onDropdownClick={showDropdown ? closeDropdown : openDropdown}
+      		closeOnOutsideClick={true}>
+	        <Tabs onSelectTab={setActiveTabIndex} activeTabIndex={activeTabIndex} vertical>
+	            <Tab label="All Proposals" />
+	            <Tab label="In discussion" />
+	            <Tab label="Voting" />
+	            <Tab label="Approved" />
+	            <Tab label="Rejected" />
+	            <Tab label="Abandoned" />
+	        </Tabs>
+        </Dropdown>
+      </>
+    );
+  }}
+</Playground>
+
+### Dropdown with Tabs + Count
+<Playground>
+  {() => {
+    const [activeTabIndex, setActiveTabIndex] = useState(0);
+    const [showDropdown, setShowDropdown] = useState(false)
+    const openDropdown = () => setShowDropdown(true)
+    const closeDropdown = () => setShowDropdown(false)
+    return (
+      <>
+      	<Dropdown 
+      		title='click me' 
+      		show={showDropdown} 
+      		onDropdownClick={showDropdown ? closeDropdown : openDropdown}
+      		closeOnOutsideClick={true}>
+	        <Tabs onSelectTab={setActiveTabIndex} activeTabIndex={activeTabIndex} vertical>
+	           <Tab label="All Proposals" count={32}/>
+	            <Tab label="Development" count={32}/>
+	            <Tab label="Marketing & PR" count={32}/>
+	            <Tab label="Research" count={32}/>
+	            <Tab label="Misc" count={32}/>
+	        </Tabs>
+        </Dropdown>
+      </>
+    );
+  }}
+</Playground>
