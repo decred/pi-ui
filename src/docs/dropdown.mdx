@@ -10,18 +10,36 @@ import { Dropdown, DropdownItem, Tabs, Tab, Button } from "../index";
 
 # Dropdown
 
-## Properties
+## Dropdown props
 <Props of={Dropdown} />
+
+## DropdownItem props
 <Props of={DropdownItem} />
 
 
 ## Usage
 
-### Simple Dropdown
+### Uncontrolled dropdown
 
 <Playground>
   {() => {
-    const [activeTabIndex, setActiveTabIndex] = useState(0);
+    return (
+      <>
+      	<Dropdown 
+      		title='mariamaria'>
+	        <DropdownItem label='My proposals' onClick={() => alert('my proposals')}/>
+	        <DropdownItem label='Account' onClick={() => alert('account')}/>
+	        <DropdownItem label='Logout' onClick={() => alert('my props')}/>
+        </Dropdown>
+      </>
+    );
+  }}
+</Playground>
+
+### Controlled Dropdown
+
+<Playground>
+  {() => {
     const [showDropdown, setShowDropdown] = useState(false)
     const openDropdown = () => setShowDropdown(true)
     const closeDropdown = () => setShowDropdown(false)
@@ -30,8 +48,7 @@ import { Dropdown, DropdownItem, Tabs, Tab, Button } from "../index";
       	<Dropdown 
       		title='mariamaria' 
       		show={showDropdown} 
-      		onDropdownClick={showDropdown ? closeDropdown : openDropdown}
-      		closeOnOutsideClick={true}>
+      		onDropdownClick={showDropdown ? closeDropdown : openDropdown}>
 	        <DropdownItem label='My proposals' handleItemClick={() => alert('my proposals')}/>
 	        <DropdownItem label='Account' handleItemClick={() => alert('account')}/>
 	        <DropdownItem label='Logout' handleItemClick={() => alert('my props')}/>
@@ -45,16 +62,12 @@ import { Dropdown, DropdownItem, Tabs, Tab, Button } from "../index";
 
 <Playground>
   {() => {
-    const [activeTabIndex, setActiveTabIndex] = useState(0);
-    const [showDropdown, setShowDropdown] = useState(false)
-    const openDropdown = () => setShowDropdown(true)
-    const closeDropdown = () => setShowDropdown(false)
+
+    const CustomTrigger = ({ onClick, open }) => <Button onClick={onClick}>{open ? "close" : "open"}</Button>
     return (
       <>
       	<Dropdown 
-      		dropdownTrigger={<Button>Click me</Button>}
-      		show={showDropdown} 
-      		onDropdownClick={showDropdown ? closeDropdown : openDropdown}
+      		customDropdownTrigger={CustomTrigger}
       		closeOnOutsideClick={true}>
 	        <DropdownItem label='My proposals' handleItemClick={() => alert('my proposals')}/>
 	        <DropdownItem label='Account' handleItemClick={() => alert('account')}/>
@@ -70,16 +83,10 @@ import { Dropdown, DropdownItem, Tabs, Tab, Button } from "../index";
 <Playground>
   {() => {
     const [activeTabIndex, setActiveTabIndex] = useState(0);
-    const [showDropdown, setShowDropdown] = useState(false)
-    const openDropdown = () => setShowDropdown(true)
-    const closeDropdown = () => setShowDropdown(false)
     return (
       <>
       	<Dropdown 
-      		title='click me' 
-      		show={showDropdown} 
-      		onDropdownClick={showDropdown ? closeDropdown : openDropdown}
-      		closeOnOutsideClick={true}>
+      		title='click me' >
 	        <Tabs onSelectTab={setActiveTabIndex} activeTabIndex={activeTabIndex} vertical>
 	            <Tab label="All Proposals" />
 	            <Tab label="In discussion" />
@@ -92,31 +99,6 @@ import { Dropdown, DropdownItem, Tabs, Tab, Button } from "../index";
       </>
     );
   }}
+    
 </Playground>
 
-### Dropdown with Tabs + Count
-<Playground>
-  {() => {
-    const [activeTabIndex, setActiveTabIndex] = useState(0);
-    const [showDropdown, setShowDropdown] = useState(false)
-    const openDropdown = () => setShowDropdown(true)
-    const closeDropdown = () => setShowDropdown(false)
-    return (
-      <>
-      	<Dropdown 
-      		title='click me' 
-      		show={showDropdown} 
-      		onDropdownClick={showDropdown ? closeDropdown : openDropdown}
-      		closeOnOutsideClick={true}>
-	        <Tabs onSelectTab={setActiveTabIndex} activeTabIndex={activeTabIndex} vertical>
-	           <Tab label="All Proposals" count={32}/>
-	            <Tab label="Development" count={32}/>
-	            <Tab label="Marketing & PR" count={32}/>
-	            <Tab label="Research" count={32}/>
-	            <Tab label="Misc" count={32}/>
-	        </Tabs>
-        </Dropdown>
-      </>
-    );
-  }}
-</Playground>

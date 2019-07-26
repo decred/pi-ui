@@ -1,89 +1,114 @@
+import React, { useState, useCallback } from "react";
 import PropTypes from "prop-types";
-import React, { useRef, useEffect } from "react";
-import styles from './styles.css';
-import Icon from '../Icon/Icon.jsx';
+import { animated, useTransition } from "react-spring";
+import useClickOutside from "../../hooks/useClickOutside";
+import { classNames } from "../../utils";
+import styles from "./styles.css";
+
+const DefaultTrigger = ({ onClick, title, open }) => (
+  <div className={styles.headerWrapper} onClick={onClick}>
+    <span className={styles.dropdownHeader}>{title}</span>
+    <div className={classNames(styles.arrowAnchor, open && styles.open)} />
+  </div>
+);
 
 const Dropdown = ({
   children,
+  className,
   title,
+  itemsListClassName,
   onDropdownClick,
   show,
   style,
-  onSelectItem,
   closeOnOutsideClick,
-  dropdownTrigger,
+  closeOnItemClick,
+  customDropdownTrigger,
   ...props
 }) => {
-	const renderChildrenItems = () => {
+  const [innerStateShow, setInnerStateShow] = useState(false);
+  const dropdownOpenned = show || innerStateShow;
+  const closeDropdown = useCallback(() => {
+    setInnerStateShow(false);
+  }, [setInnerStateShow]);
+
+  const closeDropdownHandler =
+    closeOnOutsideClick && dropdownOpenned
+      ? onDropdownClick || closeDropdown
+      : () => null;
+  const [dropdownRef] = useClickOutside(closeDropdownHandler);
+
+  const handleTriggerClick = useCallback(() => {
+    if (!onDropdownClick) {
+      setInnerStateShow(!innerStateShow);
+      return;
+    }
+    onDropdownClick();
+  }, [setInnerStateShow, onDropdownClick, innerStateShow]);
+
+  const Trigger = customDropdownTrigger || DefaultTrigger;
+
+  const handleCloseOnItemClick = () => {
+    if (closeOnItemClick) {
+      closeDropdownHandler();
+    }
+  };
+
+  const renderChildrenItems = () => {
     return React.Children.map(children, (child, index) => {
       return React.cloneElement(child, {
-      	style: style,
-      	onSelect: onSelectItem, 
-        itemindex: index,
+        style: style,
+        handleClose: handleCloseOnItemClick,
+        itemindex: index
       });
     });
   };
 
-	function useOutsideAlerter(ref) {
-	  function handleClickOutside(event) {
-	    if (ref.current && !ref.current.contains(event.target)) {
-	      onDropdownClick();
-	    }
-	  }
-
-	 	useEffect(() => {
-	    document.addEventListener("mousedown", handleClickOutside);
-	    return () => {
-	      document.removeEventListener("mousedown", handleClickOutside);
-	   	};
-	 	});
-	}
-
-	const wrapperRef = useRef(null);
-  useOutsideAlerter(wrapperRef);
-
-  const WithRef = ({ show, children, className, closeOnOutsideClick }) => (
-  	show && closeOnOutsideClick
-  	?
-		  <div ref={wrapperRef} className={className}>
-		    {children}
-		  </div>
-	  : 
-		  <div className={className}>
-		    {children}
-		  </div>
-	);
+  const transitions = useTransition(dropdownOpenned, null, {
+    from: { position: "absolute", opacity: 0 },
+    enter: { opacity: 1 },
+    leave: { opacity: 0 }
+  });
 
   return (
-    <WithRef show={show} className={styles.dropdownWrapper} closeOnOutsideClick={closeOnOutsideClick}>
-    { title ?
-    	<div className={styles.headerWrapper} onClick={onDropdownClick}>
-	    	<span className={styles.dropdownHeader}>{title}</span>
-	    	<Icon className={show && styles.dropdownIconRotated} type="up" />
-    	</div>
-    	: 
-    	<div className={styles.headerWrapper} onClick={onDropdownClick}>
-    		{dropdownTrigger}
-    	</div>
-    }
-    	{ show &&
-	      <ul className={styles.dropdownList}  {...props}>
-	        {renderChildrenItems()}
-	      </ul>
-    	}
-    </WithRef>
+    <div
+      ref={dropdownRef}
+      className={classNames(styles.dropdownWrapper, className)}
+      {...props}>
+      <Trigger
+        title={title}
+        onClick={handleTriggerClick}
+        open={dropdownOpenned}
+      />
+      {dropdownOpenned &&
+        transitions.map(
+          ({ item, key, props }) =>
+            item && (
+              <animated.ul
+                className={classNames(styles.dropdownList, itemsListClassName)}
+                key={key}
+                style={props}>
+                {renderChildrenItems()}
+              </animated.ul>
+            )
+        )}
+    </div>
   );
 };
 
 Dropdown.propTypes = {
-	style: PropTypes.object,
-	onSelectItem: PropTypes.func,
-	dropdownTrigger: PropTypes.node,
-	title: PropTypes.string,
-	show: PropTypes.bool.isRequired,
+  className: PropTypes.string,
+  customDropdownTrigger: PropTypes.node,
+  title: PropTypes.string,
+  show: PropTypes.bool,
   children: PropTypes.node.isRequired,
-  onDropdownClick: PropTypes.func.isRequired,
-  closeOnOutsideClick: PropTypes.bool.isRequired,
+  onDropdownClick: PropTypes.func,
+  closeOnOutsideClick: PropTypes.bool,
+  closeOnItemClick: PropTypes.bool
+};
+
+Dropdown.defaultProps = {
+  closeOnOutsideClick: true,
+  closeOnItemClick: true
 };
 
 export default Dropdown;
