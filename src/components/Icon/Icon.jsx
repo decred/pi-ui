@@ -4,7 +4,8 @@ import PropTypes from "prop-types";
 const sizes = {
   sm: "7",
   md: "16",
-  lg: "20"
+  lg: "20",
+  xlg: "30"
 };
 
 const icons = (type, backgroundColor, iconColor) => {
@@ -99,11 +100,10 @@ const icons = (type, backgroundColor, iconColor) => {
     info: (
       <>
         <path
-          d="M225.24,24.86c-110.46,0-200,89.55-200,200s89.54,200,200,200,200-89.55,200-200S335.69,24.86,225.24,24.86Z"
-          fill={backgroundColor}
-        />
-        <path
-          d="M166.61,177.49h80.61v140h38v32H164.81v-32h41.57v-108H166.61Zm60.82-77a26.19,26.19,0,0,1,9.9,1.89,27.78,27.78,0,0,1,8.18,5,23.68,23.68,0,0,1,5.58,7.47,21.39,21.39,0,0,1,0,18.36,24.83,24.83,0,0,1-5.58,7.55,25.32,25.32,0,0,1-8.18,5,27.34,27.34,0,0,1-9.9,1.8,28.06,28.06,0,0,1-10-1.8,25.15,25.15,0,0,1-8.28-5,24.8,24.8,0,0,1-5.57-7.55,21,21,0,0,1-2.07-9.18,23.74,23.74,0,0,1,1.62-8.55,22.19,22.19,0,0,1,4.85-7.56,24.55,24.55,0,0,1,8.1-5.4A28.94,28.94,0,0,1,227.43,100.47Z"
+          id="Path_763"
+          data-name="Path 763"
+          d="M930.782,3.4C808.266,3.4,705.8,105.868,705.8,228.383S808.266,453.367,930.782,453.367,1155.766,350.9,1155.766,228.383C1157.991,108.1,1053.3,3.4,930.782,3.4Zm24.5,372H908.5V174.922h46.778Zm-24.5-236.121c-17.819,0-28.959-11.138-28.959-26.731S915.188,85.82,930.782,85.82c17.821,0,28.959,11.138,28.959,26.731C961.967,128.143,948.6,139.281,930.782,139.281Z"
+          transform="translate(-705.799 -3.4)"
           fill={iconColor}
         />
       </>
@@ -604,9 +604,8 @@ const icons = (type, backgroundColor, iconColor) => {
     ),
     edit: (
       <>
-        <rect fill="none" className="cls-1" width="450" height="450" />
+        <rect fill="none" width="450" height="450" />
         <polygon
-          className="cls-2"
           fill={iconColor}
           points="343.9 381.15 68.85 381.15 68.85 106.17 237.77 106.17 262.77 81.17 43.85 81.17 43.85 406.15 368.9 406.15 368.9 187.16 343.9 212.16 343.9 381.15"
         />
@@ -624,9 +623,232 @@ const icons = (type, backgroundColor, iconColor) => {
         />
         <polygon
           fill={backgroundColor}
-          className="cls-3"
           points="140.65 272.14 131.35 318.65 177.86 309.35 140.65 272.14"
         />
+      </>
+    ),
+    expand: (
+      <>
+        <defs>
+          <style>{`.cls-1{fill:${iconColor};}.cls-2{fill:${backgroundColor};}.cls-3{fill:none;}`}</style>
+        </defs>
+        <title>expand</title>
+        <g id="_Rectangle_" data-name="&lt;Rectangle&gt;">
+          <rect class="cls-1" x="87.5" y="75" width="300" height="300" />
+        </g>
+        <rect
+          id="_Rectangle_2"
+          data-name="&lt;Rectangle&gt;"
+          class="cls-2"
+          x="12.56"
+          y="102.7"
+          width="230.35"
+          height="25"
+          transform="translate(118.87 -56.58) rotate(45)"
+        />
+        <rect
+          id="_Rectangle_3"
+          data-name="&lt;Rectangle&gt;"
+          class="cls-2"
+          x="32.39"
+          y="19.87"
+          width="100"
+          height="25"
+        />
+        <rect
+          id="_Rectangle_4"
+          data-name="&lt;Rectangle&gt;"
+          class="cls-2"
+          x="-5.1"
+          y="57.36"
+          width="100"
+          height="25"
+          transform="translate(114.76 24.97) rotate(90)"
+        />
+        <rect
+          id="_Rectangle_5"
+          data-name="&lt;Rectangle&gt;"
+          class="cls-2"
+          x="12.55"
+          y="322.31"
+          width="230.35"
+          height="25"
+          transform="translate(-199.33 188.38) rotate(-45)"
+        />
+        <rect
+          id="_Rectangle_6"
+          data-name="&lt;Rectangle&gt;"
+          class="cls-2"
+          x="-5.1"
+          y="367.65"
+          width="100"
+          height="25"
+          transform="translate(-335.25 425.05) rotate(-90)"
+        />
+        <rect
+          id="_Rectangle_7"
+          data-name="&lt;Rectangle&gt;"
+          class="cls-2"
+          x="32.4"
+          y="405.14"
+          width="100"
+          height="25"
+        />
+        <rect
+          id="_Rectangle_8"
+          data-name="&lt;Rectangle&gt;"
+          class="cls-2"
+          x="232.16"
+          y="322.31"
+          width="230.35"
+          height="25"
+          transform="translate(356.2 817.17) rotate(-135)"
+        />
+        <rect
+          id="_Rectangle_9"
+          data-name="&lt;Rectangle&gt;"
+          class="cls-2"
+          x="342.68"
+          y="405.14"
+          width="100"
+          height="25"
+          transform="translate(785.36 835.28) rotate(-180)"
+        />
+        <rect
+          id="_Rectangle_10"
+          data-name="&lt;Rectangle&gt;"
+          class="cls-2"
+          x="380.18"
+          y="367.64"
+          width="100"
+          height="25"
+          transform="translate(50.03 810.32) rotate(-90)"
+        />
+        <rect class="cls-3" width="450" height="450" />
+        <rect
+          id="_Rectangle_11"
+          data-name="&lt;Rectangle&gt;"
+          class="cls-2"
+          x="232.17"
+          y="102.7"
+          width="230.35"
+          height="25"
+          transform="translate(674.41 -48.95) rotate(135)"
+        />
+        <rect
+          id="_Rectangle_12"
+          data-name="&lt;Rectangle&gt;"
+          class="cls-2"
+          x="380.17"
+          y="57.36"
+          width="100"
+          height="25"
+          transform="translate(500.03 -360.31) rotate(90)"
+        />
+        <rect
+          id="_Rectangle_13"
+          data-name="&lt;Rectangle&gt;"
+          class="cls-2"
+          x="342.68"
+          y="19.86"
+          width="100"
+          height="25"
+          transform="translate(785.35 64.73) rotate(180)"
+        />
+      </>
+    ),
+    mail: (
+      <>
+        <g id="Group_2917" data-name="Group 2917" transform="translate(3750)">
+          <rect
+            id="Rectangle_1759"
+            data-name="Rectangle 1759"
+            width="400"
+            height="58.515"
+            transform="translate(-3724.999 74.999)"
+            fill={backgroundColor}
+          />
+          <rect
+            id="Rectangle_1760"
+            data-name="Rectangle 1760"
+            width="400"
+            height="275.002"
+            transform="translate(-3724.999 99.999)"
+            fill={iconColor}
+          />
+          <path
+            id="Path_893"
+            data-name="Path 893"
+            d="M-3325,100.369-3525,275l-200-174.631v33.144l119.449,104.172L-3725,341.856V375l138.367-120.819L-3525,307.927l61.629-53.745L-3325,375V341.856l-119.449-104.171L-3325,133.514Z"
+            transform="translate(0 0)"
+            fill={backgroundColor}
+          />
+          <rect
+            id="Rectangle_1761"
+            data-name="Rectangle 1761"
+            width="450"
+            height="450"
+            transform="translate(-3750 0)"
+            fill="none"
+          />
+        </g>
+      </>
+    ),
+    mailCheck: (
+      <>
+        <g id="Group_2913" data-name="Group 2913" transform="translate(0 0)">
+          <rect
+            id="Rectangle_1753"
+            data-name="Rectangle 1753"
+            width="399.998"
+            height="58.514"
+            transform="translate(25 74.999)"
+            fill={backgroundColor}
+          />
+          <rect
+            id="Rectangle_1754"
+            data-name="Rectangle 1754"
+            width="399.998"
+            height="275.001"
+            transform="translate(25 99.999)"
+            fill={iconColor}
+          />
+          <path
+            id="Path_891"
+            data-name="Path 891"
+            d="M-2575,100.369-2775,275l-200-174.63v33.144l119.457,104.171L-2975,341.856V375l138.371-120.819L-2775,307.926l61.629-53.745L-2575,375V341.856l-119.453-104.171L-2575,133.514Z"
+            transform="translate(3000.001 0)"
+            fill={backgroundColor}
+          />
+          <rect
+            id="Rectangle_1755"
+            data-name="Rectangle 1755"
+            width="449.998"
+            height="449.999"
+            fill="none"
+          />
+        </g>
+        <g
+          id="Group_2914"
+          data-name="Group 2914"
+          transform="translate(0 250.26)">
+          <ellipse
+            id="Ellipse_18"
+            data-name="Ellipse 18"
+            cx="99.87"
+            cy="99.87"
+            rx="99.87"
+            ry="99.87"
+            fill={backgroundColor}
+          />
+          <path
+            id="Path_892"
+            data-name="Path 892"
+            d="M-2855.937,312l-53.027,53.033-35.355-35.355L-2962,347.355l53.039,53.033,70.711-70.71Z"
+            transform="translate(2999.998 -250.261)"
+            fill={iconColor}
+          />
+        </g>
       </>
     )
   }[type];
@@ -646,7 +868,7 @@ const Icon = ({ type, size, backgroundColor, iconColor, className }) => {
 Icon.propTypes = {
   type: PropTypes.string.isRequired,
   className: PropTypes.string,
-  size: PropTypes.oneOf(["sm", "md", "lg"]),
+  size: PropTypes.oneOf(["sm", "md", "lg", "xlg"]),
   backgroundColor: PropTypes.string,
   iconColor: PropTypes.string
 };
