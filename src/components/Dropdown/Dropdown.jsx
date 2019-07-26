@@ -19,7 +19,6 @@ const Dropdown = ({
   itemsListClassName,
   onDropdownClick,
   show,
-  style,
   closeOnOutsideClick,
   closeOnItemClick,
   customDropdownTrigger,
@@ -56,7 +55,6 @@ const Dropdown = ({
   const renderChildrenItems = () => {
     return React.Children.map(children, (child, index) => {
       return React.cloneElement(child, {
-        style: style,
         handleClose: handleCloseOnItemClick,
         itemindex: index
       });
@@ -95,8 +93,15 @@ const Dropdown = ({
   );
 };
 
+DefaultTrigger.propTypes = {
+  onClick: PropTypes.func.isRequired,
+  title: PropTypes.string,
+  open: PropTypes.bool
+};
+
 Dropdown.propTypes = {
   className: PropTypes.string,
+  itemsListClassName: PropTypes.string,
   customDropdownTrigger: PropTypes.node,
   title: PropTypes.string,
   show: PropTypes.bool,

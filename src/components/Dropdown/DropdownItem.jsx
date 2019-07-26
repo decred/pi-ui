@@ -27,6 +27,8 @@ const DropdownItem = ({
 
 DropdownItem.propTypes = {
   className: PropTypes.string,
+  handleClose: PropTypes.func,
+  onClick: PropTypes.func,
   style: PropTypes.object,
   label: PropTypes.string
 };

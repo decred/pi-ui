@@ -571,7 +571,7 @@ const icons = (type, backgroundColor, iconColor) => {
               cy="225"
               r="220"
               stroke={iconColor}
-              stroke-width="10"
+              strokeWidth="10"
               fill={backgroundColor}
             />
           </g>
@@ -586,7 +586,7 @@ const icons = (type, backgroundColor, iconColor) => {
               y2="152.55"
               fill="none"
               stroke={iconColor}
-              stroke-width="10"
+              strokeWidth="10"
             />
             <line
               id="Line_34"
@@ -596,7 +596,7 @@ const icons = (type, backgroundColor, iconColor) => {
               transform="translate(152.55) rotate(90)"
               fill="none"
               stroke={iconColor}
-              stroke-width="10"
+              strokeWidth="10"
             />
           </g>
         </g>
@@ -604,9 +604,9 @@ const icons = (type, backgroundColor, iconColor) => {
     ),
     edit: (
       <>
-        <rect fill="none" class="cls-1" width="450" height="450" />
+        <rect fill="none" className="cls-1" width="450" height="450" />
         <polygon
-          class="cls-2"
+          className="cls-2"
           fill={iconColor}
           points="343.9 381.15 68.85 381.15 68.85 106.17 237.77 106.17 262.77 81.17 43.85 81.17 43.85 406.15 368.9 406.15 368.9 187.16 343.9 212.16 343.9 381.15"
         />
@@ -624,7 +624,7 @@ const icons = (type, backgroundColor, iconColor) => {
         />
         <polygon
           fill={backgroundColor}
-          class="cls-3"
+          className="cls-3"
           points="140.65 272.14 131.35 318.65 177.86 309.35 140.65 272.14"
         />
       </>
@@ -634,7 +634,6 @@ const icons = (type, backgroundColor, iconColor) => {
 const Icon = ({ type, size, backgroundColor, iconColor, className }) => {
   return (
     <svg
-      viewBox="0 0 13.552 13"
       viewBox="0 0 450 450"
       width={sizes[size]}
       className={className}
