@@ -17,6 +17,8 @@ const Modal = ({
   wrapperStyle,
   className,
   wrapperClassName,
+  contentClassName,
+  contentStyle,
   children,
   show,
   onClose,
@@ -52,7 +54,9 @@ const Modal = ({
             {iconComponent || <Icon size={iconSizeToUse} type={iconType} />}
           </div>
         )}
-        <div className={styles.modalContent}>
+        <div
+          style={contentStyle}
+          className={classNames(contentClassName, styles.modalContent)}>
           {title && (
             <H1 style={titleStyle} className={styles.modalTitle}>
               {title}
@@ -71,6 +75,8 @@ const Modal = ({
 
 Modal.propTypes = {
   wrapperStyle: PropTypes.object,
+  contentClassName: PropTypes.string,
+  contentStyle: PropTypes.object,
   titleStyle: PropTypes.object,
   style: PropTypes.object,
   className: PropTypes.string,
