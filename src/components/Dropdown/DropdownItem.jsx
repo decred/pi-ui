@@ -4,11 +4,11 @@ import styles from "./styles.css";
 import { classNames } from "../../utils";
 
 const DropdownItem = ({
-  style,
   label,
   handleClose,
   onClick,
   className,
+  children,
   ...props
 }) => {
   const handleClick = () => {
@@ -20,16 +20,16 @@ const DropdownItem = ({
       onClick={handleClick}
       className={classNames(styles.dropdownItem)}
       {...props}>
-      <span style={style}>{label}</span>
+      {children}
     </li>
   );
 };
 
 DropdownItem.propTypes = {
   className: PropTypes.string,
+  children: PropTypes.node,
   handleClose: PropTypes.func,
   onClick: PropTypes.func,
-  style: PropTypes.object,
   label: PropTypes.string
 };
 

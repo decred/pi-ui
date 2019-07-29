@@ -64,7 +64,8 @@ const Dropdown = ({
   const transitions = useTransition(dropdownOpenned, null, {
     from: { position: "absolute", opacity: 0 },
     enter: { opacity: 1 },
-    leave: { opacity: 0 }
+    leave: { opacity: 0 },
+    duration: 200
   });
 
   return (
