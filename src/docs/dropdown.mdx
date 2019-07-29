@@ -26,10 +26,16 @@ import { Dropdown, DropdownItem, Tabs, Tab, Button } from "../index";
     return (
       <>
       	<Dropdown 
-      		title='mariamaria'>
-	        <DropdownItem label='My proposals' onClick={() => alert('my proposals')}/>
-	        <DropdownItem label='Account' onClick={() => alert('account')}/>
-	        <DropdownItem label='Logout' onClick={() => alert('my props')}/>
+      		title='username'>
+	        <DropdownItem  onClick={() => alert('my proposals')}>
+            My proposals
+          </DropdownItem>
+          <DropdownItem  onClick={() => alert('account')}>
+            Account
+          </DropdownItem>
+          <DropdownItem  onClick={() => alert('logout')}>
+            Logout
+          </DropdownItem>
         </Dropdown>
       </>
     );
@@ -46,12 +52,18 @@ import { Dropdown, DropdownItem, Tabs, Tab, Button } from "../index";
     return (
       <>
       	<Dropdown 
-      		title='mariamaria' 
+      		title='username' 
       		show={showDropdown} 
       		onDropdownClick={showDropdown ? closeDropdown : openDropdown}>
-	        <DropdownItem label='My proposals' handleItemClick={() => alert('my proposals')}/>
-	        <DropdownItem label='Account' handleItemClick={() => alert('account')}/>
-	        <DropdownItem label='Logout' handleItemClick={() => alert('my props')}/>
+	        <DropdownItem  onClick={() => alert('my proposals')}>
+            My proposals
+          </DropdownItem>
+          <DropdownItem  onClick={() => alert('account')}>
+            Account
+          </DropdownItem>
+          <DropdownItem  onClick={() => alert('logout')}>
+            Logout
+          </DropdownItem>
         </Dropdown>
       </>
     );
@@ -69,9 +81,15 @@ import { Dropdown, DropdownItem, Tabs, Tab, Button } from "../index";
       	<Dropdown 
       		customDropdownTrigger={CustomTrigger}
       		closeOnOutsideClick={true}>
-	        <DropdownItem label='My proposals' handleItemClick={() => alert('my proposals')}/>
-	        <DropdownItem label='Account' handleItemClick={() => alert('account')}/>
-	        <DropdownItem label='Logout' handleItemClick={() => alert('my props')}/>
+	        <DropdownItem  onClick={() => alert('my proposals')}>
+            My proposals
+          </DropdownItem>
+          <DropdownItem  onClick={() => alert('account')}>
+            Account
+          </DropdownItem>
+          <DropdownItem  onClick={() => alert('logout')}>
+            Logout
+          </DropdownItem>
         </Dropdown>
       </>
     );

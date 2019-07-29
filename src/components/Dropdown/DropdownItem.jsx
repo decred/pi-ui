@@ -4,7 +4,6 @@ import styles from "./styles.css";
 import { classNames } from "../../utils";
 
 const DropdownItem = ({
-  label,
   handleClose,
   onClick,
   className,
@@ -29,8 +28,7 @@ DropdownItem.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node,
   handleClose: PropTypes.func,
-  onClick: PropTypes.func,
-  label: PropTypes.string
+  onClick: PropTypes.func
 };
 
 export default DropdownItem;
