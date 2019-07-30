@@ -2,6 +2,7 @@
 .btn:link,
 .btn:visited {
   font-size: var(--font-size-normal);
+  font-weight: var(--font-weight-semi-bold);
   line-height: var(--spacing-2);
   cursor: pointer;
   text-decoration: none;
