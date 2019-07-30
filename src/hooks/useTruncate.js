@@ -1,4 +1,4 @@
-import { useLayoutEffect, useMemo } from "react";
+import { useLayoutEffect } from "react";
 import lineClamp from "clamp-js-main";
 
 /**
@@ -41,7 +41,7 @@ export default function useTruncate(elementID, truncate, linesBeforeTruncate) {
     function handleTruncate() {
       if (truncate) {
         const element = document.getElementById(elementID);
-        if (!!element) {
+        if (element) {
           if (linesBeforeTruncate === 1) {
             simpleClamp(element);
           } else {

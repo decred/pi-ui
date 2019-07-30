@@ -65,6 +65,18 @@ const BoxTextInput = ({
   );
 };
 
+FormWrapper.propTypes = {
+  className: PropTypes.string,
+  onSubmit: PropTypes.func.isRequired,
+  children: PropTypes.node
+};
+
+DefaultWrapper.propTypes = {
+  className: PropTypes.string,
+  onSubmit: PropTypes.func.isRequired,
+  children: PropTypes.node
+};
+
 BoxTextInput.propTypes = {
   placeholder: PropTypes.string,
   id: PropTypes.string,

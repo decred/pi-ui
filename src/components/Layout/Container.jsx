@@ -25,6 +25,7 @@ const Container = ({
 
 Container.propTypes = {
   children: PropTypes.node,
+  topBannerHeight: PropTypes.number,
   style: PropTypes.object,
   className: PropTypes.string
 };

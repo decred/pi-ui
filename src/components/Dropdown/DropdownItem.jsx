@@ -1,33 +1,34 @@
 import PropTypes from "prop-types";
 import React from "react";
 import styles from "./styles.css";
-import { classNames } from '../../utils';
-
+import { classNames } from "../../utils";
 
 const DropdownItem = ({
-	style,
-	label,
-	handleItemClick,
-	className,
-  ...props,
+  handleClose,
+  onClick,
+  className,
+  children,
+  ...props
 }) => {
-	const handleClick = () => {
-		handleItemClick()
-	}
+  const handleClick = () => {
+    handleClose();
+    onClick && onClick();
+  };
   return (
-    <li onClick={handleClick} className={classNames(styles.dropdownItem)}
+    <li
+      onClick={handleClick}
+      className={classNames(styles.dropdownItem)}
       {...props}>
-      <span style={style}>
-        {label}
-      </span>
+      {children}
     </li>
   );
 };
 
 DropdownItem.propTypes = {
   className: PropTypes.string,
-  style: PropTypes.object,
-  label: PropTypes.string,
+  children: PropTypes.node,
+  handleClose: PropTypes.func,
+  onClick: PropTypes.func
 };
 
 export default DropdownItem;

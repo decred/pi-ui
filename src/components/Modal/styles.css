@@ -25,12 +25,13 @@
   min-width: 50rem;
   max-width: 100rem;
   max-height: 70vh;
-  padding: 4rem 6rem;
+  padding: 2.5rem 4rem 3rem 4rem;
   position: relative;
   background: var(--color-white);
   transition: transform 0.5s;
   transform: scale(0.3);
   overflow-y: auto;
+  display: flex;
 }
 
 .modalVisible {
@@ -57,6 +58,18 @@
 
 .modalTitle {
   margin-bottom: var(--spacing-2);
+}
+
+.iconWrapper {
+  margin-right: 1rem;
+}
+
+.iconWrapper.lg {
+  padding-top: 8px;
+}
+
+.iconWrapper.xlg {
+  padding-top: 4px;
 }
 
 /* EXTRA SMALL */
