@@ -103,7 +103,7 @@ const lightTheme = {
   "card-background": "var(--color-white)",
 
   /** Message */
-  "error-message-background": "var(--color-orange-light)",
+  "error-message-background": "var(--color-orange-lighter)",
   "error-message-color": "var(--color-orange)",
   "warning-message-background": "var(--color-yellow-light)",
   "warning-message-color": "var(--color-gold)",
