@@ -1,7 +1,7 @@
 .message {
   padding: 20px 40px;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   color: var(--text-color) !important;
 }
 

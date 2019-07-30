@@ -14,7 +14,15 @@ const typeToIcons = {
   blocked: "blocked"
 };
 
-const Message = ({ style, className, children, kind, title, ...props }) => {
+const Message = ({
+  style,
+  className,
+  iconContainerClassName,
+  children,
+  kind,
+  title,
+  ...props
+}) => {
   const renderIcon = () => (
     <Icon
       type={typeToIcons[kind]}
@@ -31,7 +39,12 @@ const Message = ({ style, className, children, kind, title, ...props }) => {
       )}
       style={style}
       {...props}>
-      <div className={classNames(styles.iconContainer)}>{renderIcon()}</div>
+      {kind && (
+        <div
+          className={classNames(styles.iconContainer, iconContainerClassName)}>
+          {renderIcon()}
+        </div>
+      )}
       <div className={styles.content}>
         {!!title && <H2>{title}</H2>}
         {children}
@@ -43,6 +56,7 @@ const Message = ({ style, className, children, kind, title, ...props }) => {
 Message.propTypes = {
   style: PropTypes.object,
   className: PropTypes.string,
+  iconContainerClassName: PropTypes.string,
   children: PropTypes.node.isRequired,
   kind: PropTypes.oneOf(["info", "warning", "error", "success", "blocked"]),
   title: PropTypes.string
