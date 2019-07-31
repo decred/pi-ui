@@ -18,7 +18,7 @@ const Table = ({ data, headers, linesPerPage, disablePagination }) => {
   const previousPage = () => (canGoBack ? setPage(page - 1) : null);
   const nextPage = () => (canGoNext ? setPage(page + 1) : null);
   return (
-    <div>
+    <div className={styles.tableWrapper}>
       <table className={styles.table}>
         <TableHeader headers={headers} />
         <TableBody data={data.slice(startIndex, startIndex + linesPerPage)} />
