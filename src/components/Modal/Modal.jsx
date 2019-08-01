@@ -56,7 +56,7 @@ const Modal = ({
         )}
         <div
           style={contentStyle}
-          className={classNames(contentClassName, styles.modalContent)}>
+          className={classNames(styles.modalContent, contentClassName)}>
           {title && (
             <H1 style={titleStyle} className={styles.modalTitle}>
               {title}

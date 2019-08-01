@@ -48,7 +48,7 @@ const Tabs = ({
         return (
           item === activeTabIndex && (
             <animated.div key={key} style={props}>
-              {children[item].props.children}
+              {children[item] && children[item].props.children}
             </animated.div>
           )
         );
