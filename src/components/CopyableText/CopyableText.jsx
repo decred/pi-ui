@@ -40,13 +40,14 @@ const CopyableText = ({ id, truncate, children, className, hoverText, ...props }
 CopyableText.propTypes = {
   truncate: PropTypes.bool,
   children: PropTypes.string.isRequired,
-  hoverText: PropTypes.string.isRequired,
+  hoverText: PropTypes.string,
   className: PropTypes.string,
   id: idPropTypeCheckForTruncatedComponents
 };
 
 CopyableText.defaultProps = {
-  truncate: false
+  truncate: false,
+  hoverText: 'Copy to clipboard'
 };
 
 export default CopyableText;
