@@ -5,8 +5,7 @@ import CopyToClipboard from "./assets/CopyToClipboard.svg";
 import { copyToClipboard as copy } from "./helpers";
 import { classNames, idPropTypeCheckForTruncatedComponents } from "../../utils";
 import styles from "./styles.css";
-import Tooltip from '../Tooltip/Tooltip';
-
+import Tooltip from '../Tooltip/Tooltip.jsx';
 
 const CopyableText = ({ id, truncate, children, className, hoverText, ...props }) => {
 	const [feedbackActive, setFeedbackActive] = useState(false);
