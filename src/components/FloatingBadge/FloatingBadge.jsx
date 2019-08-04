@@ -4,9 +4,16 @@ import styles from "./styles.css";
 import { classNames } from "../../utils";
 import Icon from '../Icon/Icon.jsx';
 
-const FloatingBadge = ({ children, iconType, ...props }) => {
+const FloatingBadge = ({ children, iconType, show, onClose, ...props }) => {
+	const onCloseClick = (e) => {
+    e.preventDefault();
+    onClose();
+  };
   return (
-    <div className={classNames(styles.badgeWrapper)}{...props}>
+    <div className={classNames(show ? styles.badgeWrapperVisible : styles.badgeWrapper)}{...props}>
+    	<a className={styles.badgeClose} onClick={onCloseClick} href="#">
+    		&times;
+    	</a>
     	<Icon className={classNames(styles.badgeIcon)} type={iconType} />
       {children}
     </div>

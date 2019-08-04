@@ -1,16 +1,41 @@
 .badgeWrapper {
+  position: relative;
   display: inline-flex;
   align-items: center;
   flex-direction: row;
-  padding: 20px 30px 20px 60px;
+  padding: 20px 30px 20px 50px;
   z-index: 100;
   border-radius: 5px;
-  height: 57px;
+  height: 5rem;
   -webkit-box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.16);
   -moz-box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.16);
   box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.16);
+  visibility: hidden;
+  opacity: 0;
+}
+
+.badgeWrapperVisible {
+  composes: badgeWrapper;
+  visibility: visible;
+  opacity: 1;
 }
 
 .badgeIcon {
   padding: 20px 20px 0 0;
+}
+
+.badgeClose,
+.badgeClose:link,
+.badgeClose:visited {
+  position: absolute;
+  top: 0;
+  right: 1rem;
+  font-size: var(--font-size-xxlarge);
+  color: var(--text-color-light);
+}
+
+.badgeClose:hover,
+.badgeClose:link:hover,
+.badgeClose:visited:hover {
+  color: var(--color-primary);
 }
