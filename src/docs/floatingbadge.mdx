@@ -4,8 +4,9 @@ menu: Components
 route: /components/floatingbadge
 ---
 
+import { useState } from "react";
 import { Playground, Props } from "docz";
-import { FloatingBadge } from "../index";
+import { Button, FloatingBadge } from "../index";
 
 # FloatingBadge
 
@@ -16,7 +17,17 @@ import { FloatingBadge } from "../index";
 ## Usage
 
 <Playground>
-  <FloatingBadge>
-    Hover me
-  </FloatingBadge>
+	{() => {
+    const [showBadge, setShowBadge] = useState(false);
+    const openBadge = () => setShowBadge(true);
+    const closeBadge = () => setShowBadge(false);
+    return (
+      <>
+        <Button onClick={openBadge}>Open Badge</Button>
+        <FloatingBadge show={showBadge} onClose={closeBadge}>
+    			Hover me
+    		</FloatingBadge>
+      </>
+    );
+  }}
 </Playground>
