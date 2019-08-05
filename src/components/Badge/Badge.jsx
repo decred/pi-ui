@@ -4,7 +4,7 @@ import styles from "./styles.css";
 import { classNames } from "../../utils";
 import Icon from '../Icon/Icon.jsx';
 
-const Badge = ({ children, iconType, show, onClose, ...props }) => {
+const Badge = ({ children, icon, show, onClose, ...props }) => {
 	const onCloseClick = (e) => {
     e.preventDefault();
     onClose();
@@ -14,7 +14,7 @@ const Badge = ({ children, iconType, show, onClose, ...props }) => {
     	<a className={styles.badgeClose} onClick={onCloseClick} href="#">
     		&times;
     	</a>
-    	<Icon className={classNames(styles.badgeIcon)} type={iconType} />
+    	<div className={styles.badgeIcon}>{ icon }</div>
       {children}
     </div>
   );
@@ -22,6 +22,9 @@ const Badge = ({ children, iconType, show, onClose, ...props }) => {
 
 Badge.propTypes = {
   children: PropTypes.node.isRequired,
+  show: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
+  icon: PropTypes.node,
 };
 
 export default Badge;

@@ -3,7 +3,7 @@
   display: inline-flex;
   align-items: center;
   flex-direction: row;
-  padding: 20px 30px 20px 50px;
+  padding: 20px 30px 20px 0;
   z-index: 100;
   border-radius: 5px;
   height: 5rem;
@@ -34,4 +34,11 @@
 .badgeClose:link:hover,
 .badgeClose:visited:hover {
   color: var(--color-primary);
+}
+
+.badgeIcon {
+  display: inline-flex;
+  align-items: center;
+  flex-direction: row;
+  padding: 0 10px 0 20px;
 }

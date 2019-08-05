@@ -6,7 +6,7 @@ route: /components/badge
 
 import { useState } from "react";
 import { Playground, Props } from "docz";
-import { Button, Badge } from "../index";
+import { Button, Badge, Icon } from "../index";
 
 # Badge
 
@@ -24,8 +24,8 @@ import { Button, Badge } from "../index";
     return (
       <>
         <Button onClick={openBadge}>Open Badge</Button>
-        <Badge show={showBadge} onClose={closeBadge}>
-    			Hover me
+        <Badge icon={<Icon type="timer"/>} show={showBadge} onClose={closeBadge}>
+    			Your proposal has expired
     		</Badge>
       </>
     );
