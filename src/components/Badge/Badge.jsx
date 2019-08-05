@@ -4,7 +4,7 @@ import styles from "./styles.css";
 import { classNames } from "../../utils";
 import Icon from '../Icon/Icon.jsx';
 
-const FloatingBadge = ({ children, iconType, show, onClose, ...props }) => {
+const Badge = ({ children, iconType, show, onClose, ...props }) => {
 	const onCloseClick = (e) => {
     e.preventDefault();
     onClose();
@@ -20,8 +20,8 @@ const FloatingBadge = ({ children, iconType, show, onClose, ...props }) => {
   );
 };
 
-FloatingBadge.propTypes = {
+Badge.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-export default FloatingBadge;
+export default Badge;
