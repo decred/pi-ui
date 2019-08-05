@@ -7,7 +7,7 @@ import { classNames, idPropTypeCheckForTruncatedComponents } from "../../utils";
 import styles from "./styles.css";
 import Tooltip from '../Tooltip/Tooltip.jsx';
 
-const CopyableText = ({ id, truncate, children, className, hoverText, ...props }) => {
+const CopyableText = ({ id, truncate, children, className, hoverText, tooltipPlacement, ...props }) => {
 	const [feedbackActive, setFeedbackActive] = useState(false);
   const onCopyToClipboard = (value) => {
     copy(value);
@@ -18,13 +18,13 @@ const CopyableText = ({ id, truncate, children, className, hoverText, ...props }
   };
   return (
   	 <div className={classNames(styles.copyableWrapper, className)} {...props}>
-  	 <Tooltip
-	      placement="bottom"
-	      content={feedbackActive ? "Copied!" : hoverText}
-      >
       <Text id={id} className={styles.addressWrapper}>
         {children}
       </Text>
+      <Tooltip
+	      placement={tooltipPlacement}
+	      content={feedbackActive ? "Copied!" : hoverText}
+      >
       <img
         className={styles.copyToClipboard}
         onClick={() => onCopyToClipboard(children)}
@@ -41,12 +41,14 @@ CopyableText.propTypes = {
   children: PropTypes.string.isRequired,
   hoverText: PropTypes.string,
   className: PropTypes.string,
+  tooltipPlacement: PropTypes.string,
   id: idPropTypeCheckForTruncatedComponents
 };
 
 CopyableText.defaultProps = {
   truncate: false,
-  hoverText: 'Copy to clipboard'
+  hoverText: 'Copy to clipboard',
+  tooltipPlacement: "right"
 };
 
 export default CopyableText;
