@@ -1,0 +1,17 @@
+.radioButton {
+  margin-right: 1rem;
+}
+
+.radioGroupList {
+  list-style-type: none;
+  display: flex;
+}
+
+.vertical {
+  display: block;
+}
+
+.radioGroupLabel {
+  font-size: var(--font-size-small);
+  color: var(--color-gray);
+}
