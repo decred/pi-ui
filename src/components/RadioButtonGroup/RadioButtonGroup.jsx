@@ -1,10 +1,10 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { classNames } from "../../utils";
 import styles from "./styles.css";
 
 export const RadioButton = ({
   name,
-  value,
   onChange,
   onBlur,
   id,
@@ -65,4 +65,26 @@ export const RadioButtonGroup = ({
       </ul>
     </div>
   );
+};
+
+RadioButton.propTypes = {
+  name: PropTypes.string,
+  onChange: PropTypes.func,
+  onBlur: PropTypes.func,
+  id: PropTypes.string,
+  checked: PropTypes.bool,
+  label: PropTypes.string,
+  className: PropTypes.string
+};
+
+RadioButtonGroup.propTypes = {
+  options: PropTypes.array.isRequired,
+  value: PropTypes.any,
+  onChange: PropTypes.func.isRequired,
+  label: PropTypes.string,
+  name: PropTypes.string,
+  className: PropTypes.string,
+  vertical: PropTypes.bool,
+  optionsListClassName: PropTypes.string,
+  optionClassName: PropTypes.string
 };
