@@ -50,8 +50,8 @@ export const RadioButtonGroup = ({
           vertical && styles.vertical,
           optionsListClassName
         )}>
-        {options.map((option) => (
-          <li>
+        {options.map((option, idx) => (
+          <li key={`radio-btn-${idx}`}>
             {" "}
             <RadioButton
               onChange={() => onChange(option)}
