@@ -53,12 +53,14 @@ const Dropdown = ({
   };
 
   const renderChildrenItems = () => {
-    return React.Children.map(children, (child, index) => {
-      return React.cloneElement(child, {
-        handleClose: handleCloseOnItemClick,
-        itemindex: index
+    return React.Children.toArray(children)
+      .filter(Boolean)
+      .map((child, index) => {
+        return React.cloneElement(child, {
+          handleClose: handleCloseOnItemClick,
+          itemindex: index
+        });
       });
-    });
   };
 
   const transitions = useTransition(dropdownOpenned, null, {
