@@ -1,0 +1,33 @@
+---
+name: Badge
+menu: Components
+route: /components/badge
+---
+
+import { useState } from "react";
+import { Playground, Props } from "docz";
+import { Button, Badge, Icon } from "../index";
+
+# Badge
+
+## Properties
+
+<Props of={Badge} />
+
+## Usage
+
+<Playground>
+	{() => {
+    const [showBadge, setShowBadge] = useState(false);
+    const openBadge = () => setShowBadge(true);
+    const closeBadge = () => setShowBadge(false);
+    return (
+      <>
+        <Button onClick={openBadge}>Open Badge</Button>
+        <Badge icon={<Icon type="timer"/>} show={showBadge} onClose={closeBadge}>
+    			Your proposal has expired
+    		</Badge>
+      </>
+    );
+  }}
+</Playground>
