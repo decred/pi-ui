@@ -31,7 +31,6 @@
 
 .container .checkmark:after {
   left: 5px;
-  top: 5px;
   width: 4px;
   height: 9px;
   border: solid var(--color-white);
