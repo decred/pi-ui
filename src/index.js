@@ -67,11 +67,7 @@ export { default as H3 } from "./components/Typography/H3.jsx";
 export { default as H4 } from "./components/Typography/H4.jsx";
 export { default as P } from "./components/Typography/P.jsx";
 export { default as Text } from "./components/Typography/Text/Text.jsx";
-export { default as Dropdown } from "./components/Dropdown/Dropdown.jsx";
 export { default as Badge } from "./components/Badge/Badge.jsx";
-export {
-  default as DropdownItem
-} from "./components/Dropdown/DropdownItem.jsx";
 export * from "./hooks";
 export * from "./theme";
 export * from "./utils";
