@@ -1,9 +1,10 @@
 import { PropTypes } from "prop-types";
 import React from "react";
+import { classNames } from "../../utils";
 import styles from "./styles.css";
 
 const Checkbox = ({ label, className, checked, style, name, id, ...props }) => (
-  <label htmlFor={id} className={styles.container}>
+  <label htmlFor={id} className={classNames(styles.container, className)}>
     <input
       type="checkbox"
       checked={checked}
