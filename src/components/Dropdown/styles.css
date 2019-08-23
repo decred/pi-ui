@@ -16,8 +16,7 @@
 
 .dropdownHeader {
   display: flex;
-  margin-right: 1rem;
-  padding-left: 1.75rem;
+  margin-right: 0.6rem;
   color: var(--color-primary-dark);
 }
 
@@ -34,12 +33,16 @@
   border: 7px solid transparent;
   border-color: var(--color-gray) transparent transparent transparent;
   position: absolute;
-  top: -2px;
+  top: -4px;
   right: 2px;
 }
 
+.arrowAnchor:hover:after {
+  border-color: var(--color-primary) transparent transparent transparent;
+}
+
 .arrowAnchor.open:after {
-  top: -9px;
+  top: -11px;
   border-color: transparent transparent var(--color-primary) transparent;
 }
 
