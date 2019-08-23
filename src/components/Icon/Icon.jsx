@@ -857,7 +857,7 @@ const Icon = ({ type, size, backgroundColor, iconColor, className }) => {
   return (
     <svg
       viewBox="0 0 450 450"
-      width={sizes[size]}
+      width={typeof(size) === "string" ?  sizes[size] : size}
       className={className}
       height={sizes[size]}>
       {icons(type, backgroundColor, iconColor)}
@@ -868,7 +868,7 @@ const Icon = ({ type, size, backgroundColor, iconColor, className }) => {
 Icon.propTypes = {
   type: PropTypes.string.isRequired,
   className: PropTypes.string,
-  size: PropTypes.oneOf(["sm", "md", "lg", "xlg"]),
+  size: PropTypes.oneOfType([PropTypes.oneOf["sm", "md", "lg", "xlg"], PropTypes.number]),
   backgroundColor: PropTypes.string,
   iconColor: PropTypes.string
 };
