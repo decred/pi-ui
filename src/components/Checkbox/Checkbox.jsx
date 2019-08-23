@@ -23,7 +23,7 @@ Checkbox.propTypes = {
   className: PropTypes.string,
   style: PropTypes.object,
   checked: PropTypes.bool,
-  name: PropTypes.string.isRequired,
+  name: PropTypes.string,
   id: PropTypes.string.isRequired
 };
 
