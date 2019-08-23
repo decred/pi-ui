@@ -42,7 +42,7 @@
 }
 
 .icon-info > path:last-of-type {
-  fill: var(--info-message-background);
+  fill: var(--info-message-color);
 }
 
 .error {
