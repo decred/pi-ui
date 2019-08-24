@@ -10,7 +10,6 @@ import styles from "./styles.css";
 const root = document.getElementById("root");
 
 // TODO: use svg icons when we have them
-// TODO: lock scroll on body when Modal is active
 // TODO: close modal on ESC key press
 const Modal = ({
   style,
