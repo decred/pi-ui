@@ -14,8 +14,12 @@ const ModalWrapper = ({
   const handleClickOverlay = (e) => {
     e.stopPropagation();
     e.target.id === "modal-wrapper" && onClose();
+    document.body.style.overflow = "unset";
   };
 
+  if (show) {
+    document.body.style.overflow = "hidden";
+  }
   return (
     <div
       id="modal-wrapper"
