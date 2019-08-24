@@ -52,6 +52,7 @@
 .legendLabel {
   margin-right: 0.5rem;
   text-transform: capitalize;
+  font-weight: var(--font-weight-semi-bold);
 }
 
 .legendAmount {
