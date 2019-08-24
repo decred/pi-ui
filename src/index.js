@@ -52,6 +52,7 @@ export { default as TopBanner } from "./components/Layout/TopBanner.jsx";
 export { default as Link } from "./components/Link/Link.jsx";
 export { default as Message } from "./components/Message/Message.jsx";
 export { default as Modal } from "./components/Modal/Modal.jsx";
+export { default as ModalWrapper } from "./components/Modal/ModalWrapper.jsx";
 export * from "./components/RadioButtonGroup/RadioButtonGroup.jsx";
 export { default as Spinner } from "./components/Spinner/Spinner.jsx";
 export { default as StatusBar } from "./components/StatusBar/StatusBar.jsx";
