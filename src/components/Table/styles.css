@@ -79,7 +79,8 @@
   }
 
   .tableRow {
-    border-bottom: 0.3rem solid #ddd;
+    border: 0.1rem solid #f3f5f6;
+    padding: 1.3rem 2rem;
     display: block;
     margin-bottom: 1rem;
   }
@@ -95,12 +96,16 @@
   }
 
   .tableBodyCell {
-    border-bottom: 0.1rem solid #ddd;
     display: block;
     display: flex;
     align-items: center;
+    border: 0;
     justify-content: space-between;
     font-size: 1.35rem;
+  }
+
+  td.tableBodyCell:not(:last-child) {
+    border-bottom: 0.1rem solid #f3f5f6;
   }
 
   .tableBodyCell::before {

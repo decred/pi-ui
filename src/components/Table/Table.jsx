@@ -23,7 +23,7 @@ const Table = ({ data, headers, linesPerPage, disablePagination }) => {
         <TableHeader headers={headers} />
         <TableBody data={data.slice(startIndex, startIndex + linesPerPage)} />
       </table>
-      {!disablePagination && (
+      {!disablePagination && pagesArr.length > 1 &&  (
         <div className={styles.pages}>
           <span
             className={
@@ -37,8 +37,9 @@ const Table = ({ data, headers, linesPerPage, disablePagination }) => {
               iconColor={canGoBack ? "#2970ff" : "#8997a5"}
             />
           </span>
-          {pagesArr.map((item) => (
+          {pagesArr.map((item, idx) => (
             <span
+              key={`page-number-${idx}`}
               className={
                 item === page ? styles.pageItemActive : styles.pageItem
               }
