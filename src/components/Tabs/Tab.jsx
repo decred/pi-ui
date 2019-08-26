@@ -47,9 +47,9 @@ const Tab = ({
 };
 
 Tab.propTypes = {
-  onSelect: PropTypes.func.isRequired,
-  tabIndex: PropTypes.number.isRequired,
-  isActive: PropTypes.bool.isRequired,
+  onSelect: PropTypes.func,
+  tabIndex: PropTypes.number,
+  isActive: PropTypes.bool,
   className: PropTypes.string,
   style: PropTypes.object,
   label: PropTypes.string,
