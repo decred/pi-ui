@@ -72,7 +72,9 @@ export { default as P } from "./components/Typography/P.jsx";
 export { default as Text } from "./components/Typography/Text/Text.jsx";
 export { default as Badge } from "./components/Badge/Badge.jsx";
 export { default as Input } from "./components/Input/Input.jsx";
-export { default as NumberInput } from "./components/NumberInput/NumberInput.jsx"
+export {
+  default as NumberInput
+} from "./components/NumberInput/NumberInput.jsx";
 export * from "./hooks";
 export * from "./theme";
 export * from "./utils";
