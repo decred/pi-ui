@@ -1,36 +1,25 @@
 import PropTypes from "prop-types";
 import React from "react";
 import { classNames } from "../../utils";
-import Icon from "../Icon/Icon.jsx";
 import styles from "./styles.css";
+import Input from '../Input/Input.jsx';
 
 const TextInput = ({ type, label, id, error, ...props }) => {
   return (
-    <div className={styles.textinputWrapper}>
-      <input
-        id={id}
-        placeholder=" "
-        className={classNames(styles.textinput, error && styles.textinputError)}
-        type={type}
-        {...props}
-      />
-      <label htmlFor={id} className={styles.textinputLabel}>
-        {label}
-      </label>
-      <Icon
-        type="alert"
-        backgroundColor="#ed6d47"
-        iconColor="#feb8a5"
-        className={classNames(
-          styles.errorIcon,
-          error && styles.errorIconActive
-        )}
-      />
-      <p
-        className={classNames(styles.errorMsg, error && styles.errorMsgActive)}>
-        {error}
-      </p>
-    </div>
+    <Input 
+    	type={type}
+    	label={label}
+    	id={id}
+    	error={error}
+    	wrapperStyle={styles.textinputWrapper}
+    	inputStyle={classNames(styles.textinput, error && styles.textinputError)}
+    	iconStyle={classNames(
+        styles.errorIcon,
+        error && styles.errorIconActive
+      )}
+    	labelStyle={styles.textinputLabel}
+    	errorStyle={classNames(styles.errorMsg, error && styles.errorMsgActive)}
+    />
   );
 };
 
