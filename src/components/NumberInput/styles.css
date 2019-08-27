@@ -1,0 +1,70 @@
+.numberinput {
+  background-color: transparent;
+  outline: 0;
+  border: 0;
+  width: 40%;
+  border-bottom: 0.1rem solid var(--color-gray-lighter);
+  font-size: var(--font-size-normal);
+  transition: all 0.25s;
+  line-height: var(--spacing-2);
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+
+.numberinputWrapper {
+  width: 15%;
+  position: relative;
+}
+
+.numberinputWrapper:not(:first-child) {
+  margin-top: 2.2rem;
+}
+
+.numberinput:focus,
+.numberinput:not(:placeholder-shown) {
+  border-bottom: 0.1rem solid var(--color-primary);
+}
+
+.numberinputError,
+.numberinputError:focus,
+.numberinputError:not(:placeholder-shown) {
+  border-bottom: 0.1rem solid var(--color-orange);
+}
+
+.numberinput:focus + .numberinputLabel,
+.numberinput:not(:placeholder-shown) + .numberinputLabel {
+  top: -2rem;
+  font-size: var(--font-size-small);
+}
+
+.errorMsg {
+  visibility: hidden;
+  color: var(--color-orange);
+  font-size: var(--font-size-small);
+  min-height: var(--spacing-1);
+  line-height: var(--spacing-1);
+  margin-top: 1px;
+}
+
+.errorMsgActive {
+  visibility: visible;
+}
+
+.errorIcon {
+  display: none;
+  color: var(--color-orange);
+  position: absolute;
+  right: 0;
+  top: 5px;
+  font-size: var(--font-size-large);
+}
+
+.errorIconActive {
+  display: block;
+}

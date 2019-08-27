@@ -3,7 +3,7 @@ import React from "react";
 import { classNames } from "../../utils";
 import Icon from "../Icon/Icon.jsx";
 
-const Input = ({ type, label, id, error, wrapperStyle, inputStyle, labelStyle, iconStyle, errorStyle, ...props }) => {
+const Input = ({ type, label, id, error, mode, wrapperStyle, inputStyle, labelStyle, iconStyle, errorStyle, ...props }) => {
   return (
     <div className={wrapperStyle}>
       <input
@@ -11,6 +11,7 @@ const Input = ({ type, label, id, error, wrapperStyle, inputStyle, labelStyle, i
         placeholder=" "
         className={inputStyle}
         type={type}
+        inputmode={mode}
         {...props}
       />
       {label &&
