@@ -26,6 +26,10 @@
   margin-top: 3rem;
 }
 
+.tabDropdownMode {
+  border-left: 0;
+}
+
 .tabsNav {
   list-style-type: none;
   display: flex;

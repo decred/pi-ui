@@ -12,6 +12,7 @@ const Tabs = ({
   children,
   vertical,
   wrap,
+  dropdownMode,
   ...props
 }) => {
   const renderChildrenTabs = () => {
@@ -20,7 +21,8 @@ const Tabs = ({
         onSelect: onSelectTab,
         tabIndex: index,
         isActive: index === activeTabIndex,
-        vertical: vertical
+        vertical,
+        dropdownMode
       });
     });
   };
@@ -64,12 +66,14 @@ Tabs.propTypes = {
   activeTabIndex: PropTypes.number.isRequired,
   children: PropTypes.node.isRequired,
   vertical: PropTypes.bool,
-  wrap: PropTypes.bool
+  wrap: PropTypes.bool,
+  dropdownMode: PropTypes.bool,
 };
 
 Tabs.defaultProps = {
   vertical: false,
-  wrap: false
+  wrap: false,
+  dropdownMode: false
 };
 
 export default Tabs;
