@@ -67,7 +67,7 @@ Tabs.propTypes = {
   children: PropTypes.node.isRequired,
   vertical: PropTypes.bool,
   wrap: PropTypes.bool,
-  dropdownMode: PropTypes.bool,
+  dropdownMode: PropTypes.bool
 };
 
 Tabs.defaultProps = {
