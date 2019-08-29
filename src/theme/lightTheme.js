@@ -29,7 +29,6 @@ const lightTheme = {
   "text-color": "var(--color-primary-dark)",
   "text-color-light": "var(--color-gray)",
   "tab-selected-color": "var(--color-primary-light)",
-
   "font-size-xxxlarge": "2.8rem",
   "font-size-xxlarge": "2.4rem",
   "font-size-xlarge": "2.0rem",
