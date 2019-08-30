@@ -81,6 +81,8 @@
   .modal {
     min-width: 100%;
     min-height: 100%;
+    padding: 2.5rem;
+    padding-bottom: 3rem;
   }
 
   .modalWrapper {

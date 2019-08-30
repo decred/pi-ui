@@ -1,5 +1,5 @@
 import { useLayoutEffect } from "react";
-import lineClamp from "clamp-js-main";
+import { clamp as lineClamp } from "clamp-js-main";
 
 /**
  * setStylesOnElement merges the provided styles with the target element
