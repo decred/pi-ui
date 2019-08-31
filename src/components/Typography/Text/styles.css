@@ -85,3 +85,13 @@
 .colorOrange {
   color: var(--color-orange);
 }
+
+.bgColorBlueLighter {
+  padding: 0.4rem 1rem;
+  border-radius: 0.5rem;
+  background-color: var(--color-blue-lighter);
+}
+
+.monospace {
+  font-family: monospace;
+}
