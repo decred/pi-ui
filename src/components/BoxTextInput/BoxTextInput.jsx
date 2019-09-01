@@ -30,7 +30,7 @@ const BoxTextInput = ({
   error,
   rounded,
   searchInput,
-  className, 
+  className,
   inputClassName,
   ...props
 }) => {

@@ -3,6 +3,7 @@ import React from "react";
 import { animated, useTransition } from "react-spring";
 import { classNames } from "../../utils";
 import styles from "./styles.css";
+import Dropdown from "../Dropdown/Dropdown.jsx";
 
 const Tabs = ({
   onSelectTab,
@@ -10,9 +11,8 @@ const Tabs = ({
   style,
   className,
   children,
-  vertical,
   wrap,
-  dropdownMode,
+  mode,
   ...props
 }) => {
   const renderChildrenTabs = () => {
@@ -21,9 +21,18 @@ const Tabs = ({
         onSelect: onSelectTab,
         tabIndex: index,
         isActive: index === activeTabIndex,
-        vertical,
-        dropdownMode
+        mode
       });
+    });
+  };
+
+  const getActiveChildLabel = ({ onClick, open }) => {
+    return React.Children.map(children, (child, index) => {
+      if (index === activeTabIndex) {
+        return React.cloneElement(child, {
+          onClick: onClick
+        });
+      }
     });
   };
 
@@ -34,18 +43,38 @@ const Tabs = ({
     config: { duration: 350 }
   });
 
+  const dropdownMode = mode === "dropdown";
+  const vertical = mode === "vertical" || dropdownMode;
+
   return (
     <>
-      <ul
-        className={classNames(
-          vertical ? styles.tabsNavVertical : styles.tabsNav,
-          wrap && styles.wrap,
-          className
-        )}
-        style={style}
-        {...props}>
-        {renderChildrenTabs()}
-      </ul>
+      {dropdownMode ? (
+        <Dropdown
+          customDropdownTrigger={getActiveChildLabel}
+          closeOnOutsideClick={true}>
+          <ul
+            className={classNames(
+              vertical ? styles.tabsNavVertical : styles.tabsNav,
+              wrap && styles.dropdownModedropdownModewrap,
+              className
+            )}
+            style={style}
+            {...props}>
+            {renderChildrenTabs()}
+          </ul>
+        </Dropdown>
+      ) : (
+        <ul
+          className={classNames(
+            vertical ? styles.tabsNavVertical : styles.tabsNav,
+            wrap && styles.dropdownModedropdownModewrap,
+            className
+          )}
+          style={style}
+          {...props}>
+          {renderChildrenTabs()}
+        </ul>
+      )}
       {transitions.map(({ item, key, props }) => {
         return (
           item === activeTabIndex && (
@@ -65,15 +94,13 @@ Tabs.propTypes = {
   onSelectTab: PropTypes.func.isRequired,
   activeTabIndex: PropTypes.number.isRequired,
   children: PropTypes.node.isRequired,
-  vertical: PropTypes.bool,
   wrap: PropTypes.bool,
-  dropdownMode: PropTypes.bool
+  mode: PropTypes.oneOf(["horizontal", "vertical", "dropdown"])
 };
 
 Tabs.defaultProps = {
-  vertical: false,
   wrap: false,
-  dropdownMode: false
+  mode: "horizontal"
 };
 
 export default Tabs;

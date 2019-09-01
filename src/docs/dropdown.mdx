@@ -6,7 +6,7 @@ route: /components/dropdown
 
 import { useState } from "react";
 import { Playground, Props } from "docz";
-import { Dropdown, DropdownItem, Tabs, Tab, Button } from "../index";
+import { Dropdown, DropdownItem, Button } from "../index";
 
 # Dropdown
 
@@ -95,28 +95,3 @@ import { Dropdown, DropdownItem, Tabs, Tab, Button } from "../index";
     );
   }}
 </Playground>
-
-### Dropdown with Tabs
-
-<Playground>
-  {() => {
-    const [activeTabIndex, setActiveTabIndex] = useState(0);
-    return (
-      <>
-      	<Dropdown 
-      		title='click me' >
-	        <Tabs onSelectTab={setActiveTabIndex} activeTabIndex={activeTabIndex} vertical dropdownMode>
-	            <Tab label="All Proposals" count={4} />
-	            <Tab label="In discussion" count={2} />
-	            <Tab label="Voting" count={5} />
-	            <Tab label="Approved" count={25} />
-	            <Tab label="Rejected" count={30} />
-	            <Tab label="Abandoned" count={5} />
-	        </Tabs>
-        </Dropdown>
-      </>
-    );
-  }}
-    
-</Playground>
-
