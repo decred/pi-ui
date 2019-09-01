@@ -4,7 +4,7 @@
   border: 1px solid var(--color-gray-lighter);
   outline: 0;
   width: 100%;
-  font-size: var(--font-size-regular);
+  font-size: var(--font-size-normal);
   font-weight: var(--font-weight-regular);
   transition: all 0.25s;
   line-height: var(--spacing-2);

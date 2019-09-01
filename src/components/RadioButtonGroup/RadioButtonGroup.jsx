@@ -22,7 +22,7 @@ export const RadioButton = ({
         checked={checked}
         onChange={onChange}
         onBlur={onBlur}
-        className={classNames(styles.radioButton, className)}
+        className={classNames(styles.radioButton)}
         {...props}
       />
       <label htmlFor={id}>{label}</label>

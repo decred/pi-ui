@@ -34,6 +34,22 @@
   color: var(--color-primary-dark);
 }
 
+.header5 {
+  composes: textSourceSansPro;
+  font-size: var(--font-size-normal);
+  font-weight: var(--font-weight-semi-bold);
+  line-height: var(--spacing-2);
+  color: var(--color-primary-dark);
+}
+
+.header6 {
+  composes: textSourceSansPro;
+  font-size: var(--font-size-small);
+  font-weight: var(--font-weight-semi-bold);
+  line-height: var(--spacing-1);
+  color: var(--color-primary-dark);
+}
+
 .paragraph {
   composes: textSourceSansPro;
   font-size: var(--font-size-normal);
@@ -45,7 +61,9 @@
 .header1,
 .header2,
 .header3,
-.header4 {
+.header4,
+.header5,
+.header6 {
   word-wrap: break-word;
 }
 
