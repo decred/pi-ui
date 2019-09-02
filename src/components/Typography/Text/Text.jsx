@@ -1,11 +1,11 @@
-import React from "react";
 import PropTypes from "prop-types";
-import styles from "./styles.css";
+import React from "react";
 import { useTruncate } from "../../../hooks";
 import {
   classNames,
   idPropTypeCheckForTruncatedComponents
 } from "../../../utils";
+import styles from "./styles.css";
 
 const TEXT_ALIGN_MAP = {
   center: styles.textAlignCenter,
@@ -39,12 +39,18 @@ const COLOR_MAP = {
   orange: styles.colorOrange
 };
 
+const BG_COLOR_MAP = {
+  blueLighter: styles.bgColorBlueLighter
+};
+
 const Text = ({
   id,
   textAlign,
   weight,
   color,
   size,
+  monospace,
+  backgroundColor,
   className,
   truncate,
   truncateTrigger,
@@ -56,16 +62,19 @@ const Text = ({
   const weightClass = WEIGHT_MAP[weight];
   const sizeClass = SIZE_MAP[size];
   const colorClass = COLOR_MAP[color];
+  const backgroundColorClass = BG_COLOR_MAP[backgroundColor];
 
   return (
     <span
       id={id}
       className={classNames(
         styles.text,
+        monospace && styles.monospace,
         textAlignClass,
         weightClass,
         sizeClass,
         colorClass,
+        backgroundColorClass,
         className
       )}
       {...props}
@@ -79,7 +88,9 @@ Text.propTypes = {
   size: PropTypes.oneOf(Object.keys(SIZE_MAP)),
   color: PropTypes.oneOf(Object.keys(COLOR_MAP)),
   className: PropTypes.string,
+  backgroundColor: PropTypes.oneOf(Object.keys(BG_COLOR_MAP)),
   truncate: PropTypes.bool,
+  monospace: PropTypes.bool,
   linesBeforeTruncate: PropTypes.number,
   id: idPropTypeCheckForTruncatedComponents,
   truncateTrigger: PropTypes.bool
@@ -91,6 +102,7 @@ Text.defaultProps = {
   size: "normal",
   color: "default",
   truncate: false,
+  monospace: false,
   linesBeforeTruncate: 1
 };
 
