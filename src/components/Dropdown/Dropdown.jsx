@@ -8,7 +8,6 @@ import styles from "./styles.css";
 const DefaultTrigger = ({ onClick, title, open }) => (
   <div className={styles.headerWrapper} onClick={onClick}>
     <span className={styles.dropdownHeader}>{title}</span>
-    <div className={classNames(styles.arrowAnchor, open && styles.open)} />
   </div>
 );
 
@@ -79,6 +78,12 @@ const Dropdown = ({
         title={title}
         onClick={handleTriggerClick}
         open={dropdownOpenned}
+      />
+      <div
+        className={classNames(
+          styles.arrowAnchor,
+          dropdownOpenned && styles.open
+        )}
       />
       {dropdownOpenned &&
         transitions.map(
