@@ -93,6 +93,7 @@ const Dropdown = ({
         <div
           className={classNames(
             styles.arrowAnchor,
+            styles.customArrowAnchor,
             dropdownOpenned && styles.open,
             dropdownArrowClassName
           )}

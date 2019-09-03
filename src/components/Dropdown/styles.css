@@ -25,6 +25,10 @@
   width: 20px;
 }
 
+.customArrowAnchor {
+  position: absolute;
+}
+
 .arrowAnchor:after {
   content: "";
   width: 0;
