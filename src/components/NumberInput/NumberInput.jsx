@@ -4,14 +4,17 @@ import { classNames } from "../../utils";
 import styles from "./styles.css";
 import Input from '../Input/Input.jsx';
 
-const NumberInput = ({ type, label, min, mode, id, error, ...props }) => {
+const NumberInput = ({ label, min, id, error, ...props }) => {
   return (
     <Input 
-    	type={type}
+    	type='number'
     	id={id}
     	error={error}
     	min={min}
-    	mode={mode}
+    	mode='numeric'
+    	incrementWrapper={styles.incrementWrapperStyle}
+    	decrementButton={styles.decrementButtonStyle}
+    	incrementButton={styles.incrementButtonStyle}
     	wrapperStyle={styles.numberinputWrapper}
     	inputStyle={classNames(styles.numberinput, error && styles.numberinputError)}
     	iconStyle={classNames(
@@ -33,9 +36,7 @@ NumberInput.propTypes = {
 };
 
 NumberInput.defaultProps = {
-  type: "number",
   min: 0,
-  mode: 'numeric',
 };
 
 export default NumberInput;

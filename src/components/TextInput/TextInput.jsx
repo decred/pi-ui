@@ -4,12 +4,13 @@ import { classNames } from "../../utils";
 import styles from "./styles.css";
 import Input from '../Input/Input.jsx';
 
-const TextInput = ({ type, label, id, error, ...props }) => {
+const TextInput = ({ type, label, id, mode, error, ...props }) => {
   return (
     <Input 
     	type={type}
     	label={label}
     	id={id}
+    	mode={mode}
     	error={error}
     	wrapperStyle={styles.textinputWrapper}
     	inputStyle={classNames(styles.textinput, error && styles.textinputError)}
@@ -32,6 +33,7 @@ TextInput.propTypes = {
 
 TextInput.defaultProps = {
   type: "text",
+  mode: "text",
   label: "Label"
 };
 

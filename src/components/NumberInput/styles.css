@@ -2,24 +2,27 @@
   background-color: transparent;
   outline: 0;
   border: 0;
-  width: 40%;
+  width: 115%;
   border-bottom: 0.1rem solid var(--color-gray-lighter);
   font-size: var(--font-size-normal);
   transition: all 0.25s;
   line-height: var(--spacing-2);
 }
 
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  margin: 0;
-}
-
 .numberinputWrapper {
   width: 15%;
   position: relative;
+}
+
+input[type="number"] {
+  -webkit-appearance: textfield;
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
 }
 
 .numberinputWrapper:not(:first-child) {
@@ -67,4 +70,70 @@ input[type="number"]::-webkit-outer-spin-button {
 
 .errorIconActive {
   display: block;
+}
+
+.incrementWrapperStyle {
+  display: flex;
+  flex-direction: column;
+  color: var(--color-orange);
+  position: absolute;
+  left: 100px;
+  float: right;
+  bottom: 5px;
+}
+
+.incrementButtonStyle {
+  position: relative;
+  width: 20px;
+}
+
+.incrementButtonStyle:after {
+  content: "";
+  width: 0;
+  height: 0;
+  border: 7px solid transparent;
+  border-color: var(--color-gray) transparent transparent transparent;
+  position: absolute;
+  top: -4px;
+  right: 2px;
+}
+
+.incrementButtonStyle:hover:after {
+  border-color: var(--color-primary) transparent transparent transparent;
+}
+
+.incrementButtonStyle.open:after {
+  top: -11px;
+  border-color: transparent transparent var(--color-primary) transparent;
+}
+
+.decrementButtonStyle {
+  position: relative;
+  width: 20px;
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+}
+
+.decrementButtonStyle:after {
+  content: "";
+  width: 0;
+  height: 0;
+  border: 7px solid transparent;
+  border-color: var(--color-gray) transparent transparent transparent;
+  position: absolute;
+  top: -4px;
+  right: 2px;
+}
+
+.decrementButtonStyle:hover:after {
+  border-color: var(--color-primary) transparent transparent transparent;
+}
+
+.decrementButtonStyle.open:after {
+  top: -11px;
+  border-color: transparent transparent var(--color-primary) transparent;
+  -webkit-transform: rotate(10deg);
+  -moz-transform: rotate(10deg);
+  -o-transform: rotate(10deg);
 }

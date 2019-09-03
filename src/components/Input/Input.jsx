@@ -3,17 +3,44 @@ import React from "react";
 import { classNames } from "../../utils";
 import Icon from "../Icon/Icon.jsx";
 
-const Input = ({ type, label, id, error, mode, wrapperStyle, inputStyle, labelStyle, iconStyle, errorStyle, ...props }) => {
+const Input = ({ 
+	type, 
+	label, 
+	placeholder, 
+	id, 
+	error, 
+	mode, 
+	wrapperStyle, 
+	inputStyle, 
+	labelStyle, 
+	iconStyle, 
+	errorStyle,
+	incrementWrapper,
+	incrementButton,
+	decrementButton, 
+	...props,
+}) => {
+	let textInput = React.createRef();
+
+  function stepUp() {
+    textInput.current.stepUp();
+  }
+
+  function stepDown() {
+    textInput.current.stepDown();
+  }
   return (
     <div className={wrapperStyle}>
       <input
         id={id}
-        placeholder=" "
+        placeholder={placeholder}
         className={inputStyle}
         type={type}
         inputmode={mode}
+        ref={textInput}
         {...props}
-      />
+      >
+      </input>
       {label &&
 	      <label htmlFor={id} className={labelStyle}>
 	        {label}
@@ -25,6 +52,12 @@ const Input = ({ type, label, id, error, mode, wrapperStyle, inputStyle, labelSt
         iconColor="#feb8a5"
         className={iconStyle}
       />
+      {type === 'number' && 
+      	<div className={incrementWrapper}>
+		      <button className={incrementButton} onClick={stepUp}>+</button>
+		      <button className={decrementButton} onClick={stepDown}>-</button>
+	      </div>
+    	}
       <p
         className={errorStyle}>
         {error}
