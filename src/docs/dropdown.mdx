@@ -7,6 +7,8 @@ route: /components/dropdown
 import { useState } from "react";
 import { Playground, Props } from "docz";
 import { Dropdown, DropdownItem, Button } from "../index";
+import styles from "../css/base.css";
+import { classNames } from "../utils";
 
 # Dropdown
 
@@ -80,7 +82,8 @@ import { Dropdown, DropdownItem, Button } from "../index";
       <>
       	<Dropdown 
       		customDropdownTrigger={CustomTrigger}
-      		closeOnOutsideClick={true}>
+      		closeOnOutsideClick={true}
+          dropdownArrowClassName={classNames(styles.dropdownCustomArrowExample)}>
 	        <DropdownItem  onClick={() => alert('my proposals')}>
             My proposals
           </DropdownItem>

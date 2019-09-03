@@ -23,3 +23,8 @@ a:link,
 a:visited {
   text-decoration: none;
 }
+
+.dropdownCustomArrowExample {
+  right: -10px;
+  top: 20px;
+}
