@@ -8,6 +8,7 @@ import styles from "./styles.css";
 const DefaultTrigger = ({ onClick, title, open }) => (
   <div className={styles.headerWrapper} onClick={onClick}>
     <span className={styles.dropdownHeader}>{title}</span>
+    <div className={classNames(styles.arrowAnchor, open && styles.open)} />
   </div>
 );
 
@@ -21,6 +22,7 @@ const Dropdown = ({
   closeOnOutsideClick,
   closeOnItemClick,
   customDropdownTrigger,
+  dropdownArrowClassName,
   ...props
 }) => {
   const [innerStateShow, setInnerStateShow] = useState(false);
@@ -44,6 +46,7 @@ const Dropdown = ({
   }, [setInnerStateShow, onDropdownClick, innerStateShow]);
 
   const Trigger = customDropdownTrigger || DefaultTrigger;
+  const isCustomTriggerMode = !!customDropdownTrigger;
 
   const handleCloseOnItemClick = () => {
     if (closeOnItemClick) {
@@ -79,12 +82,15 @@ const Dropdown = ({
         onClick={handleTriggerClick}
         open={dropdownOpenned}
       />
-      <div
-        className={classNames(
-          styles.arrowAnchor,
-          dropdownOpenned && styles.open
-        )}
-      />
+      {isCustomTriggerMode && (
+        <div
+          className={classNames(
+            styles.arrowAnchor,
+            dropdownOpenned && styles.open,
+            dropdownArrowClassName
+          )}
+        />
+      )}
       {dropdownOpenned &&
         transitions.map(
           ({ item, key, props }) =>
@@ -110,6 +116,7 @@ DefaultTrigger.propTypes = {
 Dropdown.propTypes = {
   className: PropTypes.string,
   itemsListClassName: PropTypes.string,
+  dropdownArrowClassName: PropTypes.string,
   customDropdownTrigger: PropTypes.node,
   title: PropTypes.string,
   show: PropTypes.bool,

@@ -21,9 +21,8 @@
 }
 
 .arrowAnchor {
-  position: absolute;
-  right: 25px;
-  top: 10px;
+  position: relative;
+  width: 20px;
 }
 
 .arrowAnchor:after {
