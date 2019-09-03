@@ -45,7 +45,7 @@ const Tabs = ({
 
   const dropdownMode = mode === "dropdown";
   const vertical = mode === "vertical" || dropdownMode;
-  const dropdownArrowClass = "tabsDropdownArrow";
+  // const dropdownArrowClass = "tabsDropdownArrow";
 
   return (
     <>
@@ -53,7 +53,7 @@ const Tabs = ({
         <Dropdown
           customDropdownTrigger={getActiveChild}
           closeOnOutsideClick={true}
-          dropdownArrowClassName={dropdownArrowClass}>
+          dropdownArrowClassName={classNames(styles.dropdownArrowClass)}>
           <ul
             className={classNames(
               vertical ? styles.tabsNavVertical : styles.tabsNav,

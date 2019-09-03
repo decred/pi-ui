@@ -56,3 +56,9 @@
   width: 2rem;
   margin-left: 0.5rem;
 }
+
+.dropdownArrowClass {
+  position: absolute;
+  right: 25px;
+  top: 10px;
+}
