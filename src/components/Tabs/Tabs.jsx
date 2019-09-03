@@ -45,7 +45,6 @@ const Tabs = ({
 
   const dropdownMode = mode === "dropdown";
   const vertical = mode === "vertical" || dropdownMode;
-  // const dropdownArrowClass = "tabsDropdownArrow";
 
   return (
     <>
