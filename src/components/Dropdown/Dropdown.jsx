@@ -5,10 +5,16 @@ import useClickOutside from "../../hooks/useClickOutside";
 import { classNames } from "../../utils";
 import styles from "./styles.css";
 
-const DefaultTrigger = ({ onClick, title, open }) => (
+const DefaultTrigger = ({ onClick, title, open, dropdownArrowClassName }) => (
   <div className={styles.headerWrapper} onClick={onClick}>
     <span className={styles.dropdownHeader}>{title}</span>
-    <div className={classNames(styles.arrowAnchor, open && styles.open)} />
+    <div
+      className={classNames(
+        styles.arrowAnchor,
+        open && styles.open,
+        dropdownArrowClassName
+      )}
+    />
   </div>
 );
 
@@ -81,6 +87,7 @@ const Dropdown = ({
         title={title}
         onClick={handleTriggerClick}
         open={dropdownOpenned}
+        dropdownArrowClassName={dropdownArrowClassName}
       />
       {isCustomTriggerMode && (
         <div
@@ -110,7 +117,8 @@ const Dropdown = ({
 DefaultTrigger.propTypes = {
   onClick: PropTypes.func.isRequired,
   title: PropTypes.string,
-  open: PropTypes.bool
+  open: PropTypes.bool,
+  dropdownArrowClassName: PropTypes.string
 };
 
 Dropdown.propTypes = {
