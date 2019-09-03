@@ -56,7 +56,7 @@ const Tabs = ({
           <ul
             className={classNames(
               vertical ? styles.tabsNavVertical : styles.tabsNav,
-              wrap && styles.dropdownModedropdownModewrap,
+              wrap && styles.wrap,
               className
             )}
             style={style}
@@ -68,7 +68,7 @@ const Tabs = ({
         <ul
           className={classNames(
             vertical ? styles.tabsNavVertical : styles.tabsNav,
-            wrap && styles.dropdownModedropdownModewrap,
+            wrap && styles.wrap,
             className
           )}
           style={style}
