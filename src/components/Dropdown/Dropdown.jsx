@@ -64,11 +64,19 @@ const Dropdown = ({
     return React.Children.toArray(children)
       .filter(Boolean)
       .map((child, index) => {
-        return React.cloneElement(child, {
-          handleClose: handleCloseOnItemClick,
-          itemindex: index,
-          onClick: handleCloseOnItemClick
-        });
+        switch (child.type) {
+          case "ul":
+            // special for tabs-dropdown child won't have 'handleClose' prop
+            return React.cloneElement(child, {
+              itemindex: index,
+              onClick: handleCloseOnItemClick
+            });
+          default:
+            return React.cloneElement(child, {
+              handleClose: handleCloseOnItemClick,
+              itemindex: index
+            });
+        }
       });
   };
 
