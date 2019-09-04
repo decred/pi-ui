@@ -2,7 +2,7 @@
   background-color: transparent;
   outline: 0;
   border: 0;
-  width: 115%;
+  width: 100%;
   border-bottom: 0.1rem solid var(--color-gray-lighter);
   font-size: var(--font-size-normal);
   transition: all 0.25s;
@@ -75,65 +75,42 @@ input[type="number"]::-webkit-outer-spin-button {
 .incrementWrapperStyle {
   display: flex;
   flex-direction: column;
-  color: var(--color-orange);
   position: absolute;
-  left: 100px;
-  float: right;
-  bottom: 5px;
+  right: -25px;
+  top: 0;
 }
 
 .incrementButtonStyle {
-  position: relative;
-  width: 20px;
-}
-
-.incrementButtonStyle:after {
   content: "";
   width: 0;
   height: 0;
   border: 7px solid transparent;
-  border-color: var(--color-gray) transparent transparent transparent;
+  border-color: #8997a5 transparent transparent;
   position: absolute;
   top: -4px;
   right: 2px;
-}
-
-.incrementButtonStyle:hover:after {
-  border-color: var(--color-primary) transparent transparent transparent;
-}
-
-.incrementButtonStyle.open:after {
-  top: -11px;
-  border-color: transparent transparent var(--color-primary) transparent;
-}
-
-.decrementButtonStyle {
-  position: relative;
-  width: 20px;
   -webkit-transform: rotate(180deg);
   -moz-transform: rotate(180deg);
   -o-transform: rotate(180deg);
 }
 
-.decrementButtonStyle:after {
+.incrementButtonStyle:hover {
+  border-color: var(--color-primary) transparent transparent transparent;
+  cursor: pointer;
+}
+
+.decrementButtonStyle {
   content: "";
   width: 0;
   height: 0;
   border: 7px solid transparent;
-  border-color: var(--color-gray) transparent transparent transparent;
+  border-color: #8997a5 transparent transparent;
   position: absolute;
-  top: -4px;
+  top: 20px;
   right: 2px;
 }
 
-.decrementButtonStyle:hover:after {
+.decrementButtonStyle:hover {
   border-color: var(--color-primary) transparent transparent transparent;
-}
-
-.decrementButtonStyle.open:after {
-  top: -11px;
-  border-color: transparent transparent var(--color-primary) transparent;
-  -webkit-transform: rotate(10deg);
-  -moz-transform: rotate(10deg);
-  -o-transform: rotate(10deg);
+  cursor: pointer;
 }

@@ -36,7 +36,7 @@ const Input = ({
         placeholder={placeholder}
         className={inputStyle}
         type={type}
-        inputmode={mode}
+        inputMode={mode}
         ref={textInput}
         {...props}
       >
@@ -54,8 +54,8 @@ const Input = ({
       />
       {type === 'number' && 
       	<div className={incrementWrapper}>
-		      <button className={incrementButton} onClick={stepUp}>+</button>
-		      <button className={decrementButton} onClick={stepDown}>-</button>
+		      <div className={incrementButton} onClick={stepUp}/>
+		      <div className={decrementButton} onClick={stepDown}/>
 	      </div>
     	}
       <p
