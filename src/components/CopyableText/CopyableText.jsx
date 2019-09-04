@@ -5,10 +5,18 @@ import CopyToClipboard from "./assets/CopyToClipboard.svg";
 import { copyToClipboard as copy } from "./helpers";
 import { classNames, idPropTypeCheckForTruncatedComponents } from "../../utils";
 import styles from "./styles.css";
-import Tooltip from '../Tooltip/Tooltip.jsx';
+import Tooltip from "../Tooltip/Tooltip.jsx";
 
-const CopyableText = ({ id, truncate, children, className, hoverText, tooltipPlacement, ...props }) => {
-	const [feedbackActive, setFeedbackActive] = useState(false);
+const CopyableText = ({
+  id,
+  truncate,
+  children,
+  className,
+  hoverText,
+  tooltipPlacement,
+  ...props
+}) => {
+  const [feedbackActive, setFeedbackActive] = useState(false);
   const onCopyToClipboard = (value) => {
     copy(value);
     setFeedbackActive(true);
@@ -17,28 +25,27 @@ const CopyableText = ({ id, truncate, children, className, hoverText, tooltipPla
     }, 800);
   };
   return (
-  	 <div className={classNames(styles.copyableWrapper, className)} {...props}>
+    <div className={classNames(styles.copyableWrapper, className)} {...props}>
       <Text id={id} className={styles.addressWrapper}>
         {children}
       </Text>
       <Tooltip
-	      placement={tooltipPlacement}
-	      content={feedbackActive ? "Copied!" : hoverText}
-      >
-      <img
-        className={styles.copyToClipboard}
-        onClick={() => onCopyToClipboard(children)}
-        src={CopyToClipboard}
-        alt="copy to clipboard"
-      />
-    </Tooltip>
+        placement={tooltipPlacement}
+        content={feedbackActive ? "Copied!" : hoverText}>
+        <img
+          className={styles.copyToClipboard}
+          onClick={() => onCopyToClipboard(children)}
+          src={CopyToClipboard}
+          alt="copy to clipboard"
+        />
+      </Tooltip>
     </div>
   );
 };
 
 CopyableText.propTypes = {
   truncate: PropTypes.bool,
-  children: PropTypes.string.isRequired,
+  children: PropTypes.string,
   hoverText: PropTypes.string,
   className: PropTypes.string,
   tooltipPlacement: PropTypes.string,
@@ -47,7 +54,7 @@ CopyableText.propTypes = {
 
 CopyableText.defaultProps = {
   truncate: false,
-  hoverText: 'Copy to clipboard',
+  hoverText: "Copy to clipboard",
   tooltipPlacement: "right"
 };
 
