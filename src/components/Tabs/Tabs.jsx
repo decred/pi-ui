@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import React from "react";
+import React, { useCallback, useMemo } from "react";
 import { animated, useTransition } from "react-spring";
 import { classNames } from "../../utils";
 import styles from "./styles.css";
@@ -15,7 +15,9 @@ const Tabs = ({
   mode,
   ...props
 }) => {
-  const renderChildrenTabs = () => {
+  const dropdownMode = mode === "dropdown";
+  const vertical = mode === "vertical" || dropdownMode;
+  const renderChildrenTabs = useCallback(() => {
     return React.Children.map(children, (child, index) => {
       return React.cloneElement(child, {
         onSelect: onSelectTab,
@@ -24,7 +26,23 @@ const Tabs = ({
         mode
       });
     });
-  };
+  }, [children, activeTabIndex, mode]);
+
+  const tabs = useMemo(
+    () => (
+      <ul
+        className={classNames(
+          vertical ? styles.tabsNavVertical : styles.tabsNav,
+          wrap && styles.wrap,
+          className
+        )}
+        style={style}
+        {...props}>
+        {renderChildrenTabs()}
+      </ul>
+    ),
+    [vertical, wrap, className, props, renderChildrenTabs]
+  );
 
   const getActiveChild = ({ onClick, open }) => {
     return React.Children.map(children, (child, index) => {
@@ -43,9 +61,6 @@ const Tabs = ({
     config: { duration: 350 }
   });
 
-  const dropdownMode = mode === "dropdown";
-  const vertical = mode === "vertical" || dropdownMode;
-
   return (
     <>
       {dropdownMode ? (
@@ -53,28 +68,10 @@ const Tabs = ({
           customDropdownTrigger={getActiveChild}
           closeOnOutsideClick={true}
           dropdownArrowClassName={classNames(styles.dropdownArrowClass)}>
-          <ul
-            className={classNames(
-              vertical ? styles.tabsNavVertical : styles.tabsNav,
-              wrap && styles.wrap,
-              className
-            )}
-            style={style}
-            {...props}>
-            {renderChildrenTabs()}
-          </ul>
+          {tabs}
         </Dropdown>
       ) : (
-        <ul
-          className={classNames(
-            vertical ? styles.tabsNavVertical : styles.tabsNav,
-            wrap && styles.wrap,
-            className
-          )}
-          style={style}
-          {...props}>
-          {renderChildrenTabs()}
-        </ul>
+        tabs
       )}
       {transitions.map(({ item, key, props }) => {
         return (
