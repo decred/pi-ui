@@ -66,7 +66,8 @@ const Dropdown = ({
       .map((child, index) => {
         return React.cloneElement(child, {
           handleClose: handleCloseOnItemClick,
-          itemindex: index
+          itemindex: index,
+          onClick: handleCloseOnItemClick
         });
       });
   };
