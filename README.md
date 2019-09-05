@@ -54,4 +54,4 @@ class Example extends Component {
   
 - Go to the main repository which is using the pi-ui lib, access the react folder inside its node_modules:
      - `cd /some/project/node_modules/react && yarn link`
-     - `cd /pi-ui && yarn link-react`
+     - `cd /pi-ui && yarn link react`
