@@ -26,6 +26,12 @@
   margin-top: 3rem;
 }
 
+.tabDropdownMode {
+  border-left: 0;
+  padding-left: 0;
+  margin-top: 2rem;
+}
+
 .tabsNav {
   list-style-type: none;
   display: flex;
@@ -49,4 +55,9 @@
   height: 2rem;
   width: 2rem;
   margin-left: 0.5rem;
+}
+
+.dropdownArrowClass {
+  right: 25px;
+  top: 10px;
 }

@@ -5,10 +5,16 @@ import useClickOutside from "../../hooks/useClickOutside";
 import { classNames } from "../../utils";
 import styles from "./styles.css";
 
-const DefaultTrigger = ({ onClick, title, open }) => (
+const DefaultTrigger = ({ onClick, title, open, dropdownArrowClassName }) => (
   <div className={styles.headerWrapper} onClick={onClick}>
     <span className={styles.dropdownHeader}>{title}</span>
-    <div className={classNames(styles.arrowAnchor, open && styles.open)} />
+    <div
+      className={classNames(
+        styles.arrowAnchor,
+        open && styles.open,
+        dropdownArrowClassName
+      )}
+    />
   </div>
 );
 
@@ -22,6 +28,7 @@ const Dropdown = ({
   closeOnOutsideClick,
   closeOnItemClick,
   customDropdownTrigger,
+  dropdownArrowClassName,
   ...props
 }) => {
   const [innerStateShow, setInnerStateShow] = useState(false);
@@ -45,6 +52,7 @@ const Dropdown = ({
   }, [setInnerStateShow, onDropdownClick, innerStateShow]);
 
   const Trigger = customDropdownTrigger || DefaultTrigger;
+  const isCustomTriggerMode = !!customDropdownTrigger;
 
   const handleCloseOnItemClick = () => {
     if (closeOnItemClick) {
@@ -56,10 +64,19 @@ const Dropdown = ({
     return React.Children.toArray(children)
       .filter(Boolean)
       .map((child, index) => {
-        return React.cloneElement(child, {
-          handleClose: handleCloseOnItemClick,
-          itemindex: index
-        });
+        switch (child.type) {
+          case "ul":
+            // special for tabs-dropdown child won't have 'handleClose' prop
+            return React.cloneElement(child, {
+              itemindex: index,
+              onClick: handleCloseOnItemClick
+            });
+          default:
+            return React.cloneElement(child, {
+              handleClose: handleCloseOnItemClick,
+              itemindex: index
+            });
+        }
       });
   };
 
@@ -79,7 +96,18 @@ const Dropdown = ({
         title={title}
         onClick={handleTriggerClick}
         open={dropdownOpenned}
+        dropdownArrowClassName={dropdownArrowClassName}
       />
+      {isCustomTriggerMode && (
+        <div
+          className={classNames(
+            styles.arrowAnchor,
+            styles.customArrowAnchor,
+            dropdownOpenned && styles.open,
+            dropdownArrowClassName
+          )}
+        />
+      )}
       {dropdownOpenned &&
         transitions.map(
           ({ item, key, props }) =>
@@ -99,12 +127,14 @@ const Dropdown = ({
 DefaultTrigger.propTypes = {
   onClick: PropTypes.func.isRequired,
   title: PropTypes.string,
-  open: PropTypes.bool
+  open: PropTypes.bool,
+  dropdownArrowClassName: PropTypes.string
 };
 
 Dropdown.propTypes = {
   className: PropTypes.string,
   itemsListClassName: PropTypes.string,
+  dropdownArrowClassName: PropTypes.string,
   customDropdownTrigger: PropTypes.node,
   title: PropTypes.string,
   show: PropTypes.bool,

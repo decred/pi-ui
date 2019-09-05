@@ -6,7 +6,9 @@ route: /components/dropdown
 
 import { useState } from "react";
 import { Playground, Props } from "docz";
-import { Dropdown, DropdownItem, Tabs, Tab, Button } from "../index";
+import { Dropdown, DropdownItem, Button } from "../index";
+import styles from "../css/base.css";
+import { classNames } from "../utils";
 
 # Dropdown
 
@@ -80,7 +82,8 @@ import { Dropdown, DropdownItem, Tabs, Tab, Button } from "../index";
       <>
       	<Dropdown 
       		customDropdownTrigger={CustomTrigger}
-      		closeOnOutsideClick={true}>
+      		closeOnOutsideClick={true}
+          dropdownArrowClassName={classNames(styles.dropdownCustomArrowExample)}>
 	        <DropdownItem  onClick={() => alert('my proposals')}>
             My proposals
           </DropdownItem>
@@ -95,28 +98,3 @@ import { Dropdown, DropdownItem, Tabs, Tab, Button } from "../index";
     );
   }}
 </Playground>
-
-### Dropdown with Tabs
-
-<Playground>
-  {() => {
-    const [activeTabIndex, setActiveTabIndex] = useState(0);
-    return (
-      <>
-      	<Dropdown 
-      		title='click me' >
-	        <Tabs onSelectTab={setActiveTabIndex} activeTabIndex={activeTabIndex} vertical>
-	            <Tab label="All Proposals" />
-	            <Tab label="In discussion" />
-	            <Tab label="Voting" />
-	            <Tab label="Approved" />
-	            <Tab label="Rejected" />
-	            <Tab label="Abandoned" />
-	        </Tabs>
-        </Dropdown>
-      </>
-    );
-  }}
-    
-</Playground>
-

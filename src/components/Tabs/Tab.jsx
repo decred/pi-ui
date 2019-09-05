@@ -13,7 +13,7 @@ const Tab = ({
   style,
   label,
   count,
-  vertical,
+  mode,
   ...props
 }) => {
   const theme = useTheme();
@@ -29,10 +29,14 @@ const Tab = ({
     duration: 350
   });
 
+  const dropdownMode = mode === "dropdown";
+  const vertical = mode === "vertical" || dropdownMode;
+
   return (
     <animated.li
       className={classNames(
         vertical ? styles.tabVertical : styles.tabHorizontal,
+        dropdownMode && styles.tabDropdownMode,
         className
       )}
       style={{ ...slide, style }}
@@ -54,11 +58,11 @@ Tab.propTypes = {
   style: PropTypes.object,
   label: PropTypes.string,
   count: PropTypes.node,
-  vertical: PropTypes.bool
+  mode: PropTypes.oneOf(["horizontal", "vertical", "dropdown"])
 };
 
 Tab.defaultProps = {
-  vertical: false
+  mode: "horizontal"
 };
 
 export default Tab;

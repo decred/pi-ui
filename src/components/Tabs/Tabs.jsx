@@ -1,8 +1,9 @@
 import PropTypes from "prop-types";
-import React from "react";
+import React, { useCallback, useMemo } from "react";
 import { animated, useTransition } from "react-spring";
 import { classNames } from "../../utils";
 import styles from "./styles.css";
+import Dropdown from "../Dropdown/Dropdown.jsx";
 
 const Tabs = ({
   onSelectTab,
@@ -10,18 +11,46 @@ const Tabs = ({
   style,
   className,
   children,
-  vertical,
   wrap,
+  mode,
   ...props
 }) => {
-  const renderChildrenTabs = () => {
+  const dropdownMode = mode === "dropdown";
+  const vertical = mode === "vertical" || dropdownMode;
+  const renderChildrenTabs = useCallback(() => {
     return React.Children.map(children, (child, index) => {
       return React.cloneElement(child, {
         onSelect: onSelectTab,
         tabIndex: index,
         isActive: index === activeTabIndex,
-        vertical: vertical
+        mode
       });
+    });
+  }, [children, activeTabIndex, mode]);
+
+  const tabs = useMemo(
+    () => (
+      <ul
+        className={classNames(
+          vertical ? styles.tabsNavVertical : styles.tabsNav,
+          wrap && styles.wrap,
+          className
+        )}
+        style={style}
+        {...props}>
+        {renderChildrenTabs()}
+      </ul>
+    ),
+    [vertical, wrap, className, props, renderChildrenTabs]
+  );
+
+  const getActiveChild = ({ onClick, open }) => {
+    return React.Children.map(children, (child, index) => {
+      if (index === activeTabIndex) {
+        return React.cloneElement(child, {
+          onClick: onClick
+        });
+      }
     });
   };
 
@@ -34,16 +63,16 @@ const Tabs = ({
 
   return (
     <>
-      <ul
-        className={classNames(
-          vertical ? styles.tabsNavVertical : styles.tabsNav,
-          wrap && styles.wrap,
-          className
-        )}
-        style={style}
-        {...props}>
-        {renderChildrenTabs()}
-      </ul>
+      {dropdownMode ? (
+        <Dropdown
+          customDropdownTrigger={getActiveChild}
+          closeOnOutsideClick={true}
+          dropdownArrowClassName={classNames(styles.dropdownArrowClass)}>
+          {tabs}
+        </Dropdown>
+      ) : (
+        tabs
+      )}
       {transitions.map(({ item, key, props }) => {
         return (
           item === activeTabIndex && (
@@ -63,13 +92,13 @@ Tabs.propTypes = {
   onSelectTab: PropTypes.func.isRequired,
   activeTabIndex: PropTypes.number.isRequired,
   children: PropTypes.node.isRequired,
-  vertical: PropTypes.bool,
-  wrap: PropTypes.bool
+  wrap: PropTypes.bool,
+  mode: PropTypes.oneOf(["horizontal", "vertical", "dropdown"])
 };
 
 Tabs.defaultProps = {
-  vertical: false,
-  wrap: false
+  wrap: false,
+  mode: "horizontal"
 };
 
 export default Tabs;
