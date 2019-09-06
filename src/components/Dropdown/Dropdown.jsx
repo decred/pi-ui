@@ -106,6 +106,7 @@ const Dropdown = ({
             dropdownOpenned && styles.open,
             dropdownArrowClassName
           )}
+          onClick={handleTriggerClick}
         />
       )}
       {dropdownOpenned &&
