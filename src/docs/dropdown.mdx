@@ -83,7 +83,8 @@ import { classNames } from "../utils";
       	<Dropdown 
       		customDropdownTrigger={CustomTrigger}
       		closeOnOutsideClick={true}
-          dropdownArrowClassName={classNames(styles.dropdownCustomArrowExample)}>
+          dropdownArrowClassName={classNames(styles.dropdownCustomArrowExample)}
+          itemsListClassName={classNames(styles.dropdownCustomListExample)}>
 	        <DropdownItem  onClick={() => alert('my proposals')}>
             My proposals
           </DropdownItem>
