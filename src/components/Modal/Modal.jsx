@@ -35,6 +35,11 @@ const Modal = ({
   };
   const hasIcon = !!iconComponent || !!iconType;
   const iconSizeToUse = iconSize || "xlg";
+  if (show) {
+    document.body.style.overflow = "hidden";
+  } else {
+    document.body.style.overflow = "unset";
+  }
   return createPortal(
     <ModalWrapper
       show={show}

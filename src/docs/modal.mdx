@@ -60,7 +60,9 @@ import { Modal, Button, P, ModalWrapper } from "../index";
       <>
         <Button onClick={openModal}>Open Modal</Button>
         <Modal title="Title" iconType="mail" show={showModal} disableClose="true" onClose={closeModal}>
-          Content!
+          <P>Content!</P>
+          <br/>
+          <Button onClick={closeModal}>close me!</Button>
         </Modal>
       </>
     );
