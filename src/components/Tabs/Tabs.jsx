@@ -48,7 +48,8 @@ const Tabs = ({
     return React.Children.map(children, (child, index) => {
       if (index === activeTabIndex) {
         return React.cloneElement(child, {
-          onClick: onClick
+          onClick: onClick,
+          className: classNames(styles.activeTabClass)
         });
       }
     });
@@ -67,7 +68,8 @@ const Tabs = ({
         <Dropdown
           customDropdownTrigger={getActiveChild}
           closeOnOutsideClick={true}
-          dropdownArrowClassName={classNames(styles.dropdownArrowClass)}>
+          dropdownArrowClassName={classNames(styles.dropdownArrowClass)}
+          itemsListClassName={classNames(styles.dropdownListClass)}>
           {tabs}
         </Dropdown>
       ) : (

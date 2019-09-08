@@ -58,6 +58,13 @@
 }
 
 .dropdownArrowClass {
-  right: 25px;
   top: 10px;
+}
+
+.dropdownListClass {
+  margin-top: 3rem;
+}
+
+.activeTabClass {
+  padding: 0 1.5rem 2rem 1.5rem !important;
 }
