@@ -26,6 +26,7 @@ const Modal = ({
   iconType,
   iconSize,
   iconComponent,
+  disableClose,
   ...props
 }) => {
   const onCloseClick = (e) => {
@@ -39,6 +40,7 @@ const Modal = ({
       show={show}
       style={wrapperStyle}
       onClose={onClose}
+      disableClose={disableClose}
       className={classNames(wrapperClassName)}>
       <div
         className={classNames(
@@ -63,9 +65,11 @@ const Modal = ({
           )}
           {children}
         </div>
-        <a className={styles.modalClose} onClick={onCloseClick} href="#">
-          &times;
-        </a>
+        {!disableClose && (
+          <a className={styles.modalClose} onClick={onCloseClick} href="#">
+            &times;
+          </a>
+        )}
       </div>
     </ModalWrapper>,
     root
@@ -85,7 +89,12 @@ Modal.propTypes = {
   title: PropTypes.string,
   iconType: PropTypes.string,
   iconSize: PropTypes.string,
-  iconComponent: PropTypes.node
+  iconComponent: PropTypes.node,
+  disableClose: PropTypes.bool
+};
+
+Modal.defaultProps = {
+  disableClose: false
 };
 
 export default Modal;

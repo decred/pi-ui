@@ -8,13 +8,16 @@ const ModalWrapper = ({
   style,
   show,
   onClose,
+  disableClose,
   className,
   ...props
 }) => {
   const handleClickOverlay = (e) => {
     e.stopPropagation();
-    e.target.id === "modal-wrapper" && onClose();
-    document.body.style.overflow = "unset";
+    if (!disableClose) {
+      e.target.id === "modal-wrapper" && onClose();
+      document.body.style.overflow = "unset";
+    }
   };
 
   if (show) {
@@ -38,7 +41,8 @@ ModalWrapper.propTypes = {
   style: PropTypes.object,
   show: PropTypes.bool.isRequired,
   className: PropTypes.string,
-  onClose: PropTypes.func.isRequired
+  onClose: PropTypes.func.isRequired,
+  disableClose: PropTypes.bool
 };
 
 export default ModalWrapper;

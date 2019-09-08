@@ -33,6 +33,23 @@ import { Modal, Button, P, ModalWrapper } from "../index";
   }}
 </Playground>
 
+### Unclosable Modal
+<Playground>
+  {() => {
+    const [showModal, setShowModal] = useState(false);
+    const openModal = () => setShowModal(true);
+    const closeModal = () => setShowModal(false);
+    return (
+      <>
+        <Button onClick={openModal}>Open Modal</Button>
+        <Modal title="Title" iconType="mail" show={showModal} disableClose="true" onClose={closeModal}>
+          Content!
+        </Modal>
+      </>
+    );
+  }}
+</Playground>
+
 ### Modal with title
 <Playground>
   {() => {
