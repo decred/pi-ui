@@ -50,6 +50,25 @@ import { Modal, Button, P, ModalWrapper } from "../index";
   }}
 </Playground>
 
+### Unclosable Modal
+<Playground>
+  {() => {
+    const [showModal, setShowModal] = useState(false);
+    const openModal = () => setShowModal(true);
+    const closeModal = () => setShowModal(false);
+    return (
+      <>
+        <Button onClick={openModal}>Open Modal</Button>
+        <Modal title="Title" iconType="mail" show={showModal} disableClose="true" onClose={closeModal}>
+          <P>Content!</P>
+          <br/>
+          <Button onClick={closeModal}>close me!</Button>
+        </Modal>
+      </>
+    );
+  }}
+</Playground>
+
 ### Modal with huge contet
 <Playground>
   {() => {
