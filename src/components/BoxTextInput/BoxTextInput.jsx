@@ -30,7 +30,7 @@ const BoxTextInput = ({
   error,
   rounded,
   searchInput,
-  className, 
+  className,
   inputClassName,
   ...props
 }) => {
@@ -40,7 +40,9 @@ const BoxTextInput = ({
   };
   const Wrapper = searchInput ? FormWrapper : DefaultWrapper;
   return (
-    <Wrapper className={classNames(styles.boxtextinputWrapper, className)} onSubmit={handleSubmit}>
+    <Wrapper
+      className={classNames(styles.boxtextinputWrapper, className)}
+      onSubmit={handleSubmit}>
       <input
         className={classNames(
           styles.boxtextinput,
