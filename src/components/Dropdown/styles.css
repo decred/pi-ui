@@ -50,6 +50,8 @@
   position: absolute;
   background-color: #fff;
   display: inline-flex;
+  left: 50%;
+  transform: translateX(-50%);
   flex-direction: column;
   justify-content: space-around;
   white-space: pre;

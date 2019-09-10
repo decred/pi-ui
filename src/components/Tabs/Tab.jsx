@@ -32,8 +32,6 @@ const Tab = ({
   const dropdownMode = mode === "dropdown";
   const vertical = mode === "vertical";
 
-  console.log(dropdownMode);
-
   return (
     <animated.li
       className={classNames(

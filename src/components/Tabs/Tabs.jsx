@@ -54,6 +54,7 @@ const Tabs = ({
               className: classNames(
                 dropdownMode && styles.activeDropdownTabClass
               ),
+              isActive: true,
               mode
             });
           }
@@ -76,6 +77,7 @@ const Tabs = ({
         <Dropdown
           customDropdownTrigger={getActiveChild}
           closeOnOutsideClick={true}
+          className={className}
           itemsListClassName={classNames(styles.dropdownListClass)}>
           {tabs}
         </Dropdown>
