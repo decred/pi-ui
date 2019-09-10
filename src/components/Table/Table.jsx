@@ -23,7 +23,7 @@ const Table = ({ data, headers, linesPerPage, disablePagination }) => {
         <TableHeader headers={headers} />
         <TableBody data={data.slice(startIndex, startIndex + linesPerPage)} />
       </table>
-      {!disablePagination && pagesArr.length > 1 &&  (
+      {!disablePagination && pagesArr.length > 1 && (
         <div className={styles.pages}>
           <span
             className={

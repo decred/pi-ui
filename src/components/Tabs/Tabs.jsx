@@ -5,6 +5,28 @@ import { classNames } from "../../utils";
 import styles from "./styles.css";
 import Dropdown from "../Dropdown/Dropdown.jsx";
 
+const TabDropdownTrigger = ({
+  onClick,
+  open,
+  ArrowComponent,
+  childrenTabs,
+  activeTabIndex
+}) => (
+  <div className={styles.activeDropdownTabWrapper}>
+    {React.Children.map(childrenTabs, (child, index) => {
+      if (index === activeTabIndex) {
+        return React.cloneElement(child, {
+          onClick: onClick,
+          className: styles.activeDropdownTabClass,
+          isActive: true,
+          mode: "dropdown"
+        });
+      }
+    })}
+    <ArrowComponent onClick={onClick} open={open} />
+  </div>
+);
+
 const Tabs = ({
   onSelectTab,
   activeTabIndex,
@@ -44,15 +66,14 @@ const Tabs = ({
     [vertical, wrap, className, props, renderChildrenTabs]
   );
 
-  const getActiveChild = ({ onClick, open }) => {
-    return React.Children.map(children, (child, index) => {
-      if (index === activeTabIndex) {
-        return React.cloneElement(child, {
-          onClick: onClick,
-          className: classNames(styles.activeTabClass)
-        });
-      }
-    });
+  const getActiveChild = (props) => {
+    return (
+      <TabDropdownTrigger
+        {...props}
+        childrenTabs={children}
+        activeTabIndex={activeTabIndex}
+      />
+    );
   };
 
   const transitions = useTransition(activeTabIndex, null, {
@@ -68,7 +89,7 @@ const Tabs = ({
         <Dropdown
           customDropdownTrigger={getActiveChild}
           closeOnOutsideClick={true}
-          dropdownArrowClassName={classNames(styles.dropdownArrowClass)}
+          className={className}
           itemsListClassName={classNames(styles.dropdownListClass)}>
           {tabs}
         </Dropdown>
@@ -86,6 +107,14 @@ const Tabs = ({
       })}
     </>
   );
+};
+
+TabDropdownTrigger.propTypes = {
+  onClick: PropTypes.func,
+  open: PropTypes.bool,
+  ArrowComponent: PropTypes.func,
+  childrenTabs: PropTypes.node,
+  activeTabIndex: PropTypes.number
 };
 
 Tabs.propTypes = {

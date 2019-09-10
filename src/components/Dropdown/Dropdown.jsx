@@ -5,15 +5,26 @@ import useClickOutside from "../../hooks/useClickOutside";
 import { classNames } from "../../utils";
 import styles from "./styles.css";
 
-const DefaultTrigger = ({ onClick, title, open, dropdownArrowClassName }) => (
+const Arrow = ({ open, onClick, className }) => (
+  <div
+    onClick={onClick}
+    className={classNames(styles.arrowAnchor, open && styles.open, className)}
+  />
+);
+
+const DefaultTrigger = ({
+  onClick,
+  title,
+  open,
+  dropdownArrowClassName,
+  ArrowComponent = Arrow
+}) => (
   <div className={styles.headerWrapper} onClick={onClick}>
     <span className={styles.dropdownHeader}>{title}</span>
-    <div
-      className={classNames(
-        styles.arrowAnchor,
-        open && styles.open,
-        dropdownArrowClassName
-      )}
+    <ArrowComponent
+      onClick={onClick}
+      open={open}
+      className={dropdownArrowClassName}
     />
   </div>
 );
@@ -52,7 +63,6 @@ const Dropdown = ({
   }, [setInnerStateShow, onDropdownClick, innerStateShow]);
 
   const Trigger = customDropdownTrigger || DefaultTrigger;
-  const isCustomTriggerMode = !!customDropdownTrigger;
 
   const handleCloseOnItemClick = () => {
     if (closeOnItemClick) {
@@ -97,18 +107,8 @@ const Dropdown = ({
         onClick={handleTriggerClick}
         open={dropdownOpenned}
         dropdownArrowClassName={dropdownArrowClassName}
+        ArrowComponent={Arrow}
       />
-      {isCustomTriggerMode && (
-        <div
-          className={classNames(
-            styles.arrowAnchor,
-            styles.customArrowAnchor,
-            dropdownOpenned && styles.open,
-            dropdownArrowClassName
-          )}
-          onClick={handleTriggerClick}
-        />
-      )}
       {dropdownOpenned &&
         transitions.map(
           ({ item, key, props }) =>
@@ -129,14 +129,21 @@ DefaultTrigger.propTypes = {
   onClick: PropTypes.func.isRequired,
   title: PropTypes.string,
   open: PropTypes.bool,
-  dropdownArrowClassName: PropTypes.string
+  dropdownArrowClassName: PropTypes.string,
+  ArrowComponent: PropTypes.func
+};
+
+Arrow.propTypes = {
+  open: PropTypes.bool,
+  onClick: PropTypes.func,
+  className: PropTypes.string
 };
 
 Dropdown.propTypes = {
   className: PropTypes.string,
   itemsListClassName: PropTypes.string,
   dropdownArrowClassName: PropTypes.string,
-  customDropdownTrigger: PropTypes.node,
+  customDropdownTrigger: PropTypes.func,
   title: PropTypes.string,
   show: PropTypes.bool,
   children: PropTypes.node.isRequired,

@@ -634,12 +634,12 @@ const icons = (type, backgroundColor, iconColor) => {
         </defs>
         <title>expand</title>
         <g id="_Rectangle_" data-name="&lt;Rectangle&gt;">
-          <rect class="cls-1" x="87.5" y="75" width="300" height="300" />
+          <rect className="cls-1" x="87.5" y="75" width="300" height="300" />
         </g>
         <rect
           id="_Rectangle_2"
           data-name="&lt;Rectangle&gt;"
-          class="cls-2"
+          className="cls-2"
           x="12.56"
           y="102.7"
           width="230.35"
@@ -649,7 +649,7 @@ const icons = (type, backgroundColor, iconColor) => {
         <rect
           id="_Rectangle_3"
           data-name="&lt;Rectangle&gt;"
-          class="cls-2"
+          className="cls-2"
           x="32.39"
           y="19.87"
           width="100"
@@ -658,7 +658,7 @@ const icons = (type, backgroundColor, iconColor) => {
         <rect
           id="_Rectangle_4"
           data-name="&lt;Rectangle&gt;"
-          class="cls-2"
+          className="cls-2"
           x="-5.1"
           y="57.36"
           width="100"
@@ -668,7 +668,7 @@ const icons = (type, backgroundColor, iconColor) => {
         <rect
           id="_Rectangle_5"
           data-name="&lt;Rectangle&gt;"
-          class="cls-2"
+          className="cls-2"
           x="12.55"
           y="322.31"
           width="230.35"
@@ -678,7 +678,7 @@ const icons = (type, backgroundColor, iconColor) => {
         <rect
           id="_Rectangle_6"
           data-name="&lt;Rectangle&gt;"
-          class="cls-2"
+          className="cls-2"
           x="-5.1"
           y="367.65"
           width="100"
@@ -688,7 +688,7 @@ const icons = (type, backgroundColor, iconColor) => {
         <rect
           id="_Rectangle_7"
           data-name="&lt;Rectangle&gt;"
-          class="cls-2"
+          className="cls-2"
           x="32.4"
           y="405.14"
           width="100"
@@ -697,7 +697,7 @@ const icons = (type, backgroundColor, iconColor) => {
         <rect
           id="_Rectangle_8"
           data-name="&lt;Rectangle&gt;"
-          class="cls-2"
+          className="cls-2"
           x="232.16"
           y="322.31"
           width="230.35"
@@ -707,7 +707,7 @@ const icons = (type, backgroundColor, iconColor) => {
         <rect
           id="_Rectangle_9"
           data-name="&lt;Rectangle&gt;"
-          class="cls-2"
+          className="cls-2"
           x="342.68"
           y="405.14"
           width="100"
@@ -717,18 +717,18 @@ const icons = (type, backgroundColor, iconColor) => {
         <rect
           id="_Rectangle_10"
           data-name="&lt;Rectangle&gt;"
-          class="cls-2"
+          className="cls-2"
           x="380.18"
           y="367.64"
           width="100"
           height="25"
           transform="translate(50.03 810.32) rotate(-90)"
         />
-        <rect class="cls-3" width="450" height="450" />
+        <rect className="cls-3" width="450" height="450" />
         <rect
           id="_Rectangle_11"
           data-name="&lt;Rectangle&gt;"
-          class="cls-2"
+          className="cls-2"
           x="232.17"
           y="102.7"
           width="230.35"
@@ -738,7 +738,7 @@ const icons = (type, backgroundColor, iconColor) => {
         <rect
           id="_Rectangle_12"
           data-name="&lt;Rectangle&gt;"
-          class="cls-2"
+          className="cls-2"
           x="380.17"
           y="57.36"
           width="100"
@@ -748,7 +748,7 @@ const icons = (type, backgroundColor, iconColor) => {
         <rect
           id="_Rectangle_13"
           data-name="&lt;Rectangle&gt;"
-          class="cls-2"
+          className="cls-2"
           x="342.68"
           y="19.86"
           width="100"
