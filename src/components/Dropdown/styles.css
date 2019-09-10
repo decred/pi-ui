@@ -2,7 +2,6 @@
   position: relative;
   align-self: flex-start;
   display: inline-flex;
-  flex-direction: column;
 }
 
 .headerWrapper {
@@ -16,17 +15,14 @@
 
 .dropdownHeader {
   display: flex;
-  margin-right: 0.6rem;
+  margin-right: 0.8rem;
   color: var(--color-primary-dark);
 }
 
 .arrowAnchor {
   position: relative;
+  cursor: pointer;
   width: 20px;
-}
-
-.customArrowAnchor {
-  position: absolute;
 }
 
 .arrowAnchor:after {

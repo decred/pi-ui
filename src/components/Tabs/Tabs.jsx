@@ -44,15 +44,23 @@ const Tabs = ({
     [vertical, wrap, className, props, renderChildrenTabs]
   );
 
-  const getActiveChild = ({ onClick, open }) => {
-    return React.Children.map(children, (child, index) => {
-      if (index === activeTabIndex) {
-        return React.cloneElement(child, {
-          onClick: onClick,
-          className: classNames(styles.activeTabClass)
-        });
-      }
-    });
+  const getActiveChild = ({ onClick, open, ArrowComponent }) => {
+    return (
+      <div className={styles.activeDropdownTabWrapper}>
+        {React.Children.map(children, (child, index) => {
+          if (index === activeTabIndex) {
+            return React.cloneElement(child, {
+              onClick: onClick,
+              className: classNames(
+                dropdownMode && styles.activeDropdownTabClass
+              ),
+              mode
+            });
+          }
+        })}
+        <ArrowComponent onClick={onClick} open={open} />
+      </div>
+    );
   };
 
   const transitions = useTransition(activeTabIndex, null, {
@@ -68,7 +76,6 @@ const Tabs = ({
         <Dropdown
           customDropdownTrigger={getActiveChild}
           closeOnOutsideClick={true}
-          dropdownArrowClassName={classNames(styles.dropdownArrowClass)}
           itemsListClassName={classNames(styles.dropdownListClass)}>
           {tabs}
         </Dropdown>

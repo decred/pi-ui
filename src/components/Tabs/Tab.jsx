@@ -30,13 +30,18 @@ const Tab = ({
   });
 
   const dropdownMode = mode === "dropdown";
-  const vertical = mode === "vertical" || dropdownMode;
+  const vertical = mode === "vertical";
+
+  console.log(dropdownMode);
 
   return (
     <animated.li
       className={classNames(
-        vertical ? styles.tabVertical : styles.tabHorizontal,
-        dropdownMode && styles.tabDropdownMode,
+        vertical
+          ? styles.tabVertical
+          : dropdownMode
+          ? styles.tabDropdownMode
+          : styles.tabHorizontal,
         className
       )}
       style={{ ...slide, style }}
