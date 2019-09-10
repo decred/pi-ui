@@ -63,7 +63,6 @@ const Dropdown = ({
   }, [setInnerStateShow, onDropdownClick, innerStateShow]);
 
   const Trigger = customDropdownTrigger || DefaultTrigger;
-  const isCustomTriggerMode = !!customDropdownTrigger;
 
   const handleCloseOnItemClick = () => {
     if (closeOnItemClick) {
@@ -110,16 +109,6 @@ const Dropdown = ({
         dropdownArrowClassName={dropdownArrowClassName}
         ArrowComponent={Arrow}
       />
-      {/* {isCustomTriggerMode && (
-        <div
-          className={classNames(
-            styles.arrowAnchor,
-            dropdownOpenned && styles.open,
-            dropdownArrowClassName
-          )}
-          onClick={handleTriggerClick}
-        />
-      )} */}
       {dropdownOpenned &&
         transitions.map(
           ({ item, key, props }) =>
@@ -140,14 +129,21 @@ DefaultTrigger.propTypes = {
   onClick: PropTypes.func.isRequired,
   title: PropTypes.string,
   open: PropTypes.bool,
-  dropdownArrowClassName: PropTypes.string
+  dropdownArrowClassName: PropTypes.string,
+  ArrowComponent: PropTypes.func
+};
+
+Arrow.propTypes = {
+  open: PropTypes.bool,
+  onClick: PropTypes.func,
+  className: PropTypes.string
 };
 
 Dropdown.propTypes = {
   className: PropTypes.string,
   itemsListClassName: PropTypes.string,
   dropdownArrowClassName: PropTypes.string,
-  customDropdownTrigger: PropTypes.node,
+  customDropdownTrigger: PropTypes.func,
   title: PropTypes.string,
   show: PropTypes.bool,
   children: PropTypes.node.isRequired,

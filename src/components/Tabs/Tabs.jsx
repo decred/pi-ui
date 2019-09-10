@@ -5,6 +5,28 @@ import { classNames } from "../../utils";
 import styles from "./styles.css";
 import Dropdown from "../Dropdown/Dropdown.jsx";
 
+const TabDropdownTrigger = ({
+  onClick,
+  open,
+  ArrowComponent,
+  childrenTabs,
+  activeTabIndex
+}) => (
+  <div className={styles.activeDropdownTabWrapper}>
+    {React.Children.map(childrenTabs, (child, index) => {
+      if (index === activeTabIndex) {
+        return React.cloneElement(child, {
+          onClick: onClick,
+          className: styles.activeDropdownTabClass,
+          isActive: true,
+          mode: "dropdown"
+        });
+      }
+    })}
+    <ArrowComponent onClick={onClick} open={open} />
+  </div>
+);
+
 const Tabs = ({
   onSelectTab,
   activeTabIndex,
@@ -44,23 +66,13 @@ const Tabs = ({
     [vertical, wrap, className, props, renderChildrenTabs]
   );
 
-  const getActiveChild = ({ onClick, open, ArrowComponent }) => {
+  const getActiveChild = (props) => {
     return (
-      <div className={styles.activeDropdownTabWrapper}>
-        {React.Children.map(children, (child, index) => {
-          if (index === activeTabIndex) {
-            return React.cloneElement(child, {
-              onClick: onClick,
-              className: classNames(
-                dropdownMode && styles.activeDropdownTabClass
-              ),
-              isActive: true,
-              mode
-            });
-          }
-        })}
-        <ArrowComponent onClick={onClick} open={open} />
-      </div>
+      <TabDropdownTrigger
+        {...props}
+        childrenTabs={children}
+        activeTabIndex={activeTabIndex}
+      />
     );
   };
 
@@ -95,6 +107,14 @@ const Tabs = ({
       })}
     </>
   );
+};
+
+TabDropdownTrigger.propTypes = {
+  onClick: PropTypes.func,
+  open: PropTypes.bool,
+  ArrowComponent: PropTypes.func,
+  childrenTabs: PropTypes.node,
+  activeTabIndex: PropTypes.number
 };
 
 Tabs.propTypes = {
