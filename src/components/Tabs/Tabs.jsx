@@ -40,7 +40,7 @@ const Tabs = ({
   const dropdownMode = mode === "dropdown";
   const vertical = mode === "vertical" || dropdownMode;
   const renderChildrenTabs = useCallback(() => {
-    return React.Children.map(children, (child, index) => {
+    return React.Children.toArray(children).filter(Boolean).map((child, index) => {
       return React.cloneElement(child, {
         onSelect: onSelectTab,
         tabIndex: index,
