@@ -68,14 +68,14 @@ Input.propTypes = {
   error: PropTypes.string,
   placeholder: PropTypes.string,
   mode: PropTypes.string.isRequired,
-  wrapperStyle: PropTypes.object.isRequired,
-  inputStyle: PropTypes.object.isRequired,
-  labelStyle: PropTypes.object.isRequired,
-  iconStyle: PropTypes.object.isRequired,
-  errorStyle: PropTypes.object.isRequired,
-  incrementWrapper: PropTypes.object.isRequired,
-  incrementButton: PropTypes.object.isRequired,
-  decrementButton: PropTypes.object.isRequired
+  wrapperStyle: PropTypes.string.isRequired,
+  inputStyle: PropTypes.string.isRequired,
+  labelStyle: PropTypes.string.isRequired,
+  iconStyle: PropTypes.string.isRequired,
+  errorStyle: PropTypes.string.isRequired,
+  incrementWrapper: PropTypes.string,
+  incrementButton: PropTypes.string,
+  decrementButton: PropTypes.string
 };
 
 export default Input;
