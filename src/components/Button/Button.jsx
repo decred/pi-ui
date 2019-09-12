@@ -14,6 +14,7 @@ const Button = ({
   onClick,
   loading,
   fullWidth,
+  noBorder,
   width,
   ...props
 }) => (
@@ -23,6 +24,7 @@ const Button = ({
       styles[size],
       icon && styles.icon,
       fullWidth && styles.fullWidth,
+      noBorder && styles.noBorder,
       className
     )}
     style={width ? { width: `${width}px`, ...style } : style}
@@ -43,7 +45,8 @@ Button.propTypes = {
   icon: PropTypes.bool,
   width: PropTypes.number,
   size: PropTypes.oneOf(["sm", "md", "lg"]),
-  kind: PropTypes.oneOf(["primary", "secondary", "disabled"])
+  kind: PropTypes.oneOf(["primary", "secondary", "disabled"]),
+  noBorder: PropTypes.bool
 };
 
 Button.defaultProps = {
@@ -51,7 +54,8 @@ Button.defaultProps = {
   size: "md",
   icon: false,
   loading: false,
-  fullWidth: false
+  fullWidth: false,
+  noBorder: false
 };
 
 export default Button;
