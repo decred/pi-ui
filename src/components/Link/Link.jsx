@@ -3,38 +3,46 @@ import PropTypes from "prop-types";
 import styles from "./styles.css";
 import { classNames } from "../../utils";
 
-const DefaultLinkComponent = ({ children, ...props }) => (
-  <a {...props}>{children}</a>
-);
+const DefaultLinkComponent = React.forwardRef(({ children, ...props }, ref) => (
+  <a {...props} ref={ref}>
+    {children}
+  </a>
+));
 
 DefaultLinkComponent.propTypes = {
   children: PropTypes.node
 };
 
-const Link = ({
-  gray,
-  className,
-  customComponent,
-  children,
-  noHoverEffect,
-  truncate,
-  ...props
-}) => {
-  const Comp = customComponent || DefaultLinkComponent;
-  return (
-    <Comp
-      className={classNames(
-        styles.link,
-        gray && styles.gray,
-        noHoverEffect && styles.noHover,
-        truncate && styles.truncate,
-        className
-      )}
-      {...props}>
-      {children}
-    </Comp>
-  );
-};
+const Link = React.forwardRef(
+  (
+    {
+      gray,
+      className,
+      customComponent,
+      children,
+      noHoverEffect,
+      truncate,
+      ...props
+    },
+    ref
+  ) => {
+    const Comp = customComponent || DefaultLinkComponent;
+    return (
+      <Comp
+        ref={ref}
+        className={classNames(
+          styles.link,
+          gray && styles.gray,
+          noHoverEffect && styles.noHover,
+          truncate && styles.truncate,
+          className
+        )}
+        {...props}>
+        {children}
+      </Comp>
+    );
+  }
+);
 
 Link.propTypes = {
   customComponent: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
