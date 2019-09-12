@@ -45,6 +45,10 @@
   composes: btn;
   color: var(--btn-color);
   background-color: transparent;
+  border: 1px solid var(--btn-color);
+}
+
+.noBorder {
   border: 1px solid transparent;
 }
 
