@@ -6,6 +6,7 @@ import H1 from "../Typography/H1.jsx";
 import Icon from "../Icon/Icon.jsx";
 import ModalWrapper from "./ModalWrapper.jsx";
 import styles from "./styles.css";
+import useLockBodyScrollOnTrue from "../../hooks/useLockBodyScrollOnTrue";
 
 const root = document.getElementById("root");
 
@@ -35,11 +36,7 @@ const Modal = ({
   };
   const hasIcon = !!iconComponent || !!iconType;
   const iconSizeToUse = iconSize || "xlg";
-  if (show) {
-    document.body.style.overflow = "hidden";
-  } else {
-    document.body.style.overflow = "unset";
-  }
+  useLockBodyScrollOnTrue(show);
   return createPortal(
     <ModalWrapper
       show={show}
