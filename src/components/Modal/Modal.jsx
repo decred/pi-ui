@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import React from "react";
+import React, { useEffect } from "react";
 import { createPortal } from "react-dom";
 import { classNames } from "../../utils";
 import H1 from "../Typography/H1.jsx";
@@ -7,6 +7,7 @@ import Icon from "../Icon/Icon.jsx";
 import ModalWrapper from "./ModalWrapper.jsx";
 import styles from "./styles.css";
 import useLockBodyScrollOnTrue from "../../hooks/useLockBodyScrollOnTrue";
+import useKeyPress from "../../hooks/useKeyPress";
 
 const root = document.getElementById("root");
 
@@ -37,6 +38,12 @@ const Modal = ({
   const hasIcon = !!iconComponent || !!iconType;
   const iconSizeToUse = iconSize || "xlg";
   useLockBodyScrollOnTrue(show);
+  const escPressed = useKeyPress("Escape");
+  useEffect(() => {
+    if (escPressed && show && !disableClose) {
+      onClose();
+    }
+  }, [escPressed, show, disableClose]);
   return createPortal(
     <ModalWrapper
       show={show}
