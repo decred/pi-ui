@@ -1,16 +1,17 @@
 import PropTypes from "prop-types";
-import React from "react";
+import React, { useEffect } from "react";
 import { createPortal } from "react-dom";
 import { classNames } from "../../utils";
 import H1 from "../Typography/H1.jsx";
 import Icon from "../Icon/Icon.jsx";
 import ModalWrapper from "./ModalWrapper.jsx";
 import styles from "./styles.css";
+import useLockBodyScrollOnTrue from "../../hooks/useLockBodyScrollOnTrue";
+import useKeyPress from "../../hooks/useKeyPress";
 
 const root = document.getElementById("root");
 
 // TODO: use svg icons when we have them
-// TODO: close modal on ESC key press
 const Modal = ({
   style,
   wrapperStyle,
@@ -35,11 +36,13 @@ const Modal = ({
   };
   const hasIcon = !!iconComponent || !!iconType;
   const iconSizeToUse = iconSize || "xlg";
-  if (show) {
-    document.body.style.overflow = "hidden";
-  } else {
-    document.body.style.overflow = "unset";
-  }
+  useLockBodyScrollOnTrue(show);
+  const escPressed = useKeyPress("Escape");
+  useEffect(() => {
+    if (escPressed && show && !disableClose) {
+      onClose();
+    }
+  }, [escPressed, show, disableClose]);
   return createPortal(
     <ModalWrapper
       show={show}
