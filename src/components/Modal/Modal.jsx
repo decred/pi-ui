@@ -12,7 +12,6 @@ import useKeyPress from "../../hooks/useKeyPress";
 const root = document.getElementById("root");
 
 // TODO: use svg icons when we have them
-// TODO: close modal on ESC key press
 const Modal = ({
   style,
   wrapperStyle,
