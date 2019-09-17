@@ -16,8 +16,8 @@ const Container = ({
       className={classNames(styles.container, className)}
       style={{
         gridTemplateRows: singleContent
-          ? `6rem minmax(30rem, max-content)`
-          : `6rem ${topBannerHeight}px 3rem minmax(30rem, max-content)`,
+          ? `6rem`
+          : `6rem ${topBannerHeight}px 3rem`,
         ...style
       }}
       {...props}>
