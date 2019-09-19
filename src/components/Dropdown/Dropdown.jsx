@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useRef } from "react";
 import PropTypes from "prop-types";
 import { animated, useTransition } from "react-spring";
 import useClickOutside from "../../hooks/useClickOutside";
@@ -53,7 +53,7 @@ const Dropdown = ({
       ? onDropdownClick || closeDropdown
       : () => null;
   const [dropdownRef] = useClickOutside(closeDropdownHandler);
-
+  const dropdownListRef = useRef();
   const handleTriggerClick = useCallback(() => {
     if (!onDropdownClick) {
       setInnerStateShow(!innerStateShow);
@@ -96,11 +96,13 @@ const Dropdown = ({
     leave: { opacity: 0 },
     duration: 200
   });
-
   return (
     <div
       ref={dropdownRef}
       className={classNames(styles.dropdownWrapper, className)}
+      style={{
+        width: dropdownListRef.current && dropdownListRef.current.clientWidth
+      }}
       {...props}>
       <Trigger
         title={title}
@@ -116,6 +118,7 @@ const Dropdown = ({
               <animated.ul
                 className={classNames(styles.dropdownList, itemsListClassName)}
                 key={key}
+                ref={dropdownListRef}
                 style={props}>
                 {renderChildrenItems()}
               </animated.ul>
