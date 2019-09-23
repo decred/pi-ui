@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useRef } from "react";
+import React, { useState, useCallback } from "react";
 import PropTypes from "prop-types";
 import { animated, useTransition } from "react-spring";
 import useClickOutside from "../../hooks/useClickOutside";
@@ -106,7 +106,7 @@ const Dropdown = ({
       ref={dropdownRef}
       className={classNames(styles.dropdownWrapper, className)}
       style={{
-        width: customTriggerWidth
+        width: customDropdownTrigger && customTriggerWidth
       }}
       {...props}>
       <Trigger
