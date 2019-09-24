@@ -40,14 +40,16 @@ const Tabs = ({
   const dropdownMode = mode === "dropdown";
   const vertical = mode === "vertical" || dropdownMode;
   const renderChildrenTabs = useCallback(() => {
-    return React.Children.toArray(children).filter(Boolean).map((child, index) => {
-      return React.cloneElement(child, {
-        onSelect: onSelectTab,
-        tabIndex: index,
-        isActive: index === activeTabIndex,
-        mode
+    return React.Children.toArray(children)
+      .filter(Boolean)
+      .map((child, index) => {
+        return React.cloneElement(child, {
+          onSelect: onSelectTab,
+          tabIndex: index,
+          isActive: index === activeTabIndex,
+          mode
+        });
       });
-    });
   }, [children, activeTabIndex, mode]);
 
   const tabs = useMemo(

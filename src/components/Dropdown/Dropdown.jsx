@@ -53,7 +53,12 @@ const Dropdown = ({
       ? onDropdownClick || closeDropdown
       : () => null;
   const [dropdownRef] = useClickOutside(closeDropdownHandler);
-
+  const [customTriggerWidth, setCustomTriggerWidth] = useState(0);
+  const dropdownListRef = useCallback((node) => {
+    if (node !== null) {
+      setCustomTriggerWidth(node.getBoundingClientRect().width);
+    }
+  }, []);
   const handleTriggerClick = useCallback(() => {
     if (!onDropdownClick) {
       setInnerStateShow(!innerStateShow);
@@ -96,11 +101,13 @@ const Dropdown = ({
     leave: { opacity: 0 },
     duration: 200
   });
-
   return (
     <div
       ref={dropdownRef}
       className={classNames(styles.dropdownWrapper, className)}
+      style={{
+        width: customDropdownTrigger && customTriggerWidth
+      }}
       {...props}>
       <Trigger
         title={title}
@@ -116,6 +123,7 @@ const Dropdown = ({
               <animated.ul
                 className={classNames(styles.dropdownList, itemsListClassName)}
                 key={key}
+                ref={dropdownListRef}
                 style={props}>
                 {renderChildrenItems()}
               </animated.ul>

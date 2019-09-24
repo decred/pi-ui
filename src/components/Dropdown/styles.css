@@ -22,7 +22,7 @@
 .arrowAnchor {
   position: relative;
   cursor: pointer;
-  width: 20px;
+  margin-left: 1.25rem;
 }
 
 .arrowAnchor:after {
