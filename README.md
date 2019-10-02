@@ -1,4 +1,7 @@
-# pi-ui
+pi-ui
+=====
+
+[![Build Status](https://github.com/decred/pi-ui/workflows/Build%20and%20Test/badge.svg)](https://github.com/decred/pi-ui/actions)
 
 > Politeia UI library
 [documentation](https://compassionate-lalande-d3ef5d.netlify.com/)
