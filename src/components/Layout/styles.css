@@ -48,7 +48,37 @@
   grid-column: center-start / center-end;
 }
 
-/* MEDIUM */
+/* HUGE SCREENS */
+@media screen and (min-width: 1400px) {
+  .container {
+    grid-template-columns:
+      [full-start] 1fr [center-start]
+      repeat(
+        12,
+        [col-start] minmax(var(--min-column-size-md), var(--max-column-size-md))
+        [col-end]
+      )
+      [center-end] 1fr [full-end];
+  }
+
+  .main {
+    grid-column: full-start / col-end 10;
+    margin-left: 6rem;
+  }
+
+  .sidebar {
+    grid-column: col-start 11 / full-end;
+    margin-right: 6rem;
+  }
+
+  .pageDetails {
+    grid-column: full-start / full-end;
+    margin-left: 6rem;
+    margin-right: 6rem;
+  }
+}
+
+/* MEDIUM SCREENS */
 @media screen and (max-width: 1000px) {
   .container {
     --grid-center-padding: minmax(
@@ -95,7 +125,7 @@
   }
 }
 
-/* SMALL */
+/* SMALL SCREENS */
 @media screen and (max-width: 768px) {
   .container {
     --grid-center-padding: minmax(
@@ -137,7 +167,7 @@
   }
 }
 
-/* EXTRA SMALL */
+/* EXTRA SMALL SCREENS */
 @media screen and (max-width: 560px) {
   .container {
     grid-template-columns: [full-start] 1fr [full-end];
