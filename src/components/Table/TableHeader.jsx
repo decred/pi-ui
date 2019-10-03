@@ -1,15 +1,21 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styles from "./styles.css";
+import { classNames } from "../../utils";
 
-const TableHeader = ({ headers }) => {
+const TableHeader = ({
+  headers,
+  headerCellClassName,
+  rowClassName,
+  className
+}) => {
   return (
-    <thead className={styles.tableHead}>
-      <tr className={styles.tableRow}>
+    <thead className={classNames(styles.tableHead, className)}>
+      <tr className={classNames(styles.tableRow, rowClassName)}>
         {headers.map((header, idx) => (
           <th
             key={`header-${idx}`}
-            className={styles.tableHeadCell}
+            className={classNames(styles.tableHeadCell, headerCellClassName)}
             scope="col">
             {header}
           </th>
@@ -20,7 +26,10 @@ const TableHeader = ({ headers }) => {
 };
 
 TableHeader.propTypes = {
-  headers: PropTypes.arrayOf(PropTypes.string).isRequired
+  headers: PropTypes.arrayOf(PropTypes.string).isRequired,
+  headerCellClassName: PropTypes.string,
+  rowClassName: PropTypes.string,
+  className: PropTypes.string
 };
 
 export default TableHeader;
