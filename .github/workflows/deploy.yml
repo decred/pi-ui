@@ -17,4 +17,4 @@ jobs:
         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         BRANCH: gh-pages
         FOLDER: .docz/dist
-        BUILD_SCRIPT: yarn && yarn docz:build
+        BUILD_SCRIPT: yarn && env DOCZ_BASE=/pi-ui/ yarn docz:build
