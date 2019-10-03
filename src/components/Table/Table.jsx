@@ -4,8 +4,21 @@ import TableHeader from "./TableHeader.jsx";
 import TableBody from "./TableBody.jsx";
 import Icon from "../Icon/Icon.jsx";
 import styles from "./styles.css";
+import { classNames } from "../../utils";
 
-const Table = ({ data, headers, linesPerPage, disablePagination }) => {
+const Table = ({
+  data,
+  headers,
+  linesPerPage,
+  disablePagination,
+  className,
+  wrapperClassName,
+  headClassName,
+  headerCellClassName,
+  rowClassName,
+  bodyClassName,
+  bodyCellClassName
+}) => {
   if (linesPerPage < 1) {
     throw new Error("Invalid prop. linesPerPage should be bigger than 1");
   }
@@ -18,10 +31,20 @@ const Table = ({ data, headers, linesPerPage, disablePagination }) => {
   const previousPage = () => (canGoBack ? setPage(page - 1) : null);
   const nextPage = () => (canGoNext ? setPage(page + 1) : null);
   return (
-    <div className={styles.tableWrapper}>
-      <table className={styles.table}>
-        <TableHeader headers={headers} />
-        <TableBody data={data.slice(startIndex, startIndex + linesPerPage)} />
+    <div className={classNames(styles.tableWrapper, wrapperClassName)}>
+      <table className={className(styles.table, className)}>
+        <TableHeader
+          headers={headers}
+          className={headClassName}
+          headerCellClassName={headerCellClassName}
+          rowClassName={rowClassName}
+        />
+        <TableBody
+          data={data.slice(startIndex, startIndex + linesPerPage)}
+          className={bodyClassName}
+          rowClassName={rowClassName}
+          bodyCellClassName={bodyCellClassName}
+        />
       </table>
       {!disablePagination && pagesArr.length > 1 && (
         <div className={styles.pages}>
@@ -69,7 +92,14 @@ Table.propTypes = {
   data: PropTypes.array.isRequired,
   headers: PropTypes.arrayOf(PropTypes.string).isRequired,
   linesPerPage: PropTypes.number,
-  disablePagination: PropTypes.bool
+  disablePagination: PropTypes.bool,
+  className: PropTypes.string,
+  wrapperClassName: PropTypes.string,
+  headClassName: PropTypes.string,
+  headerCellClassName: PropTypes.string,
+  rowClassName: PropTypes.string,
+  bodyClassName: PropTypes.string,
+  bodyCellClassName: PropTypes.string
 };
 
 Table.defaultProps = {
