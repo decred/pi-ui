@@ -32,7 +32,7 @@ const Table = ({
   const nextPage = () => (canGoNext ? setPage(page + 1) : null);
   return (
     <div className={classNames(styles.tableWrapper, wrapperClassName)}>
-      <table className={className(styles.table, className)}>
+      <table className={classNames(styles.table, className)}>
         <TableHeader
           headers={headers}
           className={headClassName}

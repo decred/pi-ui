@@ -15,7 +15,11 @@ const TableBody = ({ data, className, rowClassName, bodyCellClassName }) => {
               key={`field-${keyIdx}`}
               className={classNames(styles.tableBodyCell, bodyCellClassName)}
               data-label={key}>
-              <span className={styles.tableBodyCellText}>{line[key]}</span>
+              {typeof line[key] === "string" ? (
+                <span className={styles.tableBodyCellText}>{line[key]}</span>
+              ) : (
+                line[key]
+              )}
             </td>
           ))}
         </tr>
