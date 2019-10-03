@@ -1,0 +1,28 @@
+---
+name: NumberInput
+menu: Components
+route: /components/numberinput
+---
+
+import { Playground, Props } from "docz";
+import { NumberInput } from "../index";
+
+# NumberInput
+
+## Properties
+
+<Props of={NumberInput} />
+
+## Usage
+
+### Normal
+
+<Playground>
+  <NumberInput id="credits" name="credits" type="number" />
+</Playground>
+
+### Error
+
+<Playground>
+  <NumberInput id="credits" name="credits" type="number" error="Invalid amount" />
+</Playground>
