@@ -53,12 +53,9 @@
   .container {
     grid-template-columns:
       [full-start] 1fr [center-start]
-      repeat(
-        12,
-        [col-start] minmax(var(--min-column-size-md), var(--max-column-size-md))
-        [col-end]
-      )
+      repeat(12, [col-start] var(--max-column-size-lg) [col-end])
       [center-end] 1fr [full-end];
+    column-gap: var(--layout-column-gap-lg);
   }
 
   .main {
