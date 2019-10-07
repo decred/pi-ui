@@ -1,24 +1,36 @@
 import PropTypes from "prop-types";
 import React from "react";
 import { classNames } from "../../utils";
+import Icon from "../Icon/Icon.jsx";
 import styles from "./styles.css";
-import Input from "../Input/Input.jsx";
 
-const TextInput = ({ type, label, placeholder, id, mode, error, ...props }) => {
+const TextInput = ({ type, label, id, error, ...props }) => {
   return (
-    <Input
-      type={type}
-      label={label}
-      id={id}
-      mode={mode}
-      placeholder={placeholder}
-      error={error}
-      wrapperStyle={classNames(styles.textinputWrapper)}
-      inputStyle={classNames(styles.textinput, error && styles.textinputError)}
-      iconStyle={classNames(styles.errorIcon, error && styles.errorIconActive)}
-      labelStyle={classNames(styles.textinputLabel)}
-      errorStyle={classNames(styles.errorMsg, error && styles.errorMsgActive)}
-    />
+    <div className={styles.textinputWrapper}>
+      <input
+        id={id}
+        placeholder=" "
+        className={classNames(styles.textinput, error && styles.textinputError)}
+        type={type}
+        {...props}
+      />
+      <label htmlFor={id} className={styles.textinputLabel}>
+        {label}
+      </label>
+      <Icon
+        type="alert"
+        backgroundColor="#ed6d47"
+        iconColor="#feb8a5"
+        className={classNames(
+          styles.errorIcon,
+          error && styles.errorIconActive
+        )}
+      />
+      <p
+        className={classNames(styles.errorMsg, error && styles.errorMsgActive)}>
+        {error}
+      </p>
+    </div>
   );
 };
 
@@ -26,16 +38,12 @@ TextInput.propTypes = {
   type: PropTypes.string,
   label: PropTypes.string,
   id: PropTypes.string.isRequired,
-  error: PropTypes.string,
-  mode: PropTypes.string,
-  placeholder: PropTypes.string,
+  error: PropTypes.string
 };
 
 TextInput.defaultProps = {
   type: "text",
-  mode: "text",
-  label: "Label",
-  placeholder: " "
+  label: "Label"
 };
 
 export default TextInput;
