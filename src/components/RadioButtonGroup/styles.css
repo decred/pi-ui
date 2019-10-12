@@ -18,7 +18,7 @@
   width: 2rem;
   height: 2rem;
   border-radius: 1.1rem;
-  border: 0.2rem solid var(--color-gray-blueish);
+  border: 0.2rem solid var(--color-primary-dark);
   background-color: transparent;
 }
 
@@ -31,7 +31,7 @@
   left: 1rem;
   content: " ";
   display: block;
-  background: var(--color-gray-blueish);
+  background: var(--color-primary-dark);
 }
 
 .radioGroupList {
