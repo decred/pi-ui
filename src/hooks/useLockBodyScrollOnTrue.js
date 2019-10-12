@@ -23,5 +23,6 @@ export default function useLockBodyScrollOnTrue(value) {
       // style back to its original style
       reEnableScrolling();
     }
+    return () => reEnableScrolling();
   }, [value, reEnableScrolling, originalStyle, setOriginalStyle]);
 }
