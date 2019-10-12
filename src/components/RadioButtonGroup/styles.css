@@ -1,5 +1,37 @@
 .radioButton {
-  margin-right: 1rem;
+  display: inline-block;
+  position: relative;
+  padding: 0 0.6rem;
+  margin: 1rem 1rem 0 0;
+}
+
+.radioButton input[type="radio"] {
+  display: none;
+}
+
+.radioButton label:before {
+  content: " ";
+  display: inline-block;
+  position: relative;
+  top: 0.5rem;
+  margin: 0 0.5rem 0 0;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 1.1rem;
+  border: 0.2rem solid var(--color-gray-blueish);
+  background-color: transparent;
+}
+
+.radioButton input[type="radio"]:checked + label:after {
+  border-radius: 1.1rem;
+  width: 1.2rem;
+  height: 1.2rem;
+  position: absolute;
+  top: 0.9rem;
+  left: 1rem;
+  content: " ";
+  display: block;
+  background: var(--color-gray-blueish);
 }
 
 .radioGroupList {

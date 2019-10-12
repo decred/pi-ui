@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import PropTypes from "prop-types";
 import { classNames } from "../../utils";
 import styles from "./styles.css";
@@ -13,6 +13,7 @@ export const RadioButton = ({
   className,
   ...props
 }) => {
+  const buttonRef = useRef(null);
   return (
     <div className={classNames(styles.radioButton, className)}>
       <input
@@ -22,10 +23,15 @@ export const RadioButton = ({
         checked={checked}
         onChange={onChange}
         onBlur={onBlur}
+        ref={buttonRef}
         className={classNames(styles.radioButton)}
         {...props}
       />
-      <label htmlFor={id}>{label}</label>
+      <label
+        onClick={() => buttonRef.current && buttonRef.current.click()}
+        htmlFor={id}>
+        {label}
+      </label>
     </div>
   );
 };
