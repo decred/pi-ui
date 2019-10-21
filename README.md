@@ -1,10 +1,9 @@
-pi-ui
-=====
+# pi-ui
 
 [![Build Status](https://github.com/decred/pi-ui/workflows/Build%20and%20Test/badge.svg)](https://github.com/decred/pi-ui/actions)
 
 > Politeia UI library
-[documentation](https://compassionate-lalande-d3ef5d.netlify.com/)
+> [documentation](https://compassionate-lalande-d3ef5d.netlify.com/)
 
 [![NPM](https://img.shields.io/npm/v/pi-ui.svg)](https://www.npmjs.com/package/pi-ui) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
@@ -25,6 +24,16 @@ npm install --save pi-ui
 ```
 
 ## Usage
+
+In the index file of your app make sure to import the styles for the lib:
+
+- `index.js`:
+
+```jsx
+import "pi-ui/dist/index.css";
+```
+
+- `Component.js`:
 
 ```jsx
 import React, { Component } from "react";
@@ -47,14 +56,14 @@ class Example extends Component {
   `yarn docz:dev`
 
 - If you want to see your changes reflected in a project consuming pi-ui, you can use yarn link:
-    - Go to the pi-ui directory on your machine and run:
+  - Go to the pi-ui directory on your machine and run:
     `yarn link`
-    - Go to the project using pi-ui and run: 
+  - Go to the project using pi-ui and run:
     `yarn link pi-ui`
 
 **Troubleshooting:**
- If you find some kind of incompatibility between react versions, link the react package from the main repository into pi-ui:
-  
+If you find some kind of incompatibility between react versions, link the react package from the main repository into pi-ui:
+
 - Go to the main repository which is using the pi-ui lib, access the react folder inside its node_modules:
-     - `cd /some/project/node_modules/react && yarn link`
-     - `cd /pi-ui && yarn link react`
+  - `cd /some/project/node_modules/react && yarn link`
+  - `cd /pi-ui && yarn link react`
