@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import PropTypes from "prop-types";
-import { animated, useSpring } from "react-spring";
+import { animated, useSpring, config } from "react-spring";
 import { classNames } from "../../utils";
 import styles from "./styles.css";
 
@@ -15,13 +15,25 @@ export const RadioButton = ({
   ...props
 }) => {
   const buttonRef = useRef(null);
+  const toAnimation = checked
+    ? [
+        {
+          transform: "scale(2)"
+        },
+        {
+          transform: "scale(1)"
+        }
+      ]
+    : { transform: "scale(1)" };
   const animationProps = useSpring({
-    opacity: checked ? 1 : 0
+    to: toAnimation,
+    from: {
+      transform: "scale(1)"
+    },
+    config: config.gentle
   });
   return (
-    <div
-      style={animationProps}
-      className={classNames(styles.radioButton, className)}>
+    <div className={classNames(styles.radioButton, className)}>
       <input
         name={name}
         id={id}
@@ -35,7 +47,7 @@ export const RadioButton = ({
       <label
         onClick={() => buttonRef.current && buttonRef.current.click()}
         htmlFor={id}>
-        <animated.span className={styles.circle} />
+        <animated.span className={styles.circle} style={animationProps} />
         {label}
         {checked && <span className={styles.dot} />}
       </label>
