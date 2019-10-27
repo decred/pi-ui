@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
 import PropTypes from "prop-types";
+import { animated, useSpring } from "react-spring";
 import { classNames } from "../../utils";
 import styles from "./styles.css";
 
@@ -14,8 +15,13 @@ export const RadioButton = ({
   ...props
 }) => {
   const buttonRef = useRef(null);
+  const animationProps = useSpring({
+    opacity: checked ? 1 : 0
+  });
   return (
-    <div className={classNames(styles.radioButton, className)}>
+    <div
+      style={animationProps}
+      className={classNames(styles.radioButton, className)}>
       <input
         name={name}
         id={id}
@@ -24,13 +30,14 @@ export const RadioButton = ({
         onChange={onChange}
         onBlur={onBlur}
         ref={buttonRef}
-        className={classNames(styles.radioButton)}
         {...props}
       />
       <label
         onClick={() => buttonRef.current && buttonRef.current.click()}
         htmlFor={id}>
+        <animated.span className={styles.circle} />
         {label}
+        {checked && <span className={styles.dot} />}
       </label>
     </div>
   );
