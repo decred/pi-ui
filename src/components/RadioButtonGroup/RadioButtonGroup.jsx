@@ -18,17 +18,17 @@ export const RadioButton = ({
   const toAnimation = checked
     ? [
         {
-          transform: "scale(2)"
+          transform: "scale(1.2)"
         },
         {
           transform: "scale(1)"
         }
       ]
-    : { transform: "scale(1)" };
+    : { transform: "scale(0)" };
   const animationProps = useSpring({
     to: toAnimation,
     from: {
-      transform: "scale(1)"
+      transform: "scale(0)"
     },
     config: config.gentle
   });
@@ -47,9 +47,9 @@ export const RadioButton = ({
       <label
         onClick={() => buttonRef.current && buttonRef.current.click()}
         htmlFor={id}>
-        <animated.span className={styles.circle} style={animationProps} />
+        <span className={styles.circle} />
         {label}
-        {checked && <span className={styles.dot} />}
+        <animated.span className={styles.dot} style={animationProps} />
       </label>
     </div>
   );
