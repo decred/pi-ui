@@ -15,9 +15,8 @@ export const RadioButton = ({
   ...props
 }) => {
   const buttonRef = useRef(null);
-  const fade = useSpring({
-    x: checked ? 1 : 0,
-    duration: 300
+  const { x } = useSpring({
+    x: checked ? 1 : 0
   });
   return (
     <div className={classNames(styles.radioButton, className)}>
@@ -39,7 +38,7 @@ export const RadioButton = ({
         <animated.span
           className={styles.dot}
           style={{
-            transform: fade.x
+            transform: x
               .interpolate({
                 range: [0, 0.4, 0.8, 1],
                 output: [0, 0.55, 1.2, 1]
