@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import PropTypes from "prop-types";
-import { animated, useSpring, config } from "react-spring";
+import {useSpring, animated, interpolate} from 'react-spring'
 import { classNames } from "../../utils";
 import styles from "./styles.css";
 
@@ -15,22 +15,9 @@ export const RadioButton = ({
   ...props
 }) => {
   const buttonRef = useRef(null);
-  const toAnimation = checked
-    ? [
-        {
-          transform: "scale(1.2)"
-        },
-        {
-          transform: "scale(1)"
-        }
-      ]
-    : { transform: "scale(0)" };
-  const animationProps = useSpring({
-    to: toAnimation,
-    from: {
-      transform: "scale(0)"
-    },
-    config: config.gentle
+  const fade = useSpring({
+    x: checked ? 1 : 0,
+    duration: 300
   });
   return (
     <div className={classNames(styles.radioButton, className)}>
@@ -49,7 +36,17 @@ export const RadioButton = ({
         htmlFor={id}>
         <span className={styles.circle} />
         {label}
-        <animated.span className={styles.dot} style={animationProps} />
+        <animated.span
+          className={styles.dot}
+          style={{
+            transform: fade.x
+              .interpolate({
+                range: [0, 0.4, 0.8, 1],
+                output: [0, 0.55, 1.2, 1]
+              })
+              .interpolate((x) => `scale(${x})`)
+          }}
+        />
       </label>
     </div>
   );
