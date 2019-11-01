@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import PropTypes from "prop-types";
-import {useSpring, animated, interpolate} from 'react-spring'
+import { useSpring, animated } from "react-spring";
 import { classNames } from "../../utils";
 import styles from "./styles.css";
 
