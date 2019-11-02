@@ -9,6 +9,7 @@
   transition: all 0.25s;
   line-height: var(--spacing-2);
   padding: 1rem 2rem;
+  padding-right: 4rem;
   margin-top: 1.2rem;
 }
 
@@ -48,7 +49,7 @@
   position: absolute;
   font-size: inherit;
   background: none !important;
-  right: 2rem;
+  right: 1rem;
   top: calc(50% - 0.5rem);
   transform: translate(-50%, -50%);
   user-select: none;
