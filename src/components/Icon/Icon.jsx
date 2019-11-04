@@ -43,13 +43,36 @@ const icons = (type, backgroundColor, iconColor) => {
       <>
         <g>
           <g>
-            <g transform="translate(40.909091, 51.660000)" fill={backgroundColor}>
-              <polygon points="306.818182 0 306.818182 67.68 61.3636364 67.68 61.3636364 0 0 0 0 338.37 368.181818 338.37 368.181818 0"></polygon>
+            <g
+              transform="translate(40.909091, 51.660000)"
+              fill={backgroundColor}>
+              <polygon points="306.818182 0 306.818182 67.68 61.3636364 67.68 61.3636364 0 0 0 0 338.37 368.181818 338.37 368.181818 0" />
             </g>
-            <polygon fill={backgroundColor} points="136.227273 95.16 313.854545 95.16 313.854545 30.03 136.227273 30.03"></polygon>
-            <rect fill={iconColor} x="100.063636" y="165.36" width="249.75" height="21.75"></rect>
-            <rect fill={iconColor} x="100.063636" y="233.04" width="249.75" height="21.75"></rect>
-            <rect fill={iconColor} x="100.063636" y="300.69" width="249.75" height="21.75"></rect>
+            <polygon
+              fill={backgroundColor}
+              points="136.227273 95.16 313.854545 95.16 313.854545 30.03 136.227273 30.03"
+            />
+            <rect
+              fill={iconColor}
+              x="100.063636"
+              y="165.36"
+              width="249.75"
+              height="21.75"
+            />
+            <rect
+              fill={iconColor}
+              x="100.063636"
+              y="233.04"
+              width="249.75"
+              height="21.75"
+            />
+            <rect
+              fill={iconColor}
+              x="100.063636"
+              y="300.69"
+              width="249.75"
+              height="21.75"
+            />
           </g>
         </g>
       </>
@@ -58,7 +81,7 @@ const icons = (type, backgroundColor, iconColor) => {
       <>
         <g>
           <g fill={iconColor}>
-              <path d="M417.494118,397.996875 L319.552941,289.828125 C369.576866,226.478443 371.45145,134.704401 324.06138,69.1084373 C276.67131,3.5124731 192.746493,-18.2850446 122.219344,16.6846668 C51.6921948,51.6543782 13.5076963,133.997765 30.384328,214.723309 C47.2609597,295.448853 114.665326,352.872082 192.494118,352.828125 C226.553641,352.923437 259.798972,341.768237 287.629412,320.90625 L386.258824,429.890625 C391.59298,435.946438 399.582119,438.482788 407.168761,436.529002 C414.755404,434.575216 420.76494,428.43379 422.897495,420.455077 C425.030049,412.476363 422.955447,403.895673 417.467647,397.996875 L417.494118,397.996875 Z M192.520588,46.0125 C260.310293,46.0125 315.264706,104.401564 315.264706,176.428125 C315.264706,248.454686 260.310293,306.84375 192.520588,306.84375 C124.730884,306.84375 69.7764706,248.454686 69.7764706,176.428125 C69.8494166,104.433692 124.761122,46.0900051 192.520588,46.0125 Z"></path>
+            <path d="M417.494118,397.996875 L319.552941,289.828125 C369.576866,226.478443 371.45145,134.704401 324.06138,69.1084373 C276.67131,3.5124731 192.746493,-18.2850446 122.219344,16.6846668 C51.6921948,51.6543782 13.5076963,133.997765 30.384328,214.723309 C47.2609597,295.448853 114.665326,352.872082 192.494118,352.828125 C226.553641,352.923437 259.798972,341.768237 287.629412,320.90625 L386.258824,429.890625 C391.59298,435.946438 399.582119,438.482788 407.168761,436.529002 C414.755404,434.575216 420.76494,428.43379 422.897495,420.455077 C425.030049,412.476363 422.955447,403.895673 417.467647,397.996875 L417.494118,397.996875 Z M192.520588,46.0125 C260.310293,46.0125 315.264706,104.401564 315.264706,176.428125 C315.264706,248.454686 260.310293,306.84375 192.520588,306.84375 C124.730884,306.84375 69.7764706,248.454686 69.7764706,176.428125 C69.8494166,104.433692 124.761122,46.0900051 192.520588,46.0125 Z" />
           </g>
         </g>
       </>
@@ -358,8 +381,7 @@ const icons = (type, backgroundColor, iconColor) => {
     ),
     like: (
       <>
-        <g
-          transform="translate(-1432.57 13987) rotate(180)">
+        <g transform="translate(-1432.57 13987) rotate(180)">
           <path
             fill={iconColor}
             d="M73.457,0H14.692C6.613,0,0,6.859,0,15.315V291c0,8.452,6.584,15.313,14.692,15.313H73.457c8.108,0,14.692-6.862,14.692-15.313V15.315C88.149,6.859,81.535,0,73.457,0Z"
@@ -375,8 +397,7 @@ const icons = (type, backgroundColor, iconColor) => {
     ),
     dislike: (
       <>
-        <g
-          transform="translate(1882.57 -13537)">
+        <g transform="translate(1882.57 -13537)">
           <path
             fill={iconColor}
             d="M73.457,0H14.692C6.613,0,0,6.859,0,15.315V291c0,8.452,6.584,15.313,14.692,15.313H73.457c8.108,0,14.692-6.862,14.692-15.313V15.315C88.149,6.859,81.535,0,73.457,0Z"
@@ -392,8 +413,7 @@ const icons = (type, backgroundColor, iconColor) => {
     ),
     link: (
       <>
-        <g
-          transform="translate(2018 -14468)">
+        <g transform="translate(2018 -14468)">
           <path
             fill={iconColor}
             d="M223.282,91.443a8.226,8.226,0,0,0-11.645,0l-21.861,21.876-32.968,32.99a8.257,8.257,0,0,0,.005,11.645l2.143,2.141,16.26-16.277,16.443,16.455L175.4,176.554l2.144,2.145a8.421,8.421,0,0,0,11.636,0L244,123.834a8.253,8.253,0,0,0,0-11.646Z"
@@ -415,13 +435,7 @@ const icons = (type, backgroundColor, iconColor) => {
     sign: (
       <>
         <g>
-          <rect
-            fill="none"
-            height="452"
-            width="452"
-            y="-1"
-            x="-1"
-          />
+          <rect fill="none" height="452" width="452" y="-1" x="-1" />
         </g>
         <g>
           <g stroke="null">
@@ -523,13 +537,7 @@ const icons = (type, backgroundColor, iconColor) => {
     world: (
       <>
         <g>
-          <rect
-            fill="none"
-            height="452"
-            width="452"
-            y="-1"
-            x="-1"
-          />
+          <rect fill="none" height="452" width="452" y="-1" x="-1" />
         </g>
         <g>
           <g stroke="null">
@@ -556,11 +564,8 @@ const icons = (type, backgroundColor, iconColor) => {
     ),
     blocked: (
       <>
-        <g
-          transform="translate(-231 -2136)">
-          <g
-            transform="translate(231 2136)"
-            fill="none">
+        <g transform="translate(-231 -2136)">
+          <g transform="translate(231 2136)" fill="none">
             <circle
               cx="225"
               cy="225"
@@ -570,8 +575,7 @@ const icons = (type, backgroundColor, iconColor) => {
               fill={backgroundColor}
             />
           </g>
-          <g
-            transform="translate(380 2285)">
+          <g transform="translate(380 2285)">
             <line
               x2="152.55"
               y2="152.55"
@@ -633,13 +637,7 @@ const icons = (type, backgroundColor, iconColor) => {
           height="25"
           transform="translate(118.87 -56.58) rotate(45)"
         />
-        <rect
-          className="cls-2"
-          x="32.39"
-          y="19.87"
-          width="100"
-          height="25"
-        />
+        <rect className="cls-2" x="32.39" y="19.87" width="100" height="25" />
         <rect
           className="cls-2"
           x="-5.1"
@@ -664,13 +662,7 @@ const icons = (type, backgroundColor, iconColor) => {
           height="25"
           transform="translate(-335.25 425.05) rotate(-90)"
         />
-        <rect
-          className="cls-2"
-          x="32.4"
-          y="405.14"
-          width="100"
-          height="25"
-        />
+        <rect className="cls-2" x="32.4" y="405.14" width="100" height="25" />
         <rect
           className="cls-2"
           x="232.16"
@@ -766,8 +758,7 @@ const icons = (type, backgroundColor, iconColor) => {
             fill={backgroundColor}
           />
         </g>
-        <g
-          transform="translate(0 250.26)">
+        <g transform="translate(0 250.26)">
           <ellipse
             cx="99.87"
             cy="99.87"
@@ -792,9 +783,17 @@ const icons = (type, backgroundColor, iconColor) => {
     )
   }[type];
 };
-const Icon = ({ type, size, backgroundColor, iconColor, className }) => {
+const Icon = ({
+  type,
+  size,
+  backgroundColor,
+  iconColor,
+  className,
+  onClick
+}) => {
   return (
     <svg
+      onClick={onClick}
       viewBox="0 0 450 450"
       width={typeof size === "string" ? sizes[size] : size}
       className={className}
@@ -812,6 +811,7 @@ Icon.propTypes = {
     PropTypes.number
   ]),
   backgroundColor: PropTypes.string,
+  onClick: PropTypes.func,
   iconColor: PropTypes.string
 };
 

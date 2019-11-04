@@ -32,7 +32,13 @@ const CopyableText = ({
       <Tooltip
         placement={tooltipPlacement}
         content={feedbackActive ? "Copied!" : hoverText}>
-          <Icon type="copyToClipboard" backgroundColor="#2970ff" iconColor="#f7f8f9" className={styles.copyToClipboard}/>
+        <Icon
+          type="copyToClipboard"
+          backgroundColor="#2970ff"
+          iconColor="#f7f8f9"
+          onClick={() => onCopyToClipboard(children)}
+          className={styles.copyToClipboard}
+        />
       </Tooltip>
     </div>
   );
