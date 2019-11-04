@@ -26,8 +26,7 @@ const ModalWrapper = ({
         show ? styles.modalWrapperVisible : styles.modalWrapper,
         className
       )}
-      {...props}
-      >
+      {...props}>
       {children}
     </div>
   );
