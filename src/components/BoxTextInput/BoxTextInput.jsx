@@ -20,7 +20,6 @@ const DefaultWrapper = ({ className, onSubmit, children }) => {
   );
 };
 
-// TODO: use SVG icon when we have it
 const BoxTextInput = ({
   value,
   onChange,
