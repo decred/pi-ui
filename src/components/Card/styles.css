@@ -16,10 +16,10 @@
 }
 
 .marker {
-  border-left: 12px solid;
-  border-top: 12px solid;
-  border-right: 12px solid transparent;
-  border-bottom: 12px solid transparent;
+  border-left: 1.2rem solid;
+  border-top: 1.2rem solid;
+  border-right: 1.2rem solid transparent;
+  border-bottom: 1.2rem solid transparent;
   position: absolute;
   top: 0;
   left: 0;

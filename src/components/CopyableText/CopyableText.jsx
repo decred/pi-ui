@@ -1,11 +1,11 @@
 import PropTypes from "prop-types";
 import React, { useState } from "react";
 import Text from "../Typography/Text/Text.jsx";
-import CopyToClipboard from "./assets/CopyToClipboard.svg";
 import { copyToClipboard as copy } from "./helpers";
 import { classNames, idPropTypeCheckForTruncatedComponents } from "../../utils";
 import styles from "./styles.css";
 import Tooltip from "../Tooltip/Tooltip.jsx";
+import Icon from "../Icon/Icon.jsx";
 
 const CopyableText = ({
   id,
@@ -32,11 +32,12 @@ const CopyableText = ({
       <Tooltip
         placement={tooltipPlacement}
         content={feedbackActive ? "Copied!" : hoverText}>
-        <img
-          className={styles.copyToClipboard}
+        <Icon
+          type="copyToClipboard"
+          backgroundColor="#2970ff"
+          iconColor="#f7f8f9"
           onClick={() => onCopyToClipboard(children)}
-          src={CopyToClipboard}
-          alt="copy to clipboard"
+          className={styles.copyToClipboard}
         />
       </Tooltip>
     </div>

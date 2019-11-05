@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import styles from "./styles.css";
 import { classNames } from "../../utils";
-import searchSVG from "./search.svg";
+import Icon from "../Icon/Icon.jsx";
 
 const FormWrapper = ({ className, onSubmit, children }) => {
   return (
@@ -20,7 +20,6 @@ const DefaultWrapper = ({ className, onSubmit, children }) => {
   );
 };
 
-// TODO: use SVG icon when we have it
 const BoxTextInput = ({
   value,
   onChange,
@@ -59,7 +58,7 @@ const BoxTextInput = ({
       />
       {searchInput && (
         <button type="submit" className={styles.boxtextinputButton}>
-          <img type="image" src={searchSVG} alt="Submit" />
+          <Icon type="search" />
         </button>
       )}
       <p
