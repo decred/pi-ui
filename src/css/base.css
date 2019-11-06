@@ -29,6 +29,10 @@ a:visited {
   top: 20px;
 }
 
+.statusBarMarkerTooltipExample {
+  width: 225px;
+}
+
 .dropdownCustomListExample {
   margin-top: 4.5rem !important;
 }

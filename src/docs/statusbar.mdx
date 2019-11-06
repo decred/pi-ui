@@ -6,6 +6,8 @@ route: /components/statusbar
 
 import { Playground, Props } from "docz";
 import { StatusBar } from "../index";
+import styles from "../css/base.css";
+import { classNames } from "../utils";
 
 # StatusBar
 
@@ -35,6 +37,8 @@ import { StatusBar } from "../index";
       }
     ]}
     markerPosition = "50%"
+    markerTooltipText = "60% Yes votes required for approval"
+    markerTooltipClassName={classNames(styles.statusBarMarkerTooltipExample)}
     max={5000}
   />
   <br/>
