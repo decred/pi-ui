@@ -7,6 +7,8 @@ import Tooltip from "../Tooltip/Tooltip.jsx";
 const StatusBar = ({
   status,
   markerPosition,
+  markerTooltipText,
+  markerTooltipClassName,
   max,
   showMarker,
   renderStatusInfoComponent,
@@ -75,7 +77,10 @@ const StatusBar = ({
             style={{
               left: markerPosition
             }}>
-            <Tooltip content={markerPosition} className={styles.markerTooltip}>
+            <Tooltip
+              content={markerTooltipText || markerPosition}
+              className={styles.markerTooltip}
+              contentClassName={markerTooltipClassName}>
               <div className={styles.marker} />
             </Tooltip>
           </div>
@@ -100,6 +105,8 @@ DefaultInfoComp.propTypes = {
 StatusBar.propTypes = {
   status: PropTypes.array.isRequired,
   markerPosition: PropTypes.string,
+  markerTooltipText: PropTypes.string,
+  markerTooltipClassName: PropTypes.string,
   renderStatusInfoComponent: PropTypes.element,
   max: PropTypes.number,
   showMarker: PropTypes.bool,
