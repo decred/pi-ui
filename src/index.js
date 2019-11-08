@@ -43,6 +43,7 @@ export {
   default as DropdownItem
 } from "./components/Dropdown/DropdownItem.jsx";
 export { default as Icon } from "./components/Icon/Icon.jsx";
+export { IconWrapper } from "./components/Icon/Icon.jsx";
 export { default as Container } from "./components/Layout/Container.jsx";
 export { default as Header } from "./components/Layout/Header.jsx";
 export { default as Main } from "./components/Layout/Main.jsx";

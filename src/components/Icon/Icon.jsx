@@ -783,7 +783,7 @@ const icons = (type, backgroundColor, iconColor) => {
     )
   }[type];
 };
-const Icon = ({
+export const IconWrapper = ({
   type,
   size,
   backgroundColor,
@@ -803,7 +803,7 @@ const Icon = ({
   );
 };
 
-Icon.propTypes = {
+IconWrapper.propTypes = {
   type: PropTypes.string.isRequired,
   className: PropTypes.string,
   size: PropTypes.oneOfType([
@@ -815,10 +815,10 @@ Icon.propTypes = {
   iconColor: PropTypes.string
 };
 
-Icon.defaultProps = {
+IconWrapper.defaultProps = {
   size: "md",
   backgroundColor: "#091440",
   iconColor: "#c4cbd2"
 };
 
-export default React.memo(Icon);
+export default React.memo(IconWrapper);
