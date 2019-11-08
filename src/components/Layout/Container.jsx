@@ -8,16 +8,18 @@ const Container = ({
   style,
   className,
   topBannerHeight,
+  headerHeight,
   singleContent,
   ...props
 }) => {
+  const headerRowHeight = headerHeight ? `${headerHeight}px` : "6rem";
   return (
     <div
       className={classNames(styles.container, className)}
       style={{
         gridTemplateRows: singleContent
           ? `6rem`
-          : `6rem ${topBannerHeight}px 3rem`,
+          : `${headerRowHeight} ${topBannerHeight}px 3rem`,
         ...style
       }}
       {...props}>
@@ -29,6 +31,7 @@ const Container = ({
 Container.propTypes = {
   children: PropTypes.node,
   topBannerHeight: PropTypes.number,
+  headerHeight: PropTypes.number,
   style: PropTypes.object,
   singleContent: PropTypes.bool,
   className: PropTypes.string
