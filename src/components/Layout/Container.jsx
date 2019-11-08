@@ -9,17 +9,21 @@ const Container = ({
   className,
   topBannerHeight,
   headerHeight,
+  gapBetweenBannerAndMain,
   singleContent,
   ...props
 }) => {
   const headerRowHeight = headerHeight ? `${headerHeight}px` : "6rem";
+  const mainAndBannerGapSize = gapBetweenBannerAndMain
+    ? `${gapBetweenBannerAndMain}px`
+    : "3rem";
   return (
     <div
       className={classNames(styles.container, className)}
       style={{
         gridTemplateRows: singleContent
           ? `6rem`
-          : `${headerRowHeight} ${topBannerHeight}px 3rem`,
+          : `${headerRowHeight} ${topBannerHeight}px ${mainAndBannerGapSize}`,
         ...style
       }}
       {...props}>
@@ -32,6 +36,7 @@ Container.propTypes = {
   children: PropTypes.node,
   topBannerHeight: PropTypes.number,
   headerHeight: PropTypes.number,
+  gapBetweenBannerAndMain: PropTypes.number,
   style: PropTypes.object,
   singleContent: PropTypes.bool,
   className: PropTypes.string
