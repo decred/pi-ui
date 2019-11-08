@@ -63,7 +63,7 @@ export function useMediaQuery(queryInput, options = {}) {
         queryList.removeListener(handleMatchesChange);
       });
     };
-  }, queries); // eslint-disable-line react-hooks/exhaustive-deps
+  }, queries);
 
   return multiple ? matches : matches[0];
 }
