@@ -26,7 +26,7 @@ export const idPropTypeCheckForTruncatedComponents = (
   componentName
 ) => {
   if (
-    props["truncate"] === true &&
+    props.truncate === true &&
     (!props[propName] || typeof props[propName] !== "string")
   ) {
     return new Error(
