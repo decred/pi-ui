@@ -8,16 +8,23 @@ const Container = ({
   style,
   className,
   topBannerHeight,
+  headerHeight,
+  bannerAndMainGap,
   singleContent,
   ...props
 }) => {
+  const topBannerRowHeight = topBannerHeight ? `${topBannerHeight}px` : "14rem";
+  const headerRowHeight = headerHeight ? `${headerHeight}px` : "6rem";
+  const mainAndBannerGapSize = bannerAndMainGap
+    ? `${bannerAndMainGap}px`
+    : "3rem";
   return (
     <div
       className={classNames(styles.container, className)}
       style={{
         gridTemplateRows: singleContent
           ? `6rem`
-          : `6rem ${topBannerHeight}px 3rem`,
+          : `${headerRowHeight} ${topBannerRowHeight} ${mainAndBannerGapSize}`,
         ...style
       }}
       {...props}>
@@ -29,13 +36,14 @@ const Container = ({
 Container.propTypes = {
   children: PropTypes.node,
   topBannerHeight: PropTypes.number,
+  headerHeight: PropTypes.number,
+  bannerAndMainGap: PropTypes.number,
   style: PropTypes.object,
   singleContent: PropTypes.bool,
   className: PropTypes.string
 };
 
 Container.defaultProps = {
-  topBannerHeight: 140,
   singleContent: false
 };
 
