@@ -13,7 +13,7 @@ const Container = ({
   singleContent,
   ...props
 }) => {
-  const topBannerRowHeight = topBannerHeight ? `${headerHeight}px` : "14rem";
+  const topBannerRowHeight = topBannerHeight ? `${topBannerHeight}px` : "14rem";
   const headerRowHeight = headerHeight ? `${headerHeight}px` : "6rem";
   const mainAndBannerGapSize = gapBetweenBannerAndMain
     ? `${gapBetweenBannerAndMain}px`
