@@ -13,6 +13,7 @@ const Container = ({
   singleContent,
   ...props
 }) => {
+  const topBannerRowHeight = topBannerHeight ? `${headerHeight}px` : "14rem";
   const headerRowHeight = headerHeight ? `${headerHeight}px` : "6rem";
   const mainAndBannerGapSize = gapBetweenBannerAndMain
     ? `${gapBetweenBannerAndMain}px`
@@ -23,7 +24,7 @@ const Container = ({
       style={{
         gridTemplateRows: singleContent
           ? `6rem`
-          : `${headerRowHeight} ${topBannerHeight}px ${mainAndBannerGapSize}`,
+          : `${headerRowHeight} ${topBannerRowHeight} ${mainAndBannerGapSize}`,
         ...style
       }}
       {...props}>
@@ -43,7 +44,6 @@ Container.propTypes = {
 };
 
 Container.defaultProps = {
-  topBannerHeight: 140,
   singleContent: false
 };
 
