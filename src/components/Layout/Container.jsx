@@ -9,14 +9,14 @@ const Container = ({
   className,
   topBannerHeight,
   headerHeight,
-  gapBetweenBannerAndMain,
+  bannerAndMainGap,
   singleContent,
   ...props
 }) => {
   const topBannerRowHeight = topBannerHeight ? `${topBannerHeight}px` : "14rem";
   const headerRowHeight = headerHeight ? `${headerHeight}px` : "6rem";
-  const mainAndBannerGapSize = gapBetweenBannerAndMain
-    ? `${gapBetweenBannerAndMain}px`
+  const mainAndBannerGapSize = bannerAndMainGap
+    ? `${bannerAndMainGap}px`
     : "3rem";
   return (
     <div
@@ -37,7 +37,7 @@ Container.propTypes = {
   children: PropTypes.node,
   topBannerHeight: PropTypes.number,
   headerHeight: PropTypes.number,
-  gapBetweenBannerAndMain: PropTypes.number,
+  bannerAndMainGap: PropTypes.number,
   style: PropTypes.object,
   singleContent: PropTypes.bool,
   className: PropTypes.string
