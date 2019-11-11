@@ -14,11 +14,11 @@ const Container = ({
   ...props
 }) => {
   const topBannerRowHeight =
-    typeof topBannerHeight !== "undefined" ? `${topBannerHeight}px` : "14rem";
+    topBannerHeight !== null ? `${topBannerHeight}px` : "14rem";
   const headerRowHeight =
-    typeof headerHeight !== "undefined" ? `${headerHeight}px` : "6rem";
+    topBannerHeight !== null ? `${headerHeight}px` : "6rem";
   const mainAndBannerGapSize =
-    typeof bannerAndMainGap !== "undefined" ? `${bannerAndMainGap}px` : "3rem";
+    topBannerHeight !== null ? `${bannerAndMainGap}px` : "3rem";
   return (
     <div
       className={classNames(styles.container, className)}
