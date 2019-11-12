@@ -14,18 +14,19 @@ const Container = ({
   ...props
 }) => {
   const topBannerRowHeight =
-    topBannerHeight !== null ? `${topBannerHeight}px` : "14rem";
+    typeof topBannerHeight !== "undefined" ? `${topBannerHeight}px` : "14rem";
   const headerRowHeight =
-    topBannerHeight !== null ? `${headerHeight}px` : "6rem";
+    typeof headerHeight !== "undefined" ? `${headerHeight}px` : "6rem";
   const mainAndBannerGapSize =
-    topBannerHeight !== null ? `${bannerAndMainGap}px` : "3rem";
+    typeof bannerAndMainGap !== "undefined" ? `${bannerAndMainGap}px` : "3rem";
+  const gridRows = singleContent
+    ? `6rem`
+    : `${headerRowHeight} ${topBannerRowHeight} ${mainAndBannerGapSize}`;
   return (
     <div
       className={classNames(styles.container, className)}
       style={{
-        gridTemplateRows: singleContent
-          ? `6rem`
-          : `${headerRowHeight} ${topBannerRowHeight} ${mainAndBannerGapSize}`,
+        gridTemplateRows: gridRows,
         ...style
       }}
       {...props}>
