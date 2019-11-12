@@ -13,11 +13,12 @@ const Container = ({
   singleContent,
   ...props
 }) => {
-  const topBannerRowHeight = topBannerHeight ? `${topBannerHeight}px` : "14rem";
-  const headerRowHeight = headerHeight ? `${headerHeight}px` : "6rem";
-  const mainAndBannerGapSize = bannerAndMainGap
-    ? `${bannerAndMainGap}px`
-    : "3rem";
+  const topBannerRowHeight =
+    topBannerHeight !== null ? `${topBannerHeight}px` : "14rem";
+  const headerRowHeight =
+    topBannerHeight !== null ? `${headerHeight}px` : "6rem";
+  const mainAndBannerGapSize =
+    topBannerHeight !== null ? `${bannerAndMainGap}px` : "3rem";
   return (
     <div
       className={classNames(styles.container, className)}
