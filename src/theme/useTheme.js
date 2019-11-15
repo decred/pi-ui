@@ -47,10 +47,6 @@ const useTheme = (themeOverrides, fontConfig = defaultFontConfig) => {
   font-style: normal;
 }
 `;
-    document.documentElement.style.setProperty(
-      "--font-family-text",
-      `"${fontConfig.fontFamilyText}"`
-    );
     Object.keys(res).forEach((key) => {
       document.documentElement.style.setProperty(`--${key}`, res[key]);
     });
