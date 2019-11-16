@@ -6,14 +6,7 @@ import SourceSansProLight from "../assets/fonts/source_sans_pro/SourceSansPro-Li
 import SourceSansProRegular from "../assets/fonts/source_sans_pro/SourceSansPro-Regular.ttf";
 import SourceSansProSemiBold from "../assets/fonts/source_sans_pro/SourceSansPro-SemiBold.ttf";
 
-const defaultFontConfig = {
-  fontFamilyText: "Source Sans Pro",
-  regularUrl: SourceSansProRegular,
-  semiBoldUrl: SourceSansProSemiBold,
-  lightUrl: SourceSansProLight
-};
-
-const useTheme = (themeOverrides, fontConfig = defaultFontConfig) => {
+const useTheme = (themeOverrides, fontConfig) => {
   const res = useMemo(
     () =>
       lightTheme && themeOverrides
@@ -21,32 +14,46 @@ const useTheme = (themeOverrides, fontConfig = defaultFontConfig) => {
         : lightTheme || themeOverrides,
     [lightTheme, themeOverrides]
   );
+
+  const fontConfigMem = useMemo(() => {
+    return {
+      fontFamilyText: `Source Sans Pro`,
+      regularUrl: SourceSansProRegular,
+      semiBoldUrl: SourceSansProSemiBold,
+      lightUrl: SourceSansProLight
+    };
+  }, [SourceSansProRegular, SourceSansProSemiBold, SourceSansProLight]);
+
+  fontConfig = fontConfig || fontConfigMem;
   useLayoutEffect(() => {
-    document.documentElement.style = `
+    var newStyle = document.createElement("style");
+    newStyle.appendChild(
+      document.createTextNode(`
 @font-face {
   font-family: ${fontConfig.fontFamilyText};
   src: url(${fontConfig.semiBoldUrl})
-    format("ttf");
-  font-weight: var(--font-weight-semi-bold);
+    format("truetype");
+  font-weight: ${res["font-weight-semi-bold"]};
   font-style: normal;
 }
-
-@font-face {
-  font-family: ${fontConfig.fontFamilyText};
-  src: url(${fontConfig.regularUrl})
-    format("ttf");
-  font-weight: var(--font-weight-regular);
-  font-style: normal;
-}
-
 @font-face {
   font-family: ${fontConfig.fontFamilyText};
   src: url(${fontConfig.lightUrl})
-    format("ttf");
-  font-weight: var(--font-weight-light);
+    format("truetype");
+  font-weight: ${res["font-weight-light"]};
   font-style: normal;
 }
-`;
+@font-face {
+  font-family: ${fontConfig.fontFamilyText};
+  src: url(${fontConfig.regularUrl})
+    format("truetype");
+  font-weight: ${res["font-weight-regular"]};
+  font-style: normal;
+}
+`)
+    );
+    newStyle.type = "text/css";
+    document.head.appendChild(newStyle);
     Object.keys(res).forEach((key) => {
       document.documentElement.style.setProperty(`--${key}`, res[key]);
     });
