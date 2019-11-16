@@ -29,21 +29,21 @@ const applyFonyAssets = (fontConfig, theme) => {
 @font-face {
   font-family: ${fontConfig.fontFamilyText};
   src: url(${fontConfig.semiBoldUrl})
-    format("truetype");
+    format("${fontConfig.format}");
   font-weight: ${theme["font-weight-semi-bold"]};
   font-style: normal;
 }
 @font-face {
   font-family: ${fontConfig.fontFamilyText};
   src: url(${fontConfig.lightUrl})
-    format("truetype");
+    format("${fontConfig.format}");
   font-weight: ${theme["font-weight-light"]};
   font-style: normal;
 }
 @font-face {
   font-family: ${fontConfig.fontFamilyText};
   src: url(${fontConfig.regularUrl})
-    format("truetype");
+    format("${fontConfig.format}");
   font-weight: ${theme["font-weight-regular"]};
   font-style: normal;
 }
