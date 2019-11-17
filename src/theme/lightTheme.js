@@ -24,7 +24,7 @@ const lightTheme = {
   "color-white": "#ffffff",
 
   "color-shadow-light": "rgba(0, 0, 0, 0.2)",
-  "font-family-text": '"Source Sans Pro"',
+  "font-family-text": "",
 
   "text-color": "var(--color-primary-dark)",
   "text-color-light": "var(--color-gray)",
