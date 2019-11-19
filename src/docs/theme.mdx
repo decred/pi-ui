@@ -68,31 +68,4 @@ const Test = () => {
 }
 ```
 
-## Add font assets
-
-You can provide a second parameter to the `useTheme` hook to add font assets
-
-```js
-import React from "react";
-import { defaultLightTheme, useTheme } from "pi-ui";
-
-import TomorrowLight from "../assets/fonts/tomorrow/Tomorrow-Light.ttf";
-import TomorrowRegular from "../assets/fonts/tomorrow/Tomorrow-Regular.ttf";
-import TomorrowSemiBold from "../assets/fonts/tomorrow/Tomorrow-SemiBold.ttf";
-
-const fontConfig = {
-  fontFamilyText: "Tomorrow",
-  regularUrl: TomorrowRegular,
-  semiBoldUrl: TomorrowSemiBold,
-  lightUrl: TomorrowLight,
-  format: "truetype" // .ttf assets => 'truetype'
-};
-
-const App = () => {
-  defaultLightTheme["font-family-text"] = "Tomorrow";
-  useTheme(defaultLightTheme, fontConfig);
-  return (....);
-};
-```
-
 * Note that you **have** to pass a theme to `useTheme` everytime if you are using a custom theme, otherwise it will be set to the `defaultLightTheme`.
