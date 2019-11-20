@@ -15,7 +15,7 @@ const useTheme = (themeOverrides) => {
     Object.keys(theme).forEach((key) => {
       document.documentElement.style.setProperty(`--${key}`, theme[key]);
     });
-  }, [themeOverrides]);
+  }, [theme]);
   return [theme, setTheme];
 };
 

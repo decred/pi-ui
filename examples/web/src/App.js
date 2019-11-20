@@ -18,15 +18,15 @@ const themes = {
 };
 
 const App = () => {
+  const [theme, setTheme] = useTheme(themes.dark);
   const [themeMode, setThemeMode] = useState("dark");
-  const [theme, setTheme] = useTheme(themes[themeMode]);
   const handleToggleTheme = () => {
     if (themeMode === "light") {
       setThemeMode("dark");
-      setTheme(themes[dark]);
+      setTheme(themes.dark);
     } else {
       setThemeMode("light");
-      setTheme(themes[light]);
+      setTheme(themes.light);
     }
   }
   return (
