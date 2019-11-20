@@ -18,10 +18,17 @@ const themes = {
 };
 
 const App = () => {
-  const [theme, setTheme] = useState("dark");
-  const handleToggleTheme = () =>
-    theme === "light" ? setTheme("dark") : setTheme("light");
-  useTheme(themes[theme]);
+  const [themeMode, setThemeMode] = useState("dark");
+  const [theme, setTheme] = useTheme(themes[themeMode]);
+  const handleToggleTheme = () => {
+    if (themeMode === "light") {
+      setThemeMode("dark");
+      setTheme(themes[dark]);
+    } else {
+      setThemeMode("light");
+      setTheme(themes[light]);
+    }
+  }
   return (
     <Container>
       <Header>
