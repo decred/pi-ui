@@ -69,4 +69,33 @@ const Test = () => {
 }
 ```
 
+## Use setTheme property
+
+You can update theme by calling `setTheme` function exposed by `useTheme`hook:
+
+```js
+import React from "react";
+import { useTheme, defaultLightTheme, defaultDarkTheme } from "pi-ui";
+
+const themes = {
+  light: defaultLightTheme,
+  dark: defaultDarkTheme
+};
+
+const App = () => {
+  const [, setTheme] = useTheme(themes.dark);
+  const [themeMode, setThemeMode] = useState("dark");
+  const handleToggleTheme = () => {
+    if (themeMode === "light") {
+      setThemeMode("dark");
+      setTheme(themes.dark);
+    } else {
+      setThemeMode("light");
+      setTheme(themes.light);
+    }
+  }
+  return (...);
+};
+```
+
 * Note that you **have** to pass a theme to `useTheme` everytime if you are using a custom theme, otherwise it will be set to the `defaultLightTheme`.
