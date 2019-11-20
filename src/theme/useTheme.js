@@ -10,6 +10,7 @@ const useTheme = (themeOverrides) => {
         : lightTheme || themeOverrides,
     [lightTheme, themeOverrides]
   );
+
   useLayoutEffect(() => {
     Object.keys(res).forEach((key) => {
       document.documentElement.style.setProperty(`--${key}`, res[key]);
