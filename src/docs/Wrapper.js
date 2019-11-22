@@ -12,7 +12,10 @@ const fontConfig = {
 };
 
 const DoczWrapper = ({ children }) => {
-  useTheme(defaultLightTheme);
+  const [theme, setTheme] = useTheme();
+  if (!theme) {
+    setTheme(defaultLightTheme);
+  }
   useFont(fontConfig);
   return children;
 };

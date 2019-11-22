@@ -13,11 +13,11 @@ import {
 } from "pi-ui";
 
 const App = () => {
+  const [themeMode, setThemeMode] = useState("dark");
   const [theme, setTheme] = useTheme();
   if (!theme) {
     setTheme(defaultDarkTheme);
   }
-  const [themeMode, setThemeMode] = useState("dark");
   const handleToggleTheme = () => {
     if (themeMode === "light") {
       setThemeMode("dark");

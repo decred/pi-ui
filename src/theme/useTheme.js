@@ -2,20 +2,18 @@ import { useMemo, useLayoutEffect, useState } from "react";
 import deepmerge from "deepmerge";
 import lightTheme from "./lightTheme";
 
-const useTheme = (themeOverrides) => {
+const useTheme = () => {
+  const [theme, setTheme] = useState(null);
   const res = useMemo(
     () =>
-      lightTheme && themeOverrides
-        ? deepmerge(lightTheme, themeOverrides)
-        : lightTheme || themeOverrides,
-    [lightTheme, themeOverrides]
+      lightTheme && theme ? deepmerge(lightTheme, theme) : lightTheme || theme,
+    [lightTheme, theme]
   );
-  const [theme, setTheme] = useState(res);
   useLayoutEffect(() => {
-    Object.keys(theme).forEach((key) => {
-      document.documentElement.style.setProperty(`--${key}`, theme[key]);
+    Object.keys(res).forEach((key) => {
+      document.documentElement.style.setProperty(`--${key}`, res[key]);
     });
-  }, [theme]);
+  }, [res]);
   return [theme, setTheme];
 };
 

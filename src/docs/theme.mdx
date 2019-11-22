@@ -31,7 +31,10 @@ import { useTheme } from "pi-ui";
 import customTheme from "./theme";
 
 const App = () => {
-  const [theme, setTheme] = useTheme(customTheme);
+  const [theme, setTheme] = useTheme();
+  if (!theme) {
+    setTheme(customTheme);
+  }
   return (
     // App jsx
   )
@@ -48,27 +51,6 @@ There are two default themes, `defaultLightTheme` and `defaultDarkTheme`. They a
 import { defaultLightTheme, defaultDarkTheme } from "pi-ui";
 ```
 
-## Use theme property
-
-You can use any property from a theme in your code:
-
-```js
-import React from "react";
-import { useTheme, defaultLightTheme } from "pi-ui";
-
-const Test = () => {
-  const [theme, setTheme] = useTheme(defaultLightTheme);
-  /*
-  theme = {
-    "color-primary": "#2970ff",
-    "color-primary-dark": "#091440",
-    "color-primary-light": "#2ed8a3"
-    ...
-  }
-  */
-}
-```
-
 ## Use setTheme property
 
 You can update theme by calling `setTheme` function exposed by `useTheme`hook:
@@ -77,25 +59,21 @@ You can update theme by calling `setTheme` function exposed by `useTheme`hook:
 import React from "react";
 import { useTheme, defaultLightTheme, defaultDarkTheme } from "pi-ui";
 
-const themes = {
-  light: defaultLightTheme,
-  dark: defaultDarkTheme
-};
-
 const App = () => {
-  const [, setTheme] = useTheme(themes.dark);
+  const [theme, setTheme] = useTheme();
+  if (!theme) {
+    setTheme(defaultDarkTheme);
+  }
   const [themeMode, setThemeMode] = useState("dark");
   const handleToggleTheme = () => {
     if (themeMode === "light") {
       setThemeMode("dark");
-      setTheme(themes.dark);
+      setTheme(defaultDarkTheme);
     } else {
       setThemeMode("light");
-      setTheme(themes.light);
+      setTheme(defaultLightTheme);
     }
   }
   return (...);
 };
 ```
-
-* Note that you **have** to pass a theme to `useTheme` everytime if you are using a custom theme, otherwise it will be set to the `defaultLightTheme`.
