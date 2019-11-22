@@ -14,7 +14,7 @@ const useTheme = () => {
       document.documentElement.style.setProperty(`--${key}`, res[key]);
     });
   }, [res]);
-  return [theme, setTheme];
+  return [res, setTheme];
 };
 
 export default useTheme;
