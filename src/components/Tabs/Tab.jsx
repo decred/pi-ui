@@ -21,9 +21,8 @@ const Tab = ({
     e.preventDefault();
     onSelect(tabIndex);
   };
-  const tabSelectedColor = theme
-    ? getThemeProperty(theme, "tab-selected-color")
-    : "#fff";
+  const tabSelectedColor =
+    getThemeProperty(theme, "tab-selected-color") || "#fff";
   const slide = useSpring({
     borderColor: isActive ? tabSelectedColor : "#fff",
     color: isActive ? "#091440" : "#3d5873",
