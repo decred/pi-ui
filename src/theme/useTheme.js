@@ -13,8 +13,11 @@ const useTheme = () => {
     Object.keys(res).forEach((key) => {
       document.documentElement.style.setProperty(`--${key}`, res[key]);
     });
-  }, [res]);
-  return [res, setTheme];
+    if (!theme) {
+      setTheme(res);
+    }
+  }, [res, setTheme, theme]);
+  return [theme, setTheme];
 };
 
 export default useTheme;
