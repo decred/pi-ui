@@ -10,13 +10,12 @@ const useTheme = () => {
     [lightTheme, theme]
   );
   useLayoutEffect(() => {
-    Object.keys(res).forEach((key) => {
-      document.documentElement.style.setProperty(`--${key}`, res[key]);
-    });
-    if (!theme) {
-      setTheme(res);
+    if (theme) {
+      Object.keys(res).forEach((key) => {
+        document.documentElement.style.setProperty(`--${key}`, res[key]);
+      });
     }
-  }, [res, setTheme, theme]);
+  }, [res, theme]);
   return [theme, setTheme];
 };
 
