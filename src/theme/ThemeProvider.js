@@ -1,7 +1,12 @@
-import React, { useState, useLayoutEffect, useMemo } from "react";
+import React, {
+  useState,
+  useLayoutEffect,
+  useMemo,
+  createContext
+} from "react";
 import PropTypes from "prop-types";
 
-export const ThemeContext = React.createContext();
+export const ThemeContext = createContext();
 
 export const ThemeProvider = ({
   themes,
