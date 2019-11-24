@@ -1,6 +1,5 @@
 import { useState, useLayoutEffect } from "react";
 import useTheme from "./useTheme";
-import lightTheme from "./lightTheme";
 
 const useFont = (customFontConfig) => {
   const [fontConfig, setFontConfig] = useState(null);
@@ -15,7 +14,9 @@ const useFont = (customFontConfig) => {
 };
 
 const applyFonyAssets = (fontConfig, theme) => {
-  theme = theme || lightTheme;
+  if (!theme) {
+    return;
+  }
   var newStyle = document.createElement("style");
   newStyle.appendChild(
     document.createTextNode(`
