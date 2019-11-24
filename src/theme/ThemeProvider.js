@@ -13,15 +13,17 @@ export const ThemeProvider = ({
   const currentTheme = useMemo(() => themes[themeName], [themes, themeName]);
   useLayoutEffect(() => {
     if (currentTheme) {
-      const cssVars = themes[themeName];
-      Object.keys(cssVars).forEach((key) => {
-        document.documentElement.style.setProperty(`--${key}`, cssVars[key]);
+      Object.keys(currentTheme).forEach((key) => {
+        document.documentElement.style.setProperty(
+          `--${key}`,
+          currentTheme[key]
+        );
       });
       if (fontConfig) {
         applyFonyAssets(fontConfig, currentTheme);
       }
     }
-  }, [themeName, themes, fontConfig]);
+  }, [currentTheme, fontConfig]);
 
   return (
     <ThemeContext.Provider
