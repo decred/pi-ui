@@ -21,7 +21,7 @@ export const ThemeProvider = ({
         applyFonyAssets(fontConfig, currentTheme);
       }
     }
-  }, [themeName, themes]);
+  }, [themeName, themes, fontConfig]);
 
   return (
     <ThemeContext.Provider
