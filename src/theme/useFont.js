@@ -1,22 +1,21 @@
-import { useState, useLayoutEffect } from "react";
-import useTheme from "./useTheme";
+import { useState, useLayoutEffect, useContext } from "react";
+import { ThemeContext } from "./ThemeProvider";
 
 const useFont = (customFontConfig) => {
   const [fontConfig, setFontConfig] = useState(null);
-  const [theme] = useTheme();
+  const { themes, useThemeName } = useContext(ThemeContext);
+  const [themeName] = useThemeName;
+  const currentTheme = themes && themeName && themes[themeName];
   useLayoutEffect(() => {
-    if (customFontConfig) {
+    if (customFontConfig && currentTheme) {
       setFontConfig(customFontConfig);
-      applyFonyAssets(customFontConfig, theme);
+      applyFonyAssets(customFontConfig, currentTheme);
     }
-  }, [customFontConfig, theme]);
+  }, [customFontConfig, currentTheme]);
   return [fontConfig, setFontConfig];
 };
 
 const applyFonyAssets = (fontConfig, theme) => {
-  if (!theme) {
-    return;
-  }
   var newStyle = document.createElement("style");
   newStyle.appendChild(
     document.createTextNode(`

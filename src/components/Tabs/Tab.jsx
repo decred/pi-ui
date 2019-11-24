@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
-import React from "react";
+import React, { useContext } from "react";
 import { animated, useSpring } from "react-spring";
-import { useTheme, getThemeProperty } from "../../theme";
+import { ThemeContext, getThemeProperty } from "../../theme";
 import { classNames } from "../../utils";
 import styles from "./styles.css";
 
@@ -16,12 +16,14 @@ const Tab = ({
   mode,
   ...props
 }) => {
-  const [theme] = useTheme();
+  const { themes, useThemeName } = useContext(ThemeContext);
+  const [themeName] = useThemeName;
+  const currentTheme = themes[themeName];
   const handleOnClick = (e) => {
     e.preventDefault();
     onSelect(tabIndex);
   };
-  const tabSelectedColor = getThemeProperty(theme, "tab-selected-color");
+  const tabSelectedColor = getThemeProperty(currentTheme, "tab-selected-color");
   const slide = useSpring({
     borderColor: isActive ? tabSelectedColor : "#fff",
     color: isActive ? "#091440" : "#3d5873",
