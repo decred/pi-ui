@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Container,
   Header,
@@ -14,10 +14,10 @@ import {
 
 const App = () => {
   const [themeMode, setThemeMode] = useState("dark");
-  const [theme, setTheme] = useTheme();
-  if (!theme) {
+  const [, setTheme] = useTheme();
+  useEffect(() => {
     setTheme(defaultDarkTheme);
-  }
+  }, []);
   const handleToggleTheme = () => {
     if (themeMode === "light") {
       setThemeMode("dark");

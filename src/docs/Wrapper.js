@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+
 import { useTheme, defaultLightTheme, useFont } from "../index";
 import SourceSansProLight from "../assets/fonts/source-sans-pro/SourceSansPro-Light.ttf";
 import SourceSansProRegular from "../assets/fonts/source-sans-pro/SourceSansPro-Regular.ttf";
@@ -12,10 +14,10 @@ const fontConfig = {
 };
 
 const DoczWrapper = ({ children }) => {
-  const [theme, setTheme] = useTheme();
-  if (!theme) {
+  const [, setTheme] = useTheme();
+  useEffect(() => {
     setTheme(defaultLightTheme);
-  }
+  }, []);
   useFont(fontConfig);
   return children;
 };
