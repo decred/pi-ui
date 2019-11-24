@@ -4,9 +4,6 @@
  * @param {String} key
  */
 export const getThemeProperty = (theme, key) => {
-  // if (!theme) {
-  //   return;
-  // }
   if (!theme[key]) {
     return new Error("Please, provide a valid color key!");
   }
