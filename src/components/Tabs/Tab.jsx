@@ -16,9 +16,7 @@ const Tab = ({
   mode,
   ...props
 }) => {
-  const { themes, useThemeName } = useContext(ThemeContext);
-  const [themeName] = useThemeName;
-  const currentTheme = themes[themeName];
+  const { currentTheme } = useContext(ThemeContext);
   const handleOnClick = (e) => {
     e.preventDefault();
     onSelect(tabIndex);

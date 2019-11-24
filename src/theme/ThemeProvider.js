@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useLayoutEffect, useMemo } from "react";
+import React, { useState, useLayoutEffect, useMemo } from "react";
 import PropTypes from "prop-types";
 
 export const ThemeContext = React.createContext();
@@ -10,10 +10,7 @@ export const ThemeProvider = ({
   children
 }) => {
   const [themeName, setThemeName] = useState(defaultThemeName);
-  const updateTheme = useCallback((newThemeName) => {
-    setThemeName(newThemeName);
-  });
-  const currentTheme = useMemo(() => themes && themeName && themes[themeName]);
+  const currentTheme = useMemo(() => themes[themeName], [themes, themeName]);
   useLayoutEffect(() => {
     if (currentTheme) {
       const cssVars = themes[themeName];
@@ -30,8 +27,7 @@ export const ThemeProvider = ({
     <ThemeContext.Provider
       value={{
         useThemeName: [themeName, setThemeName],
-        themes,
-        updateTheme
+        currentTheme
       }}>
       {children}
     </ThemeContext.Provider>
