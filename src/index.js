@@ -1,33 +1,4 @@
-import SourceSansProLight from "./assets/fonts/source_sans_pro/SourceSansPro-Light.ttf";
-import SourceSansProRegular from "./assets/fonts/source_sans_pro/SourceSansPro-Regular.ttf";
-import SourceSansProSemiBold from "./assets/fonts/source_sans_pro/SourceSansPro-SemiBold.ttf";
 import "./css/base.css";
-
-document.documentElement.style = `
-@font-face {
-  font-family: "Source Sans Pro";
-  src: url(${SourceSansProSemiBold})
-    format("ttf");
-  font-weight: var(--font-weight-semi-bold);
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Source Sans Pro";
-  src: url(${SourceSansProRegular})
-    format("ttf");
-  font-weight: var(--font-weight-regular);
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Source Sans Pro";
-  src: url(${SourceSansProLight})
-    format("ttf");
-  font-weight: var(--font-weight-light);
-  font-style: normal;
-}
-`;
 
 export {
   default as BoxTextInput
