@@ -44,7 +44,12 @@ export const ThemeProvider = ({
 
 ThemeProvider.propTypes = {
   themes: PropTypes.object.isRequired,
-  defaultThemeName: PropTypes.string.isRequired,
+  defaultThemeName: function(props, propName, componentName) {
+    const givenThemes = props.themes;
+    if (!Object.keys(givenThemes).includes(props[propName])) {
+      return new Error(`${propName} must match one of the given themes`);
+    }
+  },
   fontConfig: PropTypes.object,
   children: PropTypes.node
 };
