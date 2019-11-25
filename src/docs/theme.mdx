@@ -62,25 +62,24 @@ There are two default themes, `defaultLightTheme` and `defaultDarkTheme`. They a
 import { defaultLightTheme, defaultDarkTheme } from "pi-ui";
 ```
 
-## Use ThemeConext in deep children
+## UseTheme hook in deep children
 
-`ThemeProvider` exposes two properties `useThemeName` and `currentTheme` which can be used in deep children using React's `useContext` hook.
+`useTheme` exposes three properties `theme`, `themeName`, `setThemeName` which can be used in deep children.
 
 ```js
 import React, { useContext } from "react";
-import { ThemeContext, Button, getThemeProperty } from "pi-ui";
+import { useTheme, Button, getThemeProperty } from "pi-ui";
 
 const DeepChild = () => {
-  const { useThemeName, currentTheme } = useContext(ThemeContext);
-  const [themeMode, setThemeMode] = useThemeName;
+  const { themeName, setThemeName, theme } = useTheme;
 
-  const colorGreen = getThemeProperty(currentTheme, "color-green"); // get theme property 
+  const colorGreen = getThemeProperty(theme, "color-green"); // get theme property 
   
   const handleToggleTheme = () => {
-    if (themeMode === "light") {
-      setThemeMode("dark");
+    if (themeName === "light") {
+      setThemeName("dark");
     } else {
-      setThemeMode("light");
+      setThemeName("light");
     }
   }
 

@@ -2,11 +2,14 @@ import React, {
   useState,
   useLayoutEffect,
   useMemo,
-  createContext
+  createContext,
+  useContext
 } from "react";
 import PropTypes from "prop-types";
 
-export const ThemeContext = createContext();
+const ThemeContext = createContext();
+
+export const useTheme = () => useContext(ThemeContext);
 
 export const ThemeProvider = ({
   themes,
@@ -15,26 +18,24 @@ export const ThemeProvider = ({
   children
 }) => {
   const [themeName, setThemeName] = useState(defaultThemeName);
-  const currentTheme = useMemo(() => themes[themeName], [themes, themeName]);
+  const theme = useMemo(() => themes[themeName], [themes, themeName]);
   useLayoutEffect(() => {
-    if (currentTheme) {
-      Object.keys(currentTheme).forEach((key) => {
-        document.documentElement.style.setProperty(
-          `--${key}`,
-          currentTheme[key]
-        );
+    if (theme) {
+      Object.keys(theme).forEach((key) => {
+        document.documentElement.style.setProperty(`--${key}`, theme[key]);
       });
       if (fontConfig) {
-        applyFonyAssets(fontConfig, currentTheme);
+        applyFontAsset(fontConfig, theme);
       }
     }
-  }, [currentTheme, fontConfig]);
+  }, [theme, fontConfig]);
 
   return (
     <ThemeContext.Provider
       value={{
-        useThemeName: [themeName, setThemeName],
-        currentTheme
+        themeName,
+        setThemeName,
+        theme
       }}>
       {children}
     </ThemeContext.Provider>
@@ -48,7 +49,7 @@ ThemeProvider.propTypes = {
   children: PropTypes.node
 };
 
-const applyFonyAssets = (fontConfig, theme) => {
+const applyFontAsset = (fontConfig, theme) => {
   var newStyle = document.createElement("style");
   newStyle.appendChild(
     document.createTextNode(`

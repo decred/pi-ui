@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import {
   Container,
   Header,
@@ -10,19 +10,18 @@ import {
   defaultLightTheme,
   defaultDarkTheme,
   ThemeProvider,
-  ThemeContext
+  useTheme
 } from "pi-ui";
 
 const ButtonWrapper = () => {
   
-  const { useThemeName } = useContext(ThemeContext);
-  const [themeMode, setThemeMode] = useThemeName;
+  const { themeName, setThemeName } = useTheme();
   
   const handleToggleTheme = () => {
-    if (themeMode === "light") {
-      setThemeMode("dark");
+    if (themeName === "light") {
+      setThemeName("dark");
     } else {
-      setThemeMode("light");
+      setThemeName("light");
     }
   }
 
