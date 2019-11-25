@@ -67,11 +67,11 @@ import { defaultLightTheme, defaultDarkTheme } from "pi-ui";
 `useTheme` exposes three properties `theme`, `themeName`, `setThemeName` which can be used in deep children.
 
 ```js
-import React, { useContext } from "react";
+import React from "react";
 import { useTheme, Button, getThemeProperty } from "pi-ui";
 
 const DeepChild = () => {
-  const { themeName, setThemeName, theme } = useTheme;
+  const { themeName, setThemeName, theme } = useTheme();
 
   const colorGreen = getThemeProperty(theme, "color-green"); // get theme property 
   
