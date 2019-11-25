@@ -20,13 +20,11 @@ export const ThemeProvider = ({
   const [themeName, setThemeName] = useState(defaultThemeName);
   const theme = useMemo(() => themes[themeName], [themes, themeName]);
   useLayoutEffect(() => {
-    if (theme) {
-      Object.keys(theme).forEach((key) => {
-        document.documentElement.style.setProperty(`--${key}`, theme[key]);
-      });
-      if (fontConfig) {
-        applyFontAsset(fontConfig, theme);
-      }
+    Object.keys(theme).forEach((key) => {
+      document.documentElement.style.setProperty(`--${key}`, theme[key]);
+    });
+    if (fontConfig) {
+      applyFontAsset(fontConfig, theme);
     }
   }, [theme, fontConfig]);
 
@@ -44,7 +42,7 @@ export const ThemeProvider = ({
 
 ThemeProvider.propTypes = {
   themes: PropTypes.object.isRequired,
-  defaultThemeName: function(props, propName, componentName) {
+  defaultThemeName: (props, propName) => {
     const givenThemes = props.themes;
     if (!Object.keys(givenThemes).includes(props[propName])) {
       return new Error(`${propName} must match one of the given themes`);
