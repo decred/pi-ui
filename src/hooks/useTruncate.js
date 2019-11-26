@@ -7,7 +7,7 @@ import lineClamp from "clamp-js-main";
  * @param {Object} styles
  * @param {Object} element
  */
-const setStylesOnElement = function(styles, element) {
+const setStylesOnElement = function (styles, element) {
   Object.assign(element.style, styles);
 };
 
@@ -38,21 +38,18 @@ const simpleClamp = (element) => {
  */
 
 const useTruncate = (elementID, truncate, linesBeforeTruncate) => {
-  useLayoutEffect(
-    function handleTruncate() {
-      if (truncate) {
-        const element = document.getElementById(elementID);
-        if (element) {
-          if (linesBeforeTruncate === 1) {
-            simpleClamp(element);
-          } else {
-            lineClamp(element, { clamp: linesBeforeTruncate });
-          }
+  useLayoutEffect(() => {
+    if (truncate) {
+      const element = document.getElementById(elementID);
+      if (element) {
+        if (linesBeforeTruncate === 1) {
+          simpleClamp(element);
+        } else {
+          lineClamp(element, { clamp: linesBeforeTruncate });
         }
       }
-    },
-    [truncate, linesBeforeTruncate]
-  );
+    }
+  }, [truncate, linesBeforeTruncate]);
 };
 
 export default useTruncate;
