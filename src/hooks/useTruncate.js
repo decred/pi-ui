@@ -7,7 +7,7 @@ import lineClamp from "clamp-js-main";
  * @param {Object} styles
  * @param {Object} element
  */
-const setStylesOnElement = function (styles, element) {
+const setStylesOnElement = (styles, element) => {
   Object.assign(element.style, styles);
 };
 
