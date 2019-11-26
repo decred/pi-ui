@@ -1,5 +1,5 @@
 import { useLayoutEffect } from "react";
-import { clamp as lineClamp } from "clamp-js-main";
+import lineClamp from "clamp-js-main";
 
 /**
  * setStylesOnElement merges the provided styles with the target element
@@ -36,7 +36,8 @@ const simpleClamp = (element) => {
  * @param {Boolean} truncate
  * @param {number} linesBeforeTruncate
  */
-export default function useTruncate(elementID, truncate, linesBeforeTruncate) {
+
+const useTruncate = (elementID, truncate, linesBeforeTruncate) => {
   useLayoutEffect(
     function handleTruncate() {
       if (truncate) {
@@ -52,4 +53,6 @@ export default function useTruncate(elementID, truncate, linesBeforeTruncate) {
     },
     [truncate, linesBeforeTruncate]
   );
-}
+};
+
+export default useTruncate;
