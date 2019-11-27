@@ -2,7 +2,6 @@
   position: absolute;
   display: inline-flex;
   align-items: center;
-  flex-direction: row;
   padding: 2rem 3rem 2rem 0;
   z-index: 100;
   border-radius: 5px;
@@ -39,6 +38,5 @@
 .badgeIcon {
   display: inline-flex;
   align-items: center;
-  flex-direction: row;
   padding: 0 1rem 0 2rem;
 }
