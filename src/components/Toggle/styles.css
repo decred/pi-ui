@@ -11,20 +11,20 @@
 
 .circle {
   position: absolute;
-  height: 30px;
-  width: 30px;
+  height: 3rem;
+  width: 3rem;
   border-radius: 50%;
 }
 
 .bar {
-  width: 53px;
-  height: 22px;
-  border-radius: 25px;
-  margin-top: 4px;
+  width: 5.3rem;
+  height: 2.2rem;
+  border-radius: 2.5rem;
+  margin-top: 0.4rem;
   background-color: var(--color-gray-light);
 }
 
 .label {
-  margin-top: 4px;
+  margin-top: 0.4rem;
   margin-left: 0.5rem;
 }
