@@ -1,18 +1,12 @@
 import "./css/base.css";
 
-export {
-  default as BoxTextInput
-} from "./components/BoxTextInput/BoxTextInput.jsx";
+export { default as BoxTextInput } from "./components/BoxTextInput/BoxTextInput.jsx";
 export { default as Button } from "./components/Button/Button.jsx";
 export { default as Card } from "./components/Card/Card.jsx";
 export { default as Checkbox } from "./components/Checkbox/Checkbox.jsx";
-export {
-  default as CopyableText
-} from "./components/CopyableText/CopyableText.jsx";
+export { default as CopyableText } from "./components/CopyableText/CopyableText.jsx";
 export { default as Dropdown } from "./components/Dropdown/Dropdown.jsx";
-export {
-  default as DropdownItem
-} from "./components/Dropdown/DropdownItem.jsx";
+export { default as DropdownItem } from "./components/Dropdown/DropdownItem.jsx";
 export { default as Icon } from "./components/Icon/Icon.jsx";
 export { IconWrapper } from "./components/Icon/Icon.jsx";
 export { default as Container } from "./components/Layout/Container.jsx";
