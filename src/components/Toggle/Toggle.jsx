@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { useTheme, getThemeProperty } from "../../theme";
-import { animated, useSpring } from "react-spring";
+import { animated, useSpring, interpolate } from "react-spring";
 
 import styles from "./styles.css";
 
@@ -9,11 +9,15 @@ const Toggle = ({ onToggle, label }) => {
   const [checked, setChecked] = useState(false);
   const theme = useTheme();
 
-  const { backgroundColor, x } = useSpring({
+  const { backgroundColor, x, borderColor, borderWidth } = useSpring({
     x: checked ? 1 : 0,
     backgroundColor: checked
       ? getThemeProperty(theme, "color-primary")
       : getThemeProperty(theme, "color-white"),
+    borderColor: checked
+      ? getThemeProperty(theme, "color-white")
+      : getThemeProperty(theme, "color-gray-light"),
+    borderWidth: checked ? 0 : 2
   });
 
   const onSwitcClickhHandler = () => {
@@ -33,7 +37,11 @@ const Toggle = ({ onToggle, label }) => {
                 output: [0, 10, 20, 25]
               })
               .interpolate((x) => `translateX(${x}px)`),
-            backgroundColor
+            backgroundColor,
+            border: interpolate(
+              [borderWidth, borderColor],
+              (bw, bc) => `${bw}px solid ${bc}`
+            )
           }}>
           &nbsp;
         </animated.div>
