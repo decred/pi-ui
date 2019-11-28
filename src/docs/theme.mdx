@@ -20,20 +20,35 @@ export default {
 
 ## Use your theme in your application
 
-Pi-ui exposes an `useTheme` hook that accepts a `theme` argument. All CSS properties will be updated accordingly.
-
+Pi-ui exposes a `ThemeProvider` that accepts a `themes` object, `defaultThemeName` as string and `fontConfig` object.
 
 ```js
 import React from "react";
 import { render } from "react-dom";
-import { useTheme } from "pi-ui";
-import theme from "./theme";
+import { ThemeProvider, defaultLightTheme } from "pi-ui";
+
+import customTheme from "./theme";
+import SourceSansProLight from "../assets/fonts/source-sans-pro/SourceSansPro-Light.ttf";
+import SourceSansProRegular from "../assets/fonts/source-sans-pro/SourceSansPro-Regular.ttf";
+import SourceSansProSemiBold from "../assets/fonts/source-sans-pro/SourceSansPro-SemiBold.ttf";
+
+const fontConfig = {
+  fontFamilyText: "Source Sans Pro",
+  regularUrl: SourceSansProRegular,
+  semiBoldUrl: SourceSansProSemiBold,
+  lightUrl: SourceSansProLight,
+  format: "truetype"
+};
 
 const App = () => {
-  useTheme(theme);
   return (
-    // App jsx
-  )
+    <ThemeProvider
+      themes={{ light: defaultLightTheme, customTheme }}
+      defaultThemeName="customTheme"
+      fontConfig={fontConfig}>
+      {children}
+    </ThemeProvider>
+  );
 };
 
 render(<App />, document.getElementById("root"));
@@ -47,25 +62,29 @@ There are two default themes, `defaultLightTheme` and `defaultDarkTheme`. They a
 import { defaultLightTheme, defaultDarkTheme } from "pi-ui";
 ```
 
-## Use theme property
+## UseTheme hook in deep children
 
-You can use any property from a theme in your code:
+`useTheme` exposes three properties `theme`, `themeName`, `setThemeName` which can be used in deep children.
 
 ```js
 import React from "react";
-import { useTheme, defaultLightTheme } from "pi-ui";
+import { useTheme, Button, getThemeProperty } from "pi-ui";
 
-const Test = () => {
-  const theme = useTheme(defaultLightTheme);
-  /*
-  theme = {
-    "color-primary": "#2970ff",
-    "color-primary-dark": "#091440",
-    "color-primary-light": "#2ed8a3"
-    ...
+const DeepChild = () => {
+  const { themeName, setThemeName, theme } = useTheme();
+
+  const colorGreen = getThemeProperty(theme, "color-green"); // get theme property 
+  
+  const handleToggleTheme = () => {
+    if (themeName === "light") {
+      setThemeName("dark");
+    } else {
+      setThemeName("light");
+    }
   }
-  */
-}
-```
 
-* Note that you **have** to pass a theme to `useTheme` everytime if you are using a custom theme, otherwise it will be set to the `defaultLightTheme`.
+  return (
+    <Button onClick={handleToggleTheme}>Toggle theme</Button>
+  )
+};
+```

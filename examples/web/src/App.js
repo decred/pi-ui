@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Container,
   Header,
@@ -9,33 +9,44 @@ import {
   Button,
   defaultLightTheme,
   defaultDarkTheme,
+  ThemeProvider,
   useTheme
 } from "pi-ui";
 
-const themes = {
-  light: defaultLightTheme,
-  dark: defaultDarkTheme
-};
+const ButtonWrapper = () => {
+  
+  const { themeName, setThemeName } = useTheme();
+  
+  const handleToggleTheme = () => {
+    if (themeName === "light") {
+      setThemeName("dark");
+    } else {
+      setThemeName("light");
+    }
+  }
+
+  return (
+    <Button onClick={handleToggleTheme}>Toggle theme</Button>
+  )
+}
 
 const App = () => {
-  const [theme, setTheme] = useState("dark");
-  const handleToggleTheme = () =>
-    theme === "light" ? setTheme("dark") : setTheme("light");
-  useTheme(themes[theme]);
   return (
-    <Container>
-      <Header>
-        <div>Logo</div>
-        <div>User</div>
-      </Header>
-      <TopBanner>
-        <PageDetails>Page Details</PageDetails>
-      </TopBanner>
-      <Sidebar>Sidebar</Sidebar>
-      <Main>
-        <Button onClick={handleToggleTheme}>Toggle theme</Button>
-      </Main>
-    </Container>
+    <ThemeProvider themes={{ dark: defaultDarkTheme, light: defaultLightTheme }} defaultThemeName="dark">
+      <Container>
+        <Header>
+          <div>Logo</div>
+          <div>User</div>
+        </Header>
+        <TopBanner>
+          <PageDetails>Page Details</PageDetails>
+        </TopBanner>
+        <Sidebar>Sidebar</Sidebar>
+        <Main>
+          <ButtonWrapper />
+        </Main>
+      </Container>
+    </ThemeProvider>
   );
 };
 
