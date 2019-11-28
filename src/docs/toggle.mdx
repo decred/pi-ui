@@ -4,6 +4,7 @@ menu: Components
 route: /components/toggle
 ---
 
+import { useState } from "react";
 import { Playground, Props } from "docz";
 import { Toggle } from "../index";
 
@@ -16,9 +17,19 @@ import { Toggle } from "../index";
 
 <Playground>
   {() => {
+      const initialLabel = "Toggle me!";
+      const [label, setLabel] = useState(initialLabel);
+      const onToggleHandler = () => {
+        if (label === initialLabel) {
+          setLabel("I'm on!"); 
+        } else {
+          setLabel(initialLabel);
+        }
+      }
+
       return (
         <>
-        <Toggle label="Test me" />
+          <Toggle onToggle={onToggleHandler} label={label} />
         </>
       );
   }
