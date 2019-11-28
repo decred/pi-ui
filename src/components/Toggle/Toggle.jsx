@@ -7,8 +7,7 @@ import styles from "./styles.css";
 
 const Toggle = ({ onToggle, label }) => {
   const [checked, setChecked] = useState(false);
-  const theme = useTheme();
-
+  const { theme } = useTheme();
   const { backgroundColor, x, borderColor, borderWidth } = useSpring({
     x: checked ? 1 : 0,
     backgroundColor: checked
