@@ -62,7 +62,6 @@
     "babel-jest": "^24.9.0",
     "babel-loader": "^8.0.5",
     "cross-env": "^5.1.4",
-    "deepmerge": "^3.2.0",
     "docz": "^1.2.0",
     "docz-core": "^1.2.0",
     "docz-plugin-css": "^0.11.0",
