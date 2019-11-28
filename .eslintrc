@@ -32,7 +32,8 @@
     "eqeqeq": [
       "error",
       "smart"
-    ]
+    ],
+    "comma-dangle": ["error", "never"]
   },
   "overrides": [
     {
