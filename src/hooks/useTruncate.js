@@ -45,7 +45,9 @@ const useTruncate = (elementID, truncate, linesBeforeTruncate) => {
         if (linesBeforeTruncate === 1) {
           simpleClamp(element);
         } else {
-          lineClamp.clamp(element, { clamp: linesBeforeTruncate });
+          lineClamp.clamp
+            ? lineClamp.clamp(element, { clamp: linesBeforeTruncate })
+            : lineClamp(element, { clamp: linesBeforeTruncate });
         }
       }
     }
