@@ -40,7 +40,6 @@ const Button = ({
 Button.propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
-  type: PropTypes.string,
   style: PropTypes.object,
   onClick: PropTypes.func,
   loading: PropTypes.bool,
@@ -48,6 +47,7 @@ Button.propTypes = {
   icon: PropTypes.bool,
   width: PropTypes.number,
   size: PropTypes.oneOf(["sm", "md", "lg"]),
+  type: PropTypes.oneOf(["button", "submit"]),
   kind: PropTypes.oneOf(["primary", "secondary", "disabled"]),
   noBorder: PropTypes.bool
 };
