@@ -1,12 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { useTheme, getThemeProperty } from "../../theme";
 import { animated, useSpring, interpolate } from "react-spring";
 
 import styles from "./styles.css";
 
-const Toggle = ({ onToggle, label }) => {
-  const [checked, setChecked] = useState(false);
+const Toggle = ({ onToggle, checked }) => {
   const { theme } = useTheme();
   const { backgroundColor, x, borderColor, borderWidth } = useSpring({
     x: checked ? 1 : 0,
@@ -19,13 +18,8 @@ const Toggle = ({ onToggle, label }) => {
     borderWidth: checked ? 0 : 2
   });
 
-  const onSwitcClickhHandler = () => {
-    setChecked(!checked);
-    onToggle && onToggle();
-  };
-
   return (
-    <div className={styles.toggle} onClick={onSwitcClickhHandler}>
+    <div className={styles.toggle} onClick={onToggle}>
       <div className={styles.switch}>
         <animated.div
           className={styles.circle}
@@ -46,14 +40,13 @@ const Toggle = ({ onToggle, label }) => {
         </animated.div>
         <div className={styles.bar}>&nbsp;</div>
       </div>
-      <div className={styles.label}>{label}</div>
     </div>
   );
 };
 
 Toggle.propTypes = {
   onToggle: PropTypes.func,
-  label: PropTypes.string.isRequired
+  checked: PropTypes.bool.isRequired
 };
 
 export default Toggle;

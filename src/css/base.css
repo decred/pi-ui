@@ -24,6 +24,16 @@ a:visited {
   text-decoration: none;
 }
 
+.toggleWrapperExample {
+  display: flex;
+  align-items: center;
+  width: 16rem;
+}
+
+.toggleLabelExample {
+  margin-left: 1rem;
+}
+
 .dropdownCustomArrowExample {
   right: -10px;
   top: 20px;

@@ -7,6 +7,7 @@ route: /components/toggle
 import { useState } from "react";
 import { Playground, Props } from "docz";
 import { Toggle } from "../index";
+import styles from "../css/base.css";
 
 # Toggle Switch
 
@@ -19,17 +20,22 @@ import { Toggle } from "../index";
   {() => {
       const initialLabel = "Toggle me!";
       const [label, setLabel] = useState(initialLabel);
+      const [checked, setChecked] = useState(false);
       const onToggleHandler = () => {
         if (label === initialLabel) {
           setLabel("I'm on!"); 
+          setChecked(true);
         } else {
           setLabel(initialLabel);
+          setChecked(false);
         }
       }
 
       return (
         <>
-          <Toggle onToggle={onToggleHandler} label={label} />
+          <div className={styles.toggleWrapperExample}>
+            <Toggle onToggle={onToggleHandler} checked={checked} /> <div className={styles.toggleLabelExample}>{label}</div>
+          </div>
         </>
       );
   }
