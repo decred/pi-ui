@@ -16,9 +16,11 @@ const Button = ({
   fullWidth,
   noBorder,
   width,
+  type,
   ...props
 }) => (
   <button
+    type={type}
     className={classNames(
       styles[kind],
       styles[size],
@@ -38,6 +40,7 @@ const Button = ({
 Button.propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
+  type: PropTypes.string,
   style: PropTypes.object,
   onClick: PropTypes.func,
   loading: PropTypes.bool,
@@ -52,6 +55,7 @@ Button.propTypes = {
 Button.defaultProps = {
   kind: "primary",
   size: "md",
+  type: "button",
   icon: false,
   loading: false,
   fullWidth: false,
