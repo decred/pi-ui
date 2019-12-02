@@ -19,27 +19,25 @@ const Toggle = ({ onToggle, checked }) => {
   });
 
   return (
-    <div className={styles.toggle} onClick={onToggle}>
-      <div className={styles.switch}>
-        <animated.div
-          className={styles.circle}
-          style={{
-            transform: x
-              .interpolate({
-                range: [0, 0.4, 0.8, 1],
-                output: [0, 10, 20, 25]
-              })
-              .interpolate((x) => `translateX(${x}px)`),
-            backgroundColor,
-            border: interpolate(
-              [borderWidth, borderColor],
-              (bw, bc) => `${bw}px solid ${bc}`
-            )
-          }}>
-          &nbsp;
-        </animated.div>
-        <div className={styles.bar}>&nbsp;</div>
-      </div>
+    <div className={styles.switch} onClick={onToggle}>
+      <animated.div
+        className={styles.circle}
+        style={{
+          transform: x
+            .interpolate({
+              range: [0, 0.4, 0.8, 1],
+              output: [0, 10, 20, 25]
+            })
+            .interpolate((x) => `translateX(${x}px)`),
+          backgroundColor,
+          border: interpolate(
+            [borderWidth, borderColor],
+            (bw, bc) => `${bw}px solid ${bc}`
+          )
+        }}>
+        &nbsp;
+      </animated.div>
+      <div className={styles.bar}>&nbsp;</div>
     </div>
   );
 };

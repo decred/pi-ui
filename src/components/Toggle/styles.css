@@ -1,9 +1,3 @@
-.toggle {
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-}
-
 .switch {
   position: relative;
 }
@@ -21,9 +15,4 @@
   border-radius: 2.5rem;
   margin-top: 0.4rem;
   background-color: var(--color-gray-light);
-}
-
-.label {
-  margin-top: 0.4rem;
-  margin-left: 1rem;
 }
