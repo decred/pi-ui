@@ -62,6 +62,7 @@ const applyFontAsset = (fontConfig, theme) => {
     format("${fontConfig.format}");
   font-weight: ${theme["font-weight-semi-bold"]};
   font-style: normal;
+  font-display: swap;
 }
 @font-face {
   font-family: ${fontConfig.fontFamilyText};
@@ -69,6 +70,7 @@ const applyFontAsset = (fontConfig, theme) => {
     format("${fontConfig.format}");
   font-weight: ${theme["font-weight-light"]};
   font-style: normal;
+  font-display: swap;
 }
 @font-face {
   font-family: ${fontConfig.fontFamilyText};
@@ -76,6 +78,7 @@ const applyFontAsset = (fontConfig, theme) => {
     format("${fontConfig.format}");
   font-weight: ${theme["font-weight-regular"]};
   font-style: normal;
+  font-display: swap;
 }
 `)
   );
