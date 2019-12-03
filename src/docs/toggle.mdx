@@ -1,0 +1,45 @@
+---
+name: Toggle
+menu: Components
+route: /components/toggle
+---
+
+import { useState } from "react";
+import { Playground, Props } from "docz";
+import { Toggle } from "../index";
+import styles from "../css/base.css";
+
+# Toggle Switch
+
+## Properties
+<Props of={Toggle} />
+
+## Usage
+
+<Playground>
+  {() => {
+      const initialLabel = "Toggle me!";
+      const [label, setLabel] = useState(initialLabel);
+      const [toggled, setToggled] = useState(false);
+      const onToggleHandler = () => {
+        if (label === initialLabel) {
+          setLabel("I'm on!"); 
+          setToggled(true);
+        } else {
+          setLabel(initialLabel);
+          setToggled(false);
+        }
+      }
+
+      return (
+        <>
+          <div className={styles.toggleWrapperExample}>
+            <Toggle onToggle={onToggleHandler} toggled={toggled} /> 
+            <div className={styles.toggleLabelExample}>{label}</div>
+          </div>
+        </>
+      );
+  }
+    
+  }
+</Playground>

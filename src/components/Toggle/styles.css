@@ -1,0 +1,19 @@
+.switch {
+  position: relative;
+  cursor: pointer;
+}
+
+.circle {
+  position: absolute;
+  height: 3rem;
+  width: 3rem;
+  border-radius: 50%;
+}
+
+.bar {
+  width: 5.3rem;
+  height: 2.2rem;
+  border-radius: 2.5rem;
+  margin-top: 0.4rem;
+  background-color: var(--color-gray-light);
+}

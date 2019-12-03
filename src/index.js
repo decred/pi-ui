@@ -37,6 +37,7 @@ export { default as H6 } from "./components/Typography/H6.jsx";
 export { default as P } from "./components/Typography/P.jsx";
 export { default as Text } from "./components/Typography/Text/Text.jsx";
 export { default as Badge } from "./components/Badge/Badge.jsx";
+export { default as Toggle } from "./components/Toggle/Toggle.jsx";
 export * from "./hooks";
 export * from "./theme";
 export * from "./utils";
