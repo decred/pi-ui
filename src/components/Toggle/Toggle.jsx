@@ -5,17 +5,17 @@ import { animated, useSpring, interpolate } from "react-spring";
 
 import styles from "./styles.css";
 
-const Toggle = ({ onToggle, checked }) => {
+const Toggle = ({ onToggle, toggled }) => {
   const { theme } = useTheme();
   const { backgroundColor, x, borderColor, borderWidth } = useSpring({
-    x: checked ? 1 : 0,
-    backgroundColor: checked
+    x: toggled ? 1 : 0,
+    backgroundColor: toggled
       ? getThemeProperty(theme, "color-primary")
       : getThemeProperty(theme, "color-white"),
-    borderColor: checked
+    borderColor: toggled
       ? getThemeProperty(theme, "color-white")
       : getThemeProperty(theme, "color-gray-light"),
-    borderWidth: checked ? 0 : 2
+    borderWidth: toggled ? 0 : 2
   });
 
   return (
@@ -44,7 +44,7 @@ const Toggle = ({ onToggle, checked }) => {
 
 Toggle.propTypes = {
   onToggle: PropTypes.func,
-  checked: PropTypes.bool.isRequired
+  toggled: PropTypes.bool.isRequired
 };
 
 export default Toggle;
