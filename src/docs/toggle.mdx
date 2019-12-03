@@ -20,21 +20,21 @@ import styles from "../css/base.css";
   {() => {
       const initialLabel = "Toggle me!";
       const [label, setLabel] = useState(initialLabel);
-      const [checked, setChecked] = useState(false);
+      const [toggled, setToggled] = useState(false);
       const onToggleHandler = () => {
         if (label === initialLabel) {
           setLabel("I'm on!"); 
-          setChecked(true);
+          setToggled(true);
         } else {
           setLabel(initialLabel);
-          setChecked(false);
+          setToggled(false);
         }
       }
 
       return (
         <>
           <div className={styles.toggleWrapperExample}>
-            <Toggle onToggle={onToggleHandler} checked={checked} /> 
+            <Toggle onToggle={onToggleHandler} toggled={toggled} /> 
             <div className={styles.toggleLabelExample}>{label}</div>
           </div>
         </>
