@@ -80,6 +80,7 @@ const lightTheme = {
   "header-border-color": "var(--color-gray-light)",
   "topbanner-color": "var(--color-white)",
   "main-color": "var(--color-white)",
+  "text-heading-color": "var(--color-gray-dark)",
 
   /** GRID */
   "grid-center-padding": `minmax(
