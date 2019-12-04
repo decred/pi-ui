@@ -81,6 +81,8 @@ const lightTheme = {
   "topbanner-color": "var(--color-white)",
   "main-color": "var(--color-white)",
   "text-heading-color": "var(--color-gray-dark)",
+  "text-input-color": "var(--color-gray)",
+  "input-border-color": "var(--color-gray-lighter)",
 
   /** GRID */
   "grid-center-padding": `minmax(

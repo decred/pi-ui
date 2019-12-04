@@ -8,9 +8,11 @@ const darkTheme = {
   "header-color": "#1F325F",
   "topbanner-color": "#27283d",
   "main-color": "#27283d",
-  "text-color": "var(--color-gray-light)",
+  "text-color": "#99C1E3",
   "text-color-light": "var(--color-white)",
-  "text-heading-color": "#B7DEEE"
+  "text-heading-color": "#B7DEEE",
+  "text-input-color": "#608ACE",
+  "input-border-color": "var(--text-input-color)"
 };
 
 export default darkTheme;
