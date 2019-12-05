@@ -12,7 +12,9 @@ const darkTheme = {
   "text-color-light": "var(--color-white)",
   "text-heading-color": "#B7DEEE",
   "text-input-color": "#608ACE",
-  "input-border-color": "var(--text-input-color)"
+  "input-border-color": "var(--text-input-color)",
+  "active-nav-border-color": "var(--color-primary-light)",
+  "separator-color": "var(--container-color)"
 };
 
 export default darkTheme;
