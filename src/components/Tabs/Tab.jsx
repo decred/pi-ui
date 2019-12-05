@@ -21,10 +21,13 @@ const Tab = ({
     e.preventDefault();
     onSelect(tabIndex);
   };
-  const tabSelectedColor = getThemeProperty(theme, "tab-selected-color");
+  const activeTabColor = getThemeProperty(theme, "active-tab-color");
+  const defaultBorderColor = getThemeProperty(theme, "topbanner-color");
+  const activeTabTextColor = getThemeProperty(theme, "text-active-tab-color");
+  const defaultTabTextColor = getThemeProperty(theme, "text-tab-color");
   const slide = useSpring({
-    borderColor: isActive ? tabSelectedColor : "#fff",
-    color: isActive ? "#091440" : "#3d5873",
+    borderColor: isActive ? activeTabColor : defaultBorderColor,
+    color: isActive ? activeTabTextColor : defaultTabTextColor,
     duration: 350
   });
 

@@ -27,7 +27,6 @@ const lightTheme = {
 
   "text-color": "var(--color-primary-dark)",
   "text-color-light": "var(--color-gray)",
-  "tab-selected-color": "var(--color-primary-light)",
   "font-size-xxxlarge": "2.8rem",
   "font-size-xxlarge": "2.4rem",
   "font-size-xlarge": "2.0rem",
@@ -85,6 +84,9 @@ const lightTheme = {
   "input-border-color": "var(--color-gray-lighter)",
   "active-nav-border-color": "var(--color-yellow)",
   "separator-color": "var(--color-gray-lighter)",
+  "active-tab-color": "var(--color-primary-light)",
+  "text-tab-color": "#3d5873",
+  "text-active-tab-color": "#091440",
 
   /** GRID */
   "grid-center-padding": `minmax(
