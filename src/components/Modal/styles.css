@@ -27,7 +27,7 @@
   max-height: 70vh;
   padding: 2.5rem 4rem 3rem 4rem;
   position: relative;
-  background: var(--color-white);
+  background: var(--card-background);
   transition: transform 0.5s;
   transform: scale(0.3);
   overflow-y: auto;
