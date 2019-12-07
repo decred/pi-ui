@@ -17,6 +17,7 @@ const Link = React.forwardRef(
   (
     {
       gray,
+      dark,
       className,
       customComponent,
       children,
@@ -33,6 +34,7 @@ const Link = React.forwardRef(
         className={classNames(
           styles.link,
           gray && styles.gray,
+          dark && styles.dark,
           noHoverEffect && styles.noHover,
           truncate && styles.truncate,
           className
@@ -48,6 +50,7 @@ Link.propTypes = {
   customComponent: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
   children: PropTypes.node,
   gray: PropTypes.bool,
+  dark: PropTypes.bool,
   className: PropTypes.string,
   noHoverEffect: PropTypes.bool,
   truncate: PropTypes.bool
