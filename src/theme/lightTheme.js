@@ -128,7 +128,11 @@ const lightTheme = {
   "tab-count-background": "var(--color-gray-lighter)",
 
   /** Button */
-  "btn-color": "var(--color-primary)"
+  "btn-color": "var(--color-primary)",
+
+  /** Icon */
+  "icon-color": "#c4cbd2",
+  "icon-background-color": "#091440"
 };
 
 export default lightTheme;

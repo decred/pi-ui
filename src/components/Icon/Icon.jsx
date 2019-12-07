@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { useTheme, getThemeProperty } from "../../theme";
 
 const sizes = {
   sm: "7",
@@ -791,6 +792,10 @@ export const IconWrapper = ({
   className,
   onClick
 }) => {
+  const { theme } = useTheme();
+  const defaultIconColor = iconColor || getThemeProperty(theme, "icon-color");
+  const defaultIconBgColor =
+    backgroundColor || getThemeProperty(theme, "icon-background-color");
   return (
     <svg
       onClick={onClick}
@@ -798,7 +803,7 @@ export const IconWrapper = ({
       width={typeof size === "string" ? sizes[size] : size}
       className={className}
       height={sizes[size]}>
-      {icons(type, backgroundColor, iconColor)}
+      {icons(type, defaultIconBgColor, defaultIconColor)}
     </svg>
   );
 };
@@ -816,9 +821,7 @@ IconWrapper.propTypes = {
 };
 
 IconWrapper.defaultProps = {
-  size: "md",
-  backgroundColor: "#091440",
-  iconColor: "#c4cbd2"
+  size: "md"
 };
 
 export default React.memo(IconWrapper);

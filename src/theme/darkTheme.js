@@ -20,7 +20,8 @@ const darkTheme = {
   "tab-count-background": "#2F4D8C",
   "text-heading2-color": "var(--text-heading-color)",
   "color-primary-dark": "#7DA7D9",
-  "dark-icon-color": "#36579E"
+  "icon-color": "#36579E",
+  "icon-background-color": "var(--text-color)"
 };
 
 export default darkTheme;
