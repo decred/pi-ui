@@ -80,6 +80,7 @@ const lightTheme = {
   "topbanner-color": "var(--color-white)",
   "main-color": "var(--color-white)",
   "text-heading-color": "var(--color-gray-dark)",
+  "text-heading2-color": "var(--color-primary-dark)",
   "text-input-color": "var(--color-gray)",
   "input-border-color": "var(--color-gray-lighter)",
   "active-nav-border-color": "var(--color-yellow)",

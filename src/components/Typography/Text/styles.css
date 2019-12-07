@@ -86,6 +86,10 @@
   color: var(--color-orange);
 }
 
+.colorSecondaryDark {
+  color: var(--color-secondary-dark);
+}
+
 .bgColorBlueLighter {
   padding: 0.4rem 1rem;
   border-radius: 0.5rem;

@@ -32,6 +32,7 @@ const COLOR_MAP = {
   primary: styles.colorPrimary,
   primaryDark: styles.colorPrimaryDark,
   primaryLight: styles.colorPrimaryLight,
+  secondaryDark: styles.colorSecondaryDark,
   gray: styles.colorGray,
   grayDark: styles.colorGrayDark,
   green: styles.colorGreen,
