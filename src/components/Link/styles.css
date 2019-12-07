@@ -8,7 +8,7 @@
 }
 
 .dark {
-  color: var(--color-secondary-dark);
+  color: var(--color-primary-dark);
 }
 
 .link:hover {

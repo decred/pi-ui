@@ -19,7 +19,8 @@ const darkTheme = {
   "text-active-tab-color": "#E9F8FE",
   "tab-count-background": "#2F4D8C",
   "text-heading2-color": "var(--text-heading-color)",
-  "color-secondary-dark": "#7DA7D9"
+  "color-primary-dark": "#7DA7D9",
+  "dark-icon-color": "#36579E"
 };
 
 export default darkTheme;

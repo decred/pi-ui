@@ -62,10 +62,6 @@
   color: var(--color-primary-dark);
 }
 
-.colorPrimaryLight {
-  color: var(--color-primary-light);
-}
-
 .colorGray {
   color: var(--color-gray);
 }
@@ -84,10 +80,6 @@
 
 .colorOrange {
   color: var(--color-orange);
-}
-
-.colorSecondaryDark {
-  color: var(--color-secondary-dark);
 }
 
 .bgColorBlueLighter {
