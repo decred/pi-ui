@@ -107,6 +107,7 @@ const lightTheme = {
 
   /** Card */
   "card-background": "var(--color-white)",
+  "dimmed-card-background": "var(--color-gray-lighter)",
 
   /** Message */
   "error-message-background": "var(--color-orange-lighter)",

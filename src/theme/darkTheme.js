@@ -5,6 +5,7 @@ const darkTheme = {
   "container-color": "#1B2B54",
   "header-border-color": "#1d1d2f",
   "card-background": "#223767",
+  "dimmed-card-background": "#1F2F5A",
   "header-color": "#1F325F",
   "topbanner-color": "var(--card-background)",
   "main-color": "#27283d",
