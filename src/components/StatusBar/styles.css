@@ -31,6 +31,7 @@
 .legendLine {
   display: flex;
   align-items: center;
+  color: var(--text-active-tab-color);
 }
 
 .legendLine:not(:last-child) {
@@ -81,6 +82,10 @@
   width: 2px;
   cursor: pointer;
   background-color: var(--color-gray-light);
+}
+
+.marker.markerDark {
+  background-color: var(--color-primary-dark);
 }
 
 .markerTooltip {
