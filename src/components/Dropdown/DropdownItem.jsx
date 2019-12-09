@@ -17,7 +17,7 @@ const DropdownItem = ({
   return (
     <li
       onClick={handleClick}
-      className={classNames(styles.dropdownItem)}
+      className={classNames(styles.dropdownItem, className)}
       {...props}>
       {children}
     </li>

@@ -88,7 +88,7 @@ BoxTextInput.propTypes = {
   error: PropTypes.string,
   rounded: PropTypes.bool,
   searchInput: PropTypes.bool,
-  value: PropTypes.string,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   onChange: PropTypes.func,
   className: PropTypes.string,
   inputClassName: PropTypes.string
