@@ -22,7 +22,8 @@ const darkTheme = {
   "text-heading2-color": "var(--text-heading-color)",
   "color-primary-dark": "#7DA7D9",
   "icon-color": "#36579E",
-  "icon-background-color": "var(--text-color)"
+  "icon-background-color": "var(--text-color)",
+  "text-secondary-color": "var(--color-primary-dark)"
 };
 
 export default darkTheme;

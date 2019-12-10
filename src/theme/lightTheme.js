@@ -82,6 +82,7 @@ const lightTheme = {
   "text-heading-color": "var(--color-gray-dark)",
   "text-heading2-color": "var(--color-primary-dark)",
   "text-input-color": "var(--color-gray)",
+  "text-secondary-color": "var(--color-gray)",
   "input-border-color": "var(--color-gray-lighter)",
   "active-nav-border-color": "var(--color-yellow)",
   "separator-color": "var(--color-gray-lighter)",
