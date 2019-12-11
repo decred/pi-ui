@@ -42,6 +42,10 @@
   position: relative;
 }
 
+.boxtextinputWrapper input {
+  color: var(--text-color);
+}
+
 .boxtextinputButton {
   cursor: pointer;
   border: 0;

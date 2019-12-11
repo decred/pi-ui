@@ -32,7 +32,9 @@ const darkTheme = {
   "icon-background-color": "var(--text-color)",
 
   "table-header-background": "var(--dimmed-card-background)",
-  "table-cell-border-color": "var(--separator-color)"
+  "table-cell-border-color": "var(--separator-color)",
+
+  "info-message-background": "#152042"
 };
 
 export default darkTheme;

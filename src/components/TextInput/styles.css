@@ -7,6 +7,7 @@
   font-size: var(--font-size-normal);
   transition: all 0.25s;
   line-height: var(--spacing-2);
+  color: var(--text-color);
 }
 
 .textinputWrapper {
