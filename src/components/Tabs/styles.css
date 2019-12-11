@@ -2,7 +2,6 @@
   display: flex;
   align-items: center;
   font-size: var(--font-size-normal);
-  color: var(--tab-font-color);
   cursor: pointer;
   white-space: nowrap;
 }

@@ -86,9 +86,6 @@ const lightTheme = {
   "input-border-color": "var(--color-gray-lighter)",
   "active-nav-border-color": "var(--color-yellow)",
   "separator-color": "var(--color-gray-lighter)",
-  "active-tab-color": "var(--color-primary-light)",
-  "text-tab-color": "#3d5873",
-  "text-active-tab-color": "#091440",
 
   /** GRID */
   "grid-center-padding": `minmax(
@@ -123,11 +120,13 @@ const lightTheme = {
   "blocked-message-color": "var(--color-orange-alt)",
 
   /** Tabs */
-  "tab-font-color": "var(--color-gray-dark)",
   "tab-hover-color": "var(--color-primary-dark)",
   "tab-active-underline-color": "var(--color-yellow)",
   "tab-active-font-color": "var(--color-primary-dark)",
   "tab-count-background": "var(--color-gray-lighter)",
+  "tab-active-color": "var(--color-primary-light)",
+  "tab-text-color": "#3d5873",
+  "tab-text-active-color": "#091440",
 
   /** Button */
   "btn-color": "var(--color-primary)",

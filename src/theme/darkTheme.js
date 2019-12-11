@@ -16,14 +16,15 @@ const darkTheme = {
   "input-border-color": "var(--text-input-color)",
   "active-nav-border-color": "var(--color-primary-light)",
   "separator-color": "var(--container-color)",
-  "text-tab-color": "#6F98D3",
-  "text-active-tab-color": "#E9F8FE",
+  "tab-text-color": "#6F98D3",
+  "tab-text-active-color": "#E9F8FE",
   "tab-count-background": "#2F4D8C",
   "text-heading2-color": "var(--text-heading-color)",
   "color-primary-dark": "#7DA7D9",
   "icon-color": "#36579E",
   "icon-background-color": "var(--text-color)",
-  "text-secondary-color": "var(--color-primary-dark)"
+  "text-secondary-color": "var(--color-primary-dark)",
+  "tab-hover-color": "#B7DEEE"
 };
 
 export default darkTheme;

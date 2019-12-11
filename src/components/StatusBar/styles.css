@@ -31,7 +31,7 @@
 .legendLine {
   display: flex;
   align-items: center;
-  color: var(--text-active-tab-color);
+  color: var(--tab-text-active-color);
 }
 
 .legendLine:not(:last-child) {
