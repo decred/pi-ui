@@ -133,7 +133,11 @@ const lightTheme = {
 
   /** Icon */
   "icon-color": "#c4cbd2",
-  "icon-background-color": "#091440"
+  "icon-background-color": "#091440",
+
+  /** Table */
+  "table-header-background": "var(--color-gray-lightest)",
+  "table-cell-border-color": "var(--color-gray-lightest)"
 };
 
 export default lightTheme;
