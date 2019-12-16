@@ -7,6 +7,10 @@
   color: var(--color-gray);
 }
 
+.dark {
+  color: var(--color-primary-dark);
+}
+
 .link:hover {
   text-decoration: underline;
 }

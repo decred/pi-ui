@@ -56,11 +56,11 @@
 .tableBodyCell {
   composes: tableCell;
   height: 5rem;
-  border-bottom: 0.1rem solid var(--color-gray-lightest);
+  border-bottom: 0.1rem solid var(--table-cell-border-color);
 }
 
 .tableHead {
-  background-color: var(--color-gray-lightest);
+  background-color: var(--table-header-background);
 }
 
 @media screen and (max-width: 768px) {

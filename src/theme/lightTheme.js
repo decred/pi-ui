@@ -27,7 +27,6 @@ const lightTheme = {
 
   "text-color": "var(--color-primary-dark)",
   "text-color-light": "var(--color-gray)",
-  "tab-selected-color": "var(--color-primary-light)",
   "font-size-xxxlarge": "2.8rem",
   "font-size-xxlarge": "2.4rem",
   "font-size-xlarge": "2.0rem",
@@ -80,6 +79,13 @@ const lightTheme = {
   "header-border-color": "var(--color-gray-light)",
   "topbanner-color": "var(--color-white)",
   "main-color": "var(--color-white)",
+  "text-heading-color": "var(--color-gray-dark)",
+  "text-heading2-color": "var(--color-primary-dark)",
+  "text-input-color": "var(--color-gray)",
+  "text-secondary-color": "var(--color-gray)",
+  "input-border-color": "var(--color-gray-lighter)",
+  "active-nav-border-color": "var(--color-yellow)",
+  "separator-color": "var(--color-gray-lighter)",
 
   /** GRID */
   "grid-center-padding": `minmax(
@@ -99,6 +105,7 @@ const lightTheme = {
 
   /** Card */
   "card-background": "var(--color-white)",
+  "dimmed-card-background": "var(--color-gray-lighter)",
 
   /** Message */
   "error-message-background": "var(--color-orange-lighter)",
@@ -113,14 +120,24 @@ const lightTheme = {
   "blocked-message-color": "var(--color-orange-alt)",
 
   /** Tabs */
-  "tab-font-color": "var(--color-gray-dark)",
   "tab-hover-color": "var(--color-primary-dark)",
   "tab-active-underline-color": "var(--color-yellow)",
   "tab-active-font-color": "var(--color-primary-dark)",
   "tab-count-background": "var(--color-gray-lighter)",
+  "tab-active-color": "var(--color-primary-light)",
+  "tab-text-color": "#3d5873",
+  "tab-text-active-color": "#091440",
 
   /** Button */
-  "btn-color": "var(--color-primary)"
+  "btn-color": "var(--color-primary)",
+
+  /** Icon */
+  "icon-color": "#c4cbd2",
+  "icon-background-color": "#091440",
+
+  /** Table */
+  "table-header-background": "var(--color-gray-lightest)",
+  "table-cell-border-color": "var(--color-gray-lightest)"
 };
 
 export default lightTheme;

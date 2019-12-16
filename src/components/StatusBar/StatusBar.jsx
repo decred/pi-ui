@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import styles from "./styles.css";
 import { classNames } from "../../utils";
+import { useTheme } from "../../theme";
 import Tooltip from "../Tooltip/Tooltip.jsx";
 
 const StatusBar = ({
@@ -28,6 +29,9 @@ const StatusBar = ({
       widthPercentage
     };
   });
+
+  const { themeName } = useTheme();
+  const isDarkTheme = themeName === "dark";
 
   const createInfoComp = (props) =>
     renderStatusInfoComponent ? (
@@ -81,7 +85,12 @@ const StatusBar = ({
               content={markerTooltipText || markerPosition}
               className={styles.markerTooltip}
               contentClassName={markerTooltipClassName}>
-              <div className={styles.marker} />
+              <div
+                className={classNames(
+                  styles.marker,
+                  isDarkTheme && styles.markerDark
+                )}
+              />
             </Tooltip>
           </div>
         )}
