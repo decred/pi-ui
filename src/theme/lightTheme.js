@@ -128,9 +128,14 @@ const lightTheme = {
   "tab-text-color": "#3d5873",
   "tab-text-active-color": "#091440",
 
-  /** Button */
-  "btn-color": "var(--color-primary)",
+  /** Comments */
+  "comment-like-color": "var(--color-gray)",
+  "comment-like-color-active": "var(--color-primary-dark)",
 
+  /** Button */
+  "btn-color": "var(--color-white)",
+  "btn-background-color": "var(--color-primary)",
+  
   /** Icon */
   "icon-color": "#c4cbd2",
   "icon-background-color": "#091440",

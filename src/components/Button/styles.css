@@ -36,9 +36,9 @@
 
 .primary {
   composes: btn;
-  color: var(--color-white);
-  background-color: var(--btn-color);
-  border: 1px solid var(--btn-color);
+  color: var(--btn-color);
+  background-color: var(--btn-background-color);
+  border: 1px solid var(--btn-background-color);
 }
 
 .secondary {

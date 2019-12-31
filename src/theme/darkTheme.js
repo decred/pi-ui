@@ -12,9 +12,14 @@ const darkTheme = {
   "input-border-color": "var(--text-input-color)",
   "active-nav-border-color": "var(--color-primary-light)",
   "separator-color": "var(--container-color)",
-
   "card-background": "#223767",
   "dimmed-card-background": "#1F2F5A",
+
+  "btn-color": "#152042",
+  "btn-background-color": "#1F325F",
+
+  "comment-like-color": "#6F98D3",
+  "comment-like-color-active": "#B7DEEE",
 
   "text-color": "#99C1E3",
   "text-color-light": "var(--color-white)",
