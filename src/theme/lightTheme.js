@@ -120,7 +120,6 @@ const lightTheme = {
   "blocked-message-color": "var(--color-orange-alt)",
 
   /** Tabs */
-  "tab-hover-color": "var(--color-primary-dark)",
   "tab-active-underline-color": "var(--color-yellow)",
   "tab-active-font-color": "var(--color-primary-dark)",
   "tab-count-background": "var(--color-gray-lighter)",
@@ -148,6 +147,7 @@ const lightTheme = {
   "toggle-bar-color": "var(--color-gray-light)",
 
   /** Dropdown */
+  "dropdown-item-hover-color": "var(--color-primary-dark)",
   "dropdown-arrow-color": "var(--color-gray)"
 };
 

@@ -31,7 +31,6 @@ const darkTheme = {
   "tab-text-color": "#6F98D3",
   "tab-text-active-color": "#E9F8FE",
   "tab-count-background": "#2F4D8C",
-  "tab-hover-color": "#B7DEEE",
 
   "icon-color": "#36579E",
   "icon-background-color": "var(--text-color)",
@@ -41,6 +40,7 @@ const darkTheme = {
 
   "toggle-bar-color": "var(--container-color)",
 
+  "dropdown-item-hover-color": "#B7DEEE",
   "dropdown-arrow-color": "var(--text-color)",
 
   "info-message-background": "#152042"

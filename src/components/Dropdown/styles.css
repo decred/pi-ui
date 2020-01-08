@@ -79,5 +79,5 @@
 
 .dropdownItem:hover {
   cursor: pointer;
-  color: var(--tab-hover-color) !important;
+  color: var(--dropdown-item-hover-color) !important;
 }

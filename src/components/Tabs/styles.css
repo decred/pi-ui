@@ -7,7 +7,7 @@
 }
 
 .tab:hover {
-  color: var(--tab-hover-color) !important;
+  color: var(--tab-text-active-color) !important;
 }
 
 .tabHorizontal {
