@@ -52,7 +52,7 @@
   font-size: var(--font-size-xxlarge);
   top: 2rem;
   right: 3rem;
-  color: var(--text-color-light);
+  color: var(--modal-close-color);
   transition: all 0.3s;
 }
 

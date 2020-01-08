@@ -43,6 +43,10 @@ const darkTheme = {
   "dropdown-item-hover-color": "#B7DEEE",
   "dropdown-arrow-color": "var(--text-color)",
 
+  "copyable-text-background-color": "var(--container-color)",
+
+  "modal-close-color": "var(--text-color)",
+
   "info-message-background": "#152042"
 };
 

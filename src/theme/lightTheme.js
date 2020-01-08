@@ -148,7 +148,13 @@ const lightTheme = {
 
   /** Dropdown */
   "dropdown-item-hover-color": "var(--color-primary-dark)",
-  "dropdown-arrow-color": "var(--color-gray)"
+  "dropdown-arrow-color": "var(--color-gray)",
+
+  /** Copyable Text */
+  "copyable-text-background-color": "var(--color-blue-lighter)",
+
+  /** Modal */
+  "modal-close-color": "var(--text-color-light)"
 };
 
 export default lightTheme;
