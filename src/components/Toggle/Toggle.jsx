@@ -26,7 +26,7 @@ const Toggle = ({ onToggle, toggled }) => {
           transform: x
             .interpolate({
               range: [0, 0.4, 0.8, 1],
-              output: [0, 5, 10, 15]
+              output: [0, 7, 14, 21]
             })
             .interpolate((x) => `translateX(${x}px)`),
           backgroundColor,

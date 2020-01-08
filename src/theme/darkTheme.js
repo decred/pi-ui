@@ -39,6 +39,8 @@ const darkTheme = {
   "table-header-background": "var(--dimmed-card-background)",
   "table-cell-border-color": "var(--separator-color)",
 
+  "toggle-bar-color": "var(--container-color)",
+
   "info-message-background": "#152042"
 };
 

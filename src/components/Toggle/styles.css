@@ -12,9 +12,9 @@
 }
 
 .bar {
-  width: 3.5rem;
+  width: 3.9rem;
   height: 1.7rem;
   border-radius: 2.5rem;
   margin-top: 0.4rem;
-  background-color: var(--color-gray-light);
+  background-color: var(--toggle-bar-color);
 }
