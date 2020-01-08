@@ -10,6 +10,10 @@
   border-radius: 10rem;
 }
 
+.statusWrapperDark {
+  border: 1px solid var(--icon-color);
+}
+
 .statusInfo {
   display: flex;
   flex-wrap: wrap-reverse;

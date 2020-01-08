@@ -57,7 +57,11 @@ const StatusBar = ({
         </div>
         {createInfoComp({ currenttotal, max })}
       </div>
-      <div className={styles.statusWrapper}>
+      <div
+        className={classNames(
+          styles.statusWrapper,
+          isDarkTheme && styles.statusWrapperDark
+        )}>
         {statusWithPercentages.map((st, i) => (
           <div
             key={i + Math.random()}
