@@ -41,6 +41,8 @@ const darkTheme = {
 
   "toggle-bar-color": "var(--container-color)",
 
+  "dropdown-arrow-color": "var(--text-color)",
+
   "info-message-background": "#152042"
 };
 

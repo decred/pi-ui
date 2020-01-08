@@ -145,7 +145,10 @@ const lightTheme = {
   "table-cell-border-color": "var(--color-gray-lightest)",
 
   /** Toggle */
-  "toggle-bar-color": "var(--color-gray-light)"
+  "toggle-bar-color": "var(--color-gray-light)",
+
+  /** Dropdown */
+  "dropdown-arrow-color": "var(--color-gray)"
 };
 
 export default lightTheme;
