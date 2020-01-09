@@ -12,6 +12,7 @@ const darkTheme = {
   "input-border-color": "var(--text-input-color)",
   "active-nav-border-color": "var(--color-primary-light)",
   "separator-color": "var(--container-color)",
+  "subtitle-color": "#3C62B0",
   "card-background": "#223767",
   "dimmed-card-background": "#1F2F5A",
 

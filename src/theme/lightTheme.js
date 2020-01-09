@@ -86,6 +86,7 @@ const lightTheme = {
   "input-border-color": "var(--color-gray-lighter)",
   "active-nav-border-color": "var(--color-yellow)",
   "separator-color": "var(--color-gray-lighter)",
+  "subtitle-color": "var(--color-gray)",
 
   /** GRID */
   "grid-center-padding": `minmax(
