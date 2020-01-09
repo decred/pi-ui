@@ -154,7 +154,10 @@ const lightTheme = {
   "copyable-text-background-color": "var(--color-blue-lighter)",
 
   /** Modal */
-  "modal-close-color": "var(--text-color-light)"
+  "modal-close-color": "var(--text-color-light)",
+
+  /** Tooltip */
+  "tooltip-background-color": "var(--color-white)"
 };
 
 export default lightTheme;

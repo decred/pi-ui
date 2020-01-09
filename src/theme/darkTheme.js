@@ -47,6 +47,8 @@ const darkTheme = {
 
   "modal-close-color": "var(--text-color)",
 
+  "tooltip-background-color": "#29417A",
+
   "info-message-background": "#152042"
 };
 

@@ -7,7 +7,7 @@
   word-wrap: break-word;
   pointer-events: none;
   z-index: var(--z-index-big);
-  background-color: var(--color-white);
+  background-color: var(--tooltip-background-color);
   visibility: hidden;
   opacity: 0;
   transition: 0.3s all ease;
