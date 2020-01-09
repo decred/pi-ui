@@ -158,7 +158,10 @@ const lightTheme = {
   "modal-close-color": "var(--text-color-light)",
 
   /** Tooltip */
-  "tooltip-background-color": "var(--color-white)"
+  "tooltip-background-color": "var(--color-white)",
+
+  /** Checkbox */
+  "checkbox-stroke-color": "var(--color-gray)"
 };
 
 export default lightTheme;

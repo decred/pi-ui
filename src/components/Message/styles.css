@@ -37,14 +37,6 @@
   margin-right: 10px;
 }
 
-.icon-info > path:first-of-type {
-  fill: var(--info-message-color);
-}
-
-.icon-info > path:last-of-type {
-  fill: var(--info-message-color);
-}
-
 .error {
   composes: message;
   background-color: var(--error-message-background);

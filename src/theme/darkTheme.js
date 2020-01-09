@@ -50,6 +50,8 @@ const darkTheme = {
 
   "tooltip-background-color": "#29417A",
 
+  "checkbox-stroke-color": "var(--text-input-color)",
+
   "info-message-background": "#152042"
 };
 
