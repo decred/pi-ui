@@ -30,7 +30,7 @@
   width: 0;
   height: 0;
   border: 7px solid transparent;
-  border-color: var(--color-gray) transparent transparent transparent;
+  border-color: var(--dropdown-arrow-color) transparent transparent transparent;
   position: absolute;
   top: -4px;
   right: 2px;
@@ -79,5 +79,5 @@
 
 .dropdownItem:hover {
   cursor: pointer;
-  color: var(--tab-hover-color) !important;
+  color: var(--dropdown-item-hover-color) !important;
 }

@@ -12,6 +12,7 @@ const darkTheme = {
   "input-border-color": "var(--text-input-color)",
   "active-nav-border-color": "var(--color-primary-light)",
   "separator-color": "var(--container-color)",
+  "subtitle-color": "#3C62B0",
   "card-background": "#223767",
   "dimmed-card-background": "#1F2F5A",
 
@@ -31,13 +32,25 @@ const darkTheme = {
   "tab-text-color": "#6F98D3",
   "tab-text-active-color": "#E9F8FE",
   "tab-count-background": "#2F4D8C",
-  "tab-hover-color": "#B7DEEE",
 
   "icon-color": "#36579E",
   "icon-background-color": "var(--text-color)",
 
   "table-header-background": "var(--dimmed-card-background)",
   "table-cell-border-color": "var(--separator-color)",
+
+  "toggle-bar-color": "var(--container-color)",
+
+  "dropdown-item-hover-color": "#B7DEEE",
+  "dropdown-arrow-color": "var(--text-color)",
+
+  "copyable-text-background-color": "var(--container-color)",
+
+  "modal-close-color": "var(--text-color)",
+
+  "tooltip-background-color": "#29417A",
+
+  "checkbox-stroke-color": "var(--text-input-color)",
 
   "info-message-background": "#152042"
 };

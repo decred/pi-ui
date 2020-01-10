@@ -86,6 +86,7 @@ const lightTheme = {
   "input-border-color": "var(--color-gray-lighter)",
   "active-nav-border-color": "var(--color-yellow)",
   "separator-color": "var(--color-gray-lighter)",
+  "subtitle-color": "var(--color-gray)",
 
   /** GRID */
   "grid-center-padding": `minmax(
@@ -120,7 +121,6 @@ const lightTheme = {
   "blocked-message-color": "var(--color-orange-alt)",
 
   /** Tabs */
-  "tab-hover-color": "var(--color-primary-dark)",
   "tab-active-underline-color": "var(--color-yellow)",
   "tab-active-font-color": "var(--color-primary-dark)",
   "tab-count-background": "var(--color-gray-lighter)",
@@ -135,14 +135,33 @@ const lightTheme = {
   /** Button */
   "btn-color": "var(--color-white)",
   "btn-background-color": "var(--color-primary)",
-  
+
   /** Icon */
   "icon-color": "#c4cbd2",
   "icon-background-color": "#091440",
 
   /** Table */
   "table-header-background": "var(--color-gray-lightest)",
-  "table-cell-border-color": "var(--color-gray-lightest)"
+  "table-cell-border-color": "var(--color-gray-lightest)",
+
+  /** Toggle */
+  "toggle-bar-color": "var(--color-gray-light)",
+
+  /** Dropdown */
+  "dropdown-item-hover-color": "var(--color-primary-dark)",
+  "dropdown-arrow-color": "var(--color-gray)",
+
+  /** Copyable Text */
+  "copyable-text-background-color": "var(--color-blue-lighter)",
+
+  /** Modal */
+  "modal-close-color": "var(--text-color-light)",
+
+  /** Tooltip */
+  "tooltip-background-color": "var(--color-white)",
+
+  /** Checkbox */
+  "checkbox-stroke-color": "var(--color-gray)"
 };
 
 export default lightTheme;
