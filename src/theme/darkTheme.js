@@ -52,7 +52,11 @@ const darkTheme = {
 
   "checkbox-stroke-color": "var(--text-input-color)",
 
-  "info-message-background": "#152042"
+  "info-message-background": "#152042",
+  "blocked-message-background": "var(--info-message-background)",
+  "error-message-background": "var(--info-message-background)",
+  "error-message-color": "#29417A",
+  "blocked-message-color": "var(--error-message-color)"
 };
 
 export default darkTheme;
