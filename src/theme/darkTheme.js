@@ -35,6 +35,7 @@ const darkTheme = {
 
   "icon-color": "#36579E",
   "icon-background-color": "var(--text-color)",
+  "icon-hover-color": "var(--color-primary-dark)",
 
   "table-header-background": "var(--dimmed-card-background)",
   "table-cell-border-color": "var(--separator-color)",

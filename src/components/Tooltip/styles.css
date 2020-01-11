@@ -8,7 +8,7 @@
   pointer-events: none;
   z-index: var(--z-index-big);
   background-color: var(--tooltip-background-color);
-  visibility: hidden;
+  visibility: visible;
   opacity: 0;
   transition: 0.3s all ease;
 }
