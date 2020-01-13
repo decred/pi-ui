@@ -162,7 +162,11 @@ const lightTheme = {
   "tooltip-background-color": "var(--color-white)",
 
   /** Checkbox */
-  "checkbox-stroke-color": "var(--color-gray)"
+  "checkbox-stroke-color": "var(--color-gray)",
+
+  /** Select */
+  "select-border-color": "var(--color-gray-lighter)",
+  "select-anchor-color": "var(--color-gray)"
 };
 
 export default lightTheme;
