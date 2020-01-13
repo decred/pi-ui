@@ -35,6 +35,7 @@ const darkTheme = {
 
   "icon-color": "#36579E",
   "icon-background-color": "var(--text-color)",
+  "icon-hover-color": "var(--color-primary-dark)",
 
   "table-header-background": "var(--dimmed-card-background)",
   "table-cell-border-color": "var(--separator-color)",
@@ -52,7 +53,11 @@ const darkTheme = {
 
   "checkbox-stroke-color": "var(--text-input-color)",
 
-  "info-message-background": "#152042"
+  "info-message-background": "#152042",
+  "blocked-message-background": "var(--info-message-background)",
+  "error-message-background": "var(--info-message-background)",
+  "error-message-color": "#29417A",
+  "blocked-message-color": "var(--error-message-color)"
 };
 
 export default darkTheme;

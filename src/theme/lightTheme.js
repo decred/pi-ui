@@ -139,6 +139,7 @@ const lightTheme = {
   /** Icon */
   "icon-color": "#c4cbd2",
   "icon-background-color": "#091440",
+  "icon-hover-color": "var(--color-gray)",
 
   /** Table */
   "table-header-background": "var(--color-gray-lightest)",
