@@ -46,6 +46,14 @@
   font-size: var(--font-size-small);
 }
 
+.textinput:-webkit-autofill,
+.textinput:-webkit-autofill:focus,
+.textinput:-webkit-autofill:hover,
+.textinput:-webkit-autofill:active {
+  transition: background-color 5000s ease-in-out 0s;
+  -webkit-text-fill-color: var(--text-color) !important;
+}
+
 .errorMsg {
   visibility: hidden;
   color: var(--color-orange);
