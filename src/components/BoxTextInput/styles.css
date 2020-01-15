@@ -1,7 +1,7 @@
 .boxtextinput {
   background-color: transparent;
   font-family: var(--font-family-text);
-  border: 1px solid var(--color-gray-lighter);
+  border: 1px solid var(--text-input-color);
   outline: 0;
   width: 100%;
   font-size: var(--font-size-normal);
@@ -34,7 +34,7 @@
 }
 
 .boxtextinput::placeholder {
-  color: var(--color-gray-light);
+  color: var(--text-input-color);
 }
 
 .boxtextinputWrapper {
