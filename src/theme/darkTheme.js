@@ -16,9 +16,6 @@ const darkTheme = {
   "card-background": "#223767",
   "dimmed-card-background": "#1F2F5A",
 
-  "btn-color": "#152042",
-  "btn-background-color": "#1F325F",
-
   "comment-like-color": "#6F98D3",
   "comment-like-color-active": "#B7DEEE",
 

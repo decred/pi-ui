@@ -133,8 +133,7 @@ const lightTheme = {
   "comment-like-color-active": "var(--color-primary-dark)",
 
   /** Button */
-  "btn-color": "var(--color-white)",
-  "btn-background-color": "var(--color-primary)",
+  "btn-color": "var(--color-primary)",
 
   /** Icon */
   "icon-color": "#c4cbd2",
