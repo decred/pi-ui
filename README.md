@@ -3,7 +3,7 @@
 [![Build Status](https://github.com/decred/pi-ui/workflows/Build%20and%20Test/badge.svg)](https://github.com/decred/pi-ui/actions)
 
 > Politeia UI library
-> [documentation](https://compassionate-lalande-d3ef5d.netlify.com/)
+> [documentation](https://decred.github.io/pi-ui/)
 
 [![NPM](https://img.shields.io/npm/v/pi-ui.svg)](https://www.npmjs.com/package/pi-ui) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
