@@ -87,6 +87,8 @@ const lightTheme = {
   "active-nav-border-color": "var(--color-yellow)",
   "separator-color": "var(--color-gray-lighter)",
   "subtitle-color": "var(--color-gray)",
+  "success-icon-background-color": "var(--color-gray)",
+  "success-icon-checkmark-color": "var(--color-primary-dark)",
 
   /** GRID */
   "grid-center-padding": `minmax(
