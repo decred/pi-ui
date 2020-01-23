@@ -15,6 +15,8 @@ const darkTheme = {
   "subtitle-color": "#3C62B0",
   "card-background": "#223767",
   "dimmed-card-background": "#1F2F5A",
+  "success-icon-background-color": "#527CC9",
+  "success-icon-checkmark-color": "#1B2B54",
 
   "btn-disabled-background-color": "var(--header-color)",
   "btn-disabled-text-color": "var(--info-message-background)",
