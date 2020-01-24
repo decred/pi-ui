@@ -37,7 +37,8 @@ const Table = ({
     theme,
     "table-page-arrow-background"
   );
-  const disabledArrowBackground = getThemeProperty(theme, "color-gray");
+  const disabledArrowColor = getThemeProperty(theme, "color-gray");
+  const arrowColor = getThemeProperty(theme, "color-primary");
   return (
     <div className={classNames(styles.tableWrapper, wrapperClassName)}>
       <table className={classNames(styles.table, className)}>
@@ -65,7 +66,7 @@ const Table = ({
               type="left"
               size="lg"
               backgroundColor={arrowIconBackground}
-              iconColor={canGoBack ? "#2970ff" : disabledArrowBackground}
+              iconColor={canGoBack ? arrowColor : disabledArrowColor}
             />
           </span>
           {pagesArr.map((item, idx) => (
@@ -87,7 +88,7 @@ const Table = ({
               type="right"
               size="lg"
               backgroundColor={arrowIconBackground}
-              iconColor={canGoNext ? "#2970ff" : disabledArrowBackground}
+              iconColor={canGoNext ? arrowColor : disabledArrowColor}
             />
           </span>
         </div>
