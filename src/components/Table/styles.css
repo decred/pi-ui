@@ -22,6 +22,7 @@
   border-radius: 0.3rem;
   margin: 0 0.3rem;
   user-select: none;
+  color: var(--table-page-arrow-text-color);
 }
 
 .pageItemArrow {
@@ -35,8 +36,8 @@
 }
 
 .pageItemActive {
-  background-color: var(--color-gray-lighter);
-  color: var(--color-primary);
+  background-color: var(--table-active-page-arrow-background);
+  color: var(--table-active-page-arrow-text-color);
   composes: pageItem;
 }
 

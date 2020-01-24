@@ -147,6 +147,10 @@ const lightTheme = {
   /** Table */
   "table-header-background": "var(--color-gray-lightest)",
   "table-cell-border-color": "var(--color-gray-lightest)",
+  "table-page-arrow-background": "var(--color-white)",
+  "table-page-arrow-text-color": "var(--color-text)",
+  "table-active-page-arrow-text-color": "var(--color-primary)",
+  "table-active-page-arrow-background": "var(--color-gray-lighter)",
 
   /** Toggle */
   "toggle-bar-color": "var(--color-gray-light)",

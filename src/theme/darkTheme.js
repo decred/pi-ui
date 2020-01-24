@@ -41,6 +41,10 @@ const darkTheme = {
 
   "table-header-background": "var(--dimmed-card-background)",
   "table-cell-border-color": "var(--separator-color)",
+  "table-page-arrow-background": "var(--card-background)",
+  "table-page-arrow-text-color": "var(--tab-text-active-color)",
+  "table-active-page-arrow-text-color": "var(--text-color)",
+  "table-active-page-arrow-background": "var(--tab-count-background)",
 
   "toggle-bar-color": "var(--container-color)",
 
