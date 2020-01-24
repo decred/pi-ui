@@ -5,6 +5,7 @@ import TableBody from "./TableBody.jsx";
 import Icon from "../Icon/Icon.jsx";
 import styles from "./styles.css";
 import { classNames } from "../../utils";
+import { useTheme, getThemeProperty } from "../../theme";
 
 const Table = ({
   data,
@@ -30,6 +31,14 @@ const Table = ({
   const canGoNext = page < totalPages;
   const previousPage = () => (canGoBack ? setPage(page - 1) : null);
   const nextPage = () => (canGoNext ? setPage(page + 1) : null);
+
+  const { theme } = useTheme();
+  const arrowIconBackground = getThemeProperty(
+    theme,
+    "table-page-arrow-background"
+  );
+  const disabledArrowColor = getThemeProperty(theme, "color-gray");
+  const arrowColor = getThemeProperty(theme, "color-primary");
   return (
     <div className={classNames(styles.tableWrapper, wrapperClassName)}>
       <table className={classNames(styles.table, className)}>
@@ -56,8 +65,8 @@ const Table = ({
             <Icon
               type="left"
               size="lg"
-              backgroundColor="#fff"
-              iconColor={canGoBack ? "#2970ff" : "#8997a5"}
+              backgroundColor={arrowIconBackground}
+              iconColor={canGoBack ? arrowColor : disabledArrowColor}
             />
           </span>
           {pagesArr.map((item, idx) => (
@@ -78,8 +87,8 @@ const Table = ({
             <Icon
               type="right"
               size="lg"
-              backgroundColor="#fff"
-              iconColor={canGoNext ? "#2970ff" : "#8997a5"}
+              backgroundColor={arrowIconBackground}
+              iconColor={canGoNext ? arrowColor : disabledArrowColor}
             />
           </span>
         </div>
