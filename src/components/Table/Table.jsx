@@ -38,7 +38,6 @@ const Table = ({
     "table-page-arrow-background"
   );
   const disabledArrowBackground = getThemeProperty(theme, "color-gray");
-  console.log(arrowIconBackground);
   return (
     <div className={classNames(styles.tableWrapper, wrapperClassName)}>
       <table className={classNames(styles.table, className)}>
