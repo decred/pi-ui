@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import TableHeader from "./TableHeader.jsx";
 import TableBody from "./TableBody.jsx";
 import Icon from "../Icon/Icon.jsx";
-import styles from "./styles.css";
+import styles from "./styles.module.css";
 import { classNames } from "../../utils";
 import { useTheme, getThemeProperty } from "../../theme";
 

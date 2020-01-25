@@ -5,11 +5,9 @@ import { classNames } from "../../utils";
 import H1 from "../Typography/H1.jsx";
 import Icon from "../Icon/Icon.jsx";
 import ModalWrapper from "./ModalWrapper.jsx";
-import styles from "./styles.css";
+import styles from "./styles.module.css";
 import useLockBodyScrollOnTrue from "../../hooks/useLockBodyScrollOnTrue";
 import useKeyPress from "../../hooks/useKeyPress";
-
-const root = document.getElementById("root");
 
 // TODO: use svg icons when we have them
 const Modal = ({
@@ -30,6 +28,8 @@ const Modal = ({
   disableClose,
   ...props
 }) => {
+  const root = document.getElementById("root");
+
   const onCloseClick = (e) => {
     e.preventDefault();
     onClose();

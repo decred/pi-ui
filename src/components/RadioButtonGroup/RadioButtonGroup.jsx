@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import PropTypes from "prop-types";
 import { useSpring, animated } from "react-spring";
 import { classNames } from "../../utils";
-import styles from "./styles.css";
+import styles from "./styles.module.css";
 
 export const RadioButton = ({
   name,

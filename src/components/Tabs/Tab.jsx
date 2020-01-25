@@ -3,7 +3,7 @@ import React from "react";
 import { animated, useSpring } from "react-spring";
 import { useTheme, getThemeProperty } from "../../theme";
 import { classNames } from "../../utils";
-import styles from "./styles.css";
+import styles from "./styles.module.css";
 
 const Tab = ({
   onSelect,

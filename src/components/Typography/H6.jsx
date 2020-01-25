@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import styles from "./styles.css";
+import styles from "./styles.module.css";
 import { useTruncate } from "../../hooks";
 import { classNames, idPropTypeCheckForTruncatedComponents } from "../../utils";
 

@@ -27,7 +27,7 @@ import { classNames } from "../utils";
   {() => {
     return (
       <>
-      	<Dropdown 
+      	<Dropdown
       		title='username'>
 	        <DropdownItem  onClick={() => alert('my proposals')}>
             My proposals
@@ -53,9 +53,9 @@ import { classNames } from "../utils";
     const closeDropdown = () => setShowDropdown(false)
     return (
       <>
-      	<Dropdown 
-      		title='username' 
-      		show={showDropdown} 
+      	<Dropdown
+      		title='username'
+      		show={showDropdown}
       		onDropdownClick={showDropdown ? closeDropdown : openDropdown}>
 	        <DropdownItem  onClick={() => alert('my proposals')}>
             My proposals
@@ -76,11 +76,10 @@ import { classNames } from "../utils";
 
 <Playground>
   {() => {
-
     const CustomTrigger = ({ onClick, open }) => <Button onClick={onClick}>{open ? "close" : "open"}</Button>
     return (
       <>
-      	<Dropdown 
+      	<Dropdown
       		customDropdownTrigger={CustomTrigger}
       		closeOnOutsideClick={true}
           dropdownArrowClassName={classNames(styles.dropdownCustomArrowExample)}

@@ -1,4 +1,3 @@
-import { css } from "docz-plugin-css";
 import { createPlugin } from "docz-core";
 import copyFileSync from "fs-copy-file-sync";
 
@@ -13,8 +12,7 @@ export default {
   title: "pi-ui",
   description: "Politeia UI library",
   src: "./src",
-  wrapper: "src/docs/Wrapper",
-  plugins: [css({ preprocessor: "postcss", cssmodules: true }), customPlugin()],
+  plugins: [customPlugin()],
   themeConfig: {
     showPlaygroundEditor: true,
     colors: {

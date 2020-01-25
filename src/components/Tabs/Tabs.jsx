@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import React, { useCallback, useMemo } from "react";
 import { animated, useTransition } from "react-spring";
 import { classNames } from "../../utils";
-import styles from "./styles.css";
+import styles from "./styles.module.css";
 import Dropdown from "../Dropdown/Dropdown.jsx";
 
 const TabDropdownTrigger = ({

@@ -1,7 +1,7 @@
 import { PropTypes } from "prop-types";
 import React from "react";
 import { classNames } from "../../utils";
-import styles from "./styles.css";
+import styles from "./styles.module.css";
 
 const Checkbox = ({ label, className, checked, style, name, id, ...props }) => (
   <label htmlFor={id} className={classNames(styles.container, className)}>

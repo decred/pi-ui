@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { animated, useTransition } from "react-spring";
 import useClickOutside from "../../hooks/useClickOutside";
 import { classNames } from "../../utils";
-import styles from "./styles.css";
+import styles from "./styles.module.css";
 
 const Arrow = ({ open, onClick, className }) => (
   <div
