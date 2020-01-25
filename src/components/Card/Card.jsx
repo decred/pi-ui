@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import React from "react";
-import { classNames } from "../../utils";
+import { classNames, capitalize } from "../../utils";
 import styles from "./styles.module.css";
 
 const Card = ({
@@ -15,7 +15,7 @@ const Card = ({
   <div
     className={classNames(
       styles.card,
-      styles[`padding-${paddingSize}`],
+      styles[`padding${capitalize(paddingSize)}`],
       className
     )}
     style={style}
@@ -36,14 +36,15 @@ const Card = ({
 Card.propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
-  paddingSize: PropTypes.oneOf(["small", "medium", "large"]),
+  paddingSize: PropTypes.oneOf(["none", "small", "medium", "large"]),
   marker: PropTypes.bool,
   markerColor: PropTypes.string,
   style: PropTypes.object
 };
 
 Card.defaultProps = {
-  markerColor: "var(--color-yellow)"
+  markerColor: "var(--color-yellow)",
+  paddingSize: "none"
 };
 
 export default Card;

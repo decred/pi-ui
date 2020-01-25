@@ -9,7 +9,6 @@ import styles from "./styles.module.css";
 import useLockBodyScrollOnTrue from "../../hooks/useLockBodyScrollOnTrue";
 import useKeyPress from "../../hooks/useKeyPress";
 
-// TODO: use svg icons when we have them
 const Modal = ({
   style,
   wrapperStyle,
@@ -28,7 +27,7 @@ const Modal = ({
   disableClose,
   ...props
 }) => {
-  const root = document.getElementById("root");
+  const root = document.getElementsByTagName("html")[0];
 
   const onCloseClick = (e) => {
     e.preventDefault();

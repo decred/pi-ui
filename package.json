@@ -25,7 +25,8 @@
     "lint": "npm-run-all --parallel lint:*",
     "lint:css": "stylelint --fix 'src/**/*.css'",
     "lint:js": "eslint --fix --ext=.js,.jsx src",
-    "husky:pre-commit": "npm-run-all --sequential prettify lint test"
+    "husky:pre-commit": "npm-run-all --sequential prettify lint test",
+    "clean": "rm -rf .cache && rm -rf .docz/.cache"
   },
   "husky": {
     "hooks": {
@@ -63,7 +64,7 @@
     "babel-jest": "^24.9.0",
     "babel-loader": "^8.0.5",
     "cross-env": "^5.1.4",
-    "docz": "^2.2.0",
+    "docz": "2.3.0-alpha.6",
     "eslint": "^6.7.1",
     "eslint-config-prettier": "^6.7.0",
     "eslint-config-standard": "^14.1.0",

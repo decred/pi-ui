@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { useTheme, getThemeProperty } from "../../theme";
 import { animated, useSpring, interpolate } from "react-spring";
 
-import styles from "./styles.css";
+import styles from "./styles.module.css";
 
 const Toggle = ({ onToggle, toggled }) => {
   const { theme } = useTheme();

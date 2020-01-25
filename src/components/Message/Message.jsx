@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import Card from "../Card/Card.jsx";
 import styles from "./styles.module.css";
 import Icon from "../Icon/Icon.jsx";
-import { classNames } from "../../utils";
+import { classNames, capitalize } from "../../utils";
 import H2 from "../Typography/H2.jsx";
 
 const typeToIcons = {
@@ -26,7 +26,7 @@ const Message = ({
   const renderIcon = () => (
     <Icon
       type={typeToIcons[kind]}
-      className={styles[`icon-${kind}`]}
+      className={styles[`icon${capitalize(kind)}`]}
       size="lg"
     />
   );

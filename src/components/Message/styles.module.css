@@ -42,15 +42,16 @@
   background-color: var(--error-message-background);
 }
 
-.icon-error {
+.iconError {
   margin-right: 10px;
 }
 
-.icon-error > path:first-of-type {
+.iconError > path:first-of-type {
   fill: var(--error-message-color);
+  width: 60px;
 }
 
-.icon-error > path:last-of-type {
+.iconError > path:last-of-type {
   fill: var(--error-message-background);
 }
 
@@ -59,15 +60,15 @@
   background-color: var(--warning-message-background);
 }
 
-.icon-warning {
+.iconWarning {
   margin-right: 10px;
 }
 
-.icon-warning > path:first-of-type {
+.iconWarning > path:first-of-type {
   fill: var(--warning-message-color);
 }
 
-.icon-warning > path:last-of-type {
+.iconWarning > path:last-of-type {
   fill: var(--warning-message-background);
 }
 
@@ -81,25 +82,25 @@
   background-color: var(--blocked-message-background);
 }
 
-.icon-blocked {
+.iconBlocked {
   margin-right: 10px;
 }
 
-.icon-blocked line,
-.icon-blocked circle {
+.iconBlocked line,
+.iconBlocked circle {
   fill: none;
   stroke: var(--blocked-message-color);
 }
 
-.icon-success {
+.iconSuccess {
   margin-right: 10px;
 }
 
-.icon-success > path:first-of-type,
-.icon-success > circle:first-of-type {
+.iconSuccess > path:first-of-type,
+.iconSuccess > circle:first-of-type {
   fill: var(--success-message-color);
 }
 
-.icon-success > path:last-of-type {
+.iconSuccess > path:last-of-type {
   fill: var(--success-message-background);
 }

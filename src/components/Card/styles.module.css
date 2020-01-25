@@ -3,15 +3,19 @@
   position: relative;
 }
 
-.padding-small {
+.paddingNone {
+  padding: 0rem;
+}
+
+.paddingSmall {
   padding: 2rem 4rem;
 }
 
-.padding-medium {
+.paddingMedium {
   padding: 4rem 6rem;
 }
 
-.padding-large {
+.paddingLarge {
   padding: 6rem 9rem;
 }
 
