@@ -23,6 +23,7 @@ const darkTheme = {
 
   "comment-like-color": "#6F98D3",
   "comment-like-color-active": "#B7DEEE",
+  "comment-censored-background": "var(--dimmed-card-background)",
 
   "text-color": "#99C1E3",
   "text-color-light": "var(--color-white)",
