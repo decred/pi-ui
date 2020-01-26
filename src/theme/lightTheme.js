@@ -133,6 +133,7 @@ const lightTheme = {
   /** Comments */
   "comment-like-color": "var(--color-gray)",
   "comment-like-color-active": "var(--color-primary-dark)",
+  "comment-censored-background": "#fef5f3",
 
   /** Button */
   "btn-background-color": "var(--color-primary)",
