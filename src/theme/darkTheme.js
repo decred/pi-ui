@@ -4,35 +4,43 @@ const darkTheme = {
   ...lightTheme,
 
   "color-primary-dark": "#7DA7D9",
-  "container-color": "#1B2B54",
+  "color-primary-darker": "#1F325F",
+  "color-primary-darkest": "#1B2B54",
+  "color-gray-blue": "#6F98D3",
+  "color-powder-blue": "#B7DEEE",
+  "color-astronaut-blue": "#29417A",
+
+  "html-bg": "var(--color-primary-darkest)",
+
+  "container-color": "var(--color-primary-darkest)",
   "header-border-color": "#1d1d2f",
-  "header-color": "#1F325F",
+  "header-color": "var(--color-primary-darker)",
   "topbanner-color": "var(--card-background)",
   "main-color": "#27283d",
   "input-border-color": "var(--text-input-color)",
   "active-nav-border-color": "var(--color-primary-light)",
-  "separator-color": "var(--container-color)",
+  "separator-color": "var(--color-primary-darkest)",
   "subtitle-color": "#3C62B0",
   "card-background": "#223767",
   "dimmed-card-background": "#1F2F5A",
   "success-icon-background-color": "#527CC9",
-  "success-icon-checkmark-color": "#1B2B54",
+  "success-icon-checkmark-color": "var(--color-primary-darkest)",
 
-  "btn-disabled-background-color": "var(--header-color)",
+  "btn-disabled-background-color": "var(--color-primary-darker)",
   "btn-disabled-text-color": "var(--info-message-background)",
 
-  "comment-like-color": "#6F98D3",
-  "comment-like-color-active": "#B7DEEE",
+  "comment-like-color": "var(--color-gray-blue)",
+  "comment-like-color-active": "var(--color-powder-blue)",
   "comment-censored-background": "var(--dimmed-card-background)",
 
   "text-color": "#99C1E3",
   "text-color-light": "var(--color-white)",
-  "text-heading-color": "#B7DEEE",
+  "text-heading-color": "var(--color-powder-blue)",
   "text-input-color": "#608ACE",
   "text-heading2-color": "var(--text-heading-color)",
   "text-secondary-color": "var(--color-primary-dark)",
 
-  "tab-text-color": "#6F98D3",
+  "tab-text-color": "var(--color-gray-blue)",
   "tab-text-active-color": "#E9F8FE",
   "tab-count-background": "#2F4D8C",
 
@@ -47,26 +55,26 @@ const darkTheme = {
   "table-active-page-arrow-text-color": "var(--text-color)",
   "table-active-page-arrow-background": "var(--tab-count-background)",
 
-  "toggle-bar-color": "var(--container-color)",
+  "toggle-bar-color": "var(--color-primary-darkest)",
 
-  "dropdown-item-hover-color": "#B7DEEE",
+  "dropdown-item-hover-color": "var(--color-powder-blue)",
   "dropdown-arrow-color": "var(--text-color)",
 
   "select-border-color": "var(--text-color)",
   "select-anchor-color": "var(--text-color)",
 
-  "copyable-text-background-color": "var(--container-color)",
+  "copyable-text-background-color": "var(--color-primary-darkest)",
 
   "modal-close-color": "var(--text-color)",
 
-  "tooltip-background-color": "#29417A",
+  "tooltip-background-color": "var(--color-astronaut-blue)",
 
   "checkbox-stroke-color": "var(--text-input-color)",
 
   "info-message-background": "#152042",
   "blocked-message-background": "var(--info-message-background)",
   "error-message-background": "var(--info-message-background)",
-  "error-message-color": "#29417A",
+  "error-message-color": "var(--color-astronaut-blue)",
   "blocked-message-color": "var(--error-message-color)"
 };
 

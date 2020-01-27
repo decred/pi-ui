@@ -9,6 +9,7 @@
 html {
   font-size: 62.5%;
   box-sizing: border-box;
+  background-color: var(--html-bg);
 }
 
 body {
