@@ -23,6 +23,8 @@ const lightTheme = {
   "color-gray-lightest2": "#f9fafa",
   "color-white": "#ffffff",
 
+  "html-bg": "var(--color-white)",
+
   "color-shadow-light": "rgba(0, 0, 0, 0.2)",
 
   "text-color": "var(--color-primary-dark)",
@@ -127,8 +129,8 @@ const lightTheme = {
   "tab-active-font-color": "var(--color-primary-dark)",
   "tab-count-background": "var(--color-gray-lighter)",
   "tab-active-color": "var(--color-primary-light)",
-  "tab-text-color": "#3d5873",
-  "tab-text-active-color": "#091440",
+  "tab-text-color": "var(--color-gray-dark)",
+  "tab-text-active-color": "var(--color-primary-dark)",
 
   /** Comments */
   "comment-like-color": "var(--color-gray)",
@@ -141,8 +143,8 @@ const lightTheme = {
   "btn-disabled-text-color": "var(--color-gray)",
 
   /** Icon */
-  "icon-color": "#c4cbd2",
-  "icon-background-color": "#091440",
+  "icon-color": "var(--color-gray-light)",
+  "icon-background-color": "var(--color-primary-dark)",
   "icon-hover-color": "var(--color-gray)",
 
   /** Table */
