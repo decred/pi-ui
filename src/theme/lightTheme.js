@@ -23,7 +23,7 @@ const lightTheme = {
   "color-gray-lightest2": "#f9fafa",
   "color-white": "#ffffff",
 
-  "html-bg": "var(--color-white)",
+  "html-bg": "var(--color-gray-lightest)",
 
   "color-shadow-light": "rgba(0, 0, 0, 0.2)",
 
