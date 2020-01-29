@@ -55,6 +55,10 @@ const darkTheme = {
   "table-active-page-arrow-text-color": "var(--text-color)",
   "table-active-page-arrow-background": "var(--tab-count-background)",
 
+  "md-table-cell-border-color": "var(--color-primary-dark)",
+  "md-table-odd-row-background": "var(--color-primary-darker)",
+  "md-table-even-row-background": "var(--color-primary-darkest)",
+
   "toggle-bar-color": "var(--color-primary-darkest)",
 
   "dropdown-item-hover-color": "var(--color-powder-blue)",
