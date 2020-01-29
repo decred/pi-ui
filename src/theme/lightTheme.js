@@ -176,7 +176,12 @@ const lightTheme = {
 
   /** Select */
   "select-border-color": "var(--color-gray-lighter)",
-  "select-anchor-color": "var(--color-gray)"
+  "select-anchor-color": "var(--color-gray)",
+
+  /** Markdown */
+  "md-table-cell-border-color": "#dfe2e5",
+  "md-table-odd-row-background": "var(--color-white)",
+  "md-table-even-row-background": "#f6f8fa"
 };
 
 export default lightTheme;
