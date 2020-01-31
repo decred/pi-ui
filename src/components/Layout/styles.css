@@ -4,6 +4,7 @@
   background-color: var(--container-color);
   column-gap: var(--layout-column-gap-lg);
   grid-template-columns: var(--layout-grid-columns);
+  overflow-x: hidden;
 }
 
 .header {
