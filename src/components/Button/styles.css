@@ -87,7 +87,8 @@
   width: 100%;
 }
 
-@media screen and (max-width: 560px) {
+/* EXTRA SMALL ADJUSTMENTS */
+@media screen and (max-width: 380px) {
   .sm {
     padding: 0.45rem 0.75rem;
   }
