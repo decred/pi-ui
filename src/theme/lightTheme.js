@@ -136,6 +136,7 @@ const lightTheme = {
   "comment-like-color": "var(--color-gray)",
   "comment-like-color-active": "var(--color-primary-dark)",
   "comment-censored-background": "#fef5f3",
+  "comment-new-background": "var(--color-gray-lightest)",
 
   /** Button */
   "btn-background-color": "var(--color-primary)",
@@ -151,7 +152,7 @@ const lightTheme = {
   "table-header-background": "var(--color-gray-lightest)",
   "table-cell-border-color": "var(--color-gray-lightest)",
   "table-page-arrow-background": "var(--color-white)",
-  "table-page-arrow-text-color": "var(--color-text)",
+  "table-page-arrow-text-color": "var(--text-color)",
   "table-active-page-arrow-text-color": "var(--color-primary)",
   "table-active-page-arrow-background": "var(--color-gray-lighter)",
 

@@ -32,6 +32,7 @@ const darkTheme = {
   "comment-like-color": "var(--color-gray-blue)",
   "comment-like-color-active": "var(--color-powder-blue)",
   "comment-censored-background": "var(--dimmed-card-background)",
+  "comment-new-background": "var(--color-primary-darker)",
 
   "text-color": "#99C1E3",
   "text-color-light": "var(--color-white)",
