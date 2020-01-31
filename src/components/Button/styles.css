@@ -86,3 +86,17 @@
 .fullWidth {
   width: 100%;
 }
+
+@media screen and (max-width: 560px) {
+  .sm {
+    padding: 0.45rem 0.75rem;
+  }
+
+  .md {
+    padding: 0.75rem 2.25rem;
+  }
+
+  .lg {
+    padding: 1.2rem 2.7rem;
+  }
+}
