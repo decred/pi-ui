@@ -11,7 +11,6 @@
   position: absolute;
   opacity: 0;
   cursor: pointer;
-  height: 0;
   width: 0;
 }
 
@@ -19,6 +18,7 @@
   margin-right: 0.8rem;
   height: 1.4rem;
   width: 1.4rem;
+  border-radius: 0.1rem;
   border: 1px solid var(--checkbox-stroke-color);
   background-color: transparent;
 }
@@ -50,4 +50,8 @@
 
 .container input:checked ~ .checkmark:after {
   display: block;
+}
+
+.container input:focus ~ .checkmark {
+  box-shadow: 0 0 0.3rem 0.1rem var(--color-primary);
 }
