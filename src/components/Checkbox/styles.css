@@ -41,7 +41,7 @@
 }
 
 .container:hover input ~ .checkmark {
-  background-color: var(--color-gray-lighter);
+  background-color: var(--checkbox-hovered-background-color);
 }
 
 .container input:checked ~ .checkmark {
