@@ -75,6 +75,7 @@ const darkTheme = {
   "tooltip-background-color": "var(--color-astronaut-blue)",
 
   "checkbox-stroke-color": "var(--text-input-color)",
+  "checkbox-hovered-background-color": "var(--color-primary-darkest)",
 
   "info-message-background": "#152042",
   "blocked-message-background": "var(--info-message-background)",

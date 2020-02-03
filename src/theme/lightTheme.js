@@ -174,6 +174,7 @@ const lightTheme = {
 
   /** Checkbox */
   "checkbox-stroke-color": "var(--color-gray)",
+  "checkbox-hovered-background-color": "var(--color-gray-lighter)",
 
   /** Select */
   "select-border-color": "var(--color-gray-lighter)",
