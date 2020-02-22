@@ -18,6 +18,7 @@ const Message = ({
   style,
   className,
   iconContainerClassName,
+  contentClassName,
   children,
   kind,
   title,
@@ -45,7 +46,7 @@ const Message = ({
           {renderIcon()}
         </div>
       )}
-      <div className={styles.content}>
+      <div className={classNames(styles.content, contentClassName)}>
         {!!title && <H2>{title}</H2>}
         {children}
       </div>
@@ -57,6 +58,7 @@ Message.propTypes = {
   style: PropTypes.object,
   className: PropTypes.string,
   iconContainerClassName: PropTypes.string,
+  contentClassName: PropTypes.string,
   children: PropTypes.node.isRequired,
   kind: PropTypes.oneOf(["info", "warning", "error", "success", "blocked"]),
   title: PropTypes.string
