@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Badge component Matches the snapshot 1`] = `
+<div
+  className="badgeWrapperVisible"
+>
+  <a
+    className="badgeClose"
+    data-testid="close-button"
+    href="#"
+    onClick={[Function]}
+  >
+    ×
+  </a>
+  <div
+    className="badgeIcon"
+  />
+  test
+</div>
+`;

@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StatusTag component Matches the snapshot 1`] = `
+<span
+  className="statusTagWrapper grayNegative"
+>
+  <img
+    alt="grayNegative"
+    src=""
+  />
+  <span>
+    grayNegative
+  </span>
+</span>
+`;
