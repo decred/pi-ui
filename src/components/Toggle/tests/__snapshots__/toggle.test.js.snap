@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Toggle Component Matches snapshot 1`] = `
+<div
+  className="switch"
+>
+  <div
+    className="circle"
+    style={
+      Object {
+        "backgroundColor": "rgba(255, 255, 255, 1)",
+        "border": "2px solid rgba(196, 203, 210, 1)",
+        "transform": "translateX(0px)",
+      }
+    }
+  >
+     
+  </div>
+  <div
+    className="bar"
+  >
+     
+  </div>
+</div>
+`;
