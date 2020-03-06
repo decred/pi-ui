@@ -1,0 +1,82 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Table Component Matches the snapshot 1`] = `
+<div
+  className="tableWrapper"
+>
+  <table
+    className="table"
+  >
+    <thead
+      className="tableHead"
+    >
+      <tr
+        className="tableRow"
+      >
+        <th
+          className="tableHeadCell"
+          scope="col"
+        >
+          Test1
+        </th>
+        <th
+          className="tableHeadCell"
+          scope="col"
+        >
+          Test2
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        className="tableRow"
+      >
+        <td
+          className="tableBodyCell"
+          data-label="Test1"
+        >
+          <span
+            className="tableBodyCellText"
+          >
+            testl1c1
+          </span>
+        </td>
+        <td
+          className="tableBodyCell"
+          data-label="Test2"
+        >
+          <span
+            className="tableBodyCellText"
+          >
+            testl1c2
+          </span>
+        </td>
+      </tr>
+      <tr
+        className="tableRow"
+      >
+        <td
+          className="tableBodyCell"
+          data-label="Test1"
+        >
+          <span
+            className="tableBodyCellText"
+          >
+            testl2c1
+          </span>
+        </td>
+        <td
+          className="tableBodyCell"
+          data-label="Test2"
+        >
+          <span
+            className="tableBodyCellText"
+          >
+            testl2c2
+          </span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;
