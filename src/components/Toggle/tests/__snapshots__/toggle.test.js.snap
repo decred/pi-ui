@@ -3,6 +3,7 @@
 exports[`Toggle Component Matches snapshot 1`] = `
 <div
   className="switch"
+  data-testid="switch"
 >
   <div
     className="circle"

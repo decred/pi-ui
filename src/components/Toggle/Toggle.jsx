@@ -19,7 +19,7 @@ const Toggle = ({ onToggle, toggled }) => {
   });
 
   return (
-    <div className={styles.switch} onClick={onToggle}>
+    <div className={styles.switch} data-testid="switch" onClick={onToggle}>
       <animated.div
         className={styles.circle}
         style={{

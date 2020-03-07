@@ -29,6 +29,8 @@ module.exports = {
     "\\.(css|less)$": "identity-obj-proxy"
   },
 
+  setupFilesAfterEnv: ["./jest.setup.js"],
+
   // This option sets the URL for the jsdom environment. It is reflected in properties such as location.href
   testURL: "http://localhost",
 
