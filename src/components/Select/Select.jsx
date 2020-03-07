@@ -23,7 +23,7 @@ DropdownIndicator.propTypes = {
   selectProps: PropTypes.object
 };
 
-const Select = ({ isSearchable, value, options, ...props }) => {
+const Select = (props) => {
   return (
     <ReactSelect
       classNamePrefix="customSelect"
@@ -36,7 +36,8 @@ const Select = ({ isSearchable, value, options, ...props }) => {
 Select.propTypes = {
   options: PropTypes.array.isRequired,
   isSearchable: PropTypes.bool,
-  value: PropTypes.string
+  value: PropTypes.object,
+  onChange: PropTypes.func
 };
 
 export default React.memo(Select);

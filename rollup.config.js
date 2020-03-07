@@ -22,6 +22,7 @@ export default {
       sourcemap: true
     }
   ],
+  external: ["react-select"],
   plugins: [
     external(),
     postcss({
