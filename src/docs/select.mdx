@@ -29,12 +29,19 @@ import { Select } from "../index";
       value: 'old',
       label: 'Old'
     }];
-    const [selected, setSelected] = useState('new');
+    const [selected, setSelected] = useState({
+      value: 'old',
+      label: 'Old'
+    });
+    const selectChangeHandler = (option) => {
+      setSelected(option);
+    };
     return (
       <>
       	<Select 
           options={options}
-          slected={selected}
+          value={selected}
+          onChange={selectChangeHandler}
         />
       </>
     );

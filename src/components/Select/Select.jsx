@@ -40,4 +40,8 @@ Select.propTypes = {
   onChange: PropTypes.func
 };
 
+Select.defaultProps = {
+  isSearchable: false
+};
+
 export default React.memo(Select);
