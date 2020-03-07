@@ -36,13 +36,11 @@
     "./src/**/*.{js,jsx},!./src/vendors/*": [
       "yarn prettify",
       "yarn lint:js",
-      "yarn test",
-      "git add"
+      "yarn test"
     ],
     "./src/**/*.css": [
       "yarn prettify",
-      "yarn lint:css",
-      "git add"
+      "yarn lint:css"
     ]
   },
   "peerDependencies": {
