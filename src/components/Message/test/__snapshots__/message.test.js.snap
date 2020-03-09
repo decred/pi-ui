@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Message component Matches the snapshot 1`] = `
+<div
+  className="card padding-undefined info"
+>
+  <div
+    className="iconContainer"
+  >
+    <svg
+      className="icon-info"
+      height="20"
+      viewBox="0 0 450 450"
+      width="20"
+    >
+      <path
+        d="M930.782,3.4C808.266,3.4,705.8,105.868,705.8,228.383S808.266,453.367,930.782,453.367,1155.766,350.9,1155.766,228.383C1157.991,108.1,1053.3,3.4,930.782,3.4Zm24.5,372H908.5V174.922h46.778Zm-24.5-236.121c-17.819,0-28.959-11.138-28.959-26.731S915.188,85.82,930.782,85.82c17.821,0,28.959,11.138,28.959,26.731C961.967,128.143,948.6,139.281,930.782,139.281Z"
+        fill="#c4cbd2"
+        transform="translate(-705.799 -3.4)"
+      />
+    </svg>
+  </div>
+  <div
+    className="content"
+  >
+    test
+  </div>
+</div>
+`;

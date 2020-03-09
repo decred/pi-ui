@@ -34,7 +34,7 @@ const BoxTextInput = ({
   ...props
 }) => {
   const handleSubmit = (e) => {
-    e.preventDefault();
+    e && e.preventDefault();
     onSubmit && onSubmit();
   };
   const Wrapper = searchInput ? FormWrapper : DefaultWrapper;
@@ -57,7 +57,10 @@ const BoxTextInput = ({
         {...props}
       />
       {searchInput && (
-        <button type="submit" className={styles.boxtextinputButton}>
+        <button
+          type="submit"
+          className={styles.boxtextinputButton}
+          data-testid="submit-button">
           <Icon type="search" />
         </button>
       )}

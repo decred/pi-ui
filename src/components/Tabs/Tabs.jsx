@@ -44,6 +44,7 @@ const Tabs = ({
       .filter(Boolean)
       .map((child, index) => {
         return React.cloneElement(child, {
+          "data-testid": `tab-${index}`,
           onSelect: onSelectTab,
           tabIndex: index,
           isActive: index === activeTabIndex,

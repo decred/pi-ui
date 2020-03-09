@@ -1,0 +1,65 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Typography Elements H1 Matches Snapshot 1`] = `
+<h1
+  className="header1"
+>
+  header1
+</h1>
+`;
+
+exports[`Typography Elements H2 Matches Snapshot 1`] = `
+<h2
+  className="header2"
+>
+  header1
+</h2>
+`;
+
+exports[`Typography Elements H3 Matches Snapshot 1`] = `
+<h3
+  className="header3"
+>
+  header1
+</h3>
+`;
+
+exports[`Typography Elements H4 Matches Snapshot 1`] = `
+<h4
+  className="header4"
+>
+  header1
+</h4>
+`;
+
+exports[`Typography Elements H5 Matches Snapshot 1`] = `
+<h5
+  className="header5"
+>
+  header1
+</h5>
+`;
+
+exports[`Typography Elements H6 Matches Snapshot 1`] = `
+<h6
+  className="header6"
+>
+  header1
+</h6>
+`;
+
+exports[`Typography Elements P Matches Snapshot 1`] = `
+<p
+  className="paragraph"
+>
+  header1
+</p>
+`;
+
+exports[`Typography Elements Text Matches Snapshot 1`] = `
+<span
+  className="text textAlignStart weightRegular sizeNormal colorDefault"
+>
+  header1
+</span>
+`;

@@ -1,0 +1,129 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StatusBar component Matches the snapshot 1`] = `
+<div
+  className="statusBar"
+>
+  <div
+    className="statusInfo"
+  >
+    <div
+      className="legend"
+    >
+      <div
+        className="legendLine"
+      >
+        <div
+          className="legendColor"
+          style={
+            Object {
+              "backgroundColor": "green",
+            }
+          }
+        />
+        <span
+          className="legendLabel"
+        >
+          Yes
+          :
+        </span>
+        <span
+          className="legendAmount"
+        >
+          300
+        </span>
+        <span>
+          (
+          60.0
+          %)
+        </span>
+      </div>
+      <div
+        className="legendLine"
+      >
+        <div
+          className="legendColor"
+          style={
+            Object {
+              "backgroundColor": "orange",
+            }
+          }
+        />
+        <span
+          className="legendLabel"
+        >
+          No
+          :
+        </span>
+        <span
+          className="legendAmount"
+        >
+          200
+        </span>
+        <span>
+          (
+          40.0
+          %)
+        </span>
+      </div>
+    </div>
+    <span>
+      <span
+        className="infoCurrent"
+      >
+        500
+      </span>
+      <span
+        className="infoTotal"
+      >
+        /
+        0
+         votes
+      </span>
+    </span>
+  </div>
+  <div
+    className="statusWrapper"
+  >
+    <div
+      className="statusOption firstStatusOption"
+      style={
+        Object {
+          "backgroundColor": "green",
+          "width": "60%",
+        }
+      }
+    />
+    <div
+      className="statusOption lastStatusOption"
+      style={
+        Object {
+          "backgroundColor": "orange",
+          "width": "40%",
+        }
+      }
+    />
+    <div
+      className="markerWrapper"
+      style={
+        Object {
+          "left": "0%",
+        }
+      }
+    >
+      <div
+        className="tooltip markerTooltip"
+      >
+        <div
+          className="tooltipContent top"
+        >
+          0%
+        </div>
+        <div
+          className="marker"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
