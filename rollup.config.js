@@ -26,8 +26,10 @@ export default {
   plugins: [
     external(),
     postcss({
-      modules: true,
-      extract: true
+      extract: true,
+      modules: {
+        globalModulePaths: ["src/components/Select/styles.css"]
+      }
     }),
     url({
       include: ["**/*.woff", "**/*.ttf", "**/*.png", "**/*.svg"],
