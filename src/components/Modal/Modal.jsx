@@ -9,7 +9,9 @@ import styles from "./styles.css";
 import useLockBodyScrollOnTrue from "../../hooks/useLockBodyScrollOnTrue";
 import useKeyPress from "../../hooks/useKeyPress";
 
-const root = document.getElementById("root");
+const modalRoot = document.createElement("div");
+modalRoot.setAttribute("id", "modal-root");
+document.body.appendChild(modalRoot);
 
 // TODO: use svg icons when we have them
 const Modal = ({
@@ -30,6 +32,11 @@ const Modal = ({
   disableClose,
   ...props
 }) => {
+  const el = document.createElement("div");
+  useEffect(() => {
+    modalRoot.appendChild(el);
+    return () => modalRoot.removeChild(el);
+  });
   const onCloseClick = (e) => {
     e.preventDefault();
     onClose();
@@ -74,13 +81,17 @@ const Modal = ({
           {children}
         </div>
         {!disableClose && (
-          <a className={styles.modalClose} onClick={onCloseClick} href="#">
+          <a
+            className={styles.modalClose}
+            onClick={onCloseClick}
+            data-testid="close"
+            href="#">
             &times;
           </a>
         )}
       </div>
     </ModalWrapper>,
-    root
+    el
   );
 };
 

@@ -19,7 +19,7 @@ const DefaultTrigger = ({
   dropdownArrowClassName,
   ArrowComponent = Arrow
 }) => (
-  <div className={styles.headerWrapper} onClick={onClick}>
+  <div className={styles.headerWrapper} data-testid="trigger" onClick={onClick}>
     <span className={styles.dropdownHeader}>{title}</span>
     <ArrowComponent
       onClick={onClick}
@@ -44,9 +44,7 @@ const Dropdown = ({
 }) => {
   const [innerStateShow, setInnerStateShow] = useState(false);
   const dropdownOpenned = show || innerStateShow;
-  const closeDropdown = useCallback(() => {
-    setInnerStateShow(false);
-  }, [setInnerStateShow]);
+  const closeDropdown = () => setInnerStateShow(false);
 
   const closeDropdownHandler =
     closeOnOutsideClick && dropdownOpenned
@@ -121,6 +119,7 @@ const Dropdown = ({
           ({ item, key, props }) =>
             item && (
               <animated.ul
+                data-testid="items-list"
                 className={classNames(styles.dropdownList, itemsListClassName)}
                 key={key}
                 ref={dropdownListRef}

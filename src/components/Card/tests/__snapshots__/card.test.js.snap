@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Card component Matches the snapshot 1`] = `
+<div
+  className="card padding-undefined"
+>
+  test
+</div>
+`;

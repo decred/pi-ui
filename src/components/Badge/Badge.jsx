@@ -5,7 +5,7 @@ import { classNames } from "../../utils";
 
 const Badge = ({ children, icon, show, onClose, ...props }) => {
   const onCloseClick = (e) => {
-    e.preventDefault();
+    e && e.preventDefault();
     onClose();
   };
   return (
@@ -14,7 +14,11 @@ const Badge = ({ children, icon, show, onClose, ...props }) => {
         show ? styles.badgeWrapperVisible : styles.badgeWrapper
       )}
       {...props}>
-      <a className={styles.badgeClose} onClick={onCloseClick} href="#">
+      <a
+        className={styles.badgeClose}
+        onClick={onCloseClick}
+        data-testid="close-button"
+        href="#">
         &times;
       </a>
       <div className={styles.badgeIcon}>{icon}</div>

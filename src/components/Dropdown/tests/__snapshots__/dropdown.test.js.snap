@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Dropdown component Matches snapshot 1`] = `
+<div
+  className="dropdownWrapper"
+  style={
+    Object {
+      "width": undefined,
+    }
+  }
+>
+  <div
+    className="headerWrapper"
+    data-testid="trigger"
+    onClick={[Function]}
+  >
+    <span
+      className="dropdownHeader"
+    >
+      test
+    </span>
+    <div
+      className="arrowAnchor"
+      onClick={[Function]}
+    />
+  </div>
+</div>
+`;

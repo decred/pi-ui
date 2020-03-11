@@ -61,6 +61,7 @@ const Table = ({
             className={
               canGoBack ? styles.pageItemArrow : styles.pageItemArrowDisabled
             }
+            data-testid="back"
             onClick={previousPage}>
             <Icon
               type="left"
@@ -83,6 +84,7 @@ const Table = ({
             className={
               canGoNext ? styles.pageItemArrow : styles.pageItemArrowDisabled
             }
+            data-testid="next"
             onClick={nextPage}>
             <Icon
               type="right"

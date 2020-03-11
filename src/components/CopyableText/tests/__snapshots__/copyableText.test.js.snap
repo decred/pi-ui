@@ -1,0 +1,68 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CopyableText component Matches snapshot 1`] = `
+<div
+  className="copyableWrapper"
+>
+  <span
+    className="text textAlignStart weightRegular sizeNormal colorDefault contentWrapper"
+    id="copy-id"
+  >
+    test
+  </span>
+  <div
+    className="tooltip"
+  >
+    <div
+      className="tooltipContent right"
+    >
+      Copy to clipboard
+    </div>
+    <svg
+      className="copyToClipboard"
+      height="16"
+      onClick={[Function]}
+      viewBox="0 0 450 450"
+      width="16"
+    >
+      <g>
+        <g>
+          <g
+            fill="#2970ff"
+            transform="translate(40.909091, 51.660000)"
+          >
+            <polygon
+              points="306.818182 0 306.818182 67.68 61.3636364 67.68 61.3636364 0 0 0 0 338.37 368.181818 338.37 368.181818 0"
+            />
+          </g>
+          <polygon
+            fill="#2970ff"
+            points="136.227273 95.16 313.854545 95.16 313.854545 30.03 136.227273 30.03"
+          />
+          <rect
+            fill="#f7f8f9"
+            height="21.75"
+            width="249.75"
+            x="100.063636"
+            y="165.36"
+          />
+          <rect
+            fill="#f7f8f9"
+            height="21.75"
+            width="249.75"
+            x="100.063636"
+            y="233.04"
+          />
+          <rect
+            fill="#f7f8f9"
+            height="21.75"
+            width="249.75"
+            x="100.063636"
+            y="300.69"
+          />
+        </g>
+      </g>
+    </svg>
+  </div>
+</div>
+`;
