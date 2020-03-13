@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Select component Matches the snapshot 1`] = `
+<div
+  className="css-1pcexqc-container"
+  onKeyDown={[Function]}
+>
+  <div
+    className="css-bg1rzq-control customSelect__control"
+    onMouseDown={[Function]}
+    onTouchEnd={[Function]}
+  >
+    <div
+      className="css-1hwfws3 customSelect__value-container"
+    >
+      <div
+        className="css-151xaom-placeholder customSelect__placeholder"
+      >
+        Select...
+      </div>
+      <input
+        className="css-gj7qu5-dummyInput"
+        disabled={false}
+        id="react-select-2-input"
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        readOnly={true}
+        tabIndex="0"
+        value=""
+      />
+    </div>
+    <div
+      className="css-1wy0on6 customSelect__indicators"
+    >
+      <span
+        className="css-bgvzuu-indicatorSeparator customSelect__indicator-separator"
+      />
+      <div
+        aria-hidden="true"
+        className="css-16pqwjk-indicatorContainer customSelect__indicator customSelect__dropdown-indicator"
+        onMouseDown={[Function]}
+        onTouchEnd={[Function]}
+      >
+        <div
+          className="arrowAnchor"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;

@@ -1,0 +1,49 @@
+---
+name: Select
+menu: Components
+route: /components/select
+---
+
+import { useState } from "react";
+import { Playground, Props } from "docz";
+import { Select } from "../index";
+
+# Select
+
+## Select props
+<Props of={Select} />
+
+## Usage
+
+### Uncontrolled dropdown
+
+<Playground>
+  {() => {
+    const options = [{
+      value: 'top',
+      label: 'Top'
+    }, {
+      value: 'new',
+      label: 'New'
+    }, {
+      value: 'old',
+      label: 'Old'
+    }];
+    const [selected, setSelected] = useState({
+      value: 'old',
+      label: 'Old'
+    });
+    const selectChangeHandler = (option) => {
+      setSelected(option);
+    };
+    return (
+      <>
+      	<Select 
+          options={options}
+          value={selected}
+          onChange={selectChangeHandler}
+        />
+      </>
+    );
+  }}
+</Playground>

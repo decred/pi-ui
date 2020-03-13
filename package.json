@@ -36,13 +36,11 @@
     "./src/**/*.{js,jsx},!./src/vendors/*": [
       "yarn prettify",
       "yarn lint:js",
-      "yarn test",
-      "git add"
+      "yarn test"
     ],
     "./src/**/*.css": [
       "yarn prettify",
-      "yarn lint:css",
-      "git add"
+      "yarn lint:css"
     ]
   },
   "peerDependencies": {
@@ -106,6 +104,8 @@
   ],
   "dependencies": {
     "clamp-js-main": "^0.11.5",
+    "react-select": "2.4.4",
+    "react-select-event": "^4.1.4",
     "react-spring": "^8.0.25"
   }
 }
