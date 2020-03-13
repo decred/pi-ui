@@ -5,24 +5,18 @@ import { render } from "@testing-library/react";
 import selectEvent from "react-select-event";
 
 describe("Select component", () => {
+  const options = [
+    {
+      value: "top",
+      label: "Top"
+    }
+  ];
   test("Matches the snapshot", () => {
-    const props = [
-      {
-        value: "top",
-        label: "Top"
-      }
-    ];
-    const select = create(<Select options={props} />);
+    const select = create(<Select options={options} />);
     expect(select.toJSON()).toMatchSnapshot();
   });
 
   test("Call on change function on option click", async () => {
-    const options = [
-      {
-        value: "top",
-        label: "Top"
-      }
-    ];
     let selected;
     const mockHandleChange = jest.fn((option) => {
       selected = option.value;
