@@ -28,15 +28,10 @@ describe("Select component", () => {
       selected = option.value;
     });
     const { getByLabelText } = render(
-      <form data-testid="form">
+      <>
         <label htmlFor="sort">Sort</label>
-        <Select
-          options={options}
-          name="sort"
-          onChange={mockHandleChange}
-          inputId="sort"
-        />
-      </form>
+        <Select options={options} onChange={mockHandleChange} inputId="sort" />
+      </>
     );
 
     // select top option
