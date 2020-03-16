@@ -28,7 +28,10 @@ export default {
     postcss({
       extract: true,
       modules: {
-        globalModulePaths: ["src/components/Select/styles.css"]
+        globalModulePaths: [
+          "src/components/Select/styles.css",
+          "src/components/Datepicker/styles.css"
+        ]
       }
     }),
     url({

@@ -39,6 +39,7 @@ export { default as Text } from "./components/Typography/Text/Text.jsx";
 export { default as Badge } from "./components/Badge/Badge.jsx";
 export { default as Toggle } from "./components/Toggle/Toggle.jsx";
 export { default as Select } from "./components/Select/Select.jsx";
+export { default as DatePicker } from "./components/Datepicker/Datepicker.jsx";
 export * from "./hooks";
 export * from "./theme";
 export * from "./utils";

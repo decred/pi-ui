@@ -1,0 +1,32 @@
+---
+name: DatePicker
+menu: Components
+route: /components/datepicker
+---
+
+import { useState } from "react";
+import { Playground, Props } from "docz";
+import { DatePicker } from "../index";
+
+# DatePicker
+
+## DatePicker props
+<Props of={DatePicker} />
+
+## Usage
+
+### month picker
+
+<Playground>
+  {() => {
+    const [value] = useState({ year: 2015, month: 11 });
+    return (
+      <>
+      	<DatePicker
+          years={[2013, 2015, 2016]} 
+          value={value}
+        />
+      </>
+    );
+  }}
+</Playground>

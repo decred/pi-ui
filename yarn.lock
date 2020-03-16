@@ -13055,6 +13055,11 @@ react-spring@^8.0.25:
     "@babel/runtime" "^7.3.1"
     prop-types "^15.5.8"
 
+react-tapper@^0.1.18:
+  version "0.1.18"
+  resolved "https://registry.yarnpkg.com/react-tapper/-/react-tapper-0.1.18.tgz#0b6976c1e115379d509e1d6726d3255f3be63778"
+  integrity sha512-eNcEg+3gX1qwdn6kVq4OegZHia4xw3W5WNUWf1FvGj0QCrBZsrCOx+vxMrcstmgH78dT37iJUPQmga4PIJplDQ==
+
 react-test-renderer@^16.12.0:
   version "16.12.0"
   resolved "https://registry.yarnpkg.com/react-test-renderer/-/react-test-renderer-16.12.0.tgz#11417ffda579306d4e841a794d32140f3da1b43f"

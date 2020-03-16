@@ -106,6 +106,7 @@
     "clamp-js-main": "^0.11.5",
     "react-select": "2.4.4",
     "react-select-event": "^4.1.4",
-    "react-spring": "^8.0.25"
+    "react-spring": "^8.0.25",
+    "react-tapper": "^0.1.18"
   }
 }
