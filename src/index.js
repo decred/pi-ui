@@ -21,6 +21,7 @@ export { default as Modal } from "./components/Modal/Modal.jsx";
 export { default as ModalWrapper } from "./components/Modal/ModalWrapper.jsx";
 export * from "./components/RadioButtonGroup/RadioButtonGroup.jsx";
 export { default as Spinner } from "./components/Spinner/Spinner.jsx";
+export { default as NumberInput } from "./components/NumberInput/NumberInput.jsx";
 export { default as StatusBar } from "./components/StatusBar/StatusBar.jsx";
 export { default as StatusTag } from "./components/StatusTag/StatusTag.jsx";
 export { default as Table } from "./components/Table/Table.jsx";
