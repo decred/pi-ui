@@ -19,10 +19,12 @@ exports[`RadioButtonGroup component Matches snapshot 1`] = `
       >
         <input
           checked={true}
+          id="radio-btn-0"
           onChange={[Function]}
           type="radio"
         />
         <label
+          htmlFor="radio-btn-0"
           onClick={[Function]}
         >
           <span
@@ -47,10 +49,12 @@ exports[`RadioButtonGroup component Matches snapshot 1`] = `
       >
         <input
           checked={false}
+          id="radio-btn-1"
           onChange={[Function]}
           type="radio"
         />
         <label
+          htmlFor="radio-btn-1"
           onClick={[Function]}
         >
           <span

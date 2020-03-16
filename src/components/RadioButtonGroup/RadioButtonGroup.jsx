@@ -80,6 +80,7 @@ export const RadioButtonGroup = ({
               checked={option.value === value}
               label={option.label}
               name={name}
+              id={`radio-btn-${idx}`}
             />
           </li>
         ))}

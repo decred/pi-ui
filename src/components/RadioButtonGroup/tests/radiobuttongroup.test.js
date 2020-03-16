@@ -25,7 +25,7 @@ describe("RadioButtonGroup component", () => {
     const mockHandleChange = jest.fn(() => {
       value = 2;
     });
-    const { getByLabelText, queryByLabelText } = render(
+    const { getByLabelText, queryByText } = render(
       <RadioButtonGroup
         label="Test"
         options={options}
@@ -33,8 +33,8 @@ describe("RadioButtonGroup component", () => {
         onChange={mockHandleChange}
       />
     );
-    expect(queryByLabelText(/foo/i)).toBeTruthy();
-    expect(queryByLabelText(/bar/i)).toBeTruthy();
+    expect(queryByText(/foo/i)).toBeTruthy();
+    expect(queryByText(/bar/i)).toBeTruthy();
     fireEvent.click(getByLabelText(/bar/i));
     expect(mockHandleChange).toBeCalled();
     expect(value).toBe(2);
