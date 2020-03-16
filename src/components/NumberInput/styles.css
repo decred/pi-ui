@@ -1,5 +1,6 @@
 .numberInputWrapper {
   width: 4rem;
+  display: inline-block;
 }
 
 .numberInput {
