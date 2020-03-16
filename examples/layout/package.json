@@ -4,8 +4,8 @@
   "private": true,
   "dependencies": {
     "babel-jest": "23.6.0",
-    "react": "link:../node_modules/react",
-    "react-dom": "link:../node_modules/reac-dom",
+    "react": "link:../../node_modules/react",
+    "react-dom": "link:../../node_modules/react-dom",
     "react-scripts": "2.1.8"
   },
   "scripts": {
