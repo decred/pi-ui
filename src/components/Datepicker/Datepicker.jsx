@@ -97,6 +97,7 @@ const DatePicker = ({
   onClickAway,
   onDismiss,
   onChange,
+  onShow,
   onYearChange
 }) => {
   const validate = (d, years, idx, yearIndexes) => {
@@ -165,8 +166,16 @@ const DatePicker = ({
   const [valuesState, setValuesState] = useState(values);
   const [labelYearsState, setLabelYearsState] = useState([false, false]);
   const [showedState, setShowedState] = useState(show);
-  const [closeableState] = useState(show); // special, must not be changed with setState
+  const [closeableState, setClosableState] = useState(show); // special, must not be changed with setState
   const [yearIndexesState] = useState(yearIndexes);
+
+  useEffect(() => {
+    if (show && !showedState) {
+      setClosableState(true);
+      setShowedState(true);
+      onShow && onShow();
+    }
+  }, [show]);
 
   useLayoutEffect(() => {
     document.addEventListener("keydown", _keyDown);
@@ -419,6 +428,7 @@ DatePicker.propTypes = {
   lang: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
   onChange: PropTypes.func,
   onYearChange: PropTypes.func,
+  onShow: PropTypes.func,
   onDismiss: PropTypes.func,
   onClickAway: PropTypes.func,
   theme: PropTypes.string,
