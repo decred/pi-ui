@@ -15,7 +15,13 @@
  * @theme: theme setting of month-picker; 2 options (light/dark); default theme is light
  */
 
-import React, { useState, useLayoutEffect, useMemo, useEffect } from "react";
+import React, {
+  useState,
+  useLayoutEffect,
+  useMemo,
+  useEffect,
+  useCallback
+} from "react";
 import PropTypes from "prop-types";
 import Tappable from "react-tapper";
 import "./styles.css";
@@ -168,6 +174,13 @@ const DatePicker = ({
   const [showedState, setShowedState] = useState(show);
   const [closeableState, setClosableState] = useState(show); // special, must not be changed with setState
   const [yearIndexesState] = useState(yearIndexes);
+  const [pads, setPads] = useState([]);
+  const [popupClass, setPopupClass] = useState("");
+  const isRange = valuesState.length > 1;
+
+  useEffect(() => {
+    renderPad();
+  }, [valuesState]);
 
   useEffect(() => {
     if (show && !showedState) {
@@ -175,7 +188,7 @@ const DatePicker = ({
       setShowedState(true);
       onShow && onShow();
     }
-  }, [show]);
+  }, [show, showedState]);
 
   useLayoutEffect(() => {
     document.addEventListener("keydown", _keyDown);
@@ -184,13 +197,21 @@ const DatePicker = ({
     };
   }, []);
 
+  const renderPad = () => {
+    if (isRange > 1) {
+      setPads([optionPad(0), optionPad(1)]);
+      setPopupClass("range");
+    } else {
+      setPads([optionPad(0)]);
+    }
+  };
+
   const optionPad = (padIndex) => {
     const values = valuesState;
     const value = values[padIndex];
     const labelYears = labelYearsState;
     const labelYear = (labelYears[padIndex] =
       labelYears[padIndex] || value.year);
-    console.log(yearsState);
     const ymArr = yearsState;
     const months = Array.isArray(lang)
       ? lang
@@ -310,18 +331,6 @@ const DatePicker = ({
     return {};
   };
 
-  const [pads, setPads] = useState([]);
-  const [popupClass, setPopupClass] = useState("");
-
-  useEffect(() => {
-    if (valuesState.length > 1) {
-      setPads([optionPad(0), optionPad(1)]);
-      setPopupClass("range");
-    } else {
-      setPads([optionPad(0)]);
-    }
-  }, [valuesState]);
-
   const _handleOverlayTouchTap = (e) => {
     if (closeableState) {
       _onDismiss();
@@ -335,18 +344,17 @@ const DatePicker = ({
     onDismiss && onDismiss(getValue());
   };
 
-  const handleClickMonth = (e) => {
-    if (showedState) {
-      const refid = getDID(e).split(":");
-      const idx = parseInt(refid[0], 10);
-      const month = parseInt(refid[1], 10);
-      const year = labelYearsState[idx];
-      const values = valuesState;
-      values[idx] = { year, month };
-      setValuesState(values);
-      onChange(year, month, idx);
-    }
-  };
+  const handleClickMonth = useCallback((e) => {
+    const refid = getDID(e).split(":");
+    const idx = parseInt(refid[0], 10);
+    const month = parseInt(refid[1], 10);
+    const year = labelYearsState[idx];
+    const values = valuesState;
+    values[idx] = { year, month };
+    setValuesState(values);
+    renderPad();
+    onChange(year, month, idx);
+  }, []);
 
   const handlePrevYearClick = (e) => {
     const idx = parseInt(getDID(e), 10);
@@ -368,6 +376,7 @@ const DatePicker = ({
     const theYear = yearsState[yearIndex].year;
     labelYears[idx] = theYear;
     setLabelYearsState(labelYears);
+    renderPad();
     onYearChange && onYearChange(theYear);
   };
 
