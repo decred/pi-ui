@@ -1,4 +1,10 @@
-import React, { useState, useMemo, useEffect, useCallback } from "react";
+import React, {
+  useState,
+  useMemo,
+  useEffect,
+  useCallback,
+  useLayoutEffect
+} from "react";
 import PropTypes from "prop-types";
 import Tappable from "react-tapper";
 import "./styles.css";
@@ -167,7 +173,7 @@ const DatePicker = ({
     }
   }, [show]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     document.addEventListener("keydown", _keyDown);
     return () => {
       document.removeEventListener("keydown", _keyDown);
@@ -422,7 +428,7 @@ DatePicker.propTypes = {
 
 DatePicker.defaultProps = {
   years: getYearsByNum(5),
-  onChange(year, month, idx) { },
+  onChange(year, month, idx) {},
   theme: "light",
   show: false,
   lang: []
