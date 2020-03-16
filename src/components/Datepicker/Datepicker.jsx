@@ -1,27 +1,4 @@
-/**
- * Date-Picker
- *
- * Properties:
- * @years:
- *  - array: [2013, 2015, 2016]
- *  - number: 5 (last 4 years and this year)
- *  - object: {min: 2013, max: 2016} (from 2013 to 2016); {min: 2013} (from 2013 to this year); {max: 2015} (5 years to 2015)
- * @value: default value for picking a single month, e.g. {year: 2015: month: 11}
- * @range: default value for picking a span of months, e.g. {from: {year: 2014: month: 7}, to: {year: 2015: month: 11}}
- * @lang: language texts
- *  - array: array of months' texts, e.g. ['Jan', 'Feb', 'Mar', 'Spr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
- *  - object: including array of months' texts and other display texts
- *      e.g. {from: "From:", to: "To:", months: [...]}
- * @theme: theme setting of month-picker; 2 options (light/dark); default theme is light
- */
-
-import React, {
-  useState,
-  useLayoutEffect,
-  useMemo,
-  useEffect,
-  useCallback
-} from "react";
+import React, { useState, useMemo, useEffect, useCallback } from "react";
 import PropTypes from "prop-types";
 import Tappable from "react-tapper";
 import "./styles.css";
@@ -188,9 +165,9 @@ const DatePicker = ({
       setShowedState(true);
       onShow && onShow();
     }
-  }, [show, showedState]);
+  }, [show]);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     document.addEventListener("keydown", _keyDown);
     return () => {
       document.removeEventListener("keydown", _keyDown);
@@ -331,7 +308,7 @@ const DatePicker = ({
     return {};
   };
 
-  const _handleOverlayTouchTap = (e) => {
+  const handleOverlayTouchTap = (e) => {
     if (closeableState) {
       _onDismiss();
       onClickAway && onClickAway(e);
@@ -339,7 +316,6 @@ const DatePicker = ({
   };
 
   const _onDismiss = () => {
-    // this.setState(Object.assign({ showed: false, loading: false }, s));
     setShowedState(false);
     onDismiss && onDismiss(getValue());
   };
@@ -385,9 +361,7 @@ const DatePicker = ({
     return el.dataset ? el.dataset.id : el.getAttribute("data-id");
   };
 
-  const _keyDown = (e) => {
-    if (!showedState) return;
-
+  const _keyDown = useCallback((e) => {
     if (e.key === "Escape") {
       _onDismiss();
       e.stopPropagation();
@@ -397,7 +371,7 @@ const DatePicker = ({
     } else if (valuesState.length === 1) {
       // todo: delete empty block
     }
-  };
+  }, []);
 
   return (
     <div className={["month-picker", className].join(" ")}>
@@ -409,7 +383,7 @@ const DatePicker = ({
           className,
           showedState ? "show" : ""
         ].join(" ")}>
-        <Tappable className="rmp-overlay" onTap={_handleOverlayTouchTap} />
+        <Tappable className="rmp-overlay" onTap={handleOverlayTouchTap} />
         <div className="rmp-cell">
           <div
             className={[
@@ -448,7 +422,7 @@ DatePicker.propTypes = {
 
 DatePicker.defaultProps = {
   years: getYearsByNum(5),
-  onChange(year, month, idx) {},
+  onChange(year, month, idx) { },
   theme: "light",
   show: false,
   lang: []
