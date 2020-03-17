@@ -30,7 +30,8 @@ const DatePicker = ({
   onDismiss,
   onChange,
   onShow,
-  onYearChange
+  onYearChange,
+  isMonthMode
 }) => {
   const yearArr = useMemo(() => getYearArray(years), [getYearArray, years]);
   const yearIndexes = useMemo(() => [], []);
@@ -42,7 +43,7 @@ const DatePicker = ({
   const [yearsState] = useState(yearArr);
   const [valuesState, setValuesState] = useState(values);
   const [labelYearsState, setLabelYearsState] = useState([false, false]);
-  const [labelMonthsState] = useState([false, false]);
+  const [labelMonthsState, setLabelMonthsState] = useState([false, false]);
   const [showedState, setShowedState] = useState(show);
   const [yearIndexesState] = useState(yearIndexes);
   const [pads, setPads] = useState([]);
@@ -85,20 +86,23 @@ const DatePicker = ({
       yearsState,
       labelYearsState,
       yearIndexesState,
-      labelMonthsState
+      labelMonthsState,
+      valuesState
     });
     const labelYear = (labelYears[padIndex] =
       labelYears[padIndex] || value.year);
     const labelMonth = (labelMonths[padIndex] =
       labelMonths[padIndex] || value.month);
     const ymArr = yearsState;
-    const months = Array.isArray(lang)
-      ? lang
-      : Array.isArray(lang.months)
-      ? lang.months
-      : [];
+    // const months = Array.isArray(lang)
+    //   ? lang
+    //   : Array.isArray(lang.months)
+    //   ? lang.months
+    //   : [];
     let prevCss = "";
+    let prevMonthCss = "";
     let nextCss = "";
+    let nextMonthCss = "";
     const yearMaxIdx = ymArr.length - 1;
     const yearIdx = yearIndexesState[padIndex]; // yearMaxIdx
 
@@ -118,6 +122,9 @@ const DatePicker = ({
     if (otherValue && lang[labelTextKey]) {
       labelPreText = <b>{lang[labelTextKey]}</b>;
     }
+
+    if (labelMonth === 1) prevMonthCss = "disable";
+    if (labelMonth === 12) nextMonthCss = "disable";
 
     return (
       <div className="rmp-pad" key={padIndex}>
@@ -142,23 +149,34 @@ const DatePicker = ({
         <div>
           <label>{labelMonth}</label>
           <i
-            className={classNames("rmp-tab", "rmp-btn", "prev-mnth", prevCss)}
+            className={classNames(
+              "rmp-tab",
+              "rmp-btn",
+              "prev-mnth",
+              prevMonthCss
+            )}
             data-id={padIndex}
-            onClick={handlePrevYearClick}>
+            onClick={handlePrevMonthClick}>
             {"<"}
           </i>
           <i
-            className={classNames("rmp-tab", "rmp-btn", "next-mnth", nextCss)}
+            className={classNames(
+              "rmp-tab",
+              "rmp-btn",
+              "next-mnth",
+              nextMonthCss
+            )}
             data-id={padIndex}
-            onClick={handleNextYearClick}>
+            onClick={handleNextMonthClick}>
             {">"}
           </i>
         </div>
         <ul>
           {mapToArray(new Date(labelYear, labelMonth, 0).getDate(), (i) => {
             let css = "";
-            const m = i + 1;
-            if (yearActive && m === value.month) {
+            // const m = i + 1;
+            const m = i;
+            if (yearActive && labelMonth === value.month && m === value.day) {
               css = "active";
             }
             if (
@@ -209,7 +227,7 @@ const DatePicker = ({
                 className={classNames("rmp-btn", css)}
                 data-id={padIndex + ":" + (i + 1)}
                 onClick={clickHandler}>
-                {months.length > i ? months[i] : i}
+                {m}
               </li>
             );
           })}
@@ -260,6 +278,28 @@ const DatePicker = ({
     const idx = parseInt(getDID(e), 10);
     if (yearIndexesState[idx] < yearsState.length - 1) {
       setYear(idx, 1);
+    }
+  };
+
+  const handleNextMonthClick = (e) => {
+    const idx = parseInt(getDID(e), 10);
+    const labelMonth = labelMonthsState[idx];
+    const nextMonth = labelMonth + 1;
+    if (nextMonth <= 12) {
+      labelMonthsState[idx] = nextMonth;
+      setLabelMonthsState(labelMonthsState);
+      renderPad();
+    }
+  };
+
+  const handlePrevMonthClick = (e) => {
+    const idx = parseInt(getDID(e), 10);
+    const labelMonth = labelMonthsState[idx];
+    const nextMonth = labelMonth - 1;
+    if (nextMonth > 0) {
+      labelMonthsState[idx] = nextMonth;
+      setLabelMonthsState(labelMonthsState);
+      renderPad();
     }
   };
 
@@ -326,6 +366,7 @@ DatePicker.propTypes = {
   onClickAway: PropTypes.func,
   theme: PropTypes.string,
   show: PropTypes.bool,
+  isMonthMode: PropTypes.bool,
   className: PropTypes.string,
   children: PropTypes.node
 };
@@ -335,7 +376,8 @@ DatePicker.defaultProps = {
   onChange(year, month, idx) {},
   theme: "light",
   show: false,
-  lang: []
+  lang: [],
+  isMonthsMode: false
 };
 
 export default DatePicker;
