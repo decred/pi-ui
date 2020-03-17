@@ -374,8 +374,6 @@ const DatePicker = ({
     } else if (e.key === "Enter") {
       _onDismiss();
       e.stopPropagation();
-    } else if (valuesState.length === 1) {
-      // todo: delete empty block
     }
   }, []);
 
