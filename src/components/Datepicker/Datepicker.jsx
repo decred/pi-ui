@@ -31,7 +31,7 @@ const DatePicker = ({
   onChange,
   onShow,
   onYearChange,
-  isMonthMode
+  isMonthsMode
 }) => {
   const yearArr = useMemo(() => getYearArray(years), [getYearArray, years]);
   const yearIndexes = useMemo(() => [], []);
@@ -94,11 +94,11 @@ const DatePicker = ({
     const labelMonth = (labelMonths[padIndex] =
       labelMonths[padIndex] || value.month);
     const ymArr = yearsState;
-    // const months = Array.isArray(lang)
-    //   ? lang
-    //   : Array.isArray(lang.months)
-    //   ? lang.months
-    //   : [];
+    const months = Array.isArray(lang)
+      ? lang
+      : Array.isArray(lang.months)
+      ? lang.months
+      : [];
     let prevCss = "";
     let prevMonthCss = "";
     let nextCss = "";
@@ -146,91 +146,153 @@ const DatePicker = ({
             {">"}
           </i>
         </div>
-        <div>
-          <label>{labelMonth}</label>
-          <i
-            className={classNames(
-              "rmp-tab",
-              "rmp-btn",
-              "prev-mnth",
-              prevMonthCss
-            )}
-            data-id={padIndex}
-            onClick={handlePrevMonthClick}>
-            {"<"}
-          </i>
-          <i
-            className={classNames(
-              "rmp-tab",
-              "rmp-btn",
-              "next-mnth",
-              nextMonthCss
-            )}
-            data-id={padIndex}
-            onClick={handleNextMonthClick}>
-            {">"}
-          </i>
-        </div>
+        {!isMonthsMode && (
+          <div>
+            <label>{labelMonth}</label>
+            <i
+              className={classNames(
+                "rmp-tab",
+                "rmp-btn",
+                "prev-mnth",
+                prevMonthCss
+              )}
+              data-id={padIndex}
+              onClick={handlePrevMonthClick}>
+              {"<"}
+            </i>
+            <i
+              className={classNames(
+                "rmp-tab",
+                "rmp-btn",
+                "next-mnth",
+                nextMonthCss
+              )}
+              data-id={padIndex}
+              onClick={handleNextMonthClick}>
+              {">"}
+            </i>
+          </div>
+        )}
         <ul>
-          {mapToArray(new Date(labelYear, labelMonth, 0).getDate(), (i) => {
-            let css = "";
-            // const m = i + 1;
-            const m = i;
-            if (yearActive && labelMonth === value.month && m === value.day) {
-              css = "active";
-            }
-            if (
-              values.length > 1 &&
-              padIndex === 0 &&
-              (labelYear > value.year ||
-                (labelYear === value.year && m > value.month))
-            ) {
-              css = "select";
-            }
-            if (
-              values.length > 1 &&
-              padIndex === 1 &&
-              (labelYear < value.year ||
-                (labelYear === value.year && m < value.month))
-            ) {
-              css = "select";
-            }
-            if (atMinYear && m < ymArr[0].min) {
-              css = "disable";
-            }
-            if (atMaxYear && m > ymArr[yearMaxIdx].max) {
-              css = "disable";
-            }
-            if (otherValue) {
-              const y = otherValue.year;
-              const m = otherValue.month || 0;
-              const vy = labelYear;
-              const vm = i + 1;
+          {isMonthsMode &&
+            mapToArray(12, (i) => {
+              let css = "";
+              const m = i + 1;
+              if (yearActive && m === value.month) {
+                css = "active";
+              }
               if (
-                y === vy &&
-                m &&
-                ((padIndex === 0 && vm > m) || (padIndex === 1 && vm < m))
+                values.length > 1 &&
+                padIndex === 0 &&
+                (labelYear > value.year ||
+                  (labelYear === value.year && m > value.month))
               ) {
-                css = "disable";
-              } else if (
-                (y > vy && padIndex === 1) ||
-                (y < vy && padIndex === 0)
+                css = "select";
+              }
+              if (
+                values.length > 1 &&
+                padIndex === 1 &&
+                (labelYear < value.year ||
+                  (labelYear === value.year && m < value.month))
               ) {
+                css = "select";
+              }
+              if (atMinYear && m < ymArr[0].min) {
                 css = "disable";
               }
-            }
-            const clickHandler =
-              css !== "disable" ? handleClickMonth : undefined;
-            return (
-              <li
-                key={i}
-                className={classNames("rmp-btn", css)}
-                data-id={padIndex + ":" + (i + 1)}
-                onClick={clickHandler}>
-                {m}
-              </li>
-            );
-          })}
+              if (atMaxYear && m > ymArr[yearMaxIdx].max) {
+                css = "disable";
+              }
+              if (otherValue) {
+                const y = otherValue.year;
+                const m = otherValue.month || 0;
+                const vy = labelYear;
+                const vm = i + 1;
+                if (
+                  y === vy &&
+                  m &&
+                  ((padIndex === 0 && vm > m) || (padIndex === 1 && vm < m))
+                ) {
+                  css = "disable";
+                } else if (
+                  (y > vy && padIndex === 1) ||
+                  (y < vy && padIndex === 0)
+                ) {
+                  css = "disable";
+                }
+              }
+              const clickHandler =
+                css !== "disable" ? handleClickMonth : undefined;
+              return (
+                <li
+                  key={i}
+                  className={classNames("rmp-btn", css)}
+                  data-id={padIndex + ":" + (i + 1)}
+                  onClick={clickHandler}>
+                  {months.length > i ? months[i] : i}
+                </li>
+              );
+            })}
+          {!isMonthsMode &&
+            mapToArray(new Date(labelYear, labelMonth, 0).getDate(), (i) => {
+              let css = "";
+              // const m = i + 1;
+              const d = i + 1;
+              if (yearActive && labelMonth === value.month && d === value.day) {
+                css = "active";
+              }
+              // if (
+              //   values.length > 1 &&
+              //   padIndex === 0 &&
+              //   (labelYear > value.year ||
+              //     (labelYear === value.year && m > value.month))
+              // ) {
+              //   css = "select";
+              // }
+              // if (
+              //   values.length > 1 &&
+              //   padIndex === 1 &&
+              //   (labelYear < value.year ||
+              //     (labelYear === value.year && m < value.month))
+              // ) {
+              //   css = "select";
+              // }
+              // if (atMinYear && m < ymArr[0].min) {
+              //   css = "disable";
+              // }
+              // if (atMaxYear && m > ymArr[yearMaxIdx].max) {
+              //   css = "disable";
+              // }
+              // if (otherValue) {
+              //   const y = otherValue.year;
+              //   const m = otherValue.month || 0;
+              //   const vy = labelYear;
+              //   const vm = i + 1;
+              //   if (
+              //     y === vy &&
+              //     m &&
+              //     ((padIndex === 0 && vm > m) || (padIndex === 1 && vm < m))
+              //   ) {
+              //     css = "disable";
+              //   } else if (
+              //     (y > vy && padIndex === 1) ||
+              //     (y < vy && padIndex === 0)
+              //   ) {
+              //     css = "disable";
+              //   }
+              // }
+              const clickHandler =
+                css !== "disable" ? handleClickMonth : undefined;
+              return (
+                <li
+                  key={i}
+                  className={classNames("rmp-btn", css)}
+                  data-id={padIndex + ":" + (i + 1)}
+                  onClick={clickHandler}>
+                  {d}
+                </li>
+              );
+            })}
         </ul>
       </div>
     );
@@ -366,7 +428,7 @@ DatePicker.propTypes = {
   onClickAway: PropTypes.func,
   theme: PropTypes.string,
   show: PropTypes.bool,
-  isMonthMode: PropTypes.bool,
+  isMonthsMode: PropTypes.bool,
   className: PropTypes.string,
   children: PropTypes.node
 };

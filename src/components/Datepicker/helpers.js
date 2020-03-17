@@ -2,7 +2,7 @@ const __MIN_VALID_YEAR = 1;
 
 export const mapToArray = (num, callback) => {
   const arr = [];
-  for (let i = 1; i <= num; i++) {
+  for (let i = 0; i < num; i++) {
     arr.push(callback(i));
   }
   return arr;
