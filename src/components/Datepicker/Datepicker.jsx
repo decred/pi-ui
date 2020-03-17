@@ -43,7 +43,6 @@ const DatePicker = ({
   const [valuesState, setValuesState] = useState(values);
   const [labelYearsState, setLabelYearsState] = useState([false, false]);
   const [showedState, setShowedState] = useState(show);
-  const [closeableState, setClosableState] = useState(show); // special, must not be changed with setState
   const [yearIndexesState] = useState(yearIndexes);
   const [pads, setPads] = useState([]);
   const [popupClass, setPopupClass] = useState("");
@@ -55,7 +54,6 @@ const DatePicker = ({
 
   useEffect(() => {
     if (show && !showedState) {
-      setClosableState(true);
       setShowedState(true);
       onShow && onShow();
     }
@@ -203,7 +201,7 @@ const DatePicker = ({
   };
 
   const handleOverlayTouchTap = (e) => {
-    if (closeableState) {
+    if (showedState) {
       _onDismiss();
       onClickAway && onClickAway(e);
     }
@@ -222,8 +220,8 @@ const DatePicker = ({
     const values = valuesState;
     values[idx] = { year, month };
     setValuesState(values);
-    renderPad();
     onChange(year, month, idx);
+    _onDismiss();
   }, []);
 
   const handlePrevYearClick = (e) => {
@@ -261,7 +259,7 @@ const DatePicker = ({
   }, []);
 
   return (
-    <div className={["month-picker", className].join(" ")}>
+    <div className={classNames("month-picker", className)}>
       {children}
       <div
         className={classNames(
