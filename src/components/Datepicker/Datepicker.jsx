@@ -7,6 +7,7 @@ import React, {
 } from "react";
 import PropTypes from "prop-types";
 import Tappable from "react-tapper";
+import { classNames } from "../../utils";
 import "./styles.css";
 
 const __MIN_VALID_YEAR = 1;
@@ -231,13 +232,13 @@ const DatePicker = ({
             {labelYear}
           </label>
           <i
-            className={["rmp-tab", "rmp-btn", "prev", prevCss].join(" ")}
+            className={classNames("rmp-tab", "rmp-btn", "prev", prevCss)}
             data-id={padIndex}
             onClick={handlePrevYearClick}>
             {"<"}
           </i>
           <i
-            className={["rmp-tab", "rmp-btn", "next", nextCss].join(" ")}
+            className={classNames("rmp-tab", "rmp-btn", "next", nextCss)}
             data-id={padIndex}
             onClick={handleNextYearClick}>
             {">"}
@@ -295,7 +296,7 @@ const DatePicker = ({
             return (
               <li
                 key={i}
-                className={["rmp-btn", css].join(" ")}
+                className={classNames("rmp-btn", css)}
                 data-id={padIndex + ":" + (i + 1)}
                 onClick={clickHandler}>
                 {months.length > i ? months[i] : i}
@@ -381,21 +382,21 @@ const DatePicker = ({
     <div className={["month-picker", className].join(" ")}>
       {children}
       <div
-        className={[
+        className={classNames(
           "rmp-container",
           "rmp-table",
           className,
-          showedState ? "show" : ""
-        ].join(" ")}>
+          showedState && "show"
+        )}>
         <Tappable className="rmp-overlay" onTap={handleOverlayTouchTap} />
         <div className="rmp-cell">
           <div
-            className={[
+            className={classNames(
               "rmp-popup",
               popupClass,
               theme,
-              showedState ? "show" : ""
-            ].join(" ")}>
+              showedState && "show"
+            )}>
             {pads}
           </div>
         </div>
