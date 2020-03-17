@@ -33,7 +33,7 @@ const DatePicker = ({
   onYearChange
 }) => {
   const yearArr = useMemo(() => getYearArray(years), [getYearArray, years]);
-  const yearIndexes = useMemo(() => [0], []);
+  const yearIndexes = useMemo(() => [], []);
   const values = useMemo(
     () => validValues(range || value, yearArr, yearIndexes),
     [range, value, yearArr, yearIndexes]
@@ -42,6 +42,7 @@ const DatePicker = ({
   const [yearsState] = useState(yearArr);
   const [valuesState, setValuesState] = useState(values);
   const [labelYearsState, setLabelYearsState] = useState([false, false]);
+  const [labelMonthsState] = useState([false, false]);
   const [showedState, setShowedState] = useState(show);
   const [yearIndexesState] = useState(yearIndexes);
   const [pads, setPads] = useState([]);
@@ -79,8 +80,17 @@ const DatePicker = ({
     const values = valuesState;
     const value = values[padIndex];
     const labelYears = labelYearsState;
+    const labelMonths = labelMonthsState;
+    console.log({
+      yearsState,
+      labelYearsState,
+      yearIndexesState,
+      labelMonthsState
+    });
     const labelYear = (labelYears[padIndex] =
       labelYears[padIndex] || value.year);
+    const labelMonth = (labelMonths[padIndex] =
+      labelMonths[padIndex] || value.month);
     const ymArr = yearsState;
     const months = Array.isArray(lang)
       ? lang
@@ -129,8 +139,23 @@ const DatePicker = ({
             {">"}
           </i>
         </div>
+        <div>
+          <label>{labelMonth}</label>
+          <i
+            className={classNames("rmp-tab", "rmp-btn", "prev-mnth", prevCss)}
+            data-id={padIndex}
+            onClick={handlePrevYearClick}>
+            {"<"}
+          </i>
+          <i
+            className={classNames("rmp-tab", "rmp-btn", "next-mnth", nextCss)}
+            data-id={padIndex}
+            onClick={handleNextYearClick}>
+            {">"}
+          </i>
+        </div>
         <ul>
-          {mapToArray(12, (i) => {
+          {mapToArray(new Date(labelYear, labelMonth, 0).getDate(), (i) => {
             let css = "";
             const m = i + 1;
             if (yearActive && m === value.month) {

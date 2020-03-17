@@ -136,7 +136,7 @@
     -o-transform: translate3d(0, -64px, 0);
     transform: translate3d(0, -64px, 0);
     top: 0;
-    width: 20rem;
+    width: 30rem;
   }
 
   .month-picker > .rmp-container .rmp-popup.range {
@@ -167,7 +167,7 @@
   .month-picker > .rmp-container .rmp-popup .rmp-pad {
     box-sizing: border-box;
     float: left;
-    width: 20rem;
+    width: 30rem;
   }
 
   .month-picker > .rmp-container .rmp-popup .rmp-pad:nth-of-type(2) {
@@ -203,6 +203,16 @@
 
 .month-picker > .rmp-container .rmp-popup .rmp-pad > div i.next {
   right: 0;
+}
+
+.month-picker > .rmp-container .rmp-popup .rmp-pad > div i.prev-mnth {
+  left: 0;
+  top: 3.4rem;
+}
+
+.month-picker > .rmp-container .rmp-popup .rmp-pad > div i.next-mnth {
+  right: 0;
+  top: 3.4rem;
 }
 
 .month-picker > .rmp-container .rmp-popup .rmp-pad ul,
@@ -249,7 +259,7 @@
 }
 @media screen and (min-width: 768px) {
   .month-picker > .rmp-container .rmp-popup .rmp-pad li {
-    width: 33.3333333333%;
+    width: 20%;
   }
 }
 
