@@ -4,13 +4,25 @@ import { classNames } from "../../utils";
 import Icon from "../Icon/Icon.jsx";
 import styles from "./styles.css";
 
-const TextInput = ({ type, label, id, error, ...props }) => {
+const TextInput = ({
+  type,
+  label,
+  id,
+  error,
+  wrapperClassNames,
+  inputClassNames,
+  ...props
+}) => {
   return (
-    <div className={styles.textinputWrapper}>
+    <div className={classNames(styles.textinputWrapper, wrapperClassNames)}>
       <input
         id={id}
         placeholder=" "
-        className={classNames(styles.textinput, error && styles.textinputError)}
+        className={classNames(
+          styles.textinput,
+          error && styles.textinputError,
+          inputClassNames
+        )}
         type={type}
         {...props}
       />
@@ -38,7 +50,9 @@ TextInput.propTypes = {
   type: PropTypes.string,
   label: PropTypes.string,
   id: PropTypes.string.isRequired,
-  error: PropTypes.string
+  error: PropTypes.string,
+  wrapperClassNames: PropTypes.string,
+  inputClassNames: PropTypes.string
 };
 
 TextInput.defaultProps = {
