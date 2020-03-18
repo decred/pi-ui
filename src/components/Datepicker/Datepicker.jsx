@@ -8,7 +8,7 @@ import React, {
 import PropTypes from "prop-types";
 import Tappable from "react-tapper";
 import { classNames } from "../../utils";
-import "./styles.css";
+import styles from "./styles.css";
 import {
   getYearArray,
   validValues,
@@ -134,20 +134,20 @@ const DatePicker = ({
       nextMonthCss = "disable";
 
     return (
-      <div className="rmp-pad" key={padIndex}>
+      <div className={styles.rmpPad} key={padIndex}>
         <div>
           <label>
             {labelPreText}
             {labelYear}
           </label>
           <i
-            className={classNames("rmp-tab", "rmp-btn", "prev", prevCss)}
+            className={classNames(styles.rmpBtn, styles.prev, styles[prevCss])}
             data-id={padIndex}
             onClick={handlePrevYearClick}>
             {"<"}
           </i>
           <i
-            className={classNames("rmp-tab", "rmp-btn", "next", nextCss)}
+            className={classNames(styles.rmpBtn, styles.next, styles[nextCss])}
             data-id={padIndex}
             onClick={handleNextYearClick}>
             {">"}
@@ -158,10 +158,9 @@ const DatePicker = ({
             <label>{labelMonth}</label>
             <i
               className={classNames(
-                "rmp-tab",
-                "rmp-btn",
-                "prev-mnth",
-                prevMonthCss
+                styles.rmpBtn,
+                styles.prevMnth,
+                styles[prevMonthCss]
               )}
               data-id={padIndex}
               onClick={
@@ -171,10 +170,9 @@ const DatePicker = ({
             </i>
             <i
               className={classNames(
-                "rmp-tab",
-                "rmp-btn",
-                "next-mnth",
-                nextMonthCss
+                styles.rmpBtn,
+                styles.nextMonth,
+                styles[nextMonthCss]
               )}
               data-id={padIndex}
               onClick={
@@ -237,7 +235,7 @@ const DatePicker = ({
               return (
                 <li
                   key={i}
-                  className={classNames("rmp-btn", css)}
+                  className={classNames(styles.rmpBtn, styles[css])}
                   data-id={`${padIndex}:${m}`}
                   onClick={clickHandler}>
                   {months.length > i ? months[i] : i}
@@ -251,31 +249,13 @@ const DatePicker = ({
               if (yearActive && labelMonth === value.month && d === value.day) {
                 css = "active";
               }
-              // TODO: adapt to days
-              if (otherValue) {
-                const y = otherValue.year;
-                const m = otherValue.month || 0;
-                const vy = labelYear;
-                const vm = i + 1;
-                if (
-                  y === vy &&
-                  m &&
-                  ((padIndex === 0 && vm > m) || (padIndex === 1 && vm < m))
-                ) {
-                  css = "disable";
-                } else if (
-                  (y > vy && padIndex === 1) ||
-                  (y < vy && padIndex === 0)
-                ) {
-                  css = "disable";
-                }
-              }
+              // TODO: add max, min days
               const clickHandler =
                 css !== "disable" ? handleClickDay : undefined;
               return (
                 <li
                   key={i}
-                  className={classNames("rmp-btn", css)}
+                  className={classNames(styles.rmpBtn, styles[css])}
                   data-id={`${padIndex}:${labelMonth}:${d}`}
                   onClick={clickHandler}>
                   {d}
@@ -402,23 +382,23 @@ const DatePicker = ({
   }, []);
 
   return (
-    <div className={classNames("month-picker", className)}>
+    <div className={classNames(styles.monthPicker, className)}>
       {children}
       <div
         className={classNames(
-          "rmp-container",
-          "rmp-table",
+          styles.rmpContainer,
+          styles.rmpTable,
           className,
-          showedState && "show"
+          showedState && styles.show
         )}>
-        <Tappable className="rmp-overlay" onTap={handleOverlayTouchTap} />
-        <div className="rmp-cell">
+        <Tappable className={styles.rmpOverlay} onTap={handleOverlayTouchTap} />
+        <div className={styles.rmpCell}>
           <div
             className={classNames(
-              "rmp-popup",
+              styles.rmpPopup,
               popupClass,
-              theme,
-              showedState && "show"
+              styles[theme],
+              showedState && styles.show
             )}>
             {pads}
           </div>
