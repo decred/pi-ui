@@ -7,8 +7,8 @@ import { mapToArray } from "./helpers";
 const DatePickerPad = ({
   padIndex,
   values,
-  labelYear,
-  labelMonth,
+  year,
+  month,
   years,
   yearIdx,
   lang,
@@ -36,9 +36,9 @@ const DatePickerPad = ({
   if (yearIdx === 0) prevCss = "disable";
   if (yearIdx === yearMaxIdx) nextCss = "disable";
 
-  const yearActive = labelYear === value.year;
-  const atMinYear = labelYear === ymArr[0].year;
-  const atMaxYear = labelYear === ymArr[yearMaxIdx].year;
+  const yearActive = year === value.year;
+  const atMinYear = year === ymArr[0].year;
+  const atMaxYear = year === ymArr[yearMaxIdx].year;
   let otherValue = false;
   if (values.length > 1) {
     otherValue = values[1 - padIndex];
@@ -50,9 +50,9 @@ const DatePickerPad = ({
     labelPreText = <b>{lang[labelTextKey]}</b>;
   }
 
-  if (labelMonth === 1 || (atMinYear && labelMonth === ymArr[0].min))
+  if (month === 1 || (atMinYear && month === ymArr[0].min))
     prevMonthCss = "disable";
-  if (labelMonth === 12 || (atMaxYear && labelMonth === ymArr[yearMaxIdx].max))
+  if (month === 12 || (atMaxYear && month === ymArr[yearMaxIdx].max))
     nextMonthCss = "disable";
 
   return (
@@ -60,7 +60,7 @@ const DatePickerPad = ({
       <div>
         <label>
           {labelPreText}
-          {labelYear}
+          {year}
         </label>
         <i
           className={classNames(styles.rmpBtn, styles.prev, styles[prevCss])}
@@ -77,7 +77,7 @@ const DatePickerPad = ({
       </div>
       {!isMonthsMode && (
         <div>
-          <label>{labelMonth}</label>
+          <label>{month}</label>
           <i
             className={classNames(
               styles.rmpBtn,
@@ -111,16 +111,14 @@ const DatePickerPad = ({
             if (
               values.length > 1 &&
               padIndex === 0 &&
-              (labelYear > value.year ||
-                (labelYear === value.year && m > value.month))
+              (year > value.year || (year === value.year && m > value.month))
             ) {
               css = "select";
             }
             if (
               values.length > 1 &&
               padIndex === 1 &&
-              (labelYear < value.year ||
-                (labelYear === value.year && m < value.month))
+              (year < value.year || (year === value.year && m < value.month))
             ) {
               css = "select";
             }
@@ -133,7 +131,7 @@ const DatePickerPad = ({
             if (otherValue) {
               const y = otherValue.year;
               const m = otherValue.month || 0;
-              const vy = labelYear;
+              const vy = year;
               const vm = i + 1;
               if (
                 y === vy &&
@@ -160,10 +158,10 @@ const DatePickerPad = ({
             );
           })}
         {!isMonthsMode &&
-          mapToArray(new Date(labelYear, labelMonth, 0).getDate(), (i) => {
+          mapToArray(new Date(year, month, 0).getDate(), (i) => {
             let css = "";
             const d = i + 1;
-            if (yearActive && labelMonth === value.month && d === value.day) {
+            if (yearActive && month === value.month && d === value.day) {
               css = "active";
             }
             const clickHandler = css !== "disable" ? onDayClick : undefined;
@@ -171,7 +169,7 @@ const DatePickerPad = ({
               <li
                 key={i}
                 className={classNames(styles.rmpBtn, styles[css])}
-                data-id={`${padIndex}:${labelMonth}:${d}`}
+                data-id={`${padIndex}:${month}:${d}`}
                 onClick={clickHandler}>
                 {d}
               </li>
@@ -186,8 +184,8 @@ DatePickerPad.propTypes = {
   padIndex: PropTypes.number.isRequired,
   values: PropTypes.array.isRequired,
   lang: PropTypes.oneOfType([PropTypes.array, PropTypes.object]).isRequired,
-  labelYear: PropTypes.number.isRequired,
-  labelMonth: PropTypes.number.isRequired,
+  year: PropTypes.number.isRequired,
+  month: PropTypes.number.isRequired,
   years: PropTypes.array.isRequired,
   yearIdx: PropTypes.number.isRequired,
   isMonthsMode: PropTypes.bool,
