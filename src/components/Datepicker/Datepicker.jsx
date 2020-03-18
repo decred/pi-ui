@@ -388,7 +388,6 @@ const DatePicker = ({
         className={classNames(
           styles.rmpContainer,
           styles.rmpTable,
-          className,
           showedState && styles.show
         )}>
         <Tappable className={styles.rmpOverlay} onTap={handleOverlayTouchTap} />
@@ -396,6 +395,7 @@ const DatePicker = ({
           <div
             className={classNames(
               styles.rmpPopup,
+              isMonthsMode && styles.monthsMode,
               popupClass,
               styles[theme],
               showedState && styles.show

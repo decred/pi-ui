@@ -311,6 +311,10 @@
     width: 30rem;
   }
 
+  .rmpPopup.monthsMode {
+    width: 20rem;
+  }
+
   .rmpPopup.range {
     width: 40.6rem;
     padding: 0.6rem;
@@ -322,6 +326,10 @@
     box-sizing: border-box;
     float: left;
     width: 30rem;
+  }
+
+  .rmpPopup.monthsMode .rmpPad {
+    width: 20rem;
   }
 
   .rmpPopup .rmpPad:nth-of-type(2) {
