@@ -124,12 +124,12 @@
   right: 0;
 }
 
-.rmpPopup .rmpPad > div i.prev-mnth {
+.rmpPopup .rmpPad > div i.prevMnth {
   left: 0;
   top: 3.4rem;
 }
 
-.rmpPopup .rmpPad > div i.next-mnth {
+.rmpPopup .rmpPad > div i.nextMnth {
   right: 0;
   top: 3.4rem;
 }

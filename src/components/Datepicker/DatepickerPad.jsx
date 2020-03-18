@@ -91,7 +91,7 @@ const DatePickerPad = ({
           <i
             className={classNames(
               styles.rmpBtn,
-              styles.nextMonth,
+              styles.nextMnth,
               styles[nextMonthCss]
             )}
             data-id={padIndex}
@@ -155,7 +155,7 @@ const DatePickerPad = ({
                 className={classNames(styles.rmpBtn, styles[css])}
                 data-id={`${padIndex}:${m}`}
                 onClick={clickHandler}>
-                {months.length > i ? months[i] : i}
+                {months.length > i ? months[i] : m}
               </li>
             );
           })}

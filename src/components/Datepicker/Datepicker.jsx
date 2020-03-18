@@ -44,6 +44,7 @@ const DatePicker = ({
   const [pads, setPads] = useState([]);
   const isRange = valuesState.length > 1;
 
+  onDismiss = onDismiss || onChange;
   useEffect(() => {
     showedState && renderPad();
   }, [valuesState[0], valuesState[valuesState.length - 1], showedState]);
