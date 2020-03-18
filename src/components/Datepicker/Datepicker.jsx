@@ -51,13 +51,15 @@ const DatePicker = ({
   const isRange = valuesState.length > 1;
 
   useEffect(() => {
-    renderPad();
-  }, [valuesState]);
+    showedState && renderPad();
+  }, [valuesState[0], valuesState[valuesState.length - 1], showedState]);
 
   useEffect(() => {
     if (show && !showedState) {
       setShowedState(true);
       onShow && onShow();
+    } else if (!show && showedState) {
+      setShowedState(false);
     }
   }, [show]);
 
@@ -123,8 +125,13 @@ const DatePicker = ({
       labelPreText = <b>{lang[labelTextKey]}</b>;
     }
 
-    if (labelMonth === 1) prevMonthCss = "disable";
-    if (labelMonth === 12) nextMonthCss = "disable";
+    if (labelMonth === 1 || (atMinYear && labelMonth === ymArr[0].min))
+      prevMonthCss = "disable";
+    if (
+      labelMonth === 12 ||
+      (atMaxYear && labelMonth === ymArr[yearMaxIdx].max)
+    )
+      nextMonthCss = "disable";
 
     return (
       <div className="rmp-pad" key={padIndex}>
@@ -157,7 +164,9 @@ const DatePicker = ({
                 prevMonthCss
               )}
               data-id={padIndex}
-              onClick={handlePrevMonthClick}>
+              onClick={
+                prevMonthCss !== "disable" ? handlePrevMonthClick : undefined
+              }>
               {"<"}
             </i>
             <i
@@ -168,7 +177,9 @@ const DatePicker = ({
                 nextMonthCss
               )}
               data-id={padIndex}
-              onClick={handleNextMonthClick}>
+              onClick={
+                nextMonthCss !== "disable" ? handleNextMonthClick : undefined
+              }>
               {">"}
             </i>
           </div>
@@ -227,7 +238,7 @@ const DatePicker = ({
                 <li
                   key={i}
                   className={classNames("rmp-btn", css)}
-                  data-id={padIndex + ":" + (i + 1)}
+                  data-id={`${padIndex}:${m}`}
                   onClick={clickHandler}>
                   {months.length > i ? months[i] : i}
                 </li>
@@ -236,58 +247,36 @@ const DatePicker = ({
           {!isMonthsMode &&
             mapToArray(new Date(labelYear, labelMonth, 0).getDate(), (i) => {
               let css = "";
-              // const m = i + 1;
               const d = i + 1;
               if (yearActive && labelMonth === value.month && d === value.day) {
                 css = "active";
               }
-              // if (
-              //   values.length > 1 &&
-              //   padIndex === 0 &&
-              //   (labelYear > value.year ||
-              //     (labelYear === value.year && m > value.month))
-              // ) {
-              //   css = "select";
-              // }
-              // if (
-              //   values.length > 1 &&
-              //   padIndex === 1 &&
-              //   (labelYear < value.year ||
-              //     (labelYear === value.year && m < value.month))
-              // ) {
-              //   css = "select";
-              // }
-              // if (atMinYear && m < ymArr[0].min) {
-              //   css = "disable";
-              // }
-              // if (atMaxYear && m > ymArr[yearMaxIdx].max) {
-              //   css = "disable";
-              // }
-              // if (otherValue) {
-              //   const y = otherValue.year;
-              //   const m = otherValue.month || 0;
-              //   const vy = labelYear;
-              //   const vm = i + 1;
-              //   if (
-              //     y === vy &&
-              //     m &&
-              //     ((padIndex === 0 && vm > m) || (padIndex === 1 && vm < m))
-              //   ) {
-              //     css = "disable";
-              //   } else if (
-              //     (y > vy && padIndex === 1) ||
-              //     (y < vy && padIndex === 0)
-              //   ) {
-              //     css = "disable";
-              //   }
-              // }
+              // TODO: adapt to days
+              if (otherValue) {
+                const y = otherValue.year;
+                const m = otherValue.month || 0;
+                const vy = labelYear;
+                const vm = i + 1;
+                if (
+                  y === vy &&
+                  m &&
+                  ((padIndex === 0 && vm > m) || (padIndex === 1 && vm < m))
+                ) {
+                  css = "disable";
+                } else if (
+                  (y > vy && padIndex === 1) ||
+                  (y < vy && padIndex === 0)
+                ) {
+                  css = "disable";
+                }
+              }
               const clickHandler =
-                css !== "disable" ? handleClickMonth : undefined;
+                css !== "disable" ? handleClickDay : undefined;
               return (
                 <li
                   key={i}
                   className={classNames("rmp-btn", css)}
-                  data-id={padIndex + ":" + (i + 1)}
+                  data-id={`${padIndex}:${labelMonth}:${d}`}
                   onClick={clickHandler}>
                   {d}
                 </li>
@@ -326,7 +315,18 @@ const DatePicker = ({
     values[idx] = { year, month };
     setValuesState(values);
     onChange(year, month, idx);
-    _onDismiss();
+  }, []);
+
+  const handleClickDay = useCallback((e) => {
+    const refid = getDID(e).split(":");
+    const idx = parseInt(refid[0], 10);
+    const month = parseInt(refid[1], 10);
+    const day = parseInt(refid[2], 10);
+    const year = labelYearsState[idx];
+    const values = valuesState;
+    values[idx] = { year, month, day };
+    setValuesState(values);
+    onChange(year, month, day, idx);
   }, []);
 
   const handlePrevYearClick = (e) => {
@@ -371,6 +371,22 @@ const DatePicker = ({
     const theYear = yearsState[yearIndex].year;
     labelYears[idx] = theYear;
     setLabelYearsState(labelYears);
+    const atMinYear = theYear === yearsState[0].year;
+    const atMaxYear = theYear === yearsState[yearsState.length - 1].year;
+    if (
+      !isMonthsMode &&
+      atMinYear &&
+      labelMonthsState[idx] < yearsState[yearIndex].min
+    ) {
+      labelMonthsState[idx] = yearsState[yearIndex].min;
+      setLabelMonthsState(labelMonthsState);
+    } else if (
+      !isMonthsMode &&
+      atMaxYear &&
+      labelMonthsState[idx] > yearsState[yearIndex].max
+    ) {
+      labelMonthsState[idx] = yearsState[yearIndex].max;
+    }
     renderPad();
     onYearChange && onYearChange(theYear);
   };
