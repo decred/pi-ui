@@ -55,7 +55,7 @@ const DatePicker = ({
       const idx = parseInt(refid[0], 10);
       const month = parseInt(refid[1], 10);
       const year = labelYearsState[idx];
-      const values = valuesState;
+      const values = [...valuesState];
       values[idx] = { year, month };
       setValuesState(values);
       onChange(year, month, idx);
@@ -70,7 +70,7 @@ const DatePicker = ({
       const month = parseInt(refid[1], 10);
       const day = parseInt(refid[2], 10);
       const year = labelYearsState[idx];
-      const values = valuesState;
+      const values = [...valuesState];
       values[idx] = { year, month, day };
       setValuesState(values);
       onChange(year, month, day, idx);
