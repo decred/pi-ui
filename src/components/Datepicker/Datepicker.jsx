@@ -28,7 +28,7 @@ const DatePicker = ({
   onYearChange,
   isMonthsMode
 }) => {
-  const yearArr = useMemo(() => getYearArray(years), [getYearArray, years]);
+  const yearArr = useMemo(() => getYearArray(years), [years]);
   const yearIndexes = useMemo(() => [], []);
   const values = useMemo(
     () => validValues(range || value, yearArr, yearIndexes),
@@ -46,9 +46,179 @@ const DatePicker = ({
 
   onDismiss = onDismiss || onChange;
 
+  const handleClickMonth = useCallback(
+    (e) => {
+      const refid = getDID(e).split(":");
+      const idx = parseInt(refid[0], 10);
+      const month = parseInt(refid[1], 10);
+      const year = labelYearsState[idx];
+      const values = valuesState;
+      values[idx] = { year, month };
+      setValuesState(values);
+      onChange(year, month, idx);
+    },
+    [labelYearsState, onChange, valuesState]
+  );
+
+  const handleClickDay = useCallback(
+    (e) => {
+      const refid = getDID(e).split(":");
+      const idx = parseInt(refid[0], 10);
+      const month = parseInt(refid[1], 10);
+      const day = parseInt(refid[2], 10);
+      const year = labelYearsState[idx];
+      const values = valuesState;
+      values[idx] = { year, month, day };
+      setValuesState(values);
+      onChange(year, month, day, idx);
+    },
+    [onChange, setValuesState, labelYearsState, valuesState]
+  );
+
+  const _setYear = useCallback(
+    (idx, step) => {
+      const yearIndex = (yearIndexesState[idx] += step);
+      const labelYears = labelYearsState;
+      const theYear = yearsState[yearIndex].year;
+      labelYears[idx] = theYear;
+      setLabelYearsState(labelYears);
+      const atMinYear = theYear === yearsState[0].year;
+      const atMaxYear = theYear === yearsState[yearsState.length - 1].year;
+      if (
+        !isMonthsMode &&
+        atMinYear &&
+        labelMonthsState[idx] < yearsState[yearIndex].min
+      ) {
+        labelMonthsState[idx] = yearsState[yearIndex].min;
+        setLabelMonthsState(labelMonthsState);
+      } else if (
+        !isMonthsMode &&
+        atMaxYear &&
+        labelMonthsState[idx] > yearsState[yearIndex].max
+      ) {
+        labelMonthsState[idx] = yearsState[yearIndex].max;
+      }
+      onYearChange && onYearChange(theYear);
+    },
+    [
+      onYearChange,
+      isMonthsMode,
+      labelYearsState,
+      labelMonthsState,
+      yearsState,
+      yearIndexesState
+    ]
+  );
+
+  const handlePrevYearClick = useCallback(
+    (e) => {
+      const idx = parseInt(getDID(e), 10);
+      if (yearIndexesState[idx] > 0) {
+        _setYear(idx, -1);
+      }
+    },
+    [yearIndexesState, _setYear]
+  );
+
+  const handleNextYearClick = useCallback(
+    (e) => {
+      const idx = parseInt(getDID(e), 10);
+      if (yearIndexesState[idx] < yearsState.length - 1) {
+        _setYear(idx, 1);
+      }
+    },
+    [yearIndexesState, _setYear, yearsState.length]
+  );
+
+  const handleNextMonthClick = useCallback(
+    (e) => {
+      const idx = parseInt(getDID(e), 10);
+      const labelMonth = labelMonthsState[idx];
+      const nextMonth = labelMonth + 1;
+      if (nextMonth <= 12) {
+        labelMonthsState[idx] = nextMonth;
+        setLabelMonthsState(labelMonthsState);
+      }
+    },
+    [labelMonthsState, setLabelMonthsState]
+  );
+
+  const handlePrevMonthClick = useCallback(
+    (e) => {
+      const idx = parseInt(getDID(e), 10);
+      const labelMonth = labelMonthsState[idx];
+      const nextMonth = labelMonth - 1;
+      if (nextMonth > 0) {
+        labelMonthsState[idx] = nextMonth;
+        setLabelMonthsState(labelMonthsState);
+      }
+    },
+    [setLabelMonthsState, labelMonthsState]
+  );
+
+  const padByIndex = useCallback(
+    (padIndex) => {
+      const labelYears = labelYearsState;
+      const labelMonths = labelMonthsState;
+      const labelYear = (labelYears[padIndex] =
+        labelYears[padIndex] || value.year);
+      const labelMonth = (labelMonths[padIndex] =
+        labelMonths[padIndex] || value.month);
+      return (
+        <DatePickerPad
+          key={padIndex}
+          padIndex={padIndex}
+          values={valuesState}
+          years={yearsState}
+          year={labelYear}
+          month={labelMonth}
+          lang={lang}
+          yearIdx={yearIndexesState[padIndex]}
+          onMonthClick={handleClickMonth}
+          isMonthsMode={isMonthsMode}
+          onDayClick={handleClickDay}
+          onPrevYearClick={handlePrevYearClick}
+          onNextYearClick={handleNextYearClick}
+          onPrevMonthClick={handlePrevMonthClick}
+          onNextMonthClick={handleNextMonthClick}
+        />
+      );
+    },
+    [
+      handleClickMonth,
+      handleClickDay,
+      handlePrevYearClick,
+      handleNextYearClick,
+      handlePrevMonthClick,
+      handleNextMonthClick,
+      isMonthsMode,
+      lang,
+      labelMonthsState,
+      labelYearsState,
+      valuesState,
+      value.month,
+      value.year,
+      yearIndexesState,
+      yearsState
+    ]
+  );
+
+  const renderPad = useCallback(() => {
+    if (isRange > 1) {
+      setPads([padByIndex(0), padByIndex(1)]);
+    } else {
+      setPads([padByIndex(0)]);
+    }
+  }, [isRange, padByIndex]);
+
   useEffect(() => {
     showedState && renderPad();
-  }, [valuesState[0], valuesState[valuesState.length - 1], showedState]);
+  }, [
+    valuesState[0],
+    valuesState[valuesState.length - 1],
+    showedState,
+    renderPad
+  ]);
 
   useEffect(() => {
     if (show && !showedState) {
@@ -57,57 +227,39 @@ const DatePicker = ({
     } else if (!show && showedState) {
       setShowedState(false);
     }
-  }, [show]);
+  }, [show, onShow, setShowedState, showedState]);
+
+  const getValue = useCallback(() => {
+    const values = valuesState;
+    if (values.length >= 2) return { from: values[0], to: values[1] };
+    else if (values.length === 1) return values[0];
+    return {};
+  }, [valuesState]);
+
+  const _onDismiss = useCallback(() => {
+    setShowedState(false);
+    onDismiss && onDismiss(getValue());
+  }, [onDismiss, setShowedState, getValue]);
+
+  const _keyDown = useCallback(
+    (e) => {
+      if (e.key === "Escape") {
+        _onDismiss();
+        e.stopPropagation();
+      } else if (e.key === "Enter") {
+        _onDismiss();
+        e.stopPropagation();
+      }
+    },
+    [_onDismiss]
+  );
 
   useLayoutEffect(() => {
     document.addEventListener("keydown", _keyDown);
     return () => {
       document.removeEventListener("keydown", _keyDown);
     };
-  }, []);
-
-  const padByIndex = (padIndex) => {
-    const labelYears = labelYearsState;
-    const labelMonths = labelMonthsState;
-    const labelYear = (labelYears[padIndex] =
-      labelYears[padIndex] || value.year);
-    const labelMonth = (labelMonths[padIndex] =
-      labelMonths[padIndex] || value.month);
-    return (
-      <DatePickerPad
-        key={padIndex}
-        padIndex={padIndex}
-        values={valuesState}
-        years={yearsState}
-        year={labelYear}
-        month={labelMonth}
-        lang={lang}
-        yearIdx={yearIndexesState[padIndex]}
-        onMonthClick={handleClickMonth}
-        isMonthsMode={isMonthsMode}
-        onDayClick={handleClickDay}
-        onPrevYearClick={handlePrevYearClick}
-        onNextYearClick={handleNextYearClick}
-        onPrevMonthClick={handlePrevMonthClick}
-        onNextMonthClick={handleNextMonthClick}
-      />
-    );
-  };
-
-  const renderPad = () => {
-    if (isRange > 1) {
-      setPads([padByIndex(0), padByIndex(1)]);
-    } else {
-      setPads([padByIndex(0)]);
-    }
-  };
-
-  const getValue = () => {
-    const values = valuesState;
-    if (values.length >= 2) return { from: values[0], to: values[1] };
-    else if (values.length === 1) return values[0];
-    return {};
-  };
+  }, [_keyDown]);
 
   const handleOverlayTouchTap = (e) => {
     if (showedState) {
@@ -115,106 +267,6 @@ const DatePicker = ({
       onClickAway && onClickAway(e);
     }
   };
-
-  const handleClickMonth = useCallback((e) => {
-    const refid = getDID(e).split(":");
-    const idx = parseInt(refid[0], 10);
-    const month = parseInt(refid[1], 10);
-    const year = labelYearsState[idx];
-    const values = valuesState;
-    values[idx] = { year, month };
-    setValuesState(values);
-    onChange(year, month, idx);
-  }, []);
-
-  const handleClickDay = useCallback((e) => {
-    const refid = getDID(e).split(":");
-    const idx = parseInt(refid[0], 10);
-    const month = parseInt(refid[1], 10);
-    const day = parseInt(refid[2], 10);
-    const year = labelYearsState[idx];
-    const values = valuesState;
-    values[idx] = { year, month, day };
-    setValuesState(values);
-    onChange(year, month, day, idx);
-  }, []);
-
-  const handlePrevYearClick = useCallback((e) => {
-    const idx = parseInt(getDID(e), 10);
-    if (yearIndexesState[idx] > 0) {
-      _setYear(idx, -1);
-    }
-  }, []);
-
-  const handleNextYearClick = useCallback((e) => {
-    const idx = parseInt(getDID(e), 10);
-    if (yearIndexesState[idx] < yearsState.length - 1) {
-      _setYear(idx, 1);
-    }
-  }, []);
-
-  const handleNextMonthClick = (e) => {
-    const idx = parseInt(getDID(e), 10);
-    const labelMonth = labelMonthsState[idx];
-    const nextMonth = labelMonth + 1;
-    if (nextMonth <= 12) {
-      labelMonthsState[idx] = nextMonth;
-      setLabelMonthsState(labelMonthsState);
-      renderPad();
-    }
-  };
-
-  const handlePrevMonthClick = useCallback((e) => {
-    const idx = parseInt(getDID(e), 10);
-    const labelMonth = labelMonthsState[idx];
-    const nextMonth = labelMonth - 1;
-    if (nextMonth > 0) {
-      labelMonthsState[idx] = nextMonth;
-      setLabelMonthsState(labelMonthsState);
-      renderPad();
-    }
-  }, []);
-
-  const _setYear = (idx, step) => {
-    const yearIndex = (yearIndexesState[idx] += step);
-    const labelYears = labelYearsState;
-    const theYear = yearsState[yearIndex].year;
-    labelYears[idx] = theYear;
-    setLabelYearsState(labelYears);
-    const atMinYear = theYear === yearsState[0].year;
-    const atMaxYear = theYear === yearsState[yearsState.length - 1].year;
-    if (
-      !isMonthsMode &&
-      atMinYear &&
-      labelMonthsState[idx] < yearsState[yearIndex].min
-    ) {
-      labelMonthsState[idx] = yearsState[yearIndex].min;
-      setLabelMonthsState(labelMonthsState);
-    } else if (
-      !isMonthsMode &&
-      atMaxYear &&
-      labelMonthsState[idx] > yearsState[yearIndex].max
-    ) {
-      labelMonthsState[idx] = yearsState[yearIndex].max;
-    }
-    renderPad();
-    onYearChange && onYearChange(theYear);
-  };
-
-  const _onDismiss = () => {
-    setShowedState(false);
-    onDismiss && onDismiss(getValue());
-  };
-
-  const _keyDown = useCallback((e) => {
-    if (e.key === "Escape") {
-      _onDismiss();
-      e.stopPropagation();
-    } else if (e.key === "Enter") {
-      _onDismiss();
-      e.stopPropagation();
-    }
-  }, []);
 
   return (
     <div className={classNames(styles.monthPicker, className)}>
