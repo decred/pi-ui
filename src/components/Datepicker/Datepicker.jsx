@@ -40,9 +40,16 @@ const DatePicker = ({
   const [labelYearsState, setLabelYearsState] = useState([false, false]);
   const [labelMonthsState, setLabelMonthsState] = useState([false, false]);
   const [showedState, setShowedState] = useState(show);
-  const [yearIndexesState] = useState(yearIndexes);
+  const [yearIndexesState, setYearIndexesState] = useState(yearIndexes);
   const [pads, setPads] = useState([]);
   const isRange = valuesState.length > 1;
+
+  const currentValue = valuesState[0];
+  const otherValue = valuesState[valuesState.length - 1];
+  const currentMonth = labelMonthsState[0];
+  const otherMonth = labelMonthsState[valuesState.length - 1];
+  // const currentYear = labelYearsState[0];
+  // const otherYear = labelYearsState[valuesState.length - 1];
 
   onDismiss = onDismiss || onChange;
 
@@ -77,7 +84,11 @@ const DatePicker = ({
 
   const _setYear = useCallback(
     (idx, step) => {
-      const yearIndex = (yearIndexesState[idx] += step);
+      const currentYearIndex = yearIndexesState[idx];
+      const yearIndex = currentYearIndex + step;
+      const newYearIndexesState = [...yearIndexesState];
+      newYearIndexesState[idx] = yearIndex;
+      setYearIndexesState(newYearIndexesState);
       const labelYears = labelYearsState;
       const theYear = yearsState[yearIndex].year;
       labelYears[idx] = theYear;
@@ -212,12 +223,16 @@ const DatePicker = ({
   }, [isRange, padByIndex]);
 
   useEffect(() => {
+    console.log("useEffect", labelYearsState);
     showedState && renderPad();
   }, [
-    valuesState[0],
-    valuesState[valuesState.length - 1],
+    currentValue,
+    otherValue,
     showedState,
-    renderPad
+    renderPad,
+    currentMonth,
+    otherMonth,
+    labelYearsState
   ]);
 
   useEffect(() => {
