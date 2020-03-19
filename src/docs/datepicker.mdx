@@ -27,7 +27,7 @@ import { DatePicker } from "../index";
       );
     };
 
-    const [value, setValue] = useState({ year: 2015, month: 11 });
+    const [value, setValue] = useState({ year: 2019, month: 11 });
     const [isOpen, setIsOpen] = useState(false);
     const onChange = (year, month) => {
       if (!!year && !!month) {
@@ -38,10 +38,16 @@ import { DatePicker } from "../index";
     const togglePicker = () => {
       setIsOpen(!isOpen)
     };
+
+    // specify min, max properties in years object to limit selection
+    const years = {
+      min: { year: 2018, month: 1 },
+      max: { year: 2020, month: 2}
+    }
     return (
       <>
       	<DatePicker
-          years={[2013, 2015, 2016]} 
+          years={years} 
           value={value}
           show={isOpen}
           isMonthsMode={true}
