@@ -44,9 +44,6 @@ const DatePicker = ({
   const [pads, setPads] = useState([]);
   const isRange = valuesState.length > 1;
 
-  const currentValue = valuesState[0];
-  const otherValue = valuesState[valuesState.length - 1];
-
   onDismiss = onDismiss || onChange;
 
   const handleClickMonth = useCallback(
@@ -226,14 +223,7 @@ const DatePicker = ({
 
   useEffect(() => {
     showedState && renderPad();
-  }, [
-    currentValue,
-    otherValue,
-    showedState,
-    renderPad,
-    labelMonthsState,
-    labelYearsState
-  ]);
+  }, [valuesState, showedState, renderPad, labelMonthsState, labelYearsState]);
 
   useEffect(() => {
     if (show && !showedState) {
