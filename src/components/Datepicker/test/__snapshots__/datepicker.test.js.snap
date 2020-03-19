@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DatePicker component Matches the snapshot 1`] = `
+<div
+  className="monthPicker"
+>
+  <div
+    className="rmpContainer rmpTable"
+  >
+    <div
+      className="rmpOverlay"
+      onClick={[Function]}
+      onTouchCancel={[Function]}
+      onTouchEnd={[Function]}
+      onTouchMove={[Function]}
+      onTouchStart={[Function]}
+      style={
+        Object {
+          "KhtmlUserSelect": "none",
+          "MozUserSelect": "none",
+          "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+          "WebkitTouchCallout": "none",
+          "WebkitUserSelect": "none",
+          "msUserSelect": "none",
+          "userSelect": "none",
+        }
+      }
+    />
+    <div
+      className="rmpCell"
+    >
+      <div
+        className="rmpPopup light"
+      />
+    </div>
+  </div>
+</div>
+`;
