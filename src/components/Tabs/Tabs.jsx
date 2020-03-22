@@ -51,7 +51,7 @@ const Tabs = ({
           mode
         });
       });
-  }, [children, activeTabIndex, mode]);
+  }, [children, activeTabIndex, mode, onSelectTab]);
 
   const tabs = useMemo(
     () => (
@@ -66,7 +66,7 @@ const Tabs = ({
         {renderChildrenTabs()}
       </ul>
     ),
-    [vertical, wrap, className, props, renderChildrenTabs]
+    [vertical, wrap, className, props, renderChildrenTabs, style]
   );
 
   const getActiveChild = (props) => {

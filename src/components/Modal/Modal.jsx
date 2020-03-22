@@ -49,7 +49,7 @@ const Modal = ({
     if (escPressed && show && !disableClose) {
       onClose();
     }
-  }, [escPressed, show, disableClose]);
+  }, [escPressed, show, disableClose, onClose]);
   return createPortal(
     <ModalWrapper
       show={show}

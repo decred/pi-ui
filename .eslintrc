@@ -10,7 +10,8 @@
   },
   "plugins": [
     "prettier",
-    "react"
+    "react",
+    "react-hooks"
   ],
   "parserOptions": {
     "sourceType": "module",
@@ -26,7 +27,8 @@
     "space-before-function-paren": 0,
     // allow specifying true explicitly for boolean props
     "react/jsx-boolean-value": 0,
-    "react/jsx-closing-bracket-location": [1, {selfClosing: 'tag-aligned', nonEmpty: 'after-props'}],
+    "react-hooks/exhaustive-deps": 2,
+    "react/jsx-closing-bracket-location": [1, { "selfClosing": "tag-aligned", "nonEmpty": "after-props"}],
     // prettier config
     "prettier/prettier": "error",
     "eqeqeq": [

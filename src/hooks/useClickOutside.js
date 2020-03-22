@@ -8,7 +8,7 @@ export default function useClickOutside(onClickHandler) {
         onClickHandler();
       }
     },
-    [onClickHandler, ref.current]
+    [onClickHandler]
   );
 
   useEffect(() => {

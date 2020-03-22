@@ -51,7 +51,7 @@ const useTruncate = (elementID, truncate, linesBeforeTruncate) => {
         }
       }
     }
-  }, [truncate, linesBeforeTruncate]);
+  }, [truncate, linesBeforeTruncate, elementID]);
 };
 
 export default useTruncate;

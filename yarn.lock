@@ -5754,6 +5754,11 @@ eslint-plugin-promise@^4.0.0:
   resolved "https://registry.yarnpkg.com/eslint-plugin-promise/-/eslint-plugin-promise-4.2.1.tgz#845fd8b2260ad8f82564c1222fce44ad71d9418a"
   integrity sha512-VoM09vT7bfA7D+upt+FjeBO5eHIJQBUWki1aPvB+vbNiHS3+oGIJGIeyBtKQTME6UPXXy3vV07OL1tHd3ANuDw==
 
+eslint-plugin-react-hooks@^2.5.0:
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-react-hooks/-/eslint-plugin-react-hooks-2.5.0.tgz#c50ab7ca5945ce6d1cf8248d9e185c80b54171b6"
+  integrity sha512-bzvdX47Jx847bgAYf0FPX3u1oxU+mKU8tqrpj4UX9A96SbAmj/HVEefEy6rJUog5u8QIlOPTKZcBpGn5kkKfAQ==
+
 eslint-plugin-react@^7.19.0:
   version "7.19.0"
   resolved "https://registry.yarnpkg.com/eslint-plugin-react/-/eslint-plugin-react-7.19.0.tgz#6d08f9673628aa69c5559d33489e855d83551666"
@@ -12053,6 +12058,11 @@ react-spring@^8.0.25:
   dependencies:
     "@babel/runtime" "^7.3.1"
     prop-types "^15.5.8"
+
+react-tapper@^0.1.18:
+  version "0.1.18"
+  resolved "https://registry.yarnpkg.com/react-tapper/-/react-tapper-0.1.18.tgz#0b6976c1e115379d509e1d6726d3255f3be63778"
+  integrity sha512-eNcEg+3gX1qwdn6kVq4OegZHia4xw3W5WNUWf1FvGj0QCrBZsrCOx+vxMrcstmgH78dT37iJUPQmga4PIJplDQ==
 
 react-test-renderer@^16.13.0:
   version "16.13.0"

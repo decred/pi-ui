@@ -1,0 +1,105 @@
+---
+name: DatePicker
+menu: Components
+route: /components/datepicker
+---
+
+import { useState } from "react";
+import { Playground, Props } from "docz";
+import styles from "../css/base.css";
+import { DatePicker } from "../index";
+
+# DatePicker
+
+## DatePicker props
+<Props of={DatePicker} />
+
+## Usage
+
+### month picker
+
+<Playground>
+  {() => {
+
+    const Arrow = ({ isOpen }) => {
+      return (
+        <div className={isOpen ? styles.exampledDatepickerArrowOpen : styles.exampledDatepickerArrow} />
+      );
+    };
+
+    const [value, setValue] = useState({ year: 2019, month: 11 });
+    const [isOpen, setIsOpen] = useState(false);
+    const onChange = (year, month) => {
+      if (!!year && !!month) {
+        setValue({ year, month });
+      }
+      setIsOpen(false);
+    };
+    const togglePicker = () => {
+      setIsOpen(!isOpen)
+    };
+
+    // specify min, max properties in years object to limit selection
+    const years = {
+      min: { year: 2018, month: 1 },
+      max: { year: 2020, month: 2}
+    }
+    return (
+      <>
+      	<DatePicker
+          years={years} 
+          value={value}
+          show={isOpen}
+          isMonthsMode={true}
+          onChange={onChange}
+        >
+          <span className={styles.exampledDatepickerValueWrapper} onClick={togglePicker}>
+            {`${value.month}/${value.year}`}
+            <Arrow isOpen={isOpen} />
+          </span>
+        </DatePicker>
+      </>
+    );
+  }}
+</Playground>
+
+### day picker
+
+<Playground>
+  {() => {
+
+    const Arrow = ({ isOpen }) => {
+      return (
+        <div className={isOpen ? styles.exampledDatepickerArrowOpen : styles.exampledDatepickerArrow} />
+      );
+    };
+
+    const [value, setValue] = useState({ year: 2013, month: 11, day: 15 });
+    const [isOpen, setIsOpen] = useState(false);
+    const onChange = (year, month, day) => {
+      if (!!year && !!month && !!day) {
+        setValue({ year, month, day });
+      }
+      setIsOpen(false);
+    };
+    const togglePicker = () => {
+      setIsOpen(!isOpen)
+    };
+    return (
+      <>
+      	<DatePicker
+          years={[2013, 2015, 2016]} 
+          value={value}
+          show={isOpen}
+          onChange={onChange}
+        >
+          <span className={styles.exampledDatepickerValueWrapper} onClick={togglePicker}>
+            {`${value.day}/${value.month}/${value.year}`}
+            <Arrow isOpen={isOpen} />
+          </span>
+        </DatePicker>
+      </>
+    );
+  }}
+</Playground>
+

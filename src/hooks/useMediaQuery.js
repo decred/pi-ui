@@ -63,7 +63,7 @@ export function useMediaQuery(queryInput, options = {}) {
         queryList.removeListener(handleMatchesChange);
       });
     };
-  }, queries);
+  }, [queries, supportMatchMedia]);
 
   return multiple ? matches : matches[0];
 }
