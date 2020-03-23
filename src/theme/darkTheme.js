@@ -7,17 +7,19 @@ const darkTheme = {
   "color-primary-darker": "#1F325F",
   "color-primary-darkest": "#1B2B54",
   "color-gray-blue": "#6F98D3",
+
   "color-powder-blue": "#B7DEEE",
   "color-astronaut-blue": "#29417A",
 
   "html-bg": "var(--color-primary-darkest)",
 
+  "text-input-color": "var(--color-gray-blue)",
   "container-color": "var(--color-primary-darkest)",
   "header-border-color": "#1d1d2f",
   "header-color": "var(--color-primary-darker)",
   "topbanner-color": "var(--card-background)",
   "main-color": "#27283d",
-  "input-border-color": "var(--text-input-color)",
+  "input-border-color": "var(--color-gray-blue)",
   "active-nav-border-color": "var(--color-primary-light)",
   "separator-color": "var(--color-primary-darkest)",
   "subtitle-color": "#3C62B0",
@@ -37,7 +39,6 @@ const darkTheme = {
   "text-color": "#99C1E3",
   "text-color-light": "var(--color-white)",
   "text-heading-color": "var(--color-powder-blue)",
-  "text-input-color": "#608ACE",
   "text-heading2-color": "var(--text-heading-color)",
   "text-secondary-color": "var(--color-primary-dark)",
 
@@ -74,14 +75,18 @@ const darkTheme = {
 
   "tooltip-background-color": "var(--color-astronaut-blue)",
 
-  "checkbox-stroke-color": "var(--text-input-color)",
+  "checkbox-stroke-color": "var(--color-gray-blue)",
   "checkbox-hovered-background-color": "var(--color-primary-darkest)",
 
   "info-message-background": "#152042",
   "blocked-message-background": "var(--info-message-background)",
   "error-message-background": "var(--info-message-background)",
   "error-message-color": "var(--color-astronaut-blue)",
-  "blocked-message-color": "var(--error-message-color)"
+  "blocked-message-color": "var(--error-message-color)",
+
+  "datasheet-read-only-text-color": "var(--color-gray)",
+  "datasheet-read-only-background": "var(--color-primary-darkest)",
+  "datasheet-border-color": "var(--color-gray-blue)"
 };
 
 export default darkTheme;
