@@ -183,7 +183,12 @@ const lightTheme = {
   /** Markdown */
   "md-table-cell-border-color": "#dfe2e5",
   "md-table-odd-row-background": "var(--color-white)",
-  "md-table-even-row-background": "#f6f8fa"
+  "md-table-even-row-background": "#f6f8fa",
+
+  /** Datasheet */
+  "datasheet-read-only-text-color": "var(--color-gray)",
+  "datasheet-read-only-background": "var(--color-gray-lightest)",
+  "datasheet-border-color": "var(--color-gray-lightest)"
 };
 
 export default lightTheme;
