@@ -783,31 +783,56 @@ const icons = (type, backgroundColor, iconColor) => {
       />
     ),
     calendar: (
-      <g transform="translate(21.333)">
-        <g transform="translate(0)">
+      <g
+        id="Page-1"
+        stroke="none"
+        strokeWidth="1"
+        fill="none"
+        fillRule="evenodd">
+        <g
+          id="abc"
+          transform="translate(225.000000, 225.000000) scale(-1, 1) translate(-225.000000, -225.000000) "
+          fillRule="nonzero">
           <rect
-            fill={iconColor}
-            width="1.7"
-            height="1.7"
-            transform="translate(10.23 7.672)"
+            id="Rectangle"
+            fillOpacity="0"
+            fill="#FFFFFF"
+            x="0"
+            y="1"
+            width="450"
+            height="449"
           />
-          <rect
-            fill={iconColor}
-            width="1.7"
-            height="1.7"
-            transform="translate(6.82 7.672)"
-          />
-          <rect
-            fill={iconColor}
-            width="1.7"
-            height="1.7"
-            transform="translate(3.41 7.672)"
-          />
-          <path
-            fill={iconColor}
-            d="M34.968,1.7h-.852V0h-1.7V1.7H25.594V0h-1.7V1.7h-.852a1.7,1.7,0,0,0-1.7,1.7l-.009,11.93a1.7,1.7,0,0,0,1.7,1.7h11.93a1.709,1.709,0,0,0,1.7-1.7V3.409A1.709,1.709,0,0,0,34.968,1.7Zm0,13.635H23.037V5.965h11.93Z"
-            transform="translate(-21.333)"
-          />
+          <g id="Group" fill={iconColor}>
+            <g transform="translate(0.890794, 0.000000)">
+              <g transform="translate(0.000000, 0.000000)">
+                <rect
+                  id="Rectangle"
+                  x="296.084483"
+                  y="202.155399"
+                  width="49.2027"
+                  height="44.7946009"
+                />
+                <rect
+                  id="Rectangle"
+                  x="197.389655"
+                  y="202.155399"
+                  width="49.2027"
+                  height="44.7946009"
+                />
+                <rect
+                  id="Rectangle"
+                  x="98.6948276"
+                  y="202.155399"
+                  width="49.2027"
+                  height="44.7946009"
+                />
+                <path
+                  d="M399.357158,44.9207281 L374.402827,44.9207281 L374.402827,0 L324.611323,0 L324.611323,44.9207281 L124.800942,44.9207281 L124.800942,0 L75.0094376,0 L75.0094376,44.9207281 L50.0551069,44.9207281 C22.5560181,44.9207281 0.263602085,65.0324232 0.263602085,89.8414563 L0,405.079272 C0,429.888305 22.2924161,450 49.7915049,450 L399.210712,450 C426.649881,449.869974 448.858093,429.834246 449.002217,405.079272 L449.002217,90.0792719 C449.00314,65.2826542 426.841563,45.1238601 399.357158,44.9207281 Z M399.357158,405.211392 L49.9086613,405.211392 L49.9086613,157.618908 L399.327869,157.618908 L399.357158,405.211392 Z"
+                  id="Shape"
+                />
+              </g>
+            </g>
+          </g>
         </g>
       </g>
     )
