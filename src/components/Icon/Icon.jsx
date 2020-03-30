@@ -781,6 +781,35 @@ const icons = (type, backgroundColor, iconColor) => {
         transform="translate(0 -5.365)"
         fill={iconColor}
       />
+    ),
+    calendar: (
+      <g transform="translate(21.333)">
+        <g transform="translate(0)">
+          <rect
+            fill={iconColor}
+            width="1.7"
+            height="1.7"
+            transform="translate(10.23 7.672)"
+          />
+          <rect
+            fill={iconColor}
+            width="1.7"
+            height="1.7"
+            transform="translate(6.82 7.672)"
+          />
+          <rect
+            fill={iconColor}
+            width="1.7"
+            height="1.7"
+            transform="translate(3.41 7.672)"
+          />
+          <path
+            fill={iconColor}
+            d="M34.968,1.7h-.852V0h-1.7V1.7H25.594V0h-1.7V1.7h-.852a1.7,1.7,0,0,0-1.7,1.7l-.009,11.93a1.7,1.7,0,0,0,1.7,1.7h11.93a1.709,1.709,0,0,0,1.7-1.7V3.409A1.709,1.709,0,0,0,34.968,1.7Zm0,13.635H23.037V5.965h11.93Z"
+            transform="translate(-21.333)"
+          />
+        </g>
+      </g>
     )
   }[type];
 };
