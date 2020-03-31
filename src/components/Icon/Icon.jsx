@@ -456,8 +456,8 @@ const icons = (type, backgroundColor, iconColor) => {
                 cy="230.849941"
                 cx="224.027423"
               />
-              <g stroke="null" id="svg_1">
-                <g stroke="null" id="Group_2895">
+              <g stroke="null">
+                <g stroke="null">
                   <path
                     stroke="null"
                     fill={backgroundColor}
@@ -781,6 +781,47 @@ const icons = (type, backgroundColor, iconColor) => {
         transform="translate(0 -5.365)"
         fill={iconColor}
       />
+    ),
+    calendar: (
+      <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
+        <g
+          transform="translate(225.000000, 225.000000) scale(-1, 1) translate(-225.000000, -225.000000) "
+          fillRule="nonzero">
+          <rect
+            fillOpacity="0"
+            fill="#FFFFFF"
+            x="0"
+            y="1"
+            width="450"
+            height="449"
+          />
+          <g fill={iconColor}>
+            <g transform="translate(0.890794, 0.000000)">
+              <g transform="translate(0.000000, 0.000000)">
+                <rect
+                  x="296.084483"
+                  y="202.155399"
+                  width="49.2027"
+                  height="44.7946009"
+                />
+                <rect
+                  x="197.389655"
+                  y="202.155399"
+                  width="49.2027"
+                  height="44.7946009"
+                />
+                <rect
+                  x="98.6948276"
+                  y="202.155399"
+                  width="49.2027"
+                  height="44.7946009"
+                />
+                <path d="M399.357158,44.9207281 L374.402827,44.9207281 L374.402827,0 L324.611323,0 L324.611323,44.9207281 L124.800942,44.9207281 L124.800942,0 L75.0094376,0 L75.0094376,44.9207281 L50.0551069,44.9207281 C22.5560181,44.9207281 0.263602085,65.0324232 0.263602085,89.8414563 L0,405.079272 C0,429.888305 22.2924161,450 49.7915049,450 L399.210712,450 C426.649881,449.869974 448.858093,429.834246 449.002217,405.079272 L449.002217,90.0792719 C449.00314,65.2826542 426.841563,45.1238601 399.357158,44.9207281 Z M399.357158,405.211392 L49.9086613,405.211392 L49.9086613,157.618908 L399.327869,157.618908 L399.357158,405.211392 Z" />
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
     )
   }[type];
 };
