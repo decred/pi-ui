@@ -783,18 +783,11 @@ const icons = (type, backgroundColor, iconColor) => {
       />
     ),
     calendar: (
-      <g
-        id="Page-1"
-        stroke="none"
-        strokeWidth="1"
-        fill="none"
-        fillRule="evenodd">
+      <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
         <g
-          id="abc"
           transform="translate(225.000000, 225.000000) scale(-1, 1) translate(-225.000000, -225.000000) "
           fillRule="nonzero">
           <rect
-            id="Rectangle"
             fillOpacity="0"
             fill="#FFFFFF"
             x="0"
@@ -806,21 +799,18 @@ const icons = (type, backgroundColor, iconColor) => {
             <g transform="translate(0.890794, 0.000000)">
               <g transform="translate(0.000000, 0.000000)">
                 <rect
-                  id="Rectangle"
                   x="296.084483"
                   y="202.155399"
                   width="49.2027"
                   height="44.7946009"
                 />
                 <rect
-                  id="Rectangle"
                   x="197.389655"
                   y="202.155399"
                   width="49.2027"
                   height="44.7946009"
                 />
                 <rect
-                  id="Rectangle"
                   x="98.6948276"
                   y="202.155399"
                   width="49.2027"
