@@ -822,6 +822,25 @@ const icons = (type, backgroundColor, iconColor) => {
           </g>
         </g>
       </g>
+    ),
+    rfp: (
+      <g transform="translate(12.021 -3.986) rotate(45)">
+        <path
+          fill="#8997a5"
+          d="M163.753,11.365a.775.775,0,0,1-.548-1.323l2.066-2.066a3.713,3.713,0,0,0,1.1-2.66,3.769,3.769,0,0,0-3.765-3.765,3.714,3.714,0,0,0-2.658,1.1l-2.068,2.068a.775.775,0,0,1-1.1-1.1l2.066-2.066A5.249,5.249,0,0,1,162.611,0a5.321,5.321,0,0,1,5.315,5.315,5.249,5.249,0,0,1-1.562,3.759L164.3,11.137a.771.771,0,0,1-.547.227Zm0,0"
+          transform="translate(-150.926 0)"
+        />
+        <path
+          fill="#8997a5"
+          d="M5.315,167.926A5.321,5.321,0,0,1,0,162.611a5.248,5.248,0,0,1,1.562-3.759l2.063-2.063a.775.775,0,0,1,1.1,1.1l-2.066,2.066a3.711,3.711,0,0,0-1.105,2.66,3.769,3.769,0,0,0,3.765,3.765,3.714,3.714,0,0,0,2.658-1.1l2.068-2.068a.775.775,0,0,1,1.1,1.1l-2.066,2.066a5.249,5.249,0,0,1-3.756,1.559Zm0,0"
+          transform="translate(0 -150.925)"
+        />
+        <path
+          fill="#8997a5"
+          d="M128.77,135.746a.775.775,0,0,1-.548-1.323l6.2-6.2a.775.775,0,0,1,1.1,1.1l-6.2,6.2a.773.773,0,0,1-.548.227Zm0,0"
+          transform="translate(-123.371 -123.37)"
+        />
+      </g>
     )
   }[type];
 };
@@ -831,7 +850,10 @@ export const IconWrapper = ({
   backgroundColor,
   iconColor,
   className,
-  onClick
+  onClick,
+  viewBox,
+  height,
+  width
 }) => {
   const { theme } = useTheme();
   const defaultIconColor = iconColor || getThemeProperty(theme, "icon-color");
@@ -840,10 +862,10 @@ export const IconWrapper = ({
   return (
     <svg
       onClick={onClick}
-      viewBox="0 0 450 450"
-      width={typeof size === "string" ? sizes[size] : size}
+      viewBox={viewBox}
+      width={width ? `${width}` : sizes[size]}
       className={className}
-      height={sizes[size]}>
+      height={height ? `${height}` : sizes[size]}>
       {icons(type, defaultIconBgColor, defaultIconColor)}
     </svg>
   );
@@ -852,17 +874,18 @@ export const IconWrapper = ({
 IconWrapper.propTypes = {
   type: PropTypes.string.isRequired,
   className: PropTypes.string,
-  size: PropTypes.oneOfType([
-    PropTypes.oneOf(["sm", "md", "lg", "xlg"]),
-    PropTypes.number
-  ]),
+  size: PropTypes.oneOfType([PropTypes.oneOf(["sm", "md", "lg", "xlg"])]),
   backgroundColor: PropTypes.string,
   onClick: PropTypes.func,
-  iconColor: PropTypes.string
+  iconColor: PropTypes.string,
+  viewBox: PropTypes.string,
+  height: PropTypes.number,
+  width: PropTypes.number
 };
 
 IconWrapper.defaultProps = {
-  size: "md"
+  size: "md",
+  viewBox: "0 0 450 450"
 };
 
 export default React.memo(IconWrapper);
