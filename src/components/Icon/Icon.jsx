@@ -874,7 +874,7 @@ export const IconWrapper = ({
 IconWrapper.propTypes = {
   type: PropTypes.string.isRequired,
   className: PropTypes.string,
-  size: PropTypes.oneOfType([PropTypes.oneOf(["sm", "md", "lg", "xlg"])]),
+  size: PropTypes.oneOf(["sm", "md", "lg", "xlg"]),
   backgroundColor: PropTypes.string,
   onClick: PropTypes.func,
   iconColor: PropTypes.string,
