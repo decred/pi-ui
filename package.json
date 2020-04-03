@@ -103,6 +103,7 @@
     "dist"
   ],
   "dependencies": {
+    "@babel/plugin-transform-react-jsx-development": "^7.9.0",
     "clamp-js-main": "^0.11.5",
     "eslint-plugin-react-hooks": "^2.5.0",
     "react-select": "2.4.4",
