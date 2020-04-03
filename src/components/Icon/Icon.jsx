@@ -859,13 +859,14 @@ export const IconWrapper = ({
   const defaultIconColor = iconColor || getThemeProperty(theme, "icon-color");
   const defaultIconBgColor =
     backgroundColor || getThemeProperty(theme, "icon-background-color");
+  const isStringSize = typeof size === "string";
   return (
     <svg
       onClick={onClick}
       viewBox={viewBox}
-      width={width ? `${width}` : sizes[size]}
+      width={width ? `${width}` : isStringSize ? sizes[size] : size}
       className={className}
-      height={height ? `${height}` : sizes[size]}>
+      height={height ? `${height}` : isStringSize ? sizes[size] : size}>
       {icons(type, defaultIconBgColor, defaultIconColor)}
     </svg>
   );
@@ -874,7 +875,10 @@ export const IconWrapper = ({
 IconWrapper.propTypes = {
   type: PropTypes.string.isRequired,
   className: PropTypes.string,
-  size: PropTypes.oneOf(["sm", "md", "lg", "xlg"]),
+  size: PropTypes.oneOf([
+    PropTypes.oneOf(["sm", "md", "lg", "xlg"]),
+    PropTypes.number
+  ]),
   backgroundColor: PropTypes.string,
   onClick: PropTypes.func,
   iconColor: PropTypes.string,
