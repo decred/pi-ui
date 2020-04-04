@@ -823,7 +823,7 @@ const icons = (type, backgroundColor, iconColor) => {
         </g>
       </g>
     ),
-    rfp: (
+    horizontalLink: (
       <g transform="translate(12.021 -3.986) rotate(45)">
         <path
           fill="#8997a5"
