@@ -875,7 +875,7 @@ export const IconWrapper = ({
 IconWrapper.propTypes = {
   type: PropTypes.string.isRequired,
   className: PropTypes.string,
-  size: PropTypes.oneOf([
+  size: PropTypes.oneOfType([
     PropTypes.oneOf(["sm", "md", "lg", "xlg"]),
     PropTypes.number
   ]),
