@@ -27,7 +27,7 @@ import { DatePicker } from "../index";
       );
     };
 
-    const [value, setValue] = useState({ year: 2019, month: 11 });
+    const [value, setValue] = useState(null);
     const [isOpen, setIsOpen] = useState(false);
     const onChange = (year, month) => {
       if (!!year && !!month) {
@@ -54,7 +54,8 @@ import { DatePicker } from "../index";
           onChange={onChange}
         >
           <span className={styles.exampledDatepickerValueWrapper} onClick={togglePicker}>
-            {`${value.month}/${value.year}`}
+            {value && `${value.month}/${value.year}`}
+            {!value && "Pick a date"}
             <Arrow isOpen={isOpen} />
           </span>
         </DatePicker>
@@ -74,7 +75,7 @@ import { DatePicker } from "../index";
       );
     };
 
-    const [value, setValue] = useState({ year: 2013, month: 11, day: 15 });
+    const [value, setValue] = useState({ year: 2015, month: 11, day: 15 });
     const [isOpen, setIsOpen] = useState(false);
     const onChange = (year, month, day) => {
       if (!!year && !!month && !!day) {

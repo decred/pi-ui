@@ -36,7 +36,7 @@ const DatePickerPad = ({
   if (yearIdx === 0) prevCss = "disable";
   if (yearIdx === yearMaxIdx) nextCss = "disable";
 
-  const yearActive = year === value.year;
+  const yearActive = value && year === value.year;
   const atMinYear = year === ymArr[0].year;
   const atMaxYear = year === ymArr[yearMaxIdx].year;
   let otherValue = false;
@@ -105,12 +105,13 @@ const DatePickerPad = ({
           mapToArray(12, (i) => {
             let css = "";
             const m = i + 1;
-            if (yearActive && m === value.month) {
+            if (yearActive && value && m === value.month) {
               css = "active";
             }
             if (
               values.length > 1 &&
               padIndex === 0 &&
+              value &&
               (year > value.year || (year === value.year && m > value.month))
             ) {
               css = "select";
@@ -118,6 +119,7 @@ const DatePickerPad = ({
             if (
               values.length > 1 &&
               padIndex === 1 &&
+              value &&
               (year < value.year || (year === value.year && m < value.month))
             ) {
               css = "select";
@@ -161,7 +163,12 @@ const DatePickerPad = ({
           mapToArray(new Date(year, month, 0).getDate(), (i) => {
             let css = "";
             const d = i + 1;
-            if (yearActive && month === value.month && d === value.day) {
+            if (
+              yearActive &&
+              value &&
+              month === value.month &&
+              d === value.day
+            ) {
               css = "active";
             }
             const clickHandler = css !== "disable" ? onDayClick : undefined;

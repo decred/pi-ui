@@ -29,7 +29,7 @@ const DatePicker = ({
   isMonthsMode
 }) => {
   const yearArr = useMemo(() => getYearArray(years), [years]);
-  const yearIndexes = useMemo(() => [], []);
+  const yearIndexes = useMemo(() => [0], []);
   const values = useMemo(
     () => validValues(range || value, yearArr, yearIndexes),
     [range, value, yearArr, yearIndexes]
@@ -37,8 +37,14 @@ const DatePicker = ({
 
   const [yearsState] = useState(yearArr);
   const [valuesState, setValuesState] = useState(values);
-  const [labelYearsState, setLabelYearsState] = useState([false, false]);
-  const [labelMonthsState, setLabelMonthsState] = useState([false, false]);
+  const [labelYearsState, setLabelYearsState] = useState([
+    values[0] ? values[0].year : yearsState[0].year,
+    values[1] ? values[1].year : yearsState[0].year
+  ]);
+  const [labelMonthsState, setLabelMonthsState] = useState([
+    values[0] ? values[0].month : yearsState[0].min,
+    values[1] ? values[1].month : yearsState[0].min
+  ]);
   const [showedState, setShowedState] = useState(show);
   const [yearIndexesState, setYearIndexesState] = useState(yearIndexes);
   const [pads, setPads] = useState([]);
@@ -168,20 +174,14 @@ const DatePicker = ({
 
   const padByIndex = useCallback(
     (padIndex) => {
-      const labelYears = labelYearsState;
-      const labelMonths = labelMonthsState;
-      const labelYear = (labelYears[padIndex] =
-        labelYears[padIndex] || value.year);
-      const labelMonth = (labelMonths[padIndex] =
-        labelMonths[padIndex] || value.month);
       return (
         <DatePickerPad
           key={padIndex}
           padIndex={padIndex}
           values={valuesState}
           years={yearsState}
-          year={labelYear}
-          month={labelMonth}
+          year={labelYearsState[padIndex]}
+          month={labelMonthsState[padIndex]}
           lang={lang}
           yearIdx={yearIndexesState[padIndex]}
           onMonthClick={handleClickMonth}
@@ -206,15 +206,13 @@ const DatePicker = ({
       labelMonthsState,
       labelYearsState,
       valuesState,
-      value.month,
-      value.year,
       yearIndexesState,
       yearsState
     ]
   );
 
   const renderPad = useCallback(() => {
-    if (isRange > 1) {
+    if (isRange) {
       setPads([padByIndex(0), padByIndex(1)]);
     } else {
       setPads([padByIndex(0)]);
