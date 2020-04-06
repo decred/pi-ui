@@ -110,5 +110,8 @@
     "react-select-event": "^4.1.4",
     "react-spring": "^8.0.25",
     "react-tapper": "^0.1.18"
+  },
+  "resolutions": {
+    "minimist": "^1.2.5"
   }
 }
