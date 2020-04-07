@@ -27,6 +27,7 @@ export { default as StatusTag } from "./components/StatusTag/StatusTag.jsx";
 export { default as Table } from "./components/Table/Table.jsx";
 export { default as Tab } from "./components/Tabs/Tab.jsx";
 export { default as Tabs } from "./components/Tabs/Tabs.jsx";
+export { default as TextArea } from "./components/TextArea/TextArea.jsx";
 export { default as TextInput } from "./components/TextInput/TextInput.jsx";
 export { default as Tooltip } from "./components/Tooltip/Tooltip.jsx";
 export { default as H1 } from "./components/Typography/H1.jsx";

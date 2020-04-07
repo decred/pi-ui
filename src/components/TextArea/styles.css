@@ -1,0 +1,75 @@
+.textArea {
+  font-family: var(--font-family-text);
+  font-weight: var(--font-weight-regular);
+  max-width: 100%;
+  min-width: 100%;
+  padding: 2rem;
+  min-height: 20rem;
+  border: 1px solid var(--text-input-color);
+  line-height: 1.5;
+  font-size: var(--font-size-regular);
+  background: var(--card-background);
+  -webkit-appearance: none;
+  color: var(--text-color);
+}
+
+.textAreaWrapper {
+  width: 100%;
+  position: relative;
+}
+
+.textAreaWrapper:not(:first-child) {
+  margin-top: 2.2rem;
+}
+
+.textArea:focus,
+.textArea:not(:placeholder-shown) {
+  top: -2rem;
+  font-size: var(--font-size-small);
+  border-bottom: 0.1rem solid var(--color-primary);
+}
+
+.errorMsg {
+  visibility: hidden;
+  color: var(--color-orange);
+  font-size: var(--font-size-small);
+  min-height: var(--spacing-1);
+  line-height: var(--spacing-1);
+  margin-top: 1px;
+}
+
+.errorMsgActive {
+  visibility: visible;
+}
+
+.errorIcon {
+  display: none;
+  color: var(--color-orange);
+  position: absolute;
+  right: 0.5rem;
+  top: 0.5rem;
+  font-size: var(--font-size-large);
+}
+
+.errorIconActive {
+  display: block;
+}
+
+/* override chrome's autocomplete styling */
+
+@keyframes autofill {
+  to {
+    color: white;
+    background: transparent;
+  }
+}
+
+.textArea:-webkit-autofill {
+  transition-delay: 99999s;
+  -webkit-transition-delay: 99999s;
+  animation-name: autofill;
+  -webkit-animation-name: autofill;
+  animation-fill-mode: both;
+  -webkit-animation-fill-mode: both;
+  -webkit-text-fill-color: var(--text-color) !important;
+}
