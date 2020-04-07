@@ -17,7 +17,7 @@ const TextArea = ({
     <div className={classNames(styles.textAreaWrapper, wrapperClassNames)}>
       <textarea
         id={id}
-        placeholder=" "
+        placeholder=""
         className={classNames(
           styles.textArea,
           error && styles.textAreaError,

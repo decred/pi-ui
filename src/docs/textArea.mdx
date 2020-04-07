@@ -1,0 +1,28 @@
+---
+name: TextArea
+menu: Components
+route: /components/textarea
+---
+
+import { Playground, Props } from "docz";
+import { TextArea } from "../index";
+
+# TextArea
+
+## Properties
+
+<Props of={TextArea} />
+
+## Usage
+
+### Normal
+
+<Playground>
+  <TextArea id="statement" placeholder="Statement" name="statement" />
+</Playground>
+
+### Error
+
+<Playground>
+  <TextArea id="statement2" placeholder="Statement" name="statement" error="Invalid statement" />
+</Playground>
