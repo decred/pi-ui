@@ -6,7 +6,6 @@ import styles from "./styles.css";
 
 const TextArea = ({
   type,
-  label,
   id,
   error,
   wrapperClassNames,
@@ -45,16 +44,16 @@ const TextArea = ({
 
 TextArea.propTypes = {
   type: PropTypes.string,
-  label: PropTypes.string,
   id: PropTypes.string.isRequired,
   error: PropTypes.string,
   wrapperClassNames: PropTypes.string,
-  inputClassNames: PropTypes.string
+  inputClassNames: PropTypes.string,
+  placeholder: PropTypes.string
 };
 
 TextArea.defaultProps = {
   type: "text",
-  label: "Label"
+  placeholder: ""
 };
 
 export default TextArea;
