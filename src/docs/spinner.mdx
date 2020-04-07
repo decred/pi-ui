@@ -4,6 +4,7 @@ menu: Components
 route: /components/spinner
 ---
 
+import { Fragment } from "react";
 import { Playground, Props } from "docz";
 import { Spinner } from "../index";
 
@@ -15,14 +16,14 @@ import { Spinner } from "../index";
 
 <Playground>
   {() =>
-    <>
+    <Fragment>
       <div style={{ backgroundColor: "#000", padding: "20px" }}>
         <Spinner />
       </div>
       <div style={{ backgroundColor: "#000", padding: "20px" }}>
         <Spinner width="4rem" height="4rem" />
       </div>
-    </>
+    </Fragment>
   }
 </Playground>
 
@@ -30,13 +31,13 @@ import { Spinner } from "../index";
 
 <Playground>
   {() =>
-    <>
+    <Fragment>
       <div style={{ backgroundColor: "#fff", padding: "20px" }}>
         <Spinner invert />
       </div>
       <div style={{ backgroundColor: "#fff", padding: "20px" }}>
         <Spinner width="4rem" height="4rem" invert />
       </div>
-    </>
+    </Fragment>
   }
 </Playground>

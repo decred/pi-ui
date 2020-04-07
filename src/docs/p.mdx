@@ -3,7 +3,7 @@ name: P
 menu: Components
 route: /components/P
 ---
-
+import { Fragment } from "react";
 import { P } from "../index";
 import { Playground, Props } from "docz";
 
@@ -17,7 +17,7 @@ import { Playground, Props } from "docz";
 <Playground>
   {() => {
     return (
-      <>
+      <Fragment>
         <P>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Alias voluptate
           delectus eius nesciunt porro! Eum expedita voluptate dolor dignissimos autem
           recusandae quia, quasi, beatae asperiores, aliquam maxime reiciendis earum
@@ -27,7 +27,7 @@ import { Playground, Props } from "docz";
           delectus eius nesciunt porro! Eum expedita voluptate dolor dignissimos autem
           recusandae quia, quasi, beatae asperiores, aliquam maxime reiciendis earum
           voluptatum.</P>
-      </>
+      </Fragment>
     );
   }}
 </Playground>

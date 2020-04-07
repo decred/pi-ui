@@ -2,7 +2,7 @@
 name: Typography
 route: /typography
 ---
-
+import { Fragment } from "react";
 import { H1, H2, H3, H4, H5, H6, P } from "../index";
 import { Playground, Props } from "docz";
 
@@ -13,7 +13,7 @@ import { Playground, Props } from "docz";
 <Playground>
   {() => {
     return (
-      <>
+      <Fragment>
         <H1>Header1 - 28px - Regular</H1>
         <H2 id="truncated-header" truncate >This component is truncated</H2>
         <H2>Header2 - 24px - SemiBold</H2>
@@ -39,7 +39,7 @@ import { Playground, Props } from "docz";
           recusandae quia, quasi, beatae asperiores, aliquam maxime reiciendis earum
           voluptatum.
         </P>
-      </>
+      </Fragment>
     );
   }}
 </Playground>

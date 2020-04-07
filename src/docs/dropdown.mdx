@@ -4,7 +4,7 @@ menu: Components
 route: /components/dropdown
 ---
 
-import { useState } from "react";
+import { useState, Fragment } from "react";
 import { Playground, Props } from "docz";
 import { Dropdown, DropdownItem, Button } from "../index";
 import styles from "../css/base.css";
@@ -26,7 +26,7 @@ import { classNames } from "../utils";
 <Playground>
   {() => {
     return (
-      <>
+      <Fragment>
       	<Dropdown 
       		title='username'>
 	        <DropdownItem  onClick={() => alert('my proposals')}>
@@ -39,7 +39,7 @@ import { classNames } from "../utils";
             Logout
           </DropdownItem>
         </Dropdown>
-      </>
+      </Fragment>
     );
   }}
 </Playground>
@@ -52,7 +52,7 @@ import { classNames } from "../utils";
     const openDropdown = () => setShowDropdown(true)
     const closeDropdown = () => setShowDropdown(false)
     return (
-      <>
+      <Fragment>
       	<Dropdown 
       		title='username' 
       		show={showDropdown} 
@@ -67,7 +67,7 @@ import { classNames } from "../utils";
             Logout
           </DropdownItem>
         </Dropdown>
-      </>
+      </Fragment>
     );
   }}
 </Playground>
@@ -79,7 +79,7 @@ import { classNames } from "../utils";
 
     const CustomTrigger = ({ onClick, open }) => <Button onClick={onClick}>{open ? "close" : "open"}</Button>
     return (
-      <>
+      <Fragment>
       	<Dropdown 
       		customDropdownTrigger={CustomTrigger}
       		closeOnOutsideClick={true}
@@ -95,7 +95,7 @@ import { classNames } from "../utils";
             Logout
           </DropdownItem>
         </Dropdown>
-      </>
+      </Fragment>
     );
   }}
 </Playground>

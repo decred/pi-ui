@@ -3,7 +3,7 @@ name: H2
 menu: Components
 route: /components/H2
 ---
-
+import { Fragment } from "react";
 import { H2 } from "../index";
 import { Playground, Props } from "docz";
 
@@ -17,14 +17,14 @@ import { Playground, Props } from "docz";
 <Playground>
   {() => {
     return (
-      <>
+      <Fragment>
         <H2>Header2 - 24px - Semibold</H2>
         <br />
         <H2 id="truncated-header" truncate  >Lorem ipsum dolor sit, amet consectetur adipisicing elit. Alias voluptate
           delectus eius nesciunt porro! Eum expedita voluptate dolor dignissimos autem
           recusandae quia, quasi, beatae asperiores, aliquam maxime reiciendis earum
           voluptatum.</H2>
-      </>
+      </Fragment>
     );
   }}
 </Playground>

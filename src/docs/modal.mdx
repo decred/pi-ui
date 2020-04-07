@@ -4,7 +4,7 @@ menu: Components
 route: /components/modal
 ---
 
-import { useState } from "react";
+import { useState, Fragment } from "react";
 import { Playground, Props } from "docz";
 import { Modal, Button, P, ModalWrapper } from "../index";
 
@@ -23,12 +23,12 @@ import { Modal, Button, P, ModalWrapper } from "../index";
     const openModal = () => setShowModal(true);
     const closeModal = () => setShowModal(false);
     return (
-      <>
+      <Fragment>
         <Button onClick={openModal}>Open Modal</Button>
         <Modal show={showModal} onClose={closeModal}>
           Simple Modal
         </Modal>
-      </>
+      </Fragment>
     );
   }}
 </Playground>
@@ -40,12 +40,12 @@ import { Modal, Button, P, ModalWrapper } from "../index";
     const openModal = () => setShowModal(true);
     const closeModal = () => setShowModal(false);
     return (
-      <>
+      <Fragment>
         <Button onClick={openModal}>Open Modal</Button>
         <Modal title="Title" iconType="mail" show={showModal} onClose={closeModal}>
           Content!
         </Modal>
-      </>
+      </Fragment>
     );
   }}
 </Playground>
@@ -57,14 +57,14 @@ import { Modal, Button, P, ModalWrapper } from "../index";
     const openModal = () => setShowModal(true);
     const closeModal = () => setShowModal(false);
     return (
-      <>
+      <Fragment>
         <Button onClick={openModal}>Open Modal</Button>
         <Modal title="Title" iconType="mail" show={showModal} disableClose="true" onClose={closeModal}>
           <P>Content!</P>
           <br/>
           <Button onClick={closeModal}>close me!</Button>
         </Modal>
-      </>
+      </Fragment>
     );
   }}
 </Playground>
@@ -76,7 +76,7 @@ import { Modal, Button, P, ModalWrapper } from "../index";
     const openModal = () => setShowModal(true);
     const closeModal = () => setShowModal(false);
     return (
-      <>
+      <Fragment>
         <Button onClick={openModal}>Open Modal</Button>
         <Modal title="Title" show={showModal} onClose={closeModal}>
           <P>
@@ -98,7 +98,7 @@ import { Modal, Button, P, ModalWrapper } from "../index";
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt, eligendi! Cum vero non saepe eius ratione quam ea laudantium dolor autem, illo aliquam commodi sequi iure at totam fugit dolores.
           </P>
         </Modal>
-      </>
+      </Fragment>
     );
   }}
 </Playground>

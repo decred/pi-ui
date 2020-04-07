@@ -1,13 +1,5 @@
 module.exports = {
-  plugins: [
-    "@babel/plugin-proposal-function-bind",
-    [
-      "@babel/plugin-transform-react-jsx",
-      {
-        pragmaFrag: "React.Fragment"
-      }
-    ]
-  ],
+  plugins: ["@babel/plugin-proposal-function-bind"],
   presets: ["@babel/preset-env", "@babel/preset-react"],
   env: {
     test: {

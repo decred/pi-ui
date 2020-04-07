@@ -4,6 +4,7 @@ menu: Components
 route: /components/h1
 ---
 
+import { Fragment } from "react";
 import { H1 } from "../index";
 import { Playground, Props } from "docz";
 
@@ -17,14 +18,14 @@ import { Playground, Props } from "docz";
 <Playground>
   {() => {
     return (
-      <>
+      <Fragment>
         <H1>Header1 - 28px - Regular</H1>
         <br />
         <H1 id="truncated-header" truncate  >Lorem ipsum dolor sit, amet consectetur adipisicing elit. Alias voluptate
           delectus eius nesciunt porro! Eum expedita voluptate dolor dignissimos autem
           recusandae quia, quasi, beatae asperiores, aliquam maxime reiciendis earum
           voluptatum.</H1>
-      </>
+      </Fragment>
     );
   }}
 </Playground>
