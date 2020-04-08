@@ -4,7 +4,7 @@ menu: Components
 route: /components/select
 ---
 
-import { useState } from "react";
+import { useState, Fragment } from "react";
 import { Playground, Props } from "docz";
 import { Select } from "../index";
 
@@ -37,13 +37,13 @@ import { Select } from "../index";
       setSelected(option);
     };
     return (
-      <>
+      <Fragment>
       	<Select 
           options={options}
           value={selected}
           onChange={selectChangeHandler}
         />
-      </>
+      </Fragment>
     );
   }}
 </Playground>

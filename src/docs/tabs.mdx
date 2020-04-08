@@ -4,7 +4,7 @@ menu: Components
 route: /components/tabs
 ---
 
-import { useState } from "react";
+import { useState, Fragment } from "react";
 import { Playground, Props } from "docz";
 import { Tabs, Tab } from "../index";
 
@@ -21,13 +21,13 @@ import { Tabs, Tab } from "../index";
   {() => {
     const [activeTabIndex, setActiveTabIndex] = useState(0);
     return (
-      <>
+      <Fragment>
         <Tabs onSelectTab={setActiveTabIndex} activeTabIndex={activeTabIndex}>
             <Tab label="tab 1" />
             <Tab label="tab 2" />
             <Tab label="tab 3" />
         </Tabs>
-      </>
+      </Fragment>
     );
   }}
 </Playground>
@@ -38,13 +38,13 @@ import { Tabs, Tab } from "../index";
   {() => {
     const [activeTabIndex, setActiveTabIndex] = useState(0);
     return (
-      <>
+      <Fragment>
         <Tabs mode="vertical" onSelectTab={setActiveTabIndex} activeTabIndex={activeTabIndex}>
             <Tab label="What is Politeia?" />
             <Tab label="Proposals?" />
             <Tab label="Censorship" />
         </Tabs>
-      </>
+      </Fragment>
     );
   }}
 </Playground>
@@ -55,12 +55,12 @@ import { Tabs, Tab } from "../index";
   {() => {
     const [activeTabIndex, setActiveTabIndex] = useState(0);
     return (
-      <>
+      <Fragment>
         <Tabs onSelectTab={setActiveTabIndex} activeTabIndex={activeTabIndex}>
             <Tab label="tab 1" count={1} />
             <Tab label="tab 2" count={4} />
         </Tabs>
-      </>
+      </Fragment>
     );
   }}
 </Playground>
@@ -71,7 +71,7 @@ import { Tabs, Tab } from "../index";
   {() => {
     const [activeTabIndex, setActiveTabIndex] = useState(0);
     return (
-      <>
+      <Fragment>
         <Tabs onSelectTab={setActiveTabIndex} activeTabIndex={activeTabIndex}>
             <Tab label="tab 1" count={1}>
                 <div>tab content 1</div>
@@ -80,7 +80,7 @@ import { Tabs, Tab } from "../index";
                 <div>tab content 2</div>
             </Tab>
         </Tabs>
-      </>
+      </Fragment>
     );
   }}
 </Playground>
@@ -92,7 +92,7 @@ import { Tabs, Tab } from "../index";
   {() => {
     const [activeTabIndex, setActiveTabIndex] = useState(0);
     return (
-      <>
+      <Fragment>
         <Tabs onSelectTab={setActiveTabIndex} activeTabIndex={activeTabIndex} mode="dropdown">
             <Tab label="All Proposals" count={4} />
             <Tab label="In discussion" count={2} />
@@ -101,7 +101,7 @@ import { Tabs, Tab } from "../index";
             <Tab label="Rejected" count={30} />
             <Tab label="Abandoned" count={5} />
         </Tabs>
-      </>
+      </Fragment>
     );
   }}
     

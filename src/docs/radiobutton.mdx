@@ -4,7 +4,7 @@ menu: Components
 route: /components/radio
 ---
 
-import { useState } from "react";
+import { useState, Fragment } from "react";
 import { Playground, Props } from "docz";
 import { RadioButtonGroup } from "../index";
 
@@ -19,13 +19,13 @@ import { RadioButtonGroup } from "../index";
   {() => {
       const options = [{ label: "foo", value: 1}, {label: "bar", value: 2}];
       const [value, setValue] = useState(1)
-      function handleChange(option) {
+      const handleChange = (option) => {
           setValue(option.value);
       }
       return (
-        <>
+        <Fragment>
         <RadioButtonGroup label="Select an option" options={options} value={value} onChange={handleChange} />
-        </>
+        </Fragment>
       );
   }
     

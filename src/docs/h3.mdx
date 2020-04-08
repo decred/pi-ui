@@ -3,7 +3,7 @@ name: H3
 menu: Components
 route: /components/H3
 ---
-
+import { Fragment } from "react";
 import { H3 } from "../index";
 import { Playground, Props } from "docz";
 
@@ -17,14 +17,14 @@ import { Playground, Props } from "docz";
 <Playground>
   {() => {
     return (
-      <>
+      <Fragment>
         <H3>Header3 - 20px - Semibold</H3>
         <br />
         <H3 id="truncated-header" truncate  >Lorem ipsum dolor sit, amet consectetur adipisicing elit. Alias voluptate
           delectus eius nesciunt porro! Eum expedita voluptate dolor dignissimos autem
           recusandae quia, quasi, beatae asperiores, aliquam maxime reiciendis earum
           voluptatum.</H3>
-      </>
+      </Fragment>
     );
   }}
 </Playground>

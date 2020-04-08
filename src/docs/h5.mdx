@@ -3,7 +3,7 @@ name: H5
 menu: Components
 route: /components/H5
 ---
-
+import { Fragment } from "react";
 import { H5 } from "../index";
 import { Playground, Props } from "docz";
 
@@ -17,14 +17,14 @@ import { Playground, Props } from "docz";
 <Playground>
   {() => {
     return (
-      <>
+      <Fragment>
         <H5>Header5 - 16px - Semibold</H5>
         <br />
         <H5 id="truncated-header" truncate  >Lorem ipsum dolor sit, amet consectetur adipisicing elit. Alias voluptate
           delectus eius nesciunt porro! Eum expedita voluptate dolor dignissimos autem
           recusandae quia, quasi, beatae asperiores, aliquam maxime reiciendis earum
           voluptatum.</H5>
-      </>
+      </Fragment>
     );
   }}
 </Playground>
