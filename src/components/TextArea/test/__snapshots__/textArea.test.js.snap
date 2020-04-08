@@ -7,7 +7,7 @@ exports[`TextArea component Matches the snapshot 1`] = `
   <textarea
     className="textArea"
     id="test"
-    placeholder=" "
+    placeholder=""
     type="text"
   />
   <svg
