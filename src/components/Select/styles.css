@@ -37,7 +37,7 @@ div.customSelect__control {
   border-radius: 0.2rem !important;
   min-height: 2.4rem;
   min-width: 6rem;
-  border-color: var(--select-border-color) !important;
+  border-color: var(--input-border-color) !important;
   background-color: var(--card-background);
 }
 
