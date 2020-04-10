@@ -176,7 +176,7 @@
   background-color: rgba(255, 255, 255, 0.96);
 }
 
-.rmpPopup.light .rmpPad .rmpBtn {
+.rmpPopup .rmpPad .rmpBtn {
   cursor: pointer;
 }
 
@@ -235,10 +235,6 @@
 .rmpPopup.dark {
   color: #fff;
   background-color: rgba(50, 50, 50, 0.96);
-}
-
-.rmpPopup.dark .rmpPad .rmpBtn {
-  cursor: pointer;
 }
 
 .rmpPopup.dark .rmpPad .rmpBtn.select {

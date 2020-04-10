@@ -50,9 +50,9 @@ const DatePickerPad = ({
     labelPreText = <b>{lang[labelTextKey]}</b>;
   }
 
-  if (month === 1 || (atMinYear && month === ymArr[0].min))
+  if (month === 1 || (atMinYear && month === ymArr[0].min.month))
     prevMonthCss = "disable";
-  if (month === 12 || (atMaxYear && month === ymArr[yearMaxIdx].max))
+  if (month === 12 || (atMaxYear && month === ymArr[yearMaxIdx].max.month))
     nextMonthCss = "disable";
 
   return (
@@ -124,10 +124,10 @@ const DatePickerPad = ({
             ) {
               css = "select";
             }
-            if (atMinYear && m < ymArr[0].min) {
+            if (atMinYear && m < ymArr[0].min.month) {
               css = "disable";
             }
-            if (atMaxYear && m > ymArr[yearMaxIdx].max) {
+            if (atMaxYear && m > ymArr[yearMaxIdx].max.month) {
               css = "disable";
             }
             if (otherValue) {
@@ -170,6 +170,20 @@ const DatePickerPad = ({
               d === value.day
             ) {
               css = "active";
+            }
+            if (
+              atMinYear &&
+              month === ymArr[0].min.month &&
+              d < ymArr[0].min.day
+            ) {
+              css = "disable";
+            }
+            if (
+              atMaxYear &&
+              month === ymArr[yearMaxIdx].max.month &&
+              d > ymArr[yearMaxIdx].max.day
+            ) {
+              css = "disable";
             }
             const clickHandler = css !== "disable" ? onDayClick : undefined;
             return (
