@@ -123,9 +123,9 @@ import { DatePicker } from "../index";
 
     const [value, setValue] = useState(null);
     const [isOpen, setIsOpen] = useState(false);
-    const onChange = (year, month) => {
-      if (!!year && !!month) {
-        setValue({ year, month });
+    const onChange = (year, month, day) => {
+      if (!!year && !!month && !!day) {
+        setValue({ year, month, day });
       }
       setIsOpen(false);
     };
@@ -139,11 +139,10 @@ import { DatePicker } from "../index";
           years={[2015,2017,2019]}  
           value={value}
           show={isOpen}
-          isMonthsMode={true}
           onChange={onChange}
         >
           <span className={styles.exampledDatepickerValueWrapper} onClick={togglePicker}>
-            {value && `${value.month}/${value.year}`}
+            {value && `${value.day}/${value.month}/${value.year}`}
             {!value && "Pick a date"}
             <Arrow isOpen={isOpen} />
           </span>
