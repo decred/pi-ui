@@ -8,13 +8,13 @@ export const mapToArray = (num, callback) => {
   return arr;
 };
 
-const getYearMon = (year, min, max) => {
+const getYearMon = (year) => {
   const ym =
     typeof year === "object" && year.year
-      ? { year: year.year, month: year.month }
+      ? { year: year.year, month: year.month, day: year.day }
       : { year };
-  ym.min = min || 1;
-  ym.max = max || 12;
+  ym.min = { day: 1, month: 1 };
+  ym.max = { day: 31, month: 12 };
   return ym;
 };
 
@@ -54,8 +54,14 @@ export const getYearArray = (years) => {
     const arr = getYearsByNum(n, min);
     const last = arr.length - 1;
     if (last >= 0) {
-      arr[0].min = ymin.month || arr[0].month;
-      arr[last].max = ymax.month || arr[last].month;
+      arr[0].min = {
+        month: ymin.month || arr[0].min.month,
+        day: ymin.day || arr[0].min.day
+      };
+      arr[last].max = {
+        month: ymax.month || arr[last].max.month,
+        day: ymax.day || arr[last].max.day
+      };
     }
     return arr;
   } else if (typeof years === "number" && years > 0)
