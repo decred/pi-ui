@@ -66,7 +66,6 @@ const darkTheme = {
   "dropdown-item-hover-color": "var(--color-powder-blue)",
   "dropdown-arrow-color": "var(--text-color)",
 
-  "select-border-color": "var(--text-color)",
   "select-anchor-color": "var(--text-color)",
 
   "copyable-text-background-color": "var(--color-primary-darkest)",
