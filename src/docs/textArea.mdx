@@ -4,8 +4,9 @@ menu: Components
 route: /components/textarea
 ---
 
+import { Fragment } from "react";
 import { Playground, Props } from "docz";
-import { TextArea } from "../index";
+import { TextArea, Message } from "../index";
 
 # TextArea
 
@@ -25,4 +26,59 @@ import { TextArea } from "../index";
 
 <Playground>
   <TextArea id="statement2" placeholder="Statement" name="statement" error="Invalid statement" />
+</Playground>
+
+### Wrapped
+
+In case you want to wrap TextArea inside another component.
+
+
+**Default behaviour without wrapping:**
+<Playground>
+  {/* Default behaviour */}
+  <div id="default-behaviour" style={{ height: "30rem", border: "solid 1px black" }}>
+    <TextArea
+      id="statement3"
+      placeholder="Statement"
+      name="statement"
+    />
+  </div>
+</Playground>
+
+
+**Wrapping without errors:**
+<Playground>
+  {/* Default behaviour */}
+  <div id="default-behaviour" style={{ height: "30rem", border: "solid 1px black" }}>
+    <TextArea
+      id="statement3"
+      placeholder="Statement"
+      name="statement"
+      wrapped={true}
+    />
+  </div>
+</Playground>
+
+**Wrapping with errors:**
+
+> Disables error messages. Errors should be handled on TextArea's wrapper component.
+
+<Playground>
+  {() => {
+    const error = "Invalid Statement"
+    return (
+      <Fragment>
+        <Message kind="error">{error}</Message>
+        <div id="with-error" style={{ height: "30rem", border: "solid 1px black" }}>
+          {/* With Error */}
+          <TextArea
+            id="statement3"
+            placeholder="Statement"
+            name="statement"
+            wrapped={true}
+          />
+        </div>
+      </Fragment>
+    )
+  }}
 </Playground>

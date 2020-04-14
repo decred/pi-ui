@@ -42,6 +42,10 @@
   visibility: visible;
 }
 
+.noErrorMsg {
+  display: none;
+}
+
 .errorIcon {
   display: none;
   color: var(--color-orange);
