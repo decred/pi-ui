@@ -5,7 +5,7 @@ route: /components/link
 ---
 
 import { Playground, Props } from "docz";
-import { Link } from "../index";
+import { Link, Button } from "../index";
 
 # Link
 
@@ -35,6 +35,13 @@ This is useful for specifying a custom element such as a React-Router Link
 
 <Playground>
   <Link href="#" customComponent={(props) => <div {...props} />}>Click me</Link>
+</Playground>
+
+### Link with a custom UI element
+This is useful for specifying a custom look to links
+
+<Playground>
+  <Link href="#" customComponent={() => <Button>Click me</Button>}/>
 </Playground>
 
 
