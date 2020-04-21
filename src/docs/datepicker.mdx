@@ -110,6 +110,58 @@ import { DatePicker } from "../index";
   }}
 </Playground>
 
+### month picker with all months option
+
+<Playground>
+  {() => {
+
+    const Arrow = ({ isOpen }) => {
+      return (
+        <div className={isOpen ? styles.exampledDatepickerArrowOpen : styles.exampledDatepickerArrow} />
+      );
+    };
+
+    const [value, setValue] = useState(null);
+    const [isOpen, setIsOpen] = useState(false);
+    const onChange = (year, month) => {
+      if (!!year && !!month) {
+        setValue({ year, month });
+      }
+      setIsOpen(false);
+    };
+    const togglePicker = () => {
+      setIsOpen(!isOpen)
+    };
+
+    const isAllSelected = (value) => value.month === "all"
+
+    // specify min, max properties in years object to limit selection
+    const years = {
+      min: { year: 2018, month: 1 },
+      max: { year: 2020, month: 2}
+    }
+    return (
+      <Fragment>
+      	<DatePicker
+          years={years} 
+          value={value}
+          show={isOpen}
+          isMonthsMode={true}
+          enableAllMonths={true}
+          onChange={onChange}
+        >
+          <span className={styles.exampledDatepickerValueWrapper} onClick={togglePicker}>
+            {value && !isAllSelected(value) && `${value.month}/${value.year}`}
+            {value && isAllSelected(value) && `${value.year}`}
+            {!value && "Pick a date"}
+            <Arrow isOpen={isOpen} />
+          </span>
+        </DatePicker>
+      </Fragment>
+    );
+  }}
+</Playground>
+
 ### years as array
 
 <Playground>

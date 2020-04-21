@@ -18,7 +18,9 @@ const DatePickerPad = ({
   onPrevMonthClick,
   onNextMonthClick,
   onMonthClick,
-  onDayClick
+  onDayClick,
+  enableAllMonths,
+  onAllMonthsClick
 }) => {
   const value = values[padIndex];
   const ymArr = years;
@@ -159,6 +161,14 @@ const DatePickerPad = ({
               </li>
             );
           })}
+        {isMonthsMode && enableAllMonths && (
+          <li
+            className={classNames(styles.rmpBtn)}
+            data-id={`${padIndex}:all`}
+            onClick={onAllMonthsClick}>
+            All
+          </li>
+        )}
         {!isMonthsMode &&
           mapToArray(new Date(year, month, 0).getDate(), (i) => {
             let css = "";
@@ -210,6 +220,8 @@ DatePickerPad.propTypes = {
   years: PropTypes.array.isRequired,
   yearIdx: PropTypes.number.isRequired,
   isMonthsMode: PropTypes.bool,
+  enableAllMonths: PropTypes.bool,
+  onAllMonthsClick: PropTypes.func,
   onPrevYearClick: PropTypes.func,
   onNextYearClick: PropTypes.func,
   onPrevMonthClick: PropTypes.func,
@@ -220,7 +232,8 @@ DatePickerPad.propTypes = {
 
 DatePickerPad.defaultProps = {
   padIndex: 0,
-  isMonthsMode: false
+  isMonthsMode: false,
+  enableAllMonths: false
 };
 
 export default DatePickerPad;
