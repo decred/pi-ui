@@ -14,19 +14,13 @@ const TextArea = ({
   ...props
 }) => {
   return !wrapped ? (
-    <div
-      className={classNames(
-        styles.textAreaWrapper,
-        wrapperClassNames,
-        wrapped && styles.fullHeight
-      )}>
+    <div className={classNames(styles.textAreaWrapper, wrapperClassNames)}>
       <textarea
         id={id}
         placeholder=""
         className={classNames(
           styles.textArea,
           error && styles.textAreaError,
-          wrapped && styles.fullHeight,
           inputClassNames
         )}
         type={type}
