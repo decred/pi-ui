@@ -19,8 +19,7 @@ const DatePickerPad = ({
   onNextMonthClick,
   onMonthClick,
   onDayClick,
-  enableAllMonths,
-  onAllMonthsClick
+  enableAllMonths
 }) => {
   const value = values[padIndex];
   const ymArr = years;
@@ -56,6 +55,9 @@ const DatePickerPad = ({
     prevMonthCss = "disable";
   if (month === 12 || (atMaxYear && month === ymArr[yearMaxIdx].max.month))
     nextMonthCss = "disable";
+
+  const isAllOptionSelected = value && value.month === "all";
+  console.log(year, month, value, isAllOptionSelected);
 
   return (
     <div className={styles.rmpPad} key={padIndex}>
@@ -163,9 +165,12 @@ const DatePickerPad = ({
           })}
         {isMonthsMode && enableAllMonths && (
           <li
-            className={classNames(styles.rmpBtn)}
+            className={classNames(
+              styles.rmpBtn,
+              isAllOptionSelected && styles.select
+            )}
             data-id={`${padIndex}:all`}
-            onClick={onAllMonthsClick}>
+            onClick={onMonthClick}>
             All
           </li>
         )}
@@ -221,7 +226,6 @@ DatePickerPad.propTypes = {
   yearIdx: PropTypes.number.isRequired,
   isMonthsMode: PropTypes.bool,
   enableAllMonths: PropTypes.bool,
-  onAllMonthsClick: PropTypes.func,
   onPrevYearClick: PropTypes.func,
   onNextYearClick: PropTypes.func,
   onPrevMonthClick: PropTypes.func,

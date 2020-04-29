@@ -57,25 +57,12 @@ const DatePicker = ({
     (e) => {
       const refid = getDID(e).split(":");
       const idx = parseInt(refid[0], 10);
-      const month = parseInt(refid[1], 10);
+      const month = refid[1] !== "all" ? parseInt(refid[1], 10) : refid[1];
       const year = labelYearsState[idx];
       const values = [...valuesState];
       values[idx] = { year, month };
       setValuesState(values);
       onChange(year, month, idx);
-    },
-    [labelYearsState, onChange, valuesState]
-  );
-
-  const handleClickAllMonths = useCallback(
-    (e) => {
-      const refid = getDID(e).split(":");
-      const idx = parseInt(refid[0], 10);
-      const year = labelYearsState[idx];
-      const values = [...valuesState];
-      values[idx] = { year };
-      setValuesState(values);
-      onChange(year, "all", idx);
     },
     [labelYearsState, onChange, valuesState]
   );
@@ -199,7 +186,6 @@ const DatePicker = ({
           lang={lang}
           yearIdx={yearIndexesState[padIndex]}
           onMonthClick={handleClickMonth}
-          onAllMonthsClick={handleClickAllMonths}
           isMonthsMode={isMonthsMode}
           onDayClick={handleClickDay}
           onPrevYearClick={handlePrevYearClick}
@@ -224,8 +210,7 @@ const DatePicker = ({
       valuesState,
       yearIndexesState,
       yearsState,
-      enableAllMonths,
-      handleClickAllMonths
+      enableAllMonths
     ]
   );
 
