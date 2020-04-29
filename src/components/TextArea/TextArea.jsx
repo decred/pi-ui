@@ -10,9 +10,10 @@ const TextArea = ({
   error,
   wrapperClassNames,
   inputClassNames,
+  wrapped,
   ...props
 }) => {
-  return (
+  return !wrapped ? (
     <div className={classNames(styles.textAreaWrapper, wrapperClassNames)}>
       <textarea
         id={id}
@@ -39,6 +40,18 @@ const TextArea = ({
         {error}
       </p>
     </div>
+  ) : (
+    <textarea
+      id={id}
+      placeholder=""
+      className={classNames(
+        styles.textArea,
+        error && styles.textAreaError,
+        inputClassNames
+      )}
+      type={type}
+      {...props}
+    />
   );
 };
 
@@ -48,7 +61,8 @@ TextArea.propTypes = {
   error: PropTypes.string,
   wrapperClassNames: PropTypes.string,
   inputClassNames: PropTypes.string,
-  placeholder: PropTypes.string
+  placeholder: PropTypes.string,
+  wrapped: PropTypes.bool
 };
 
 TextArea.defaultProps = {

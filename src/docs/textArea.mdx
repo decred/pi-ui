@@ -4,8 +4,9 @@ menu: Components
 route: /components/textarea
 ---
 
+import { Fragment } from "react";
 import { Playground, Props } from "docz";
-import { TextArea } from "../index";
+import { TextArea, Message } from "../index";
 
 # TextArea
 
@@ -23,6 +24,14 @@ import { TextArea } from "../index";
 
 ### Error
 
+> Error messages can be disabled by toggling on the `wrapped` prop, so it does not render
+> the whitespace below the textarea
+
 <Playground>
-  <TextArea id="statement2" placeholder="Statement" name="statement" error="Invalid statement" />
+  <TextArea
+    id="statement2"
+    placeholder="Statement"
+    name="statement"
+    error="Invalid statement"
+  />
 </Playground>
