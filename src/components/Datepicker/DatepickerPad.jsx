@@ -56,8 +56,7 @@ const DatePickerPad = ({
   if (month === 12 || (atMaxYear && month === ymArr[yearMaxIdx].max.month))
     nextMonthCss = "disable";
 
-  const isAllOptionSelected = value && value.month === "all";
-  console.log(year, month, value, isAllOptionSelected);
+  const isAllOptionSelected = value && yearActive && value.month === "all";
 
   return (
     <div className={styles.rmpPad} key={padIndex}>

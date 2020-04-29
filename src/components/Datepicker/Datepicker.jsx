@@ -291,7 +291,8 @@ const DatePicker = ({
               isMonthsMode && styles.monthsMode,
               isRange && styles.range,
               styles[theme],
-              showedState && styles.show
+              showedState && styles.show,
+              enableAllMonths && styles.all
             )}>
             {pads}
           </div>
