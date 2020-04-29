@@ -36,11 +36,7 @@ const TextArea = ({
         )}
       />
       <p
-        className={classNames(
-          styles.errorMsg,
-          error && styles.errorMsgActive,
-          wrapped && styles.noErrorMsg
-        )}>
+        className={classNames(styles.errorMsg, error && styles.errorMsgActive)}>
         {error}
       </p>
     </div>
