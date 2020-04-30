@@ -26,7 +26,8 @@ const DatePicker = ({
   onChange,
   onShow,
   onYearChange,
-  isMonthsMode
+  isMonthsMode,
+  enableAllMonths
 }) => {
   const yearArr = useMemo(() => getYearArray(years), [years]);
   const yearIndexes = useMemo(() => [0], []);
@@ -56,7 +57,7 @@ const DatePicker = ({
     (e) => {
       const refid = getDID(e).split(":");
       const idx = parseInt(refid[0], 10);
-      const month = parseInt(refid[1], 10);
+      const month = refid[1] !== "all" ? parseInt(refid[1], 10) : refid[1];
       const year = labelYearsState[idx];
       const values = [...valuesState];
       values[idx] = { year, month };
@@ -191,6 +192,7 @@ const DatePicker = ({
           onNextYearClick={handleNextYearClick}
           onPrevMonthClick={handlePrevMonthClick}
           onNextMonthClick={handleNextMonthClick}
+          enableAllMonths={enableAllMonths}
         />
       );
     },
@@ -207,7 +209,8 @@ const DatePicker = ({
       labelYearsState,
       valuesState,
       yearIndexesState,
-      yearsState
+      yearsState,
+      enableAllMonths
     ]
   );
 
@@ -288,7 +291,8 @@ const DatePicker = ({
               isMonthsMode && styles.monthsMode,
               isRange && styles.range,
               styles[theme],
-              showedState && styles.show
+              showedState && styles.show,
+              enableAllMonths && styles.all
             )}>
             {pads}
           </div>
@@ -315,6 +319,7 @@ DatePicker.propTypes = {
   theme: PropTypes.string,
   show: PropTypes.bool,
   isMonthsMode: PropTypes.bool,
+  enableAllMonths: PropTypes.bool,
   className: PropTypes.string,
   children: PropTypes.node
 };
@@ -325,7 +330,8 @@ DatePicker.defaultProps = {
   theme: "light",
   show: false,
   lang: [],
-  isMonthsMode: false
+  isMonthsMode: false,
+  enableAllMonths: false
 };
 
 export default DatePicker;

@@ -278,6 +278,10 @@
     transform: translate3d(0, 14.4rem, 0);
   }
 
+  .rmpPopup.all {
+    height: 18.4rem;
+  }
+
   .rmpPopup.range {
     height: 28rem;
     -webkit-transform: translate3d(0, 28rem, 0);
