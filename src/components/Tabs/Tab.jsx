@@ -61,7 +61,7 @@ Tab.propTypes = {
   isActive: PropTypes.bool,
   className: PropTypes.string,
   style: PropTypes.object,
-  label: PropTypes.string,
+  label: PropTypes.node,
   count: PropTypes.node,
   mode: PropTypes.oneOf(["horizontal", "vertical", "dropdown"])
 };
