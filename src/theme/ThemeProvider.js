@@ -58,7 +58,7 @@ const applyFontAsset = (fonts) => {
     let fontFaceStr = "";
     for (const [key, value] of Object.entries(fontFace)) {
       fontFaceStr = `${fontFaceStr}
-        ${key}: ${value}
+        ${key}: ${value};
       `;
     }
     const fontFaceNode = document.createTextNode(`
@@ -69,6 +69,5 @@ const applyFontAsset = (fonts) => {
     newStyle.appendChild(fontFaceNode);
   });
   newStyle.type = "text/css";
-  console.log(newStyle);
   document.head.appendChild(newStyle);
 };
