@@ -14,7 +14,7 @@ export const useTheme = () => useContext(ThemeContext);
 export const ThemeProvider = ({
   themes,
   defaultThemeName,
-  fontConfig,
+  fonts,
   children
 }) => {
   const [themeName, setThemeName] = useState(defaultThemeName);
@@ -23,10 +23,10 @@ export const ThemeProvider = ({
     Object.keys(theme).forEach((key) => {
       document.documentElement.style.setProperty(`--${key}`, theme[key]);
     });
-    if (fontConfig) {
-      applyFontAsset(fontConfig, theme);
+    if (fonts) {
+      applyFontAsset(fonts);
     }
-  }, [theme, fontConfig]);
+  }, [theme, fonts]);
 
   return (
     <ThemeContext.Provider
@@ -48,44 +48,26 @@ ThemeProvider.propTypes = {
       return new Error(`${propName} must match one of the given themes`);
     }
   },
-  fontConfig: PropTypes.object,
+  fonts: PropTypes.array,
   children: PropTypes.node
 };
 
-const applyFontAsset = (fontConfig, theme) => {
-  var newStyle = document.createElement("style");
-  newStyle.appendChild(
-    document.createTextNode(`
-@font-face {
-  font-family: ${fontConfig.fontFamilyText};
-  src: url(${fontConfig.semiBoldUrl})
-    format("${fontConfig.format}");
-  font-weight: ${theme["font-weight-semi-bold"]};
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: ${fontConfig.fontFamilyText};
-  src: url(${fontConfig.lightUrl})
-    format("${fontConfig.format}");
-  font-weight: ${theme["font-weight-light"]};
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: ${fontConfig.fontFamilyText};
-  src: url(${fontConfig.regularUrl})
-    format("${fontConfig.format}");
-  font-weight: ${theme["font-weight-regular"]};
-  font-style: normal;
-  font-display: swap;
-}
-`)
-  );
+const applyFontAsset = (fonts) => {
+  const newStyle = document.createElement("style");
+  fonts.forEach((fontFace) => {
+    let fontFaceStr = "";
+    for (const [key, value] of Object.entries(fontFace)) {
+      fontFaceStr = `${fontFaceStr}
+        ${key}: ${value};
+      `;
+    }
+    const fontFaceNode = document.createTextNode(`
+    @font-face {
+      ${fontFaceStr}
+    }
+    `);
+    newStyle.appendChild(fontFaceNode);
+  });
   newStyle.type = "text/css";
   document.head.appendChild(newStyle);
-  document.documentElement.style.setProperty(
-    "--font-family-text",
-    fontConfig.fontFamilyText
-  );
 };
