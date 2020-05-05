@@ -1,3 +1,5 @@
+import isEmpty from "lodash/isEmpty";
+import _isEqual from "lodash/isEqual";
 const __MIN_VALID_YEAR = 1;
 
 export const mapToArray = (num, callback) => {
@@ -105,9 +107,9 @@ const validate = (d, years, idx, yearIndexes) => {
 
 export const validValues = (v, years, yearIndexes) => {
   if (!v) return [];
-  if (v.from || v.to) {
-    const from = validate(v.from, years, 0, yearIndexes);
-    const to = validate(v.to, years, 1, yearIndexes);
+  if (v[0] || v[1]) {
+    const from = validate(v[0], years, 0, yearIndexes);
+    const to = validate(v[1], years, 1, yearIndexes);
     if (
       from.year > to.year ||
       (from.year === to.year && from.month > to.month)
@@ -127,4 +129,49 @@ export const validValues = (v, years, yearIndexes) => {
 export const getDID = (e) => {
   const el = e.target;
   return el.dataset ? el.dataset.id : el.getAttribute("data-id");
+};
+
+export const duplicateToArray = (elem) => [elem, elem];
+
+export const getInitialYears = (values, yearsState) => {
+  if (!yearsState) return [];
+
+  const defaultYearValue = yearsState[0].year;
+
+  if (!values || isEmpty(values)) return duplicateToArray(defaultYearValue);
+
+  const firstYearSelected = values[0] && values[0].year;
+  const secondYearSelected = values[1] && values[1].year;
+
+  return firstYearSelected && secondYearSelected
+    ? [firstYearSelected, secondYearSelected]
+    : firstYearSelected && !secondYearSelected
+    ? duplicateToArray(firstYearSelected)
+    : duplicateToArray(defaultYearValue);
+};
+
+export const hasDateValueChanged = (newDate, prevDate) => {
+  return !_isEqual(newDate, prevDate);
+};
+
+export const getIndexByYear = (year, yearsArr) =>
+  yearsArr.reduce((acc, curr, index) => {
+    if (curr.year === year) return index;
+    return acc;
+  }, 0);
+
+export const makeLabelText = (values) => {
+  if (!values || !values.length) return "Pick a date";
+  function makeText(value) {
+    return value && value.year && value.month
+      ? `${value.day ? `${value.day}/` : ""}${value.month}/${value.year}`
+      : "";
+  }
+  const firstDateLabel = makeText(values[0]);
+  const secondDateLabel = makeText(values[1]);
+  return firstDateLabel === secondDateLabel
+    ? firstDateLabel
+    : secondDateLabel
+    ? `${firstDateLabel} - ${secondDateLabel}`
+    : firstDateLabel;
 };

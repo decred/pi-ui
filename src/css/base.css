@@ -60,6 +60,7 @@ a:visited {
   height: 0;
   border: 0.5rem solid transparent;
   border-color: var(--color-gray) transparent transparent transparent;
+  color: var(--color-primary);
   position: absolute;
   top: 0.6rem;
   right: 0.3rem;

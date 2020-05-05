@@ -362,6 +362,11 @@
   .rmpPopup.light.range .rmpPad:first-of-type {
     border-top: 0;
   }
+
+  .rmpPopup.range {
+    bottom: 28rem;
+    height: 28.5rem;
+  }
 }
 
 @media screen and (min-width: 768px) {
@@ -401,4 +406,35 @@
   .rmpPopup.dark .rmpPad .rmpBtn:hover {
     background-color: rgba(255, 210, 96, 0.33);
   }
+}
+
+.defaultDatepickerArrow {
+  position: relative;
+  height: 100%;
+  width: 2rem;
+}
+
+.defaultDatepickerArrow:after {
+  content: "";
+  width: 0;
+  height: 0;
+  border: 0.5rem solid transparent;
+  border-color: var(--color-gray) transparent transparent transparent;
+  position: absolute;
+  top: 0.6rem;
+  right: 0.3rem;
+}
+
+.defaultDatepickerArrowOpen {
+  composes: defaultDatepickerArrow;
+}
+
+.defaultDatepickerArrowOpen:after {
+  top: 0.3rem;
+  border-color: transparent transparent var(--color-primary) transparent;
+}
+
+.defaultDatepickerValueWrapper {
+  cursor: pointer;
+  display: inline-flex;
 }
