@@ -841,6 +841,13 @@ const icons = (type, backgroundColor, iconColor) => {
           transform="translate(-123.371 -123.37)"
         />
       </g>
+    ),
+    clickArrow: (
+      <path
+        fill={iconColor}
+        d="M715,138l5-5-5-5Z"
+        transform="translate(-715 -128)"
+      />
     )
   }[type];
 };
