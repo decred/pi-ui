@@ -10,12 +10,11 @@ describe("DatePicker component", () => {
   });
 
   test("lang prop values are used as months", () => {
-    const value = { year: 2019, month: 11, day: 15 };
     const years = {
       min: { year: 2018, month: 1, day: 25 },
       max: { year: 2020, month: 2, day: 4 }
     };
-    const { queryByText } = render(
+    const { queryByText, rerender, unmount } = render(
       <DatePicker
         lang={[
           "Jan",
@@ -32,12 +31,38 @@ describe("DatePicker component", () => {
           "Dec"
         ]}
         years={years}
-        value={value}
+        value={{ year: 2019, month: 11, day: 15 }}
         show={true}>
-        {`${value.day}/${value.month}/${value.year}`}
+        <></>
       </DatePicker>
     );
     // Selected value is 15.11.2019 => Nov month is displayed.
     expect(queryByText(/Nov/i)).toBeTruthy();
+    unmount();
+    rerender(
+      <DatePicker
+        lang={[
+          "Jan",
+          "Feb",
+          "Mar",
+          "Apr",
+          "May",
+          "Jun",
+          "Jul",
+          "Aug",
+          "Sep",
+          "Oct",
+          "Nov",
+          "Dec"
+        ]}
+        years={years}
+        value={{ year: 2019, month: 12, day: 15 }}
+        show={true}>
+        <></>
+      </DatePicker>
+    );
+    // Selected value is 15.12.2019 => Nov month is displayed.
+    console.log(queryByText(/Dec/i));
+    expect(queryByText(/Dec/i)).toBeTruthy();
   });
 });

@@ -23,11 +23,14 @@ const DatePickerPad = ({
 }) => {
   const value = values[padIndex];
   const ymArr = years;
-  const months = Array.isArray(lang)
-    ? lang
-    : Array.isArray(lang.months)
-    ? lang.months
-    : [];
+  const months = lang
+    ? Array.isArray(lang)
+      ? lang
+      : Array.isArray(lang.months)
+      ? lang.months
+      : null
+    : null;
+  console.log(months);
   let prevCss = "";
   let prevMonthCss = "";
   let nextCss = "";
@@ -218,7 +221,7 @@ const DatePickerPad = ({
 DatePickerPad.propTypes = {
   padIndex: PropTypes.number.isRequired,
   values: PropTypes.array.isRequired,
-  lang: PropTypes.oneOfType([PropTypes.array, PropTypes.object]).isRequired,
+  lang: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
   year: PropTypes.number.isRequired,
   month: PropTypes.number.isRequired,
   years: PropTypes.array.isRequired,
