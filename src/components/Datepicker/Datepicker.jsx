@@ -329,7 +329,6 @@ DatePicker.defaultProps = {
   onChange(year, month, idx) {},
   theme: "light",
   show: false,
-  lang: [],
   isMonthsMode: false,
   enableAllMonths: false
 };

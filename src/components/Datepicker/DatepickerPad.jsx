@@ -23,11 +23,13 @@ const DatePickerPad = ({
 }) => {
   const value = values[padIndex];
   const ymArr = years;
-  const months = Array.isArray(lang)
-    ? lang
-    : Array.isArray(lang.months)
-    ? lang.months
-    : [];
+  const months = lang
+    ? Array.isArray(lang)
+      ? lang
+      : Array.isArray(lang.months)
+      ? lang.months
+      : null
+    : null;
   let prevCss = "";
   let prevMonthCss = "";
   let nextCss = "";
@@ -47,8 +49,8 @@ const DatePickerPad = ({
 
   const labelTextKey = padIndex === 0 ? "from" : "to";
   let labelPreText;
-  if (otherValue && lang[labelTextKey]) {
-    labelPreText = <b>{lang[labelTextKey]}</b>;
+  if (otherValue && months[labelTextKey]) {
+    labelPreText = <b>{months[labelTextKey]}</b>;
   }
 
   if (month === 1 || (atMinYear && month === ymArr[0].min.month))
@@ -80,7 +82,7 @@ const DatePickerPad = ({
       </div>
       {!isMonthsMode && (
         <div>
-          <label>{month}</label>
+          <label>{months ? months[month - 1] : month}</label>
           <i
             className={classNames(
               styles.rmpBtn,
@@ -158,7 +160,7 @@ const DatePickerPad = ({
                 className={classNames(styles.rmpBtn, styles[css])}
                 data-id={`${padIndex}:${m}`}
                 onClick={clickHandler}>
-                {months.length > i ? months[i] : m}
+                {months ? months[i] : m}
               </li>
             );
           })}
@@ -218,7 +220,7 @@ const DatePickerPad = ({
 DatePickerPad.propTypes = {
   padIndex: PropTypes.number.isRequired,
   values: PropTypes.array.isRequired,
-  lang: PropTypes.oneOfType([PropTypes.array, PropTypes.object]).isRequired,
+  lang: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
   year: PropTypes.number.isRequired,
   month: PropTypes.number.isRequired,
   years: PropTypes.array.isRequired,
