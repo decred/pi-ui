@@ -30,7 +30,6 @@ const DatePickerPad = ({
       ? lang.months
       : null
     : null;
-  console.log(months);
   let prevCss = "";
   let prevMonthCss = "";
   let nextCss = "";

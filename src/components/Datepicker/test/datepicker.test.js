@@ -62,7 +62,6 @@ describe("DatePicker component", () => {
       </DatePicker>
     );
     // Selected value is 15.12.2019 => Nov month is displayed.
-    console.log(queryByText(/Dec/i));
     expect(queryByText(/Dec/i)).toBeTruthy();
   });
 });
