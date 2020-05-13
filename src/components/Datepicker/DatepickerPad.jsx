@@ -47,8 +47,8 @@ const DatePickerPad = ({
 
   const labelTextKey = padIndex === 0 ? "from" : "to";
   let labelPreText;
-  if (otherValue && lang[labelTextKey]) {
-    labelPreText = <b>{lang[labelTextKey]}</b>;
+  if (otherValue && months[labelTextKey]) {
+    labelPreText = <b>{months[labelTextKey]}</b>;
   }
 
   if (month === 1 || (atMinYear && month === ymArr[0].min.month))
@@ -80,7 +80,7 @@ const DatePickerPad = ({
       </div>
       {!isMonthsMode && (
         <div>
-          <label>{month}</label>
+          <label>{months ? months[month - 1] : month}</label>
           <i
             className={classNames(
               styles.rmpBtn,
@@ -158,7 +158,7 @@ const DatePickerPad = ({
                 className={classNames(styles.rmpBtn, styles[css])}
                 data-id={`${padIndex}:${m}`}
                 onClick={clickHandler}>
-                {months.length > i ? months[i] : m}
+                {months ? months[i] : m}
               </li>
             );
           })}
