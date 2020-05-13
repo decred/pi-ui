@@ -14,22 +14,23 @@ describe("DatePicker component", () => {
       min: { year: 2018, month: 1, day: 25 },
       max: { year: 2020, month: 2, day: 4 }
     };
+    const monthsTranslations = [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec"
+    ];
     const { queryByText, rerender, unmount } = render(
       <DatePicker
-        lang={[
-          "Jan",
-          "Feb",
-          "Mar",
-          "Apr",
-          "May",
-          "Jun",
-          "Jul",
-          "Aug",
-          "Sep",
-          "Oct",
-          "Nov",
-          "Dec"
-        ]}
+        lang={monthsTranslations}
         years={years}
         value={{ year: 2019, month: 11, day: 15 }}
         show={true}>
@@ -41,20 +42,7 @@ describe("DatePicker component", () => {
     unmount();
     rerender(
       <DatePicker
-        lang={[
-          "Jan",
-          "Feb",
-          "Mar",
-          "Apr",
-          "May",
-          "Jun",
-          "Jul",
-          "Aug",
-          "Sep",
-          "Oct",
-          "Nov",
-          "Dec"
-        ]}
+        lang={monthsTranslations}
         years={years}
         value={{ year: 2019, month: 12, day: 15 }}
         show={true}>
