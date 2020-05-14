@@ -61,6 +61,7 @@ div.customSelect__menu {
 div.customSelect__option {
   color: var(--tab-text-color);
   background-color: var(--card-background);
+  cursor: pointer;
 }
 
 div.customSelect__option--is-focused {
@@ -116,6 +117,7 @@ div.miniCustomSelect__option {
   text-align: center;
   color: var(--tab-text-color);
   background-color: var(--card-background);
+  cursor: pointer;
 }
 
 div.miniCustomSelect__option--is-focused {
