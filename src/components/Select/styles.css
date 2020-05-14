@@ -59,7 +59,6 @@ div.customSelect__menu {
 }
 
 div.customSelect__option {
-  text-align: center;
   color: var(--tab-text-color);
   background-color: var(--card-background);
 }
@@ -73,5 +72,60 @@ div.customSelect__option--is-selected {
 }
 
 div.customSelect__option:active {
+  background-color: var(--card-background);
+}
+
+div.minCustomSelect__value-container {
+  padding: 0.2rem 0 0.2rem 0.4rem;
+}
+
+div.minCustomSelect__indicator {
+  padding: 0.2rem 0.4rem 0.2rem 0;
+}
+
+.minCustomSelect__indicator-separator {
+  display: none;
+}
+
+div.minCustomSelect__control {
+  border-radius: 0.2rem !important;
+  min-height: 2.4rem;
+  min-width: 6rem;
+  border-color: var(--input-border-color) !important;
+  background-color: var(--card-background);
+}
+
+div.minCustomSelect__control--menu-is-open {
+  box-shadow: none;
+}
+
+.minCustomSelect__single-value {
+  color: var(--color-primary-dark) !important;
+  font-size: var(--font-size-small);
+}
+
+div.minCustomSelect__menu {
+  border-radius: 0;
+  -webkit-box-shadow: 0 1rem 2rem 0 rgba(0, 0, 0, 0.16);
+  -moz-box-shadow: 0 1rem 2rem 0 rgba(0, 0, 0, 0.16);
+  box-shadow: 0 1rem 2rem 0 rgba(0, 0, 0, 0.16);
+  background-color: var(--card-background);
+}
+
+div.minCustomSelect__option {
+  text-align: center;
+  color: var(--tab-text-color);
+  background-color: var(--card-background);
+}
+
+div.minCustomSelect__option--is-focused {
+  color: var(--dropdown-item-hover-color);
+}
+
+div.minCustomSelect__option--is-selected {
+  color: var(--dropdown-item-hover-color);
+}
+
+div.minCustomSelect__option:active {
   background-color: var(--card-background);
 }

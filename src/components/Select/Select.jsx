@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useCallback } from "react";
 import ReactSelect, { components } from "react-select";
 import PropTypes from "prop-types";
 import { classNames } from "../../utils";
@@ -23,13 +23,22 @@ DropdownIndicator.propTypes = {
   selectProps: PropTypes.object
 };
 
-const Select = (props) => {
+const Select = ({ ...props }) => {
+  const [selectWidth, setSelectWidth] = useState(0);
+  const wrapperRef = useCallback((node) => {
+    if (node !== null) {
+      setSelectWidth(node.getBoundingClientRect().width);
+    }
+  }, []);
+  const isMini = selectWidth < 100;
   return (
-    <ReactSelect
-      classNamePrefix="customSelect"
-      components={{ DropdownIndicator }}
-      {...props}
-    />
+    <div ref={wrapperRef}>
+      <ReactSelect
+        classNamePrefix={isMini ? "minCustomSelect" : "customSelect"}
+        components={{ DropdownIndicator }}
+        {...props}
+      />
+    </div>
   );
 };
 
@@ -37,7 +46,8 @@ Select.propTypes = {
   options: PropTypes.array.isRequired,
   isSearchable: PropTypes.bool,
   value: PropTypes.object,
-  onChange: PropTypes.func
+  onChange: PropTypes.func,
+  mini: PropTypes.bool
 };
 
 Select.defaultProps = {
