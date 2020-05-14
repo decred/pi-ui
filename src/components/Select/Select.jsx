@@ -34,7 +34,7 @@ const Select = ({ ...props }) => {
   return (
     <div ref={wrapperRef}>
       <ReactSelect
-        classNamePrefix={isMini ? "minCustomSelect" : "customSelect"}
+        classNamePrefix={isMini ? "miniCustomSelect" : "customSelect"}
         components={{ DropdownIndicator }}
         {...props}
       />
