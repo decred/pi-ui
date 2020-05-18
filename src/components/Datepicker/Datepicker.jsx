@@ -38,8 +38,7 @@ const DatePicker = ({
   onYearChange,
   isMonthsMode
 }) => {
-  const theme = useTheme();
-  const themeName = theme ? theme.themeName : "light";
+  const { themeName } = useTheme() || { themeName: "light" };
   const yearArr = useMemo(() => getYearArray(years), [years]);
   const yearIndexes = useMemo(() => [0, 0], []);
   const values = useMemo(() => validValues(value, yearArr, yearIndexes), [
