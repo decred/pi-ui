@@ -22,12 +22,10 @@ const DatePickerPad = ({
 }) => {
   const value = values[padIndex];
   const ymArr = years;
-  const months = lang
-    ? Array.isArray(lang)
-      ? lang
-      : Array.isArray(lang.months)
-      ? lang.months
-      : null
+  const months = Array.isArray(lang)
+    ? lang
+    : Array.isArray(lang.months)
+    ? lang.months
     : null;
   let prevCss = "";
   let prevMonthCss = "";
