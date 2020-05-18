@@ -16,27 +16,15 @@ import { DatePicker } from "../index";
 
 ## Usage
 
-### date picker
+### basic date picker
 
 <Playground>
   {() => {
-
-    const Arrow = ({ isOpen }) => {
-      return (
-        <div className={isOpen ? styles.exampledDatepickerArrowOpen : styles.exampledDatepickerArrow} />
-      );
-    };
-
     const [value, setValue] = useState({ year: 2019, month: 11, day: 15 });
-    const [isOpen, setIsOpen] = useState(false);
     const onChange = (year, month, day) => {
       if (!!year && !!month && !!day) {
         setValue({ year, month, day });
       }
-      setIsOpen(false);
-    };
-    const togglePicker = () => {
-      setIsOpen(!isOpen)
     };
 
     // provide `day` value for  min, max properties in years object to limit selection by day!
@@ -65,18 +53,15 @@ import { DatePicker } from "../index";
           ]}
           show={isOpen}
           onChange={onChange}
-        >
-          <span className={styles.exampledDatepickerValueWrapper} onClick={togglePicker}>
-            {`${value.day}/${value.month}/${value.year}`}
-            <Arrow isOpen={isOpen} />
-          </span>
-        </DatePicker>
+        />
       </Fragment>
     );
   }}
 </Playground>
 
-### month picker without default value
+### using a custom picker
+
+You can specify a **custom picker component**. If you go for this approach, don't forget to manually set the `isOpen` prop to `true` in order to effectively show your picker
 
 <Playground>
   {() => {
@@ -88,10 +73,11 @@ import { DatePicker } from "../index";
     };
 
     const [value, setValue] = useState(null);
+    // Manual control of  DatePicker's show prop
     const [isOpen, setIsOpen] = useState(false);
-    const onChange = (year, month) => {
-      if (!!year && !!month) {
-        setValue({ year, month });
+    const onChange = (year, month, day) => {
+      if (!!year && !!month && !!day) {
+        setValue({ year, month, day });
       }
       setIsOpen(false);
     };
@@ -110,45 +96,37 @@ import { DatePicker } from "../index";
           years={years} 
           value={value}
           show={isOpen}
-          isMonthsMode={true}
           onChange={onChange}
         >
+          {/* Custom picker component*/}
           <span className={styles.exampledDatepickerValueWrapper} onClick={togglePicker}>
-            {value && `${value.month}/${value.year}`}
-            {!value && "Pick a date"}
+            {value && `day ${value.day}, ${value.month} of ${value.year}`}
+            {!value && "Customized Date Picker"}
             <Arrow isOpen={isOpen} />
           </span>
+          {/**/}
         </DatePicker>
       </Fragment>
     );
   }}
 </Playground>
 
-### month picker with all months option
+
+
+### month picker
+
+You can also display **month options** instead of the default `days` view.
+
+Obs: the `onChange` function will not return the `day` value, obviously because it is not supposed to be shown. Instead, only `year` and `month` options are passed as parameters
 
 <Playground>
   {() => {
-
-    const Arrow = ({ isOpen }) => {
-      return (
-        <div className={isOpen ? styles.exampledDatepickerArrowOpen : styles.exampledDatepickerArrow} />
-      );
-    };
-
     const [value, setValue] = useState(null);
-    const [isOpen, setIsOpen] = useState(false);
     const onChange = (year, month) => {
       if (!!year && !!month) {
         setValue({ year, month });
       }
-      setIsOpen(false);
     };
-    const togglePicker = () => {
-      setIsOpen(!isOpen)
-    };
-
-    const isAllSelected = (value) => value.month === "all"
-
     // specify min, max properties in years object to limit selection
     const years = {
       min: { year: 2018, month: 1 },
@@ -159,18 +137,45 @@ import { DatePicker } from "../index";
       	<DatePicker
           years={years} 
           value={value}
-          show={isOpen}
+          // enable isMonthsMode prop
           isMonthsMode={true}
-          enableAllMonths={true}
           onChange={onChange}
-        >
-          <span className={styles.exampledDatepickerValueWrapper} onClick={togglePicker}>
-            {value && !isAllSelected(value) && `${value.month}/${value.year}`}
-            {value && isAllSelected(value) && `${value.year}`}
-            {!value && "Pick a date"}
-            <Arrow isOpen={isOpen} />
-          </span>
-        </DatePicker>
+        />
+      </Fragment>
+    );
+  }}
+</Playground>
+
+
+### month picker with range option
+
+To use the range option, just enable the `isRange` prop. In this case, `value` is treated as an array, where the first element is the initial range value, and the second is the last range value.
+
+
+<Playground>
+  {() => {
+    const initialValues = [
+      { year: 2019, month: 3 },
+      { year: 2020, month: 2 }
+    ]
+    const [values, setValues] = useState(initialValues);
+    const onChange = (year, month, idx) => {
+      if (!!year && !!month) {
+        const newValues = values ? [...values] : []
+        newValues[idx] = { year, month }
+        setValues(newValues);
+      }
+    };
+    // specify min, max properties in years object to limit selection
+    return (
+      <Fragment>
+      	<DatePicker
+          value={values}
+          isMonthsMode={true}
+          // enable isRange prop
+          isRange={true}
+          onChange={onChange}
+        />
       </Fragment>
     );
   }}

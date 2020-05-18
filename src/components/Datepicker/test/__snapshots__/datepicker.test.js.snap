@@ -4,6 +4,15 @@ exports[`DatePicker component Matches the snapshot 1`] = `
 <div
   className="monthPicker"
 >
+  <span
+    className="defaultDatepickerValueWrapper"
+    onClick={[Function]}
+  >
+    12/2020
+    <div
+      className="defaultDatepickerArrow"
+    />
+  </span>
   <div
     className="rmpContainer rmpTable"
   >
