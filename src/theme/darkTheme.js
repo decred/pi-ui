@@ -82,6 +82,9 @@ const darkTheme = {
   "error-message-background": "var(--info-message-background)",
   "error-message-color": "var(--color-astronaut-blue)",
   "blocked-message-color": "var(--error-message-color)",
+  "warning-message-background": "var(--info-message-background)",
+  "warning-message-color": "var(--color-astronaut-blue)",
+
 
   "datasheet-read-only-text-color": "var(--color-gray)",
   "datasheet-read-only-background": "var(--color-primary-darkest)",
