@@ -81,25 +81,25 @@ a:visited {
 }
 
 .radioButton1 {
-  color: red;
+  color: var(--color-orange);
 }
 
 .radioButton1 > label > span:nth-child(1) {
-  border-color: red !important;
+  border-color: var(--color-orange) !important;
 }
 
 .radioButton1 > label > span:nth-child(2) {
-  background: red;
+  background: var(--color-orange);
 }
 
 .radioButton2 {
-  color: green;
+  color: var(--color-green);
 }
 
 .radioButton2 > label > span:nth-child(1) {
-  border-color: green !important;
+  border-color: var(--color-green) !important;
 }
 
 .radioButton2 > label > span:nth-child(2) {
-  background: green;
+  background: var(--color-green);
 }
