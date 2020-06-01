@@ -42,6 +42,10 @@
   background: var(--color-primary-dark);
 }
 
+.radioButton.disabled .dot {
+  opacity: 0.6;
+}
+
 .radioGroupList {
   list-style-type: none;
   display: flex;
