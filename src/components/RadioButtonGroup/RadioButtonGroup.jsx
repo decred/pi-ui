@@ -10,6 +10,7 @@ export const RadioButton = ({
   onBlur,
   id,
   checked,
+  disabled,
   label,
   className,
   ...props
@@ -26,6 +27,7 @@ export const RadioButton = ({
         type="radio"
         checked={checked}
         onChange={onChange}
+        disabled={!!disabled}
         onBlur={onBlur}
         ref={buttonRef}
         {...props}
@@ -59,6 +61,7 @@ export const RadioButtonGroup = ({
   name,
   className,
   vertical,
+  disabled,
   optionsListClassName,
   optionClassName
 }) => {
@@ -81,6 +84,7 @@ export const RadioButtonGroup = ({
               label={option.label}
               name={name}
               id={`radio-btn-${idx}`}
+              disabled={!!disabled}
             />
           </li>
         ))}
@@ -96,6 +100,7 @@ RadioButton.propTypes = {
   id: PropTypes.string,
   checked: PropTypes.bool,
   label: PropTypes.string,
+  disabled: PropTypes.bool,
   className: PropTypes.string
 };
 
@@ -108,5 +113,6 @@ RadioButtonGroup.propTypes = {
   className: PropTypes.string,
   vertical: PropTypes.bool,
   optionsListClassName: PropTypes.string,
+  disabled: PropTypes.bool,
   optionClassName: PropTypes.string
 };

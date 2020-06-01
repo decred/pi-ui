@@ -17,17 +17,16 @@ import { RadioButtonGroup } from "../index";
 
 <Playground>
   {() => {
-      const options = [{ label: "foo", value: 1}, {label: "bar", value: 2}];
-      const [value, setValue] = useState(1)
-      const handleChange = (option) => {
-          setValue(option.value);
-      }
-      return (
-        <Fragment>
-        <RadioButtonGroup label="Select an option" options={options} value={value} onChange={handleChange} />
-        </Fragment>
-      );
-  }
-    
-  }
+    const options = [{ label: "foo", value: 1}, {label: "bar", value: 2}];
+    const [value, setValue] = useState(1)
+    const handleChange = (option) => {
+        setValue(option.value);
+    }
+    return (
+      <Fragment>
+      <RadioButtonGroup label="Select an option" options={options} value={value} onChange={handleChange} />
+      </Fragment>
+    );
+  }    
+}
 </Playground>
