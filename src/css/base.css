@@ -84,14 +84,22 @@ a:visited {
   color: red;
 }
 
-.radioButton1 > label > span {
+.radioButton1 > label > span:nth-child(1) {
   border-color: red !important;
+}
+
+.radioButton1 > label > span:nth-child(2) {
+  background: red;
 }
 
 .radioButton2 {
   color: green;
 }
 
-.radioButton2 > label > span {
+.radioButton2 > label > span:nth-child(1) {
   border-color: green !important;
+}
+
+.radioButton2 > label > span:nth-child(2) {
+  background: green;
 }
