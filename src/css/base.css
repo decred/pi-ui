@@ -80,6 +80,10 @@ a:visited {
   display: inline-flex;
 }
 
+/**
+  RadioButtonGroup accepts an array of classes `optionsClassName={[styles.radioButton1, styles.radioButton2]}`
+  in order to style each radio separately, or a string when all buttons have same style `optionsClassName={styles.radioButton1}`
+*/
 .radioButton1 {
   color: var(--color-orange);
 }
