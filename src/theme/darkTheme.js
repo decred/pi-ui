@@ -85,7 +85,6 @@ const darkTheme = {
   "warning-message-background": "var(--info-message-background)",
   "warning-message-color": "var(--color-astronaut-blue)",
 
-
   "datasheet-read-only-text-color": "var(--color-gray)",
   "datasheet-read-only-background": "var(--color-primary-darkest)",
   "datasheet-border-color": "var(--color-gray-blue)"

@@ -10,6 +10,7 @@ export const RadioButton = ({
   onBlur,
   id,
   checked,
+  disabled,
   label,
   className,
   ...props
@@ -19,13 +20,19 @@ export const RadioButton = ({
     x: checked ? 1 : 0
   });
   return (
-    <div className={classNames(styles.radioButton, className)}>
+    <div
+      className={classNames(
+        styles.radioButton,
+        disabled && styles.disabled,
+        className
+      )}>
       <input
         name={name}
         id={id}
         type="radio"
         checked={checked}
         onChange={onChange}
+        disabled={disabled}
         onBlur={onBlur}
         ref={buttonRef}
         {...props}
@@ -59,35 +66,39 @@ export const RadioButtonGroup = ({
   name,
   className,
   vertical,
+  disabled,
   optionsListClassName,
-  optionClassName
-}) => {
-  return (
-    <div className={classNames(styles.radioGroup, className)}>
-      <label className={styles.radioGroupLabel}>{label}</label>
-      <ul
-        className={classNames(
-          styles.radioGroupList,
-          vertical && styles.vertical,
-          optionsListClassName
-        )}>
-        {options.map((option, idx) => (
-          <li key={`radio-btn-${idx}`}>
-            {" "}
-            <RadioButton
-              onChange={() => onChange(option)}
-              className={optionClassName}
-              checked={option.value === value}
-              label={option.label}
-              name={name}
-              id={`radio-btn-${idx}`}
-            />
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-};
+  optionsClassName
+}) => (
+  <div className={classNames(styles.radioGroup, className)}>
+    <label className={styles.radioGroupLabel}>{label}</label>
+    <ul
+      className={classNames(
+        styles.radioGroupList,
+        vertical && styles.vertical,
+        optionsListClassName
+      )}>
+      {options.map((option, idx) => (
+        <li key={`radio-btn-${idx}`}>
+          {" "}
+          <RadioButton
+            onChange={() => onChange(option)}
+            className={
+              optionsClassName && Array.isArray(optionsClassName)
+                ? optionsClassName[idx]
+                : optionsClassName
+            }
+            checked={option.value === value}
+            label={option.label}
+            name={name}
+            id={`radio-btn-${idx}`}
+            disabled={disabled}
+          />
+        </li>
+      ))}
+    </ul>
+  </div>
+);
 
 RadioButton.propTypes = {
   name: PropTypes.string,
@@ -96,6 +107,7 @@ RadioButton.propTypes = {
   id: PropTypes.string,
   checked: PropTypes.bool,
   label: PropTypes.string,
+  disabled: PropTypes.bool,
   className: PropTypes.string
 };
 
@@ -108,5 +120,10 @@ RadioButtonGroup.propTypes = {
   className: PropTypes.string,
   vertical: PropTypes.bool,
   optionsListClassName: PropTypes.string,
-  optionClassName: PropTypes.string
+  disabled: PropTypes.bool,
+  optionsClassName: PropTypes.oneOfType([PropTypes.string, PropTypes.array])
+};
+
+RadioButtonGroup.defaultProps = {
+  disabled: false
 };

@@ -79,3 +79,31 @@ a:visited {
   cursor: pointer;
   display: inline-flex;
 }
+
+/**
+  RadioButtonGroup accepts an array of classes `optionsClassName={[styles.radioButton1, styles.radioButton2]}`
+  in order to style each radio separately, or a string when all buttons have same style `optionsClassName={styles.radioButton1}`
+*/
+.radioButton1 {
+  color: var(--color-orange);
+}
+
+.radioButton1 > label > span:nth-child(1) {
+  border-color: var(--color-orange) !important;
+}
+
+.radioButton1 > label > span:nth-child(2) {
+  background: var(--color-orange);
+}
+
+.radioButton2 {
+  color: var(--color-green);
+}
+
+.radioButton2 > label > span:nth-child(1) {
+  border-color: var(--color-green) !important;
+}
+
+.radioButton2 > label > span:nth-child(2) {
+  background: var(--color-green);
+}
