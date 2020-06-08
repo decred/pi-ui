@@ -55,6 +55,7 @@ Array [
     </li>
   </ul>,
   <div
+    className=""
     style={
       Object {
         "opacity": 0,
