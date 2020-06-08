@@ -84,8 +84,8 @@
 .textinput:-webkit-autofill {
   transition-delay: 99999s;
   -webkit-transition-delay: 99999s;
-  animation-name: autofill;
-  -webkit-animation-name: autofill;
+  animation-name: "autofill";
+  -webkit-animation-name: "autofill";
   animation-fill-mode: both;
   -webkit-animation-fill-mode: both;
   -webkit-text-fill-color: var(--text-color) !important;
