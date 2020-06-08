@@ -59,9 +59,8 @@
   flex-direction: column;
   justify-content: space-around;
   white-space: pre;
-  align-items: flex-end;
   margin-top: 3.5rem;
-  padding: 0 1.5rem 2rem 1.5rem !important;
+  padding: 0 0 2rem 0 !important;
   -webkit-box-shadow: 0 1rem 2rem 0 rgba(0, 0, 0, 0.16);
   -moz-box-shadow: 0 1rem 2rem 0 rgba(0, 0, 0, 0.16);
   box-shadow: 0 1rem 2rem 0 rgba(0, 0, 0, 0.16);
@@ -72,12 +71,24 @@
   display: flex;
   overflow: auto;
   text-align: left;
+  justify-content: flex-end;
   font-size: var(--font-size-normal);
   color: var(--tab-text-color);
-  padding: 1.75rem 0 1.75rem 0 !important;
+  padding: 1.25rem !important;
+  user-select: none;
+  width: 100%;
 }
 
-.dropdownItem:hover {
+.dropdownItem:not(:first-child) {
+  margin-top: 1.2rem;
+}
+
+.dropdownItem * {
+  user-select: none;
+}
+
+.dropdownItem:hover,
+.dropdownItem:hover > * {
   cursor: pointer;
   color: var(--dropdown-item-hover-color) !important;
 }
