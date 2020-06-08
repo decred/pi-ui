@@ -1,5 +1,5 @@
 import isEmpty from "lodash/isEmpty";
-import _isEqual from "lodash/isEqual";
+import isEqual from "lodash/isEqual";
 const __MIN_VALID_YEAR = 1;
 
 export const mapToArray = (num, callback) => {
@@ -151,7 +151,7 @@ export const getInitialYears = (values, yearsState) => {
 };
 
 export const hasDateValueChanged = (newDate, prevDate) => {
-  return !_isEqual(newDate, prevDate);
+  return !isEqual(newDate, prevDate);
 };
 
 export const getIndexByYear = (year, yearsArr) =>
