@@ -103,10 +103,7 @@ const Tabs = ({
       {transitions.map(({ item, key, props }) => {
         return (
           item === activeTabIndex && (
-            <animated.div
-              key={key}
-              style={props}
-              className={classNames(contentClassName)}>
+            <animated.div key={key} style={props} className={contentClassName}>
               {children[item] && children[item].props.children}
             </animated.div>
           )
