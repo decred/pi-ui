@@ -35,6 +35,7 @@ const Tabs = ({
   children,
   wrap,
   mode,
+  contentClassName,
   ...props
 }) => {
   const dropdownMode = mode === "dropdown";
@@ -102,7 +103,7 @@ const Tabs = ({
       {transitions.map(({ item, key, props }) => {
         return (
           item === activeTabIndex && (
-            <animated.div key={key} style={props}>
+            <animated.div key={key} style={props} className={contentClassName}>
               {children[item] && children[item].props.children}
             </animated.div>
           )
@@ -127,7 +128,8 @@ Tabs.propTypes = {
   activeTabIndex: PropTypes.number.isRequired,
   children: PropTypes.node.isRequired,
   wrap: PropTypes.bool,
-  mode: PropTypes.oneOf(["horizontal", "vertical", "dropdown"])
+  mode: PropTypes.oneOf(["horizontal", "vertical", "dropdown"]),
+  contentClassName: PropTypes.string
 };
 
 Tabs.defaultProps = {
