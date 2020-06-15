@@ -11,7 +11,7 @@ const DropdownItem = ({
   ...props
 }) => {
   const handleClick = () => {
-    handleClose();
+    handleClose && handleClose();
     onClick && onClick();
   };
   return (

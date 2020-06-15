@@ -4,6 +4,7 @@ import { animated, useTransition } from "react-spring";
 import { classNames } from "../../utils";
 import styles from "./styles.css";
 import Dropdown from "../Dropdown/Dropdown.jsx";
+import DropdownItem from "../Dropdown/DropdownItem.jsx";
 
 const TabDropdownTrigger = ({
   onClick,
@@ -44,15 +45,22 @@ const Tabs = ({
     return React.Children.toArray(children)
       .filter(Boolean)
       .map((child, index) => {
-        return React.cloneElement(child, {
+        const element = React.cloneElement(child, {
           "data-testid": `tab-${index}`,
           onSelect: onSelectTab,
           tabIndex: index,
           isActive: index === activeTabIndex,
           mode
         });
+        return vertical ? (
+          <DropdownItem className={styles.customDropdownItem}>
+            {element}
+          </DropdownItem>
+        ) : (
+          element
+        );
       });
-  }, [children, activeTabIndex, mode, onSelectTab]);
+  }, [children, activeTabIndex, mode, vertical, onSelectTab]);
 
   const tabs = useMemo(
     () => (

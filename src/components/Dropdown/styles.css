@@ -74,7 +74,7 @@
   justify-content: flex-end;
   font-size: var(--font-size-normal);
   color: var(--tab-text-color);
-  padding: 1.25rem !important;
+  padding: 1.25rem;
   user-select: none;
   width: 100%;
 }

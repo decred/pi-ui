@@ -76,3 +76,9 @@
   display: flex;
   align-items: center;
 }
+
+.customDropdownItem {
+  padding: 0.5rem;
+  text-align: center;
+  justify-content: center;
+}
