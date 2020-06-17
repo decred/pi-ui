@@ -12,6 +12,7 @@ exports[`CopyableText component Matches snapshot 1`] = `
   </span>
   <div
     className="tooltip"
+    onClick={[Function]}
   >
     <div
       className="tooltipContent right"

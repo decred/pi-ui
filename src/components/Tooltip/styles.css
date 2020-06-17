@@ -13,7 +13,7 @@
   transition: 0.3s all ease;
 }
 
-.tooltip:hover .tooltipContent {
+.showTooltip {
   visibility: visible;
   opacity: 1;
 }
@@ -53,4 +53,12 @@
   left: 100%;
   top: 50%;
   transform: translateY(-50%);
+}
+
+/* Media query to target devices with bigger screens */
+@media screen and (min-width: 1025px) {
+  .tooltip:hover .tooltipContent {
+    visibility: visible;
+    opacity: 1;
+  }
 }

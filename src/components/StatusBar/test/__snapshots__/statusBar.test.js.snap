@@ -113,6 +113,7 @@ exports[`StatusBar component Matches the snapshot 1`] = `
     >
       <div
         className="tooltip markerTooltip"
+        onClick={[Function]}
       >
         <div
           className="tooltipContent top"
