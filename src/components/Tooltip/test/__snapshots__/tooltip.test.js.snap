@@ -3,6 +3,7 @@
 exports[`Tooltip component Matches the snapshot 1`] = `
 <div
   className="tooltip"
+  onClick={[Function]}
 >
   <div
     className="tooltipContent top"
