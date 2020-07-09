@@ -45,6 +45,7 @@
 .legend {
   composes: infoCurrent;
   display: flex;
+  margin-right: 2rem;
 }
 
 .legendColor {
