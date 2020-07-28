@@ -92,7 +92,7 @@
   }
 
   .tableBodyCellText {
-    overflow: hidden;
+    overflow-x: hidden;
     max-width: 20rem;
     text-overflow: ellipsis;
   }
