@@ -44,7 +44,7 @@
 .tableCell {
   max-width: 12rem;
   min-width: 12rem;
-  overflow: hidden;
+  overflow-x: hidden;
   text-align: center;
   text-overflow: ellipsis;
 }
@@ -98,7 +98,6 @@
   }
 
   .tableBodyCell {
-    display: block;
     display: flex;
     align-items: center;
     border: 0;
