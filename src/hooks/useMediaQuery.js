@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 
 // This variable will be true once the server-side hydration is completed.
 let hydrationCompleted = false;
@@ -7,10 +7,14 @@ function deepEqual(a, b) {
   return a.length === b.length && a.every((item, index) => item === b[index]);
 }
 
+function toArray(a) {
+  return Array.isArray(a) ? a : [a];
+}
+
 export function useMediaQuery(queryInput, options = {}) {
-  const multiple = Array.isArray(queryInput);
-  let queries = multiple ? queryInput : [queryInput];
-  queries = queries.map((query) => query.replace("@media ", ""));
+  const queries = useMemo(() => {
+    return toArray(queryInput).map((query) => query.replace("@media ", ""));
+  }, [queryInput]);
 
   // Wait for JSDOM to support the match media feature.
   // All the browsers Material-UI support have this built-in.
@@ -65,7 +69,7 @@ export function useMediaQuery(queryInput, options = {}) {
     };
   }, [queries, supportMatchMedia]);
 
-  return multiple ? matches : matches[0];
+  return Array.isArray(queryInput) ? matches : matches[0];
 }
 
 export function testReset() {
