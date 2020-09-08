@@ -109,8 +109,8 @@ RadioButton.propTypes = {
   onBlur: PropTypes.func,
   id: PropTypes.string,
   checked: PropTypes.bool,
-  label: PropTypes.string,
-  description: PropTypes.string,
+  label: PropTypes.node,
+  description: PropTypes.node,
   disabled: PropTypes.bool,
   className: PropTypes.string
 };
