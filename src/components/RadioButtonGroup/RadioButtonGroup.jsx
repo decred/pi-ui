@@ -13,6 +13,7 @@ export const RadioButton = ({
   disabled,
   label,
   className,
+  description,
   ...props
 }) => {
   const buttonRef = useRef(null);
@@ -54,6 +55,7 @@ export const RadioButton = ({
           }}
         />
       </label>
+      {description && <div className={styles.description}>{description}</div>}
     </div>
   );
 };
@@ -93,6 +95,7 @@ export const RadioButtonGroup = ({
             name={name}
             id={`radio-btn-${idx}`}
             disabled={disabled}
+            description={vertical && option.description}
           />
         </li>
       ))}
@@ -107,6 +110,7 @@ RadioButton.propTypes = {
   id: PropTypes.string,
   checked: PropTypes.bool,
   label: PropTypes.string,
+  description: PropTypes.string,
   disabled: PropTypes.bool,
   className: PropTypes.string
 };
