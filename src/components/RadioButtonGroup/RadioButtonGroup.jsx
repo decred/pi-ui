@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 import PropTypes from "prop-types";
 import { useSpring, animated } from "react-spring";
 import { classNames } from "../../utils";
+import Description from "../Description/Description.jsx";
 import styles from "./styles.css";
 
 export const RadioButton = ({
@@ -55,7 +56,7 @@ export const RadioButton = ({
           }}
         />
       </label>
-      {description && <div className={styles.description}>{description}</div>}
+      <Description body={description} />
     </div>
   );
 };
