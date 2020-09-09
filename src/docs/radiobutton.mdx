@@ -18,14 +18,15 @@ import styles from "../css/base.css";
 
 <Playground>
   {() => {
-    const options = [{ label: "foo", value: 1}, {label: "bar", value: 2}];
+    const options = [{ label: "foo", value: 1, description: "this is foo!"}, 
+      {label: "bar", value: 2, description: "this is bar!"}];
     const [value, setValue] = useState(1)
     const handleChange = (option) => {
         setValue(option.value);
     }
     return (
       <Fragment>
-      <RadioButtonGroup label="Select an option" options={options} value={value} onChange={handleChange} />
+      <RadioButtonGroup vertical  label="Select an option" options={options} value={value} onChange={handleChange} />
       </Fragment>
     );
   }    
