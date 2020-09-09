@@ -2,6 +2,7 @@ import { PropTypes } from "prop-types";
 import React from "react";
 import { classNames } from "../../utils";
 import styles from "./styles.css";
+import Description from "../Description/Description.jsx";
 
 const Checkbox = ({
   label,
@@ -26,7 +27,7 @@ const Checkbox = ({
       <span className={styles.checkmark} />
       <span>{label}</span>
     </label>
-    {description && <div className={styles.description}>{description}</div>}
+    <Description body={description} />
   </>
 );
 
