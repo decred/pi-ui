@@ -1,0 +1,7 @@
+.description {
+  margin-left: 2.5rem;
+  margin-top: 0.5rem;
+  color: var(--text-secondary-color);
+  font-size: var(--font-size-small);
+  font-style: italic;
+}
