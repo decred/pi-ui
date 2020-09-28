@@ -10,14 +10,16 @@ const P = ({
   className,
   style,
   truncate,
-  linesBeforeTruncate
+  linesBeforeTruncate,
+  ...props
 }) => {
   useTruncate(id, truncate, linesBeforeTruncate);
   return (
     <p
       id={id}
       className={classNames(styles.paragraph, className)}
-      style={style}>
+      style={style}
+      {...props}>
       {children}
     </p>
   );

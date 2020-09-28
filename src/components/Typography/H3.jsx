@@ -10,11 +10,16 @@ const H3 = ({
   className,
   style,
   truncate,
-  linesBeforeTruncate
+  linesBeforeTruncate,
+  ...props
 }) => {
   useTruncate(id, truncate, linesBeforeTruncate);
   return (
-    <h3 id={id} className={classNames(styles.header3, className)} style={style}>
+    <h3
+      id={id}
+      className={classNames(styles.header3, className)}
+      style={style}
+      {...props}>
       {children}
     </h3>
   );

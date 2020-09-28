@@ -10,11 +10,16 @@ const H2 = ({
   className,
   style,
   truncate,
-  linesBeforeTruncate
+  linesBeforeTruncate,
+  ...props
 }) => {
   useTruncate(id, truncate, linesBeforeTruncate);
   return (
-    <h2 id={id} className={classNames(styles.header2, className)} style={style}>
+    <h2
+      id={id}
+      className={classNames(styles.header2, className)}
+      style={style}
+      {...props}>
       {children}
     </h2>
   );
