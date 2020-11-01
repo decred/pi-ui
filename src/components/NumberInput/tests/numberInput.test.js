@@ -1,14 +1,18 @@
 import React from "react";
 import NumberInput from "../NumberInput";
 import { create } from "react-test-renderer";
-import { defaultLightTheme, ThemeProvider } from "../../../theme";
+import {
+  defaultLightTheme,
+  ThemeProvider,
+  DEFAULT_LIGHT_THEME_NAME
+} from "../../../theme";
 
 describe("NumberInput component", () => {
   test("Matches the snapshot", () => {
     const numberInput = create(
       <ThemeProvider
-        themes={{ light: defaultLightTheme }}
-        defaultThemeName="light">
+        themes={{ [DEFAULT_LIGHT_THEME_NAME]: defaultLightTheme }}
+        defaultThemeName={DEFAULT_LIGHT_THEME_NAME}>
         <NumberInput id="test" />
       </ThemeProvider>
     );

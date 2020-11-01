@@ -1,15 +1,19 @@
 import React from "react";
 import BoxTextInput from "../BoxTextInput";
 import { create } from "react-test-renderer";
-import { defaultLightTheme, ThemeProvider } from "../../../theme";
+import {
+  defaultLightTheme,
+  ThemeProvider,
+  DEFAULT_LIGHT_THEME_NAME
+} from "../../../theme";
 import { fireEvent, render } from "@testing-library/react";
 
 describe("BoxTextInput component", () => {
   test("Matches the snapshot", () => {
     const boxTextInputForm = create(
       <ThemeProvider
-        themes={{ light: defaultLightTheme }}
-        defaultThemeName="light">
+        themes={{ [DEFAULT_LIGHT_THEME_NAME]: defaultLightTheme }}
+        defaultThemeName={DEFAULT_LIGHT_THEME_NAME}>
         <BoxTextInput searchInput={true} />
       </ThemeProvider>
     );
@@ -17,8 +21,8 @@ describe("BoxTextInput component", () => {
 
     const boxTextInputDefault = create(
       <ThemeProvider
-        themes={{ light: defaultLightTheme }}
-        defaultThemeName="light">
+        themes={{ [DEFAULT_LIGHT_THEME_NAME]: defaultLightTheme }}
+        defaultThemeName={DEFAULT_LIGHT_THEME_NAME}>
         <BoxTextInput />
       </ThemeProvider>
     );
@@ -30,8 +34,8 @@ describe("BoxTextInput component", () => {
 
     const { getByTestId, queryByTestId } = render(
       <ThemeProvider
-        themes={{ light: defaultLightTheme }}
-        defaultThemeName="light">
+        themes={{ [DEFAULT_LIGHT_THEME_NAME]: defaultLightTheme }}
+        defaultThemeName={DEFAULT_LIGHT_THEME_NAME}>
         <BoxTextInput onSubmit={mockedOnSubmit} searchInput={true} />
       </ThemeProvider>
     );

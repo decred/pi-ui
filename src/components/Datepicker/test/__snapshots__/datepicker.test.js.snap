@@ -39,7 +39,7 @@ exports[`DatePicker component Matches the snapshot 1`] = `
       className="rmpCell"
     >
       <div
-        className="rmpPopup light"
+        className="rmpPopup"
       />
     </div>
   </div>

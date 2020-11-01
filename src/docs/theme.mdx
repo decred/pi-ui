@@ -87,15 +87,16 @@ import React from "react";
 import { useTheme, Button, getThemeProperty } from "pi-ui";
 
 const DeepChild = () => {
-  const { themeName, setThemeName, theme } = useTheme();
+  const { themeName, setThemeName, theme, DEFAULT_LIGHT_THEME_NAME,
+    DEFAULT_DARK_THEME_NAME } = useTheme();
 
   const colorGreen = getThemeProperty(theme, "color-green"); // get theme property 
   
   const handleToggleTheme = () => {
-    if (themeName === "light") {
-      setThemeName("dark");
+    if (themeName === DEFAULT_LIGHT_THEME_NAME) {
+      setThemeName(DEFAULT_LIGHT_THEME_NAME);
     } else {
-      setThemeName("light");
+      setThemeName(DEFAULT_LIGHT_THEME_NAME);
     }
   }
 
