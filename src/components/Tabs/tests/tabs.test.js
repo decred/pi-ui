@@ -1,6 +1,10 @@
 import React from "react";
 import { create } from "react-test-renderer";
-import { defaultLightTheme, ThemeProvider } from "../../../theme";
+import {
+  defaultLightTheme,
+  ThemeProvider,
+  DEFAULT_LIGHT_THEME_NAME
+} from "../../../theme";
 import { render, fireEvent } from "@testing-library/react";
 import Tabs from "../Tabs";
 import Tab from "../Tab";
@@ -9,8 +13,8 @@ describe("Tabs Component", () => {
   test("Matches the snapshot", () => {
     const tabs = create(
       <ThemeProvider
-        themes={{ light: defaultLightTheme }}
-        defaultThemeName="light">
+        themes={{ [DEFAULT_LIGHT_THEME_NAME]: defaultLightTheme }}
+        defaultThemeName={DEFAULT_LIGHT_THEME_NAME}>
         <Tabs onSelectTab={jest.fn()} activeTabIndex={0}>
           <Tab label="tab1" count={1}>
             <div>test1</div>
@@ -31,8 +35,8 @@ describe("Tabs Component", () => {
     });
     const { getByTestId, queryByText, rerender } = render(
       <ThemeProvider
-        themes={{ light: defaultLightTheme }}
-        defaultThemeName="light">
+        themes={{ [DEFAULT_LIGHT_THEME_NAME]: defaultLightTheme }}
+        defaultThemeName={DEFAULT_LIGHT_THEME_NAME}>
         <Tabs onSelectTab={mockHandleSelectTab} activeTabIndex={activeTabIndex}>
           <Tab label="tab1" count={1}>
             <div>test1</div>
@@ -49,8 +53,8 @@ describe("Tabs Component", () => {
     expect(mockHandleSelectTab).toBeCalled();
     rerender(
       <ThemeProvider
-        themes={{ light: defaultLightTheme }}
-        defaultThemeName="light">
+        themes={{ [DEFAULT_LIGHT_THEME_NAME]: defaultLightTheme }}
+        defaultThemeName={DEFAULT_LIGHT_THEME_NAME}>
         <Tabs onSelectTab={mockHandleSelectTab} activeTabIndex={activeTabIndex}>
           <Tab label="tab1" count={1}>
             <div>test1</div>

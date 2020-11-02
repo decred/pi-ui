@@ -1,14 +1,18 @@
 import React from "react";
 import StatusBar from "../StatusBar";
 import { create } from "react-test-renderer";
-import { defaultLightTheme, ThemeProvider } from "../../../theme";
+import {
+  defaultLightTheme,
+  ThemeProvider,
+  DEFAULT_LIGHT_THEME_NAME
+} from "../../../theme";
 
 describe("StatusBar component", () => {
   test("Matches the snapshot", () => {
     const statusBar = create(
       <ThemeProvider
-        themes={{ light: defaultLightTheme }}
-        defaultThemeName="light">
+        themes={{ [DEFAULT_LIGHT_THEME_NAME]: defaultLightTheme }}
+        defaultThemeName={DEFAULT_LIGHT_THEME_NAME}>
         <StatusBar
           status={[
             {

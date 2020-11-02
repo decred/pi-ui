@@ -9,7 +9,7 @@ import PropTypes from "prop-types";
 
 const ThemeContext = createContext();
 
-export const useTheme = () => useContext(ThemeContext);
+export const useTheme = () => useContext(ThemeContext) || {};
 
 export const ThemeProvider = ({
   themes,

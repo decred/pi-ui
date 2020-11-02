@@ -1,7 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { ThemeProvider, defaultLightTheme } from "../index";
+import {
+  ThemeProvider,
+  defaultLightTheme,
+  DEFAULT_LIGHT_THEME_NAME
+} from "../index";
 import SourceSansProLight from "../assets/fonts/source-sans-pro/SourceSansPro-Light.ttf";
 import SourceSansProRegular from "../assets/fonts/source-sans-pro/SourceSansPro-Regular.ttf";
 import SourceSansProSemiBold from "../assets/fonts/source-sans-pro/SourceSansPro-SemiBold.ttf";
@@ -34,16 +38,19 @@ const fonts = [
   }
 ];
 
-const DoczWrapper = ({ children }) => {
-  return (
-    <ThemeProvider
-      themes={{ light: { ...defaultLightTheme, ...themeCustomVariables } }}
-      defaultThemeName="light"
-      fonts={fonts}>
-      {children}
-    </ThemeProvider>
-  );
-};
+const DoczWrapper = ({ children }) => (
+  <ThemeProvider
+    themes={{
+      [DEFAULT_LIGHT_THEME_NAME]: {
+        ...defaultLightTheme,
+        ...themeCustomVariables
+      }
+    }}
+    defaultThemeName={DEFAULT_LIGHT_THEME_NAME}
+    fonts={fonts}>
+    {children}
+  </ThemeProvider>
+);
 
 DoczWrapper.propTypes = {
   children: PropTypes.node

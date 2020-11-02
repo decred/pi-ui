@@ -25,7 +25,7 @@ Pi-ui exposes a `ThemeProvider` that accepts a `themes` object, `defaultThemeNam
 ```js
 import React from "react";
 import { render } from "react-dom";
-import { ThemeProvider, defaultLightTheme } from "pi-ui";
+import { ThemeProvider, defaultLightTheme, DEFAULT_LIGHT_THEME_NAME } from "pi-ui";
 
 import customTheme from "./theme";
 import SourceSansProLight from "../assets/fonts/source-sans-pro/SourceSansPro-Light.ttf";
@@ -59,7 +59,7 @@ const fonts = [
 const App = () => {
   return (
     <ThemeProvider
-      themes={{ light: defaultLightTheme, customTheme }}
+      themes={{ [DEFAULT_LIGHT_THEME_NAME]: defaultLightTheme, customTheme }}
       defaultThemeName="customTheme"
       fonts={fonts}>
       {children}
@@ -72,10 +72,13 @@ render(<App />, document.getElementById("root"));
 
 ## Default theme
 
-There are two default themes, `defaultLightTheme` and `defaultDarkTheme`. They are both name exported from pi-ui.
+There are two default themes, `defaultLightTheme` and `defaultDarkTheme`. They are both exported from pi-ui.
+
+It's recommended to use `DEFAULT_LIGHT_THEME_NAME` and `DEFAULT_DARK_THEME_NAME` default theme names, as they are used
+internally in some components to use dark default styling variables or the light ones.
 
 ```js
-import { defaultLightTheme, defaultDarkTheme } from "pi-ui";
+import { defaultLightTheme, defaultDarkTheme, DEFAULT_LIGHT_THEME_NAME, DEFAULT_DARK_THEME_NAME } from "pi-ui";
 ```
 
 ## UseTheme hook in deep children
@@ -84,7 +87,7 @@ import { defaultLightTheme, defaultDarkTheme } from "pi-ui";
 
 ```js
 import React from "react";
-import { useTheme, Button, getThemeProperty } from "pi-ui";
+import { useTheme, Button, getThemeProperty, DEFAULT_LIGHT_THEME_NAME, DEFAULT_DARK_THEME_NAME } from "pi-ui";
 
 const DeepChild = () => {
   const { themeName, setThemeName, theme } = useTheme();
@@ -92,10 +95,10 @@ const DeepChild = () => {
   const colorGreen = getThemeProperty(theme, "color-green"); // get theme property 
   
   const handleToggleTheme = () => {
-    if (themeName === "light") {
-      setThemeName("dark");
+    if (themeName === DEFAULT_LIGHT_THEME_NAME) {
+      setThemeName(DEFAULT_LIGHT_THEME_NAME);
     } else {
-      setThemeName("light");
+      setThemeName(DEFAULT_LIGHT_THEME_NAME);
     }
   }
 

@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import styles from "./styles.css";
 import { classNames } from "../../utils";
-import { useTheme } from "../../theme";
+import { useTheme, DEFAULT_DARK_THEME_NAME } from "../../theme";
 import Tooltip from "../Tooltip/Tooltip.jsx";
 
 const StatusBar = ({
@@ -31,7 +31,7 @@ const StatusBar = ({
   });
 
   const { themeName } = useTheme();
-  const isDarkTheme = themeName === "dark";
+  const isDarkTheme = themeName === DEFAULT_DARK_THEME_NAME;
 
   const createInfoComp = (props) =>
     renderStatusInfoComponent ? (

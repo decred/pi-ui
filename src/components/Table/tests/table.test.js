@@ -2,7 +2,11 @@ import React from "react";
 import { create } from "react-test-renderer";
 import { render, fireEvent } from "@testing-library/react";
 import Table from "../Table";
-import { defaultLightTheme, ThemeProvider } from "../../../theme";
+import {
+  defaultLightTheme,
+  ThemeProvider,
+  DEFAULT_LIGHT_THEME_NAME
+} from "../../../theme";
 
 const mockData = [
   {
@@ -21,8 +25,8 @@ describe("Table Component", () => {
   test("Matches the snapshot", () => {
     const table = create(
       <ThemeProvider
-        themes={{ light: defaultLightTheme }}
-        defaultThemeName="light">
+        themes={{ [DEFAULT_LIGHT_THEME_NAME]: defaultLightTheme }}
+        defaultThemeName={DEFAULT_LIGHT_THEME_NAME}>
         <Table data={mockData} headers={mockHeaders} />
       </ThemeProvider>
     );
@@ -32,8 +36,8 @@ describe("Table Component", () => {
   test("Table pagination", () => {
     const { getByTestId, queryByText, queryByTestId } = render(
       <ThemeProvider
-        themes={{ light: defaultLightTheme }}
-        defaultThemeName="light">
+        themes={{ [DEFAULT_LIGHT_THEME_NAME]: defaultLightTheme }}
+        defaultThemeName={DEFAULT_LIGHT_THEME_NAME}>
         <Table linesPerPage={1} data={mockData} headers={mockHeaders} />
       </ThemeProvider>
     );

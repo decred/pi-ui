@@ -1,14 +1,18 @@
 import React from "react";
 import TextInput from "../TextInput";
 import { create } from "react-test-renderer";
-import { defaultLightTheme, ThemeProvider } from "../../../theme";
+import {
+  defaultLightTheme,
+  ThemeProvider,
+  DEFAULT_LIGHT_THEME_NAME
+} from "../../../theme";
 
 describe("TextInput component", () => {
   test("Matches the snapshot", () => {
     const textInput = create(
       <ThemeProvider
-        themes={{ light: defaultLightTheme }}
-        defaultThemeName="light">
+        themes={{ [DEFAULT_LIGHT_THEME_NAME]: defaultLightTheme }}
+        defaultThemeName={DEFAULT_LIGHT_THEME_NAME}>
         <TextInput id="test" />
       </ThemeProvider>
     );
