@@ -94,6 +94,8 @@
 }
 
 .markerTooltip {
+  padding: 0 0.3rem;
+  cursor: pointer;
   color: var(--color-green);
   font-size: var(--font-size-small);
 }
