@@ -5,18 +5,22 @@ import { classNames } from "../../utils";
 
 import greenCheckIcon from "./green_check.svg";
 import negativeIcon from "./negative.svg";
+import negativeBlueIcon from "./negative_blue.svg";
 import negativeCircleIcon from "./negative_circle.svg";
 import pendingIcon from "./waiting.svg";
 import timeYellowIcon from "./time_yellow.svg";
 import timeBlackIcon from "./time_black.svg";
+import timeBlueIcon from "./time_blue.svg";
 
 const ICONS_MAP = {
   greenCheck: greenCheckIcon,
   grayNegative: negativeIcon,
+  blueNegative: negativeBlueIcon,
   orangeNegativeCircled: negativeCircleIcon,
   bluePending: pendingIcon,
   yellowTime: timeYellowIcon,
-  blackTime: timeBlackIcon
+  blackTime: timeBlackIcon,
+  blueTime: timeBlueIcon
 };
 
 const getIcon = (type) => ICONS_MAP[type];
