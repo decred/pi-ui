@@ -6,6 +6,7 @@ const darkTheme = {
   "color-primary-dark": "#7DA7D9",
   "color-primary-darker": "#1F325F",
   "color-primary-darkest": "#1B2B54",
+  "color-dark": "#091440",
   "color-gray-blue": "#6F98D3",
 
   "color-powder-blue": "#B7DEEE",
@@ -29,7 +30,7 @@ const darkTheme = {
   "success-icon-checkmark-color": "var(--color-primary-darkest)",
 
   "btn-disabled-background-color": "var(--color-primary-darker)",
-  "btn-disabled-text-color": "var(--info-message-background)",
+  "btn-disabled-text-color": "#152042",
 
   "comment-like-color": "var(--color-gray-blue)",
   "comment-like-color-active": "var(--color-powder-blue)",
@@ -40,6 +41,7 @@ const darkTheme = {
   "text-color-light": "var(--color-white)",
   "text-heading-color": "var(--color-powder-blue)",
   "text-heading2-color": "var(--text-heading-color)",
+  "text-heading3-color": "#E9F8FE",
   "text-secondary-color": "var(--color-primary-dark)",
 
   "tab-text-color": "var(--color-gray-blue)",
@@ -77,13 +79,17 @@ const darkTheme = {
   "checkbox-stroke-color": "var(--color-gray-blue)",
   "checkbox-hovered-background-color": "var(--color-primary-darkest)",
 
-  "info-message-background": "#152042",
+  "info-message-background": "var(--color-primary-darker)",
   "blocked-message-background": "var(--info-message-background)",
   "error-message-background": "var(--info-message-background)",
-  "error-message-color": "var(--color-astronaut-blue)",
-  "blocked-message-color": "var(--error-message-color)",
+  "success-message-background": "var(--info-message-background)",
   "warning-message-background": "var(--info-message-background)",
-  "warning-message-color": "var(--color-astronaut-blue)",
+
+  "info-message-color": "var(--color-astronaut-blue)",
+  "blocked-message-color": "var(--info-message-color)",
+  "error-message-color": "var(--info-message-color)",
+  "success-message-color": "var(--info-message-color)",
+  "warning-message-color": "var(--info-message-color)",
 
   "datasheet-read-only-text-color": "var(--color-gray)",
   "datasheet-read-only-background": "var(--color-primary-darkest)",

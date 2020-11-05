@@ -50,3 +50,8 @@
   color: var(--color-primary-dark);
   border-color: var(--color-primary-dark);
 }
+
+.blueNegative {
+  color: var(--color-dark);
+  border-color: var(--color-dark);
+}
