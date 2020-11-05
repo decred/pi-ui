@@ -30,7 +30,7 @@ const darkTheme = {
   "success-icon-checkmark-color": "var(--color-primary-darkest)",
 
   "btn-disabled-background-color": "var(--color-primary-darker)",
-  "btn-disabled-text-color": "var(--info-message-background)",
+  "btn-disabled-text-color": "#152042",
 
   "comment-like-color": "var(--color-gray-blue)",
   "comment-like-color-active": "var(--color-powder-blue)",
