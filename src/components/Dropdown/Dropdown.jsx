@@ -114,15 +114,16 @@ const Dropdown = ({
         dropdownArrowClassName={dropdownArrowClassName}
         ArrowComponent={Arrow}
       />
-      {transition(({ opacity }) => (
-        <animated.ul
-          data-testid="items-list"
-          className={classNames(styles.dropdownList, itemsListClassName)}
-          ref={dropdownListRef}
-          style={{ opacity }}>
-          {renderChildrenItems()}
-        </animated.ul>
-      ))}
+      {dropdownOpenned &&
+        transition(({ opacity }) => (
+          <animated.ul
+            data-testid="items-list"
+            className={classNames(styles.dropdownList, itemsListClassName)}
+            ref={dropdownListRef}
+            style={{ opacity }}>
+            {renderChildrenItems()}
+          </animated.ul>
+        ))}
     </div>
   );
 };

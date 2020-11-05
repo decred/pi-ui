@@ -36,7 +36,7 @@ exports[`RadioButtonGroup component Matches snapshot 1`] = `
             className="dot"
             style={
               Object {
-                "transform": "scale(1)",
+                "transform": " scale(1)",
               }
             }
           />
@@ -67,7 +67,7 @@ exports[`RadioButtonGroup component Matches snapshot 1`] = `
             className="dot"
             style={
               Object {
-                "transform": "scale(0)",
+                "transform": " scale(0)",
               }
             }
           />

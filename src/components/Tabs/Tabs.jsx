@@ -109,7 +109,7 @@ const Tabs = ({
         tabs
       )}
       {transition(({ opacity }) => (
-        <animated.div style={{opacity}} className={contentClassName}>
+        <animated.div style={{ opacity }} className={contentClassName}>
           {children[activeTabIndex] && children[activeTabIndex].props.children}
         </animated.div>
       ))}
