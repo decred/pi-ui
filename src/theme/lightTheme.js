@@ -83,6 +83,7 @@ const lightTheme = {
   "main-color": "var(--color-white)",
   "text-heading-color": "var(--color-gray-dark)",
   "text-heading2-color": "var(--color-primary-dark)",
+  "text-heading3-color": "var(--color-gray-blueish)",
   "text-input-color": "var(--color-gray)",
   "text-secondary-color": "var(--color-gray)",
   "input-border-color": "var(--color-gray-lighter)",

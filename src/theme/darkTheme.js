@@ -41,6 +41,7 @@ const darkTheme = {
   "text-color-light": "var(--color-white)",
   "text-heading-color": "var(--color-powder-blue)",
   "text-heading2-color": "var(--text-heading-color)",
+  "text-heading3-color": "#E9F8FE",
   "text-secondary-color": "var(--color-primary-dark)",
 
   "tab-text-color": "var(--color-gray-blue)",
