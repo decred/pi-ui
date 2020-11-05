@@ -108,7 +108,7 @@
     "lodash": "^4.17.15",
     "react-select": "2.4.4",
     "react-select-event": "^4.1.4",
-    "react-spring": "^8.0.25",
+    "react-spring": "^9.0.0-rc.3",
     "react-tapper": "^0.1.18"
   },
   "resolutions": {
