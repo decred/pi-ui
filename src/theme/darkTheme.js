@@ -79,13 +79,17 @@ const darkTheme = {
   "checkbox-stroke-color": "var(--color-gray-blue)",
   "checkbox-hovered-background-color": "var(--color-primary-darkest)",
 
-  "info-message-background": "#152042",
+  "info-message-background": "var(--color-primary-darker)",
   "blocked-message-background": "var(--info-message-background)",
   "error-message-background": "var(--info-message-background)",
-  "error-message-color": "var(--color-astronaut-blue)",
-  "blocked-message-color": "var(--error-message-color)",
+  "success-message-background": "var(--info-message-background)",
   "warning-message-background": "var(--info-message-background)",
-  "warning-message-color": "var(--color-astronaut-blue)",
+
+  "info-message-color": "var(--color-astronaut-blue)",
+  "blocked-message-color": "var(--info-message-color)",
+  "error-message-color": "var(--info-message-color)",
+  "success-message-color": "var(--info-message-color)",
+  "warning-message-color": "var(--info-message-color)",
 
   "datasheet-read-only-text-color": "var(--color-gray)",
   "datasheet-read-only-background": "var(--color-primary-darkest)",
