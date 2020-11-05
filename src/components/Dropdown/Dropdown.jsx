@@ -93,7 +93,7 @@ const Dropdown = ({
       });
   };
 
-  const transitions = useTransition(dropdownOpenned, null, {
+  const transition = useTransition(dropdownOpenned ? [true] : [], {
     from: { opacity: 0 },
     enter: { opacity: 1 },
     leave: { opacity: 0 },
@@ -115,19 +115,15 @@ const Dropdown = ({
         ArrowComponent={Arrow}
       />
       {dropdownOpenned &&
-        transitions.map(
-          ({ item, key, props }) =>
-            item && (
-              <animated.ul
-                data-testid="items-list"
-                className={classNames(styles.dropdownList, itemsListClassName)}
-                key={key}
-                ref={dropdownListRef}
-                style={props}>
-                {renderChildrenItems()}
-              </animated.ul>
-            )
-        )}
+        transition(({ opacity }) => (
+          <animated.ul
+            data-testid="items-list"
+            className={classNames(styles.dropdownList, itemsListClassName)}
+            ref={dropdownListRef}
+            style={{ opacity }}>
+            {renderChildrenItems()}
+          </animated.ul>
+        ))}
     </div>
   );
 };

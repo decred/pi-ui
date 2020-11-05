@@ -88,7 +88,7 @@ const Tabs = ({
     );
   };
 
-  const transitions = useTransition(activeTabIndex, null, {
+  const transition = useTransition(activeTabIndex, {
     from: { opacity: 0 },
     enter: { opacity: 1 },
     leave: { opacity: 0 },
@@ -108,15 +108,11 @@ const Tabs = ({
       ) : (
         tabs
       )}
-      {transitions.map(({ item, key, props }) => {
-        return (
-          item === activeTabIndex && (
-            <animated.div key={key} style={props} className={contentClassName}>
-              {children[item] && children[item].props.children}
-            </animated.div>
-          )
-        );
-      })}
+      {transition(({ opacity }) => (
+        <animated.div style={{ opacity }} className={contentClassName}>
+          {children[activeTabIndex] && children[activeTabIndex].props.children}
+        </animated.div>
+      ))}
     </>
   );
 };

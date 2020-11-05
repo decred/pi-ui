@@ -33,7 +33,7 @@ describe("Tabs Component", () => {
     const mockHandleSelectTab = jest.fn(() => {
       activeTabIndex = 1;
     });
-    const { getByTestId, queryByText, rerender } = render(
+    const { getByTestId, queryByText, queryAllByText, rerender } = render(
       <ThemeProvider
         themes={{ [DEFAULT_LIGHT_THEME_NAME]: defaultLightTheme }}
         defaultThemeName={DEFAULT_LIGHT_THEME_NAME}>
@@ -66,6 +66,6 @@ describe("Tabs Component", () => {
       </ThemeProvider>
     );
     expect(queryByText(/test1/i)).toBeFalsy();
-    expect(queryByText(/test2/i)).toBeTruthy();
+    expect(queryAllByText(/test2/i)).toBeTruthy();
   });
 });
