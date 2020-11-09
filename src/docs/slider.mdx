@@ -1,0 +1,145 @@
+---
+name: Slider
+menu: Components
+route: /components/slider
+---
+
+import { useState, Fragment } from "react";
+import { Playground, Props } from "docz";
+import { Slider } from "../index";
+
+# Slider
+
+## Slider props
+
+<Props of={Slider} />
+
+## Usage
+
+### Single horizontal slider
+
+<Playground>
+  {() => {
+    const [coordinates, setCoordinates] = useState({ handle1: 0, handle2: 40 });
+    return (
+      <Fragment>
+        <Slider
+          double={false}
+          axis={"x"}
+          max={100}
+          min={0}
+          handles={[
+            {
+              value: coordinates.handle1,
+              onChange: (value) =>
+                setCoordinates((coordinates) => ({
+                  ...coordinates,
+                  handle1: value
+                }))
+            }
+          ]}
+        />
+      </Fragment>
+    );
+  }}
+</Playground>
+
+### Single vertical slider
+
+<Playground>
+  {() => {
+    const [coordinates, setCoordinates] = useState({ handle1: 0, handle2: 40 });
+    return (
+      <Fragment>
+        <Slider
+          double={false}
+          axis={"y"}
+          max={100}
+          min={0}
+          handles={[
+            {
+              value: coordinates.handle1,
+              onChange: (value) =>
+                setCoordinates((coordinates) => ({
+                  ...coordinates,
+                  handle1: value
+                }))
+            }
+          ]}
+        />
+      </Fragment>
+    );
+  }}
+</Playground>
+
+### Double horizontal slider
+
+<Playground>
+  {() => {
+    const [coordinates, setCoordinates] = useState({ handle1: 0, handle2: 40 });
+    return (
+      <Fragment>
+        <Slider
+          double={true}
+          axis={"x"}
+          max={100}
+          min={0}
+          handles={[
+            {
+              value: coordinates.handle1,
+              onChange: (value) =>
+                setCoordinates((coordinates) => ({
+                  ...coordinates,
+                  handle1: value
+                }))
+            },
+            {
+              value: coordinates.handle2,
+              onChange: (value) =>
+                setCoordinates((coordinates) => ({
+                  ...coordinates,
+                  handle2: value
+                }))
+            }
+          ]}
+        />
+      </Fragment>
+    );
+  }}
+</Playground>
+
+### Double vertical slider
+
+<Playground>
+  {() => {
+    const [coordinates, setCoordinates] = useState({ handle1: 0, handle2: 40 });
+    return (
+      <Fragment>
+        <Slider
+          double={true}
+          axis={"y"}
+          max={100}
+          min={0}
+          handles={[
+            {
+              value: coordinates.handle1,
+              onChange: (value) =>
+                setCoordinates((coordinates) => ({
+                  ...coordinates,
+                  handle1: value
+                }))
+            },
+            {
+              value: coordinates.handle2,
+              onChange: (value) =>
+                setCoordinates((coordinates) => ({
+                  ...coordinates,
+                  handle2: value
+                }))
+            }
+          ]}
+        />
+      </Fragment>
+    );
+  }}
+</Playground>
