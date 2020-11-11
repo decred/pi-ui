@@ -161,6 +161,7 @@ const lightTheme = {
   "toggle-bar-color": "var(--color-gray-light)",
 
   /** Dropdown */
+  "dropdown-item-active-color": "var(--color-primary-dark)",
   "dropdown-item-hover-color": "var(--color-primary-dark)",
   "dropdown-arrow-color": "var(--color-gray)",
 
