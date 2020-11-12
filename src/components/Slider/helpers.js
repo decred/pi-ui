@@ -1,3 +1,18 @@
+export const DIMENSIONS_MAP = {
+  x: "width",
+  y: "height"
+};
+
+export const POSITIONS_MAP = {
+  x: "left",
+  y: "top"
+};
+
+export const POSITIONS_MAP_CAPITALIZED = {
+  x: "Left",
+  y: "Top"
+};
+
 export function getClientPosition(e) {
   return e.touches?.length
     ? {

@@ -1,8 +1,14 @@
-import React, { useCallback, useEffect, useMemo, useRef } from "react";
-import styles from "./styles.css";
-import { classNames } from "../../utils";
+import React, { useCallback, useMemo, useRef } from "react";
 import PropTypes from "prop-types";
-import { getClientPosition, addEventListeners } from "./helpers";
+import {
+  getClientPosition,
+  addEventListeners,
+  DIMENSIONS_MAP,
+  POSITIONS_MAP,
+  POSITIONS_MAP_CAPITALIZED
+} from "./helpers";
+import { classNames } from "../../utils";
+import styles from "./styles.css";
 
 function useSliderAux(
   container,
@@ -34,32 +40,23 @@ function useSliderAux(
   }, [value, min, max, axis]);
 
   const change = useCallback(
-    ({ top, left }) => {
+    (position) => {
       if (!onChange) return;
 
-      const { width, height } = container.current.getBoundingClientRect();
-      let dx = 0;
-      let dy = 0;
+      const dimension = container.current.getBoundingClientRect()[
+        DIMENSIONS_MAP[axis]
+      ];
+      let ds = 0;
 
-      if (left < 0) left = 0;
-      if (left > width) left = width;
+      if (position < 0) position = 0;
+      if (position > dimension) position = dimension;
 
-      if (top < 0) top = 0;
-      if (top > height) top = height;
+      ds = (position / dimension) * (max - min);
 
-      if (axis === "x") {
-        dx = (left / width) * (max - min);
-      }
+      const newPosition = (ds !== 0 ? parseInt(ds / step, 10) * step : 0) + min;
 
-      if (axis === "y") {
-        dy = (top / height) * (max - min);
-      }
-
-      const x = (dx !== 0 ? parseInt(dx / step, 10) * step : 0) + min;
-      const y = (dy !== 0 ? parseInt(dy / step, 10) * step : 0) + min;
-
-      if (!double || barrier(axis === "x" ? x : y)) {
-        onChange(axis === "x" ? x : y);
+      if (!double || barrier(newPosition)) {
+        onChange(newPosition);
       }
     },
     [onChange, axis, min, max, step, double, barrier]
@@ -67,10 +64,9 @@ function useSliderAux(
 
   const getPos = useCallback((e) => {
     const clientPos = getClientPosition(e);
-    const left = clientPos.x + start.current.x - offset.current.x;
-    const top = clientPos.y + start.current.y - offset.current.y;
-
-    return { left, top };
+    const position =
+      clientPos[axis] + start.current[axis] - offset.current[axis];
+    return position;
   }, []);
 
   const handleDrag = useCallback(
@@ -115,15 +111,8 @@ function useSliderAux(
       const dom = handle.current;
       const clientPos = getClientPosition(e);
 
-      start.current = {
-        x: dom.offsetLeft,
-        y: dom.offsetTop
-      };
-
-      offset.current = {
-        x: clientPos.x,
-        y: clientPos.y
-      };
+      start.current[axis] = dom[`offset${POSITIONS_MAP_CAPITALIZED[axis]}`];
+      offset.current[axis] = clientPos[axis];
 
       addEventListeners(handleDrag, handleDragEnd);
 
@@ -203,10 +192,9 @@ function useSlider(double, disabled, axis, min, max, step, handles) {
         thumbs[moveSecondThumb].handleDragEnd
       );
 
-      thumbs[moveSecondThumb].change({
-        left: clientPos.x - rect.left,
-        top: clientPos.y - rect.top
-      });
+      thumbs[moveSecondThumb].change(
+        clientPos[axis] - rect[POSITIONS_MAP[axis]]
+      );
 
       if (thumbs[moveSecondThumb].onDragStart) {
         thumbs[moveSecondThumb].onDragStart(e);
@@ -253,39 +241,18 @@ const Slider = ({
   const pos2 = getPosition2;
 
   const valueStyle = {};
+  const handleStyle = { top: "50%", left: "50%" };
+  const handleStyle2 = { top: "50%", left: "50%" };
+
+  handleStyle[POSITIONS_MAP[axis]] = pos[POSITIONS_MAP[axis]] + "%";
 
   if (!double) {
-    if (axis === "x") valueStyle.width = pos.left + "%";
-    if (axis === "y") valueStyle.height = pos.top + "%";
+    valueStyle[DIMENSIONS_MAP[axis]] = pos[POSITIONS_MAP[axis]] + "%";
   } else {
-    if (axis === "x") {
-      valueStyle.left = pos.left + "%";
-      valueStyle.width = pos2.left - pos.left + "%";
-    } else {
-      valueStyle.top = pos.top + "%";
-      valueStyle.height = pos2.top - pos.top + "%";
-    }
-  }
-
-  const handleStyle = {
-    left: pos.left + "%",
-    top: pos.top + "%"
-  };
-
-  let handleStyle2 = {};
-
-  if (double)
-    handleStyle2 = {
-      left: pos2.left + "%",
-      top: pos2.top + "%"
-    };
-
-  if (axis === "x") {
-    handleStyle.top = "50%";
-    if (double) handleStyle2.top = "50%";
-  } else {
-    handleStyle.left = "50%";
-    if (double) handleStyle2.left = "50%";
+    valueStyle[POSITIONS_MAP[axis]] = pos[POSITIONS_MAP[axis]] + "%";
+    valueStyle[DIMENSIONS_MAP[axis]] =
+      pos2[POSITIONS_MAP[axis]] - pos[POSITIONS_MAP[axis]] + "%";
+    handleStyle2[POSITIONS_MAP[axis]] = pos2[POSITIONS_MAP[axis]] + "%";
   }
 
   return (
