@@ -8,7 +8,7 @@ import {
 } from "./helpers";
 import { classNames } from "../../utils";
 import styles from "./styles.css";
-import SliderHandle, { useSliderHandle } from "./SliderHandle";
+import SliderHandle, { useSliderHandle } from "./SliderHandle.jsx";
 
 function useSlider(double, disabled, axis, min, max, step, handles) {
   const container = useRef(null);
