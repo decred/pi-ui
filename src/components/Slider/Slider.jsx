@@ -81,40 +81,26 @@ function useSlider(double, disabled, axis, min, max, step, handles) {
     [axis, disabled, double, handleHooks]
   );
 
-  const sliderHandles = handleHooks.map((handleHook, index) => {
-    const onPositionMemo = handleHook.positionMemo;
-    return (
-      <SliderHandle
-        key={index}
-        ref={handleHook.handle}
-        axis={axis}
-        positionMemo={onPositionMemo}
-        onTouchStart={handleHook.handleMouseDown}
-        onMouseDown={handleHook.handleMouseDown}
-      />
-    );
-  });
-
   const valueStyle = {};
 
   if (double) {
     valueStyle[POSITIONS_MAP[axis]] =
-      handleHooks[0].positionMemo[POSITIONS_MAP[axis]] + "%";
+      handleHooks[0].position[POSITIONS_MAP[axis]] + "%";
 
     valueStyle[DIMENSIONS_MAP[axis]] =
-      handleHooks[1].positionMemo[POSITIONS_MAP[axis]] -
-      handleHooks[0].positionMemo[POSITIONS_MAP[axis]] +
+      handleHooks[1].position[POSITIONS_MAP[axis]] -
+      handleHooks[0].position[POSITIONS_MAP[axis]] +
       "%";
   } else {
     valueStyle[DIMENSIONS_MAP[axis]] =
-      handleHooks[0].positionMemo[POSITIONS_MAP[axis]] + "%";
+      handleHooks[0].position[POSITIONS_MAP[axis]] + "%";
   }
 
   return {
     container,
     handleTrackMouseDown,
     valueStyle,
-    sliderHandles
+    handleHooks
   };
 }
 
@@ -132,7 +118,7 @@ const Slider = ({
     container,
     handleTrackMouseDown,
     valueStyle,
-    sliderHandles
+    handleHooks
   } = useSlider(double, disabled, axis, min, max, step, handles);
 
   return (
@@ -146,12 +132,26 @@ const Slider = ({
       )}
       onTouchStart={handleTrackMouseDown}
       onMouseDown={handleTrackMouseDown}>
-      {double && sliderHandles[1]}
+      {double && (
+        <SliderHandle
+          ref={handleHooks[1].handle}
+          axis={axis}
+          position={handleHooks[1].position}
+          onTouchStart={handleHooks[1].handleMouseDown}
+          onMouseDown={handleHooks[1].handleMouseDown}
+        />
+      )}
       <div
         className={classNames(styles[axis], styles.active)}
         style={valueStyle}
       />
-      {sliderHandles[0]}
+      <SliderHandle
+        ref={handleHooks[0].handle}
+        axis={axis}
+        position={handleHooks[0].position}
+        onTouchStart={handleHooks[0].handleMouseDown}
+        onMouseDown={handleHooks[0].handleMouseDown}
+      />
     </div>
   );
 };

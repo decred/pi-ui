@@ -4,7 +4,7 @@
   content: "";
   width: 18px;
   height: 18px;
-  background-color: #fff;
+  background-color: var(--main-color);
   border-radius: 50%;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
   user-select: none;
@@ -12,44 +12,39 @@
   box-sizing: border-box;
 }
 
-.x.track {
+.track {
   position: relative;
   display: inline-block;
   background-color: var(--btn-disabled-background-color);
   border-radius: 5px;
   user-select: none;
   box-sizing: border-box;
+}
+
+.x.track {
   width: 200px;
   height: 10px;
 }
 
-.x.active {
-  position: absolute;
-  background-color: var(--btn-background-color);
-  border-radius: 5px;
-  user-select: none;
-  box-sizing: border-box;
-  top: 0;
-  height: 100%;
-}
-
 .y.track {
-  position: relative;
-  display: inline-block;
-  background-color: var(--btn-disabled-background-color);
-  border-radius: 5px;
-  user-select: none;
-  box-sizing: border-box;
   width: 10px;
   height: 200px;
 }
 
-.y.active {
+.active {
   position: absolute;
   background-color: var(--btn-background-color);
   border-radius: 5px;
   user-select: none;
   box-sizing: border-box;
+}
+
+.x.active {
+  top: 0;
+  height: 100%;
+}
+
+.y.active {
   left: 0;
   width: 100%;
 }

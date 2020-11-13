@@ -27,7 +27,7 @@ export function useSliderHandle(
   const start = useRef({});
   const offset = useRef({});
 
-  const positionMemo = useMemo(() => {
+  const position = useMemo(() => {
     let newValue = ((value - min) / (max - min)) * 100;
 
     if (newValue > 100) newValue = 100;
@@ -126,7 +126,7 @@ export function useSliderHandle(
   );
 
   return {
-    positionMemo,
+    position,
     handleMouseDown,
     handle,
     handleDrag,
@@ -136,9 +136,9 @@ export function useSliderHandle(
 }
 
 const SliderHandle = React.forwardRef(
-  ({ axis, positionMemo, onTouchStart, onMouseDown }, ref) => {
+  ({ axis, position, onTouchStart, onMouseDown }, ref) => {
     const style = { top: "50%", left: "50%" };
-    style[POSITIONS_MAP[axis]] = positionMemo[POSITIONS_MAP[axis]] + "%";
+    style[POSITIONS_MAP[axis]] = position[POSITIONS_MAP[axis]] + "%";
 
     return (
       <div
@@ -156,7 +156,7 @@ const SliderHandle = React.forwardRef(
 
 SliderHandle.propTypes = {
   axis: PropTypes.string.isRequired,
-  positionMemo: PropTypes.object.isRequired,
+  position: PropTypes.object.isRequired,
   style: PropTypes.object,
   onTouchStart: PropTypes.func.isRequired,
   onMouseDown: PropTypes.func.isRequired

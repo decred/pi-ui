@@ -27,7 +27,8 @@
     // prettier config
     "prettier/prettier": "error",
     "eqeqeq": ["error", "smart"],
-    "comma-dangle": ["error", "never"]
+    "comma-dangle": ["error", "never"],
+    "react/jsx-handler-names": 1
   },
   "overrides": [
     {

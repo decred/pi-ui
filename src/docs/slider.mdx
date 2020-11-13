@@ -6,7 +6,7 @@ route: /components/slider
 
 import { useState, Fragment } from "react";
 import { Playground, Props } from "docz";
-import { Slider } from "../index";
+import { Slider, NumberInput, Checkbox } from "../index";
 
 # Slider
 
@@ -21,13 +21,17 @@ import { Slider } from "../index";
 <Playground>
   {() => {
     const [coordinates, setCoordinates] = useState({ handle1: 0, handle2: 40 });
+    const [min, setMin] = useState(0);
+    const [max, setMax] = useState(100);
+    const [disabled, setDisabled] = useState(false);
     return (
       <Fragment>
         <Slider
           double={false}
+          disabled={disabled}
           axis={"x"}
-          max={100}
-          min={0}
+          max={max}
+          min={min}
           handles={[
             {
               value: coordinates.handle1,
@@ -38,6 +42,31 @@ import { Slider } from "../index";
                 }))
             }
           ]}
+        />
+        <br />
+        <br />
+        <Checkbox
+          label="Disabled"
+          id="single-horizontal-slider-disabled"
+          checked={disabled}
+          onChange={() => setDisabled(!disabled)}
+        />
+        <NumberInput
+          label="Minimum"
+          id="single-horizontal-slider-min"
+          value={min}
+          onChange={(e) => {
+            setMin(e.target.value);
+          }}
+        />
+        <br />
+        <NumberInput
+          label="Maximum"
+          id="single-horizontal-slider-max"
+          value={max}
+          onChange={(e) => {
+            setMax(e.target.value);
+          }}
         />
       </Fragment>
     );
@@ -49,13 +78,17 @@ import { Slider } from "../index";
 <Playground>
   {() => {
     const [coordinates, setCoordinates] = useState({ handle1: 0, handle2: 40 });
+    const [min, setMin] = useState(0);
+    const [max, setMax] = useState(100);
+    const [disabled, setDisabled] = useState(false);
     return (
       <Fragment>
         <Slider
           double={false}
+          disabled={disabled}
           axis={"y"}
-          max={100}
-          min={0}
+          max={max}
+          min={min}
           handles={[
             {
               value: coordinates.handle1,
@@ -66,6 +99,31 @@ import { Slider } from "../index";
                 }))
             }
           ]}
+        />
+        <br />
+        <br />
+        <Checkbox
+          label="Disabled"
+          id="single-vertical-slider-disabled"
+          checked={disabled}
+          onChange={() => setDisabled(!disabled)}
+        />
+        <NumberInput
+          label="Minimum"
+          id="single-vertical-slider-min"
+          value={min}
+          onChange={(e) => {
+            setMin(e.target.value);
+          }}
+        />
+        <br />
+        <NumberInput
+          label="Maximum"
+          id="single-vertical-slider-max"
+          value={max}
+          onChange={(e) => {
+            setMax(e.target.value);
+          }}
         />
       </Fragment>
     );
@@ -77,13 +135,17 @@ import { Slider } from "../index";
 <Playground>
   {() => {
     const [coordinates, setCoordinates] = useState({ handle1: 0, handle2: 40 });
+    const [min, setMin] = useState(0);
+    const [max, setMax] = useState(100);
+    const [disabled, setDisabled] = useState(false);
     return (
       <Fragment>
         <Slider
           double={true}
+          disabled={disabled}
           axis={"x"}
-          max={100}
-          min={0}
+          max={max}
+          min={min}
           handles={[
             {
               value: coordinates.handle1,
@@ -103,6 +165,31 @@ import { Slider } from "../index";
             }
           ]}
         />
+        <br />
+        <br />
+        <Checkbox
+          label="Disabled"
+          id="double-horizontal-slider-disabled"
+          checked={disabled}
+          onChange={() => setDisabled(!disabled)}
+        />
+        <NumberInput
+          label="Minimum"
+          id="double-horizontal-slider-min"
+          value={min}
+          onChange={(e) => {
+            setMin(e.target.value);
+          }}
+        />
+        <br />
+        <NumberInput
+          label="Maximum"
+          id="double-horizontal-slider-max"
+          value={max}
+          onChange={(e) => {
+            setMax(e.target.value);
+          }}
+        />
       </Fragment>
     );
   }}
@@ -113,13 +200,17 @@ import { Slider } from "../index";
 <Playground>
   {() => {
     const [coordinates, setCoordinates] = useState({ handle1: 0, handle2: 40 });
+    const [min, setMin] = useState(0);
+    const [max, setMax] = useState(100);
+    const [disabled, setDisabled] = useState(false);
     return (
       <Fragment>
         <Slider
           double={true}
+          disabled={disabled}
           axis={"y"}
-          max={100}
-          min={0}
+          max={max}
+          min={min}
           handles={[
             {
               value: coordinates.handle1,
@@ -138,6 +229,31 @@ import { Slider } from "../index";
                 }))
             }
           ]}
+        />
+        <br />
+        <br />
+        <Checkbox
+          label="Disabled"
+          id="double-vertical-slider-disabled"
+          checked={disabled}
+          onChange={() => setDisabled(!disabled)}
+        />
+        <NumberInput
+          label="Minimum"
+          id="double-vertical-slider-min"
+          value={min}
+          onChange={(e) => {
+            setMin(e.target.value);
+          }}
+        />
+        <br />
+        <NumberInput
+          label="Maximum"
+          id="double-vertical-slider-max"
+          value={max}
+          onChange={(e) => {
+            setMax(e.target.value);
+          }}
         />
       </Fragment>
     );
