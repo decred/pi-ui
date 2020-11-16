@@ -30,13 +30,13 @@ export function useSliderHandle(
   useEffect(() => {
     if (value > max) onChange(max);
     if (value < min) onChange(min);
-  }, [value, max, min]);
+  }, [value, max, min, onChange]);
 
   useEffect(() => {
     if (double && !barrier(value)) {
       onChange(value - step);
     }
-  }, [double, value, barrier, step]);
+  }, [double, value, barrier, step, onChange]);
 
   const position = useMemo(() => {
     let newValue = ((value - min) / (max - min)) * 100;
