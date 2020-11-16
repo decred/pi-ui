@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useRef } from "react";
+import React, { useEffect, useCallback, useMemo, useRef } from "react";
 import PropTypes from "prop-types";
 import {
   getClientPosition,
@@ -26,6 +26,17 @@ export function useSliderHandle(
   const handle = useRef(null);
   const start = useRef({});
   const offset = useRef({});
+
+  useEffect(() => {
+    if (value > max) onChange(max);
+    if (value < min) onChange(min);
+  }, [value, max, min]);
+
+  useEffect(() => {
+    if (double && !barrier(value)) {
+      onChange(value - step);
+    }
+  }, [double, value, barrier, step]);
 
   const position = useMemo(() => {
     let newValue = ((value - min) / (max - min)) * 100;
