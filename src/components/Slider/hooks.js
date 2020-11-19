@@ -1,4 +1,4 @@
-import { useEffect, useCallback, useMemo, useRef } from "react";
+import { useCallback, useMemo, useRef } from "react";
 import {
   getClientPosition,
   addEventListeners,
@@ -25,16 +25,12 @@ function useSliderHandle(
   const start = useRef();
   const offset = useRef();
 
-  useEffect(() => {
-    if (value > max) onChange(max);
-    if (value < min) onChange(min);
-  }, [value, max, min, onChange]);
+  if (value > max) onChange(max);
+  if (value < min) onChange(min);
 
-  useEffect(() => {
-    if (double && !barrier(value)) {
-      onChange(value - step);
-    }
-  }, [double, value, barrier, step, onChange]);
+  if (double && !barrier(value)) {
+    onChange(value - step);
+  }
 
   const position = useMemo(() => {
     let newValue = ((value - min) / (max - min)) * 100;
@@ -47,28 +43,25 @@ function useSliderHandle(
       : { top: newValue, left: 0 };
   }, [value, min, max, axis]);
 
-  const change = useCallback(
-    (position) => {
-      if (!onChange) return;
+  const change = (position) => {
+    if (!onChange) return;
 
-      const dimension = container.current.getBoundingClientRect()[
-        DIMENSIONS_MAP[axis]
-      ];
-      let ds = 0;
+    const dimension = container.current.getBoundingClientRect()[
+      DIMENSIONS_MAP[axis]
+    ];
+    let ds = 0;
 
-      if (position < 0) position = 0;
-      if (position > dimension) position = dimension;
+    if (position < 0) position = 0;
+    if (position > dimension) position = dimension;
 
-      ds = (position / dimension) * (max - min);
+    ds = (position / dimension) * (max - min);
 
-      const newPosition = (ds !== 0 ? parseInt(ds / step, 10) * step : 0) + min;
+    const newPosition = (ds !== 0 ? parseInt(ds / step, 10) * step : 0) + min;
 
-      if (!double || barrier(newPosition)) {
-        onChange(newPosition);
-      }
-    },
-    [container, onChange, axis, min, max, step, double, barrier]
-  );
+    if (!double || barrier(newPosition)) {
+      onChange(newPosition);
+    }
+  };
 
   const getPos = (e) => {
     const clientPos = getClientPosition(e)[axis];
