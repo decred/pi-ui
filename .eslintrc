@@ -28,7 +28,7 @@
     "prettier/prettier": "error",
     "eqeqeq": ["error", "smart"],
     "comma-dangle": ["error", "never"],
-    "react/jsx-handler-names": 1
+    "react/jsx-handler-names": 0
   },
   "overrides": [
     {
