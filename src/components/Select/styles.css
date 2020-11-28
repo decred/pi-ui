@@ -1,133 +1,95 @@
-.cancelContent {
-  display: inline-block;
-  height: 20px;
+.separator {
+  align-self: stretch;
+  background-color: hsl(0, 0%, 80%);
+  width: 1px;
+  height: auto;
+  margin-left: auto;
 }
 
-.cancelContent svg {
-  fill: #aaa;
-  transition: fill 0.15s ease;
+.valueSelected .separator {
+  margin-left: 5px;
 }
 
-.downArrowContent svg {
-  fill: #aaa;
-  transition: fill 0.15s ease;
+.downArrowContent {
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid hsl(0, 0%, 80%);
 }
 
-.cancelContent svg:hover {
-  fill: darkslategray;
-}
-
-.downArrowContent svg:hover {
-  fill: darkslategray;
+.selectOpen .downArrowContent {
+  border-top: 0;
+  border-bottom: 5px solid #1a59f7;
 }
 
 .cancelContainer {
-  display: inline-block;
-  position: relative;
   cursor: pointer;
-  height: 20px;
+}
+
+.valueSelected .cancelContainer {
+  display: flex;
+  margin-left: auto;
 }
 
 .mySelectDefault .cancelContainer {
   display: none;
-  margin: 0.5em 0.5em 0.5em 0.5em;
-}
-
-.mySelectDefault.valueSelected .cancelContainer {
-  display: inline-block;
-}
-
-.cancelContainer:hover .cancelContent {
-  color: lightgray;
-}
-
-.cancelContainer:active .cancelContent {
-  color: lightblue;
+  margin-right: 0.5em;
 }
 
 .mainSectionWrapper {
   display: flex;
   align-items: center;
   width: 100%;
+  margin-top: 10px;
 }
 
 .selectedDisplay {
   display: inline-block;
   position: relative;
-  margin: 0.5em 0 0.5em 0.5em;
+  margin: 0 0.5em;
   text-align: left;
   vertical-align: middle;
 }
 
-.mySelectDefault.fixedHeight .selectedDisplay {
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-
-.mySelectDefault .fieldset .legend {
-  /*these 3 defs are totally for style. I also like having no border.*/
-  border: 0px solid slategray;
-  background: white;
-  font-style: italic;
-  color: #555;
-
-  /*these 3 defs are what makes the legend overlap the top edge of the selection container.*/
-  position: absolute;
-  top: 0;
-  transform: translateY(-50%);
-
-  /*basic placement of the legend*/
-  padding: 0 0.5em;
-  margin-left: 0.5em;
-}
-
-.mySelectDefault.roundedCorners .fieldset .legend {
-  border-radius: 0.5em;
-}
-
 .mySelectDefault .downArrowContainer {
   height: 20px;
-  margin-left: auto;
   cursor: pointer;
   margin-right: 0.5em;
+  margin-left: 15px;
+  display: flex;
+  justify-items: center;
+  align-items: center;
 }
 
 .mySelectDefault .mySelectDefaultOptions {
   --display: none;
-  background-color: white; /* pure style...if you make this transparent it will not really cover up things beneath it when it pops open*/
+  background-color: white;
   border: 1px solid #ccc;
-
-  text-align: left; /*you should align your options differently if you really want to*/
-
-  /*these 3 entries place the option container directly below the selection box*/
+  text-align: left;
   position: absolute;
   top: 100%;
   left: 0;
   margin-top: 10px;
   padding: 5px 0;
   border-radius: 4px;
-
-  width: 100%; /*option list is officially inside the "fieldset" box so this width ensures the options are the same width as the selection ctonatiner...which isn't necessary*/
-  max-height: 400px; /*having some max height is not strictly necessary, but usually preferable for user experience.*/
-  overflow-y: auto; /*ensures options are scrollable if there are more than height of container*/
-
-  /* border-radius: 0 0 0.5em 0.5em; */
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); /*Make option list appear to be a bit 3-dimensional*/
-
-  z-index: 1000; /*ensure that container for options is on top of everything else*/
+  width: 100%;
+  max-height: 400px;
+  overflow-y: auto;
+  -webkit-box-shadow: 0 1rem 2rem 0 rgba(0, 0, 0, 0.16);
+  -moz-box-shadow: 0 1rem 2rem 0 rgba(0, 0, 0, 0.16);
+  box-shadow: 0 1rem 2rem 0 rgba(0, 0, 0, 0.16);
+  z-index: 1000;
 }
 
-.mySelectDefault.selectOpen .mySelectDefaultOptions {
-  display: block;
-}
-
-.mySelectDefault.selectClosed .mySelectDefaultOptions {
+.selectClosed .mySelectDefaultOptions {
   display: none;
 }
 
 .mySelectDefault .mySelectDefaultOptions div {
   padding: 0.5em 0 0.5em 0.5em;
+  color: var(--tab-text-color);
+  background-color: var(--card-background);
   cursor: pointer;
 }
 
@@ -135,92 +97,57 @@
   background-color: #eee;
 }
 
-.mySelectDefault .mySelectDefaultOptions div.focused_option {
+.mySelectDefault .mySelectDefaultOptions div.focusedOption {
   background-color: #1a59f7;
-  color: white;
+  color: var(--dropdown-item-hover-color);
 }
 
 .mySelectDefault .mySelectDefaultOptions div:active {
-  background-color: #ddd;
-}
-
-.mySelectDefault.roundedCorners .mySelectDefaultOptions div:active {
-  /* border-radius: 0.8em; */
-  background-color: #d4f0fd !important;
-}
-
-.mySelectDefault.roundedCorners
-.mySelectDefaultOptions
-div:hover:not(.focused_option) {
-  /* border-radius: 0.8em; */
-  background-color: #d4f0fd !important;
+  background-color: var(--card-background);
 }
 
 .mySelectDefault {
   position: relative;
   margin-right: 0.5em;
   vertical-align: bottom;
+  font-size: var(--font-size-normal);
 }
 
-/*TODO: Extract out variable styles into separate class: e.g. roundedCorners*/
 .mySelectDefault .fieldset {
-  /* position: relative; all the other pieces of this component (legend, options, selectedvaluedisplay) are all inside so we want to have their placement be relative */
-  /* width: 100%; fieldset is inside the top container .mySelectDefault...so this should probably always be 100%...widths are set on the top container and can be managed with component props */
-
-  /* border: 1px solid #ccc; */
-  /* background-color: white; */
-  /* margin-top: 0.55em; needed to space next items below .5em should nearly overlap with something above it */
-  /* padding: 0.2em 0.2em 0.2em 0.2em; the right padding is much larger to allow for the absolute positioning of the dropdowncontainer */
-
-  /* min-height: 2.2em; this is here to handle empty state not shrinking the field set too much. You can remove it this if you don't mind an empty select being compressed. */
-  /* min-width: 50px; */
-
-  /*these 2 make placement and alignment of selected values and the cancel button easy*/
-  /* display: flex; */
-  /* align-items: center; */
-
-  /* -webkit-align-items: center; */
-  -webkit-box-align: center !important;
-  /* -ms-flex-align: center !important; */
-  align-items: center !important;
-  background-color: hsl(0, 0%, 100%) !important;
-  border-color: hsl(0, 0%, 80%);
-  border-radius: 4px !important;
-  border-style: solid !important;
-  border-width: 1px !important;
-  cursor: default !important;
-  /* display: -webkit-box !important; */
-  /* display: -webkit-flex !important; */
-  /* display: -ms-flexbox !important; */
-  display: flex !important;
-  /* -webkit-flex-wrap: wrap !important; */
-  /* -ms-flex-wrap: wrap !important; */
-  flex-wrap: wrap !important;
-  -webkit-box-pack: justify !important;
-  /* -webkit-justify-content: space-between !important; */
-  /* -ms-flex-pack: justify !important; */
-  justify-content: space-between !important;
-  min-height: 38px !important;
-  outline: 0 !important;
-  position: relative !important;
-  /* -webkit-transition: all 100ms !important; */
-  transition: all 100ms !important;
-  box-sizing: border-box !important;
+  align-items: center;
+  cursor: default;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  min-height: 38px;
+  box-sizing: border-box;
+  background-color: transparent;
+  outline: 0;
+  border: 0;
+  width: 100%;
+  border-bottom: 0.1rem solid var(--input-border-color);
+  font-size: var(--font-size-normal);
+  transition: all 0.25s;
+  line-height: var(--spacing-2);
+  color: var(--text-color);
 }
 
-.mySelectDefault.selectOpen .fieldset {
-  border-color: #2684ff;
-  box-shadow: 0 0 0 1px #2684ff;
+.selectOpen .fieldset {
+  border-color: var(--color-primary);
 }
 
-.mySelectDefault.roundedCorners {
-  border-radius: 0.5em; /*if you change this style you should also change the border radii for downArrowContainer as they need to match to make things look nice.*/
+.textinputLabel {
+  position: absolute;
+  top: 15px;
+  left: 0.5em;
+  color: var(--text-input-color);
+  font-size: var(--font-size-normal);
+  font-weight: var(--font-weight-regular);
+  transition: all 0.25s;
 }
 
-.mySelectDefault.roundedCorners .fieldset {
-  border-radius: 0.5em;
-}
-
-.mySelectDefault.selectOpen.roundedCorners .fieldset {
-  border-radius: 0.5em 0.5em 0 0;
+.selectOpen .fieldset > .textinputLabel,
+.valueSelected .fieldset > .textinputLabel {
+  top: -8px;
+  font-size: var(--font-size-small);
 }
