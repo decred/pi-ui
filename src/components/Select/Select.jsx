@@ -12,24 +12,63 @@ const Select = ({
   defaultValue,
   legendLabel,
   options,
-  nonCancelable
+  cancelable,
+
+  creatable,
+  isValidNewOption,
+  newOptionCreator,
+  promptTextCreator,
+
+  getOptionLabel,
+  getOptionValue,
+
+  optionRenderer,
+  valueRenderer
 }) => {
   const optionContainerRef = useRef(null);
   const dropdownButton = useRef(null);
 
-  const [currentOptionSelected, setCurrentOptionSelected] = useState(
-    (defaultValue && options.find((x) => x.value === defaultValue)) ||
-      blankValue
-  );
-
   const [selectOpen, setSelectOpen] = useState(false);
   const [focusedOptionIndex, setFocusedOptionIndex] = useState(0);
+
+  const [newOption, setNewOption] = useState("");
+  const [addingNewOption, setAddingNewOption] = useState(false);
+
+  const newOptions = useRef([]);
+
+  const getValueKey = getOptionValue || (({ value }) => value);
+  const getLabelKey = getOptionLabel || (({ label }) => label);
+
+  function getOptions() {
+    if (!creatable) return options;
+    const _options = [...options, ...newOptions.current].filter(
+      (item, pos, self) =>
+        self.findIndex((_item) => getValueKey(_item) === getValueKey(item)) ===
+        pos
+    );
+
+    console.log(_options);
+
+    _options.unshift({
+      label: "Type to add a new option",
+      value: ""
+    });
+    return _options;
+  }
+
+  const [currentOptionSelected, setCurrentOptionSelected] = useState(
+    (defaultValue &&
+      getOptions().find((x) => getValueKey(x) === defaultValue)) ||
+      blankValue
+  );
 
   function setOption(option, knownIndex) {
     const index =
       knownIndex ||
-      options.findIndex(
-        (opt) => opt.value === option.value && opt.label === option.label
+      getOptions().findIndex(
+        (opt) =>
+          getValueKey(opt) === getValueKey(option) &&
+          getLabelKey(opt) === getLabelKey(option)
       );
     setCurrentOptionSelected(option);
     setFocusedOptionIndex(index);
@@ -44,7 +83,7 @@ const Select = ({
 
   useHandleKeyboardHook((e) => {
     if (selectOpen) {
-      const maxOptionIndex = options.length - 1;
+      const maxOptionIndex = getOptions().length - 1;
       if (e.key === "ArrowDown") {
         const newIndex =
           focusedOptionIndex === maxOptionIndex ? 0 : focusedOptionIndex + 1;
@@ -63,9 +102,9 @@ const Select = ({
       }
       if (e.key === "Enter") {
         const optionIndex = focusedOptionIndex;
-        const optionByIndex = options[optionIndex];
+        const optionByIndex = getOptions()[optionIndex];
         if (onChange) {
-          onChange(e, optionByIndex.value, optionByIndex);
+          onChange(e, getValueKey(optionByIndex), optionByIndex);
         }
         setOption(optionByIndex, optionIndex);
       }
@@ -77,13 +116,26 @@ const Select = ({
   }
 
   function optionSelected(e) {
-    const optionWrapper = findOptionWrapper(e.target);
-    const optionIndex = parseInt(optionWrapper.getAttribute("index"), 10);
-    const optionByIndex = options[optionIndex];
-    if (onChange) {
-      onChange(e, optionByIndex.value, optionByIndex);
+    if (creatable) {
+      const optionWrapper = findOptionWrapper(e.target);
+      const optionIndex = parseInt(optionWrapper.getAttribute("index"), 10);
+      const optionByIndex = getOptions()[optionIndex];
+      if (onChange) {
+        console.log("optionByIndex", optionByIndex);
+
+        setNewOption(getLabelKey(optionByIndex));
+        onChange(e, getValueKey(optionByIndex), optionByIndex);
+      }
+      setOption(optionByIndex, optionIndex);
+    } else {
+      const optionWrapper = findOptionWrapper(e.target);
+      const optionIndex = parseInt(optionWrapper.getAttribute("index"), 10);
+      const optionByIndex = getOptions()[optionIndex];
+      if (onChange) {
+        onChange(e, getValueKey(optionByIndex), optionByIndex);
+      }
+      setOption(optionByIndex, optionIndex);
     }
-    setOption(optionByIndex, optionIndex);
   }
 
   const openSelect = useCallback(() => {
@@ -100,9 +152,41 @@ const Select = ({
     e.stopPropagation();
   }
 
+  const isValidNewOptionCallback = useCallback(
+    () => isValidNewOption(newOption),
+    [isValidNewOption, newOption]
+  );
+
+  const promptTextCreatorCallback = useCallback(
+    () => promptTextCreator(newOption),
+    [promptTextCreator, newOption]
+  );
+
+  function onCreatableChange(e) {
+    console.log(e.target);
+
+    const _newOption = e.target.value;
+
+    console.log(e.target.value);
+
+    setNewOption(_newOption);
+    setAddingNewOption(
+      !getOptions().find((option) => getLabelKey(option) === _newOption)
+    );
+
+    console.log(newOption, addingNewOption);
+  }
+
+  const newOptionCreatorCallback = () => {
+    newOptions.current.push({ label: newOption, value: newOption });
+    onCreatableChange({ target: { value: newOption } });
+    setSelectOpen(false);
+    newOptionCreator(newOption);
+  };
+
   const coreCssClassNames = classNames(
     styles.mySelectDefault,
-    currentOptionSelected.value && styles.valueSelected,
+    getValueKey(currentOptionSelected) && styles.valueSelected,
     selectOpen ? styles.selectOpen : styles.selectClosed
   );
 
@@ -116,11 +200,21 @@ const Select = ({
           className={styles.mainSectionWrapper}
           onClick={openSelect}
           ref={dropdownButton}>
-          <div className={styles.selectedDisplay}>
-            {currentOptionSelected !== blankValue &&
-              currentOptionSelected.label}
-          </div>
-          {nonCancelable ? null : (
+          {creatable ? (
+            <input
+              className={styles.textinput}
+              value={newOption}
+              onChange={onCreatableChange}
+            />
+          ) : (
+            <div className={styles.selectedDipromptTextCreatorsplay}>
+              {currentOptionSelected !== blankValue &&
+                (valueRenderer
+                  ? valueRenderer(currentOptionSelected)
+                  : getLabelKey(currentOptionSelected))}
+            </div>
+          )}
+          {!cancelable ? null : (
             <div className={styles.cancelContainer} onClick={cancelSelection}>
               <img src={cleanIcon} />
             </div>
@@ -131,15 +225,24 @@ const Select = ({
           </div>
         </div>
         <div className={styles.mySelectDefaultOptions} ref={optionContainerRef}>
-          {options.map((opt, index) => (
-            <div
-              onClick={optionSelected}
-              key={index}
-              index={index}
-              className={index === focusedOptionIndex && styles.focusedOption}>
-              {opt !== blankValue && opt.label}
+          {!addingNewOption &&
+            getOptions().map((opt, index) => (
+              <div
+                onClick={optionSelected}
+                key={index}
+                index={index}
+                className={
+                  index === focusedOptionIndex && styles.focusedOption
+                }>
+                {opt !== blankValue &&
+                  (optionRenderer ? optionRenderer(opt) : getLabelKey(opt))}
+              </div>
+            ))}
+          {addingNewOption && isValidNewOptionCallback(newOption) && (
+            <div onClick={newOptionCreatorCallback}>
+              {promptTextCreatorCallback()}
             </div>
-          ))}
+          )}
         </div>
       </div>
     </div>
@@ -151,14 +254,30 @@ Select.propTypes = {
   options: PropTypes.array,
   defaultValue: PropTypes.object,
   legendLabel: PropTypes.string,
-  nonCancelable: PropTypes.bool
+  cancelable: PropTypes.bool,
+  creatable: PropTypes.bool,
+  isValidNewOption: PropTypes.func,
+  newOptionCreator: PropTypes.func,
+  promptTextCreator: PropTypes.func,
+  getOptionLabel: PropTypes.func,
+  getOptionValue: PropTypes.func,
+  optionRenderer: PropTypes.func,
+  valueRenderer: PropTypes.func
 };
 
 Select.defaultProps = {
   options: [],
   defaultValue: blankValue,
   legendLabel: "",
-  nonCancelable: false
+  cancelable: false,
+  creatable: false,
+  isValidNewOption: undefined,
+  newOptionCreator: undefined,
+  promptTextCreator: undefined,
+  getOptionLabel: undefined,
+  getOptionValue: undefined,
+  optionRenderer: undefined,
+  valueRenderer: undefined
 };
 
 export default Select;

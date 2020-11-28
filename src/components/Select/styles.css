@@ -136,6 +136,17 @@
   border-color: var(--color-primary);
 }
 
+.textinput {
+  background-color: transparent;
+  outline: 0;
+  border: 0;
+  width: 100%;
+  font-size: var(--font-size-normal);
+  transition: all 0.25s;
+  line-height: var(--spacing-2);
+  color: var(--text-color);
+}
+
 .textinputLabel {
   position: absolute;
   top: 15px;

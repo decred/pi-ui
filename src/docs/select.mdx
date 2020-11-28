@@ -42,7 +42,135 @@ import { Select } from "../index";
           options={options}
           value={selected}
           onChange={selectChangeHandler}
-          legendLabel={"Teste"}
+          legendLabel={"Test"}
+        />
+      </Fragment>
+    );
+  }}
+</Playground>
+
+### Creatable select
+
+<Playground>
+  {() => {
+    const options = [{
+      value: 'top',
+      label: 'Top'
+    }, {
+      value: 'new',
+      label: 'New'
+    }, {
+      value: 'old',
+      label: 'Old'
+    }];
+    const [selected, setSelected] = useState({
+      value: 'old',
+      label: 'Old'
+    });
+    const selectChangeHandler = (option) => {
+      setSelected(option);
+    };
+    const isValidNewOption = (newOption) => newOption !== "Hello";
+
+    const newOptionCreator = (option) => alert("Click");
+
+    const promptTextCreator = (newOption) => <span>Add {newOption}</span>;
+
+    return (
+      <Fragment>
+      	<Select 
+          options={options}
+          value={selected}
+          onChange={selectChangeHandler}
+          legendLabel={"Test"}
+          creatable={true}
+          isValidNewOption={isValidNewOption}
+          newOptionCreator={newOptionCreator}
+          promptTextCreator={promptTextCreator}
+        />
+      </Fragment>
+    );
+  }}
+</Playground>
+
+### Custom label and value
+
+<Playground>
+  {() => {
+    const options = [{
+      value: 'top',
+      label: 'Top'
+    }, {
+      value: 'new',
+      label: 'New'
+    }, {
+      value: 'old',
+      label: 'Old'
+    }];
+    const [selected, setSelected] = useState({
+      value: 'old',
+      label: 'Old'
+    });
+    const selectChangeHandler = (option) => {
+      setSelected(option);
+    };
+
+    return (
+      <Fragment>
+      	<Select 
+          options={options}
+          value={selected}
+          onChange={selectChangeHandler}
+          legendLabel={"Test"}
+          getOptionLabel={({value}) => value}
+          getOptionValue={({label}) => label}
+        />
+      </Fragment>
+    );
+  }}
+</Playground>
+
+### Custom option and value renderers
+
+<Playground>
+  {() => {
+    const options = [{
+      value: 'top',
+      label: 'Top'
+    }, {
+      value: 'new',
+      label: 'New'
+    }, {
+      value: 'old',
+      label: 'Old'
+    }];
+    const [selected, setSelected] = useState({
+      value: 'old',
+      label: 'Old'
+    });
+    const selectChangeHandler = (option) => {
+      setSelected(option);
+    };
+
+    const customOptionRenderer = ({label}) =>
+      <div style={{backgroundColor: "green"}}>
+        {label}
+      </div>;
+
+    const customValueRenderer = ({label}) =>
+      <div style={{backgroundColor: "red"}}>
+        {label}
+      </div>;
+
+    return (
+      <Fragment>
+      	<Select 
+          options={options}
+          value={selected}
+          onChange={selectChangeHandler}
+          legendLabel={"Test"}
+          optionRenderer={customOptionRenderer}
+          valueRenderer={customValueRenderer}
         />
       </Fragment>
     );
