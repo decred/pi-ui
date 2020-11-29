@@ -36,9 +36,18 @@ export function useClickOutside(onClickHandler) {
 }
 
 export function useHandleKeyboardHook(onTypeHandler) {
-  const handleKeyboard = useCallback((event) => onTypeHandler(event), [
-    onTypeHandler
-  ]);
+  const handleKeyboard = useCallback(
+    (event) => {
+      if (
+        event.key === "ArrowDown" ||
+        event.key === "ArrowUp" ||
+        event.key === "Enter"
+      )
+        event.preventDefault();
+      onTypeHandler(event);
+    },
+    [onTypeHandler]
+  );
 
   useEffect(() => {
     // Bind the event listener
