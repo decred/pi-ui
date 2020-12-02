@@ -6,7 +6,7 @@ route: /components/select
 
 import { useState, Fragment } from "react";
 import { Playground, Props } from "docz";
-import { Select, Creatable, Multi, Checkbox, Text, TextInput } from "../index";
+import { Select, Creatable, MultiSelect, Checkbox, Text, TextInput } from "../index";
 
 # Select
 
@@ -47,8 +47,7 @@ import { Select, Creatable, Multi, Checkbox, Text, TextInput } from "../index";
           clearable={clearable}
           separator={separator}
           options={options}
-          value={selected}
-          defaultValue={"new"}
+          defaultValue={selected}
           onChange={selectChangeHandler}
           filterOptions={({label}) => (label !== filter)}
           label={"Basic select"}
@@ -111,7 +110,7 @@ import { Select, Creatable, Multi, Checkbox, Text, TextInput } from "../index";
       <Fragment>
       	<Select 
           options={options}
-          value={selected}
+          defaultValue={selected}
           onChange={selectChangeHandler}
           optionRenderer={customRenderer}
           valueRenderer={customRenderer}
@@ -163,9 +162,9 @@ import { Select, Creatable, Multi, Checkbox, Text, TextInput } from "../index";
           clearable={clearable}
           separator={separator}
           options={options}
-          value={selected}
+          defaultValue={selected}
           onChange={selectChangeHandler}
-          filterOptions={({label}) => (label !== filter)}
+          filterOptions={({label}) => (!filter || label !== filter)}
           label={"Creatable"}
           typeLabel={"Just type to add a new option"}
           error={"No! You can't add this option."}
@@ -186,10 +185,10 @@ import { Select, Creatable, Multi, Checkbox, Text, TextInput } from "../index";
   }}
 </Playground>
 
-# Multi
+# Multi select
 
-## Multi props
-<Props of={Multi} />
+## Multi select props
+<Props of={MultiSelect} />
 
 ## Usage
 
@@ -206,8 +205,8 @@ import { Select, Creatable, Multi, Checkbox, Text, TextInput } from "../index";
       label: 'Old'
     }];
     const [selected, setSelected] = useState({
-      value: 'new',
-      label: 'New'
+      value: 'top',
+      label: 'Top'
     });
     const [disabled, setDisabled] = useState(false);
     const [clearable, setClearable] = useState(false);
@@ -217,12 +216,12 @@ import { Select, Creatable, Multi, Checkbox, Text, TextInput } from "../index";
     };
     return (
       <Fragment>
-      	<Multi 
+      	<MultiSelect 
           disabled={disabled}
           clearable={clearable}
           separator={separator}
           options={options}
-          value={selected}
+          defaultValues={[selected]}
           onChange={selectChangeHandler}
           label={"Multi select"}
         />

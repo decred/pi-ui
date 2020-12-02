@@ -4,19 +4,16 @@ export function useClickOutside(onClickHandler) {
   const ref1 = useRef();
   const ref2 = useRef();
 
-  const handleClick = useCallback(
-    (event) => {
-      if (
-        ref1.current &&
-        !ref1.current.contains(event.target) &&
-        ref2.current &&
-        !ref2.current.contains(event.target)
-      ) {
-        onClickHandler();
-      }
-    },
-    [onClickHandler]
-  );
+  const handleClick = (event) => {
+    if (
+      ref1.current &&
+      !ref1.current.contains(event.target) &&
+      ref2.current &&
+      !ref2.current.contains(event.target)
+    ) {
+      onClickHandler();
+    }
+  };
 
   useEffect(() => {
     // Bind the event listener
@@ -59,4 +56,11 @@ export function useHandleKeyboardHook(onTypeHandler) {
   });
 }
 
-export function handleKeyboard() {}
+export function usePrevious(value) {
+  const ref = useRef();
+  useEffect(() => {
+    ref.current = value;
+  }, [value]);
+
+  return ref.current;
+}

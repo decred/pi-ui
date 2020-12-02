@@ -91,10 +91,7 @@ const CreatableSelect = ({
           <input
             disabled={disabled}
             className={styles.input}
-            value={
-              newOption ||
-              (menuOpened && !newOption ? "" : getLabelKey(selectedOption))
-            }
+            value={newOption}
             onChange={onCreatableChange}
           />
           {clearable && (

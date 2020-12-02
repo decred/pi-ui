@@ -1,5 +1,5 @@
 import { useState, useRef, useCallback, useEffect } from "react";
-import { useClickOutside, useHandleKeyboardHook } from "../hooks";
+import { useClickOutside, useHandleKeyboardHook, usePrevious } from "../hooks";
 
 export function useMultiSelect(
   disabled,
@@ -27,7 +27,9 @@ export function useMultiSelect(
 
   const [selectedOptions, setSelectedOptions] = useState(
     _options.filter((_option) =>
-      defaultValues.includes(getValueKey(_option))
+      defaultValues.find(
+        (defaultValue) => getValueKey(defaultValue) === getValueKey(_option)
+      )
     ) || []
   );
 
@@ -39,11 +41,13 @@ export function useMultiSelect(
     if (autoFocus) setMenuOpened(true);
   }, [disabled, autoFocus]);
 
-  // useEffect(() => {
-  //   if (disabled) return;
-  //   // if (filterOptions)
-  //   // setSelectedOptions(selectedOptions.filter(filterOptions));
-  // }, [disabled, selectedOptions, filterOptions]);
+  const previousSelectedOptions = usePrevious(selectedOptions);
+
+  useEffect(() => {
+    if (disabled) return;
+    if (filterOptions && previousSelectedOptions !== selectedOptions)
+      setSelectedOptions(selectedOptions.filter(filterOptions));
+  }, [disabled, selectedOptions, filterOptions, previousSelectedOptions]);
 
   const removeSelectedOption = (option) => {
     if (disabled) return;

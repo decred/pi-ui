@@ -33,6 +33,7 @@
   left: 0.8rem;
   color: var(--text-input-color);
   transition: all 0.25s;
+  pointer-events: none;
 }
 
 .menuOpened .fieldset > .label,

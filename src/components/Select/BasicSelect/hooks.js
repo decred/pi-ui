@@ -27,7 +27,8 @@ export function useBasicSelect(
   const getLabelKey = getOptionLabel || defaultLabelKeyGetter;
 
   const [selectedOption, setSelectedOption] = useState(
-    (defaultValue && _options.find((x) => getValueKey(x) === defaultValue)) ||
+    (defaultValue &&
+      _options.find((x) => getValueKey(x) === getValueKey(defaultValue))) ||
       blankValue
   );
 

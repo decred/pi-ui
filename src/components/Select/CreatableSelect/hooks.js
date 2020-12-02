@@ -1,5 +1,5 @@
 import { useState, useRef, useCallback, useEffect } from "react";
-import { useClickOutside, useHandleKeyboardHook } from "../hooks";
+import { useClickOutside, useHandleKeyboardHook, usePrevious } from "../hooks";
 import { blankValue } from "../helpers";
 
 export function useCreatableSelect(
@@ -43,7 +43,8 @@ export function useCreatableSelect(
   });
 
   const [selectedOption, setSelectedOption] = useState(
-    (defaultValue && _options.find((x) => getValueKey(x) === defaultValue)) ||
+    (defaultValue &&
+      _options.find((x) => getValueKey(x) === getValueKey(defaultValue))) ||
       blankValue
   );
 
@@ -54,26 +55,33 @@ export function useCreatableSelect(
   useEffect(() => {
     if (disabled) {
       setMenuOpened(false);
-      setNewOption("");
+      setNewOption(getLabelKey(selectedOption));
       return;
     }
     if (autoFocus) setMenuOpened(true);
-  }, [disabled, autoFocus]);
+  }, [disabled, getLabelKey, selectedOption, autoFocus]);
+
+  const previousObjects = usePrevious({ showError, newOption });
+  const previousShowError = previousObjects?.showError;
+  const previousNewOption = previousObjects?.newOption;
 
   useEffect(() => {
     if (disabled) return;
-    if (filterOptions && !filterOptions(selectedOption))
-      setSelectedOption(blankValue);
-  }, [disabled, selectedOption, filterOptions]);
+    if (filterOptions) {
+      if (!filterOptions(selectedOption)) setSelectedOption(blankValue);
+      if (!filterOptions({ label: newOption, value: newOption }))
+        setNewOption(previousNewOption);
+    }
+  }, [disabled, selectedOption, filterOptions, newOption, previousNewOption]);
 
   useEffect(() => {
     if (showError) {
       setAddingNewOption(false);
       setMenuOpened(false);
-    } else {
+    } else if (previousShowError) {
       setMenuOpened(true);
     }
-  }, [showError]);
+  }, [previousShowError, showError]);
 
   const setOption = (option, knownIndex) => {
     const index =
@@ -88,13 +96,18 @@ export function useCreatableSelect(
     setMenuOpened(false);
   };
 
-  useClickOutside(() => {
+  const clickOutside = useCallback(() => {
     setFocusedOptionIndex(0);
     setAddingNewOption(false);
-    setNewOption("");
+    setNewOption(getLabelKey(selectedOption));
     setMenuOpened(false);
     setShowError(false);
-  })(optionContainerRef.current, dropdownRef.current);
+  }, [getLabelKey, selectedOption]);
+
+  useClickOutside(clickOutside)(
+    optionContainerRef.current,
+    dropdownRef.current
+  );
 
   useHandleKeyboardHook((e) => {
     if (menuOpened) {
@@ -162,7 +175,6 @@ export function useCreatableSelect(
 
   const onCreatableChange = (e) => {
     const _newOption = e.target.value;
-    const _newOptionObject = { label: _newOption, value: _newOption };
 
     if (!isValidNewOption(_newOption)) {
       setShowError(true);
@@ -170,12 +182,10 @@ export function useCreatableSelect(
       return;
     }
 
-    setShowError(false);
-    let optionAllowed =
+    const optionAllowed =
       _newOption &&
       !_options.find((option) => getLabelKey(option) === _newOption);
-    if (filterOptions)
-      optionAllowed = optionAllowed && filterOptions(_newOptionObject);
+    setShowError(false);
     setAddingNewOption(optionAllowed);
     setNewOption(_newOption);
   };
