@@ -4,7 +4,7 @@
   content: "";
   width: 1.8rem;
   height: 1.8rem;
-  background-color: var(--main-color);
+  background-color: var(--color-white);
   border-radius: 50%;
   box-shadow: 0 0.1rem 0.1rem rgba(0, 0, 0, 0.5);
   user-select: none;

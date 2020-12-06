@@ -31,10 +31,10 @@ const Slider = ({
       {...props}
       ref={container}
       className={classNames(
-        className,
         styles[axis],
         styles.track,
-        disabled && styles.disabled
+        disabled && styles.disabled,
+        className
       )}
       onTouchStart={handleTrackMouseDown}
       onMouseDown={handleTrackMouseDown}>

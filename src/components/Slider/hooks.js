@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useRef } from "react";
+import { useCallback, useEffect, useMemo, useRef } from "react";
 import {
   getClientPosition,
   addEventListeners,
@@ -25,8 +25,10 @@ function useSliderHandle(
   const start = useRef();
   const offset = useRef();
 
-  if (value > max) onChange(max);
-  if (value < min) onChange(min);
+  useEffect(() => {
+    if (value > max) onChange(max);
+    if (value < min) onChange(min);
+  }, [value, min, max, onChange]);
 
   if (double && !barrier(value)) {
     onChange(value - step);
