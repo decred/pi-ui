@@ -9,8 +9,8 @@ export function useClickOutside(onClickHandler, hasNoOptions = false) {
       (ref1.current &&
         !ref1.current.contains(event.target) &&
         ref2.current &&
-        !ref2.current.contains(event.target))
-      || hasNoOptions
+        !ref2.current.contains(event.target)) ||
+      hasNoOptions
     ) {
       onClickHandler();
     }
@@ -34,8 +34,8 @@ export function useClickOutside(onClickHandler, hasNoOptions = false) {
 }
 
 export function useHandleKeyboardHook(onTypeHandler) {
-  const handleKeyboard = 
-  // useCallback(
+  const handleKeyboard =
+    // useCallback(
     (event) => {
       if (
         event.key === "ArrowDown" ||
@@ -45,7 +45,7 @@ export function useHandleKeyboardHook(onTypeHandler) {
         event.preventDefault();
       onTypeHandler(event);
     };
-    // [onTypeHandler]
+  // [onTypeHandler]
   // );
 
   useEffect(() => {

@@ -32,35 +32,42 @@ export function useCreatableSelect(
   const getValueKey = getOptionValue || defaultValueKeyGetter;
   const getLabelKey = getOptionLabel || defaultLabelKeyGetter;
 
-  const [_options, setOptions] = useState((() => {
-    let __options = [...options, ...newOptions.current].filter(
-      (item, pos, self) =>
-        self.findIndex((_item) => getLabelKey(_item) === getLabelKey(item)) ===
-        pos
-    );
-    __options = filterOptions ? __options.filter(filterOptions) : __options;
-    __options.unshift({
-      label: typeLabel || "Type to add a new option",
-      value: ""
-    });
-    return __options;
-  })());
+  const [_options, setOptions] = useState(
+    (() => {
+      let __options = [...options, ...newOptions.current].filter(
+        (item, pos, self) =>
+          self.findIndex(
+            (_item) => getLabelKey(_item) === getLabelKey(item)
+          ) === pos
+      );
+      __options = filterOptions ? __options.filter(filterOptions) : __options;
+      __options.unshift({
+        label: typeLabel || "Type to add a new option",
+        value: ""
+      });
+      return __options;
+    })()
+  );
 
-  const previousObjects = usePrevious({ showError, newOption, addingNewOption });
+  const previousObjects = usePrevious({
+    showError,
+    newOption,
+    addingNewOption
+  });
   const previousShowError = previousObjects?.showError;
   const previousNewOption = previousObjects?.newOption;
   const previousAddingNewOption = previousObjects?.addingNewOption;
 
   const [selectedOption, setSelectedOption] = useState(
     (defaultValue &&
-      _options.find((_option) => getValueKey(_option) === getValueKey(defaultValue))) ||
-    blankValue
+      _options.find(
+        (_option) => getValueKey(_option) === getValueKey(defaultValue)
+      )) ||
+      blankValue
   );
 
   const [newOption, setNewOption] = useState(
-    defaultValue ?
-      getLabelKey(defaultValue) :
-      ""
+    defaultValue ? getLabelKey(defaultValue) : ""
   );
 
   const [addingNewOption, setAddingNewOption] = useState(false);
@@ -94,37 +101,51 @@ export function useCreatableSelect(
   }, [previousShowError, showError]);
 
   useEffect(() => {
-    if (addingNewOption !== previousAddingNewOption && addingNewOption && newOption) {
+    if (
+      addingNewOption !== previousAddingNewOption &&
+      addingNewOption &&
+      newOption
+    ) {
       setOptions(
         (() => {
           let __options = [...options, ...newOptions.current].filter(
             (item, pos, self) =>
-              self.findIndex((_item) => getLabelKey(_item) === getLabelKey(item)) ===
-              pos
+              self.findIndex(
+                (_item) => getLabelKey(_item) === getLabelKey(item)
+              ) === pos
           );
-          __options = (filterOptions ? __options.filter(filterOptions) : __options);
+          __options = filterOptions
+            ? __options.filter(filterOptions)
+            : __options;
 
           if (isSearchable)
-            __options = __options.filter(
-              __option => getLabelKey(__option).toLowerCase()?.includes(newOption.toLowerCase())
+            __options = __options.filter((__option) =>
+              getLabelKey(__option)
+                .toLowerCase()
+                ?.includes(newOption.toLowerCase())
             );
           return __options;
         })()
       );
     } else if (addingNewOption != previousAddingNewOption && !addingNewOption) {
-      setOptions((() => {
-        let __options = [...options, ...newOptions.current].filter(
-          (item, pos, self) =>
-            self.findIndex((_item) => getLabelKey(_item) === getLabelKey(item)) ===
-            pos
-        );
-        __options = filterOptions ? __options.filter(filterOptions) : __options;
-        __options.unshift({
-          label: typeLabel || "Type to add a new option",
-          value: ""
-        });
-        return __options;
-      })());
+      setOptions(
+        (() => {
+          let __options = [...options, ...newOptions.current].filter(
+            (item, pos, self) =>
+              self.findIndex(
+                (_item) => getLabelKey(_item) === getLabelKey(item)
+              ) === pos
+          );
+          __options = filterOptions
+            ? __options.filter(filterOptions)
+            : __options;
+          __options.unshift({
+            label: typeLabel || "Type to add a new option",
+            value: ""
+          });
+          return __options;
+        })()
+      );
     }
   }, [
     addingNewOption,
@@ -181,15 +202,25 @@ export function useCreatableSelect(
       const maxOptionIndex = _options.length - 1 + (addingNewOption ? 1 : 0);
       if (e.key === "ArrowDown") {
         const newIndex =
-          focusedOptionIndex === maxOptionIndex ? (!addingNewOption ? 1 : 0) : focusedOptionIndex + 1;
-        if (!(optionContainerRef.current?.querySelector(`div[index="${newIndex}"]`)))
+          focusedOptionIndex === maxOptionIndex
+            ? !addingNewOption
+              ? 1
+              : 0
+            : focusedOptionIndex + 1;
+        if (
+          !optionContainerRef.current?.querySelector(`div[index="${newIndex}"]`)
+        )
           return;
         setFocusedOptionIndex(newIndex);
       }
       if (e.key === "ArrowUp") {
         const newIndex =
-          focusedOptionIndex === (!addingNewOption ? 1 : 0) ? maxOptionIndex : focusedOptionIndex - 1;
-        if (!(optionContainerRef.current?.querySelector(`div[index="${newIndex}"]`)))
+          focusedOptionIndex === (!addingNewOption ? 1 : 0)
+            ? maxOptionIndex
+            : focusedOptionIndex - 1;
+        if (
+          !optionContainerRef.current?.querySelector(`div[index="${newIndex}"]`)
+        )
           return;
         setFocusedOptionIndex(newIndex);
       }

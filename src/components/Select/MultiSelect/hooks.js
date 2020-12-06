@@ -26,16 +26,22 @@ export function useMultiSelect(
   const getValueKey = getOptionValue || defaultValueKeyGetter;
   const getLabelKey = getOptionLabel || defaultLabelKeyGetter;
 
-  const [_options, setOptions] = useState(filterOptions ? options.filter(filterOptions) : options);
+  const [_options, setOptions] = useState(
+    filterOptions ? options.filter(filterOptions) : options
+  );
 
   useEffect(() => {
     if (isSearchable) {
       if (searchingFor)
-        setOptions((filterOptions ? options.filter(filterOptions) : options).filter(
-          _option => getLabelKey(_option).toLowerCase()?.includes(searchingFor.toLowerCase())
-        ));
-      else
-        setOptions(filterOptions ? options.filter(filterOptions) : options);
+        setOptions(
+          (filterOptions ? options.filter(filterOptions) : options).filter(
+            (_option) =>
+              getLabelKey(_option)
+                .toLowerCase()
+                ?.includes(searchingFor.toLowerCase())
+          )
+        );
+      else setOptions(filterOptions ? options.filter(filterOptions) : options);
     } else {
       setOptions(filterOptions ? options.filter(filterOptions) : options);
     }
@@ -67,8 +73,7 @@ export function useMultiSelect(
   }, [disabled, selectedOptions, filterOptions, previousSelectedOptions]);
 
   useEffect(() => {
-    if (isSearchable)
-      setMenuOpened(_options.length > 0);
+    if (isSearchable) setMenuOpened(_options.length > 0);
   }, [isSearchable, _options]);
 
   const removeSelectedOption = (option) => {
@@ -116,7 +121,11 @@ export function useMultiSelect(
         case "ArrowDown": {
           const newIndex =
             focusedOptionIndex === maxOptionIndex ? 0 : focusedOptionIndex + 1;
-          if (!(optionContainerRef.current?.querySelector(`div[index="${newIndex}"]`)))
+          if (
+            !optionContainerRef.current?.querySelector(
+              `div[index="${newIndex}"]`
+            )
+          )
             return;
           setFocusedOptionIndex(newIndex);
           break;
@@ -124,7 +133,11 @@ export function useMultiSelect(
         case "ArrowUp": {
           const newIndex =
             focusedOptionIndex === 0 ? maxOptionIndex : focusedOptionIndex - 1;
-          if (!(optionContainerRef.current?.querySelector(`div[index="${newIndex}"]`)))
+          if (
+            !optionContainerRef.current?.querySelector(
+              `div[index="${newIndex}"]`
+            )
+          )
             return;
           setFocusedOptionIndex(newIndex);
           break;
@@ -146,7 +159,11 @@ export function useMultiSelect(
           break;
         }
         default: {
-          if (isSearchable && !searchingFor && String.fromCharCode(e.keyCode).match(/(\w|\s)/g))
+          if (
+            isSearchable &&
+            !searchingFor &&
+            String.fromCharCode(e.keyCode).match(/(\w|\s)/g)
+          )
             setSearchingFor(e.key);
         }
       }
@@ -184,7 +201,7 @@ export function useMultiSelect(
   const onSearch = useCallback((e) => {
     const searchValue = e.target.value;
     setSearchingFor(searchValue);
-  }, [])
+  }, []);
 
   return {
     _options,
