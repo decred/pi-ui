@@ -22,6 +22,8 @@ const Slider = ({
     handleHooks
   } = useSlider(double, disabled, axis, min, max, step, handles);
 
+  const [leftHandleHook, rightHandleHook] = handleHooks;
+
   return (
     <div
       {...props}
@@ -35,11 +37,11 @@ const Slider = ({
       onMouseDown={handleTrackMouseDown}>
       {double && (
         <SliderHandle
-          ref={handleHooks[1].handle}
+          ref={rightHandleHook.handle}
           axis={axis}
-          position={handleHooks[1].position}
-          onTouchStart={handleHooks[1].handleMouseDown}
-          onMouseDown={handleHooks[1].handleMouseDown}
+          position={rightHandleHook.position}
+          onTouchStart={rightHandleHook.handleMouseDown}
+          onMouseDown={rightHandleHook.handleMouseDown}
         />
       )}
       <div
@@ -47,11 +49,11 @@ const Slider = ({
         style={valueStyle}
       />
       <SliderHandle
-        ref={handleHooks[0].handle}
+        ref={leftHandleHook.handle}
         axis={axis}
-        position={handleHooks[0].position}
-        onTouchStart={handleHooks[0].handleMouseDown}
-        onMouseDown={handleHooks[0].handleMouseDown}
+        position={leftHandleHook.position}
+        onTouchStart={leftHandleHook.handleMouseDown}
+        onMouseDown={leftHandleHook.handleMouseDown}
       />
     </div>
   );
