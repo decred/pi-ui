@@ -51,7 +51,7 @@ export function useBasicSelect(
   const [selectedOption, setSelectedOption] = useState(
     (defaultValue &&
       _options.find((x) => getValueKey(x) === getValueKey(defaultValue))) ||
-      blankValue
+    blankValue
   );
 
   useEffect(() => {
@@ -70,8 +70,9 @@ export function useBasicSelect(
   }, [disabled, selectedOption, filterOptions]);
 
   useEffect(() => {
-    if (isSearchable) setMenuOpened(_options.length > 0);
-  }, [isSearchable, _options]);
+    if (isSearchable && searchingFor)
+      setMenuOpened(_options.length > 0);
+  }, [isSearchable, searchingFor, _options]);
 
   const setOption = (option, knownIndex) => {
     const index =

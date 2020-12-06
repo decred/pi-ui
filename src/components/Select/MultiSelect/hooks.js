@@ -73,8 +73,9 @@ export function useMultiSelect(
   }, [disabled, selectedOptions, filterOptions, previousSelectedOptions]);
 
   useEffect(() => {
-    if (isSearchable) setMenuOpened(_options.length > 0);
-  }, [isSearchable, _options]);
+    if (isSearchable && searchingFor)
+      setMenuOpened(_options.length > 0);
+  }, [isSearchable, searchingFor, _options]);
 
   const removeSelectedOption = (option) => {
     if (disabled) return;
