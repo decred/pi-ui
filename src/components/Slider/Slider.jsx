@@ -13,6 +13,8 @@ const Slider = ({
   max,
   step,
   handles,
+  className,
+  rangeClassName,
   ...props
 }) => {
   const {
@@ -31,7 +33,8 @@ const Slider = ({
       className={classNames(
         styles[axis],
         styles.track,
-        disabled && styles.disabled
+        disabled && styles.disabled,
+        className
       )}
       onTouchStart={handleTrackMouseDown}
       onMouseDown={handleTrackMouseDown}>
@@ -42,10 +45,11 @@ const Slider = ({
           position={rightHandleHook.position}
           onTouchStart={rightHandleHook.handleMouseDown}
           onMouseDown={rightHandleHook.handleMouseDown}
+          className={handles[1].className}
         />
       )}
       <div
-        className={classNames(styles[axis], styles.active)}
+        className={classNames(styles[axis], styles.active, rangeClassName)}
         style={valueStyle}
       />
       <SliderHandle
@@ -54,6 +58,7 @@ const Slider = ({
         position={leftHandleHook.position}
         onTouchStart={leftHandleHook.handleMouseDown}
         onMouseDown={leftHandleHook.handleMouseDown}
+        className={handles[0].className}
       />
     </div>
   );
@@ -71,9 +76,12 @@ Slider.propTypes = {
       value: PropTypes.number,
       onChange: PropTypes.func,
       onDragStart: PropTypes.func,
-      onDragEnd: PropTypes.func
+      onDragEnd: PropTypes.func,
+      className: PropTypes.string
     })
-  )
+  ),
+  className: PropTypes.string,
+  rangeClassName: PropTypes.string
 };
 
 Slider.defaultProps = {
@@ -83,7 +91,8 @@ Slider.defaultProps = {
   min: 0,
   max: 100,
   step: 1,
-  handles: [{ value: 0 }, { value: 40 }]
+  handles: [{ value: 0 }, { value: 40 }],
+  className: ""
 };
 
 export default Slider;
