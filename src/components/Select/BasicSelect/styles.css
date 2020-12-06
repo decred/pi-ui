@@ -37,7 +37,8 @@
 }
 
 .menuOpened .fieldset > .label,
-.valueSelected .fieldset > .label {
+.valueSelected .fieldset > .label,
+.search .fieldset > .label {
   top: -0.8rem;
   font-size: var(--font-size-small);
 }
@@ -54,6 +55,23 @@
 }
 
 .disabled .value {
+  color: var(--text-input-color);
+}
+
+.input {
+  margin: 0 0.8rem;
+  width: 100%;
+  font-size: var(--font-size-normal);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--spacing-2);
+  color: var(--text-color);
+  outline: 0;
+  border: 0;
+  background-color: transparent;
+}
+
+.disabled .input {
+  cursor: not-allowed;
   color: var(--text-input-color);
 }
 

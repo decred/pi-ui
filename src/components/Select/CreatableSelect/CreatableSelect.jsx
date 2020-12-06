@@ -21,6 +21,7 @@ const CreatableSelect = ({
   filterOptions,
   className,
   autoFocus,
+  isSearchable,
 
   typeLabel,
   error,
@@ -59,6 +60,7 @@ const CreatableSelect = ({
     getOptionLabel,
     getOptionValue,
     filterOptions,
+    isSearchable,
 
     typeLabel,
     isValidNewOption,
@@ -118,19 +120,29 @@ const CreatableSelect = ({
                 key={key}
                 ref={optionContainerRef}
                 style={props}>
-                {addingNewOption ? (
-                  <div onClick={newOptionCreatorCallback}>
+                {addingNewOption && (
+                  <div
+                    onClick={newOptionCreatorCallback}
+                    key={0}
+                    index={0}
+                    className={
+                      focusedOptionIndex === 0 && styles.focusedOption
+                    }>
                     {promptTextCreatorCallback()}
                   </div>
-                ) : (
-                  _options.map((_option, index) => (
+                )}
+                {_options.map((_option, index) =>
+                  (!addingNewOption && index > 0) || addingNewOption ? (
                     <div
                       onClick={selectOption}
-                      onMouseEnter={() => setFocusedOptionIndex(index)}
-                      key={index}
-                      index={index}
+                      onMouseEnter={() =>
+                        setFocusedOptionIndex(index + (addingNewOption ? 1 : 0))
+                      }
+                      key={index + (addingNewOption ? 1 : 0)}
+                      index={index + (addingNewOption ? 1 : 0)}
                       className={classNames(
-                        index === focusedOptionIndex && styles.focusedOption,
+                        index + (addingNewOption ? 1 : 0) ===
+                          focusedOptionIndex && styles.focusedOption,
                         getValueKey(selectedOption) === getValueKey(_option) &&
                           styles.selected
                       )}>
@@ -139,7 +151,14 @@ const CreatableSelect = ({
                           ? optionRenderer(_option)
                           : getLabelKey(_option))}
                     </div>
-                  ))
+                  ) : (
+                    <div key={0}>
+                      {_option !== blankValue &&
+                        (optionRenderer
+                          ? optionRenderer(_option)
+                          : getLabelKey(_option))}
+                    </div>
+                  )
                 )}
               </animated.div>
             )
@@ -168,6 +187,7 @@ CreatableSelect.propTypes = {
   filterOptions: PropTypes.func,
   className: PropTypes.string,
   autoFocus: PropTypes.bool,
+  isSearchable: PropTypes.bool,
 
   typeLabel: PropTypes.string,
   error: PropTypes.string,
@@ -189,6 +209,7 @@ CreatableSelect.defaultProps = {
   filterOptions: null,
   className: "",
   autoFocus: false,
+  isSearchable: false,
 
   typeLabel: "",
   error: "",

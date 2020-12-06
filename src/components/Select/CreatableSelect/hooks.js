@@ -11,6 +11,7 @@ export function useCreatableSelect(
   getOptionLabel,
   getOptionValue,
   filterOptions,
+  isSearchable,
 
   typeLabel,
   isValidNewOption,
@@ -31,24 +32,37 @@ export function useCreatableSelect(
   const getValueKey = getOptionValue || defaultValueKeyGetter;
   const getLabelKey = getOptionLabel || defaultLabelKeyGetter;
 
-  let _options = [...options, ...newOptions.current].filter(
-    (item, pos, self) =>
-      self.findIndex((_item) => getLabelKey(_item) === getLabelKey(item)) ===
-      pos
-  );
-  _options = filterOptions ? _options.filter(filterOptions) : _options;
-  _options.unshift({
-    label: typeLabel || "Type to add a new option",
-    value: ""
-  });
+  const [_options, setOptions] = useState((() => {
+    let __options = [...options, ...newOptions.current].filter(
+      (item, pos, self) =>
+        self.findIndex((_item) => getLabelKey(_item) === getLabelKey(item)) ===
+        pos
+    );
+    __options = filterOptions ? __options.filter(filterOptions) : __options;
+    __options.unshift({
+      label: typeLabel || "Type to add a new option",
+      value: ""
+    });
+    return __options;
+  })());
+
+  const previousObjects = usePrevious({ showError, newOption, addingNewOption });
+  const previousShowError = previousObjects?.showError;
+  const previousNewOption = previousObjects?.newOption;
+  const previousAddingNewOption = previousObjects?.addingNewOption;
 
   const [selectedOption, setSelectedOption] = useState(
     (defaultValue &&
-      _options.find((x) => getValueKey(x) === getValueKey(defaultValue))) ||
-      blankValue
+      _options.find((_option) => getValueKey(_option) === getValueKey(defaultValue))) ||
+    blankValue
   );
 
-  const [newOption, setNewOption] = useState("");
+  const [newOption, setNewOption] = useState(
+    defaultValue ?
+      getLabelKey(defaultValue) :
+      ""
+  );
+
   const [addingNewOption, setAddingNewOption] = useState(false);
   const [showError, setShowError] = useState(false);
 
@@ -60,10 +74,6 @@ export function useCreatableSelect(
     }
     if (autoFocus) setMenuOpened(true);
   }, [disabled, getLabelKey, selectedOption, autoFocus]);
-
-  const previousObjects = usePrevious({ showError, newOption });
-  const previousShowError = previousObjects?.showError;
-  const previousNewOption = previousObjects?.newOption;
 
   useEffect(() => {
     if (disabled) return;
@@ -83,6 +93,54 @@ export function useCreatableSelect(
     }
   }, [previousShowError, showError]);
 
+  useEffect(() => {
+    if (addingNewOption !== previousAddingNewOption && addingNewOption && newOption) {
+      setOptions(
+        (() => {
+          let __options = [...options, ...newOptions.current].filter(
+            (item, pos, self) =>
+              self.findIndex((_item) => getLabelKey(_item) === getLabelKey(item)) ===
+              pos
+          );
+          __options = (filterOptions ? __options.filter(filterOptions) : __options);
+
+          if (isSearchable)
+            __options = __options.filter(
+              __option => getLabelKey(__option).toLowerCase()?.includes(newOption.toLowerCase())
+            );
+          return __options;
+        })()
+      );
+    } else if (addingNewOption != previousAddingNewOption && !addingNewOption) {
+      setOptions((() => {
+        let __options = [...options, ...newOptions.current].filter(
+          (item, pos, self) =>
+            self.findIndex((_item) => getLabelKey(_item) === getLabelKey(item)) ===
+            pos
+        );
+        __options = filterOptions ? __options.filter(filterOptions) : __options;
+        __options.unshift({
+          label: typeLabel || "Type to add a new option",
+          value: ""
+        });
+        return __options;
+      })());
+    }
+  }, [
+    addingNewOption,
+    previousAddingNewOption,
+    newOption,
+    options,
+    getLabelKey,
+    typeLabel,
+    filterOptions
+  ]);
+
+  useEffect(() => {
+    if (focusedOptionIndex > _options.length || focusedOptionIndex < 0)
+      setFocusedOptionIndex(0);
+  }, [focusedOptionIndex, _options]);
+
   const setOption = (option, knownIndex) => {
     const index =
       knownIndex ||
@@ -91,6 +149,7 @@ export function useCreatableSelect(
           getValueKey(opt) === getValueKey(option) &&
           getLabelKey(opt) === getLabelKey(option)
       );
+    setNewOption(getLabelKey(option));
     setSelectedOption(option);
     setFocusedOptionIndex(index);
     setMenuOpened(false);
@@ -109,28 +168,37 @@ export function useCreatableSelect(
     dropdownRef.current
   );
 
+  const newOptionCreatorCallback = () => {
+    newOptionCreator(newOption);
+    const newOptionObject = { label: newOption, value: newOption };
+    newOptions.current.push(newOptionObject);
+    setOption(newOptionObject);
+    setAddingNewOption(false);
+  };
+
   useHandleKeyboardHook((e) => {
     if (menuOpened) {
-      const maxOptionIndex = _options.length - 1;
+      const maxOptionIndex = _options.length - 1 + (addingNewOption ? 1 : 0);
       if (e.key === "ArrowDown") {
         const newIndex =
-          focusedOptionIndex === maxOptionIndex ? 0 : focusedOptionIndex + 1;
-        optionContainerRef.current
-          .querySelector(`div[index="${newIndex}"]`)
-          .scrollIntoViewIfNeeded(false);
+          focusedOptionIndex === maxOptionIndex ? (!addingNewOption ? 1 : 0) : focusedOptionIndex + 1;
+        if (!(optionContainerRef.current?.querySelector(`div[index="${newIndex}"]`)))
+          return;
         setFocusedOptionIndex(newIndex);
       }
       if (e.key === "ArrowUp") {
         const newIndex =
-          focusedOptionIndex === 0 ? maxOptionIndex : focusedOptionIndex - 1;
-        optionContainerRef.current
-          .querySelector(`div[index="${newIndex}"]`)
-          .scrollIntoViewIfNeeded(true);
+          focusedOptionIndex === (!addingNewOption ? 1 : 0) ? maxOptionIndex : focusedOptionIndex - 1;
+        if (!(optionContainerRef.current?.querySelector(`div[index="${newIndex}"]`)))
+          return;
         setFocusedOptionIndex(newIndex);
       }
       if (e.key === "Enter") {
-        const optionIndex = focusedOptionIndex;
+        let optionIndex = focusedOptionIndex;
+        if (optionIndex === 0 && addingNewOption && newOption)
+          newOptionCreatorCallback();
         if (optionIndex === 0) return;
+        optionIndex = optionIndex - (addingNewOption ? 1 : 0);
         const optionByIndex = _options[optionIndex];
         if (onChange) {
           onChange(e, getValueKey(optionByIndex), optionByIndex);
@@ -181,22 +249,10 @@ export function useCreatableSelect(
       setNewOption(_newOption);
       return;
     }
-
-    const optionAllowed =
-      _newOption &&
-      !_options.find((option) => getLabelKey(option) === _newOption);
     setShowError(false);
-    setAddingNewOption(optionAllowed);
+    setAddingNewOption(!!_newOption);
     setNewOption(_newOption);
-  };
-
-  const newOptionCreatorCallback = () => {
-    newOptionCreator(newOption);
-    const newOptionObject = { label: newOption, value: newOption };
-    newOptions.current.push(newOptionObject);
-    setOption(newOptionObject);
-    setAddingNewOption(false);
-    setMenuOpened(false);
+    setMenuOpened(true);
   };
 
   return {

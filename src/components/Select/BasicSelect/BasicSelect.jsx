@@ -21,6 +21,7 @@ const BasicSelect = ({
   filterOptions,
   className,
   autoFocus,
+  isSearchable,
   ...props
 }) => {
   const {
@@ -35,7 +36,9 @@ const BasicSelect = ({
     getValueKey,
     getLabelKey,
     selectOption,
-    cancelSelection
+    cancelSelection,
+    searchingFor,
+    onSearch
   } = useBasicSelect(
     disabled,
     autoFocus,
@@ -44,12 +47,14 @@ const BasicSelect = ({
     defaultValue,
     getOptionLabel,
     getOptionValue,
-    filterOptions
+    filterOptions,
+    isSearchable
   );
 
   const parentClassNames = classNames(
     styles.select,
     getValueKey(selectedOption) && styles.valueSelected,
+    isSearchable && searchingFor && styles.search,
     menuOpened ? styles.menuOpened : styles.menuClosed,
     separator && styles.hasSeparator,
     clearable && styles.clearable,
@@ -69,12 +74,22 @@ const BasicSelect = ({
       <div className={styles.fieldset}>
         {label && <label className={styles.label}>{label}</label>}
         <div className={styles.controls} onClick={openMenu} ref={dropdownRef}>
-          <div className={styles.value}>
-            {selectedOption !== blankValue &&
-              (valueRenderer
-                ? valueRenderer(selectedOption)
-                : getLabelKey(selectedOption))}
-          </div>
+          {isSearchable && searchingFor ? (
+            <input
+              disabled={disabled}
+              className={styles.input}
+              value={searchingFor}
+              onChange={onSearch}
+              autoFocus
+            />
+          ) : (
+            <div className={styles.value}>
+              {selectedOption !== blankValue &&
+                (valueRenderer
+                  ? valueRenderer(selectedOption)
+                  : getLabelKey(selectedOption))}
+            </div>
+          )}
           {clearable && (
             <div className={styles.clear} onClick={cancelSelection} />
           )}
@@ -130,7 +145,8 @@ BasicSelect.propTypes = {
   valueRenderer: PropTypes.func,
   filterOptions: PropTypes.func,
   className: PropTypes.string,
-  autoFocus: PropTypes.bool
+  autoFocus: PropTypes.bool,
+  isSearchable: PropTypes.bool
 };
 
 BasicSelect.defaultProps = {
@@ -146,7 +162,8 @@ BasicSelect.defaultProps = {
   valueRenderer: null,
   filterOptions: null,
   className: "",
-  autoFocus: false
+  autoFocus: false,
+  isSearchable: false
 };
 
 export default BasicSelect;

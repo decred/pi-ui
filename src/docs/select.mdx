@@ -36,6 +36,7 @@ import { Select, Creatable, MultiSelect, Checkbox, Text, TextInput } from "../in
     const [disabled, setDisabled] = useState(false);
     const [clearable, setClearable] = useState(false);
     const [separator, setSeparator] = useState(false);
+    const [isSearchable, setIsSearchable] = useState(true);
     const [filter, setFilter] = useState("");
     const selectChangeHandler = (option) => {
       setSelected(option);
@@ -46,6 +47,7 @@ import { Select, Creatable, MultiSelect, Checkbox, Text, TextInput } from "../in
           disabled={disabled}
           clearable={clearable}
           separator={separator}
+          isSearchable={isSearchable}
           options={options}
           defaultValue={selected}
           onChange={selectChangeHandler}
@@ -58,6 +60,8 @@ import { Select, Creatable, MultiSelect, Checkbox, Text, TextInput } from "../in
         <Checkbox id="basic-select-clearable" label={"Clearable"} checked={clearable} onChange={() => setClearable(!clearable)}/>
         <br/>
         <Checkbox id="basic-select-separator" label={"Separator"} checked={separator} onChange={() => setSeparator(!separator)}/>
+        <br/>
+        <Checkbox id="basic-select-searchable" label={"Searchable"} checked={isSearchable} onChange={() => setIsSearchable(!isSearchable)}/>
         <br/>
         <Text>Don't show option:</Text><TextInput id="basic-select-filter" label={""} onChange={(e) => setFilter(e.target.value)}/>
       </Fragment>
@@ -147,6 +151,7 @@ import { Select, Creatable, MultiSelect, Checkbox, Text, TextInput } from "../in
     const [disabled, setDisabled] = useState(false);
     const [clearable, setClearable] = useState(false);
     const [separator, setSeparator] = useState(false);
+    const [isSearchable, setIsSearchable] = useState(true);
     const [filter, setFilter] = useState("");
     const selectChangeHandler = (option) => {
       setSelected(option);
@@ -161,6 +166,7 @@ import { Select, Creatable, MultiSelect, Checkbox, Text, TextInput } from "../in
           disabled={disabled}
           clearable={clearable}
           separator={separator}
+          isSearchable={isSearchable}
           options={options}
           defaultValue={selected}
           onChange={selectChangeHandler}
@@ -178,6 +184,8 @@ import { Select, Creatable, MultiSelect, Checkbox, Text, TextInput } from "../in
         <Checkbox id="creatable-select-clearable" label={"Clearable"} checked={clearable} onChange={() => setClearable(!clearable)}/>
         <br/>
         <Checkbox id="creatable-select-separator" label={"Separator"} checked={separator} onChange={() => setSeparator(!separator)}/>
+        <br/>
+        <Checkbox id="creatable-select-searchable" label={"Searchable"} checked={isSearchable} onChange={() => setIsSearchable(!isSearchable)}/>
         <br/>
         <Text>Don't show option:</Text><TextInput id="creatable-select-filter" label={""} onChange={(e) => setFilter(e.target.value)}/>
       </Fragment>
@@ -211,6 +219,7 @@ import { Select, Creatable, MultiSelect, Checkbox, Text, TextInput } from "../in
     const [disabled, setDisabled] = useState(false);
     const [clearable, setClearable] = useState(false);
     const [separator, setSeparator] = useState(false);
+    const [isSearchable, setIsSearchable] = useState(true);
     const selectChangeHandler = (option) => {
       setSelected(option);
     };
@@ -220,6 +229,7 @@ import { Select, Creatable, MultiSelect, Checkbox, Text, TextInput } from "../in
           disabled={disabled}
           clearable={clearable}
           separator={separator}
+          isSearchable={isSearchable}
           options={options}
           defaultValues={[selected]}
           onChange={selectChangeHandler}
@@ -231,6 +241,8 @@ import { Select, Creatable, MultiSelect, Checkbox, Text, TextInput } from "../in
         <Checkbox id="multi-select-clearable" label={"Clearable"} checked={clearable} onChange={() => setClearable(!clearable)}/>
         <br/>
         <Checkbox id="multi-select-separator" label={"Separator"} checked={separator} onChange={() => setSeparator(!separator)}/>
+        <br/>
+        <Checkbox id="multi-select-searchable" label={"Searchable"} checked={isSearchable} onChange={() => setIsSearchable(!isSearchable)}/>
       </Fragment>
     );
   }}

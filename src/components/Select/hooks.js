@@ -1,15 +1,16 @@
 import { useRef, useCallback, useEffect } from "react";
 
-export function useClickOutside(onClickHandler) {
+export function useClickOutside(onClickHandler, hasNoOptions = false) {
   const ref1 = useRef();
   const ref2 = useRef();
 
   const handleClick = (event) => {
     if (
-      ref1.current &&
-      !ref1.current.contains(event.target) &&
-      ref2.current &&
-      !ref2.current.contains(event.target)
+      (ref1.current &&
+        !ref1.current.contains(event.target) &&
+        ref2.current &&
+        !ref2.current.contains(event.target))
+      || hasNoOptions
     ) {
       onClickHandler();
     }
@@ -33,7 +34,8 @@ export function useClickOutside(onClickHandler) {
 }
 
 export function useHandleKeyboardHook(onTypeHandler) {
-  const handleKeyboard = useCallback(
+  const handleKeyboard = 
+  // useCallback(
     (event) => {
       if (
         event.key === "ArrowDown" ||
@@ -42,9 +44,9 @@ export function useHandleKeyboardHook(onTypeHandler) {
       )
         event.preventDefault();
       onTypeHandler(event);
-    },
-    [onTypeHandler]
-  );
+    };
+    // [onTypeHandler]
+  // );
 
   useEffect(() => {
     // Bind the event listener
