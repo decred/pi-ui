@@ -12,12 +12,12 @@ const SliderHandle = React.forwardRef(
     return (
       <div
         {...{ ref, style, onTouchStart, onMouseDown }}
-        className={classNames(styles.handle, className)}
+        className={styles.handle}
         onClick={(e) => {
           e.stopPropagation();
           e.nativeEvent.stopImmediatePropagation();
         }}>
-        <div className={styles.thumb} />
+        <div className={classNames(className, styles.thumb)} />
       </div>
     );
   }
