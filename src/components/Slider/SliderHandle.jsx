@@ -7,7 +7,8 @@ import styles from "./styles.css";
 const SliderHandle = React.forwardRef(
   ({ axis, position, onTouchStart, onMouseDown, className }, ref) => {
     const style = { top: "50%", left: "50%" };
-    style[POSITIONS_MAP[axis]] = position[POSITIONS_MAP[axis]] + "%";
+    const positionAtAxis = POSITIONS_MAP[axis];
+    style[positionAtAxis] = position[positionAtAxis] + "%";
 
     return (
       <div

@@ -167,8 +167,10 @@ function useSlider(double, disabled, axis, min, max, step, handles) {
 
     if (double) {
       const [leftHandlePosition, rightHandlePosition] = handleHooks.map(
-        (handleHook) =>
-          handleHook.handle.current.getBoundingClientRect()[axis] + 9
+        (handleHook) => {
+          const rect = handleHook.handle.current.getBoundingClientRect();
+          return rect[axis] + rect[DIMENSIONS_MAP[axis]] / 2;
+        }
       );
 
       if (
