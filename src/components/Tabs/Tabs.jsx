@@ -60,7 +60,7 @@ const Tabs = ({
           element
         );
       });
-  }, [children, activeTabIndex, mode, vertical, onSelectTab]);
+  }, [children, activeTabIndex, mode, onSelectTab, dropdownMode]);
 
   const tabs = useMemo(
     () => (
