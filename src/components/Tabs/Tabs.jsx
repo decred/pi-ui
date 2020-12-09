@@ -52,7 +52,7 @@ const Tabs = ({
           isActive: index === activeTabIndex,
           mode
         });
-        return vertical ? (
+        return dropdownMode ? (
           <DropdownItem className={styles.customDropdownItem}>
             {element}
           </DropdownItem>
