@@ -23,11 +23,14 @@ const Tab = ({
   };
   const activeBorderColor = getThemeProperty(theme, "tab-active-color");
   const defaultBorderColor = getThemeProperty(theme, "topbanner-color");
+  const activeBackgroundColor = getThemeProperty(theme, "tab-active-background");
+  const defaultBackgroundColor = getThemeProperty(theme, "tab-default-background");
   const activeTextColor = getThemeProperty(theme, "tab-text-active-color");
   const defaultTextColor = getThemeProperty(theme, "tab-text-color");
   const slide = useSpring({
     borderColor: isActive ? activeBorderColor : defaultBorderColor,
     color: isActive ? activeTextColor : defaultTextColor,
+    backgroundColor: isActive ? activeBackgroundColor : defaultBackgroundColor,
     duration: 350
   });
 

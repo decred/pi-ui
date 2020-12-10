@@ -128,6 +128,8 @@ const lightTheme = {
   /** Tabs */
   "tab-active-underline-color": "var(--color-yellow)",
   "tab-active-font-color": "var(--color-primary-dark)",
+  "tab-active-background": "none",
+  "tab-default-background": "none",
   "tab-count-background": "var(--color-gray-lighter)",
   "tab-active-color": "var(--color-primary-light)",
   "tab-text-color": "var(--color-gray-dark)",
