@@ -22,7 +22,7 @@ const Tab = ({
     onSelect(tabIndex);
   };
   const activeBorderColor = getThemeProperty(theme, "tab-active-color");
-  const defaultBorderColor = getThemeProperty(theme, "topbanner-color");
+  const defaultBorderColor = getThemeProperty(theme, "tab-default-color");
   const activeBackgroundColor = getThemeProperty(theme, "tab-active-background");
   const defaultBackgroundColor = getThemeProperty(theme, "tab-default-background");
   const activeTextColor = getThemeProperty(theme, "tab-text-active-color");
