@@ -58,10 +58,12 @@ export function useMultiSelect(
     if (searchable && inputValue) setMenuOpened(_options.length > 0);
   }, [searchable, inputValue, _options]);
 
-  const removeSelectedOption = (option) =>
+  const removeSelectedOptionFilter = (option) =>
     value.filter(
       (selectedOption) => getLabelKey(selectedOption) !== getLabelKey(option)
     );
+
+  const removeSelectedOption = (option) => onChange(removeSelectedOptionFilter(option));
 
   const resetMenu = (focusedIndex = 0) => {
     setFocusedOptionIndex(focusedIndex);
@@ -84,7 +86,7 @@ export function useMultiSelect(
         (selectedOption) => getLabelKey(selectedOption) === getLabelKey(option)
       )
     )
-      newSelectedOptions = removeSelectedOption(option);
+      newSelectedOptions = removeSelectedOptionFilter(option);
     else if (!value.length) {
       newSelectedOptions = [option];
     } else {

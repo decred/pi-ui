@@ -95,7 +95,7 @@ export function useCreatableSelect(
       }
     } else {
       __options.unshift({
-        label: typeLabel || "Type to add a new option",
+        label: typeLabel,
         value: ""
       });
     }

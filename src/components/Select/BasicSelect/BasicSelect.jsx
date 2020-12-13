@@ -139,7 +139,7 @@ BasicSelect.propTypes = {
   filterOptions: PropTypes.func,
   className: PropTypes.string,
   autoFocus: PropTypes.bool,
-  value: PropTypes.object.isRequired,
+  value: PropTypes.object,
   onChange: PropTypes.func.isRequired,
   searchable: PropTypes.bool,
   inputValue: PropTypes.string,
@@ -159,8 +159,8 @@ BasicSelect.defaultProps = {
   filterOptions: null,
   className: "",
   autoFocus: false,
-  value: null,
   searchable: false,
+  value: blankValue,
   inputValue: "",
   onInputChange: null
 };
