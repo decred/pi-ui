@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { defaultLabelKeyGetter, defaultValueKeyGetter } from "../helpers";
-import { useClickOutside, usePrevious, useMountEffect } from "hooks";
+import { useClickOutside, usePrevious } from "hooks";
 import { useHandleKeyboardHook } from "../hooks";
 
 export function useMultiSelect(
@@ -8,7 +8,6 @@ export function useMultiSelect(
   autoFocus,
   onChange,
   options,
-  defaultValue,
   getOptionLabel,
   getOptionValue,
   filterOptions,
@@ -24,10 +23,6 @@ export function useMultiSelect(
   const getLabelKey = getOptionLabel || defaultLabelKeyGetter;
 
   const [_options, setOptions] = useState([]);
-
-  useMountEffect(() => {
-    if (defaultValue) onChange(defaultValue);
-  });
 
   useEffect(() => {
     let filteredOptions = filterOptions

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useClickOutside, useMountEffect } from "hooks";
+import { useClickOutside } from "hooks";
 import { useHandleKeyboardHook } from "../hooks";
 import {
   blankValue,
@@ -12,7 +12,6 @@ export function useBasicSelect(
   autoFocus,
   onChange,
   options,
-  defaultValue,
   getOptionLabel,
   getOptionValue,
   filterOptions,
@@ -28,10 +27,6 @@ export function useBasicSelect(
   const getLabelKey = getOptionLabel || defaultLabelKeyGetter;
 
   const [_options, setOptions] = useState([]);
-
-  useMountEffect(() => {
-    if (defaultValue) onChange(defaultValue);
-  });
 
   useEffect(() => {
     let filteredOptions = filterOptions

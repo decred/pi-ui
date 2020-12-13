@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { useClickOutside, usePrevious, useMountEffect } from "hooks";
+import { useClickOutside, usePrevious } from "hooks";
 import { useHandleKeyboardHook } from "../hooks";
 import {
   blankValue,
@@ -12,7 +12,6 @@ export function useCreatableSelect(
   autoFocus,
   onChange,
   options,
-  defaultValue,
   getOptionLabel,
   getOptionValue,
   filterOptions,
@@ -33,10 +32,6 @@ export function useCreatableSelect(
   const getLabelKey = getOptionLabel || defaultLabelKeyGetter;
 
   const [_options, setOptions] = useState([]);
-
-  useMountEffect(() => {
-    if (defaultValue) onChange(defaultValue);
-  });
 
   const [showError, setShowError] = useState(false);
   const [addingNewOption, setAddingNewOption] = useState(false);
