@@ -1,52 +1,32 @@
-import { useRef, useCallback, useEffect } from "react";
+import { useEffect } from "react";
 
-export function useClickOutside(onClickHandler, hasNoOptions = false) {
-  const ref1 = useRef();
-  const ref2 = useRef();
-
-  const handleClick = (event) => {
-    if (
-      (ref1.current &&
-        !ref1.current.contains(event.target) &&
-        ref2.current &&
-        !ref2.current.contains(event.target)) ||
-      hasNoOptions
-    ) {
-      onClickHandler();
+export function useHandleKeyboardHook(
+  onArrowDownHandler,
+  onArrowUpHandler,
+  onEnterHandler,
+  onTypeDefaultHandler
+) {
+  const handleKeyboard = (event) => {
+    switch (event.key) {
+      case "ArrowDown": {
+        event.preventDefault();
+        onArrowDownHandler(event);
+        break;
+      }
+      case "ArrowUp": {
+        event.preventDefault();
+        onArrowUpHandler(event);
+        break;
+      }
+      case "Enter": {
+        event.preventDefault();
+        onEnterHandler(event);
+        break;
+      }
+      default:
+        if (onTypeDefaultHandler) onTypeDefaultHandler(event);
     }
   };
-
-  useEffect(() => {
-    // Bind the event listener
-    document.addEventListener("mousedown", handleClick);
-    return () => {
-      // Unbind the event listener on clean up
-      document.removeEventListener("mousedown", handleClick);
-    };
-  });
-
-  const callbackRef = useCallback((node1, node2) => {
-    ref1.current = node1;
-    ref2.current = node2;
-  }, []);
-
-  return callbackRef;
-}
-
-export function useHandleKeyboardHook(onTypeHandler) {
-  const handleKeyboard =
-    // useCallback(
-    (event) => {
-      if (
-        event.key === "ArrowDown" ||
-        event.key === "ArrowUp" ||
-        event.key === "Enter"
-      )
-        event.preventDefault();
-      onTypeHandler(event);
-    };
-  // [onTypeHandler]
-  // );
 
   useEffect(() => {
     // Bind the event listener
@@ -56,13 +36,4 @@ export function useHandleKeyboardHook(onTypeHandler) {
       document.removeEventListener("keydown", handleKeyboard);
     };
   });
-}
-
-export function usePrevious(value) {
-  const ref = useRef();
-  useEffect(() => {
-    ref.current = value;
-  }, [value]);
-
-  return ref.current;
 }

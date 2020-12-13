@@ -1,92 +1,81 @@
-import { useState, useRef, useCallback, useEffect } from "react";
-import { useClickOutside, useHandleKeyboardHook, usePrevious } from "../hooks";
+import { useState, useEffect } from "react";
+import { defaultLabelKeyGetter, defaultValueKeyGetter } from "../helpers";
+import { useClickOutside, usePrevious, useMountEffect } from "hooks";
+import { useHandleKeyboardHook } from "../hooks";
 
 export function useMultiSelect(
   disabled,
   autoFocus,
   onChange,
   options,
-  defaultValues,
+  defaultValue,
   getOptionLabel,
   getOptionValue,
   filterOptions,
-  isSearchable
+  searchable,
+  value,
+  inputValue,
+  onInputChange
 ) {
-  const optionContainerRef = useRef(null);
-  const dropdownRef = useRef(null);
-
   const [menuOpened, setMenuOpened] = useState(false);
   const [focusedOptionIndex, setFocusedOptionIndex] = useState(0);
-
-  const [searchingFor, setSearchingFor] = useState("");
-
-  const defaultValueKeyGetter = useCallback(({ value }) => value, []);
-  const defaultLabelKeyGetter = useCallback(({ label }) => label, []);
 
   const getValueKey = getOptionValue || defaultValueKeyGetter;
   const getLabelKey = getOptionLabel || defaultLabelKeyGetter;
 
-  const [_options, setOptions] = useState(
-    filterOptions ? options.filter(filterOptions) : options
-  );
+  const [_options, setOptions] = useState([]);
+
+  useMountEffect(() => {
+    if (onChange && defaultValue) onChange(defaultValue);
+  });
 
   useEffect(() => {
-    if (isSearchable) {
-      if (searchingFor)
-        setOptions(
-          (filterOptions ? options.filter(filterOptions) : options).filter(
-            (_option) =>
-              getLabelKey(_option)
-                .toLowerCase()
-                ?.includes(searchingFor.toLowerCase())
-          )
-        );
-      else setOptions(filterOptions ? options.filter(filterOptions) : options);
-    } else {
-      setOptions(filterOptions ? options.filter(filterOptions) : options);
-    }
-  }, [searchingFor, filterOptions, options]);
-
-  const [selectedOptions, setSelectedOptions] = useState(
-    _options.filter((_option) =>
-      defaultValues.find(
-        (defaultValue) => getValueKey(defaultValue) === getValueKey(_option)
-      )
-    ) || []
-  );
+    let filteredOptions = filterOptions
+      ? options.filter(filterOptions)
+      : options;
+    if (searchable && inputValue)
+      filteredOptions = filteredOptions.filter((_option) =>
+        getLabelKey(_option)
+          .toLowerCase()
+          ?.includes(inputValue.toLowerCase())
+      );
+    setOptions(filteredOptions);
+  }, [searchable, getLabelKey, inputValue, filterOptions, options]);
 
   useEffect(() => {
     if (disabled) {
       setMenuOpened(false);
-      setSearchingFor("");
+      if (searchable && onInputChange) onInputChange("");
       return;
     }
     if (autoFocus) setMenuOpened(true);
-  }, [disabled, autoFocus]);
+  }, [disabled, autoFocus, searchable, onInputChange]);
 
-  const previousSelectedOptions = usePrevious(selectedOptions);
+  const previousSelectedOptions = usePrevious(value);
 
   useEffect(() => {
     if (disabled) return;
-    if (filterOptions && previousSelectedOptions !== selectedOptions)
-      setSelectedOptions(selectedOptions.filter(filterOptions));
-  }, [disabled, selectedOptions, filterOptions, previousSelectedOptions]);
+    if (filterOptions && previousSelectedOptions !== value)
+      onChange(value.filter(filterOptions));
+  }, [disabled, value, filterOptions, previousSelectedOptions, onChange]);
 
   useEffect(() => {
-    if (isSearchable && searchingFor)
-      setMenuOpened(_options.length > 0);
-  }, [isSearchable, searchingFor, _options]);
+    if (searchable && inputValue) setMenuOpened(_options.length > 0);
+  }, [searchable, inputValue, _options]);
 
-  const removeSelectedOption = (option) => {
-    if (disabled) return;
-    setSelectedOptions(
-      selectedOptions.filter(
-        (selectedOption) => getLabelKey(selectedOption) !== getLabelKey(option)
-      )
+  const removeSelectedOption = (option) =>
+    value.filter(
+      (selectedOption) => getLabelKey(selectedOption) !== getLabelKey(option)
     );
+
+  const resetMenu = (focusedIndex = 0) => {
+    setFocusedOptionIndex(focusedIndex);
+    setMenuOpened(false);
+    if (searchable && onInputChange) onInputChange("");
   };
 
   const setOption = (option, knownIndex) => {
+    if (disabled) return;
     const index =
       knownIndex ||
       _options.findIndex(
@@ -94,122 +83,96 @@ export function useMultiSelect(
           getValueKey(opt) === getValueKey(option) &&
           getLabelKey(opt) === getLabelKey(option)
       );
+    let newSelectedOptions = [];
     if (
-      selectedOptions.find(
+      value.find(
         (selectedOption) => getLabelKey(selectedOption) === getLabelKey(option)
       )
     )
-      removeSelectedOption(option);
-    else if (!selectedOptions.length) {
-      setSelectedOptions([option]);
+      newSelectedOptions = removeSelectedOption(option);
+    else if (!value.length) {
+      newSelectedOptions = [option];
     } else {
-      setSelectedOptions([...selectedOptions, option]);
+      newSelectedOptions = [...value, option];
     }
     setFocusedOptionIndex(index);
-    setSearchingFor("");
+    if (searchable && onInputChange) onInputChange("");
+    if (onChange) onChange(newSelectedOptions);
   };
 
-  useClickOutside(() => {
-    setFocusedOptionIndex(0);
-    setMenuOpened(false);
-    setSearchingFor("");
-  }, !_options.length)(optionContainerRef.current, dropdownRef.current);
+  const [containerRef] = useClickOutside(resetMenu);
 
-  useHandleKeyboardHook((e) => {
-    if (menuOpened) {
-      const maxOptionIndex = _options.length - 1;
-      switch (e.key) {
-        case "ArrowDown": {
-          const newIndex =
-            focusedOptionIndex === maxOptionIndex ? 0 : focusedOptionIndex + 1;
-          if (
-            !optionContainerRef.current?.querySelector(
-              `div[index="${newIndex}"]`
-            )
-          )
-            return;
-          setFocusedOptionIndex(newIndex);
-          break;
-        }
-        case "ArrowUp": {
-          const newIndex =
-            focusedOptionIndex === 0 ? maxOptionIndex : focusedOptionIndex - 1;
-          if (
-            !optionContainerRef.current?.querySelector(
-              `div[index="${newIndex}"]`
-            )
-          )
-            return;
-          setFocusedOptionIndex(newIndex);
-          break;
-        }
-        case "Enter": {
-          const optionIndex = focusedOptionIndex;
-          const optionByIndex = _options[optionIndex];
-          if (
-            selectedOptions.find(
-              (selectedOption) =>
-                getLabelKey(selectedOption) === getLabelKey(optionByIndex)
-            )
-          )
-            removeSelectedOption(optionByIndex);
-          if (onChange) {
-            onChange(e, getValueKey(optionByIndex), optionByIndex);
-          }
-          setOption(optionByIndex, optionIndex);
-          break;
-        }
-        default: {
-          if (
-            isSearchable &&
-            !searchingFor &&
-            String.fromCharCode(e.keyCode).match(/(\w|\s)/g)
-          )
-            setSearchingFor(e.key);
-        }
-      }
-    }
-  });
+  const onTypeArrowDownHandler = () => {
+    if (!menuOpened) return;
+    const maxOptionIndex = _options.length - 1;
+    const newIndex =
+      focusedOptionIndex === maxOptionIndex ? 0 : focusedOptionIndex + 1;
+    setFocusedOptionIndex(newIndex);
+  };
+
+  const onTypeArrowUpHandler = () => {
+    if (!menuOpened) return;
+    const maxOptionIndex = _options.length - 1;
+    const newIndex =
+      focusedOptionIndex === 0 ? maxOptionIndex : focusedOptionIndex - 1;
+    setFocusedOptionIndex(newIndex);
+  };
+
+  const onTypeEnterHandler = () => {
+    if (!menuOpened) return;
+    const optionIndex = focusedOptionIndex;
+    const optionByIndex = _options[optionIndex];
+    setOption(optionByIndex, optionIndex);
+  };
+
+  const onTypeDefaultHandler = (e) => {
+    if (!menuOpened) return;
+    if (
+      searchable &&
+      !inputValue &&
+      String.fromCharCode(e.keyCode).match(/(\w|\s)/g) &&
+      onInputChange
+    )
+      onInputChange(e.key);
+  };
+
+  useHandleKeyboardHook(
+    onTypeArrowDownHandler,
+    onTypeArrowUpHandler,
+    onTypeEnterHandler,
+    onTypeDefaultHandler
+  );
 
   const selectOption = (e) => {
     const findOptionWrapper = (el) =>
       el.getAttribute("index") ? el : findOptionWrapper(el.parentNode);
-
     const optionWrapper = findOptionWrapper(e.target);
     const optionIndex = parseInt(optionWrapper.getAttribute("index"), 10);
     const optionByIndex = _options[optionIndex];
-    if (onChange) {
-      onChange(e, getValueKey(optionByIndex), optionByIndex);
-    }
     setOption(optionByIndex, optionIndex);
   };
 
   const cancelSelection = (e) => {
     if (disabled) return;
     if (onChange) {
-      onChange(e);
+      onChange([]);
     }
-    setSelectedOptions([]);
-    setFocusedOptionIndex(0);
-    setMenuOpened(false);
-    setSearchingFor("");
+    resetMenu();
     e.stopPropagation();
   };
 
   const openMenu = () =>
     setMenuOpened((menuOpened) => !disabled && !menuOpened);
 
-  const onSearch = useCallback((e) => {
+  const onSearch = (e) => {
     const searchValue = e.target.value;
-    setSearchingFor(searchValue);
-  }, []);
+    if (onInputChange) onInputChange(searchValue);
+  };
 
   return {
     _options,
-    optionContainerRef,
-    dropdownRef,
+    containerRef,
     menuOpened,
-    selectedOptions,
     focusedOptionIndex,
     openMenu,
     setFocusedOptionIndex,
@@ -218,7 +181,6 @@ export function useMultiSelect(
     selectOption,
     cancelSelection,
     removeSelectedOption,
-    searchingFor,
     onSearch
   };
 }

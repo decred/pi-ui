@@ -1,6 +1,11 @@
-import { useState, useRef, useCallback, useEffect } from "react";
-import { useClickOutside, useHandleKeyboardHook } from "../hooks";
-import { blankValue } from "../helpers";
+import { useState, useEffect } from "react";
+import { useClickOutside, useMountEffect } from "hooks";
+import { useHandleKeyboardHook } from "../hooks";
+import {
+  blankValue,
+  defaultLabelKeyGetter,
+  defaultValueKeyGetter
+} from "../helpers";
 
 export function useBasicSelect(
   disabled,
@@ -11,68 +16,59 @@ export function useBasicSelect(
   getOptionLabel,
   getOptionValue,
   filterOptions,
-  isSearchable
+  value,
+  searchable,
+  inputValue,
+  onInputChange
 ) {
-  const optionContainerRef = useRef(null);
-  const dropdownRef = useRef(null);
-
   const [menuOpened, setMenuOpened] = useState(false);
   const [focusedOptionIndex, setFocusedOptionIndex] = useState(0);
-
-  const [searchingFor, setSearchingFor] = useState("");
-
-  const defaultValueKeyGetter = useCallback(({ value }) => value, []);
-  const defaultLabelKeyGetter = useCallback(({ label }) => label, []);
 
   const getValueKey = getOptionValue || defaultValueKeyGetter;
   const getLabelKey = getOptionLabel || defaultLabelKeyGetter;
 
-  const [_options, setOptions] = useState(
-    filterOptions ? options.filter(filterOptions) : options
-  );
+  const [_options, setOptions] = useState([]);
+
+  useMountEffect(() => {
+    if (onChange && defaultValue) onChange(defaultValue);
+  });
 
   useEffect(() => {
-    if (isSearchable) {
-      if (searchingFor)
-        setOptions(
-          (filterOptions ? options.filter(filterOptions) : options).filter(
-            (_option) =>
-              getLabelKey(_option)
-                .toLowerCase()
-                ?.includes(searchingFor.toLowerCase())
-          )
-        );
-      else setOptions(filterOptions ? options.filter(filterOptions) : options);
-    } else {
-      setOptions(filterOptions ? options.filter(filterOptions) : options);
-    }
-  }, [searchingFor, filterOptions, options]);
-
-  const [selectedOption, setSelectedOption] = useState(
-    (defaultValue &&
-      _options.find((x) => getValueKey(x) === getValueKey(defaultValue))) ||
-    blankValue
-  );
+    let filteredOptions = filterOptions
+      ? options.filter(filterOptions)
+      : options;
+    if (searchable && inputValue)
+      filteredOptions = filteredOptions.filter((_option) =>
+        getLabelKey(_option)
+          .toLowerCase()
+          ?.includes(inputValue.toLowerCase())
+      );
+    setOptions(filteredOptions);
+  }, [searchable, inputValue, filterOptions, options, getLabelKey]);
 
   useEffect(() => {
     if (disabled) {
       setMenuOpened(false);
-      setSearchingFor("");
+      if (searchable && onInputChange) onInputChange("");
       return;
     }
     if (autoFocus) setMenuOpened(true);
-  }, [disabled, autoFocus]);
+  }, [disabled, autoFocus, searchable, onInputChange]);
 
   useEffect(() => {
     if (disabled) return;
-    if (filterOptions && !filterOptions(selectedOption))
-      setSelectedOption(blankValue);
-  }, [disabled, selectedOption, filterOptions]);
+    if (filterOptions && !filterOptions(value)) onChange(blankValue);
+  }, [disabled, value, filterOptions, onChange]);
 
   useEffect(() => {
-    if (isSearchable && searchingFor)
-      setMenuOpened(_options.length > 0);
-  }, [isSearchable, searchingFor, _options]);
+    if (searchable && inputValue) setMenuOpened(_options.length > 0);
+  }, [searchable, inputValue, _options]);
+
+  const resetMenu = (focusedIndex = 0) => {
+    setFocusedOptionIndex(focusedIndex);
+    setMenuOpened(false);
+    if (searchable && onInputChange) onInputChange("");
+  };
 
   const setOption = (option, knownIndex) => {
     const index =
@@ -82,66 +78,54 @@ export function useBasicSelect(
           getValueKey(opt) === getValueKey(option) &&
           getLabelKey(opt) === getLabelKey(option)
       );
-    setSelectedOption(option);
-    setFocusedOptionIndex(index);
-    setMenuOpened(false);
-    setSearchingFor("");
+    resetMenu(index);
+    if (onChange) {
+      onChange(option);
+    }
   };
 
-  useClickOutside(() => {
-    setFocusedOptionIndex(0);
-    setMenuOpened(false);
-    setSearchingFor("");
-  })(optionContainerRef.current, dropdownRef.current);
+  const [containerRef] = useClickOutside(resetMenu);
 
-  useHandleKeyboardHook((e) => {
-    if (menuOpened) {
-      const maxOptionIndex = _options.length - 1;
-      switch (e.key) {
-        case "ArrowDown": {
-          const newIndex =
-            focusedOptionIndex === maxOptionIndex ? 0 : focusedOptionIndex + 1;
-          if (
-            !optionContainerRef.current?.querySelector(
-              `div[index="${newIndex}"]`
-            )
-          )
-            return;
-          setFocusedOptionIndex(newIndex);
-          break;
-        }
-        case "ArrowUp": {
-          const newIndex =
-            focusedOptionIndex === 0 ? maxOptionIndex : focusedOptionIndex - 1;
-          if (
-            !optionContainerRef.current?.querySelector(
-              `div[index="${newIndex}"]`
-            )
-          )
-            return;
-          setFocusedOptionIndex(newIndex);
-          break;
-        }
-        case "Enter": {
-          const optionIndex = focusedOptionIndex;
-          const optionByIndex = _options[optionIndex];
-          if (onChange) {
-            onChange(e, getValueKey(optionByIndex), optionByIndex);
-          }
-          setOption(optionByIndex, optionIndex);
-          break;
-        }
-        default: {
-          if (
-            isSearchable &&
-            !searchingFor &&
-            String.fromCharCode(e.keyCode).match(/(\w|\s)/g)
-          )
-            setSearchingFor(e.key);
-        }
-      }
-    }
-  });
+  const onTypeArrowDownHandler = () => {
+    if (!menuOpened) return;
+    const maxOptionIndex = _options.length - 1;
+    const newIndex =
+      focusedOptionIndex === maxOptionIndex ? 0 : focusedOptionIndex + 1;
+    setFocusedOptionIndex(newIndex);
+  };
+
+  const onTypeArrowUpHandler = () => {
+    if (!menuOpened) return;
+    const maxOptionIndex = _options.length - 1;
+    const newIndex =
+      focusedOptionIndex === 0 ? maxOptionIndex : focusedOptionIndex - 1;
+    setFocusedOptionIndex(newIndex);
+  };
+
+  const onTypeEnterHandler = () => {
+    if (!menuOpened) return;
+    const optionIndex = focusedOptionIndex;
+    const optionByIndex = _options[optionIndex];
+    setOption(optionByIndex, optionIndex);
+  };
+
+  const onTypeDefaultHandler = (e) => {
+    if (!menuOpened) return;
+    if (
+      searchable &&
+      !inputValue &&
+      String.fromCharCode(e.keyCode).match(/(\w|\s)/g) &&
+      onInputChange
+    )
+      onInputChange(e.key);
+  };
+
+  useHandleKeyboardHook(
+    onTypeArrowDownHandler,
+    onTypeArrowUpHandler,
+    onTypeEnterHandler,
+    onTypeDefaultHandler
+  );
 
   const selectOption = (e) => {
     const findOptionWrapper = (el) =>
@@ -150,38 +134,30 @@ export function useBasicSelect(
     const optionWrapper = findOptionWrapper(e.target);
     const optionIndex = parseInt(optionWrapper.getAttribute("index"), 10);
     const optionByIndex = _options[optionIndex];
-    if (onChange) {
-      onChange(e, getValueKey(optionByIndex), optionByIndex);
-    }
     setOption(optionByIndex, optionIndex);
   };
 
   const cancelSelection = (e) => {
     if (disabled) return;
     if (onChange) {
-      onChange(e);
+      onChange(blankValue);
     }
-    setSelectedOption(blankValue);
-    setFocusedOptionIndex(0);
-    setMenuOpened(false);
-    setSearchingFor("");
+    resetMenu();
     e.stopPropagation();
   };
 
   const openMenu = () =>
     setMenuOpened((menuOpened) => !disabled && !menuOpened);
 
-  const onSearch = useCallback((e) => {
+  const onSearch = (e) => {
     const searchValue = e.target.value;
-    setSearchingFor(searchValue);
-  }, []);
+    if (onInputChange) onInputChange(searchValue);
+  };
 
   return {
     _options,
-    optionContainerRef,
-    dropdownRef,
+    containerRef,
     menuOpened,
-    selectedOption,
     focusedOptionIndex,
     openMenu,
     setFocusedOptionIndex,
@@ -189,7 +165,6 @@ export function useBasicSelect(
     getLabelKey,
     selectOption,
     cancelSelection,
-    searchingFor,
     onSearch
   };
 }

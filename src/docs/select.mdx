@@ -29,28 +29,32 @@ import { Select, Creatable, MultiSelect, Checkbox, Text, TextInput } from "../in
       value: 'old',
       label: 'Old'
     }];
-    const [selected, setSelected] = useState({
+    const [value, onChange] = useState({
       value: 'new',
       label: 'New'
     });
+    const [inputValue, onInputChange] = useState("");
     const [disabled, setDisabled] = useState(false);
     const [clearable, setClearable] = useState(false);
     const [separator, setSeparator] = useState(false);
-    const [isSearchable, setIsSearchable] = useState(true);
+    const [searchable, setSearchable] = useState(true);
     const [filter, setFilter] = useState("");
-    const selectChangeHandler = (option) => {
-      setSelected(option);
-    };
+
+    console.log(inputValue);
+
     return (
       <Fragment>
       	<Select 
           disabled={disabled}
           clearable={clearable}
           separator={separator}
-          isSearchable={isSearchable}
+          searchable={searchable}
           options={options}
-          defaultValue={selected}
-          onChange={selectChangeHandler}
+          defaultValue={value}
+          value={value}
+          onChange={onChange}
+          inputValue={inputValue}
+          onInputChange={onInputChange}
           filterOptions={({label}) => (label !== filter)}
           label={"Basic select"}
         />
@@ -61,7 +65,7 @@ import { Select, Creatable, MultiSelect, Checkbox, Text, TextInput } from "../in
         <br/>
         <Checkbox id="basic-select-separator" label={"Separator"} checked={separator} onChange={() => setSeparator(!separator)}/>
         <br/>
-        <Checkbox id="basic-select-searchable" label={"Searchable"} checked={isSearchable} onChange={() => setIsSearchable(!isSearchable)}/>
+        <Checkbox id="basic-select-searchable" label={"Searchable"} checked={searchable} onChange={() => setSearchable(!searchable)}/>
         <br/>
         <Text>Don't show option:</Text><TextInput id="basic-select-filter" label={""} onChange={(e) => setFilter(e.target.value)}/>
       </Fragment>
@@ -83,13 +87,10 @@ import { Select, Creatable, MultiSelect, Checkbox, Text, TextInput } from "../in
       value: 'old',
       label: 'Old'
     }];
-    const [selected, setSelected] = useState({
+    const [value, onChange] = useState({
       value: 'new',
       label: 'New'
     });
-    const selectChangeHandler = (option) => {
-      setSelected(option);
-    };
     const customRenderer = ({label}) => (
       <div style={{display: "flex", alignItems: "center"}}>
         {
@@ -114,8 +115,9 @@ import { Select, Creatable, MultiSelect, Checkbox, Text, TextInput } from "../in
       <Fragment>
       	<Select 
           options={options}
-          defaultValue={selected}
-          onChange={selectChangeHandler}
+          defaultValue={value}
+          value={value}
+          onChange={onChange}
           optionRenderer={customRenderer}
           valueRenderer={customRenderer}
           label={"Custom renderers"}
@@ -144,21 +146,23 @@ import { Select, Creatable, MultiSelect, Checkbox, Text, TextInput } from "../in
       value: 'old',
       label: 'Old'
     }];
-    const [selected, setSelected] = useState({
-      value: 'old',
-      label: 'Old'
+    const [value, onChange] = useState({
+      value: 'new',
+      label: 'New'
     });
+    const [inputValue, onInputChange] = useState("");
     const [disabled, setDisabled] = useState(false);
     const [clearable, setClearable] = useState(false);
     const [separator, setSeparator] = useState(false);
-    const [isSearchable, setIsSearchable] = useState(true);
+    const [searchable, setSearchable] = useState(true);
     const [filter, setFilter] = useState("");
-    const selectChangeHandler = (option) => {
-      setSelected(option);
-    };
+
     const isValidNewOption = (newOption) => newOption !== "No";
     const newOptionCreator = (newOption) => alert(`${newOption} added!`);
     const promptTextCreator = (newOption) => <span>Add {newOption}</span>;
+
+    console.log(value);
+    console.log(inputValue);
 
     return (
       <Fragment>
@@ -166,10 +170,12 @@ import { Select, Creatable, MultiSelect, Checkbox, Text, TextInput } from "../in
           disabled={disabled}
           clearable={clearable}
           separator={separator}
-          isSearchable={isSearchable}
+          searchable={searchable}
           options={options}
-          defaultValue={selected}
-          onChange={selectChangeHandler}
+          inputValue={inputValue}
+          onInputChange={onInputChange}
+          onChange={onChange}
+          value={value}
           filterOptions={({label}) => (!filter || label !== filter)}
           label={"Creatable"}
           typeLabel={"Just type to add a new option"}
@@ -185,7 +191,7 @@ import { Select, Creatable, MultiSelect, Checkbox, Text, TextInput } from "../in
         <br/>
         <Checkbox id="creatable-select-separator" label={"Separator"} checked={separator} onChange={() => setSeparator(!separator)}/>
         <br/>
-        <Checkbox id="creatable-select-searchable" label={"Searchable"} checked={isSearchable} onChange={() => setIsSearchable(!isSearchable)}/>
+        <Checkbox id="creatable-select-searchable" label={"Searchable"} checked={searchable} onChange={() => setSearchable(!searchable)}/>
         <br/>
         <Text>Don't show option:</Text><TextInput id="creatable-select-filter" label={""} onChange={(e) => setFilter(e.target.value)}/>
       </Fragment>
@@ -212,27 +218,31 @@ import { Select, Creatable, MultiSelect, Checkbox, Text, TextInput } from "../in
       value: 'old',
       label: 'Old'
     }];
-    const [selected, setSelected] = useState({
-      value: 'top',
-      label: 'Top'
-    });
+    const [value, onChange] = useState([{
+      value: 'new',
+      label: 'New'
+    }]);
+    const [inputValue, onInputChange] = useState("");
     const [disabled, setDisabled] = useState(false);
     const [clearable, setClearable] = useState(false);
     const [separator, setSeparator] = useState(false);
-    const [isSearchable, setIsSearchable] = useState(true);
-    const selectChangeHandler = (option) => {
-      setSelected(option);
-    };
+    const [searchable, setSearchable] = useState(true);
+    
+    console.log(value);
+    console.log(inputValue);
+
     return (
       <Fragment>
       	<MultiSelect 
           disabled={disabled}
           clearable={clearable}
           separator={separator}
-          isSearchable={isSearchable}
+          searchable={searchable}
           options={options}
-          defaultValues={[selected]}
-          onChange={selectChangeHandler}
+          onChange={onChange}
+          value={value}
+          inputValue={inputValue}
+          onInputChange={onInputChange}
           label={"Multi select"}
         />
         <br/>
@@ -242,7 +252,7 @@ import { Select, Creatable, MultiSelect, Checkbox, Text, TextInput } from "../in
         <br/>
         <Checkbox id="multi-select-separator" label={"Separator"} checked={separator} onChange={() => setSeparator(!separator)}/>
         <br/>
-        <Checkbox id="multi-select-searchable" label={"Searchable"} checked={isSearchable} onChange={() => setIsSearchable(!isSearchable)}/>
+        <Checkbox id="multi-select-searchable" label={"Searchable"} checked={searchable} onChange={() => setSearchable(!searchable)}/>
       </Fragment>
     );
   }}

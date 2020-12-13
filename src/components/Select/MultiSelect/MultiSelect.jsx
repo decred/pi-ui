@@ -12,7 +12,6 @@ const MultiSelect = ({
   defaultValues,
   label,
   separator,
-  onChange,
   getOptionLabel,
   getOptionValue,
   optionRenderer,
@@ -20,15 +19,17 @@ const MultiSelect = ({
   filterOptions,
   className,
   autoFocus,
-  isSearchable,
+  searchable,
+  value,
+  onChange,
+  inputValue,
+  onInputChange,
   ...props
 }) => {
   const {
     _options,
-    optionContainerRef,
-    dropdownRef,
+    containerRef,
     menuOpened,
-    selectedOptions,
     focusedOptionIndex,
     openMenu,
     setFocusedOptionIndex,
@@ -37,7 +38,6 @@ const MultiSelect = ({
     selectOption,
     cancelSelection,
     removeSelectedOption,
-    searchingFor,
     onSearch
   } = useMultiSelect(
     disabled,
@@ -48,13 +48,16 @@ const MultiSelect = ({
     getOptionLabel,
     getOptionValue,
     filterOptions,
-    isSearchable
+    searchable,
+    value,
+    inputValue,
+    onInputChange
   );
 
   const parentClassNames = classNames(
     styles.select,
-    selectedOptions.length && styles.valueSelected,
-    isSearchable && searchingFor && styles.search,
+    value.length && styles.valueSelected,
+    searchable && inputValue && styles.search,
     menuOpened ? styles.menuOpened : styles.menuClosed,
     separator && styles.hasSeparator,
     clearable && styles.clearable,
@@ -71,21 +74,21 @@ const MultiSelect = ({
 
   return (
     <div className={parentClassNames} {...props}>
-      <div className={styles.fieldset}>
+      <div className={styles.fieldset} ref={containerRef}>
         {label && <label className={styles.label}>{label}</label>}
-        <div className={styles.controls} onClick={openMenu} ref={dropdownRef}>
-          {isSearchable && searchingFor ? (
+        <div className={styles.controls} onClick={openMenu}>
+          {searchable && inputValue ? (
             <input
               disabled={disabled}
               className={styles.input}
-              value={searchingFor}
+              value={inputValue}
               onChange={onSearch}
               autoFocus
             />
           ) : (
             <div className={styles.values}>
-              {selectedOptions.length > 0 &&
-                selectedOptions.map((selectedOption, index) => (
+              {value.length > 0 &&
+                value.map((selectedOption, index) => (
                   <div className={styles.selectedOption} key={index}>
                     {valueRenderer
                       ? valueRenderer(selectedOption)
@@ -107,34 +110,30 @@ const MultiSelect = ({
           </div>
         </div>
         {transitions.map(
-            ({ item, key, props }) =>
-              item && (
-                <animated.div
-                  className={styles.menu}
-                  key={key}
-                  ref={optionContainerRef}
-                  style={props}>
-                  {_options.map((_option, index) => (
-                    <div
-                      onClick={selectOption}
-                      onMouseEnter={() => setFocusedOptionIndex(index)}
-                      key={index}
-                      index={index}
-                      className={classNames(
-                        index === focusedOptionIndex && styles.focusedOption,
-                        selectedOptions.find(
-                          (selectedOption) =>
-                            getValueKey(selectedOption) === getValueKey(_option)
-                        ) && styles.selected
-                      )}>
-                      {optionRenderer
-                        ? optionRenderer(_option)
-                        : getLabelKey(_option)}
-                    </div>
-                  ))}
-                </animated.div>
-              )
-          )}
+          ({ item, key, props }) =>
+            item && (
+              <animated.div className={styles.menu} key={key} style={props}>
+                {_options.map((_option, index) => (
+                  <div
+                    onClick={selectOption}
+                    onMouseEnter={() => setFocusedOptionIndex(index)}
+                    key={index}
+                    index={index}
+                    className={classNames(
+                      index === focusedOptionIndex && styles.focusedOption,
+                      value.find(
+                        (selectedOption) =>
+                          getValueKey(selectedOption) === getValueKey(_option)
+                      ) && styles.selected
+                    )}>
+                    {optionRenderer
+                      ? optionRenderer(_option)
+                      : getLabelKey(_option)}
+                  </div>
+                ))}
+              </animated.div>
+            )
+        )}
       </div>
     </div>
   );
@@ -155,7 +154,10 @@ MultiSelect.propTypes = {
   filterOptions: PropTypes.func,
   className: PropTypes.string,
   autoFocus: PropTypes.bool,
-  isSearchable: PropTypes.bool
+  searchable: PropTypes.bool,
+  value: PropTypes.array,
+  inputValue: PropTypes.string,
+  onInputChange: PropTypes.func
 };
 
 MultiSelect.defaultProps = {
@@ -172,7 +174,10 @@ MultiSelect.defaultProps = {
   filterOptions: null,
   className: "",
   autoFocus: false,
-  isSearchable: false
+  searchable: false,
+  value: [],
+  inputValue: "",
+  onInputChange: null
 };
 
 export default MultiSelect;

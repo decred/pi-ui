@@ -13,7 +13,6 @@ const BasicSelect = ({
   defaultValue,
   label,
   separator,
-  onChange,
   getOptionLabel,
   getOptionValue,
   optionRenderer,
@@ -21,15 +20,17 @@ const BasicSelect = ({
   filterOptions,
   className,
   autoFocus,
-  isSearchable,
+  searchable,
+  value,
+  onChange,
+  inputValue,
+  onInputChange,
   ...props
 }) => {
   const {
     _options,
-    optionContainerRef,
-    dropdownRef,
+    containerRef,
     menuOpened,
-    selectedOption,
     focusedOptionIndex,
     openMenu,
     setFocusedOptionIndex,
@@ -37,7 +38,6 @@ const BasicSelect = ({
     getLabelKey,
     selectOption,
     cancelSelection,
-    searchingFor,
     onSearch
   } = useBasicSelect(
     disabled,
@@ -48,13 +48,16 @@ const BasicSelect = ({
     getOptionLabel,
     getOptionValue,
     filterOptions,
-    isSearchable
+    value,
+    searchable,
+    inputValue,
+    onInputChange
   );
 
   const parentClassNames = classNames(
     styles.select,
-    getValueKey(selectedOption) && styles.valueSelected,
-    isSearchable && searchingFor && styles.search,
+    getValueKey(value) && styles.valueSelected,
+    searchable && inputValue && styles.search,
     menuOpened ? styles.menuOpened : styles.menuClosed,
     separator && styles.hasSeparator,
     clearable && styles.clearable,
@@ -71,23 +74,21 @@ const BasicSelect = ({
 
   return (
     <div className={parentClassNames} {...props}>
-      <div className={styles.fieldset}>
+      <div className={styles.fieldset} ref={containerRef}>
         {label && <label className={styles.label}>{label}</label>}
-        <div className={styles.controls} onClick={openMenu} ref={dropdownRef}>
-          {isSearchable && searchingFor ? (
+        <div className={styles.controls} onClick={openMenu}>
+          {searchable && inputValue ? (
             <input
               disabled={disabled}
               className={styles.input}
-              value={searchingFor}
+              value={inputValue}
               onChange={onSearch}
               autoFocus
             />
           ) : (
             <div className={styles.value}>
-              {selectedOption !== blankValue &&
-                (valueRenderer
-                  ? valueRenderer(selectedOption)
-                  : getLabelKey(selectedOption))}
+              {value !== blankValue &&
+                (valueRenderer ? valueRenderer(value) : getLabelKey(value))}
             </div>
           )}
           {clearable && (
@@ -101,11 +102,7 @@ const BasicSelect = ({
         {transitions.map(
           ({ item, key, props }) =>
             item && (
-              <animated.div
-                className={styles.menu}
-                key={key}
-                ref={optionContainerRef}
-                style={props}>
+              <animated.div className={styles.menu} key={key} style={props}>
                 {_options.map((_option, index) => (
                   <div
                     onClick={selectOption}
@@ -114,7 +111,7 @@ const BasicSelect = ({
                     index={index}
                     className={classNames(
                       index === focusedOptionIndex && styles.focusedOption,
-                      getValueKey(selectedOption) === getValueKey(_option) &&
+                      getValueKey(value) === getValueKey(_option) &&
                         styles.selected
                     )}>
                     {_option !== blankValue &&
@@ -138,7 +135,6 @@ BasicSelect.propTypes = {
   defaultValue: PropTypes.object,
   label: PropTypes.string,
   separator: PropTypes.bool,
-  onChange: PropTypes.func.isRequired,
   getOptionLabel: PropTypes.func,
   getOptionValue: PropTypes.func,
   optionRenderer: PropTypes.func,
@@ -146,7 +142,11 @@ BasicSelect.propTypes = {
   filterOptions: PropTypes.func,
   className: PropTypes.string,
   autoFocus: PropTypes.bool,
-  isSearchable: PropTypes.bool
+  value: PropTypes.object,
+  onChange: PropTypes.func.isRequired,
+  searchable: PropTypes.bool,
+  inputValue: PropTypes.string,
+  onInputChange: PropTypes.func
 };
 
 BasicSelect.defaultProps = {
@@ -163,7 +163,10 @@ BasicSelect.defaultProps = {
   filterOptions: null,
   className: "",
   autoFocus: false,
-  isSearchable: false
+  value: null,
+  searchable: false,
+  inputValue: "",
+  onInputChange: null
 };
 
 export default BasicSelect;

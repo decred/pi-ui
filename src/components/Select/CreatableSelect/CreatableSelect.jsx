@@ -21,22 +21,21 @@ const CreatableSelect = ({
   filterOptions,
   className,
   autoFocus,
-  isSearchable,
-
+  searchable,
+  value,
+  inputValue,
+  onInputChange,
   typeLabel,
   error,
   isValidNewOption,
   newOptionCreator,
   promptTextCreator,
-
   ...props
 }) => {
   const {
     _options,
-    optionContainerRef,
-    dropdownRef,
+    containerRef,
     menuOpened,
-    selectedOption,
     focusedOptionIndex,
     openMenu,
     showError,
@@ -45,8 +44,6 @@ const CreatableSelect = ({
     getLabelKey,
     selectOption,
     cancelSelection,
-
-    newOption,
     addingNewOption,
     promptTextCreatorCallback,
     onCreatableChange,
@@ -60,8 +57,10 @@ const CreatableSelect = ({
     getOptionLabel,
     getOptionValue,
     filterOptions,
-    isSearchable,
-
+    searchable,
+    value,
+    inputValue,
+    onInputChange,
     typeLabel,
     isValidNewOption,
     newOptionCreator,
@@ -70,7 +69,7 @@ const CreatableSelect = ({
 
   const parentClassNames = classNames(
     styles.select,
-    getValueKey(selectedOption) && styles.valueSelected,
+    getValueKey(value) && styles.valueSelected,
     menuOpened ? styles.menuOpened : styles.menuClosed,
     separator && styles.hasSeparator,
     clearable && styles.clearable,
@@ -87,13 +86,15 @@ const CreatableSelect = ({
 
   return (
     <div className={parentClassNames} {...props}>
-      <div className={classNames(styles.fieldset, showError && styles.error)}>
+      <div
+        className={classNames(styles.fieldset, showError && styles.error)}
+        ref={containerRef}>
         {label && <label className={styles.label}>{label}</label>}
-        <div className={styles.controls} onClick={openMenu} ref={dropdownRef}>
+        <div className={styles.controls} onClick={openMenu}>
           <input
             disabled={disabled}
             className={styles.input}
-            value={newOption}
+            value={inputValue}
             onChange={onCreatableChange}
           />
           {clearable && (
@@ -115,11 +116,7 @@ const CreatableSelect = ({
         {transitions.map(
           ({ item, key, props }) =>
             item && (
-              <animated.div
-                className={styles.menu}
-                key={key}
-                ref={optionContainerRef}
-                style={props}>
+              <animated.div className={styles.menu} key={key} style={props}>
                 {addingNewOption && (
                   <div
                     onClick={newOptionCreatorCallback}
@@ -135,15 +132,15 @@ const CreatableSelect = ({
                   (!addingNewOption && index > 0) || addingNewOption ? (
                     <div
                       onClick={selectOption}
-                      onMouseEnter={() =>
-                        setFocusedOptionIndex(index + (addingNewOption ? 1 : 0))
-                      }
-                      key={index + (addingNewOption ? 1 : 0)}
-                      index={index + (addingNewOption ? 1 : 0)}
+                      onMouseEnter={() => {
+                        setFocusedOptionIndex(index + addingNewOption);
+                      }}
+                      key={index + addingNewOption}
+                      index={index + addingNewOption}
                       className={classNames(
-                        index + (addingNewOption ? 1 : 0) ===
-                          focusedOptionIndex && styles.focusedOption,
-                        getValueKey(selectedOption) === getValueKey(_option) &&
+                        index + addingNewOption === focusedOptionIndex &&
+                          styles.focusedOption,
+                        getValueKey(value) === getValueKey(_option) &&
                           styles.selected
                       )}>
                       {_option !== blankValue &&
@@ -187,8 +184,10 @@ CreatableSelect.propTypes = {
   filterOptions: PropTypes.func,
   className: PropTypes.string,
   autoFocus: PropTypes.bool,
-  isSearchable: PropTypes.bool,
-
+  searchable: PropTypes.bool,
+  value: PropTypes.object,
+  inputValue: PropTypes.string,
+  onInputChange: PropTypes.func.isRequired,
   typeLabel: PropTypes.string,
   error: PropTypes.string,
   isValidNewOption: PropTypes.func,
@@ -209,8 +208,10 @@ CreatableSelect.defaultProps = {
   filterOptions: null,
   className: "",
   autoFocus: false,
-  isSearchable: false,
-
+  searchable: false,
+  value: null,
+  inputValue: "",
+  onInputChange: null,
   typeLabel: "",
   error: "",
   isValidNewOption: null,
