@@ -11,6 +11,7 @@ Array [
       onClick={[Function]}
       style={
         Object {
+          "backgroundColor": "transparent",
           "borderColor": "rgba(46, 216, 163, 1)",
           "color": "rgba(9, 20, 64, 1)",
           "duration": 350,
@@ -35,6 +36,7 @@ Array [
       onClick={[Function]}
       style={
         Object {
+          "backgroundColor": "transparent",
           "borderColor": "rgba(255, 255, 255, 1)",
           "color": "rgba(61, 88, 115, 1)",
           "duration": 350,
