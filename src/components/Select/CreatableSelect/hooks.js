@@ -41,7 +41,6 @@ export function useCreatableSelect(
     inputValue
   });
   const previousShowError = previousObjects?.showError;
-  const previousNewOption = previousObjects?.inputValue;
 
   useEffect(() => {
     if (disabled) {
@@ -54,19 +53,18 @@ export function useCreatableSelect(
 
   useEffect(() => {
     if (disabled) return;
-    if (filterOptions) {
-      if (!filterOptions(value)) onChange(blankValue);
-      if (!filterOptions({ label: inputValue, value: inputValue }))
-        onInputChange(previousNewOption);
-    }
+    if (filterOptions && !filterOptions(value) && getLabelKey(value))
+      {
+        onInputChange("");
+        onChange(blankValue);
+      }
   }, [
     disabled,
     value,
     filterOptions,
-    inputValue,
-    onChange,
     onInputChange,
-    previousNewOption
+    getLabelKey,
+    onChange
   ]);
 
   useEffect(() => {
@@ -218,6 +216,16 @@ export function useCreatableSelect(
       return;
     }
     setShowError(false);
+    if (
+      searchable &&
+      _newOption &&
+      filterOptions &&
+      !filterOptions({ label: _newOption, value: _newOption })
+    ) {
+      setAddingNewOption(false);
+      onInputChange(_newOption);
+      return;
+    }
     setAddingNewOption(!!_newOption);
     onInputChange(_newOption);
     setMenuOpened(true);

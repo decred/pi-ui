@@ -56,14 +56,17 @@ export function useMultiSelect(
 
   useEffect(() => {
     if (searchable && inputValue) setMenuOpened(_options.length > 0);
-  }, [searchable, inputValue, _options]);
+  }, [searchable, inputValue, _options, menuOpened]);
 
   const removeSelectedOptionFilter = (option) =>
     value.filter(
       (selectedOption) => getLabelKey(selectedOption) !== getLabelKey(option)
     );
 
-  const removeSelectedOption = (option) => onChange(removeSelectedOptionFilter(option));
+  const removeSelectedOption = (e, option) => {
+    onChange(removeSelectedOptionFilter(option));
+    e.stopPropagation();
+  };
 
   const resetMenu = (focusedIndex = 0) => {
     setFocusedOptionIndex(focusedIndex);

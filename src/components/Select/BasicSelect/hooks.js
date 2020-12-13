@@ -58,7 +58,7 @@ export function useBasicSelect(
 
   useEffect(() => {
     if (searchable && inputValue) setMenuOpened(_options.length > 0);
-  }, [searchable, inputValue, _options]);
+  }, [searchable, inputValue, _options, menuOpened]);
 
   const resetMenu = (focusedIndex = 0) => {
     setFocusedOptionIndex(focusedIndex);

@@ -93,7 +93,7 @@ const MultiSelect = ({
                       : getLabelKey(selectedOption)}
                     <div
                       className={styles.removeOption}
-                      onClick={() => removeSelectedOption(selectedOption)}
+                      onClick={(e) => removeSelectedOption(e, selectedOption)}
                     />
                   </div>
                 ))}
