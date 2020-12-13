@@ -35,7 +35,7 @@ export function useCreatableSelect(
   const [_options, setOptions] = useState([]);
 
   useMountEffect(() => {
-    if (onChange && defaultValue) onChange(defaultValue);
+    if (defaultValue) onChange(defaultValue);
   });
 
   const [showError, setShowError] = useState(false);
@@ -136,7 +136,7 @@ export function useCreatableSelect(
       );
     onInputChange(getLabelKey(option));
     resetMenu(index);
-    if (onChange) onChange(option);
+    onChange(option);
   };
 
   const [containerRef] = useClickOutside(() => {
@@ -199,15 +199,12 @@ export function useCreatableSelect(
     const optionIndex = parseInt(optionWrapper.getAttribute("index"), 10);
     if (optionIndex === 0) return;
     const optionByIndex = _options[optionIndex];
-    onInputChange(getLabelKey(optionByIndex));
     setOption(optionByIndex, optionIndex);
   };
 
   const cancelSelection = (e) => {
     if (disabled) return;
-    if (onChange) {
-      onChange(blankValue);
-    }
+    onChange(blankValue);
     resetMenu();
     onInputChange("");
     e.stopPropagation();

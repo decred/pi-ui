@@ -30,7 +30,7 @@ export function useBasicSelect(
   const [_options, setOptions] = useState([]);
 
   useMountEffect(() => {
-    if (onChange && defaultValue) onChange(defaultValue);
+    if (defaultValue) onChange(defaultValue);
   });
 
   useEffect(() => {
@@ -49,16 +49,17 @@ export function useBasicSelect(
   useEffect(() => {
     if (disabled) {
       setMenuOpened(false);
-      if (searchable && onInputChange) onInputChange("");
+      if (searchable && onInputChange && inputValue) onInputChange("");
       return;
     }
     if (autoFocus) setMenuOpened(true);
-  }, [disabled, autoFocus, searchable, onInputChange]);
+  }, [disabled, autoFocus, searchable, inputValue, onInputChange]);
 
   useEffect(() => {
     if (disabled) return;
-    if (filterOptions && !filterOptions(value)) onChange(blankValue);
-  }, [disabled, value, filterOptions, onChange]);
+    if (filterOptions && !filterOptions(value) && getLabelKey(value))
+      onChange(blankValue);
+  }, [disabled, value, filterOptions, onChange, getLabelKey]);
 
   useEffect(() => {
     if (searchable && inputValue) setMenuOpened(_options.length > 0);
@@ -67,7 +68,7 @@ export function useBasicSelect(
   const resetMenu = (focusedIndex = 0) => {
     setFocusedOptionIndex(focusedIndex);
     setMenuOpened(false);
-    if (searchable && onInputChange) onInputChange("");
+    if (searchable && onInputChange && inputValue) onInputChange("");
   };
 
   const setOption = (option, knownIndex) => {
@@ -79,9 +80,7 @@ export function useBasicSelect(
           getLabelKey(opt) === getLabelKey(option)
       );
     resetMenu(index);
-    if (onChange) {
-      onChange(option);
-    }
+    onChange(option);
   };
 
   const [containerRef] = useClickOutside(resetMenu);
@@ -139,9 +138,7 @@ export function useBasicSelect(
 
   const cancelSelection = (e) => {
     if (disabled) return;
-    if (onChange) {
-      onChange(blankValue);
-    }
+    onChange(blankValue);
     resetMenu();
     e.stopPropagation();
   };

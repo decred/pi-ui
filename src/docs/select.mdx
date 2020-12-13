@@ -40,8 +40,6 @@ import { Select, Creatable, MultiSelect, Checkbox, Text, TextInput } from "../in
     const [searchable, setSearchable] = useState(true);
     const [filter, setFilter] = useState("");
 
-    console.log(inputValue);
-
     return (
       <Fragment>
       	<Select 
@@ -161,9 +159,6 @@ import { Select, Creatable, MultiSelect, Checkbox, Text, TextInput } from "../in
     const newOptionCreator = (newOption) => alert(`${newOption} added!`);
     const promptTextCreator = (newOption) => <span>Add {newOption}</span>;
 
-    console.log(value);
-    console.log(inputValue);
-
     return (
       <Fragment>
       	<Creatable 
@@ -227,9 +222,6 @@ import { Select, Creatable, MultiSelect, Checkbox, Text, TextInput } from "../in
     const [clearable, setClearable] = useState(false);
     const [separator, setSeparator] = useState(false);
     const [searchable, setSearchable] = useState(true);
-    
-    console.log(value);
-    console.log(inputValue);
 
     return (
       <Fragment>

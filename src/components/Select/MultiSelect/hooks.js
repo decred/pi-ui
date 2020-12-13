@@ -26,7 +26,7 @@ export function useMultiSelect(
   const [_options, setOptions] = useState([]);
 
   useMountEffect(() => {
-    if (onChange && defaultValue) onChange(defaultValue);
+    if (defaultValue) onChange(defaultValue);
   });
 
   useEffect(() => {
@@ -45,17 +45,17 @@ export function useMultiSelect(
   useEffect(() => {
     if (disabled) {
       setMenuOpened(false);
-      if (searchable && onInputChange) onInputChange("");
+      if (searchable && onInputChange && inputValue) onInputChange("");
       return;
     }
     if (autoFocus) setMenuOpened(true);
-  }, [disabled, autoFocus, searchable, onInputChange]);
+  }, [disabled, autoFocus, searchable, onInputChange, inputValue]);
 
   const previousSelectedOptions = usePrevious(value);
 
   useEffect(() => {
     if (disabled) return;
-    if (filterOptions && previousSelectedOptions !== value)
+    if (filterOptions && previousSelectedOptions !== value && value.length)
       onChange(value.filter(filterOptions));
   }, [disabled, value, filterOptions, previousSelectedOptions, onChange]);
 
@@ -71,7 +71,7 @@ export function useMultiSelect(
   const resetMenu = (focusedIndex = 0) => {
     setFocusedOptionIndex(focusedIndex);
     setMenuOpened(false);
-    if (searchable && onInputChange) onInputChange("");
+    if (searchable && onInputChange && inputValue) onInputChange("");
   };
 
   const setOption = (option, knownIndex) => {
@@ -96,8 +96,8 @@ export function useMultiSelect(
       newSelectedOptions = [...value, option];
     }
     setFocusedOptionIndex(index);
-    if (searchable && onInputChange) onInputChange("");
-    if (onChange) onChange(newSelectedOptions);
+    if (searchable && onInputChange && inputValue) onInputChange("");
+    onChange(newSelectedOptions);
   };
 
   const [containerRef] = useClickOutside(resetMenu);
@@ -154,9 +154,7 @@ export function useMultiSelect(
 
   const cancelSelection = (e) => {
     if (disabled) return;
-    if (onChange) {
-      onChange([]);
-    }
+    onChange([]);
     resetMenu();
     e.stopPropagation();
   };
