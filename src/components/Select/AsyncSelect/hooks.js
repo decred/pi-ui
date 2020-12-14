@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useClickOutside, useMountEffect, usePrevious } from "hooks";
 import { useHandleKeyboardHook } from "../hooks";
 import {
@@ -40,10 +40,54 @@ export function useAsyncSelect(
     setOptions(updatedOptions);
   };
 
+  const updateCachedOptions = (values) => {
+    let updatedCachedOptions = [..._cachedOptions, ...values];
+    updatedCachedOptions = updatedCachedOptions.filter(
+      (value, index, array) =>
+        array.findIndex((temp) => getLabelKey(temp) === getLabelKey(value)) ===
+        index
+    );
+    setCachedOptions(updatedCachedOptions);
+  };
+
+  const _loadOptions = (value, ignoreEmpty) => {
+    if (onInputChange) {
+      onInputChange(value);
+      setLoading(true);
+      loadOptions(value).then((result) => {
+        if (cacheOptions) updateCachedOptions(result);
+        else
+          setOptions([
+            ...options.filter((_option) =>
+              getLabelKey(_option)
+                .toLowerCase()
+                ?.includes(value.toLowerCase())
+            ),
+            ...(ignoreEmpty && !value ? [] : result)
+          ]);
+        setLoading(false);
+      });
+    }
+  };
+
   const previousCachedOptions = usePrevious(_cachedOptions);
 
-  if (cacheOptions)
-    if (previousCachedOptions !== _cachedOptions) updateOptions(inputValue);
+  useMountEffect(() => {
+    if (defaultOptions === true) _loadOptions(inputValue);
+    else if (Array.isArray(defaultOptions))
+      if (cacheOptions) updateCachedOptions(defaultOptions);
+      else setOptions([...options, ...defaultOptions]);
+    else setOptions(options);
+  });
+
+  useEffect(() => {
+    if (
+      cacheOptions &&
+      previousCachedOptions &&
+      previousCachedOptions !== _cachedOptions
+    )
+      updateOptions(inputValue);
+  });
 
   useEffect(() => {
     if (disabled) {
@@ -57,29 +101,6 @@ export function useAsyncSelect(
   useEffect(() => {
     if (inputValue) setMenuOpened(_options.length > 0);
   }, [inputValue, _options, menuOpened]);
-
-  useMountEffect(() => {
-    if (defaultOptions === true) {
-      loadOptions(inputValue).then((result) => {
-        if (cacheOptions) setCachedOptions([..._cachedOptions, ...result]);
-        else
-          setOptions([
-            ...options.filter((_option) =>
-              getLabelKey(_option)
-                .toLowerCase()
-                ?.includes(inputValue.toLowerCase())
-            ),
-            ...result
-          ]);
-      });
-    } else if (Array.isArray(defaultOptions)) {
-      if (cacheOptions) {
-        setCachedOptions([..._cachedOptions, ...defaultOptions]);
-      } else setOptions([...options, ...defaultOptions]);
-    } else {
-      setOptions(options);
-    }
-  });
 
   const resetMenu = (focusedIndex = 0) => {
     setFocusedOptionIndex(focusedIndex);
@@ -124,18 +145,13 @@ export function useAsyncSelect(
     setOption(optionByIndex, optionIndex);
   };
 
-  const onTypeDefaultHandler = useCallback(
-    (e) => {
-      if (!menuOpened) return;
-      if (
-        !inputValue &&
-        String.fromCharCode(e.keyCode).match(/(\w|\s)/g) &&
-        onInputChange
-      )
-        onInputChange(e.key);
-    },
-    [menuOpened, inputValue, onInputChange]
-  );
+  const onTypeDefaultHandler = (e) => {
+    if (!menuOpened) return;
+    if (!inputValue && String.fromCharCode(e.keyCode).match(/(\w|\s)/g)) {
+      _loadOptions(e.key, true);
+      e.preventDefault();
+    }
+  };
 
   useHandleKeyboardHook(
     onTypeArrowDownHandler,
@@ -166,23 +182,7 @@ export function useAsyncSelect(
 
   const onSearch = (e) => {
     const searchValue = e.target.value;
-    if (onInputChange) {
-      onInputChange(searchValue);
-      setLoading(true);
-      loadOptions(searchValue).then((result) => {
-        if (cacheOptions) setCachedOptions([..._cachedOptions, ...result]);
-        else
-          setOptions([
-            ...options.filter((_option) =>
-              getLabelKey(_option)
-                .toLowerCase()
-                ?.includes(searchValue.toLowerCase())
-            ),
-            ...(searchValue ? result : [])
-          ]);
-        setLoading(false);
-      });
-    }
+    _loadOptions(searchValue, true);
   };
 
   return {

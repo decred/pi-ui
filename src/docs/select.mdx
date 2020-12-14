@@ -275,7 +275,6 @@ import { Select, Creatable, MultiSelect, AsyncSelect, Checkbox, Text, TextInput 
     const [disabled, setDisabled] = useState(false);
     const [clearable, setClearable] = useState(false);
     const [separator, setSeparator] = useState(false);
-    const [filter, setFilter] = useState("");
 
     const colors = [{
       value: 'yellow',
@@ -308,6 +307,11 @@ import { Select, Creatable, MultiSelect, AsyncSelect, Checkbox, Text, TextInput 
         }, 1000);
       });
 
+    const defaultOptions = [{
+      label: "Bottom",
+      value: "bottom"
+    }];
+
     return (
       <Fragment>
       	<AsyncSelect 
@@ -319,7 +323,6 @@ import { Select, Creatable, MultiSelect, AsyncSelect, Checkbox, Text, TextInput 
           onChange={onChange}
           inputValue={inputValue}
           onInputChange={onInputChange}
-          filterOptions={({label}) => (label !== filter)}
           label={"Async select"}
           loadOptions={promiseOptions}
         />
@@ -329,8 +332,6 @@ import { Select, Creatable, MultiSelect, AsyncSelect, Checkbox, Text, TextInput 
         <Checkbox id="async-select-clearable" label={"Clearable"} checked={clearable} onChange={() => setClearable(!clearable)}/>
         <br/>
         <Checkbox id="async-select-separator" label={"Separator"} checked={separator} onChange={() => setSeparator(!separator)}/>
-        <br/>
-        <Text>Don't show option:</Text><TextInput id="async-select-filter" label={""} onChange={(e) => setFilter(e.target.value)}/>
       </Fragment>
     );
   }}
