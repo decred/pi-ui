@@ -6,6 +6,7 @@ import {
   defaultLabelKeyGetter,
   defaultValueKeyGetter
 } from "../helpers";
+import { useMountEffect } from "../../../hooks";
 
 export function useCreatableSelect(
   disabled,
@@ -27,20 +28,18 @@ export function useCreatableSelect(
   const newOptions = useRef([]);
   const [menuOpened, setMenuOpened] = useState(false);
   const [focusedOptionIndex, setFocusedOptionIndex] = useState(0);
+  const [_options, setOptions] = useState([]);
+  const [showError, setShowError] = useState(false);
+  const [addingNewOption, setAddingNewOption] = useState(false);
 
   const getValueKey = getOptionValue || defaultValueKeyGetter;
   const getLabelKey = getOptionLabel || defaultLabelKeyGetter;
 
-  const [_options, setOptions] = useState([]);
+  const previousShowError = usePrevious(showError);
 
-  const [showError, setShowError] = useState(false);
-  const [addingNewOption, setAddingNewOption] = useState(false);
-
-  const previousObjects = usePrevious({
-    showError,
-    inputValue
+  useMountEffect(() => {
+    if (!inputValue && getLabelKey(value)) onInputChange(getLabelKey(value));
   });
-  const previousShowError = previousObjects?.showError;
 
   useEffect(() => {
     if (disabled) {
@@ -53,19 +52,11 @@ export function useCreatableSelect(
 
   useEffect(() => {
     if (disabled) return;
-    if (filterOptions && !filterOptions(value) && getLabelKey(value))
-      {
-        onInputChange("");
-        onChange(blankValue);
-      }
-  }, [
-    disabled,
-    value,
-    filterOptions,
-    onInputChange,
-    getLabelKey,
-    onChange
-  ]);
+    if (filterOptions && !filterOptions(value) && getLabelKey(value)) {
+      onInputChange("");
+      onChange(blankValue);
+    }
+  }, [disabled, value, filterOptions, onInputChange, getLabelKey, onChange]);
 
   useEffect(() => {
     if (showError) {
@@ -209,25 +200,24 @@ export function useCreatableSelect(
   const promptTextCreatorCallback = () => promptTextCreator(inputValue);
 
   const onCreatableChange = (e) => {
-    const _newOption = e.target.value;
-    if (!isValidNewOption(_newOption)) {
+    const newOption = e.target.value;
+    if (!isValidNewOption(newOption)) {
       setShowError(true);
-      onInputChange(_newOption);
+      onInputChange(newOption);
       return;
     }
     setShowError(false);
     if (
-      searchable &&
-      _newOption &&
+      newOption &&
       filterOptions &&
-      !filterOptions({ label: _newOption, value: _newOption })
+      !filterOptions({ label: newOption, value: newOption })
     ) {
       setAddingNewOption(false);
-      onInputChange(_newOption);
+      onInputChange(newOption);
       return;
     }
-    setAddingNewOption(!!_newOption);
-    onInputChange(_newOption);
+    setAddingNewOption(!!newOption);
+    onInputChange(newOption);
     setMenuOpened(true);
   };
 

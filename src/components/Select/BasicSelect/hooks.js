@@ -22,11 +22,10 @@ export function useBasicSelect(
 ) {
   const [menuOpened, setMenuOpened] = useState(false);
   const [focusedOptionIndex, setFocusedOptionIndex] = useState(0);
+  const [_options, setOptions] = useState([]);
 
   const getValueKey = getOptionValue || defaultValueKeyGetter;
   const getLabelKey = getOptionLabel || defaultLabelKeyGetter;
-
-  const [_options, setOptions] = useState([]);
 
   useEffect(() => {
     let filteredOptions = filterOptions

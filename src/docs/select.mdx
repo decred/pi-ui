@@ -4,9 +4,9 @@ menu: Components
 route: /components/select
 ---
 
-import { useState, Fragment } from "react";
+import { useState, useCallback, Fragment } from "react";
 import { Playground, Props } from "docz";
-import { Select, Creatable, MultiSelect, Checkbox, Text, TextInput } from "../index";
+import { Select, Creatable, MultiSelect, AsyncSelect, Checkbox, Text, TextInput } from "../index";
 
 # Select
 
@@ -243,6 +243,94 @@ import { Select, Creatable, MultiSelect, Checkbox, Text, TextInput } from "../in
         <Checkbox id="multi-select-separator" label={"Separator"} checked={separator} onChange={() => setSeparator(!separator)}/>
         <br/>
         <Checkbox id="multi-select-searchable" label={"Searchable"} checked={searchable} onChange={() => setSearchable(!searchable)}/>
+      </Fragment>
+    );
+  }}
+</Playground>
+
+# Async select
+
+## Async select props
+<Props of={AsyncSelect} />
+
+## Usage
+
+<Playground>
+  {() => {
+    const options = [{
+      value: 'top',
+      label: 'Top'
+    }, {
+      value: 'new',
+      label: 'New'
+    }, {
+      value: 'old',
+      label: 'Old'
+    }];
+    const [value, onChange] = useState({
+      value: 'new',
+      label: 'New'
+    });
+    const [inputValue, onInputChange] = useState("");
+    const [disabled, setDisabled] = useState(false);
+    const [clearable, setClearable] = useState(false);
+    const [separator, setSeparator] = useState(false);
+    const [filter, setFilter] = useState("");
+
+    const colors = [{
+      value: 'yellow',
+      label: 'Yellow'
+    }, {
+      value: 'orange',
+      label: 'Orange'
+    }, {
+      value: 'red',
+      label: 'Red'
+    }, {
+      value: 'purple',
+      label: 'Purple'
+    }, {
+      value: 'blue',
+      label: 'Blue'
+    }, {
+      value: 'green',
+      label: 'Green'
+    }];
+
+    const filterOptions = (_inputValue) =>  colors.filter(color =>
+      color.label.toLowerCase().includes(_inputValue.toLowerCase())
+    );
+
+    const promiseOptions = _inputValue =>
+      new Promise(resolve => {
+        setTimeout(() => {
+          resolve(filterOptions(_inputValue));
+        }, 1000);
+      });
+
+    return (
+      <Fragment>
+      	<AsyncSelect 
+          disabled={disabled}
+          clearable={clearable}
+          separator={separator}
+          options={options}
+          value={value}
+          onChange={onChange}
+          inputValue={inputValue}
+          onInputChange={onInputChange}
+          filterOptions={({label}) => (label !== filter)}
+          label={"Async select"}
+          loadOptions={promiseOptions}
+        />
+        <br/>
+        <Checkbox id="async-select-disabled" label={"Disabled"} checked={disabled} onChange={() => setDisabled(!disabled)}/>
+        <br/>
+        <Checkbox id="async-select-clearable" label={"Clearable"} checked={clearable} onChange={() => setClearable(!clearable)}/>
+        <br/>
+        <Checkbox id="async-select-separator" label={"Separator"} checked={separator} onChange={() => setSeparator(!separator)}/>
+        <br/>
+        <Text>Don't show option:</Text><TextInput id="async-select-filter" label={""} onChange={(e) => setFilter(e.target.value)}/>
       </Fragment>
     );
   }}
