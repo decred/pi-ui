@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { usePrevious } from "hooks";
 import {
   useHandleKeyboardHook,
-  useHandleKeyboardHookBasicParamters,
+  useHandleKeyboardHookBasicParameters,
   useSelect
 } from "../hooks";
 import { matchOption, findExact } from "../helpers";
@@ -99,14 +99,12 @@ export function useMultiSelect(
   const {
     onTypeArrowDownHandler,
     onTypeArrowUpHandler,
-    onTypeEnterHandler,
     onTypeDefaultHandler
-  } = useHandleKeyboardHookBasicParamters(
+  } = useHandleKeyboardHookBasicParameters(
     menuOpened,
     _options,
     focusedOptionIndex,
     setFocusedOptionIndex,
-    setOption,
     inputValue,
     onInputChange,
     searchable
@@ -115,7 +113,7 @@ export function useMultiSelect(
   useHandleKeyboardHook(
     onTypeArrowDownHandler,
     onTypeArrowUpHandler,
-    onTypeEnterHandler,
+    selectOption,
     onTypeDefaultHandler
   );
 

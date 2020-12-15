@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useClickOutside } from "hooks";
-import { blankValue, findOptionWrapper } from "./helpers";
+import { blankValue } from "./helpers";
 
 export function useSelect(
   options,
@@ -10,7 +10,8 @@ export function useSelect(
   inputValue,
   autoFocus,
   onChange,
-  searchable = true
+  searchable = true,
+  error = false
 ) {
   const [menuOpened, setMenuOpened] = useState(false);
   const [focusedOptionIndex, setFocusedOptionIndex] = useState(0);
@@ -25,8 +26,8 @@ export function useSelect(
   }, [disabled, autoFocus, searchable, inputValue, onInputChange]);
 
   useEffect(() => {
-    if (searchable && inputValue) setMenuOpened(options.length > 0);
-  }, [searchable, inputValue, options, menuOpened]);
+    if (searchable && inputValue && !error) setMenuOpened(options.length > 0);
+  }, [searchable, inputValue, options, error]);
 
   const resetMenu = (focusedIndex = 0) => {
     setFocusedOptionIndex(focusedIndex);
@@ -36,10 +37,14 @@ export function useSelect(
 
   const [containerRef] = useClickOutside(resetMenu);
 
-  const selectOption = (e) => {
-    const optionWrapper = findOptionWrapper(e.target);
-    const optionIndex = parseInt(optionWrapper.getAttribute("index"), 10);
+  const selectOption = () => {
+    if (!menuOpened) return;
+    const optionIndex = focusedOptionIndex;
     const optionByIndex = options[optionIndex];
+    if (options[optionIndex].onClick !== undefined) {
+      options[optionIndex].onClick();
+      return;
+    }
     setOption(optionByIndex, optionIndex);
   };
 
@@ -62,6 +67,7 @@ export function useSelect(
     focusedOptionIndex,
     setFocusedOptionIndex,
     menuOpened,
+    setMenuOpened,
     selectOption,
     openMenu,
     containerRef,
@@ -71,19 +77,18 @@ export function useSelect(
   };
 }
 
-export function useHandleKeyboardHookBasicParamters(
+export function useHandleKeyboardHookBasicParameters(
   menuOpened,
-  _options,
+  options,
   focusedOptionIndex,
   setFocusedOptionIndex,
-  setOption,
   inputValue,
   onInputChange,
-  searchable
+  searchable = true
 ) {
   const onTypeArrowDownHandler = () => {
     if (!menuOpened) return;
-    const maxOptionIndex = _options.length - 1;
+    const maxOptionIndex = options.length - 1;
     const newIndex =
       focusedOptionIndex === maxOptionIndex ? 0 : focusedOptionIndex + 1;
     setFocusedOptionIndex(newIndex);
@@ -91,17 +96,10 @@ export function useHandleKeyboardHookBasicParamters(
 
   const onTypeArrowUpHandler = () => {
     if (!menuOpened) return;
-    const maxOptionIndex = _options.length - 1;
+    const maxOptionIndex = options.length - 1;
     const newIndex =
       focusedOptionIndex === 0 ? maxOptionIndex : focusedOptionIndex - 1;
     setFocusedOptionIndex(newIndex);
-  };
-
-  const onTypeEnterHandler = () => {
-    if (!menuOpened) return;
-    const optionIndex = focusedOptionIndex;
-    const optionByIndex = _options[optionIndex];
-    setOption(optionByIndex, optionIndex);
   };
 
   const onTypeDefaultHandler = (e) => {
@@ -118,7 +116,6 @@ export function useHandleKeyboardHookBasicParamters(
   return {
     onTypeArrowDownHandler,
     onTypeArrowUpHandler,
-    onTypeEnterHandler,
     onTypeDefaultHandler
   };
 }

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useMountEffect, usePrevious } from "hooks";
 import {
   useHandleKeyboardHook,
-  useHandleKeyboardHookBasicParamters,
+  useHandleKeyboardHookBasicParameters,
   useSelect
 } from "../hooks";
 import { matchOption, uniqueOptionsByModifier, findExact } from "../helpers";
@@ -40,19 +40,18 @@ export function useAsyncSelect(
   };
 
   const _loadOptions = (value, ignoreEmpty) => {
-    if (onInputChange) {
-      onInputChange(value);
-      setLoading(true);
-      loadOptions(value).then((result) => {
-        if (cacheOptions) updateCachedOptions(result);
-        else {
-          const loadedOptions = matchOption(options, getOptionLabel, value);
-          if (!ignoreEmpty || value) loadedOptions.push(...result);
-          setOptions(loadedOptions);
-        }
-        setLoading(false);
-      });
-    }
+    if (!onInputChange) return;
+    onInputChange(value);
+    setLoading(true);
+    loadOptions(value).then((result) => {
+      if (cacheOptions) updateCachedOptions(result);
+      else {
+        const loadedOptions = matchOption(options, getOptionLabel, value);
+        if (!ignoreEmpty || value) loadedOptions.push(...result);
+        setOptions(loadedOptions);
+      }
+      setLoading(false);
+    });
   };
 
   const previousCachedOptions = usePrevious(_cachedOptions);
@@ -97,19 +96,18 @@ export function useAsyncSelect(
     onInputChange,
     inputValue,
     onChange,
-    autoFocus
+    autoFocus,
+    onChange
   );
 
   const {
     onTypeArrowDownHandler,
-    onTypeArrowUpHandler,
-    onTypeEnterHandler
-  } = useHandleKeyboardHookBasicParamters(
+    onTypeArrowUpHandler
+  } = useHandleKeyboardHookBasicParameters(
     menuOpened,
     _options,
     focusedOptionIndex,
     setFocusedOptionIndex,
-    setOption,
     inputValue,
     onInputChange
   );
@@ -125,7 +123,7 @@ export function useAsyncSelect(
   useHandleKeyboardHook(
     onTypeArrowDownHandler,
     onTypeArrowUpHandler,
-    onTypeEnterHandler,
+    selectOption,
     onTypeDefaultHandler
   );
 

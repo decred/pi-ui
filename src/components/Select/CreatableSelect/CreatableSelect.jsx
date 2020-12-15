@@ -3,7 +3,8 @@ import PropTypes from "prop-types";
 import {
   blankValue,
   defaultLabelKeyGetter,
-  defaultValueKeyGetter
+  defaultValueKeyGetter,
+  defaultPromptTextCreator
 } from "../helpers";
 import { useCreatableSelect } from "./hooks";
 import { classNames } from "../../../utils";
@@ -45,10 +46,7 @@ const CreatableSelect = ({
     setFocusedOptionIndex,
     selectOption,
     cancelSelection,
-    addingNewOption,
-    promptTextCreatorCallback,
-    onCreatableChange,
-    newOptionCreatorCallback
+    onSearch
   } = useCreatableSelect(
     disabled,
     autoFocus,
@@ -91,12 +89,19 @@ const CreatableSelect = ({
         ref={containerRef}>
         {label && <label className={styles.label}>{label}</label>}
         <div className={styles.controls} onClick={openMenu}>
-          <input
-            disabled={disabled}
-            className={styles.input}
-            value={inputValue}
-            onChange={onCreatableChange}
-          />
+          {searchable && inputValue ? (
+            <input
+              disabled={disabled}
+              className={styles.input}
+              value={inputValue}
+              onChange={onSearch}
+              autoFocus
+            />
+          ) : (
+            <div className={styles.value}>
+              {value !== blankValue && getOptionLabel(value)}
+            </div>
+          )}
           {clearable && (
             <div className={styles.clear} onClick={cancelSelection} />
           )}
@@ -117,46 +122,23 @@ const CreatableSelect = ({
           ({ item, key, props }) =>
             item && (
               <animated.div className={styles.menu} key={key} style={props}>
-                {addingNewOption && (
+                {_options.map((_option, index) => (
                   <div
-                    onClick={newOptionCreatorCallback}
-                    key={0}
-                    index={0}
-                    className={
-                      focusedOptionIndex === 0 && styles.focusedOption
-                    }>
-                    {promptTextCreatorCallback()}
+                    onClick={selectOption}
+                    onMouseEnter={() => setFocusedOptionIndex(index)}
+                    key={index}
+                    index={index}
+                    className={classNames(
+                      index === focusedOptionIndex && styles.focusedOption,
+                      getOptionValue(value) === getOptionValue(_option) &&
+                        styles.selected
+                    )}>
+                    {_option !== blankValue &&
+                      (optionRenderer
+                        ? optionRenderer(_option)
+                        : getOptionLabel(_option))}
                   </div>
-                )}
-                {_options.map((_option, index) =>
-                  (!addingNewOption && index > 0) || addingNewOption ? (
-                    <div
-                      onClick={selectOption}
-                      onMouseEnter={() => {
-                        setFocusedOptionIndex(index + addingNewOption);
-                      }}
-                      key={index + addingNewOption}
-                      index={index + addingNewOption}
-                      className={classNames(
-                        index + addingNewOption === focusedOptionIndex &&
-                          styles.focusedOption,
-                        getOptionValue(value) === getOptionValue(_option) &&
-                          styles.selected
-                      )}>
-                      {_option !== blankValue &&
-                        (optionRenderer
-                          ? optionRenderer(_option)
-                          : getOptionLabel(_option))}
-                    </div>
-                  ) : (
-                    <div key={0}>
-                      {_option !== blankValue &&
-                        (optionRenderer
-                          ? optionRenderer(_option)
-                          : getOptionLabel(_option))}
-                    </div>
-                  )
-                )}
+                ))}
               </animated.div>
             )
         )}
@@ -213,7 +195,7 @@ CreatableSelect.defaultProps = {
   error: "",
   isValidNewOption: null,
   newOptionCreator: null,
-  promptTextCreator: null
+  promptTextCreator: defaultPromptTextCreator
 };
 
 export default CreatableSelect;

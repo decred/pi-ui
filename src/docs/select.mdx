@@ -155,7 +155,7 @@ import { Select, Creatable, MultiSelect, AsyncSelect, Checkbox, Text, TextInput 
 
     const isValidNewOption = (newOption) => newOption !== "No";
     const newOptionCreator = (newOption) => alert(`${newOption} added!`);
-    const promptTextCreator = (newOption) => <span>Add {newOption}</span>;
+    const promptTextCreator = (newOption) => `Add ${newOption}`;
 
     return (
       <Fragment>

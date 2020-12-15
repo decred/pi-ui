@@ -1,12 +1,15 @@
 import { useState, useRef, useEffect } from "react";
-import { useClickOutside, usePrevious, useMountEffect } from "hooks";
-import { useHandleKeyboardHook } from "../hooks";
+import { usePrevious } from "hooks";
+import {
+  useHandleKeyboardHook,
+  useHandleKeyboardHookBasicParameters,
+  useSelect
+} from "../hooks";
 import {
   blankValue,
   matchOption,
   uniqueOptionsByModifier,
-  findExact,
-  findOptionWrapper
+  findExact
 } from "../helpers";
 
 export function useCreatableSelect(
@@ -27,27 +30,39 @@ export function useCreatableSelect(
   promptTextCreator
 ) {
   const newOptions = useRef([]);
-  const [menuOpened, setMenuOpened] = useState(false);
-  const [focusedOptionIndex, setFocusedOptionIndex] = useState(0);
   const [_options, setOptions] = useState([]);
   const [showError, setShowError] = useState(false);
   const [addingNewOption, setAddingNewOption] = useState(false);
+  const [firstOption, setFirstOption] = useState(null);
 
-  const previousShowError = usePrevious(showError);
+  const setOption = (option, knownIndex) => {
+    const index =
+      knownIndex || findExact(_options, getOptionLabel, getOptionValue, option);
+    resetMenu(index);
+    onChange(option);
+  };
 
-  useMountEffect(() => {
-    if (!inputValue && getOptionLabel(value))
-      onInputChange(getOptionLabel(value));
-  });
-
-  useEffect(() => {
-    if (disabled) {
-      setMenuOpened(false);
-      onInputChange(getOptionLabel(value));
-      return;
-    }
-    if (autoFocus) setMenuOpened(true);
-  }, [disabled, getOptionLabel, value, autoFocus, onInputChange]);
+  const {
+    focusedOptionIndex,
+    setFocusedOptionIndex,
+    menuOpened,
+    selectOption,
+    openMenu,
+    containerRef,
+    resetMenu,
+    cancelSelection,
+    setMenuOpened
+  } = useSelect(
+    _options,
+    setOption,
+    disabled,
+    onInputChange,
+    inputValue,
+    autoFocus,
+    onChange,
+    searchable,
+    showError
+  );
 
   useEffect(() => {
     if (disabled) return;
@@ -57,152 +72,96 @@ export function useCreatableSelect(
     }
   }, [disabled, value, optionsFilter, onInputChange, getOptionLabel, onChange]);
 
-  useEffect(() => {
-    if (showError) {
-      setAddingNewOption(false);
-      setMenuOpened(false);
-    } else if (previousShowError) {
-      setMenuOpened(true);
-    }
-  }, [previousShowError, showError]);
-
-  useEffect(() => {
-    let __options = uniqueOptionsByModifier(
-      [...options, ...newOptions.current],
-      getOptionLabel
-    );
-    __options = optionsFilter ? __options.filter(optionsFilter) : __options;
-    if (addingNewOption && searchable && inputValue) {
-      __options = matchOption(__options, getOptionLabel, inputValue);
-    } else {
-      __options.unshift({
-        label: typeLabel,
-        value: ""
-      });
-    }
-    setOptions(__options);
-  }, [
-    addingNewOption,
-    inputValue,
-    options,
-    getOptionLabel,
-    typeLabel,
-    optionsFilter,
-    searchable
-  ]);
-
-  useEffect(() => {
-    if (focusedOptionIndex > _options.length || focusedOptionIndex < 0)
-      setFocusedOptionIndex(0);
-  }, [focusedOptionIndex, _options]);
-
-  const resetMenu = (focusedIndex = 0) => {
-    setFocusedOptionIndex(focusedIndex);
-    setMenuOpened(false);
-    setAddingNewOption(false);
-  };
-
-  const setOption = (option, knownIndex) => {
-    const index =
-      knownIndex || findExact(_options, getOptionLabel, getOptionValue, option);
-    onInputChange(getOptionLabel(option));
-    resetMenu(index);
-    onChange(option);
-  };
-
-  const [containerRef] = useClickOutside(() => {
-    resetMenu();
-    onInputChange(getOptionLabel(value));
-    setShowError(false);
-  });
-
   const newOptionCreatorCallback = () => {
-    newOptionCreator(inputValue);
+    if (newOptionCreator) newOptionCreator(inputValue);
     const newOptionObject = { label: inputValue, value: inputValue };
     newOptions.current.push(newOptionObject);
     setOption(newOptionObject);
   };
 
-  const onTypeArrowDownHandler = () => {
-    if (!menuOpened) return;
-    const maxOptionIndex = _options.length + addingNewOption - 1;
-    const newIndex =
-      focusedOptionIndex === maxOptionIndex
-        ? addingNewOption
-          ? 0
-          : 1
-        : focusedOptionIndex + 1;
-    setFocusedOptionIndex(newIndex);
-  };
+  const previousFirstOption = usePrevious(firstOption);
 
-  const onTypeArrowUpHandler = () => {
-    if (!menuOpened) return;
-    const maxOptionIndex = _options.length + addingNewOption - 1;
-    const newIndex =
-      focusedOptionIndex === (addingNewOption ? 0 : 1)
-        ? maxOptionIndex
-        : focusedOptionIndex - 1;
-    setFocusedOptionIndex(newIndex);
-  };
+  useEffect(() => {
+    const newFirstOption = addingNewOption && inputValue
+      ? {
+        label: promptTextCreator(inputValue),
+        value: "",
+        onClick: newOptionCreatorCallback
+      }
+      : { label: typeLabel, value: "", onClick: () => { } };
+    if (!previousFirstOption || previousFirstOption?.label !== newFirstOption.label)
+      setFirstOption(newFirstOption);
+  }, [
+    addingNewOption,
+    inputValue,
+    promptTextCreator,
+    newOptionCreatorCallback
+  ]);
 
-  const onTypeEnterHandler = () => {
+  useEffect(() => {
+    let updatedOptions = uniqueOptionsByModifier(
+      [...options, ...newOptions.current],
+      getOptionLabel
+    );
+    if (optionsFilter)
+      updatedOptions = updatedOptions.filter(optionsFilter);
+    if (addingNewOption && searchable && inputValue)
+      updatedOptions = matchOption(updatedOptions, getOptionLabel, inputValue);
+    updatedOptions.unshift(firstOption);
+    setOptions(updatedOptions);
+  }, [
+    addingNewOption,
+    inputValue,
+    options,
+    getOptionLabel,
+    optionsFilter,
+    searchable,
+    firstOption
+  ]);
+
+  const {
+    onTypeArrowDownHandler,
+    onTypeArrowUpHandler
+  } = useHandleKeyboardHookBasicParameters(
+    menuOpened,
+    _options,
+    focusedOptionIndex,
+    setFocusedOptionIndex,
+    inputValue,
+    onInputChange,
+    searchable
+  );
+
+  const onTypeDefaultHandler = (e) => {
     if (!menuOpened) return;
-    let optionIndex = focusedOptionIndex;
-    if (optionIndex === 0 && addingNewOption && inputValue)
-      newOptionCreatorCallback();
-    if (optionIndex === 0) return;
-    optionIndex = optionIndex - addingNewOption;
-    const optionByIndex = _options[optionIndex];
-    setOption(optionByIndex, optionIndex);
+    if (!inputValue && String.fromCharCode(e.keyCode).match(/(\w|\s)/g)) {
+      onInputChange(e.key);
+      setAddingNewOption(true);
+      e.preventDefault();
+    }
   };
 
   useHandleKeyboardHook(
     onTypeArrowDownHandler,
     onTypeArrowUpHandler,
-    onTypeEnterHandler
+    selectOption,
+    onTypeDefaultHandler
   );
 
-  const selectOption = (e) => {
-    const optionWrapper = findOptionWrapper(e.target);
-    const optionIndex = parseInt(optionWrapper.getAttribute("index"), 10);
-    if (!optionIndex) return;
-    const optionByIndex = _options[optionIndex];
-    setOption(optionByIndex, optionIndex);
-  };
-
-  const cancelSelection = (e) => {
-    if (disabled) return;
-    onChange(blankValue);
-    resetMenu();
-    onInputChange("");
-    e.stopPropagation();
-  };
-
-  const openMenu = () =>
-    setMenuOpened((menuOpened) => !disabled && !menuOpened);
-
-  const promptTextCreatorCallback = () => promptTextCreator(inputValue);
-
-  const onCreatableChange = (e) => {
+  const onSearch = (e) => {
     const newOption = e.target.value;
-    if (!isValidNewOption(newOption)) {
-      setShowError(true);
-      onInputChange(newOption);
-      return;
-    }
-    setShowError(false);
+    const hasError = isValidNewOption && !isValidNewOption(newOption);
     if (
       newOption &&
       optionsFilter &&
       !optionsFilter({ label: newOption, value: newOption })
-    ) {
+    )
       setAddingNewOption(false);
-      onInputChange(newOption);
-      return;
-    }
-    setAddingNewOption(!!newOption);
+    else
+      setAddingNewOption(!!newOption);
     onInputChange(newOption);
-    setMenuOpened(true);
+    setShowError(hasError);
+    setMenuOpened(!hasError);
   };
 
   return {
@@ -217,8 +176,6 @@ export function useCreatableSelect(
     cancelSelection,
     inputValue,
     addingNewOption,
-    promptTextCreatorCallback,
-    onCreatableChange,
-    newOptionCreatorCallback
+    onSearch
   };
 }

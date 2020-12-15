@@ -3,6 +3,8 @@ export const blankValue = { value: "", label: "" };
 export const defaultValueKeyGetter = ({ value }) => value;
 export const defaultLabelKeyGetter = ({ label }) => label;
 
+export const defaultPromptTextCreator = (input) => `Add ${input}`;
+
 export const matchOption = (options, optionModifier, value) =>
   options.filter((option) =>
     optionModifier(option)
@@ -24,6 +26,3 @@ export const findExact = (options, labelModifier, valueModifier, value) =>
       valueModifier(option) === valueModifier(value) &&
       labelModifier(option) === labelModifier(value)
   );
-
-export const findOptionWrapper = (el) =>
-  el.getAttribute("index") ? el : findOptionWrapper(el.parentNode);

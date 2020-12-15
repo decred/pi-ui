@@ -50,6 +50,14 @@
   margin-top: 1rem;
 }
 
+.value {
+  margin: 0 0.8rem;
+}
+
+.disabled .value {
+  color: var(--text-input-color);
+}
+
 .input {
   margin: 0 0.8rem;
   width: 100%;

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import {
   useHandleKeyboardHook,
-  useHandleKeyboardHookBasicParamters,
+  useHandleKeyboardHookBasicParameters,
   useSelect
 } from "../hooks";
 import { blankValue, matchOption, findExact } from "../helpers";
@@ -71,14 +71,12 @@ export function useBasicSelect(
   const {
     onTypeArrowDownHandler,
     onTypeArrowUpHandler,
-    onTypeEnterHandler,
     onTypeDefaultHandler
-  } = useHandleKeyboardHookBasicParamters(
+  } = useHandleKeyboardHookBasicParameters(
     menuOpened,
     _options,
     focusedOptionIndex,
     setFocusedOptionIndex,
-    setOption,
     inputValue,
     onInputChange,
     searchable
@@ -87,7 +85,7 @@ export function useBasicSelect(
   useHandleKeyboardHook(
     onTypeArrowDownHandler,
     onTypeArrowUpHandler,
-    onTypeEnterHandler,
+    selectOption,
     onTypeDefaultHandler
   );
 
