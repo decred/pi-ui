@@ -52,7 +52,7 @@ import { Select, Creatable, MultiSelect, AsyncSelect, Checkbox, Text, TextInput 
           onChange={onChange}
           inputValue={inputValue}
           onInputChange={onInputChange}
-          filterOptions={({label}) => (label !== filter)}
+          optionsFilter={({label}) => (label !== filter)}
           label={"Basic select"}
         />
         <br/>
@@ -169,7 +169,7 @@ import { Select, Creatable, MultiSelect, AsyncSelect, Checkbox, Text, TextInput 
           onInputChange={onInputChange}
           onChange={onChange}
           value={value}
-          filterOptions={({label}) => (!filter || label !== filter)}
+          optionsFilter={({label}) => (!filter || label !== filter)}
           label={"Creatable"}
           typeLabel={"Just type to add a new option"}
           error={"No! You can't add this option."}
@@ -296,14 +296,14 @@ import { Select, Creatable, MultiSelect, AsyncSelect, Checkbox, Text, TextInput 
       label: 'Green'
     }];
 
-    const filterOptions = (_inputValue) =>  colors.filter(color =>
+    const optionsFilter = (_inputValue) =>  colors.filter(color =>
       color.label.toLowerCase().includes(_inputValue.toLowerCase())
     );
 
     const promiseOptions = _inputValue =>
       new Promise(resolve => {
         setTimeout(() => {
-          resolve(filterOptions(_inputValue));
+          resolve(optionsFilter(_inputValue));
         }, 1000);
       });
 

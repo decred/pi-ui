@@ -1,12 +1,13 @@
 import { useState, useRef, useEffect } from "react";
-import { useClickOutside, usePrevious } from "hooks";
+import { useClickOutside, usePrevious, useMountEffect } from "hooks";
 import { useHandleKeyboardHook } from "../hooks";
 import {
   blankValue,
-  defaultLabelKeyGetter,
-  defaultValueKeyGetter
+  matchOption,
+  uniqueOptionsByModifier,
+  findExact,
+  findOptionWrapper
 } from "../helpers";
-import { useMountEffect } from "../../../hooks";
 
 export function useCreatableSelect(
   disabled,
@@ -15,7 +16,7 @@ export function useCreatableSelect(
   options,
   getOptionLabel,
   getOptionValue,
-  filterOptions,
+  optionsFilter,
   searchable,
   value,
   inputValue,
@@ -32,31 +33,29 @@ export function useCreatableSelect(
   const [showError, setShowError] = useState(false);
   const [addingNewOption, setAddingNewOption] = useState(false);
 
-  const getValueKey = getOptionValue || defaultValueKeyGetter;
-  const getLabelKey = getOptionLabel || defaultLabelKeyGetter;
-
   const previousShowError = usePrevious(showError);
 
   useMountEffect(() => {
-    if (!inputValue && getLabelKey(value)) onInputChange(getLabelKey(value));
+    if (!inputValue && getOptionLabel(value))
+      onInputChange(getOptionLabel(value));
   });
 
   useEffect(() => {
     if (disabled) {
       setMenuOpened(false);
-      onInputChange(getLabelKey(value));
+      onInputChange(getOptionLabel(value));
       return;
     }
     if (autoFocus) setMenuOpened(true);
-  }, [disabled, getLabelKey, value, autoFocus, onInputChange]);
+  }, [disabled, getOptionLabel, value, autoFocus, onInputChange]);
 
   useEffect(() => {
     if (disabled) return;
-    if (filterOptions && !filterOptions(value) && getLabelKey(value)) {
+    if (optionsFilter && !optionsFilter(value) && getOptionLabel(value)) {
       onInputChange("");
       onChange(blankValue);
     }
-  }, [disabled, value, filterOptions, onInputChange, getLabelKey, onChange]);
+  }, [disabled, value, optionsFilter, onInputChange, getOptionLabel, onChange]);
 
   useEffect(() => {
     if (showError) {
@@ -68,20 +67,13 @@ export function useCreatableSelect(
   }, [previousShowError, showError]);
 
   useEffect(() => {
-    let __options = [...options, ...newOptions.current].filter(
-      (item, pos, self) =>
-        self.findIndex((_item) => getLabelKey(_item) === getLabelKey(item)) ===
-        pos
+    let __options = uniqueOptionsByModifier(
+      [...options, ...newOptions.current],
+      getOptionLabel
     );
-    __options = filterOptions ? __options.filter(filterOptions) : __options;
-    if (addingNewOption) {
-      if (searchable && inputValue) {
-        __options = __options.filter((__option) =>
-          getLabelKey(__option)
-            .toLowerCase()
-            ?.includes(inputValue.toLowerCase())
-        );
-      }
+    __options = optionsFilter ? __options.filter(optionsFilter) : __options;
+    if (addingNewOption && searchable && inputValue) {
+      __options = matchOption(__options, getOptionLabel, inputValue);
     } else {
       __options.unshift({
         label: typeLabel,
@@ -93,9 +85,9 @@ export function useCreatableSelect(
     addingNewOption,
     inputValue,
     options,
-    getLabelKey,
+    getOptionLabel,
     typeLabel,
-    filterOptions,
+    optionsFilter,
     searchable
   ]);
 
@@ -112,20 +104,15 @@ export function useCreatableSelect(
 
   const setOption = (option, knownIndex) => {
     const index =
-      knownIndex ||
-      _options.findIndex(
-        (opt) =>
-          getValueKey(opt) === getValueKey(option) &&
-          getLabelKey(opt) === getLabelKey(option)
-      );
-    onInputChange(getLabelKey(option));
+      knownIndex || findExact(_options, getOptionLabel, getOptionValue, option);
+    onInputChange(getOptionLabel(option));
     resetMenu(index);
     onChange(option);
   };
 
   const [containerRef] = useClickOutside(() => {
     resetMenu();
-    onInputChange(getLabelKey(value));
+    onInputChange(getOptionLabel(value));
     setShowError(false);
   });
 
@@ -176,12 +163,9 @@ export function useCreatableSelect(
   );
 
   const selectOption = (e) => {
-    const findOptionWrapper = (el) =>
-      el.getAttribute("index") ? el : findOptionWrapper(el.parentNode);
-
     const optionWrapper = findOptionWrapper(e.target);
     const optionIndex = parseInt(optionWrapper.getAttribute("index"), 10);
-    if (optionIndex === 0) return;
+    if (!optionIndex) return;
     const optionByIndex = _options[optionIndex];
     setOption(optionByIndex, optionIndex);
   };
@@ -209,8 +193,8 @@ export function useCreatableSelect(
     setShowError(false);
     if (
       newOption &&
-      filterOptions &&
-      !filterOptions({ label: newOption, value: newOption })
+      optionsFilter &&
+      !optionsFilter({ label: newOption, value: newOption })
     ) {
       setAddingNewOption(false);
       onInputChange(newOption);
@@ -229,8 +213,6 @@ export function useCreatableSelect(
     openMenu,
     showError,
     setFocusedOptionIndex,
-    getValueKey,
-    getLabelKey,
     selectOption,
     cancelSelection,
     inputValue,

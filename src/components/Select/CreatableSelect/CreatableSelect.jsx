@@ -1,6 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { blankValue } from "../helpers";
+import {
+  blankValue,
+  defaultLabelKeyGetter,
+  defaultValueKeyGetter
+} from "../helpers";
 import { useCreatableSelect } from "./hooks";
 import { classNames } from "../../../utils";
 import styles from "./styles.css";
@@ -17,7 +21,7 @@ const CreatableSelect = ({
   getOptionLabel,
   getOptionValue,
   optionRenderer,
-  filterOptions,
+  optionsFilter,
   className,
   autoFocus,
   searchable,
@@ -39,8 +43,6 @@ const CreatableSelect = ({
     openMenu,
     showError,
     setFocusedOptionIndex,
-    getValueKey,
-    getLabelKey,
     selectOption,
     cancelSelection,
     addingNewOption,
@@ -54,7 +56,7 @@ const CreatableSelect = ({
     options,
     getOptionLabel,
     getOptionValue,
-    filterOptions,
+    optionsFilter,
     searchable,
     value,
     inputValue,
@@ -67,7 +69,7 @@ const CreatableSelect = ({
 
   const parentClassNames = classNames(
     styles.select,
-    getValueKey(value) && styles.valueSelected,
+    getOptionValue(value) && styles.valueSelected,
     menuOpened ? styles.menuOpened : styles.menuClosed,
     separator && styles.hasSeparator,
     clearable && styles.clearable,
@@ -138,20 +140,20 @@ const CreatableSelect = ({
                       className={classNames(
                         index + addingNewOption === focusedOptionIndex &&
                           styles.focusedOption,
-                        getValueKey(value) === getValueKey(_option) &&
+                        getOptionValue(value) === getOptionValue(_option) &&
                           styles.selected
                       )}>
                       {_option !== blankValue &&
                         (optionRenderer
                           ? optionRenderer(_option)
-                          : getLabelKey(_option))}
+                          : getOptionLabel(_option))}
                     </div>
                   ) : (
                     <div key={0}>
                       {_option !== blankValue &&
                         (optionRenderer
                           ? optionRenderer(_option)
-                          : getLabelKey(_option))}
+                          : getOptionLabel(_option))}
                     </div>
                   )
                 )}
@@ -178,7 +180,7 @@ CreatableSelect.propTypes = {
   getOptionLabel: PropTypes.func,
   getOptionValue: PropTypes.func,
   optionRenderer: PropTypes.func,
-  filterOptions: PropTypes.func,
+  optionsFilter: PropTypes.func,
   className: PropTypes.string,
   autoFocus: PropTypes.bool,
   searchable: PropTypes.bool,
@@ -198,10 +200,10 @@ CreatableSelect.defaultProps = {
   options: [],
   label: "",
   separator: false,
-  getOptionLabel: null,
-  getOptionValue: null,
+  getOptionLabel: defaultLabelKeyGetter,
+  getOptionValue: defaultValueKeyGetter,
   optionRenderer: null,
-  filterOptions: null,
+  optionsFilter: null,
   className: "",
   autoFocus: false,
   searchable: false,

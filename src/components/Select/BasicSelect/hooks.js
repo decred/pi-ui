@@ -1,11 +1,10 @@
 import { useState, useEffect } from "react";
-import { useClickOutside } from "hooks";
-import { useHandleKeyboardHook } from "../hooks";
 import {
-  blankValue,
-  defaultLabelKeyGetter,
-  defaultValueKeyGetter
-} from "../helpers";
+  useHandleKeyboardHook,
+  useHandleKeyboardHookBasicParamters,
+  useSelect
+} from "../hooks";
+import { blankValue, matchOption, findExact } from "../helpers";
 
 export function useBasicSelect(
   disabled,
@@ -14,104 +13,76 @@ export function useBasicSelect(
   options,
   getOptionLabel,
   getOptionValue,
-  filterOptions,
+  optionsFilter,
   value,
   searchable,
   inputValue,
   onInputChange
 ) {
-  const [menuOpened, setMenuOpened] = useState(false);
-  const [focusedOptionIndex, setFocusedOptionIndex] = useState(0);
   const [_options, setOptions] = useState([]);
 
-  const getValueKey = getOptionValue || defaultValueKeyGetter;
-  const getLabelKey = getOptionLabel || defaultLabelKeyGetter;
-
   useEffect(() => {
-    let filteredOptions = filterOptions
-      ? options.filter(filterOptions)
+    let filteredOptions = optionsFilter
+      ? options.filter(optionsFilter)
       : options;
     if (searchable && inputValue)
-      filteredOptions = filteredOptions.filter((_option) =>
-        getLabelKey(_option)
-          .toLowerCase()
-          ?.includes(inputValue.toLowerCase())
+      filteredOptions = matchOption(
+        filteredOptions,
+        getOptionLabel,
+        inputValue
       );
     setOptions(filteredOptions);
-  }, [searchable, inputValue, filterOptions, options, getLabelKey]);
-
-  useEffect(() => {
-    if (disabled) {
-      setMenuOpened(false);
-      if (searchable && onInputChange && inputValue) onInputChange("");
-      return;
-    }
-    if (autoFocus) setMenuOpened(true);
-  }, [disabled, autoFocus, searchable, inputValue, onInputChange]);
+  }, [searchable, inputValue, optionsFilter, options, getOptionLabel]);
 
   useEffect(() => {
     if (disabled) return;
-    if (filterOptions && !filterOptions(value) && getLabelKey(value))
+    if (optionsFilter && !optionsFilter(value) && getOptionLabel(value))
       onChange(blankValue);
-  }, [disabled, value, filterOptions, onChange, getLabelKey]);
-
-  useEffect(() => {
-    if (searchable && inputValue) setMenuOpened(_options.length > 0);
-  }, [searchable, inputValue, _options, menuOpened]);
-
-  const resetMenu = (focusedIndex = 0) => {
-    setFocusedOptionIndex(focusedIndex);
-    setMenuOpened(false);
-    if (searchable && onInputChange && inputValue) onInputChange("");
-  };
+  }, [disabled, value, optionsFilter, onChange, getOptionLabel]);
 
   const setOption = (option, knownIndex) => {
     const index =
-      knownIndex ||
-      _options.findIndex(
-        (opt) =>
-          getValueKey(opt) === getValueKey(option) &&
-          getLabelKey(opt) === getLabelKey(option)
-      );
+      knownIndex || findExact(_options, getOptionLabel, getOptionValue, option);
     resetMenu(index);
     onChange(option);
   };
 
-  const [containerRef] = useClickOutside(resetMenu);
+  const {
+    focusedOptionIndex,
+    setFocusedOptionIndex,
+    menuOpened,
+    selectOption,
+    openMenu,
+    containerRef,
+    resetMenu,
+    cancelSelection,
+    onSearch
+  } = useSelect(
+    _options,
+    setOption,
+    disabled,
+    onInputChange,
+    inputValue,
+    autoFocus,
+    onChange,
+    searchable
+  );
 
-  const onTypeArrowDownHandler = () => {
-    if (!menuOpened) return;
-    const maxOptionIndex = _options.length - 1;
-    const newIndex =
-      focusedOptionIndex === maxOptionIndex ? 0 : focusedOptionIndex + 1;
-    setFocusedOptionIndex(newIndex);
-  };
-
-  const onTypeArrowUpHandler = () => {
-    if (!menuOpened) return;
-    const maxOptionIndex = _options.length - 1;
-    const newIndex =
-      focusedOptionIndex === 0 ? maxOptionIndex : focusedOptionIndex - 1;
-    setFocusedOptionIndex(newIndex);
-  };
-
-  const onTypeEnterHandler = () => {
-    if (!menuOpened) return;
-    const optionIndex = focusedOptionIndex;
-    const optionByIndex = _options[optionIndex];
-    setOption(optionByIndex, optionIndex);
-  };
-
-  const onTypeDefaultHandler = (e) => {
-    if (!menuOpened) return;
-    if (
-      searchable &&
-      !inputValue &&
-      String.fromCharCode(e.keyCode).match(/(\w|\s)/g) &&
-      onInputChange
-    )
-      onInputChange(e.key);
-  };
+  const {
+    onTypeArrowDownHandler,
+    onTypeArrowUpHandler,
+    onTypeEnterHandler,
+    onTypeDefaultHandler
+  } = useHandleKeyboardHookBasicParamters(
+    menuOpened,
+    _options,
+    focusedOptionIndex,
+    setFocusedOptionIndex,
+    setOption,
+    inputValue,
+    onInputChange,
+    searchable
+  );
 
   useHandleKeyboardHook(
     onTypeArrowDownHandler,
@@ -120,31 +91,6 @@ export function useBasicSelect(
     onTypeDefaultHandler
   );
 
-  const selectOption = (e) => {
-    const findOptionWrapper = (el) =>
-      el.getAttribute("index") ? el : findOptionWrapper(el.parentNode);
-
-    const optionWrapper = findOptionWrapper(e.target);
-    const optionIndex = parseInt(optionWrapper.getAttribute("index"), 10);
-    const optionByIndex = _options[optionIndex];
-    setOption(optionByIndex, optionIndex);
-  };
-
-  const cancelSelection = (e) => {
-    if (disabled) return;
-    onChange(blankValue);
-    resetMenu();
-    e.stopPropagation();
-  };
-
-  const openMenu = () =>
-    setMenuOpened((menuOpened) => !disabled && !menuOpened);
-
-  const onSearch = (e) => {
-    const searchValue = e.target.value;
-    if (onInputChange) onInputChange(searchValue);
-  };
-
   return {
     _options,
     containerRef,
@@ -152,8 +98,6 @@ export function useBasicSelect(
     focusedOptionIndex,
     openMenu,
     setFocusedOptionIndex,
-    getValueKey,
-    getLabelKey,
     selectOption,
     cancelSelection,
     onSearch

@@ -1,6 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { blankValue } from "../helpers";
+import {
+  blankValue,
+  defaultLabelKeyGetter,
+  defaultValueKeyGetter
+} from "../helpers";
 import { useAsyncSelect } from "./hooks";
 import { classNames } from "../../../utils";
 import styles from "./styles.css";
@@ -35,8 +39,6 @@ const AsyncSelect = ({
     focusedOptionIndex,
     openMenu,
     setFocusedOptionIndex,
-    getValueKey,
-    getLabelKey,
     selectOption,
     cancelSelection,
     onSearch,
@@ -57,7 +59,7 @@ const AsyncSelect = ({
 
   const parentClassNames = classNames(
     styles.select,
-    getValueKey(value) && styles.valueSelected,
+    getOptionValue(value) && styles.valueSelected,
     inputValue && styles.search,
     menuOpened ? styles.menuOpened : styles.menuClosed,
     separator && styles.hasSeparator,
@@ -89,7 +91,7 @@ const AsyncSelect = ({
           ) : (
             <div className={styles.value}>
               {value !== blankValue &&
-                (valueRenderer ? valueRenderer(value) : getLabelKey(value))}
+                (valueRenderer ? valueRenderer(value) : getOptionLabel(value))}
             </div>
           )}
           {clearable && (
@@ -113,13 +115,13 @@ const AsyncSelect = ({
                       index={index}
                       className={classNames(
                         index === focusedOptionIndex && styles.focusedOption,
-                        getValueKey(value) === getValueKey(_option) &&
+                        getOptionValue(value) === getOptionValue(_option) &&
                           styles.selected
                       )}>
                       {_option !== blankValue &&
                         (optionRenderer
                           ? optionRenderer(_option)
-                          : getLabelKey(_option))}
+                          : getOptionLabel(_option))}
                     </div>
                   ))
                 ) : (
@@ -149,7 +151,7 @@ AsyncSelect.propTypes = {
   onChange: PropTypes.func.isRequired,
   inputValue: PropTypes.string,
   onInputChange: PropTypes.func,
-  defaultOptions: PropTypes.oneOf([PropTypes.array, PropTypes.bool]),
+  defaultOptions: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
   cacheOptions: PropTypes.bool,
   loadOptions: PropTypes.func,
   loadingMessage: PropTypes.string
@@ -161,8 +163,8 @@ AsyncSelect.defaultProps = {
   options: [],
   label: "",
   separator: false,
-  getOptionLabel: null,
-  getOptionValue: null,
+  getOptionLabel: defaultLabelKeyGetter,
+  getOptionValue: defaultValueKeyGetter,
   optionRenderer: null,
   valueRenderer: null,
   className: "",

@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { defaultLabelKeyGetter, defaultValueKeyGetter } from "../helpers";
 import { useMultiSelect } from "./hooks";
 import { classNames } from "../../../utils";
 import styles from "./styles.css";
@@ -15,7 +16,7 @@ const MultiSelect = ({
   getOptionValue,
   optionRenderer,
   valueRenderer,
-  filterOptions,
+  optionsFilter,
   className,
   autoFocus,
   searchable,
@@ -32,8 +33,6 @@ const MultiSelect = ({
     focusedOptionIndex,
     openMenu,
     setFocusedOptionIndex,
-    getValueKey,
-    getLabelKey,
     selectOption,
     cancelSelection,
     removeSelectedOption,
@@ -45,7 +44,7 @@ const MultiSelect = ({
     options,
     getOptionLabel,
     getOptionValue,
-    filterOptions,
+    optionsFilter,
     searchable,
     value,
     inputValue,
@@ -90,7 +89,7 @@ const MultiSelect = ({
                   <div className={styles.selectedOption} key={index}>
                     {valueRenderer
                       ? valueRenderer(selectedOption)
-                      : getLabelKey(selectedOption)}
+                      : getOptionLabel(selectedOption)}
                     <div
                       className={styles.removeOption}
                       onClick={(e) => removeSelectedOption(e, selectedOption)}
@@ -121,12 +120,13 @@ const MultiSelect = ({
                       index === focusedOptionIndex && styles.focusedOption,
                       value.find(
                         (selectedOption) =>
-                          getValueKey(selectedOption) === getValueKey(_option)
+                          getOptionValue(selectedOption) ===
+                          getOptionValue(_option)
                       ) && styles.selected
                     )}>
                     {optionRenderer
                       ? optionRenderer(_option)
-                      : getLabelKey(_option)}
+                      : getOptionLabel(_option)}
                   </div>
                 ))}
               </animated.div>
@@ -148,7 +148,7 @@ MultiSelect.propTypes = {
   getOptionValue: PropTypes.func,
   optionRenderer: PropTypes.func,
   valueRenderer: PropTypes.func,
-  filterOptions: PropTypes.func,
+  optionsFilter: PropTypes.func,
   className: PropTypes.string,
   autoFocus: PropTypes.bool,
   searchable: PropTypes.bool,
@@ -163,11 +163,11 @@ MultiSelect.defaultProps = {
   options: [],
   label: "",
   separator: false,
-  getOptionLabel: null,
-  getOptionValue: null,
+  getOptionLabel: defaultLabelKeyGetter,
+  getOptionValue: defaultValueKeyGetter,
   optionRenderer: null,
   valueRenderer: null,
-  filterOptions: null,
+  optionsFilter: null,
   className: "",
   autoFocus: false,
   searchable: false,
