@@ -1,0 +1,13 @@
+div.option {
+  padding: 0.8rem 0 0.8rem 0.8rem;
+  cursor: pointer;
+}
+
+div.focusedOption {
+  background-color: var(--input-border-color);
+}
+
+div.selectedOption {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+}

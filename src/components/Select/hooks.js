@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useClickOutside } from "hooks";
 import { blankValue } from "./helpers";
+import { useTransition } from "react-spring";
 
 export function useSelect(
   options,
@@ -63,6 +64,13 @@ export function useSelect(
     if (onInputChange) onInputChange(searchValue);
   };
 
+  const transitions = useTransition(menuOpened, null, {
+    from: { opacity: 0 },
+    enter: { opacity: 1 },
+    leave: { opacity: 0 },
+    duration: 100
+  });
+
   return {
     focusedOptionIndex,
     setFocusedOptionIndex,
@@ -73,7 +81,8 @@ export function useSelect(
     containerRef,
     resetMenu,
     cancelSelection,
-    onSearch
+    onSearch,
+    transitions
   };
 }
 

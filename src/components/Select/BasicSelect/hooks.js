@@ -56,7 +56,8 @@ export function useBasicSelect(
     containerRef,
     resetMenu,
     cancelSelection,
-    onSearch
+    onSearch,
+    transitions
   } = useSelect(
     _options,
     setOption,
@@ -98,6 +99,7 @@ export function useBasicSelect(
     setFocusedOptionIndex,
     selectOption,
     cancelSelection,
-    onSearch
+    onSearch,
+    transitions
   };
 }

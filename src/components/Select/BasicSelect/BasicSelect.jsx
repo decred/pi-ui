@@ -1,14 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {
+  SelectOptions,
+  SelectControls,
   blankValue,
   defaultLabelKeyGetter,
   defaultValueKeyGetter
 } from "../helpers";
 import { useBasicSelect } from "./hooks";
 import { classNames } from "../../../utils";
-import styles from "./styles.css";
-import { animated, useTransition } from "react-spring";
+import styles from "../styles.css";
+import { animated } from "react-spring";
 
 const BasicSelect = ({
   disabled,
@@ -39,7 +41,8 @@ const BasicSelect = ({
     setFocusedOptionIndex,
     selectOption,
     cancelSelection,
-    onSearch
+    onSearch,
+    transitions
   } = useBasicSelect(
     disabled,
     autoFocus,
@@ -65,13 +68,6 @@ const BasicSelect = ({
     className
   );
 
-  const transitions = useTransition(menuOpened, null, {
-    from: { opacity: 0 },
-    enter: { opacity: 1 },
-    leave: { opacity: 0 },
-    duration: 100
-  });
-
   return (
     <div className={parentClassNames} {...props}>
       <div className={styles.fieldset} ref={containerRef}>
@@ -91,35 +87,29 @@ const BasicSelect = ({
                 (valueRenderer ? valueRenderer(value) : getOptionLabel(value))}
             </div>
           )}
-          {clearable && (
-            <div className={styles.clear} onClick={cancelSelection} />
-          )}
-          {separator && <span className={styles.separator} />}
-          <div className={styles.arrowContainer}>
-            <div className={styles.arrow} />
-          </div>
+          <SelectControls
+            clearable={clearable}
+            cancelSelection={cancelSelection}
+            valueSelected={getOptionValue(value)}
+            disabled={disabled}
+            separator={separator}
+            menuOpened={menuOpened}
+          />
         </div>
         {transitions.map(
           ({ item, key, props }) =>
             item && (
               <animated.div className={styles.menu} key={key} style={props}>
-                {_options.map((_option, index) => (
-                  <div
-                    onClick={selectOption}
-                    onMouseEnter={() => setFocusedOptionIndex(index)}
-                    key={index}
-                    index={index}
-                    className={classNames(
-                      index === focusedOptionIndex && styles.focusedOption,
-                      getOptionValue(value) === getOptionValue(_option) &&
-                        styles.selected
-                    )}>
-                    {_option !== blankValue &&
-                      (optionRenderer
-                        ? optionRenderer(_option)
-                        : getOptionLabel(_option))}
-                  </div>
-                ))}
+                <SelectOptions
+                  options={_options}
+                  value={value}
+                  selectOption={selectOption}
+                  focusedOptionIndex={focusedOptionIndex}
+                  setFocusedOptionIndex={setFocusedOptionIndex}
+                  optionRenderer={optionRenderer}
+                  getOptionLabel={getOptionLabel}
+                  getOptionValue={getOptionValue}
+                />
               </animated.div>
             )
         )}

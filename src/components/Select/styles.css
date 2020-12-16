@@ -1,0 +1,98 @@
+.select {
+  position: relative;
+  margin-right: 0.8rem;
+  vertical-align: bottom;
+  font-size: var(--font-size-normal);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--spacing-2);
+  color: var(--text-color);
+  cursor: default;
+}
+
+.fieldset {
+  align-items: center;
+  display: flex;
+  min-height: 3.8rem;
+  background-color: transparent;
+  border-bottom: 0.1rem solid var(--input-border-color);
+  transition: all 0.25s;
+}
+
+.menuOpened .fieldset,
+.valueSelected .fieldset {
+  border-color: var(--color-primary);
+}
+
+.disabled .fieldset {
+  border-color: var(--input-border-color);
+}
+
+.label {
+  position: absolute;
+  top: 1.5rem;
+  left: 0.8rem;
+  color: var(--text-input-color);
+  transition: all 0.25s;
+  pointer-events: none;
+}
+
+.menuOpened .fieldset > .label,
+.valueSelected .fieldset > .label,
+.search .fieldset > .label {
+  top: -0.8rem;
+  font-size: var(--font-size-small);
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.value {
+  margin: 0 0.8rem;
+}
+
+.disabled .value {
+  color: var(--text-input-color);
+}
+
+.input {
+  margin: 0 0.8rem;
+  width: 100%;
+  font-size: var(--font-size-normal);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--spacing-2);
+  color: var(--text-color);
+  outline: 0;
+  border: 0;
+  background-color: transparent;
+}
+
+.disabled .input {
+  cursor: not-allowed;
+  color: var(--text-input-color);
+}
+
+.disabled {
+  cursor: not-allowed;
+}
+
+.menu {
+  background-color: var(--card-background);
+  position: absolute;
+  top: 100%;
+  margin-top: 1rem;
+  padding: 0.5rem 0;
+  width: 100%;
+  overflow-y: auto;
+  -webkit-box-shadow: 0 1rem 2rem 0 rgba(0, 0, 0, 0.16);
+  -moz-box-shadow: 0 1rem 2rem 0 rgba(0, 0, 0, 0.16);
+  box-shadow: 0 1rem 2rem 0 rgba(0, 0, 0, 0.16);
+  z-index: 1000;
+}
+
+.menuClosed .menu {
+  display: none;
+}

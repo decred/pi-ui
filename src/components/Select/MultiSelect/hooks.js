@@ -84,7 +84,8 @@ export function useMultiSelect(
     openMenu,
     containerRef,
     resetMenu,
-    onSearch
+    onSearch,
+    transitions
   } = useSelect(
     _options,
     setOption,
@@ -134,6 +135,7 @@ export function useMultiSelect(
     selectOption,
     cancelSelection,
     removeSelectedOption,
-    onSearch
+    onSearch,
+    transitions
   };
 }

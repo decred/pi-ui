@@ -88,14 +88,14 @@ export function useAsyncSelect(
     openMenu,
     containerRef,
     resetMenu,
-    cancelSelection
+    cancelSelection,
+    transitions
   } = useSelect(
     _options,
     setOption,
     disabled,
     onInputChange,
     inputValue,
-    onChange,
     autoFocus,
     onChange
   );
@@ -142,6 +142,7 @@ export function useAsyncSelect(
     selectOption,
     cancelSelection,
     onSearch,
-    loading
+    loading,
+    transitions
   };
 }

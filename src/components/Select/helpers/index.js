@@ -1,3 +1,6 @@
+export { default as SelectControls } from "./SelectControls/SelectControls.jsx";
+export { default as SelectOptions } from "./SelectOptions/SelectOptions.jsx";
+
 export const blankValue = { value: "", label: "" };
 
 export const defaultValueKeyGetter = ({ value }) => value;

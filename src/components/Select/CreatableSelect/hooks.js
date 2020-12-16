@@ -12,6 +12,12 @@ import {
   findExact
 } from "../helpers";
 
+const newFirstOption = {
+  label: "",
+  value: "",
+  onClick: null
+};
+
 export function useCreatableSelect(
   disabled,
   autoFocus,
@@ -51,7 +57,8 @@ export function useCreatableSelect(
     containerRef,
     resetMenu,
     cancelSelection,
-    setMenuOpened
+    setMenuOpened,
+    transitions
   } = useSelect(
     _options,
     setOption,
@@ -79,32 +86,24 @@ export function useCreatableSelect(
     setOption(newOptionObject);
   };
 
-  const previousFirstOption = usePrevious(firstOption);
+  newFirstOption.label =
+    addingNewOption && inputValue ? promptTextCreator(inputValue) : typeLabel;
+  newFirstOption.value = addingNewOption && inputValue ? "" : "";
+  newFirstOption.onClick =
+    addingNewOption && inputValue ? newOptionCreatorCallback : () => {};
+
+  const previousInputValue = usePrevious(inputValue);
 
   useEffect(() => {
-    const newFirstOption = addingNewOption && inputValue
-      ? {
-        label: promptTextCreator(inputValue),
-        value: "",
-        onClick: newOptionCreatorCallback
-      }
-      : { label: typeLabel, value: "", onClick: () => { } };
-    if (!previousFirstOption || previousFirstOption?.label !== newFirstOption.label)
-      setFirstOption(newFirstOption);
-  }, [
-    addingNewOption,
-    inputValue,
-    promptTextCreator,
-    newOptionCreatorCallback
-  ]);
+    if (previousInputValue !== inputValue) setFirstOption(newFirstOption);
+  }, [inputValue, previousInputValue]);
 
   useEffect(() => {
     let updatedOptions = uniqueOptionsByModifier(
       [...options, ...newOptions.current],
       getOptionLabel
     );
-    if (optionsFilter)
-      updatedOptions = updatedOptions.filter(optionsFilter);
+    if (optionsFilter) updatedOptions = updatedOptions.filter(optionsFilter);
     if (addingNewOption && searchable && inputValue)
       updatedOptions = matchOption(updatedOptions, getOptionLabel, inputValue);
     updatedOptions.unshift(firstOption);
@@ -135,8 +134,8 @@ export function useCreatableSelect(
   const onTypeDefaultHandler = (e) => {
     if (!menuOpened) return;
     if (!inputValue && String.fromCharCode(e.keyCode).match(/(\w|\s)/g)) {
-      onInputChange(e.key);
       setAddingNewOption(true);
+      onInputChange(e.key);
       e.preventDefault();
     }
   };
@@ -157,8 +156,7 @@ export function useCreatableSelect(
       !optionsFilter({ label: newOption, value: newOption })
     )
       setAddingNewOption(false);
-    else
-      setAddingNewOption(!!newOption);
+    else setAddingNewOption(!!newOption);
     onInputChange(newOption);
     setShowError(hasError);
     setMenuOpened(!hasError);
@@ -176,6 +174,7 @@ export function useCreatableSelect(
     cancelSelection,
     inputValue,
     addingNewOption,
-    onSearch
+    onSearch,
+    transitions
   };
 }
