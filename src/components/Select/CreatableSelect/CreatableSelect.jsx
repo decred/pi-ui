@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {
-  SelectOptions,
+  SelectInput,
   SelectControls,
   blankValue,
   defaultLabelKeyGetter,
@@ -10,9 +10,8 @@ import {
 } from "../helpers";
 import { useCreatableSelect } from "./hooks";
 import { classNames } from "../../../utils";
-import styles from "../styles.css";
 import creatableStyles from "./styles.css";
-import { animated } from "react-spring";
+import SelectWrapper from "../SelectWrapper";
 
 const CreatableSelect = ({
   disabled,
@@ -68,78 +67,76 @@ const CreatableSelect = ({
     promptTextCreator
   );
 
-  const parentClassNames = classNames(
-    styles.select,
-    getOptionValue(value) && styles.valueSelected,
-    menuOpened ? styles.menuOpened : styles.menuClosed,
-    separator && styles.hasSeparator,
-    clearable && styles.clearable,
-    disabled && styles.disabled,
-    className
+  const Input = (
+    <SelectInput
+      searchable={searchable}
+      inputValue={inputValue}
+      disabled={disabled}
+      onSearch={onSearch}
+      getOptionLabel={getOptionLabel}
+      value={value}
+    />
   );
 
-  return (
-    <div className={parentClassNames} {...props}>
-      <div
-        className={classNames(
-          styles.fieldset,
-          showError && creatableStyles.error
-        )}
-        ref={containerRef}>
-        {label && <label className={styles.label}>{label}</label>}
-        <div className={styles.controls} onClick={openMenu}>
-          {searchable && inputValue ? (
-            <input
-              disabled={disabled}
-              className={styles.input}
-              value={inputValue}
-              onChange={onSearch}
-              autoFocus
-            />
-          ) : (
-            <div className={styles.value}>
-              {value !== blankValue && getOptionLabel(value)}
-            </div>
-          )}
-          <SelectControls
-            clearable={clearable}
-            cancelSelection={cancelSelection}
-            valueSelected={getOptionValue(value)}
-            disabled={disabled}
-            separator={separator}
-            menuOpened={menuOpened}
-            error={error}
-            showError={showError}
-          />
-        </div>
-        {transitions.map(
-          ({ item, key, props }) =>
-            item && (
-              <animated.div className={styles.menu} key={key} style={props}>
-                <SelectOptions
-                  options={_options}
-                  value={value}
-                  selectOption={selectOption}
-                  focusedOptionIndex={focusedOptionIndex}
-                  setFocusedOptionIndex={setFocusedOptionIndex}
-                  optionRenderer={optionRenderer}
-                  getOptionLabel={getOptionLabel}
-                  getOptionValue={getOptionValue}
-                />
-              </animated.div>
-            )
-        )}
-      </div>
-      {error && showError && (
-        <p
-          className={classNames(
-            creatableStyles.errorMsg,
-            creatableStyles.errorMsgActive
-          )}>
-          {error}
-        </p>
-      )}
-    </div>
+  const Controls = (
+    <SelectControls
+      clearable={clearable}
+      cancelSelection={cancelSelection}
+      valueSelected={getOptionValue(value)}
+      disabled={disabled}
+      separator={separator}
+      menuOpened={menuOpened}
+      error={error}
+      showError={showError}
+    />
+  );
+
+  const Footer = error && showError && (
+    <p
+      className={classNames(
+        creatableStyles.errorMsg,
+        creatableStyles.errorMsgActive
+      )}>
+      {error}
+    </p>
+  );
+
+  className = classNames(className, showError && creatableStyles.error);
+
+  return SelectWrapper(
+    null,
+    Footer,
+    Input,
+    Controls,
+    true,
+    {
+      containerRef,
+      menuOpened,
+      openMenu,
+      transitions,
+
+      focusedOptionIndex,
+      setFocusedOptionIndex,
+      _options
+    },
+    {
+      disabled,
+      clearable,
+      options,
+      label,
+      separator,
+      getOptionValue,
+      className,
+      searchable,
+      value,
+      inputValue,
+
+      getOptionLabel,
+      optionRenderer,
+      selectOption,
+
+      ...props
+    }
   );
 };
 

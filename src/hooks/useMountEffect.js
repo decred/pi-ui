@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useRef, useEffect } from "react";
 
 /**
  * useMountEffect is a custom hook to run an effect on mount
@@ -8,6 +8,9 @@ import { useEffect } from "react";
  *
  * @param {*} fun - effect to run on mount
  */
-const useMountEffect = (fun) => useEffect(fun, []);
+const useMountEffect = (fun) => {
+  const ref = useRef(fun);
+  return useEffect(() => ref.current(), []);
+};
 
 export default useMountEffect;

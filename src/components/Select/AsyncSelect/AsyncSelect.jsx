@@ -1,17 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {
-  SelectOptions,
+  SelectInput,
   SelectControls,
   blankValue,
   defaultLabelKeyGetter,
   defaultValueKeyGetter
 } from "../helpers";
 import { useAsyncSelect } from "./hooks";
-import { classNames } from "../../../utils";
-import styles from "../styles.css";
 import asyncStyles from "./styles.css";
-import { animated } from "react-spring";
+import SelectWrapper from "../SelectWrapper";
 
 const AsyncSelect = ({
   disabled,
@@ -61,70 +59,68 @@ const AsyncSelect = ({
     loadOptions
   );
 
-  const parentClassNames = classNames(
-    styles.select,
-    getOptionValue(value) && styles.valueSelected,
-    inputValue && styles.search,
-    menuOpened ? styles.menuOpened : styles.menuClosed,
-    separator && styles.hasSeparator,
-    clearable && styles.clearable,
-    disabled && styles.disabled,
-    className
+  const Input = (
+    <SelectInput
+      searchable={true}
+      inputValue={inputValue}
+      disabled={disabled}
+      onSearch={onSearch}
+      getOptionLabel={getOptionLabel}
+      value={value}
+    />
   );
 
-  return (
-    <div className={parentClassNames} {...props}>
-      <div className={styles.fieldset} ref={containerRef}>
-        {label && <label className={styles.label}>{label}</label>}
-        <div className={styles.controls} onClick={openMenu}>
-          {inputValue ? (
-            <input
-              disabled={disabled}
-              className={styles.input}
-              value={inputValue}
-              onChange={onSearch}
-              autoFocus
-            />
-          ) : (
-            <div className={styles.value}>
-              {value !== blankValue &&
-                (valueRenderer ? valueRenderer(value) : getOptionLabel(value))}
-            </div>
-          )}
-          <SelectControls
-            clearable={clearable}
-            cancelSelection={cancelSelection}
-            valueSelected={getOptionValue(value)}
-            disabled={disabled}
-            separator={separator}
-            menuOpened={menuOpened}
-          />
-        </div>
-        {transitions.map(
-          ({ item, key, props }) =>
-            item && (
-              <animated.div className={styles.menu} key={key} style={props}>
-                {!loading ? (
-                  <SelectOptions
-                    options={_options}
-                    value={value}
-                    selectOption={selectOption}
-                    focusedOptionIndex={focusedOptionIndex}
-                    setFocusedOptionIndex={setFocusedOptionIndex}
-                    optionRenderer={optionRenderer}
-                    getOptionLabel={getOptionLabel}
-                    getOptionValue={getOptionValue}
-                  />
-                ) : (
-                  <div className={asyncStyles.loadingMessage}>
-                    {loadingMessage}
-                  </div>
-                )}
-              </animated.div>
-            )
-        )}
-      </div>
-    </div>
+  const Controls = (
+    <SelectControls
+      clearable={clearable}
+      cancelSelection={cancelSelection}
+      valueSelected={getOptionValue(value)}
+      disabled={disabled}
+      separator={separator}
+      menuOpened={menuOpened}
+    />
+  );
+
+  const Loading = (
+    <div className={asyncStyles.loadingMessage}>{loadingMessage}</div>
+  );
+
+  const condition = !loading;
+
+  return SelectWrapper(
+    Loading,
+    null,
+    Input,
+    Controls,
+    condition,
+    {
+      containerRef,
+      menuOpened,
+      openMenu,
+      transitions,
+
+      focusedOptionIndex,
+      setFocusedOptionIndex,
+      _options
+    },
+    {
+      disabled,
+      clearable,
+      options,
+      label,
+      separator,
+      getOptionValue,
+      className,
+      searchable: true,
+      value,
+      inputValue,
+
+      getOptionLabel,
+      optionRenderer,
+      selectOption,
+
+      ...props
+    }
   );
 };
 
