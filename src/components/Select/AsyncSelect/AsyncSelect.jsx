@@ -9,7 +9,7 @@ import {
 } from "../helpers";
 import { useAsyncSelect } from "./hooks";
 import asyncStyles from "./styles.css";
-import SelectWrapper from "../SelectWrapper";
+import selectWrapper from "../SelectWrapper.jsx";
 
 const AsyncSelect = ({
   disabled,
@@ -87,7 +87,7 @@ const AsyncSelect = ({
 
   const condition = !loading;
 
-  return SelectWrapper(
+  return selectWrapper(
     Loading,
     null,
     Input,

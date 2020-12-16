@@ -11,7 +11,7 @@ import {
 import { useCreatableSelect } from "./hooks";
 import { classNames } from "../../../utils";
 import creatableStyles from "./styles.css";
-import SelectWrapper from "../SelectWrapper";
+import selectWrapper from "../SelectWrapper.jsx";
 
 const CreatableSelect = ({
   disabled,
@@ -103,7 +103,7 @@ const CreatableSelect = ({
 
   className = classNames(className, showError && creatableStyles.error);
 
-  return SelectWrapper(
+  return selectWrapper(
     null,
     Footer,
     Input,

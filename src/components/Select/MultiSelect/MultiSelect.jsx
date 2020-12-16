@@ -8,7 +8,7 @@ import {
 import { useMultiSelect } from "./hooks";
 import { classNames } from "../../../utils";
 import multiStyles from "./styles.css";
-import SelectWrapper from "../SelectWrapper";
+import selectWrapper from "../SelectWrapper.jsx";
 
 const MultiSelectOptions = ({
   disabled,
@@ -131,7 +131,7 @@ const MultiSelect = ({
     />
   );
 
-  return SelectWrapper(
+  return selectWrapper(
     null,
     null,
     Input,

@@ -4,7 +4,7 @@ import styles from "./styles.css";
 import { SelectOptions } from "./helpers";
 import { animated } from "react-spring";
 
-const SelectWrapper = (
+const selectWrapper = (
   Loading,
   Footer,
   Input,
@@ -65,13 +65,13 @@ const SelectWrapper = (
               <animated.div className={styles.menu} key={key} style={props}>
                 {condition ? (
                   <SelectOptions
-                    options={_options} //
+                    options={_options}
                     value={value}
-                    selectOption={selectOption} //
-                    focusedOptionIndex={focusedOptionIndex} //
-                    setFocusedOptionIndex={setFocusedOptionIndex} //
-                    optionRenderer={optionRenderer} //
-                    getOptionLabel={getOptionLabel} //
+                    selectOption={selectOption}
+                    focusedOptionIndex={focusedOptionIndex}
+                    setFocusedOptionIndex={setFocusedOptionIndex}
+                    optionRenderer={optionRenderer}
+                    getOptionLabel={getOptionLabel}
                     getOptionValue={getOptionValue}
                   />
                 ) : (
@@ -86,4 +86,4 @@ const SelectWrapper = (
   );
 };
 
-export default SelectWrapper;
+export default selectWrapper;

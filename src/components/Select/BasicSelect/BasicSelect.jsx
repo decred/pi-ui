@@ -8,7 +8,7 @@ import {
   defaultValueKeyGetter
 } from "../helpers";
 import { useBasicSelect } from "./hooks";
-import SelectWrapper from "../SelectWrapper";
+import selectWrapper from "../SelectWrapper.jsx";
 
 const BasicSelect = ({
   disabled,
@@ -77,7 +77,7 @@ const BasicSelect = ({
     />
   );
 
-  return SelectWrapper(
+  return selectWrapper(
     null,
     null,
     Input,
