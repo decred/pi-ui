@@ -2,26 +2,26 @@ import { useState, useEffect } from "react";
 import { useMountEffect, usePrevious } from "hooks";
 import {
   useHandleKeyboardHook,
-  useHandleKeyboardHookBasicParameters,
-  useSelect
+  useHandleKeyboardHookBasicParameters
 } from "../hooks";
-import { matchOption, uniqueOptionsByModifier, findExact } from "../helpers";
+import { matchOption, uniqueOptionsByModifier } from "../helpers";
 
 export function useAsyncSelect(
-  disabled,
-  autoFocus,
-  onChange,
   options,
   getOptionLabel,
-  getOptionValue,
   inputValue,
   onInputChange,
   defaultOptions,
   cacheOptions,
-  loadOptions
+  loadOptions,
+  _options,
+  setOptions,
+  selectOption,
+  menuOpened,
+  setFocusedOptionIndex,
+  focusedOptionIndex
 ) {
   const [_cachedOptions, setCachedOptions] = useState([]);
-  const [_options, setOptions] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const updateOptions = (value) => {
@@ -73,33 +73,6 @@ export function useAsyncSelect(
       updateOptions(inputValue);
   });
 
-  const setOption = (option, knownIndex) => {
-    const index =
-      knownIndex || findExact(_options, getOptionLabel, getOptionValue, option);
-    resetMenu(index);
-    onChange(option);
-  };
-
-  const {
-    focusedOptionIndex,
-    setFocusedOptionIndex,
-    menuOpened,
-    selectOption,
-    openMenu,
-    containerRef,
-    resetMenu,
-    cancelSelection,
-    transitions
-  } = useSelect(
-    _options,
-    setOption,
-    disabled,
-    onInputChange,
-    inputValue,
-    autoFocus,
-    onChange
-  );
-
   const {
     onTypeArrowDownHandler,
     onTypeArrowUpHandler
@@ -132,17 +105,5 @@ export function useAsyncSelect(
     _loadOptions(searchValue, true);
   };
 
-  return {
-    _options,
-    containerRef,
-    menuOpened,
-    focusedOptionIndex,
-    openMenu,
-    setFocusedOptionIndex,
-    selectOption,
-    cancelSelection,
-    onSearch,
-    loading,
-    transitions
-  };
+  return { onSearch, loading };
 }

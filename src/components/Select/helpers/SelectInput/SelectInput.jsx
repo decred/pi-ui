@@ -10,6 +10,7 @@ const SelectInput = ({
   disabled,
   onSearch,
   getOptionLabel,
+  valueRenderer,
   value
 }) =>
   searchable && inputValue ? (
@@ -22,7 +23,8 @@ const SelectInput = ({
     />
   ) : (
     <div className={classNames(styles.value, disabled && styles.disabled)}>
-      {value !== blankValue && getOptionLabel(value)}
+      {value !== blankValue &&
+        (valueRenderer ? valueRenderer(value) : getOptionLabel(value))}
     </div>
   );
 
@@ -32,6 +34,7 @@ SelectInput.propTypes = {
   disabled: PropTypes.bool,
   onSearch: PropTypes.func,
   getOptionLabel: PropTypes.func.isRequired,
+  valueRenderer: PropTypes.func,
   value: PropTypes.object
 };
 
@@ -40,6 +43,7 @@ SelectInput.defaultProps = {
   inputValue: "",
   disabled: false,
   onSearch: null,
+  valueRenderer: null,
   value: null
 };
 

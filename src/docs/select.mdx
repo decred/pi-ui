@@ -6,12 +6,12 @@ route: /components/select
 
 import { useState, useCallback, Fragment } from "react";
 import { Playground, Props } from "docz";
-import { Select, Creatable, MultiSelect, AsyncSelect, Checkbox, Text, TextInput } from "../index";
+import { SelectWrapper, Select, Creatable, MultiSelect, AsyncSelect, Checkbox, Text, TextInput } from "../index";
 
 # Select
 
 ## Select props
-<Props of={Select} />
+<Props of={SelectWrapper} />
 
 ## Usage
 
@@ -110,7 +110,7 @@ import { Select, Creatable, MultiSelect, AsyncSelect, Checkbox, Text, TextInput 
 
     return (
       <Fragment>
-      	<Select 
+        <Select 
           options={options}
           value={value}
           onChange={onChange}

@@ -1,19 +1,22 @@
 import { useEffect, useState } from "react";
 import { useClickOutside } from "hooks";
-import { blankValue } from "./helpers";
+import { blankValue, findExact } from "./helpers";
 import { useTransition } from "react-spring";
 
 export function useSelect(
-  options,
-  setOption,
+  value,
   disabled,
-  onInputChange,
-  inputValue,
+  options,
+  getOptionLabel,
+  getOptionValue,
   autoFocus,
   onChange,
+  inputValue,
+  onInputChange,
   searchable = true,
-  error = false
+  error = false // Could not pass this props, since showError is created after SelectWrapper
 ) {
+  const [_options, setOptions] = useState([]);
   const [menuOpened, setMenuOpened] = useState(false);
   const [focusedOptionIndex, setFocusedOptionIndex] = useState(0);
 
@@ -36,14 +39,51 @@ export function useSelect(
     if (searchable && onInputChange && inputValue) onInputChange("");
   };
 
+  const removeSelectedOptionFilter = (option) =>
+    value.filter(
+      (selectedOption) =>
+        getOptionLabel(selectedOption) !== getOptionLabel(option)
+    );
+
+  const setOption = Array.isArray(value)
+    ? (option, knownIndex) => {
+        if (disabled) return;
+        const index =
+          knownIndex ||
+          findExact(_options, getOptionLabel, getOptionValue, option);
+        let newSelectedOptions = [];
+        if (
+          value.find(
+            (selectedOption) =>
+              getOptionLabel(selectedOption) === getOptionLabel(option)
+          )
+        )
+          newSelectedOptions = removeSelectedOptionFilter(option);
+        else if (!value.length) {
+          newSelectedOptions = [option];
+        } else {
+          newSelectedOptions = [...value, option];
+        }
+        setFocusedOptionIndex(index);
+        if (searchable && onInputChange && inputValue) onInputChange("");
+        onChange(newSelectedOptions);
+      }
+    : (option, knownIndex) => {
+        const index =
+          knownIndex ||
+          findExact(_options, getOptionLabel, getOptionValue, option);
+        resetMenu(index);
+        onChange(option);
+      };
+
   const [containerRef] = useClickOutside(resetMenu);
 
   const selectOption = () => {
     if (!menuOpened) return;
     const optionIndex = focusedOptionIndex;
-    const optionByIndex = options[optionIndex];
-    if (options[optionIndex].onClick !== undefined) {
-      options[optionIndex].onClick();
+    const optionByIndex = _options[optionIndex];
+    if (_options[optionIndex].onClick !== undefined) {
+      _options[optionIndex].onClick();
       return;
     }
     setOption(optionByIndex, optionIndex);
@@ -82,7 +122,10 @@ export function useSelect(
     resetMenu,
     cancelSelection,
     onSearch,
-    transitions
+    transitions,
+    _options,
+    setOptions,
+    setOption
   };
 }
 

@@ -1,30 +1,32 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import {
   useHandleKeyboardHook,
-  useHandleKeyboardHookBasicParameters,
-  useSelect
+  useHandleKeyboardHookBasicParameters
 } from "../hooks";
-import { blankValue, matchOption, findExact } from "../helpers";
+import { blankValue, matchOption } from "../helpers";
 
 export function useBasicSelect(
   disabled,
-  autoFocus,
   onChange,
   options,
   getOptionLabel,
-  getOptionValue,
   optionsFilter,
   value,
   searchable,
   inputValue,
-  onInputChange
+  onInputChange,
+  _options,
+  setOptions,
+  menuOpened,
+  focusedOptionIndex,
+  setFocusedOptionIndex,
+  selectOption
 ) {
-  const [_options, setOptions] = useState([]);
-
   useEffect(() => {
     let filteredOptions = optionsFilter
       ? options.filter(optionsFilter)
       : options;
+
     if (searchable && inputValue)
       filteredOptions = matchOption(
         filteredOptions,
@@ -32,42 +34,20 @@ export function useBasicSelect(
         inputValue
       );
     setOptions(filteredOptions);
-  }, [searchable, inputValue, optionsFilter, options, getOptionLabel]);
+  }, [
+    searchable,
+    inputValue,
+    optionsFilter,
+    options,
+    getOptionLabel,
+    setOptions
+  ]);
 
   useEffect(() => {
     if (disabled) return;
     if (optionsFilter && !optionsFilter(value) && getOptionLabel(value))
       onChange(blankValue);
   }, [disabled, value, optionsFilter, onChange, getOptionLabel]);
-
-  const setOption = (option, knownIndex) => {
-    const index =
-      knownIndex || findExact(_options, getOptionLabel, getOptionValue, option);
-    resetMenu(index);
-    onChange(option);
-  };
-
-  const {
-    focusedOptionIndex,
-    setFocusedOptionIndex,
-    menuOpened,
-    selectOption,
-    openMenu,
-    containerRef,
-    resetMenu,
-    cancelSelection,
-    onSearch,
-    transitions
-  } = useSelect(
-    _options,
-    setOption,
-    disabled,
-    onInputChange,
-    inputValue,
-    autoFocus,
-    onChange,
-    searchable
-  );
 
   const {
     onTypeArrowDownHandler,
@@ -89,17 +69,4 @@ export function useBasicSelect(
     selectOption,
     onTypeDefaultHandler
   );
-
-  return {
-    _options,
-    containerRef,
-    menuOpened,
-    focusedOptionIndex,
-    openMenu,
-    setFocusedOptionIndex,
-    selectOption,
-    cancelSelection,
-    onSearch,
-    transitions
-  };
 }

@@ -1,14 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {
-  SelectControls,
-  defaultLabelKeyGetter,
-  defaultValueKeyGetter
-} from "../helpers";
+import { SelectControls, defaultLabelKeyGetter } from "../helpers";
 import { useMultiSelect } from "./hooks";
 import { classNames } from "../../../utils";
 import multiStyles from "./styles.css";
-import selectWrapper from "../SelectWrapper.jsx";
+import SelectWrapper from "../SelectWrapper.jsx";
 
 const MultiSelectOptions = ({
   disabled,
@@ -52,159 +48,105 @@ MultiSelectOptions.defaultProps = {
   value: []
 };
 
-const MultiSelect = ({
-  disabled,
-  clearable,
-  options,
-  label,
-  separator,
-  getOptionLabel,
-  getOptionValue,
-  optionRenderer,
-  valueRenderer,
-  optionsFilter,
-  className,
-  autoFocus,
-  searchable,
-  value,
-  onChange,
-  inputValue,
-  onInputChange,
-  ...props
-}) => {
-  const {
-    _options,
-    containerRef,
-    menuOpened,
-    focusedOptionIndex,
-    openMenu,
-    setFocusedOptionIndex,
-    selectOption,
-    cancelSelection,
-    removeSelectedOption,
-    onSearch,
-    transitions
-  } = useMultiSelect(
-    disabled,
-    autoFocus,
-    onChange,
-    options,
-    getOptionLabel,
-    getOptionValue,
-    optionsFilter,
-    searchable,
-    value,
-    inputValue,
-    onInputChange
-  );
-
-  const Input =
-    searchable && inputValue ? (
-      <input
-        disabled={disabled}
-        className={classNames(
-          multiStyles.input,
-          disabled && multiStyles.disabled
-        )}
-        value={inputValue}
-        onChange={onSearch}
-        autoFocus
-      />
-    ) : (
-      <MultiSelectOptions
-        disabled={disabled}
-        value={value}
-        valueRenderer={valueRenderer}
-        getOptionLabel={getOptionLabel}
-        removeSelectedOption={removeSelectedOption}
-      />
-    );
-
-  const Controls = (
-    <SelectControls
-      clearable={clearable}
-      cancelSelection={cancelSelection}
-      valueSelected={value.length}
-      disabled={disabled}
-      separator={separator}
-      menuOpened={menuOpened}
-    />
-  );
-
-  return selectWrapper(
-    null,
-    null,
-    Input,
-    Controls,
-    true,
-    {
-      containerRef,
-      menuOpened,
-      openMenu,
-      transitions,
-
-      focusedOptionIndex,
-      setFocusedOptionIndex,
-      _options
-    },
-    {
+const MultiSelect = ({ value, ...props }) => (
+  <SelectWrapper {...{ ...props, value }}>
+    {({
       disabled,
       clearable,
       options,
-      label,
       separator,
+      getOptionLabel,
       getOptionValue,
-      className,
+      valueRenderer,
+      optionsFilter,
       searchable,
       value,
+      onChange,
       inputValue,
+      onInputChange,
 
-      getOptionLabel,
-      optionRenderer,
+      menuOpened,
+      onSearch,
+      _options,
+      setOptions,
+      focusedOptionIndex,
+      setFocusedOptionIndex,
       selectOption,
+      resetMenu,
+      removeSelectedOptionFilter
+    }) => {
+      const { cancelSelection, removeSelectedOption } = useMultiSelect(
+        disabled,
+        onChange,
+        options,
+        getOptionLabel,
+        getOptionValue,
+        optionsFilter,
+        searchable,
+        value,
+        inputValue,
+        onInputChange,
+        _options,
+        setOptions,
 
-      ...props
-    }
-  );
-};
+        focusedOptionIndex,
+        setFocusedOptionIndex,
+        menuOpened,
+        selectOption,
+        resetMenu,
+        removeSelectedOptionFilter
+      );
+
+      const Input =
+        searchable && inputValue ? (
+          <input
+            disabled={disabled}
+            className={classNames(
+              multiStyles.input,
+              disabled && multiStyles.disabled
+            )}
+            value={inputValue}
+            onChange={onSearch}
+            autoFocus
+          />
+        ) : (
+          <MultiSelectOptions
+            disabled={disabled}
+            value={value}
+            valueRenderer={valueRenderer}
+            getOptionLabel={getOptionLabel}
+            removeSelectedOption={removeSelectedOption}
+          />
+        );
+
+      const Controls = (
+        <SelectControls
+          clearable={clearable}
+          cancelSelection={cancelSelection}
+          valueSelected={value.length}
+          disabled={disabled}
+          separator={separator}
+          menuOpened={menuOpened}
+        />
+      );
+
+      return {
+        Loading: null,
+        Footer: null,
+        Input,
+        Controls,
+        condition: true
+      };
+    }}
+  </SelectWrapper>
+);
 
 MultiSelect.propTypes = {
-  disabled: PropTypes.bool,
-  clearable: PropTypes.bool,
-  options: PropTypes.array,
-  label: PropTypes.string,
-  separator: PropTypes.bool,
-  onChange: PropTypes.func.isRequired,
-  getOptionLabel: PropTypes.func,
-  getOptionValue: PropTypes.func,
-  optionRenderer: PropTypes.func,
-  valueRenderer: PropTypes.func,
-  optionsFilter: PropTypes.func,
-  className: PropTypes.string,
-  autoFocus: PropTypes.bool,
-  searchable: PropTypes.bool,
-  value: PropTypes.array,
-  inputValue: PropTypes.string,
-  onInputChange: PropTypes.func
+  value: PropTypes.array
 };
 
 MultiSelect.defaultProps = {
-  disabled: false,
-  clearable: false,
-  options: [],
-  label: "",
-  separator: false,
-  getOptionLabel: defaultLabelKeyGetter,
-  getOptionValue: defaultValueKeyGetter,
-  optionRenderer: null,
-  valueRenderer: null,
-  optionsFilter: null,
-  className: "",
-  autoFocus: false,
-  searchable: false,
-  value: [],
-  inputValue: "",
-  onInputChange: null
+  value: []
 };
 
 export default MultiSelect;

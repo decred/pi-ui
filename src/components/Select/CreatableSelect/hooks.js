@@ -2,15 +2,9 @@ import { useState, useRef, useEffect } from "react";
 import { usePrevious } from "hooks";
 import {
   useHandleKeyboardHook,
-  useHandleKeyboardHookBasicParameters,
-  useSelect
+  useHandleKeyboardHookBasicParameters
 } from "../hooks";
-import {
-  blankValue,
-  matchOption,
-  uniqueOptionsByModifier,
-  findExact
-} from "../helpers";
+import { blankValue, matchOption, uniqueOptionsByModifier } from "../helpers";
 
 const newFirstOption = {
   label: "",
@@ -20,56 +14,33 @@ const newFirstOption = {
 
 export function useCreatableSelect(
   disabled,
-  autoFocus,
   onChange,
   options,
   getOptionLabel,
-  getOptionValue,
   optionsFilter,
   searchable,
   value,
   inputValue,
   onInputChange,
+
+  focusedOptionIndex,
+  setFocusedOptionIndex,
+  menuOpened,
+  selectOption,
+  setMenuOpened,
+
   typeLabel,
   isValidNewOption,
   newOptionCreator,
-  promptTextCreator
+  promptTextCreator,
+  _options,
+  setOptions,
+  setOption
 ) {
   const newOptions = useRef([]);
-  const [_options, setOptions] = useState([]);
   const [showError, setShowError] = useState(false);
   const [addingNewOption, setAddingNewOption] = useState(false);
   const [firstOption, setFirstOption] = useState(null);
-
-  const setOption = (option, knownIndex) => {
-    const index =
-      knownIndex || findExact(_options, getOptionLabel, getOptionValue, option);
-    resetMenu(index);
-    onChange(option);
-  };
-
-  const {
-    focusedOptionIndex,
-    setFocusedOptionIndex,
-    menuOpened,
-    selectOption,
-    openMenu,
-    containerRef,
-    resetMenu,
-    cancelSelection,
-    setMenuOpened,
-    transitions
-  } = useSelect(
-    _options,
-    setOption,
-    disabled,
-    onInputChange,
-    inputValue,
-    autoFocus,
-    onChange,
-    searchable,
-    showError
-  );
 
   useEffect(() => {
     if (disabled) return;
@@ -88,7 +59,7 @@ export function useCreatableSelect(
 
   newFirstOption.label =
     addingNewOption && inputValue ? promptTextCreator(inputValue) : typeLabel;
-  newFirstOption.value = addingNewOption && inputValue ? "" : "";
+  newFirstOption.value = "";
   newFirstOption.onClick =
     addingNewOption && inputValue ? newOptionCreatorCallback : () => {};
 
@@ -115,7 +86,8 @@ export function useCreatableSelect(
     getOptionLabel,
     optionsFilter,
     searchable,
-    firstOption
+    firstOption,
+    setOptions
   ]);
 
   const {
@@ -163,18 +135,7 @@ export function useCreatableSelect(
   };
 
   return {
-    _options,
-    containerRef,
-    menuOpened,
-    focusedOptionIndex,
-    openMenu,
     showError,
-    setFocusedOptionIndex,
-    selectOption,
-    cancelSelection,
-    inputValue,
-    addingNewOption,
-    onSearch,
-    transitions
+    onSearch
   };
 }

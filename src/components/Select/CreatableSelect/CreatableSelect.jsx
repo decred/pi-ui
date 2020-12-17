@@ -3,160 +3,118 @@ import PropTypes from "prop-types";
 import {
   SelectInput,
   SelectControls,
-  blankValue,
-  defaultLabelKeyGetter,
-  defaultValueKeyGetter,
   defaultPromptTextCreator
 } from "../helpers";
 import { useCreatableSelect } from "./hooks";
 import { classNames } from "../../../utils";
 import creatableStyles from "./styles.css";
-import selectWrapper from "../SelectWrapper.jsx";
+import SelectWrapper from "../SelectWrapper.jsx";
 
 const CreatableSelect = ({
-  disabled,
-  clearable,
-  options,
-  label,
-  separator,
-  onChange,
-  getOptionLabel,
-  getOptionValue,
-  optionRenderer,
-  optionsFilter,
-  className,
-  autoFocus,
-  searchable,
-  value,
-  inputValue,
-  onInputChange,
   typeLabel,
   error,
   isValidNewOption,
   newOptionCreator,
   promptTextCreator,
   ...props
-}) => {
-  const {
-    _options,
-    containerRef,
-    menuOpened,
-    focusedOptionIndex,
-    openMenu,
-    showError,
-    setFocusedOptionIndex,
-    selectOption,
-    cancelSelection,
-    onSearch,
-    transitions
-  } = useCreatableSelect(
-    disabled,
-    autoFocus,
-    onChange,
-    options,
-    getOptionLabel,
-    getOptionValue,
-    optionsFilter,
-    searchable,
-    value,
-    inputValue,
-    onInputChange,
-    typeLabel,
-    isValidNewOption,
-    newOptionCreator,
-    promptTextCreator
-  );
-
-  const Input = (
-    <SelectInput
-      searchable={searchable}
-      inputValue={inputValue}
-      disabled={disabled}
-      onSearch={onSearch}
-      getOptionLabel={getOptionLabel}
-      value={value}
-    />
-  );
-
-  const Controls = (
-    <SelectControls
-      clearable={clearable}
-      cancelSelection={cancelSelection}
-      valueSelected={getOptionValue(value)}
-      disabled={disabled}
-      separator={separator}
-      menuOpened={menuOpened}
-      error={error}
-      showError={showError}
-    />
-  );
-
-  const Footer = error && showError && (
-    <p
-      className={classNames(
-        creatableStyles.errorMsg,
-        creatableStyles.errorMsgActive
-      )}>
-      {error}
-    </p>
-  );
-
-  className = classNames(className, showError && creatableStyles.error);
-
-  return selectWrapper(
-    null,
-    Footer,
-    Input,
-    Controls,
-    true,
-    {
-      containerRef,
-      menuOpened,
-      openMenu,
-      transitions,
-
-      focusedOptionIndex,
-      setFocusedOptionIndex,
-      _options
-    },
-    {
+}) => (
+  <SelectWrapper {...props}>
+    {({
       disabled,
       clearable,
       options,
-      label,
       separator,
+      getOptionLabel,
       getOptionValue,
-      className,
+      optionsFilter,
       searchable,
       value,
+      onChange,
       inputValue,
-
-      getOptionLabel,
-      optionRenderer,
+      onInputChange,
+      setOption,
+      menuOpened,
+      cancelSelection,
+      _options,
+      setOptions,
+      focusedOptionIndex,
+      setFocusedOptionIndex,
       selectOption,
+      setMenuOpened,
+      className
+    }) => {
+      const { showError, onSearch } = useCreatableSelect(
+        disabled,
+        onChange,
+        options,
+        getOptionLabel,
+        optionsFilter,
+        searchable,
+        value,
+        inputValue,
+        onInputChange,
+        focusedOptionIndex,
+        setFocusedOptionIndex,
+        menuOpened,
+        selectOption,
+        setMenuOpened,
+        typeLabel,
+        isValidNewOption,
+        newOptionCreator,
+        promptTextCreator,
+        _options,
+        setOptions,
+        setOption
+      );
 
-      ...props
-    }
-  );
-};
+      const Input = (
+        <SelectInput
+          searchable={searchable}
+          inputValue={inputValue}
+          disabled={disabled}
+          onSearch={onSearch}
+          getOptionLabel={getOptionLabel}
+          value={value}
+        />
+      );
+
+      const Controls = (
+        <SelectControls
+          clearable={clearable}
+          cancelSelection={cancelSelection}
+          valueSelected={getOptionValue(value)}
+          disabled={disabled}
+          separator={separator}
+          menuOpened={menuOpened}
+          error={error}
+          showError={showError}
+        />
+      );
+
+      const Footer = error && showError && (
+        <p
+          className={classNames(
+            creatableStyles.errorMsg,
+            creatableStyles.errorMsgActive
+          )}>
+          {error}
+        </p>
+      );
+
+      className = classNames(className, showError && creatableStyles.error);
+
+      return {
+        Loading: null,
+        Footer,
+        Input,
+        Controls,
+        condition: true
+      };
+    }}
+  </SelectWrapper>
+);
 
 CreatableSelect.propTypes = {
-  disabled: PropTypes.bool,
-  clearable: PropTypes.bool,
-  options: PropTypes.array,
-  label: PropTypes.string,
-  separator: PropTypes.bool,
-  onChange: PropTypes.func.isRequired,
-  getOptionLabel: PropTypes.func,
-  getOptionValue: PropTypes.func,
-  optionRenderer: PropTypes.func,
-  optionsFilter: PropTypes.func,
-  className: PropTypes.string,
-  autoFocus: PropTypes.bool,
-  searchable: PropTypes.bool,
-  value: PropTypes.object.isRequired,
-  inputValue: PropTypes.string,
-  onInputChange: PropTypes.func.isRequired,
   typeLabel: PropTypes.string,
   error: PropTypes.string,
   isValidNewOption: PropTypes.func,
@@ -165,20 +123,6 @@ CreatableSelect.propTypes = {
 };
 
 CreatableSelect.defaultProps = {
-  disabled: false,
-  clearable: false,
-  options: [],
-  label: "",
-  separator: false,
-  getOptionLabel: defaultLabelKeyGetter,
-  getOptionValue: defaultValueKeyGetter,
-  optionRenderer: null,
-  optionsFilter: null,
-  className: "",
-  autoFocus: false,
-  searchable: false,
-  value: blankValue,
-  inputValue: "",
   typeLabel: "Type to add a new option",
   error: "",
   isValidNewOption: null,
