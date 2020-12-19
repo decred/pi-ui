@@ -42,12 +42,17 @@ const SelectWrapper = ({
     setFocusedOptionIndex,
     cancelSelection,
     onSearch,
-    _options,
-    setOptions,
+    currentOptions,
+    setCurrentOptions,
     setOption,
     setMenuOpened,
     resetMenu,
-    removeSelectedOptionFilter
+    removeSelectedOptionFilter,
+    onTypeArrowDownHandler,
+    onTypeArrowUpHandler,
+    onTypeDefaultHandler,
+    showError,
+    setShowError
   } = useSelect(
     value,
     disabled,
@@ -71,13 +76,12 @@ const SelectWrapper = ({
     setFocusedOptionIndex,
     cancelSelection,
     onSearch,
-    _options,
-    setOptions,
+    currentOptions,
+    setCurrentOptions,
     setOption,
     setMenuOpened,
     resetMenu,
     removeSelectedOptionFilter,
-
     disabled,
     clearable,
     options,
@@ -91,7 +95,12 @@ const SelectWrapper = ({
     onChange,
     inputValue,
     onInputChange,
-    className
+    className,
+    onTypeArrowDownHandler,
+    onTypeArrowUpHandler,
+    onTypeDefaultHandler,
+    showError,
+    setShowError
   });
 
   const parentClassNames = classNames(
@@ -120,7 +129,7 @@ const SelectWrapper = ({
               <animated.div className={styles.menu} key={key} style={props}>
                 {condition ? (
                   <SelectOptions
-                    options={_options}
+                    options={currentOptions}
                     value={value}
                     selectOption={selectOption}
                     focusedOptionIndex={focusedOptionIndex}

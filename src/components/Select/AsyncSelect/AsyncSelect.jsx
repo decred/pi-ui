@@ -12,7 +12,7 @@ const AsyncSelect = ({
   loadingMessage,
   ...props
 }) => (
-  <SelectWrapper {...props}>
+  <SelectWrapper {...{ searchable: true, ...props }}>
     {({
       disabled,
       clearable,
@@ -23,30 +23,27 @@ const AsyncSelect = ({
       valueRenderer,
       value,
       inputValue,
-      onInputChange,
-
       menuOpened,
       cancelSelection,
-      _options,
-      setOptions,
-      focusedOptionIndex,
-      setFocusedOptionIndex,
-      selectOption
+      setCurrentOptions,
+      selectOption,
+      onTypeArrowDownHandler,
+      onTypeArrowUpHandler,
+      onTypeDefaultHandler,
+      onSearch
     }) => {
-      const { onSearch, loading } = useAsyncSelect(
+      const { loading } = useAsyncSelect(
         options,
         getOptionLabel,
         inputValue,
-        onInputChange,
         defaultOptions,
         cacheOptions,
         loadOptions,
-        _options,
-        setOptions,
+        setCurrentOptions,
         selectOption,
-        menuOpened,
-        setFocusedOptionIndex,
-        focusedOptionIndex
+        onTypeArrowDownHandler,
+        onTypeArrowUpHandler,
+        onTypeDefaultHandler
       );
 
       const Input = (

@@ -1,10 +1,11 @@
 import { useState, useRef, useEffect } from "react";
 import { usePrevious } from "hooks";
-import {
-  useHandleKeyboardHook,
-  useHandleKeyboardHookBasicParameters
-} from "../hooks";
-import { blankValue, matchOption, uniqueOptionsByModifier } from "../helpers";
+import { useHandleKeyboardHook } from "../hooks";
+import { blankValue, matchOption } from "../helpers";
+import flow from "lodash/flow";
+import filter from "lodash/filter";
+import identity from "lodash/identity";
+import uniqBy from "lodash/uniqBy";
 
 const newFirstOption = {
   label: "",
@@ -22,25 +23,22 @@ export function useCreatableSelect(
   value,
   inputValue,
   onInputChange,
-
-  focusedOptionIndex,
-  setFocusedOptionIndex,
   menuOpened,
   selectOption,
   setMenuOpened,
-
   typeLabel,
   isValidNewOption,
   newOptionCreator,
   promptTextCreator,
-  _options,
-  setOptions,
-  setOption
+  setCurrentOptions,
+  setOption,
+  onTypeArrowDownHandler,
+  onTypeArrowUpHandler,
+  setShowError
 ) {
   const newOptions = useRef([]);
-  const [showError, setShowError] = useState(false);
   const [addingNewOption, setAddingNewOption] = useState(false);
-  const [firstOption, setFirstOption] = useState(null);
+  const [firstOption, setFirstOption] = useState(blankValue);
 
   useEffect(() => {
     if (disabled) return;
@@ -70,15 +68,17 @@ export function useCreatableSelect(
   }, [inputValue, previousInputValue]);
 
   useEffect(() => {
-    let updatedOptions = uniqueOptionsByModifier(
-      [...options, ...newOptions.current],
-      getOptionLabel
-    );
-    if (optionsFilter) updatedOptions = updatedOptions.filter(optionsFilter);
-    if (addingNewOption && searchable && inputValue)
-      updatedOptions = matchOption(updatedOptions, getOptionLabel, inputValue);
+    const updatedOptions = flow(
+      addingNewOption && searchable && inputValue
+        ? filter(matchOption(getOptionLabel, inputValue))
+        : identity,
+      optionsFilter ? filter(optionsFilter) : identity,
+      uniqBy((value) => getOptionLabel(value))
+    )([...options, ...newOptions.current]);
+
     updatedOptions.unshift(firstOption);
-    setOptions(updatedOptions);
+
+    setCurrentOptions(updatedOptions);
   }, [
     addingNewOption,
     inputValue,
@@ -87,21 +87,8 @@ export function useCreatableSelect(
     optionsFilter,
     searchable,
     firstOption,
-    setOptions
+    setCurrentOptions
   ]);
-
-  const {
-    onTypeArrowDownHandler,
-    onTypeArrowUpHandler
-  } = useHandleKeyboardHookBasicParameters(
-    menuOpened,
-    _options,
-    focusedOptionIndex,
-    setFocusedOptionIndex,
-    inputValue,
-    onInputChange,
-    searchable
-  );
 
   const onTypeDefaultHandler = (e) => {
     if (!menuOpened) return;
@@ -135,7 +122,6 @@ export function useCreatableSelect(
   };
 
   return {
-    showError,
     onSearch
   };
 }

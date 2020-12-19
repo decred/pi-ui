@@ -1,10 +1,10 @@
 import { useEffect } from "react";
 import { usePrevious } from "hooks";
-import {
-  useHandleKeyboardHook,
-  useHandleKeyboardHookBasicParameters
-} from "../hooks";
+import { useHandleKeyboardHook } from "../hooks";
 import { matchOption } from "../helpers";
+import flow from "lodash/flow";
+import filter from "lodash/filter";
+import identity from "lodash/identity";
 
 export function useMultiSelect(
   disabled,
@@ -15,35 +15,30 @@ export function useMultiSelect(
   searchable,
   value,
   inputValue,
-  onInputChange,
-  _options,
-  setOptions,
-
-  focusedOptionIndex,
-  setFocusedOptionIndex,
-  menuOpened,
+  setCurrentOptions,
   selectOption,
   resetMenu,
-  removeSelectedOptionFilter
+  removeSelectedOptionFilter,
+  onTypeArrowDownHandler,
+  onTypeArrowUpHandler,
+  onTypeDefaultHandler
 ) {
   useEffect(() => {
-    let filteredOptions = optionsFilter
-      ? options.filter(optionsFilter)
-      : options;
-    if (searchable && inputValue)
-      filteredOptions = matchOption(
-        filteredOptions,
-        getOptionLabel,
-        inputValue
-      );
-    setOptions(filteredOptions);
+    const filteredOptions = flow([
+      searchable && inputValue
+        ? filter(matchOption(getOptionLabel, inputValue))
+        : identity,
+      optionsFilter ? filter(optionsFilter) : identity
+    ])(options);
+
+    setCurrentOptions(filteredOptions);
   }, [
     searchable,
     getOptionLabel,
     inputValue,
     optionsFilter,
     options,
-    setOptions
+    setCurrentOptions
   ]);
 
   const previousSelectedOptions = usePrevious(value);
@@ -58,20 +53,6 @@ export function useMultiSelect(
     onChange(removeSelectedOptionFilter(option));
     e.stopPropagation();
   };
-
-  const {
-    onTypeArrowDownHandler,
-    onTypeArrowUpHandler,
-    onTypeDefaultHandler
-  } = useHandleKeyboardHookBasicParameters(
-    menuOpened,
-    _options,
-    focusedOptionIndex,
-    setFocusedOptionIndex,
-    inputValue,
-    onInputChange,
-    searchable
-  );
 
   useHandleKeyboardHook(
     onTypeArrowDownHandler,

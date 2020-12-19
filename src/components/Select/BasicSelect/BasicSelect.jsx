@@ -18,16 +18,14 @@ const BasicSelect = (props) => (
       value,
       onChange,
       inputValue,
-      onInputChange,
-
       menuOpened,
       cancelSelection,
       onSearch,
-      _options,
-      setOptions,
-      focusedOptionIndex,
-      setFocusedOptionIndex,
-      selectOption
+      setCurrentOptions,
+      selectOption,
+      onTypeArrowDownHandler,
+      onTypeArrowUpHandler,
+      onTypeDefaultHandler
     }) => {
       useBasicSelect(
         disabled,
@@ -38,13 +36,11 @@ const BasicSelect = (props) => (
         value,
         searchable,
         inputValue,
-        onInputChange,
-        _options,
-        setOptions,
-        menuOpened,
-        focusedOptionIndex,
-        setFocusedOptionIndex,
-        selectOption
+        setCurrentOptions,
+        selectOption,
+        onTypeArrowDownHandler,
+        onTypeArrowUpHandler,
+        onTypeDefaultHandler
       );
 
       const Input = (

@@ -1,97 +1,84 @@
-import { useState, useEffect } from "react";
-import { useMountEffect, usePrevious } from "hooks";
-import {
-  useHandleKeyboardHook,
-  useHandleKeyboardHookBasicParameters
-} from "../hooks";
-import { matchOption, uniqueOptionsByModifier } from "../helpers";
+import { useCallback, useEffect, useState } from "react";
+import { useHandleKeyboardHook } from "../hooks";
+import { matchOption } from "../helpers";
+import uniqBy from "lodash/unionBy";
 
 export function useAsyncSelect(
   options,
   getOptionLabel,
   inputValue,
-  onInputChange,
   defaultOptions,
   cacheOptions,
   loadOptions,
-  _options,
-  setOptions,
+  setCurrentOptions,
   selectOption,
-  menuOpened,
-  setFocusedOptionIndex,
-  focusedOptionIndex
+  onTypeArrowDownHandler,
+  onTypeArrowUpHandler,
+  onTypeDefaultHandler
 ) {
-  const [_cachedOptions, setCachedOptions] = useState([]);
+  const [cachedOptions, setCachedOptions] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const updateOptions = (value) => {
-    if (value)
-      setOptions(
-        matchOption([...options, ..._cachedOptions], getOptionLabel, value)
-      );
-  };
-
-  const updateCachedOptions = (values) => {
-    const updatedCachedOptions = uniqueOptionsByModifier(
-      [..._cachedOptions, ...values],
-      getOptionLabel
-    );
-    setCachedOptions(updatedCachedOptions);
-  };
-
-  const _loadOptions = (value, ignoreEmpty) => {
-    if (!onInputChange) return;
-    onInputChange(value);
-    setLoading(true);
-    loadOptions(value).then((result) => {
-      if (cacheOptions) updateCachedOptions(result);
-      else {
-        const loadedOptions = matchOption(options, getOptionLabel, value);
-        if (!ignoreEmpty || value) loadedOptions.push(...result);
-        setOptions(loadedOptions);
-      }
-      setLoading(false);
-    });
-  };
-
-  const previousCachedOptions = usePrevious(_cachedOptions);
-
-  useMountEffect(() => {
-    if (defaultOptions === true) _loadOptions(inputValue);
-    else if (Array.isArray(defaultOptions))
-      if (cacheOptions) updateCachedOptions(defaultOptions);
-      else setOptions([...options, ...defaultOptions]);
-    else setOptions(options);
-  });
-
-  useEffect(() => {
-    if (
-      cacheOptions &&
-      previousCachedOptions &&
-      previousCachedOptions !== _cachedOptions
-    )
-      updateOptions(inputValue);
-  });
-
-  const {
-    onTypeArrowDownHandler,
-    onTypeArrowUpHandler
-  } = useHandleKeyboardHookBasicParameters(
-    menuOpened,
-    _options,
-    focusedOptionIndex,
-    setFocusedOptionIndex,
-    inputValue,
-    onInputChange
+  const filterOptions = useCallback(
+    (optionsToFilter) =>
+      optionsToFilter.filter(matchOption(getOptionLabel, inputValue)),
+    [getOptionLabel, inputValue]
   );
 
-  const onTypeDefaultHandler = (e) => {
-    if (!menuOpened) return;
-    if (!inputValue && String.fromCharCode(e.keyCode).match(/(\w|\s)/g)) {
-      _loadOptions(e.key, true);
-      e.preventDefault();
+  const updateCachedOptions = useCallback(
+    (values) => {
+      const updatedCachedOptions = uniqBy(
+        [...cachedOptions, ...values],
+        (value) => getOptionLabel(value)
+      );
+      if (!defaultOptions) setCachedOptions(updatedCachedOptions);
+      setCurrentOptions(filterOptions([...options, ...updatedCachedOptions]));
+    },
+    [
+      defaultOptions,
+      options,
+      cachedOptions,
+      getOptionLabel,
+      filterOptions,
+      setCurrentOptions
+    ]
+  );
+
+  const loadNewOptions = useCallback(
+    (value) => {
+      setLoading(true);
+      loadOptions(value).then((newOptions) => {
+        if (cacheOptions) updateCachedOptions(newOptions);
+        else setCurrentOptions(filterOptions([...options, ...newOptions]));
+        setLoading(false);
+      });
+    },
+    [
+      loadOptions,
+      cacheOptions,
+      filterOptions,
+      updateCachedOptions,
+      setCurrentOptions,
+      options
+    ]
+  );
+
+  useEffect(() => {
+    if (inputValue || defaultOptions === true) {
+      loadNewOptions(inputValue);
+    } else if (Array.isArray(defaultOptions)) {
+      setCurrentOptions(defaultOptions);
+    } else {
+      setCurrentOptions([...options, ...cachedOptions]);
     }
-  };
+  }, [
+    loadNewOptions,
+    inputValue,
+    defaultOptions,
+    options,
+    cachedOptions,
+    setCurrentOptions
+  ]);
 
   useHandleKeyboardHook(
     onTypeArrowDownHandler,
@@ -100,10 +87,5 @@ export function useAsyncSelect(
     onTypeDefaultHandler
   );
 
-  const onSearch = (e) => {
-    const searchValue = e.target.value;
-    _loadOptions(searchValue, true);
-  };
-
-  return { onSearch, loading };
+  return { loading };
 }

@@ -296,14 +296,14 @@ import { SelectWrapper, Select, Creatable, MultiSelect, AsyncSelect, Checkbox, T
       label: 'Green'
     }];
 
-    const optionsFilter = (_inputValue) =>  colors.filter(color =>
-      color.label.toLowerCase().includes(_inputValue.toLowerCase())
+    const optionsFilter = (input) =>  colors.filter(color =>
+      color.label.toLowerCase().includes(input.toLowerCase())
     );
 
-    const promiseOptions = _inputValue =>
+    const promiseOptions = input =>
       new Promise(resolve => {
         setTimeout(() => {
-          resolve(optionsFilter(_inputValue));
+          resolve(optionsFilter(input));
         }, 1000);
       });
 
@@ -325,6 +325,8 @@ import { SelectWrapper, Select, Creatable, MultiSelect, AsyncSelect, Checkbox, T
           onInputChange={onInputChange}
           label={"Async select"}
           loadOptions={promiseOptions}
+          defaultOptions={true}
+          cacheOptions
         />
         <br/>
         <Checkbox id="async-select-disabled" label={"Disabled"} checked={disabled} onChange={() => setDisabled(!disabled)}/>

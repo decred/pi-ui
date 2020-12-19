@@ -35,15 +35,16 @@ const CreatableSelect = ({
       setOption,
       menuOpened,
       cancelSelection,
-      _options,
-      setOptions,
-      focusedOptionIndex,
-      setFocusedOptionIndex,
+      setCurrentOptions,
       selectOption,
       setMenuOpened,
-      className
+      className,
+      onTypeArrowDownHandler,
+      onTypeArrowUpHandler,
+      setShowError,
+      showError
     }) => {
-      const { showError, onSearch } = useCreatableSelect(
+      const { onSearch } = useCreatableSelect(
         disabled,
         onChange,
         options,
@@ -53,8 +54,6 @@ const CreatableSelect = ({
         value,
         inputValue,
         onInputChange,
-        focusedOptionIndex,
-        setFocusedOptionIndex,
         menuOpened,
         selectOption,
         setMenuOpened,
@@ -62,9 +61,11 @@ const CreatableSelect = ({
         isValidNewOption,
         newOptionCreator,
         promptTextCreator,
-        _options,
-        setOptions,
-        setOption
+        setCurrentOptions,
+        setOption,
+        onTypeArrowDownHandler,
+        onTypeArrowUpHandler,
+        setShowError
       );
 
       const Input = (

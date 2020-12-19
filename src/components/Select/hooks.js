@@ -13,12 +13,12 @@ export function useSelect(
   onChange,
   inputValue,
   onInputChange,
-  searchable = true,
-  error = false // Could not pass this props, since showError is created after SelectWrapper
+  searchable
 ) {
-  const [_options, setOptions] = useState([]);
+  const [currentOptions, setCurrentOptions] = useState([]);
   const [menuOpened, setMenuOpened] = useState(false);
   const [focusedOptionIndex, setFocusedOptionIndex] = useState(0);
+  const [showError, setShowError] = useState(false);
 
   useEffect(() => {
     if (disabled) {
@@ -30,8 +30,9 @@ export function useSelect(
   }, [disabled, autoFocus, searchable, inputValue, onInputChange]);
 
   useEffect(() => {
-    if (searchable && inputValue && !error) setMenuOpened(options.length > 0);
-  }, [searchable, inputValue, options, error]);
+    if (searchable && inputValue && !showError)
+      setMenuOpened(currentOptions.length > 0);
+  }, [searchable, inputValue, currentOptions, showError]);
 
   const resetMenu = (focusedIndex = 0) => {
     setFocusedOptionIndex(focusedIndex);
@@ -45,45 +46,42 @@ export function useSelect(
         getOptionLabel(selectedOption) !== getOptionLabel(option)
     );
 
-  const setOption = Array.isArray(value)
-    ? (option, knownIndex) => {
-        if (disabled) return;
-        const index =
-          knownIndex ||
-          findExact(_options, getOptionLabel, getOptionValue, option);
-        let newSelectedOptions = [];
-        if (
-          value.find(
-            (selectedOption) =>
-              getOptionLabel(selectedOption) === getOptionLabel(option)
-          )
+  const setOption = (option, knownIndex) => {
+    if (disabled) return;
+    const index =
+      knownIndex ||
+      findExact(currentOptions, getOptionLabel, getOptionValue, option);
+    if (Array.isArray(value)) {
+      let newSelectedOptions = [];
+      if (
+        value.find(
+          (selectedOption) =>
+            getOptionLabel(selectedOption) === getOptionLabel(option)
         )
-          newSelectedOptions = removeSelectedOptionFilter(option);
-        else if (!value.length) {
-          newSelectedOptions = [option];
-        } else {
-          newSelectedOptions = [...value, option];
-        }
-        setFocusedOptionIndex(index);
-        if (searchable && onInputChange && inputValue) onInputChange("");
-        onChange(newSelectedOptions);
+      )
+        newSelectedOptions = removeSelectedOptionFilter(option);
+      else if (!value.length) {
+        newSelectedOptions = [option];
+      } else {
+        newSelectedOptions = [...value, option];
       }
-    : (option, knownIndex) => {
-        const index =
-          knownIndex ||
-          findExact(_options, getOptionLabel, getOptionValue, option);
-        resetMenu(index);
-        onChange(option);
-      };
+      setFocusedOptionIndex(index);
+      if (searchable && onInputChange && inputValue) onInputChange("");
+      onChange(newSelectedOptions);
+    } else {
+      resetMenu(index);
+      onChange(option);
+    }
+  };
 
   const [containerRef] = useClickOutside(resetMenu);
 
   const selectOption = () => {
     if (!menuOpened) return;
     const optionIndex = focusedOptionIndex;
-    const optionByIndex = _options[optionIndex];
-    if (_options[optionIndex].onClick !== undefined) {
-      _options[optionIndex].onClick();
+    const optionByIndex = currentOptions[optionIndex];
+    if (currentOptions[optionIndex].onClick !== undefined) {
+      currentOptions[optionIndex].onClick();
       return;
     }
     setOption(optionByIndex, optionIndex);
@@ -111,33 +109,6 @@ export function useSelect(
     duration: 100
   });
 
-  return {
-    focusedOptionIndex,
-    setFocusedOptionIndex,
-    menuOpened,
-    setMenuOpened,
-    selectOption,
-    openMenu,
-    containerRef,
-    resetMenu,
-    cancelSelection,
-    onSearch,
-    transitions,
-    _options,
-    setOptions,
-    setOption
-  };
-}
-
-export function useHandleKeyboardHookBasicParameters(
-  menuOpened,
-  options,
-  focusedOptionIndex,
-  setFocusedOptionIndex,
-  inputValue,
-  onInputChange,
-  searchable = true
-) {
   const onTypeArrowDownHandler = () => {
     if (!menuOpened) return;
     const maxOptionIndex = options.length - 1;
@@ -166,9 +137,25 @@ export function useHandleKeyboardHookBasicParameters(
   };
 
   return {
+    focusedOptionIndex,
+    setFocusedOptionIndex,
+    menuOpened,
+    setMenuOpened,
+    selectOption,
+    openMenu,
+    containerRef,
+    resetMenu,
+    cancelSelection,
+    onSearch,
+    transitions,
+    currentOptions,
+    setCurrentOptions,
+    setOption,
     onTypeArrowDownHandler,
     onTypeArrowUpHandler,
-    onTypeDefaultHandler
+    onTypeDefaultHandler,
+    showError,
+    setShowError
   };
 }
 

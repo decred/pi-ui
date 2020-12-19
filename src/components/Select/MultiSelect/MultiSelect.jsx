@@ -56,45 +56,38 @@ const MultiSelect = ({ value, ...props }) => (
       options,
       separator,
       getOptionLabel,
-      getOptionValue,
       valueRenderer,
       optionsFilter,
       searchable,
       value,
       onChange,
       inputValue,
-      onInputChange,
-
       menuOpened,
       onSearch,
-      _options,
-      setOptions,
-      focusedOptionIndex,
-      setFocusedOptionIndex,
+      setCurrentOptions,
       selectOption,
       resetMenu,
-      removeSelectedOptionFilter
+      removeSelectedOptionFilter,
+      onTypeArrowDownHandler,
+      onTypeArrowUpHandler,
+      onTypeDefaultHandler
     }) => {
       const { cancelSelection, removeSelectedOption } = useMultiSelect(
         disabled,
         onChange,
         options,
         getOptionLabel,
-        getOptionValue,
         optionsFilter,
         searchable,
         value,
         inputValue,
-        onInputChange,
-        _options,
-        setOptions,
-
-        focusedOptionIndex,
-        setFocusedOptionIndex,
-        menuOpened,
+        setCurrentOptions,
         selectOption,
         resetMenu,
-        removeSelectedOptionFilter
+        removeSelectedOptionFilter,
+        onTypeArrowDownHandler,
+        onTypeArrowUpHandler,
+        onTypeDefaultHandler
       );
 
       const Input =

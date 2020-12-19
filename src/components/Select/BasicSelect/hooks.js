@@ -1,9 +1,9 @@
 import { useEffect } from "react";
-import {
-  useHandleKeyboardHook,
-  useHandleKeyboardHookBasicParameters
-} from "../hooks";
+import { useHandleKeyboardHook } from "../hooks";
 import { blankValue, matchOption } from "../helpers";
+import flow from "lodash/flow";
+import filter from "lodash/filter";
+import identity from "lodash/identity";
 
 export function useBasicSelect(
   disabled,
@@ -14,33 +14,28 @@ export function useBasicSelect(
   value,
   searchable,
   inputValue,
-  onInputChange,
-  _options,
-  setOptions,
-  menuOpened,
-  focusedOptionIndex,
-  setFocusedOptionIndex,
-  selectOption
+  setCurrentOptions,
+  selectOption,
+  onTypeArrowDownHandler,
+  onTypeArrowUpHandler,
+  onTypeDefaultHandler
 ) {
   useEffect(() => {
-    let filteredOptions = optionsFilter
-      ? options.filter(optionsFilter)
-      : options;
+    const filteredOptions = flow([
+      searchable && inputValue
+        ? filter(matchOption(getOptionLabel, inputValue))
+        : identity,
+      optionsFilter ? filter(optionsFilter) : identity
+    ])(options);
 
-    if (searchable && inputValue)
-      filteredOptions = matchOption(
-        filteredOptions,
-        getOptionLabel,
-        inputValue
-      );
-    setOptions(filteredOptions);
+    setCurrentOptions(filteredOptions);
   }, [
     searchable,
     inputValue,
     optionsFilter,
     options,
     getOptionLabel,
-    setOptions
+    setCurrentOptions
   ]);
 
   useEffect(() => {
@@ -48,20 +43,6 @@ export function useBasicSelect(
     if (optionsFilter && !optionsFilter(value) && getOptionLabel(value))
       onChange(blankValue);
   }, [disabled, value, optionsFilter, onChange, getOptionLabel]);
-
-  const {
-    onTypeArrowDownHandler,
-    onTypeArrowUpHandler,
-    onTypeDefaultHandler
-  } = useHandleKeyboardHookBasicParameters(
-    menuOpened,
-    _options,
-    focusedOptionIndex,
-    setFocusedOptionIndex,
-    inputValue,
-    onInputChange,
-    searchable
-  );
 
   useHandleKeyboardHook(
     onTypeArrowDownHandler,
