@@ -56,7 +56,6 @@ const Select = ({
   } = useSelect(
     value,
     disabled,
-    options,
     getOptionLabel,
     getOptionValue,
     autoFocus,
@@ -66,7 +65,14 @@ const Select = ({
     searchable
   );
 
-  const { Loading, Footer, Input, Controls, condition, errorClassName } = children({
+  const {
+    Loading,
+    Footer,
+    Input,
+    Controls,
+    condition,
+    errorClassName
+  } = children({
     containerRef,
     menuOpened,
     openMenu,

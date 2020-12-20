@@ -1,17 +1,10 @@
 import { useState, useRef, useEffect } from "react";
-import { usePrevious } from "hooks";
 import { useHandleKeyboardHook } from "../hooks";
 import { blankValue, filterByMatchOption } from "../helpers";
 import flow from "lodash/fp/flow";
 import filter from "lodash/fp/filter";
 import concat from "lodash/fp/concat";
 import uniqBy from "lodash/fp/uniqBy";
-
-const newFirstOption = {
-  label: "",
-  value: "",
-  onClick: null
-};
 
 export function useCreatableSelect(
   disabled,
@@ -38,7 +31,7 @@ export function useCreatableSelect(
 ) {
   const newOptions = useRef([]);
   const [addingNewOption, setAddingNewOption] = useState(false);
-  const [firstOption, setFirstOption] = useState(blankValue);
+  const firstOption = useRef(blankValue);
 
   useEffect(() => {
     if (disabled) return;
@@ -55,29 +48,25 @@ export function useCreatableSelect(
     setOption(newOptionObject);
   };
 
-  newFirstOption.label =
-    addingNewOption && inputValue ? promptTextCreator(inputValue) : typeLabel;
-  newFirstOption.value = "";
-  newFirstOption.onClick =
-    addingNewOption && inputValue ? newOptionCreatorCallback : () => {};
-
-  const previousInputValue = usePrevious(inputValue);
-
-  useEffect(() => {
-    if (previousInputValue !== inputValue) setFirstOption(newFirstOption);
-  }, [inputValue, previousInputValue]);
+  const newFirstOption = { value: "" };
+  if (addingNewOption && inputValue) {
+    newFirstOption.label = promptTextCreator(inputValue);
+    newFirstOption.onClick = newOptionCreatorCallback;
+  } else {
+    newFirstOption.label = typeLabel;
+    newFirstOption.onClick = () => {};
+  }
+  firstOption.current = newFirstOption;
 
   useEffect(() => {
     const isMatch = addingNewOption && searchable && inputValue;
-
     const updatedOptions = flow([
       (opt) => [...opt, ...newOptions.current],
       uniqBy((value) => getOptionLabel(value)),
       filter(optionsFilter),
       filterByMatchOption(getOptionLabel, inputValue, isMatch),
-      concat(firstOption)
+      concat(firstOption.current)
     ])(options);
-
     setCurrentOptions(updatedOptions);
   }, [
     addingNewOption,
@@ -86,7 +75,6 @@ export function useCreatableSelect(
     getOptionLabel,
     optionsFilter,
     searchable,
-    firstOption,
     setCurrentOptions
   ]);
 

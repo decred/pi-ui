@@ -21,12 +21,10 @@ export function useBasicSelect(
 ) {
   useEffect(() => {
     const isMatch = searchable && inputValue;
-
     const filteredOptions = flow([
       filter(optionsFilter),
       filterByMatchOption(getOptionLabel, inputValue, isMatch)
     ])(options);
-
     setCurrentOptions(filteredOptions);
   }, [
     searchable,

@@ -4,6 +4,9 @@ export { default as SelectInput } from "./components/SelectInput/SelectInput.jsx
 
 export const blankValue = { value: "", label: "" };
 
+export const UP = "UP";
+export const DOWN = "DOWN";
+
 export const defaultValueKeyGetter = ({ value }) => value;
 export const defaultLabelKeyGetter = ({ label }) => label;
 

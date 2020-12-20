@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
 import { useClickOutside } from "hooks";
-import { blankValue, findExact } from "./helpers";
+import { blankValue, DOWN, findExact, UP } from "./helpers";
 import { useTransition } from "react-spring";
 
 export function useSelect(
   value,
   disabled,
-  options,
   getOptionLabel,
   getOptionValue,
   autoFocus,
@@ -105,21 +104,23 @@ export function useSelect(
     duration: 100
   });
 
-  const onTypeArrowDownHandler = () => {
+  const onTypeArrowHandler = (direction) => {
     if (!menuOpened) return;
-    const maxOptionIndex = options.length - 1;
-    const newIndex =
-      focusedOptionIndex === maxOptionIndex ? 0 : focusedOptionIndex + 1;
+    const maxOptionIndex = currentOptions.length - 1;
+    let newIndex;
+    if (direction === UP) {
+      newIndex =
+        focusedOptionIndex === 0 ? maxOptionIndex : focusedOptionIndex - 1;
+    } else {
+      newIndex =
+        focusedOptionIndex === maxOptionIndex ? 0 : focusedOptionIndex + 1;
+    }
     setFocusedOptionIndex(newIndex);
   };
 
-  const onTypeArrowUpHandler = () => {
-    if (!menuOpened) return;
-    const maxOptionIndex = options.length - 1;
-    const newIndex =
-      focusedOptionIndex === 0 ? maxOptionIndex : focusedOptionIndex - 1;
-    setFocusedOptionIndex(newIndex);
-  };
+  const onTypeArrowDownHandler = () => onTypeArrowHandler(DOWN);
+
+  const onTypeArrowUpHandler = () => onTypeArrowHandler(UP);
 
   const onTypeDefaultHandler = (e) => {
     if (!menuOpened) return;
