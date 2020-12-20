@@ -66,7 +66,7 @@ const Select = ({
     searchable
   );
 
-  const { Loading, Footer, Input, Controls, condition } = children({
+  const { Loading, Footer, Input, Controls, condition, errorClassName } = children({
     containerRef,
     menuOpened,
     openMenu,
@@ -115,6 +115,7 @@ const Select = ({
     separator && styles.hasSeparator,
     clearable && styles.clearable,
     disabled && styles.disabled,
+    errorClassName,
     className
   );
 

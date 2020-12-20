@@ -102,14 +102,15 @@ const CreatableSelect = ({
         </p>
       );
 
-      className = classNames(className, showError && creatableStyles.error);
+      const errorClassName = showError && creatableStyles.error;
 
       return {
         Loading: null,
         Footer,
         Input,
         Controls,
-        condition: true
+        condition: true,
+        errorClassName
       };
     }}
   </Select>
