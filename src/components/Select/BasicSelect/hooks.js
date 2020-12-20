@@ -1,9 +1,8 @@
 import { useEffect } from "react";
 import { useHandleKeyboardHook } from "../hooks";
-import { blankValue, matchOption } from "../helpers";
-import flow from "lodash/flow";
-import filter from "lodash/filter";
-import identity from "lodash/identity";
+import { blankValue, filterByMatchOption } from "../helpers";
+import flow from "lodash/fp/flow";
+import filter from "lodash/fp/filter";
 
 export function useBasicSelect(
   disabled,
@@ -21,11 +20,11 @@ export function useBasicSelect(
   onTypeDefaultHandler
 ) {
   useEffect(() => {
+    const isMatch = searchable && inputValue;
+
     const filteredOptions = flow([
-      searchable && inputValue
-        ? filter(matchOption(getOptionLabel, inputValue))
-        : identity,
-      optionsFilter ? filter(optionsFilter) : identity
+      filter(optionsFilter),
+      filterByMatchOption(getOptionLabel, inputValue, isMatch)
     ])(options);
 
     setCurrentOptions(filteredOptions);
@@ -40,8 +39,7 @@ export function useBasicSelect(
 
   useEffect(() => {
     if (disabled) return;
-    if (optionsFilter && !optionsFilter(value) && getOptionLabel(value))
-      onChange(blankValue);
+    if (!optionsFilter(value) && getOptionLabel(value)) onChange(blankValue);
   }, [disabled, value, optionsFilter, onChange, getOptionLabel]);
 
   useHandleKeyboardHook(

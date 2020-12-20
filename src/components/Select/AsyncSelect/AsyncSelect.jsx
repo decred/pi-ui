@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { SelectInput, SelectControls } from "../helpers";
 import { useAsyncSelect } from "./hooks";
 import asyncStyles from "./styles.css";
-import SelectWrapper from "../SelectWrapper.jsx";
+import Select from "../Select.jsx";
 
 const AsyncSelect = ({
   defaultOptions,
@@ -12,7 +12,7 @@ const AsyncSelect = ({
   loadingMessage,
   ...props
 }) => (
-  <SelectWrapper {...{ searchable: true, ...props }}>
+  <Select {...{ searchable: true, ...props }}>
     {({
       disabled,
       clearable,
@@ -83,7 +83,7 @@ const AsyncSelect = ({
         condition
       };
     }}
-  </SelectWrapper>
+  </Select>
 );
 
 AsyncSelect.propTypes = {

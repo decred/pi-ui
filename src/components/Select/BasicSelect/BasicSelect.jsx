@@ -1,10 +1,10 @@
 import React from "react";
 import { SelectInput, SelectControls } from "../helpers";
 import { useBasicSelect } from "./hooks";
-import SelectWrapper from "../SelectWrapper.jsx";
+import Select from "../Select.jsx";
 
 const BasicSelect = (props) => (
-  <SelectWrapper {...props}>
+  <Select {...props}>
     {({
       disabled,
       clearable,
@@ -74,7 +74,7 @@ const BasicSelect = (props) => (
         condition: true
       };
     }}
-  </SelectWrapper>
+  </Select>
 );
 
 export default BasicSelect;

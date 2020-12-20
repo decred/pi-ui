@@ -1,10 +1,8 @@
 import { useEffect } from "react";
-import { usePrevious } from "hooks";
 import { useHandleKeyboardHook } from "../hooks";
-import { matchOption } from "../helpers";
-import flow from "lodash/flow";
-import filter from "lodash/filter";
-import identity from "lodash/identity";
+import { filterByMatchOption } from "../helpers";
+import flow from "lodash/fp/flow";
+import filter from "lodash/fp/filter";
 
 export function useMultiSelect(
   disabled,
@@ -24,11 +22,11 @@ export function useMultiSelect(
   onTypeDefaultHandler
 ) {
   useEffect(() => {
+    const isMatch = searchable && inputValue;
+
     const filteredOptions = flow([
-      searchable && inputValue
-        ? filter(matchOption(getOptionLabel, inputValue))
-        : identity,
-      optionsFilter ? filter(optionsFilter) : identity
+      filter(optionsFilter),
+      filterByMatchOption(getOptionLabel, inputValue, isMatch)
     ])(options);
 
     setCurrentOptions(filteredOptions);
@@ -41,13 +39,11 @@ export function useMultiSelect(
     setCurrentOptions
   ]);
 
-  const previousSelectedOptions = usePrevious(value);
-
   useEffect(() => {
     if (disabled) return;
-    if (optionsFilter && previousSelectedOptions !== value && value.length)
-      onChange(value.filter(optionsFilter));
-  }, [disabled, value, optionsFilter, previousSelectedOptions, onChange]);
+    const filteredOptions = value.filter(optionsFilter);
+    if (filteredOptions.length !== value.length) onChange(filteredOptions);
+  }, [disabled, value, optionsFilter, onChange]);
 
   const removeSelectedOption = (e, option) => {
     onChange(removeSelectedOptionFilter(option));

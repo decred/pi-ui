@@ -1,11 +1,11 @@
 import { useState, useRef, useEffect } from "react";
 import { usePrevious } from "hooks";
 import { useHandleKeyboardHook } from "../hooks";
-import { blankValue, matchOption } from "../helpers";
-import flow from "lodash/flow";
-import filter from "lodash/filter";
-import identity from "lodash/identity";
-import uniqBy from "lodash/uniqBy";
+import { blankValue, filterByMatchOption } from "../helpers";
+import flow from "lodash/fp/flow";
+import filter from "lodash/fp/filter";
+import concat from "lodash/fp/concat";
+import uniqBy from "lodash/fp/uniqBy";
 
 const newFirstOption = {
   label: "",
@@ -42,7 +42,7 @@ export function useCreatableSelect(
 
   useEffect(() => {
     if (disabled) return;
-    if (optionsFilter && !optionsFilter(value) && getOptionLabel(value)) {
+    if (!optionsFilter(value) && getOptionLabel(value)) {
       onInputChange("");
       onChange(blankValue);
     }
@@ -68,15 +68,15 @@ export function useCreatableSelect(
   }, [inputValue, previousInputValue]);
 
   useEffect(() => {
-    const updatedOptions = flow(
-      addingNewOption && searchable && inputValue
-        ? filter(matchOption(getOptionLabel, inputValue))
-        : identity,
-      optionsFilter ? filter(optionsFilter) : identity,
-      uniqBy((value) => getOptionLabel(value))
-    )([...options, ...newOptions.current]);
+    const isMatch = addingNewOption && searchable && inputValue;
 
-    updatedOptions.unshift(firstOption);
+    const updatedOptions = flow([
+      (opt) => [...opt, ...newOptions.current],
+      uniqBy((value) => getOptionLabel(value)),
+      filter(optionsFilter),
+      filterByMatchOption(getOptionLabel, inputValue, isMatch),
+      concat(firstOption)
+    ])(options);
 
     setCurrentOptions(updatedOptions);
   }, [
@@ -92,7 +92,9 @@ export function useCreatableSelect(
 
   const onTypeDefaultHandler = (e) => {
     if (!menuOpened) return;
-    if (!inputValue && String.fromCharCode(e.keyCode).match(/(\w|\s)/g)) {
+    const canLoadOptions =
+      !inputValue && String.fromCharCode(e.keyCode).match(/(\w|\s)/g);
+    if (canLoadOptions) {
       setAddingNewOption(true);
       onInputChange(e.key);
       e.preventDefault();
@@ -109,11 +111,7 @@ export function useCreatableSelect(
   const onSearch = (e) => {
     const newOption = e.target.value;
     const hasError = isValidNewOption && !isValidNewOption(newOption);
-    if (
-      newOption &&
-      optionsFilter &&
-      !optionsFilter({ label: newOption, value: newOption })
-    )
+    if (newOption && !optionsFilter({ label: newOption, value: newOption }))
       setAddingNewOption(false);
     else setAddingNewOption(!!newOption);
     onInputChange(newOption);

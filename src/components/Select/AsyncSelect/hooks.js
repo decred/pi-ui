@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { useHandleKeyboardHook } from "../hooks";
-import { matchOption } from "../helpers";
+import { filterByMatchOption } from "../helpers";
 import uniqBy from "lodash/unionBy";
 
 export function useAsyncSelect(
@@ -19,11 +19,7 @@ export function useAsyncSelect(
   const [cachedOptions, setCachedOptions] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const filterOptions = useCallback(
-    (optionsToFilter) =>
-      optionsToFilter.filter(matchOption(getOptionLabel, inputValue)),
-    [getOptionLabel, inputValue]
-  );
+  const filterOptions = filterByMatchOption(getOptionLabel, inputValue, true);
 
   const updateCachedOptions = useCallback(
     (values) => {

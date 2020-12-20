@@ -9,10 +9,16 @@ export const defaultLabelKeyGetter = ({ label }) => label;
 
 export const defaultPromptTextCreator = (input) => `Add ${input}`;
 
-export const matchOption = (optionModifier, value) => (option) =>
-  optionModifier(option)
-    .toLowerCase()
-    .includes(value.toLowerCase());
+export const filterByMatchOption = (optionModifier, value, isMatch) => (
+  options
+) =>
+  isMatch
+    ? options.filter((option) =>
+        optionModifier(option)
+          .toLowerCase()
+          .includes(value.toLowerCase())
+      )
+    : options;
 
 export const findExact = (options, labelModifier, valueModifier, value) =>
   options.findIndex(

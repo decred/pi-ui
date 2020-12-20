@@ -11,7 +11,7 @@ import { animated } from "react-spring";
 import PropTypes from "prop-types";
 import { useSelect } from "./hooks";
 
-const SelectWrapper = ({
+const Select = ({
   children,
   disabled,
   clearable,
@@ -103,10 +103,13 @@ const SelectWrapper = ({
     setShowError
   });
 
+  const valueSelectedCondition = Array.isArray(value)
+    ? value.length
+    : getOptionValue(value);
+
   const parentClassNames = classNames(
     styles.select,
-    (Array.isArray(value) ? value.length : getOptionValue(value)) &&
-      styles.valueSelected,
+    valueSelectedCondition && styles.valueSelected,
     searchable && inputValue && styles.search,
     menuOpened ? styles.menuOpened : styles.menuClosed,
     separator && styles.hasSeparator,
@@ -150,7 +153,7 @@ const SelectWrapper = ({
   );
 };
 
-SelectWrapper.propTypes = {
+Select.propTypes = {
   children: PropTypes.func.isRequired,
   disabled: PropTypes.bool,
   clearable: PropTypes.bool,
@@ -171,7 +174,7 @@ SelectWrapper.propTypes = {
   onInputChange: PropTypes.func
 };
 
-SelectWrapper.defaultProps = {
+Select.defaultProps = {
   disabled: false,
   clearable: false,
   options: [],
@@ -181,7 +184,7 @@ SelectWrapper.defaultProps = {
   getOptionValue: defaultValueKeyGetter,
   optionRenderer: null,
   valueRenderer: null,
-  optionsFilter: null,
+  optionsFilter: () => true,
   className: "",
   autoFocus: false,
   searchable: false,
@@ -190,4 +193,4 @@ SelectWrapper.defaultProps = {
   onInputChange: null
 };
 
-export default SelectWrapper;
+export default Select;

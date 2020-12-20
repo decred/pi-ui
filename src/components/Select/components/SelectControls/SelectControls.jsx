@@ -27,8 +27,8 @@ const SelectControls = ({
     {error && showError && (
       <Icon
         type="alert"
-        backgroundColor="#ed6d47"
-        iconColor="#feb8a5"
+        backgroundColor="var(--color-orange)"
+        iconColor="var(--color-orange--light)"
         className={classNames(styles.errorIcon, styles.errorIconActive)}
       />
     )}

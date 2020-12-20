@@ -51,27 +51,23 @@ export function useSelect(
     const index =
       knownIndex ||
       findExact(currentOptions, getOptionLabel, getOptionValue, option);
+    let newOptions;
     if (Array.isArray(value)) {
-      let newSelectedOptions = [];
-      if (
-        value.find(
-          (selectedOption) =>
-            getOptionLabel(selectedOption) === getOptionLabel(option)
-        )
-      )
-        newSelectedOptions = removeSelectedOptionFilter(option);
-      else if (!value.length) {
-        newSelectedOptions = [option];
-      } else {
-        newSelectedOptions = [...value, option];
+      newOptions = removeSelectedOptionFilter(option);
+      if (value.length === newOptions.length) {
+        if (!value.length) {
+          newOptions = [option];
+        } else {
+          newOptions = [...value, option];
+        }
       }
       setFocusedOptionIndex(index);
       if (searchable && onInputChange && inputValue) onInputChange("");
-      onChange(newSelectedOptions);
     } else {
+      newOptions = option;
       resetMenu(index);
-      onChange(option);
     }
+    onChange(newOptions);
   };
 
   const [containerRef] = useClickOutside(resetMenu);
@@ -80,7 +76,7 @@ export function useSelect(
     if (!menuOpened) return;
     const optionIndex = focusedOptionIndex;
     const optionByIndex = currentOptions[optionIndex];
-    if (currentOptions[optionIndex].onClick !== undefined) {
+    if (currentOptions[optionIndex].onClick) {
       currentOptions[optionIndex].onClick();
       return;
     }
@@ -127,13 +123,12 @@ export function useSelect(
 
   const onTypeDefaultHandler = (e) => {
     if (!menuOpened) return;
-    if (
+    const canLoadOptions =
       searchable &&
       !inputValue &&
       String.fromCharCode(e.keyCode).match(/(\w|\s)/g) &&
-      onInputChange
-    )
-      onInputChange(e.key);
+      onInputChange;
+    if (canLoadOptions) onInputChange(e.key);
   };
 
   return {
@@ -154,6 +149,7 @@ export function useSelect(
     onTypeArrowDownHandler,
     onTypeArrowUpHandler,
     onTypeDefaultHandler,
+    removeSelectedOptionFilter,
     showError,
     setShowError
   };

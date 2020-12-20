@@ -8,7 +8,7 @@ import {
 import { useCreatableSelect } from "./hooks";
 import { classNames } from "../../../utils";
 import creatableStyles from "./styles.css";
-import SelectWrapper from "../SelectWrapper.jsx";
+import Select from "../Select.jsx";
 
 const CreatableSelect = ({
   typeLabel,
@@ -18,7 +18,7 @@ const CreatableSelect = ({
   promptTextCreator,
   ...props
 }) => (
-  <SelectWrapper {...props}>
+  <Select {...props}>
     {({
       disabled,
       clearable,
@@ -112,7 +112,7 @@ const CreatableSelect = ({
         condition: true
       };
     }}
-  </SelectWrapper>
+  </Select>
 );
 
 CreatableSelect.propTypes = {

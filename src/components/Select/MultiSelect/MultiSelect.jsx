@@ -4,7 +4,7 @@ import { SelectControls, defaultLabelKeyGetter } from "../helpers";
 import { useMultiSelect } from "./hooks";
 import { classNames } from "../../../utils";
 import multiStyles from "./styles.css";
-import SelectWrapper from "../SelectWrapper.jsx";
+import Select from "../Select.jsx";
 
 const MultiSelectOptions = ({
   disabled,
@@ -49,7 +49,7 @@ MultiSelectOptions.defaultProps = {
 };
 
 const MultiSelect = ({ value, ...props }) => (
-  <SelectWrapper {...{ ...props, value }}>
+  <Select {...{ ...props, value }}>
     {({
       disabled,
       clearable,
@@ -131,7 +131,7 @@ const MultiSelect = ({ value, ...props }) => (
         condition: true
       };
     }}
-  </SelectWrapper>
+  </Select>
 );
 
 MultiSelect.propTypes = {
