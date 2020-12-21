@@ -197,7 +197,7 @@ Select.defaultProps = {
   searchable: false,
   value: blankValue,
   inputValue: "",
-  onInputChange: null
+  onInputChange: () => {}
 };
 
 export default Select;

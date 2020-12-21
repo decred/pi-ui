@@ -19,9 +19,10 @@ export function useAsyncSelect(
   const [cachedOptions, setCachedOptions] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const filterOptions = useMemo(() =>
-    filterByMatchOption(getOptionLabel, inputValue, true),
-    [getOptionLabel, inputValue]);
+  const filterOptions = useMemo(
+    () => filterByMatchOption(getOptionLabel, inputValue, true),
+    [getOptionLabel, inputValue]
+  );
 
   const updateCachedOptions = useCallback(
     (values) => {

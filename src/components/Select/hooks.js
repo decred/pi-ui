@@ -22,7 +22,7 @@ export function useSelect(
   useEffect(() => {
     if (disabled) {
       setMenuOpened(false);
-      if (searchable && onInputChange && inputValue) onInputChange("");
+      if (searchable && inputValue) onInputChange("");
       return;
     }
     if (autoFocus) setMenuOpened(true);
@@ -31,12 +31,12 @@ export function useSelect(
   useEffect(() => {
     if (searchable && inputValue && !showError)
       setMenuOpened(currentOptions.length > 0);
-  }, [searchable, inputValue, currentOptions, showError]);
+  }, [searchable, inputValue, currentOptions, menuOpened, showError]);
 
   const resetMenu = (focusedIndex = 0) => {
     setFocusedOptionIndex(focusedIndex);
     setMenuOpened(false);
-    if (searchable && onInputChange && inputValue) onInputChange("");
+    if (searchable && inputValue) onInputChange("");
   };
 
   const removeSelectedOptionFilter = (option) =>
@@ -54,14 +54,10 @@ export function useSelect(
     if (Array.isArray(value)) {
       newOptions = removeSelectedOptionFilter(option);
       if (value.length === newOptions.length) {
-        if (!value.length) {
-          newOptions = [option];
-        } else {
-          newOptions = [...value, option];
-        }
+        newOptions = [...value, option];
       }
       setFocusedOptionIndex(index);
-      if (searchable && onInputChange && inputValue) onInputChange("");
+      if (searchable && inputValue) onInputChange("");
     } else {
       newOptions = option;
       resetMenu(index);
@@ -94,7 +90,7 @@ export function useSelect(
 
   const onSearch = (e) => {
     const searchValue = e.target.value;
-    if (onInputChange) onInputChange(searchValue);
+    onInputChange(searchValue);
   };
 
   const transitions = useTransition(menuOpened, null, {
@@ -127,8 +123,7 @@ export function useSelect(
     const canLoadOptions =
       searchable &&
       !inputValue &&
-      String.fromCharCode(e.keyCode).match(/(\w|\s)/g) &&
-      onInputChange;
+      String.fromCharCode(e.keyCode).match(/(\w|\s)/g);
     if (canLoadOptions) onInputChange(e.key);
   };
 
