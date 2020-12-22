@@ -36,7 +36,7 @@ const Select = ({
     containerRef,
     menuOpened,
     openMenu,
-    transitions,
+    transition,
     selectOption,
     focusedOptionIndex,
     setFocusedOptionIndex,
@@ -76,7 +76,7 @@ const Select = ({
     containerRef,
     menuOpened,
     openMenu,
-    transitions,
+    transition,
     selectOption,
     focusedOptionIndex,
     setFocusedOptionIndex,
@@ -136,27 +136,24 @@ const Select = ({
           {Input}
           {Controls}
         </div>
-        {transitions.map(
-          ({ item, key, props }) =>
-            item && (
-              <animated.div className={styles.menu} key={key} style={props}>
-                {condition ? (
-                  <SelectOptions
-                    options={currentOptions}
-                    value={value}
-                    selectOption={selectOption}
-                    focusedOptionIndex={focusedOptionIndex}
-                    setFocusedOptionIndex={setFocusedOptionIndex}
-                    optionRenderer={optionRenderer}
-                    getOptionLabel={getOptionLabel}
-                    getOptionValue={getOptionValue}
-                  />
-                ) : (
-                  Loading
-                )}
-              </animated.div>
-            )
-        )}
+        {transition(({ opacity }) => (
+          <animated.div className={styles.menu} style={{ opacity }}>
+            {condition ? (
+              <SelectOptions
+                options={currentOptions}
+                value={value}
+                selectOption={selectOption}
+                focusedOptionIndex={focusedOptionIndex}
+                setFocusedOptionIndex={setFocusedOptionIndex}
+                optionRenderer={optionRenderer}
+                getOptionLabel={getOptionLabel}
+                getOptionValue={getOptionValue}
+              />
+            ) : (
+              Loading
+            )}
+          </animated.div>
+        ))}
       </div>
       {Footer}
     </div>
