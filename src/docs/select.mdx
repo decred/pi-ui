@@ -301,11 +301,11 @@ import { SelectWrapper, Select, Creatable, MultiSelect, AsyncSelect, Checkbox, T
     );
 
     const promiseOptions = input =>
-      new Promise(resolve => {
-        setTimeout(() => {
-          resolve(optionsFilter(input));
-        }, 1000);
-      });
+      new Promise(resolve => 
+        setTimeout(() => 
+          resolve(optionsFilter(input))
+        , 1000)
+      );
 
     const defaultOptions = [{
       label: "Bottom",

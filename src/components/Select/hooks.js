@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useClickOutside } from "hooks";
+import { useClickOutside } from "../../hooks";
 import { blankValue, DOWN, findExact, UP } from "./helpers";
 import { useTransition } from "react-spring";
 

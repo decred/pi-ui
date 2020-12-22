@@ -129,7 +129,10 @@ const Select = ({
     <div className={parentClassNames} {...props}>
       <div className={styles.fieldset} ref={containerRef}>
         {label && <label className={styles.label}>{label}</label>}
-        <div className={styles.controls} onClick={openMenu}>
+        <div
+          className={styles.controls}
+          onClick={openMenu}
+          data-testid="select-controls">
           {Input}
           {Controls}
         </div>
