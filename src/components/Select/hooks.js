@@ -93,7 +93,7 @@ export function useSelect(
     onInputChange(searchValue);
   };
 
-  const transitions = useTransition(menuOpened, null, {
+  const transitions = useTransition(menuOpened, {
     from: { opacity: 0 },
     enter: { opacity: 1 },
     leave: { opacity: 0 },
