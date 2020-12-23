@@ -39,10 +39,7 @@ import { Slider, NumberInput, Checkbox } from "../index";
                 setCoordinates((coordinates) => ({
                   ...coordinates,
                   handle1: value
-                })),
-              onDragEnd: (e, value) => {
-                console.log(value);
-              }
+                }))
             }
           ]}
         />
@@ -212,6 +209,7 @@ import { Slider, NumberInput, Checkbox } from "../index";
     const [min, setMin] = useState(0);
     const [max, setMax] = useState(100);
     const [disabled, setDisabled] = useState(false);
+    console.log(coordinates, min, max, disabled);
     return (
       <Fragment>
         <Slider
@@ -227,10 +225,7 @@ import { Slider, NumberInput, Checkbox } from "../index";
                 setCoordinates((coordinates) => ({
                   ...coordinates,
                   handle1: value
-                })),
-              onDragEnd: (e) => {
-                console.log(coordinates.handle1);
-              }
+                }))
             },
             {
               value: coordinates.handle2,
@@ -238,10 +233,7 @@ import { Slider, NumberInput, Checkbox } from "../index";
                 setCoordinates((coordinates) => ({
                   ...coordinates,
                   handle2: value
-                })),
-              onDragEnd: (e) => {
-                console.log(coordinates.handle2);
-              }
+                }))
             }
           ]}
         />

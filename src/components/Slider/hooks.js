@@ -25,12 +25,16 @@ function useSliderHandle(
   const start = useRef();
   const offset = useRef();
 
+  const unavailable = max - min <= step || disabled || !onChange;
+
   useEffect(() => {
+    if (unavailable) return;
     if (value > max) onChange(max);
     if (value < min) onChange(min);
-  }, [value, min, max, onChange]);
+  }, [value, min, max, step, onChange, unavailable]);
 
   if (double && !barrier(value)) {
+    if (unavailable) return;
     onChange(value - step);
   }
 
@@ -46,7 +50,7 @@ function useSliderHandle(
   }, [value, min, max, axis]);
 
   const change = (position) => {
-    if (!onChange) return;
+    if (unavailable) return;
 
     const dimension = container.current.getBoundingClientRect()[
       DIMENSIONS_MAP[axis]
@@ -72,14 +76,14 @@ function useSliderHandle(
   };
 
   const handleDrag = (e) => {
-    if (disabled) return;
+    if (unavailable) return;
 
     e.preventDefault();
     change(getPos(e));
   };
 
   const handleDragEnd = (e) => {
-    if (disabled) return;
+    if (unavailable) return;
 
     e.preventDefault();
     document.removeEventListener("mousemove", handleDrag);
@@ -97,7 +101,7 @@ function useSliderHandle(
   };
 
   const handleMouseDown = (e) => {
-    if (disabled) return;
+    if (unavailable) return;
 
     e.preventDefault();
     e.stopPropagation();
@@ -129,6 +133,8 @@ function useSliderHandle(
 function useSlider(double, disabled, axis, min, max, step, handles) {
   const container = useRef(null);
 
+  const unavailable = max - min <= step || disabled;
+
   if (double) {
     const [leftHandle, rightHandle] = handles;
     leftHandle.barrier = useCallback((value) => value <= rightHandle.value, [
@@ -157,7 +163,7 @@ function useSlider(double, disabled, axis, min, max, step, handles) {
   );
 
   const handleTrackMouseDown = (e) => {
-    if (disabled) return;
+    if (unavailable) return;
 
     e.preventDefault();
     const clientPos = getClientPosition(e)[axis];

@@ -37,7 +37,8 @@ const Slider = ({
         className
       )}
       onTouchStart={handleTrackMouseDown}
-      onMouseDown={handleTrackMouseDown}>
+      onMouseDown={handleTrackMouseDown}
+      data-testid="slider-body">
       {double && (
         <SliderHandle
           ref={rightHandleHook.handle}
@@ -46,11 +47,13 @@ const Slider = ({
           onTouchStart={rightHandleHook.handleMouseDown}
           onMouseDown={rightHandleHook.handleMouseDown}
           className={handles[1].className}
+          dataTestId="slider-handle-1"
         />
       )}
       <div
         className={classNames(styles[axis], styles.active, rangeClassName)}
         style={valueStyle}
+        data-testid="slider-bar"
       />
       <SliderHandle
         ref={leftHandleHook.handle}
@@ -59,6 +62,7 @@ const Slider = ({
         onTouchStart={leftHandleHook.handleMouseDown}
         onMouseDown={leftHandleHook.handleMouseDown}
         className={handles[0].className}
+        dataTestId="slider-handle-0"
       />
     </div>
   );
