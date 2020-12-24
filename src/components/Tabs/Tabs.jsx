@@ -52,7 +52,7 @@ const Tabs = ({
           isActive: index === activeTabIndex,
           mode
         });
-        return vertical ? (
+        return dropdownMode ? (
           <DropdownItem className={styles.customDropdownItem}>
             {element}
           </DropdownItem>
@@ -60,7 +60,7 @@ const Tabs = ({
           element
         );
       });
-  }, [children, activeTabIndex, mode, vertical, onSelectTab]);
+  }, [children, activeTabIndex, mode, onSelectTab, dropdownMode]);
 
   const tabs = useMemo(
     () => (
