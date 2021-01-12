@@ -54,7 +54,7 @@ CopyableText.propTypes = {
 };
 
 CopyableText.defaultProps = {
-  truncate: false,
+  truncate: true,
   hoverText: "Copy to clipboard",
   tooltipPlacement: "right"
 };
