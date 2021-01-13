@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { SelectInput, SelectControls } from "../helpers";
 import { useAsyncSelect } from "./hooks";
-import asyncStyles from "./styles.css";
+import styles from "./styles.css";
 import Select from "../Select.jsx";
 
 const AsyncSelect = ({
@@ -70,14 +70,13 @@ const AsyncSelect = ({
       );
 
       const Loading = (
-        <div className={asyncStyles.loadingMessage}>{loadingMessage}</div>
+        <div className={styles.loadingMessage}>{loadingMessage}</div>
       );
 
       const condition = !loading;
 
       return {
         Loading,
-        Footer: null,
         Input,
         Controls,
         condition

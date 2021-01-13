@@ -11,8 +11,7 @@ const SelectControls = ({
   disabled,
   separator,
   menuOpened,
-  error,
-  showError
+  error
 }) => (
   <div
     className={classNames(
@@ -24,7 +23,7 @@ const SelectControls = ({
       menuOpened && styles.menuOpened
     )}>
     {clearable && <div className={styles.clear} onClick={cancelSelection} />}
-    {error && showError && (
+    {error && (
       <Icon
         type="alert"
         backgroundColor="var(--color-orange)"
@@ -46,8 +45,7 @@ SelectControls.propTypes = {
   disabled: PropTypes.bool,
   separator: PropTypes.bool,
   menuOpened: PropTypes.bool,
-  error: PropTypes.string,
-  showError: PropTypes.bool
+  error: PropTypes.bool
 };
 
 SelectControls.defaultProps = {
@@ -57,8 +55,7 @@ SelectControls.defaultProps = {
   disabled: false,
   separator: false,
   menuOpened: false,
-  error: "",
-  showError: false
+  error: false
 };
 
 export default SelectControls;

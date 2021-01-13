@@ -22,10 +22,12 @@ export default {
       sourcemap: true
     }
   ],
+  // external: ["react-select"],
   plugins: [
     external(),
     postcss({
-      extract: true
+      extract: true,
+      modules: true
     }),
     url({
       include: ["**/*.woff", "**/*.ttf", "**/*.png", "**/*.svg"],

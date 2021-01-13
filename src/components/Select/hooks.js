@@ -17,7 +17,7 @@ export function useSelect(
   const [currentOptions, setCurrentOptions] = useState([]);
   const [menuOpened, setMenuOpened] = useState(false);
   const [focusedOptionIndex, setFocusedOptionIndex] = useState(0);
-  const [showError, setShowError] = useState(false);
+  const [invalidNewOption, setInvalidNewOption] = useState(false);
 
   useEffect(() => {
     if (disabled) {
@@ -29,13 +29,14 @@ export function useSelect(
   }, [disabled, autoFocus, searchable, inputValue, onInputChange]);
 
   useEffect(() => {
-    if (searchable && inputValue && !showError)
+    if (searchable && inputValue && !invalidNewOption)
       setMenuOpened(currentOptions.length > 0);
-  }, [searchable, inputValue, currentOptions, menuOpened, showError]);
+  }, [searchable, inputValue, currentOptions, menuOpened, invalidNewOption]);
 
   const resetMenu = (focusedIndex = 0) => {
     setFocusedOptionIndex(focusedIndex);
     setMenuOpened(false);
+    setInvalidNewOption(false);
     if (searchable && inputValue) onInputChange("");
   };
 
@@ -79,7 +80,9 @@ export function useSelect(
   };
 
   const openMenu = () =>
-    setMenuOpened((menuOpened) => !disabled && !menuOpened);
+    setMenuOpened(
+      (menuOpened) => !disabled && !invalidNewOption && !menuOpened
+    );
 
   const cancelSelection = (e) => {
     if (disabled) return;
@@ -146,8 +149,8 @@ export function useSelect(
     onTypeArrowUpHandler,
     onTypeDefaultHandler,
     removeSelectedOptionFilter,
-    showError,
-    setShowError
+    invalidNewOption,
+    setInvalidNewOption
   };
 }
 

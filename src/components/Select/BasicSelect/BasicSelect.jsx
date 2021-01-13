@@ -25,7 +25,8 @@ const BasicSelect = (props) => (
       selectOption,
       onTypeArrowDownHandler,
       onTypeArrowUpHandler,
-      onTypeDefaultHandler
+      onTypeDefaultHandler,
+      isValid
     }) => {
       useBasicSelect(
         disabled,
@@ -63,12 +64,12 @@ const BasicSelect = (props) => (
           disabled={disabled}
           separator={separator}
           menuOpened={menuOpened}
+          error={!isValid}
         />
       );
 
       return {
         Loading: null,
-        Footer: null,
         Input,
         Controls,
         condition: true

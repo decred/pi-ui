@@ -27,7 +27,7 @@ export function useCreatableSelect(
   setOption,
   onTypeArrowDownHandler,
   onTypeArrowUpHandler,
-  setShowError
+  setInvalidNewOption
 ) {
   const newOptions = useRef([]);
   const [addingNewOption, setAddingNewOption] = useState(false);
@@ -103,7 +103,7 @@ export function useCreatableSelect(
       setAddingNewOption(false);
     else setAddingNewOption(!!newOption);
     onInputChange(newOption);
-    setShowError(hasError);
+    setInvalidNewOption(hasError);
     setMenuOpened(!hasError);
   };
 

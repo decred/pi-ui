@@ -6,13 +6,10 @@ import {
   defaultPromptTextCreator
 } from "../helpers";
 import { useCreatableSelect } from "./hooks";
-import { classNames } from "../../../utils";
-import creatableStyles from "./styles.css";
 import Select from "../Select.jsx";
 
 const CreatableSelect = ({
   typeLabel,
-  error,
   isValidNewOption,
   newOptionCreator,
   promptTextCreator,
@@ -38,11 +35,11 @@ const CreatableSelect = ({
       setCurrentOptions,
       selectOption,
       setMenuOpened,
-      className,
       onTypeArrowDownHandler,
       onTypeArrowUpHandler,
-      setShowError,
-      showError
+      setInvalidNewOption,
+      invalidNewOption,
+      isValid
     }) => {
       const { onSearch } = useCreatableSelect(
         disabled,
@@ -65,7 +62,7 @@ const CreatableSelect = ({
         setOption,
         onTypeArrowDownHandler,
         onTypeArrowUpHandler,
-        setShowError
+        setInvalidNewOption
       );
 
       const Input = (
@@ -87,30 +84,15 @@ const CreatableSelect = ({
           disabled={disabled}
           separator={separator}
           menuOpened={menuOpened}
-          error={error}
-          showError={showError}
+          error={invalidNewOption || !isValid}
         />
       );
 
-      const Footer = error && showError && (
-        <p
-          className={classNames(
-            creatableStyles.errorMsg,
-            creatableStyles.errorMsgActive
-          )}>
-          {error}
-        </p>
-      );
-
-      const errorClassName = showError && creatableStyles.error;
-
       return {
         Loading: null,
-        Footer,
         Input,
         Controls,
-        condition: true,
-        errorClassName
+        condition: true
       };
     }}
   </Select>
@@ -118,7 +100,6 @@ const CreatableSelect = ({
 
 CreatableSelect.propTypes = {
   typeLabel: PropTypes.string,
-  error: PropTypes.string,
   isValidNewOption: PropTypes.func,
   newOptionCreator: PropTypes.func,
   promptTextCreator: PropTypes.func
@@ -126,7 +107,6 @@ CreatableSelect.propTypes = {
 
 CreatableSelect.defaultProps = {
   typeLabel: "Type to add a new option",
-  error: "",
   isValidNewOption: null,
   newOptionCreator: null,
   promptTextCreator: defaultPromptTextCreator

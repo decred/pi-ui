@@ -71,3 +71,7 @@
 .menuClosed .menu {
   display: none;
 }
+
+.error > div:first-child {
+  border-bottom: 0.1rem solid var(--color-orange);
+}

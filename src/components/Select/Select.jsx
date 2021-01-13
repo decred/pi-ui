@@ -3,6 +3,7 @@ import { classNames } from "../../utils";
 import styles from "./styles.css";
 import {
   SelectOptions,
+  SelectFooter,
   blankValue,
   defaultLabelKeyGetter,
   defaultValueKeyGetter
@@ -30,6 +31,8 @@ const Select = ({
   onChange,
   inputValue,
   onInputChange,
+  isValid,
+  error,
   ...props
 }) => {
   const {
@@ -51,8 +54,8 @@ const Select = ({
     onTypeArrowDownHandler,
     onTypeArrowUpHandler,
     onTypeDefaultHandler,
-    showError,
-    setShowError
+    invalidNewOption,
+    setInvalidNewOption
   } = useSelect(
     value,
     disabled,
@@ -65,14 +68,7 @@ const Select = ({
     searchable
   );
 
-  const {
-    Loading,
-    Footer,
-    Input,
-    Controls,
-    condition,
-    errorClassName
-  } = children({
+  const { Loading, Input, Controls, condition } = children({
     containerRef,
     menuOpened,
     openMenu,
@@ -105,13 +101,16 @@ const Select = ({
     onTypeArrowDownHandler,
     onTypeArrowUpHandler,
     onTypeDefaultHandler,
-    showError,
-    setShowError
+    invalidNewOption,
+    setInvalidNewOption,
+    isValid
   });
 
   const valueSelectedCondition = Array.isArray(value)
     ? value.length
-    : getOptionValue(value);
+    : getOptionLabel(value);
+
+  const showError = invalidNewOption || !isValid;
 
   const parentClassNames = classNames(
     styles.select,
@@ -121,7 +120,7 @@ const Select = ({
     separator && styles.hasSeparator,
     clearable && styles.clearable,
     disabled && styles.disabled,
-    errorClassName,
+    showError && styles.error,
     className
   );
 
@@ -155,7 +154,7 @@ const Select = ({
           </animated.div>
         ))}
       </div>
-      {Footer}
+      <SelectFooter error={error} showError={showError} />
     </div>
   );
 };
@@ -178,7 +177,9 @@ Select.propTypes = {
   onChange: PropTypes.func.isRequired,
   searchable: PropTypes.bool,
   inputValue: PropTypes.string,
-  onInputChange: PropTypes.func
+  onInputChange: PropTypes.func,
+  isValid: PropTypes.bool,
+  error: PropTypes.string
 };
 
 Select.defaultProps = {
@@ -197,7 +198,9 @@ Select.defaultProps = {
   searchable: false,
   value: blankValue,
   inputValue: "",
-  onInputChange: () => {}
+  onInputChange: () => {},
+  isValid: true,
+  error: ""
 };
 
 export default Select;

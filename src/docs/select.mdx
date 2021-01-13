@@ -19,7 +19,11 @@ import { SelectWrapper, Select, Creatable, MultiSelect, AsyncSelect, Checkbox, T
 
 <Playground>
   {() => {
-    const options = [{
+    const options = [
+    {
+      value: '',
+      label: 'Empty value test'
+    },{
       value: 'top',
       label: 'Top'
     }, {
@@ -54,6 +58,8 @@ import { SelectWrapper, Select, Creatable, MultiSelect, AsyncSelect, Checkbox, T
           onInputChange={onInputChange}
           optionsFilter={({label}) => (label !== filter)}
           label={"Basic select"}
+          isValid={value.value !== ""}
+          error={"Invalid option"}
         />
         <br/>
         <Checkbox id="basic-select-disabled" label={"Disabled"} checked={disabled} onChange={() => setDisabled(!disabled)}/>

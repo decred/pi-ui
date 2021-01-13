@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { SelectControls, defaultLabelKeyGetter } from "../helpers";
 import { useMultiSelect } from "./hooks";
 import { classNames } from "../../../utils";
-import multiStyles from "./styles.css";
+import styles from "./styles.css";
 import Select from "../Select.jsx";
 
 const MultiSelectOptions = ({
@@ -13,19 +13,15 @@ const MultiSelectOptions = ({
   getOptionLabel,
   removeSelectedOption
 }) => (
-  <div
-    className={classNames(
-      multiStyles.values,
-      disabled && multiStyles.disabled
-    )}>
+  <div className={classNames(styles.values, disabled && styles.disabled)}>
     {value.length > 0 &&
       value.map((selectedOption, index) => (
-        <div className={multiStyles.selectedOption} key={index}>
+        <div className={styles.selectedOption} key={index}>
           {valueRenderer
             ? valueRenderer(selectedOption)
             : getOptionLabel(selectedOption)}
           <div
-            className={multiStyles.removeOption}
+            className={styles.removeOption}
             onClick={(e) => removeSelectedOption(e, selectedOption)}
           />
         </div>
@@ -94,10 +90,7 @@ const MultiSelect = ({ value, ...props }) => (
         searchable && inputValue ? (
           <input
             disabled={disabled}
-            className={classNames(
-              multiStyles.input,
-              disabled && multiStyles.disabled
-            )}
+            className={classNames(styles.input, disabled && styles.disabled)}
             value={inputValue}
             onChange={onSearch}
             autoFocus
@@ -125,7 +118,6 @@ const MultiSelect = ({ value, ...props }) => (
 
       return {
         Loading: null,
-        Footer: null,
         Input,
         Controls,
         condition: true
