@@ -100,7 +100,7 @@ const DatePickerPad = ({
           </i>
         </div>
       )}
-      <ul>
+      <ul data-testid="days-list">
         {isMonthsMode &&
           mapToArray(12, (i) => {
             let css = "";

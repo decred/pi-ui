@@ -194,6 +194,7 @@
   background-color: transparent;
   color: #717171;
   cursor: default;
+  pointer-events: none;
 }
 
 .rmpPopup.light .rmpPad li.active {
@@ -206,6 +207,7 @@
   background-color: transparent;
   color: #bbb;
   cursor: default;
+  pointer-events: none;
 }
 
 .rmpPopup.light .rmpPad li.active:hover {
@@ -270,12 +272,12 @@
     bottom: 0;
     width: 100%;
     max-width: 100%;
-    height: 14.4rem;
-    -webkit-transform: translate3d(0, 14.4rem, 0);
-    -moz-transform: translate3d(0, 14.4rem, 0);
-    -ms-transform: translate3d(0, 14.4rem, 0);
-    -o-transform: translate3d(0, 14.4rem, 0);
-    transform: translate3d(0, 14.4rem, 0);
+    height: 70%;
+    -webkit-transform: translate3d(0, 70%, 0);
+    -moz-transform: translate3d(0, 70%, 0);
+    -ms-transform: translate3d(0, 70%, 0);
+    -o-transform: translate3d(0, 70%, 0);
+    transform: translate3d(0, 70%, 0);
   }
 
   .rmpPopup.all {
