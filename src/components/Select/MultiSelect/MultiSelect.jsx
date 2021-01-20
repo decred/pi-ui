@@ -66,7 +66,8 @@ const MultiSelect = ({ value, ...props }) => (
       removeSelectedOptionFilter,
       onTypeArrowDownHandler,
       onTypeArrowUpHandler,
-      onTypeDefaultHandler
+      onTypeDefaultHandler,
+      noOptionsMessage
     }) => {
       const { cancelSelection, removeSelectedOption } = useMultiSelect(
         disabled,
@@ -83,7 +84,8 @@ const MultiSelect = ({ value, ...props }) => (
         removeSelectedOptionFilter,
         onTypeArrowDownHandler,
         onTypeArrowUpHandler,
-        onTypeDefaultHandler
+        onTypeDefaultHandler,
+        noOptionsMessage
       );
 
       const Input =

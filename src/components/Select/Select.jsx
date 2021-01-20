@@ -33,6 +33,7 @@ const Select = ({
   onInputChange,
   isValid,
   error,
+  noOptionsMessage,
   ...props
 }) => {
   const {
@@ -103,7 +104,8 @@ const Select = ({
     onTypeDefaultHandler,
     invalidNewOption,
     setInvalidNewOption,
-    isValid
+    isValid,
+    noOptionsMessage
   });
 
   const valueSelectedCondition = Array.isArray(value)
@@ -179,7 +181,9 @@ Select.propTypes = {
   inputValue: PropTypes.string,
   onInputChange: PropTypes.func,
   isValid: PropTypes.bool,
-  error: PropTypes.string
+  error: PropTypes.string,
+  escapeClearsValue: PropTypes.bool,
+  noOptionsMessage: PropTypes.string
 };
 
 Select.defaultProps = {
@@ -198,9 +202,11 @@ Select.defaultProps = {
   searchable: false,
   value: blankValue,
   inputValue: "",
-  onInputChange: () => {},
   isValid: true,
-  error: ""
+  onInputChange: () => {},
+  error: "",
+  escapeClearsValue: false,
+  noOptionsMessage: ""
 };
 
 export default Select;

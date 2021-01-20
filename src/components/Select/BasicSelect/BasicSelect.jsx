@@ -26,7 +26,8 @@ const BasicSelect = (props) => (
       onTypeArrowDownHandler,
       onTypeArrowUpHandler,
       onTypeDefaultHandler,
-      isValid
+      isValid,
+      noOptionsMessage
     }) => {
       useBasicSelect(
         disabled,
@@ -41,7 +42,8 @@ const BasicSelect = (props) => (
         selectOption,
         onTypeArrowDownHandler,
         onTypeArrowUpHandler,
-        onTypeDefaultHandler
+        onTypeDefaultHandler,
+        noOptionsMessage
       );
 
       const Input = (

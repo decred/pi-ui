@@ -19,14 +19,23 @@ export function useMultiSelect(
   removeSelectedOptionFilter,
   onTypeArrowDownHandler,
   onTypeArrowUpHandler,
-  onTypeDefaultHandler
+  onTypeDefaultHandler,
+  noOptionsMessage
 ) {
   useEffect(() => {
     const isMatch = searchable && inputValue;
-    const filteredOptions = flow([
+    filteredOptions = flow([
       filter(optionsFilter),
       filterByMatchOption(getOptionLabel, inputValue, isMatch)
     ])(options);
+    const showNoOptionsMessage = noOptionsMessage &&
+      (!filteredOptions.length || (searchable && !inputValue));
+    if (showNoOptionsMessage)
+      filteredOptions = [{
+        value: "",
+        label: noOptionsMessage,
+        onClick: () => { }
+      }];
     setCurrentOptions(filteredOptions);
   }, [
     searchable,
