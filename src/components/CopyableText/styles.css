@@ -9,6 +9,7 @@
   padding: 0.3rem 1rem;
   word-break: break-all;
   background-color: var(--copyable-text-background-color);
+  border-radius: 4px;
 }
 
 .copyToClipboard {
