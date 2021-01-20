@@ -24,18 +24,21 @@ export function useMultiSelect(
 ) {
   useEffect(() => {
     const isMatch = searchable && inputValue;
-    filteredOptions = flow([
+    let filteredOptions = flow([
       filter(optionsFilter),
       filterByMatchOption(getOptionLabel, inputValue, isMatch)
     ])(options);
-    const showNoOptionsMessage = noOptionsMessage &&
+    const showNoOptionsMessage =
+      noOptionsMessage &&
       (!filteredOptions.length || (searchable && !inputValue));
     if (showNoOptionsMessage)
-      filteredOptions = [{
-        value: "",
-        label: noOptionsMessage,
-        onClick: () => { }
-      }];
+      filteredOptions = [
+        {
+          value: "",
+          label: noOptionsMessage,
+          onClick: () => {}
+        }
+      ];
     setCurrentOptions(filteredOptions);
   }, [
     searchable,
@@ -43,7 +46,8 @@ export function useMultiSelect(
     inputValue,
     optionsFilter,
     options,
-    setCurrentOptions
+    setCurrentOptions,
+    noOptionsMessage
   ]);
 
   useEffect(() => {

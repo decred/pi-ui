@@ -22,18 +22,21 @@ export function useBasicSelect(
 ) {
   useEffect(() => {
     const isMatch = searchable && inputValue;
-    filteredOptions = flow([
+    let filteredOptions = flow([
       filter(optionsFilter),
       filterByMatchOption(getOptionLabel, inputValue, isMatch)
     ])(options);
-    const showNoOptionsMessage = noOptionsMessage &&
+    const showNoOptionsMessage =
+      noOptionsMessage &&
       (!filteredOptions.length || (searchable && !inputValue));
     if (showNoOptionsMessage)
-      filteredOptions = [{
-        value: "",
-        label: noOptionsMessage,
-        onClick: () => { }
-      }];
+      filteredOptions = [
+        {
+          value: "",
+          label: noOptionsMessage,
+          onClick: () => {}
+        }
+      ];
     setCurrentOptions(filteredOptions);
   }, [
     searchable,
@@ -41,7 +44,8 @@ export function useBasicSelect(
     optionsFilter,
     options,
     getOptionLabel,
-    setCurrentOptions
+    setCurrentOptions,
+    noOptionsMessage
   ]);
 
   useEffect(() => {
