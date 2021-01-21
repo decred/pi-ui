@@ -66,6 +66,7 @@
   -moz-box-shadow: 0 1rem 2rem 0 rgba(0, 0, 0, 0.16);
   box-shadow: 0 1rem 2rem 0 rgba(0, 0, 0, 0.16);
   z-index: 1000;
+  overflow-x: hidden;
 }
 
 .menuClosed .menu {

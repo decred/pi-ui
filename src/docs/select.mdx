@@ -60,9 +60,6 @@ import { SelectWrapper, Select, Creatable, MultiSelect, AsyncSelect, Checkbox, T
           label={"Basic select"}
           isValid={value.value !== ""}
           error={"Invalid option"}
-          noOptionsMessage={ inputValue === ""
-          ? "Insert some option"
-          : "No options available"}
         />
         <br/>
         <Checkbox id="basic-select-disabled" label={"Disabled"} checked={disabled} onChange={() => setDisabled(!disabled)}/>

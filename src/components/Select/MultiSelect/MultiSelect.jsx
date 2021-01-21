@@ -44,7 +44,7 @@ MultiSelectOptions.defaultProps = {
   value: []
 };
 
-const MultiSelect = ({ value, ...props }) => (
+const MultiSelect = ({ value, hideSelected, ...props }) => (
   <Select {...{ ...props, value }}>
     {({
       disabled,
@@ -85,7 +85,8 @@ const MultiSelect = ({ value, ...props }) => (
         onTypeArrowDownHandler,
         onTypeArrowUpHandler,
         onTypeDefaultHandler,
-        noOptionsMessage
+        noOptionsMessage,
+        hideSelected
       );
 
       const Input =
@@ -129,11 +130,13 @@ const MultiSelect = ({ value, ...props }) => (
 );
 
 MultiSelect.propTypes = {
-  value: PropTypes.array
+  value: PropTypes.array,
+  hideSelected: PropTypes.bool
 };
 
 MultiSelect.defaultProps = {
-  value: []
+  value: [],
+  hideSelected: true
 };
 
 export default MultiSelect;

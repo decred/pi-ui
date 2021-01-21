@@ -61,8 +61,8 @@ export function useSelect(
       if (searchable && inputValue) onInputChange("");
     } else {
       newOptions = option;
-      resetMenu(index);
     }
+    resetMenu(index);
     onChange(newOptions);
   };
 

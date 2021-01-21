@@ -11,6 +11,7 @@ import {
 import { animated } from "react-spring";
 import PropTypes from "prop-types";
 import { useSelect } from "./hooks";
+import isString from "lodash/isString";
 
 const Select = ({
   children,
@@ -34,6 +35,7 @@ const Select = ({
   isValid,
   error,
   noOptionsMessage,
+  maxMenuHeight,
   ...props
 }) => {
   const {
@@ -126,6 +128,10 @@ const Select = ({
     className
   );
 
+  const menuHeight = isString(maxMenuHeight)
+    ? maxMenuHeight
+    : `${maxMenuHeight}px`;
+
   return (
     <div className={parentClassNames} {...props}>
       <div className={styles.fieldset} ref={containerRef}>
@@ -138,7 +144,9 @@ const Select = ({
           {Controls}
         </div>
         {transition(({ opacity }) => (
-          <animated.div className={styles.menu} style={{ opacity }}>
+          <animated.div
+            className={styles.menu}
+            style={{ opacity, maxHeight: menuHeight }}>
             {condition ? (
               <SelectOptions
                 options={currentOptions}
@@ -183,7 +191,8 @@ Select.propTypes = {
   isValid: PropTypes.bool,
   error: PropTypes.string,
   escapeClearsValue: PropTypes.bool,
-  noOptionsMessage: PropTypes.string
+  noOptionsMessage: PropTypes.string,
+  maxMenuHeight: PropTypes.oneOfType(PropTypes.string, PropTypes.number)
 };
 
 Select.defaultProps = {
@@ -206,7 +215,8 @@ Select.defaultProps = {
   onInputChange: () => {},
   error: "",
   escapeClearsValue: false,
-  noOptionsMessage: ""
+  noOptionsMessage: "",
+  maxMenuHeight: ""
 };
 
 export default Select;

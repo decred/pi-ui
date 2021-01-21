@@ -16,6 +16,8 @@
   display: flex;
   align-items: center;
   background-color: var(--input-border-color);
+  font-size: var(--font-size-small);
+  border-radius: 0.2rem;
 }
 
 .removeOption {

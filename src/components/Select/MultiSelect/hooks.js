@@ -3,6 +3,9 @@ import { useHandleKeyboardHook } from "../hooks";
 import { filterByMatchOption } from "../helpers";
 import flow from "lodash/fp/flow";
 import filter from "lodash/fp/filter";
+import differenceWith from "lodash/differenceWith";
+import identity from "lodash/fp/identity";
+import isEqual from "lodash/isEqual";
 
 export function useMultiSelect(
   disabled,
@@ -20,13 +23,15 @@ export function useMultiSelect(
   onTypeArrowDownHandler,
   onTypeArrowUpHandler,
   onTypeDefaultHandler,
-  noOptionsMessage
+  noOptionsMessage,
+  hideSelected
 ) {
   useEffect(() => {
     const isMatch = searchable && inputValue;
     let filteredOptions = flow([
       filter(optionsFilter),
-      filterByMatchOption(getOptionLabel, inputValue, isMatch)
+      filterByMatchOption(getOptionLabel, inputValue, isMatch),
+      hideSelected ? (opt) => differenceWith(opt, value, isEqual) : identity
     ])(options);
     const showNoOptionsMessage =
       noOptionsMessage &&
@@ -44,6 +49,8 @@ export function useMultiSelect(
     searchable,
     getOptionLabel,
     inputValue,
+    hideSelected,
+    value,
     optionsFilter,
     options,
     setCurrentOptions,
