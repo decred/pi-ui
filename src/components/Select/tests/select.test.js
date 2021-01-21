@@ -61,8 +61,10 @@ describe("Select components", () => {
         label="Multi select"
       />
     );
-    fireEvent.click(getByTestId("select-controls"));
-    options.forEach((option) => fireEvent.click(getByText(option.label)));
+    options.forEach((option) => {
+      fireEvent.click(getByTestId("select-controls"));
+      fireEvent.click(getByText(option.label));
+    });
     expect(itemMockClick).toHaveBeenCalledTimes(options.length);
   });
 

@@ -190,9 +190,8 @@ Select.propTypes = {
   onInputChange: PropTypes.func,
   isValid: PropTypes.bool,
   error: PropTypes.string,
-  escapeClearsValue: PropTypes.bool,
   noOptionsMessage: PropTypes.string,
-  maxMenuHeight: PropTypes.oneOfType(PropTypes.string, PropTypes.number)
+  maxMenuHeight: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
 };
 
 Select.defaultProps = {
@@ -214,7 +213,6 @@ Select.defaultProps = {
   isValid: true,
   onInputChange: () => {},
   error: "",
-  escapeClearsValue: false,
   noOptionsMessage: "",
   maxMenuHeight: ""
 };
