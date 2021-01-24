@@ -50,7 +50,7 @@
 }
 
 /* HUGE SCREENS */
-@media screen and (min-width: 1400px) {
+@media screen and (min-width: 1560px) {
   .container {
     grid-template-columns:
       [full-start] 1fr [center-start]
