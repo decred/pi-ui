@@ -11,3 +11,9 @@ div.selectedOption {
   background-color: var(--color-primary);
   color: var(--color-white);
 }
+
+div.nonSelectable {
+  background-color: var(--card-background);
+  color: var(--text-input-color);
+  cursor: default;
+}

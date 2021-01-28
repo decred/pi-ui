@@ -29,11 +29,12 @@ export function useBasicSelect(
     const showNoOptionsMessage =
       noOptionsMessage &&
       (!filteredOptions.length || (searchable && !inputValue));
-    if (showNoOptionsMessage)
+    if (showNoOptionsMessage !== false)
       filteredOptions = [
         {
           value: "",
           label: noOptionsMessage,
+          selectable: false,
           onClick: () => {}
         }
       ];

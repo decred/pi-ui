@@ -36,12 +36,13 @@ export function useMultiSelect(
     const showNoOptionsMessage =
       noOptionsMessage &&
       (!filteredOptions.length || (searchable && !inputValue));
-    if (showNoOptionsMessage)
+    if (showNoOptionsMessage !== false)
       filteredOptions = [
         {
           value: "",
           label: noOptionsMessage,
-          onClick: () => {}
+          selectable: false,
+          onClick: () => { }
         }
       ];
     setCurrentOptions(filteredOptions);

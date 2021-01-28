@@ -11,7 +11,7 @@
   height: 0;
   border-left: 0.5rem solid transparent;
   border-right: 0.5rem solid transparent;
-  border-top: 0.5rem solid var(--input-border-color);
+  border-top: 0.5rem solid var(--color-gray);
   transition: all 0.4s ease;
 }
 

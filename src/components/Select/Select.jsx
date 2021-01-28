@@ -213,7 +213,7 @@ Select.defaultProps = {
   isValid: true,
   onInputChange: () => {},
   error: "",
-  noOptionsMessage: "",
+  noOptionsMessage: "No options available",
   maxMenuHeight: ""
 };
 

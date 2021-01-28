@@ -54,6 +54,7 @@ export function useCreatableSelect(
     newFirstOption.onClick = newOptionCreatorCallback;
   } else {
     newFirstOption.label = typeLabel;
+    newFirstOption.selectable = false;
     newFirstOption.onClick = () => {};
   }
   firstOption.current = newFirstOption;

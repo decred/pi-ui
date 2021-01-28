@@ -31,7 +31,8 @@ const SelectOptions = ({
       className={classNames(
         styles.option,
         index === focusedOptionIndex && styles.focusedOption,
-        isSelectedValue(value, option) && styles.selectedOption
+        isSelectedValue(value, option) && styles.selectedOption,
+        option.selectable === false && styles.nonSelectable
       )}>
       {option !== blankValue &&
         (optionRenderer ? optionRenderer(option) : getOptionLabel(option))}
