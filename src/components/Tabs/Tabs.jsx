@@ -89,10 +89,12 @@ const Tabs = ({
   };
 
   const transition = useTransition(activeTabIndex, {
-    from: { opacity: 0 },
+    initial: { position: "absolute", opacity: 1 },
+    from: { position: "absolute", opacity: 0 },
     enter: { opacity: 1 },
     leave: { opacity: 0 },
-    config: { duration: 350 }
+    config: { duration: 350 },
+    keys: (item) => item
   });
 
   return (
@@ -108,9 +110,9 @@ const Tabs = ({
       ) : (
         tabs
       )}
-      {transition(({ opacity }) => (
-        <animated.div style={{ opacity }} className={contentClassName}>
-          {children[activeTabIndex] && children[activeTabIndex].props.children}
+      {transition((style, item) => (
+        <animated.div style={style} className={contentClassName}>
+          {children[item] && children[item].props.children}
         </animated.div>
       ))}
     </>
