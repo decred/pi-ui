@@ -5,7 +5,7 @@ import {
   ThemeProvider,
   DEFAULT_LIGHT_THEME_NAME
 } from "../../../theme";
-import { render, fireEvent } from "@testing-library/react";
+import { render, fireEvent, wait } from "@testing-library/react";
 import Tabs from "../Tabs";
 import Tab from "../Tab";
 
@@ -28,42 +28,37 @@ describe("Tabs Component", () => {
     expect(tabs.toJSON()).toMatchSnapshot();
   });
 
-  test("Changing tabs works properly", () => {
-    let activeTabIndex = 0;
-    const mockHandleSelectTab = jest.fn(() => {
-      activeTabIndex = 1;
-    });
-    const { getByTestId, queryByText, queryAllByText, rerender } = render(
-      <ThemeProvider
-        themes={{ [DEFAULT_LIGHT_THEME_NAME]: defaultLightTheme }}
-        defaultThemeName={DEFAULT_LIGHT_THEME_NAME}>
-        <Tabs onSelectTab={mockHandleSelectTab} activeTabIndex={activeTabIndex}>
-          <Tab label="tab1" count={1}>
-            <div>test1</div>
-          </Tab>
-          <Tab label="tab2" count={4}>
-            <div>test2</div>
-          </Tab>
-        </Tabs>
-      </ThemeProvider>
+  test("Changing tabs works properly", async () => {
+    // create TabsContainer helper component to be able
+    // to serve activeTabIndex state parameter to Tabs
+    const TabsContainer = () => {
+      const [activeTabIndex, setActiveTabIndex] = React.useState(0);
+
+      return (
+        <ThemeProvider
+          themes={{ [DEFAULT_LIGHT_THEME_NAME]: defaultLightTheme }}
+          defaultThemeName={DEFAULT_LIGHT_THEME_NAME}>
+          <Tabs onSelectTab={setActiveTabIndex} activeTabIndex={activeTabIndex}>
+            <Tab label="tab1" count={1}>
+              <div>test1</div>
+            </Tab>
+            <Tab label="tab2" count={4}>
+              <div>test2</div>
+            </Tab>
+          </Tabs>
+        </ThemeProvider>
+      );
+    };
+    const { getByTestId, queryByText, getByText, queryAllByText } = render(
+      <TabsContainer />
     );
     expect(queryByText(/test1/i)).toBeTruthy();
     expect(queryByText(/test2/i)).toBeFalsy();
     fireEvent.click(getByTestId("tab-1"));
-    expect(mockHandleSelectTab).toBeCalled();
-    rerender(
-      <ThemeProvider
-        themes={{ [DEFAULT_LIGHT_THEME_NAME]: defaultLightTheme }}
-        defaultThemeName={DEFAULT_LIGHT_THEME_NAME}>
-        <Tabs onSelectTab={mockHandleSelectTab} activeTabIndex={activeTabIndex}>
-          <Tab label="tab1" count={1}>
-            <div>test1</div>
-          </Tab>
-          <Tab label="tab2" count={4}>
-            <div>test2</div>
-          </Tab>
-        </Tabs>
-      </ThemeProvider>
+
+    // wait until `test2` content appears entirely
+    await wait(() =>
+      expect(getByText("test2").parentNode.style.opacity).toBe("1")
     );
     expect(queryByText(/test1/i)).toBeFalsy();
     expect(queryAllByText(/test2/i)).toBeTruthy();

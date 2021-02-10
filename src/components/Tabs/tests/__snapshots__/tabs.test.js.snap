@@ -59,7 +59,8 @@ Array [
   <div
     style={
       Object {
-        "opacity": 0,
+        "opacity": 1,
+        "position": "absolute",
       }
     }
   >
