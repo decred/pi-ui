@@ -43,15 +43,16 @@
   display: none;
   margin-right: 0.8rem;
   background-color: #f8a085;
-  width: 0.5rem;
-  height: 0.5rem;
-
+  width: 1.2rem;
+  height: 1.2rem;
   mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='5.914' height='6.001' viewBox='0 0 5.914 6.001'%3E%3Cg transform='translate(0.357 0.351)'%3E%3Cline y1='5.3' x2='5.2' fill='none' stroke='%23f8a085' stroke-miterlimit='10' stroke-width='1'/%3E%3Cline x2='5.2' y2='5.3' fill='none' stroke='%23f8a085' stroke-miterlimit='10' stroke-width='1'/%3E%3C/g%3E%3C/svg%3E");
-  mask-size: contain;
   mask-repeat: no-repeat;
+  mask-size: 0.8rem 0.8rem;
+  mask-position: center;
   -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='5.914' height='6.001' viewBox='0 0 5.914 6.001'%3E%3Cg transform='translate(0.357 0.351)'%3E%3Cline y1='5.3' x2='5.2' fill='none' stroke='%23f8a085' stroke-miterlimit='10' stroke-width='1'/%3E%3Cline x2='5.2' y2='5.3' fill='none' stroke='%23f8a085' stroke-miterlimit='10' stroke-width='1'/%3E%3C/g%3E%3C/svg%3E");
-  -webkit-mask-size: contain;
   -webkit-mask-repeat: no-repeat;
+  -webkit-mask-size: 0.8rem 0.8rem;
+  -webkit-mask-position: center;
 }
 
 .valueSelected .clear {
