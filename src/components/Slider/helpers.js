@@ -28,7 +28,6 @@ export function getClientPosition(e) {
 export function addEventListeners(handleDrag, handleDragEnd) {
   document.addEventListener("mousemove", handleDrag);
   document.addEventListener("touchmove", handleDrag, { passive: false });
-
   document.addEventListener("mouseup", handleDragEnd);
   document.addEventListener("touchend", handleDragEnd);
   document.addEventListener("touchcancel", handleDragEnd);
