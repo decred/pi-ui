@@ -1,0 +1,60 @@
+.thumb {
+  position: relative;
+  display: block;
+  content: "";
+  width: 1.8rem;
+  height: 1.8rem;
+  background-color: var(--color-white);
+  border-radius: 50%;
+  box-shadow: 0 0.1rem 0.1rem rgba(0, 0, 0, 0.5);
+  user-select: none;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.track {
+  position: relative;
+  display: inline-block;
+  background-color: var(--btn-disabled-background-color);
+  border-radius: 0.5rem;
+  user-select: none;
+  box-sizing: border-box;
+}
+
+.x.track {
+  width: 20rem;
+  height: 1rem;
+}
+
+.y.track {
+  width: 1rem;
+  height: 20rem;
+}
+
+.active {
+  position: absolute;
+  background-color: var(--btn-background-color);
+  border-radius: 0.5rem;
+  user-select: none;
+  box-sizing: border-box;
+}
+
+.x.active {
+  top: 0;
+  height: 100%;
+}
+
+.y.active {
+  left: 0;
+  width: 100%;
+}
+
+.disabled {
+  opacity: 0.5;
+}
+
+.handle {
+  z-index: 1;
+  position: absolute;
+  transform: translate(-50%, -50%);
+}

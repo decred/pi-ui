@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Slider component Matches snapshot 1`] = `
+<div
+  className="x track"
+  data-testid="slider-body"
+  onMouseDown={[Function]}
+  onTouchStart={[Function]}
+>
+  <div
+    className="handle"
+    data-testid="slider-handle-1"
+    onClick={[Function]}
+    onMouseDown={[Function]}
+    onTouchStart={[Function]}
+    style={
+      Object {
+        "left": "40%",
+        "top": "50%",
+      }
+    }
+  >
+    <div
+      className="thumb"
+    />
+  </div>
+  <div
+    className="x active"
+    data-testid="slider-bar"
+    style={
+      Object {
+        "left": "0%",
+        "width": "40%",
+      }
+    }
+  />
+  <div
+    className="handle"
+    data-testid="slider-handle-0"
+    onClick={[Function]}
+    onMouseDown={[Function]}
+    onTouchStart={[Function]}
+    style={
+      Object {
+        "left": "0%",
+        "top": "50%",
+      }
+    }
+  >
+    <div
+      className="thumb"
+    />
+  </div>
+</div>
+`;
