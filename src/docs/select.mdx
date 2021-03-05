@@ -4,9 +4,9 @@ menu: Components
 route: /components/select
 ---
 
-import { useState, Fragment } from "react";
+import { useState, useCallback, Fragment } from "react";
 import { Playground, Props } from "docz";
-import { Select } from "../index";
+import { SelectWrapper, Select, Creatable, MultiSelect, AsyncSelect, Checkbox, Text, TextInput } from "../index";
 
 # Select
 
@@ -15,7 +15,68 @@ import { Select } from "../index";
 
 ## Usage
 
-### Basic select
+### Basic
+
+<Playground>
+  {() => {
+    const options = [
+    {
+      value: '',
+      label: 'Empty value test'
+    },{
+      value: 'top',
+      label: 'Top'
+    }, {
+      value: 'new',
+      label: 'New'
+    }, {
+      value: 'old',
+      label: 'Old'
+    }];
+    const [value, onChange] = useState({
+      value: 'new',
+      label: 'New'
+    });
+    const [inputValue, onInputChange] = useState("");
+    const [disabled, setDisabled] = useState(false);
+    const [clearable, setClearable] = useState(false);
+    const [separator, setSeparator] = useState(false);
+    const [searchable, setSearchable] = useState(true);
+    const [filter, setFilter] = useState("");
+
+    return (
+      <Fragment>
+      	<Select 
+          disabled={disabled}
+          clearable={clearable}
+          separator={separator}
+          searchable={searchable}
+          options={options}
+          value={value}
+          onChange={onChange}
+          inputValue={inputValue}
+          onInputChange={onInputChange}
+          optionsFilter={({label}) => (label !== filter)}
+          label={"Basic select"}
+          isValid={value.value !== ""}
+          error={"Invalid option"}
+        />
+        <br/>
+        <Checkbox id="basic-select-disabled" label={"Disabled"} checked={disabled} onChange={() => setDisabled(!disabled)}/>
+        <br/>
+        <Checkbox id="basic-select-clearable" label={"Clearable"} checked={clearable} onChange={() => setClearable(!clearable)}/>
+        <br/>
+        <Checkbox id="basic-select-separator" label={"Separator"} checked={separator} onChange={() => setSeparator(!separator)}/>
+        <br/>
+        <Checkbox id="basic-select-searchable" label={"Searchable"} checked={searchable} onChange={() => setSearchable(!searchable)}/>
+        <br/>
+        <Text>Don't show option:</Text><TextInput id="basic-select-filter" label={""} onChange={(e) => setFilter(e.target.value)}/>
+      </Fragment>
+    );
+  }}
+</Playground>
+
+### Custom renderers
 
 <Playground>
   {() => {
@@ -29,20 +90,259 @@ import { Select } from "../index";
       value: 'old',
       label: 'Old'
     }];
-    const [selected, setSelected] = useState({
-      value: 'old',
-      label: 'Old'
+    const [value, onChange] = useState({
+      value: 'new',
+      label: 'New'
     });
-    const selectChangeHandler = (option) => {
-      setSelected(option);
-    };
+    const customRenderer = ({label}) => (
+      <div style={{display: "flex", alignItems: "center"}}>
+        {
+          label.split('').reduce((map, labelLetter) => [
+            ...map,
+            <h3>{labelLetter}</h3>, 
+            <div
+              style={{
+                width: "2rem",
+                height: "2rem",
+                margin: "0 1rem",
+                borderRadius: "100%",
+                backgroundColor: "#" + ((1 << 24) * Math.random() | 0).toString(16)
+              }}
+            />
+          ], [])
+        }
+      </div>
+    );
+
     return (
       <Fragment>
-      	<Select 
+        <Select 
           options={options}
-          value={selected}
-          onChange={selectChangeHandler}
+          value={value}
+          onChange={onChange}
+          optionRenderer={customRenderer}
+          valueRenderer={customRenderer}
+          label={"Custom renderers"}
         />
+      </Fragment>
+    );
+  }}
+</Playground>
+
+# Creatable
+
+## Creatable props
+<Props of={Creatable} />
+
+## Usage
+
+<Playground>
+  {() => {
+    const options = [{
+      value: 'top',
+      label: 'Top'
+    }, {
+      value: 'new',
+      label: 'New'
+    }, {
+      value: 'old',
+      label: 'Old'
+    }];
+    const [value, onChange] = useState({
+      value: 'new',
+      label: 'New'
+    });
+    const [inputValue, onInputChange] = useState("");
+    const [disabled, setDisabled] = useState(false);
+    const [clearable, setClearable] = useState(false);
+    const [separator, setSeparator] = useState(false);
+    const [searchable, setSearchable] = useState(true);
+    const [filter, setFilter] = useState("");
+
+    const isValidNewOption = (newOption) => newOption !== "No";
+    const newOptionCreator = (newOption) => alert(`${newOption} added!`);
+    const promptTextCreator = (newOption) => `Add ${newOption}`;
+
+    return (
+      <Fragment>
+      	<Creatable 
+          disabled={disabled}
+          clearable={clearable}
+          separator={separator}
+          searchable={searchable}
+          options={options}
+          inputValue={inputValue}
+          onInputChange={onInputChange}
+          onChange={onChange}
+          value={value}
+          optionsFilter={({label}) => (!filter || label !== filter)}
+          label={"Creatable"}
+          typeLabel={"Just type to add a new option"}
+          error={"No! You can't add this option."}
+          isValidNewOption={isValidNewOption}
+          newOptionCreator={newOptionCreator}
+          promptTextCreator={promptTextCreator}
+        />
+        <br/>
+        <Checkbox id="creatable-select-disabled" label={"Disabled"} checked={disabled} onChange={() => setDisabled(!disabled)}/>
+        <br/>
+        <Checkbox id="creatable-select-clearable" label={"Clearable"} checked={clearable} onChange={() => setClearable(!clearable)}/>
+        <br/>
+        <Checkbox id="creatable-select-separator" label={"Separator"} checked={separator} onChange={() => setSeparator(!separator)}/>
+        <br/>
+        <Checkbox id="creatable-select-searchable" label={"Searchable"} checked={searchable} onChange={() => setSearchable(!searchable)}/>
+        <br/>
+        <Text>Don't show option:</Text><TextInput id="creatable-select-filter" label={""} onChange={(e) => setFilter(e.target.value)}/>
+      </Fragment>
+    );
+  }}
+</Playground>
+
+# Multi select
+
+## Multi select props
+<Props of={MultiSelect} />
+
+## Usage
+
+<Playground>
+  {() => {
+    const options = [{
+      value: 'top',
+      label: 'Top'
+    }, {
+      value: 'new',
+      label: 'New'
+    }, {
+      value: 'old',
+      label: 'Old'
+    }];
+    const [value, onChange] = useState([{
+      value: 'new',
+      label: 'New'
+    }]);
+    const [inputValue, onInputChange] = useState("");
+    const [disabled, setDisabled] = useState(false);
+    const [clearable, setClearable] = useState(false);
+    const [separator, setSeparator] = useState(false);
+    const [searchable, setSearchable] = useState(true);
+
+    return (
+      <Fragment>
+      	<MultiSelect 
+          disabled={disabled}
+          clearable={clearable}
+          separator={separator}
+          searchable={searchable}
+          options={options}
+          onChange={onChange}
+          value={value}
+          inputValue={inputValue}
+          onInputChange={onInputChange}
+          label={"Multi select"}
+          noOptionsMessage={ inputValue === ""
+          ? "Insert some option"
+          : "No options available"}
+        />
+        <br/>
+        <Checkbox id="multi-select-disabled" label={"Disabled"} checked={disabled} onChange={() => setDisabled(!disabled)}/>
+        <br/>
+        <Checkbox id="multi-select-clearable" label={"Clearable"} checked={clearable} onChange={() => setClearable(!clearable)}/>
+        <br/>
+        <Checkbox id="multi-select-separator" label={"Separator"} checked={separator} onChange={() => setSeparator(!separator)}/>
+        <br/>
+        <Checkbox id="multi-select-searchable" label={"Searchable"} checked={searchable} onChange={() => setSearchable(!searchable)}/>
+      </Fragment>
+    );
+  }}
+</Playground>
+
+# Async select
+
+## Async select props
+<Props of={AsyncSelect} />
+
+## Usage
+
+<Playground>
+  {() => {
+    const options = [{
+      value: 'top',
+      label: 'Top'
+    }, {
+      value: 'new',
+      label: 'New'
+    }, {
+      value: 'old',
+      label: 'Old'
+    }];
+    const [value, onChange] = useState({
+      value: 'new',
+      label: 'New'
+    });
+    const [inputValue, onInputChange] = useState("");
+    const [disabled, setDisabled] = useState(false);
+    const [clearable, setClearable] = useState(false);
+    const [separator, setSeparator] = useState(false);
+
+    const colors = [{
+      value: 'yellow',
+      label: 'Yellow'
+    }, {
+      value: 'orange',
+      label: 'Orange'
+    }, {
+      value: 'red',
+      label: 'Red'
+    }, {
+      value: 'purple',
+      label: 'Purple'
+    }, {
+      value: 'blue',
+      label: 'Blue'
+    }, {
+      value: 'green',
+      label: 'Green'
+    }];
+
+    const optionsFilter = (input) =>  colors.filter(color =>
+      color.label.toLowerCase().includes(input.toLowerCase())
+    );
+
+    const promiseOptions = input =>
+      new Promise(resolve => 
+        setTimeout(() => 
+          resolve(optionsFilter(input))
+        , 1000)
+      );
+
+    const defaultOptions = [{
+      label: "Bottom",
+      value: "bottom"
+    }];
+
+    return (
+      <Fragment>
+      	<AsyncSelect 
+          disabled={disabled}
+          clearable={clearable}
+          separator={separator}
+          options={options}
+          value={value}
+          onChange={onChange}
+          inputValue={inputValue}
+          onInputChange={onInputChange}
+          label={"Async select"}
+          loadOptions={promiseOptions}
+          defaultOptions={true}
+          cacheOptions
+        />
+        <br/>
+        <Checkbox id="async-select-disabled" label={"Disabled"} checked={disabled} onChange={() => setDisabled(!disabled)}/>
+        <br/>
+        <Checkbox id="async-select-clearable" label={"Clearable"} checked={clearable} onChange={() => setClearable(!clearable)}/>
+        <br/>
+        <Checkbox id="async-select-separator" label={"Separator"} checked={separator} onChange={() => setSeparator(!separator)}/>
       </Fragment>
     );
   }}

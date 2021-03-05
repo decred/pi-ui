@@ -40,7 +40,13 @@ export { default as P } from "./components/Typography/P.jsx";
 export { default as Text } from "./components/Typography/Text/Text.jsx";
 export { default as Badge } from "./components/Badge/Badge.jsx";
 export { default as Toggle } from "./components/Toggle/Toggle.jsx";
-export { default as Select } from "./components/Select/Select.jsx";
+export {
+  SelectWrapper,
+  Select,
+  Creatable,
+  MultiSelect,
+  AsyncSelect
+} from "./components/Select";
 export { default as DatePicker } from "./components/Datepicker/Datepicker.jsx";
 export { default as Slider } from "./components/Slider/Slider.jsx";
 export * from "./hooks";
