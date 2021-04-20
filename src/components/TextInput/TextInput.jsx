@@ -17,6 +17,7 @@ const TextInput = ({
   wrapperClassNames,
   inputClassNames,
   labelClassNames,
+  messageClassNames,
   ...props
 }) => {
   const input = React.useRef(null);
@@ -69,7 +70,7 @@ const TextInput = ({
           />
         )}
       </div>
-      <p className={styles.message}>
+      <p className={classNames(styles.message, messageClassNames)}>
         {error}
         {success}
       </p>
@@ -88,7 +89,8 @@ TextInput.propTypes = {
   autoFocus: PropTypes.bool,
   wrapperClassNames: PropTypes.string,
   inputClassNames: PropTypes.string,
-  labelClassNames: PropTypes.string
+  labelClassNames: PropTypes.string,
+  messageClassNames: PropTypes.string
 };
 
 TextInput.defaultProps = {
