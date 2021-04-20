@@ -16,6 +16,7 @@ const TextInput = ({
   autoFocus,
   wrapperClassNames,
   inputClassNames,
+  labelClassNames,
   ...props
 }) => {
   const input = React.useRef(null);
@@ -43,7 +44,8 @@ const TextInput = ({
           htmlFor={id}
           className={classNames(
             styles.textinputLabel,
-            placeholder && styles.staticTextInputLabel
+            placeholder && styles.staticTextInputLabel,
+            labelClassNames
           )}>
           {label}
         </label>
@@ -85,7 +87,8 @@ TextInput.propTypes = {
   success: PropTypes.string,
   autoFocus: PropTypes.bool,
   wrapperClassNames: PropTypes.string,
-  inputClassNames: PropTypes.string
+  inputClassNames: PropTypes.string,
+  labelClassNames: PropTypes.string
 };
 
 TextInput.defaultProps = {
