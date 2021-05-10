@@ -30,7 +30,7 @@ const Button = ({
       className
     )}
     style={width ? { width: `${width}px`, ...style } : style}
-    disabled={kind === "disabled" || loading}
+    disabled={kind === "disabled" || loading ? "disabled" : null}
     onClick={onClick}
     {...props}>
     {loading ? <Spinner /> : children}
