@@ -21,7 +21,9 @@ const TextInput = ({
   ...props
 }) => {
   const input = React.useRef(null);
-  useMountEffect(() => autoFocus && input && input.current.focus());
+  useMountEffect(() => {
+    autoFocus && input && input.current.focus();
+  });
 
   return (
     <div
