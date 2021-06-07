@@ -848,36 +848,50 @@ const icons = (type, backgroundColor, iconColor) => {
         d="M715,138l5-5-5-5Z"
         transform="translate(-715 -128)"
       />
+    ),
+    markdown: (
+      <path
+        fill={iconColor}
+        d="M193 128H15a15 15 0 0 1-15-15V15A15 15 0 0 1 15 0h178a15 15 0 0 1 15 15v98a15 15 0 0 1-15 15zM50 98V59l20 25 20-25v39h20V30H90L70 55 50 30H30v68zm134-34h-20V30h-20v34h-20l30 35z"
+      />
     )
   }[type];
 };
-export const IconWrapper = ({
-  type,
-  size,
-  backgroundColor,
-  iconColor,
-  className,
-  onClick,
-  viewBox,
-  height,
-  width
-}) => {
-  const { theme } = useTheme();
-  const defaultIconColor = iconColor || getThemeProperty(theme, "icon-color");
-  const defaultIconBgColor =
-    backgroundColor || getThemeProperty(theme, "icon-background-color");
-  const isStringSize = typeof size === "string";
-  return (
-    <svg
-      onClick={onClick}
-      viewBox={viewBox}
-      width={width ? `${width}` : isStringSize ? sizes[size] : size}
-      className={className}
-      height={height ? `${height}` : isStringSize ? sizes[size] : size}>
-      {icons(type, defaultIconBgColor, defaultIconColor)}
-    </svg>
-  );
-};
+export const IconWrapper = React.forwardRef(
+  (
+    {
+      type,
+      size,
+      backgroundColor,
+      iconColor,
+      className,
+      onClick,
+      viewBox,
+      height,
+      width,
+      ...props
+    },
+    ref
+  ) => {
+    const { theme } = useTheme();
+    const defaultIconColor = iconColor || getThemeProperty(theme, "icon-color");
+    const defaultIconBgColor =
+      backgroundColor || getThemeProperty(theme, "icon-background-color");
+    const isStringSize = typeof size === "string";
+    return (
+      <svg
+        ref={ref}
+        onClick={onClick}
+        viewBox={viewBox}
+        width={width ? `${width}` : isStringSize ? sizes[size] : size}
+        className={className}
+        height={height ? `${height}` : isStringSize ? sizes[size] : size}
+        {...props}>
+        {icons(type, defaultIconBgColor, defaultIconColor)}
+      </svg>
+    );
+  }
+);
 
 IconWrapper.propTypes = {
   type: PropTypes.string.isRequired,
