@@ -6,6 +6,7 @@ const darkTheme = {
   "color-primary-dark": "#7DA7D9",
   "color-primary-darker": "#1F325F",
   "color-primary-darkest": "#1B2B54",
+  "color-primary-dark-link": "#56A4FF",
   "color-dark": "#091440",
   "color-gray-blue": "#6F98D3",
 
