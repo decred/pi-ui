@@ -3,7 +3,7 @@ import lightTheme from "./lightTheme";
 const darkTheme = {
   ...lightTheme,
 
-  "color-primary-dark": "#7DA7D9",
+  "link-color": "#56A4FF",
   "color-primary-darker": "#1F325F",
   "color-primary-darkest": "#1B2B54",
   "color-primary-dark-link": "#56A4FF",
