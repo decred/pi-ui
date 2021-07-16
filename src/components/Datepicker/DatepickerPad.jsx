@@ -171,6 +171,8 @@ const DatePickerPad = ({
             ) {
               css = "active";
             }
+            // In range mode if both values selected highlight the range
+            // items in the first pad (left side).
             if (
               values.length > 1 &&
               padIndex === 0 &&
@@ -190,6 +192,8 @@ const DatePickerPad = ({
             ) {
               css = "select";
             }
+            // In range mode if both values selected highlight the range
+            // items in the second pad (right side).
             if (
               values.length > 1 &&
               padIndex === 1 &&
@@ -222,6 +226,32 @@ const DatePickerPad = ({
               d > ymArr[yearMaxIdx].max.day
             ) {
               css = "disable";
+            }
+            // In range mode if other value is selected disable items
+            // which exceed it.
+            if (otherValue) {
+              const currentTimestamp = convertObjectToUnixTimestamp({
+                day: d,
+                month,
+                year
+              });
+              const otherValueTimestamp = convertObjectToUnixTimestamp({
+                day: otherValue.day,
+                month: otherValue.month,
+                year: otherValue.year
+              });
+              switch (padIndex) {
+                case 0:
+                  if (currentTimestamp > otherValueTimestamp) {
+                    css = "disable";
+                  }
+                  break;
+                case 1:
+                  if (currentTimestamp < otherValueTimestamp) {
+                    css = "disable";
+                  }
+                  break;
+              }
             }
             const clickHandler = css !== "disable" ? onDayClick : undefined;
             return (
