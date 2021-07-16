@@ -184,10 +184,7 @@ To use the range option, just enable the `isRange` prop. In this case, `value` i
 
 <Playground>
   {() => {
-    const initialValues = [
-      { year: 2019, month: 3, day: 10 },
-      { year: 2020, month: 2, day: 10 }
-    ]
+    const initialValues = null
     const [values, setValues] = useState(initialValues);
     const onChange = (year, month, day, idx) => {
       if (!!year && !!month && !!day) {
@@ -200,6 +197,10 @@ To use the range option, just enable the `isRange` prop. In this case, `value` i
     return (
       <Fragment>
       	<DatePicker
+          years={{
+            min: { day: 1, month: 2, year: 2020 },
+            max: { day: 1, month: 3, year: 2021 }
+          }}
           value={values}
           // enable isRange prop
           isRange={true}

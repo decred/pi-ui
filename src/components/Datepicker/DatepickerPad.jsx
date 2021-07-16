@@ -4,6 +4,8 @@ import styles from "./styles.css";
 import { classNames } from "../../utils";
 import { mapToArray, convertObjectToUnixTimestamp } from "./helpers";
 
+const isValidDate = (date) => date && date.day && date.month && date.year
+
 const DatePickerPad = ({
   padIndex,
   values,
@@ -176,8 +178,8 @@ const DatePickerPad = ({
             if (
               values.length > 1 &&
               padIndex === 0 &&
-              value &&
-              otherValue &&
+              isValidDate(value) &&
+              isValidDate(otherValue) &&
               ((year === value.year &&
                 month === value.month &&
                 d > value.day) ||
@@ -197,8 +199,8 @@ const DatePickerPad = ({
             if (
               values.length > 1 &&
               padIndex === 1 &&
-              value &&
-              otherValue &&
+              isValidDate(value) &&
+              isValidDate(otherValue) &&
               ((year === value.year &&
                 month === value.month &&
                 d < value.day) ||
@@ -229,7 +231,7 @@ const DatePickerPad = ({
             }
             // In range mode if other value is selected disable items
             // which exceed it.
-            if (otherValue) {
+            if (isValidDate(otherValue)) {
               const currentTimestamp = convertObjectToUnixTimestamp({
                 day: d,
                 month,
