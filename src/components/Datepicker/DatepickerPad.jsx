@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import styles from "./styles.css";
 import { classNames } from "../../utils";
-import { mapToArray } from "./helpers";
+import { mapToArray, convertObjectToUnixTimestamp } from "./helpers";
 
 const DatePickerPad = ({
   padIndex,
@@ -170,6 +170,44 @@ const DatePickerPad = ({
               d === value.day
             ) {
               css = "active";
+            }
+            if (
+              values.length > 1 &&
+              padIndex === 0 &&
+              value &&
+              otherValue &&
+              ((year === value.year &&
+                month === value.month &&
+                d > value.day) ||
+                (((year === value.year && month > value.month) ||
+                  year > value.year) &&
+                  convertObjectToUnixTimestamp({ day: d, month, year }) <=
+                    convertObjectToUnixTimestamp({
+                      day: otherValue.day,
+                      month: otherValue.month,
+                      year: otherValue.year
+                    })))
+            ) {
+              css = "select";
+            }
+            if (
+              values.length > 1 &&
+              padIndex === 1 &&
+              value &&
+              otherValue &&
+              ((year === value.year &&
+                month === value.month &&
+                d < value.day) ||
+                (((year === value.year && month < value.month) ||
+                  year < value.year) &&
+                  convertObjectToUnixTimestamp({ day: d, month, year }) >=
+                    convertObjectToUnixTimestamp({
+                      day: otherValue.day,
+                      month: otherValue.month,
+                      year: otherValue.year
+                    })))
+            ) {
+              css = "select";
             }
             if (
               atMinYear &&

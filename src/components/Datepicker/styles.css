@@ -318,8 +318,12 @@
   }
 
   .rmpPopup.range {
-    width: 40.6rem;
+    width: 60.6rem;
     padding: 0.6rem;
+  }
+
+  .rmpPopup.range.monthsMode {
+    width: 40.6rem;
   }
 }
 
