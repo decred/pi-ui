@@ -4,6 +4,7 @@ const darkTheme = {
   ...lightTheme,
 
   "link-color": "#56A4FF",
+  "color-primary-dark": "#7DA7D9",
   "color-primary-darker": "#1F325F",
   "color-primary-darkest": "#1B2B54",
   "color-dark": "#091440",
