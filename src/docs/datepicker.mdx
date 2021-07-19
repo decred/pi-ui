@@ -180,6 +180,37 @@ To use the range option, just enable the `isRange` prop. In this case, `value` i
   }}
 </Playground>
 
+### date picker with range option
+
+<Playground>
+  {() => {
+    const initialValues = null
+    const [values, setValues] = useState(initialValues);
+    const onChange = (year, month, day, idx) => {
+      if (!!year && !!month && !!day) {
+        const newValues = values ? [...values] : []
+        newValues[idx] = { year, month, day }
+        setValues(newValues);
+      }
+    };
+    // specify min, max properties in years object to limit selection
+    return (
+      <Fragment>
+      	<DatePicker
+          years={{
+            min: { day: 1, month: 2, year: 2020 },
+            max: { day: 1, month: 3, year: 2021 }
+          }}
+          value={values}
+          // enable isRange prop
+          isRange={true}
+          onChange={onChange}
+        />
+      </Fragment>
+    );
+  }}
+</Playground>
+
 ### years as array
 
 <Playground>

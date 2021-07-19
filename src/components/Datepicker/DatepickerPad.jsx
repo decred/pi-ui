@@ -2,7 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import styles from "./styles.css";
 import { classNames } from "../../utils";
-import { mapToArray } from "./helpers";
+import { mapToArray, convertObjectToUnixTimestamp } from "./helpers";
+
+const isValidDate = (date) => date && date.day && date.month && date.year
 
 const DatePickerPad = ({
   padIndex,
@@ -171,6 +173,48 @@ const DatePickerPad = ({
             ) {
               css = "active";
             }
+            // In range mode if both values selected highlight the range
+            // items in the first pad (left side).
+            if (
+              values.length > 1 &&
+              padIndex === 0 &&
+              isValidDate(value) &&
+              isValidDate(otherValue) &&
+              ((year === value.year &&
+                month === value.month &&
+                d > value.day) ||
+                (((year === value.year && month > value.month) ||
+                  year > value.year) &&
+                  convertObjectToUnixTimestamp({ day: d, month, year }) <=
+                    convertObjectToUnixTimestamp({
+                      day: otherValue.day,
+                      month: otherValue.month,
+                      year: otherValue.year
+                    })))
+            ) {
+              css = "select";
+            }
+            // In range mode if both values selected highlight the range
+            // items in the second pad (right side).
+            if (
+              values.length > 1 &&
+              padIndex === 1 &&
+              isValidDate(value) &&
+              isValidDate(otherValue) &&
+              ((year === value.year &&
+                month === value.month &&
+                d < value.day) ||
+                (((year === value.year && month < value.month) ||
+                  year < value.year) &&
+                  convertObjectToUnixTimestamp({ day: d, month, year }) >=
+                    convertObjectToUnixTimestamp({
+                      day: otherValue.day,
+                      month: otherValue.month,
+                      year: otherValue.year
+                    })))
+            ) {
+              css = "select";
+            }
             if (
               atMinYear &&
               month === ymArr[0].min.month &&
@@ -184,6 +228,32 @@ const DatePickerPad = ({
               d > ymArr[yearMaxIdx].max.day
             ) {
               css = "disable";
+            }
+            // In range mode if other value is selected disable items
+            // which exceed it.
+            if (isValidDate(otherValue)) {
+              const currentTimestamp = convertObjectToUnixTimestamp({
+                day: d,
+                month,
+                year
+              });
+              const otherValueTimestamp = convertObjectToUnixTimestamp({
+                day: otherValue.day,
+                month: otherValue.month,
+                year: otherValue.year
+              });
+              switch (padIndex) {
+                case 0:
+                  if (currentTimestamp > otherValueTimestamp) {
+                    css = "disable";
+                  }
+                  break;
+                case 1:
+                  if (currentTimestamp < otherValueTimestamp) {
+                    css = "disable";
+                  }
+                  break;
+              }
             }
             const clickHandler = css !== "disable" ? onDayClick : undefined;
             return (
