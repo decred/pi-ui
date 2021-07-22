@@ -5,6 +5,7 @@
   column-gap: var(--layout-column-gap-lg);
   grid-template-columns: var(--layout-grid-columns);
   overflow-x: hidden;
+  max-width: 100vw;
 }
 
 .header {
