@@ -1,9 +1,11 @@
 const lightTheme = {
   "color-primary": "#2970ff",
-  "color-primary-dark": "#091440",
+  "color-primary-dark": "var(--color-blue-darkest)",
   "color-primary-light": "#2ed8a3",
   "color-blue-light": "#70cbff",
   "color-blue-lighter": "#d4f0fd",
+  "color-blue-light-dark": "#99C1E3",
+  "color-blue-darkest": "#091440",
   "color-blue-alt": "#1A59F7",
   "color-green": "#41bf53",
   "color-green-light": "#c4ecca",
