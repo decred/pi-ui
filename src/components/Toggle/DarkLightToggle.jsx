@@ -20,7 +20,7 @@ const DarkLightToggle = ({ onToggle, toggled }) => {
       lightOpacity: toggled ? 0 : 1,
       darkOpacity: toggled ? 1 : 0
     },
-    delay: 200
+    delay: 100
   });
 
   return (
