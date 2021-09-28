@@ -38,7 +38,7 @@ const darkTheme = {
   "comment-censored-background": "var(--dimmed-card-background)",
   "comment-new-background": "var(--color-primary-darker)",
 
-  "text-color": "var(--color-blue-darker)",
+  "text-color": "#99C1E3",
   "text-color-light": "var(--color-white)",
   "text-heading-color": "var(--color-powder-blue)",
   "text-heading2-color": "var(--text-heading-color)",

@@ -1,0 +1,45 @@
+---
+name: DarkLightToggle
+menu: Components
+route: /components/darklighttoggle
+---
+
+import { useState, Fragment } from "react";
+import { Playground, Props } from "docz";
+import { DarkLightToggle } from "../index";
+import styles from "../css/base.css";
+
+# DarkLightToggle Switch
+
+## Properties
+<Props of={Toggle} />
+
+## Usage
+
+<Playground>
+  {() => {
+      const initialLabel = "I'm light!";
+      const [label, setLabel] = useState(initialLabel);
+      const [toggled, setToggled] = useState(false);
+      const onToggleHandler = () => {
+        if (label === initialLabel) {
+          setLabel("I'm dark!");
+          setToggled(true);
+        } else {
+          setLabel(initialLabel);
+          setToggled(false);
+        }
+      }
+
+      return (
+        <Fragment>
+          <div className={styles.toggleWrapperExample}>
+            <DarkLightToggle onToggle={onToggleHandler} toggled={toggled} />
+            <div className={styles.toggleLabelExample}>{label}</div>
+          </div>
+        </Fragment>
+      );
+  }
+    
+  }
+</Playground>

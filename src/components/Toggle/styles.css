@@ -18,7 +18,3 @@
   margin-top: 0.4rem;
   background-color: var(--toggle-bar-color);
 }
-
-.darkLightToggle {
-  cursor: pointer;
-}

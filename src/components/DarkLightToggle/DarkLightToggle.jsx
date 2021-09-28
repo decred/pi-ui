@@ -2,13 +2,12 @@ import React from "react";
 import PropTypes from "prop-types";
 import { useSpring, animated } from "react-spring";
 import { useTheme, getThemeProperty } from "../../theme";
-
 import styles from "./styles.css";
 
 const DarkLightToggle = ({ onToggle, toggled }) => {
   const { theme } = useTheme();
-  const colorBlueDarkest = getThemeProperty(theme, "color-blue-darkest")
-  const colorBlueLightDark = getThemeProperty(theme, "color-blue-light-dark")
+  const colorBlueDarkest = getThemeProperty(theme, "color-blue-darkest");
+  const colorBlueLightDark = getThemeProperty(theme, "color-blue-light-dark");
   const { rectFill, cx, cFill, lightOpacity, darkOpacity } = useSpring({
     to: {
       rectFill: getThemeProperty(
@@ -19,12 +18,12 @@ const DarkLightToggle = ({ onToggle, toggled }) => {
       cFill: getThemeProperty(theme, toggled ? "color-primary" : "color-gray"),
       lightOpacity: toggled ? 0 : 1,
       darkOpacity: toggled ? 1 : 0
-    },
-    delay: 100
+    }
   });
 
   return (
     <svg
+      data-testid="darkLightToggle"
       className={styles.darkLightToggle}
       onClick={onToggle}
       width="52"
