@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import React, { useEffect } from "react";
+import React, { useEffect, useCallback } from "react";
 import { createPortal } from "react-dom";
 import { classNames } from "../../utils";
 import H1 from "../Typography/H1.jsx";
@@ -30,6 +30,7 @@ const Modal = ({
   iconSize,
   iconComponent,
   disableClose,
+  disableDismiss,
   ...props
 }) => {
   const el = document.createElement("div");
@@ -45,17 +46,24 @@ const Modal = ({
   const iconSizeToUse = iconSize || "xlg";
   useLockBodyScrollOnTrue(show);
   const escPressed = useKeyPress("Escape");
-  useEffect(() => {
-    if (escPressed && show && !disableClose) {
+
+  const handleCloseModal = useCallback(() => {
+    if (show && !(disableClose || disableDismiss)) {
       onClose();
     }
-  }, [escPressed, show, disableClose, onClose]);
+  }, [show, disableDismiss, disableClose, onClose]);
+
+  useEffect(() => {
+    if (escPressed) {
+      handleCloseModal();
+    }
+  }, [escPressed, handleCloseModal]);
   return createPortal(
     <ModalWrapper
       show={show}
       style={wrapperStyle}
       onClose={onClose}
-      disableClose={disableClose}
+      disableClose={disableClose || disableDismiss}
       className={classNames(wrapperClassName)}>
       <div
         className={classNames(
@@ -109,7 +117,8 @@ Modal.propTypes = {
   iconType: PropTypes.string,
   iconSize: PropTypes.string,
   iconComponent: PropTypes.node,
-  disableClose: PropTypes.bool
+  disableClose: PropTypes.bool,
+  disableDismiss: PropTypes.bool
 };
 
 Modal.defaultProps = {
