@@ -8,6 +8,17 @@
   position: relative;
   border: 1px solid var(--color-gray-light);
   border-radius: 10rem;
+  height: 10px;
+}
+
+.statusBar.balance .statusWrapper > div {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+}
+
+.statusBar.balance .statusWrapper > div:first-of-type {
+  justify-content: flex-end;
 }
 
 .statusWrapperDark {
@@ -42,6 +53,12 @@
   margin-right: 3rem;
 }
 
+.statusBar.balance .legendLine:last-of-type {
+  position: absolute;
+  left: 50%;
+  padding-left: 35px;
+}
+
 .legend {
   composes: infoCurrent;
   display: flex;
@@ -69,12 +86,16 @@
   height: 8px;
 }
 
-.firstStatusOption {
+.statusOption:first-of-type {
   border-radius: 10rem 0 0 10rem;
 }
 
-.lastStatusOption {
+.statusOption:last-of-type {
   border-radius: 0 10rem 10rem 0;
+}
+
+.statusBar.balance .statusWrapper > div:first-of-type .statusOption {
+  border-radius: 10rem 0 0 10rem;
 }
 
 .markerWrapper {

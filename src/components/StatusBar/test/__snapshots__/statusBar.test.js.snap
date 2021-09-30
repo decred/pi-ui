@@ -21,6 +21,7 @@ exports[`StatusBar component Matches the snapshot 1`] = `
             }
           }
         />
+         
         <span
           className="legendLabel"
         >
@@ -49,6 +50,7 @@ exports[`StatusBar component Matches the snapshot 1`] = `
             }
           }
         />
+         
         <span
           className="legendLabel"
         >
@@ -86,20 +88,11 @@ exports[`StatusBar component Matches the snapshot 1`] = `
     className="statusWrapper"
   >
     <div
-      className="statusOption firstStatusOption"
+      className="statusOption"
       style={
         Object {
           "backgroundColor": "green",
           "width": "60%",
-        }
-      }
-    />
-    <div
-      className="statusOption lastStatusOption"
-      style={
-        Object {
-          "backgroundColor": "orange",
-          "width": "40%",
         }
       }
     />
@@ -125,6 +118,15 @@ exports[`StatusBar component Matches the snapshot 1`] = `
         />
       </div>
     </div>
+    <div
+      className="statusOption"
+      style={
+        Object {
+          "backgroundColor": "orange",
+          "width": "40%",
+        }
+      }
+    />
   </div>
 </div>
 `;

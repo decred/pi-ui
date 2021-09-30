@@ -10,11 +10,14 @@ const StatusBar = ({
   markerPosition,
   markerTooltipText,
   markerTooltipClassName,
+  renderMarkerComponent,
   max,
   showMarker,
   renderStatusInfoComponent,
   className,
-  decimalPlaces
+  decimalPlaces,
+  layout,
+  showPercent
 }) => {
   const currenttotal = status.reduce((acc, cur) => acc + cur.amount, 0);
   const totalPercentage = max ? (currenttotal / max) * 100 : 100;
@@ -39,8 +42,14 @@ const StatusBar = ({
     ) : (
       <DefaultInfoComp {...props} />
     );
+
   return (
-    <div className={classNames(styles.statusBar, className)}>
+    <div
+      className={classNames(
+        styles.statusBar,
+        className,
+        layout === "balance" && styles.balance
+      )}>
       <div className={styles.statusInfo}>
         <div className={styles.legend}>
           {statusWithPercentages.map((st, i) => (
@@ -48,10 +57,12 @@ const StatusBar = ({
               <div
                 style={{ backgroundColor: st.color }}
                 className={styles.legendColor}
-              />
+              />{" "}
               <span className={styles.legendLabel}>{st.label}:</span>
-              <span className={styles.legendAmount}>{st.amount}</span>
-              <span>({st.percentage}%)</span>
+              {st.renderAmountComponent || (
+                <span className={styles.legendAmount}>{st.amount}</span>
+              )}
+              {showPercent && <span>({st.percentage}%)</span>}
             </div>
           ))}
         </div>
@@ -62,42 +73,48 @@ const StatusBar = ({
           styles.statusWrapper,
           isDarkTheme && styles.statusWrapperDark
         )}>
-        {statusWithPercentages.map((st, i) => (
-          <div
-            key={i + Math.random()}
-            className={classNames(
-              styles.statusOption,
-              i === 0
-                ? styles.firstStatusOption
-                : i === statusWithPercentages.length - 1
-                ? styles.lastStatusOption
-                : null
-            )}
-            style={{
-              width: `${st.widthPercentage}%`,
-              backgroundColor: st.color
-            }}
-          />
-        ))}
-        {showMarker && (
-          <div
-            className={styles.markerWrapper}
-            style={{
-              left: markerPosition
-            }}>
-            <Tooltip
-              content={markerTooltipText || markerPosition}
-              className={styles.markerTooltip}
-              contentClassName={markerTooltipClassName}>
-              <div
-                className={classNames(
-                  styles.marker,
-                  isDarkTheme && styles.markerDark
-                )}
-              />
-            </Tooltip>
-          </div>
-        )}
+        {statusWithPercentages.map((st, i) => {
+          return (
+            <React.Fragment key={i + Math.random()}>
+              {i === 1 &&
+                showMarker &&
+                (renderMarkerComponent || (
+                  <div
+                    className={styles.markerWrapper}
+                    style={{
+                      left: markerPosition
+                    }}>
+                    <Tooltip
+                      content={markerTooltipText || markerPosition}
+                      className={styles.markerTooltip}
+                      contentClassName={markerTooltipClassName}>
+                      <div
+                        className={classNames(
+                          styles.marker,
+                          isDarkTheme && styles.markerDark
+                        )}
+                      />
+                    </Tooltip>
+                  </div>
+                ))}
+              {layout === "balance" ? (
+                <div>
+                  <StatusOption
+                    percentage={st.widthPercentage}
+                    color={st.color}
+                    className={styles.statusOption}
+                  />
+                </div>
+              ) : (
+                <StatusOption
+                  percentage={st.widthPercentage}
+                  color={st.color}
+                  className={styles.statusOption}
+                />
+              )}
+            </React.Fragment>
+          );
+        })}
       </div>
     </div>
   );
@@ -115,23 +132,44 @@ DefaultInfoComp.propTypes = {
   max: PropTypes.number
 };
 
+const StatusOption = ({ percentage, color, className }) => (
+  <div
+    className={className}
+    style={{
+      width: `${percentage}%`,
+      backgroundColor: color
+    }}
+  />
+);
+
+StatusOption.propTypes = {
+  percentage: PropTypes.number,
+  color: PropTypes.string,
+  className: PropTypes.string
+};
+
 StatusBar.propTypes = {
   status: PropTypes.array.isRequired,
   markerPosition: PropTypes.string,
   markerTooltipText: PropTypes.string,
   markerTooltipClassName: PropTypes.string,
+  renderMarkerComponent: PropTypes.element,
   renderStatusInfoComponent: PropTypes.element,
   max: PropTypes.number,
   showMarker: PropTypes.bool,
   className: PropTypes.string,
-  decimalPlaces: PropTypes.number
+  decimalPlaces: PropTypes.number,
+  layout: PropTypes.string,
+  showPercent: PropTypes.bool
 };
 
 StatusBar.defaultProps = {
   markerPosition: "0%",
   max: 0,
   showMarker: true,
-  decimalPlaces: 1
+  decimalPlaces: 1,
+  layout: "default",
+  showPercent: true
 };
 
 export default StatusBar;
