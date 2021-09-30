@@ -32,7 +32,7 @@ const DarkLightToggle = ({ onToggle, toggled }) => {
       fill="none">
       <animated.rect
         y="2.78571"
-        width="52"
+        width="50"
         height="20.4286"
         rx="10.2143"
         fill={rectFill}

@@ -13,7 +13,7 @@ exports[`DarkLightToggle Component Matches snapshot 1`] = `
     fill="rgba(196, 203, 210, 1)"
     height="20.4286"
     rx="10.2143"
-    width="52"
+    width="50"
     y="2.78571"
   />
   <circle
