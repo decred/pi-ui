@@ -160,6 +160,7 @@ const DatePicker = ({
 
   const handleNextYearClick = useCallback(
     (e) => {
+      console.log("e:", e);
       const idx = parseInt(getDID(e), 10);
       if (yearIndexesState[idx] < yearsState.length - 1) {
         _setYear(idx, 1);
@@ -172,28 +173,47 @@ const DatePicker = ({
     (e) => {
       const idx = parseInt(getDID(e), 10);
       const labelMonth = labelMonthsState[idx];
-      const nextMonth = labelMonth + 1;
-      if (nextMonth <= 12) {
-        const newLabelMonthsState = [...labelMonthsState];
+      let nextMonth = labelMonth + 1;
+      const newLabelMonthsState = [...labelMonthsState];
+      if (labelMonth < 12) {
+        newLabelMonthsState[idx] = nextMonth;
+        setLabelMonthsState(newLabelMonthsState);
+      } else if (
+        labelMonth === 12 &&
+        yearIndexesState[idx] < yearsState.length - 1
+      ) {
+        nextMonth = 1;
+        _setYear(idx, 1);
         newLabelMonthsState[idx] = nextMonth;
         setLabelMonthsState(newLabelMonthsState);
       }
     },
-    [labelMonthsState, setLabelMonthsState]
+    [
+      labelMonthsState,
+      setLabelMonthsState,
+      yearIndexesState,
+      _setYear,
+      yearsState.length
+    ]
   );
 
   const handlePrevMonthClick = useCallback(
     (e) => {
       const idx = parseInt(getDID(e), 10);
       const labelMonth = labelMonthsState[idx];
-      const nextMonth = labelMonth - 1;
-      if (nextMonth > 0) {
-        const newLabelMonthsState = [...labelMonthsState];
+      const newLabelMonthsState = [...labelMonthsState];
+      let nextMonth = labelMonth - 1;
+      if (labelMonth > 1) {
+        newLabelMonthsState[idx] = nextMonth;
+        setLabelMonthsState(newLabelMonthsState);
+      } else if (labelMonth === 1 && yearIndexesState[idx] > 0) {
+        nextMonth = 12;
+        _setYear(idx, -1);
         newLabelMonthsState[idx] = nextMonth;
         setLabelMonthsState(newLabelMonthsState);
       }
     },
-    [setLabelMonthsState, labelMonthsState]
+    [labelMonthsState, setLabelMonthsState, yearIndexesState, _setYear]
   );
 
   const padByIndex = useCallback(
