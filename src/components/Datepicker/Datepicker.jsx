@@ -160,7 +160,6 @@ const DatePicker = ({
 
   const handleNextYearClick = useCallback(
     (e) => {
-      console.log("e:", e);
       const idx = parseInt(getDID(e), 10);
       if (yearIndexesState[idx] < yearsState.length - 1) {
         _setYear(idx, 1);
