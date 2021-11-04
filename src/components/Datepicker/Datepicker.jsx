@@ -198,6 +198,7 @@ const DatePicker = ({
     },
     [setLabelMonthsState, labelMonthsState]
   );
+
   const padByIndex = useCallback(
     (padIndex) => {
       return (
