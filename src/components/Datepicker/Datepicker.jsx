@@ -40,9 +40,8 @@ const DatePicker = ({
 }) => {
   const { themeName } = useTheme();
   const yearArr = useMemo(() => getYearArray(years), [years]);
+  // Update the years state when the years prop changes.
   useEffect(() => {
-    // update yearsState every time yearArr is changed to update the time range
-    // on the UI of Datepicker.
     setYearsState(yearArr);
   }, [yearArr]);
   const yearIndexes = useMemo(() => [0, 0], []);
