@@ -171,7 +171,6 @@ const DatePicker = ({
   const handleNextMonthClick = useCallback(
     (e) => {
       const idx = parseInt(getDID(e), 10);
-      console.log("idx: ", idx, e, monthsState);
       const monthState = monthsState[idx];
       let nextMonth = monthState + 1;
       const newMonthsState = [...monthsState];
