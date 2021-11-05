@@ -172,14 +172,14 @@ const DatePicker = ({
     (e) => {
       const idx = parseInt(getDID(e), 10);
       console.log("idx: ", idx, e, monthsState);
-      const mothState = monthsState[idx];
-      let nextMonth = mothState + 1;
+      const monthState = monthsState[idx];
+      let nextMonth = monthState + 1;
       const newMonthsState = [...monthsState];
-      if (mothState < 12) {
+      if (monthState < 12) {
         newMonthsState[idx] = nextMonth;
         setMonthsState(newMonthsState);
       } else if (
-        mothState === 12 &&
+        monthState === 12 &&
         yearIndexesState[idx] < yearsState.length - 1
       ) {
         nextMonth = 1;
@@ -194,14 +194,13 @@ const DatePicker = ({
   const handlePrevMonthClick = useCallback(
     (e) => {
       const idx = parseInt(getDID(e), 10);
-      console.log("idx: ", idx, e, monthsState);
-      const mothState = monthsState[idx];
+      const monthState = monthsState[idx];
       const newMonthsState = [...monthsState];
-      let nextMonth = mothState - 1;
-      if (mothState > 1) {
+      let nextMonth = monthState - 1;
+      if (monthState > 1) {
         newMonthsState[idx] = nextMonth;
         setMonthsState(newMonthsState);
-      } else if (mothState === 1 && yearIndexesState[idx] > 0) {
+      } else if (monthState === 1 && yearIndexesState[idx] > 0) {
         nextMonth = 12;
         _setYear(idx, -1);
         newMonthsState[idx] = nextMonth;
