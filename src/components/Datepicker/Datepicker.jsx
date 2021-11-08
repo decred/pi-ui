@@ -40,6 +40,10 @@ const DatePicker = ({
 }) => {
   const { themeName } = useTheme();
   const yearArr = useMemo(() => getYearArray(years), [years]);
+  // Update the years state when the years prop changes.
+  useEffect(() => {
+    setYearsState(yearArr);
+  }, [yearArr]);
   const yearIndexes = useMemo(() => [0, 0], []);
   const values = useMemo(() => validValues(value, yearArr, yearIndexes), [
     value,
@@ -49,7 +53,7 @@ const DatePicker = ({
 
   const isDefaultPicker = useMemo(() => !children, [children]);
 
-  const [yearsState] = useState(yearArr);
+  const [yearsState, setYearsState] = useState(yearArr);
   const [valuesState, setValuesState] = useState(values);
   const [labelYearsState, setLabelYearsState] = useState(
     getInitialYears(values, yearsState)
