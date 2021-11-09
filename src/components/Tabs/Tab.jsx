@@ -22,30 +22,17 @@ const Tab = ({
     e.preventDefault();
     onSelect(tabIndex);
   };
-  const activeBorderColor = getThemeProperty(
-    theme,
-    themes?.tabActiveBorderColor || "tab-active-color"
-  );
-  const defaultBorderColor = getThemeProperty(
-    theme,
-    themes?.tabDefaultBorderColor || "tab-default-color"
-  );
-  const activeBackgroundColor = getThemeProperty(
-    theme,
-    themes?.tabActiveBackgroundColor || "tab-active-background"
-  );
-  const defaultBackgroundColor = getThemeProperty(
-    theme,
-    themes?.tabDefaultBackgroundColor || "tab-default-background"
-  );
-  const activeTextColor = getThemeProperty(
-    theme,
-    themes?.tabActiveTextColor || "tab-text-active-color"
-  );
-  const defaultTextColor = getThemeProperty(
-    theme,
-    themes?.tabDefaultTextColor || "tab-text-color"
-  );
+  const customTheme = {
+    ...theme,
+    ...themes
+  }
+  const activeBorderColor = getThemeProperty(customTheme, "tab-active-color");
+  const defaultBorderColor = getThemeProperty(customTheme, "tab-default-color");
+  const activeBackgroundColor = getThemeProperty(customTheme, "tab-active-background");
+  const defaultBackgroundColor = getThemeProperty(customTheme, "tab-default-background");
+  const activeTextColor = getThemeProperty(customTheme, "tab-text-active-color");
+  const defaultTextColor = getThemeProperty(customTheme, "tab-text-color");
+
   const slide = useSpring({
     borderColor: isActive ? activeBorderColor : defaultBorderColor,
     color: isActive ? activeTextColor : defaultTextColor,
