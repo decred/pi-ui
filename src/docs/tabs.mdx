@@ -107,4 +107,54 @@ import { Tabs, Tab } from "../index";
     
 </Playground>
 
+### Tabs with slide content animation
 
+<Playground >
+  {() => {
+    const [activeTabIndex, setActiveTabIndex] = useState(0);
+    return (
+      <div style={{ overflow: "hidden", position: "relative", height: "80px" }}>
+        <Tabs onSelectTab={setActiveTabIndex} activeTabIndex={activeTabIndex} contentAnimation="slide">
+            <Tab label="tab 1" count={1}>
+                <div key={1}>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sit amet est sed urna sollicitudin imperdiet vitae eu massa. 
+                </div>
+            </Tab>
+            <Tab label="tab 2" count={4} >
+                <div key={2}>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sit amet est sed urna sollicitudin imperdiet vitae eu massa. 
+                </div>
+            </Tab>
+            <Tab label="tab 3">
+                <div key={3}>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sit amet est sed urna sollicitudin imperdiet vitae eu massa. 
+                </div>
+            </Tab>
+        </Tabs>
+      </div>
+    );
+  }}
+</Playground>
+
+### Tabs without content animation
+
+<Playground>
+  {() => {
+    const [activeTabIndex, setActiveTabIndex] = useState(0);
+    return (
+      <Fragment>
+        <Tabs onSelectTab={setActiveTabIndex} activeTabIndex={activeTabIndex} contentAnimation="none">
+            <Tab label="tab 1" count={1}>
+                <div key={1}>tab content 1</div>
+            </Tab>
+            <Tab label="tab 2" count={4} >
+                <div key={2}>tab content 2</div>
+            </Tab>
+            <Tab label="tab 3" >
+                <div key={3}>tab content 3</div>
+            </Tab>
+        </Tabs>
+      </Fragment>
+    );
+  }}
+</Playground>
