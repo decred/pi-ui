@@ -25,7 +25,7 @@ const Tab = ({
   const customTheme = {
     ...theme,
     ...themes
-  }
+  };
   const activeBorderColor = getThemeProperty(customTheme, "tab-active-color");
   const defaultBorderColor = getThemeProperty(customTheme, "tab-default-color");
   const activeBackgroundColor = getThemeProperty(customTheme, "tab-active-background");
