@@ -58,7 +58,7 @@ const DatePicker = ({
   const [labelYearsState, setLabelYearsState] = useState(
     getInitialYears(values, yearsState)
   );
-  const [labelMonthsState, setLabelMonthsState] = useState([
+  const [monthsState, setMonthsState] = useState([
     values[0] ? values[0].month : yearsState[0].min.month,
     values[1] ? values[1].month : yearsState[0].min.month
   ]);
@@ -122,23 +122,23 @@ const DatePicker = ({
       setLabelYearsState(labelYears);
       const atMinYear = theYear === yearsState[0].year;
       const atMaxYear = theYear === yearsState[yearsState.length - 1].year;
-      const currentLabelMonth = labelMonthsState[idx];
+      const currentMonth = monthsState[idx];
       if (
         !isMonthsMode &&
         atMinYear &&
-        currentLabelMonth < yearsState[yearIndex].min.month
+        currentMonth < yearsState[yearIndex].min.month
       ) {
-        const newLabelMonthsState = [...labelMonthsState];
-        newLabelMonthsState[idx] = yearsState[yearIndex].min.month;
-        setLabelMonthsState(newLabelMonthsState);
+        const newMonthsState = [...monthsState];
+        newMonthsState[idx] = yearsState[yearIndex].min.month;
+        setMonthsState(newMonthsState);
       } else if (
         !isMonthsMode &&
         atMaxYear &&
-        currentLabelMonth > yearsState[yearIndex].max.month
+        currentMonth > yearsState[yearIndex].max.month
       ) {
-        const newLabelMonthsState = [...labelMonthsState];
-        newLabelMonthsState[idx] = yearsState[yearIndex].max.month;
-        setLabelMonthsState(newLabelMonthsState);
+        const newMonthsState = [...monthsState];
+        newMonthsState[idx] = yearsState[yearIndex].max.month;
+        setMonthsState(newMonthsState);
       }
       onYearChange && onYearChange(theYear);
     },
@@ -146,7 +146,7 @@ const DatePicker = ({
       onYearChange,
       isMonthsMode,
       labelYearsState,
-      labelMonthsState,
+      monthsState,
       yearsState,
       yearIndexesState
     ]
@@ -175,29 +175,42 @@ const DatePicker = ({
   const handleNextMonthClick = useCallback(
     (e) => {
       const idx = parseInt(getDID(e), 10);
-      const labelMonth = labelMonthsState[idx];
-      const nextMonth = labelMonth + 1;
-      if (nextMonth <= 12) {
-        const newLabelMonthsState = [...labelMonthsState];
-        newLabelMonthsState[idx] = nextMonth;
-        setLabelMonthsState(newLabelMonthsState);
+      const monthState = monthsState[idx];
+      let nextMonth = monthState + 1;
+      const newMonthsState = [...monthsState];
+      if (monthState < 12) {
+        newMonthsState[idx] = nextMonth;
+        setMonthsState(newMonthsState);
+      } else if (
+        monthState === 12 &&
+        yearIndexesState[idx] < yearsState.length - 1
+      ) {
+        nextMonth = 1;
+        _setYear(idx, 1);
+        newMonthsState[idx] = nextMonth;
+        setMonthsState(newMonthsState);
       }
     },
-    [labelMonthsState, setLabelMonthsState]
+    [monthsState, setMonthsState, yearIndexesState, _setYear, yearsState.length]
   );
 
   const handlePrevMonthClick = useCallback(
     (e) => {
       const idx = parseInt(getDID(e), 10);
-      const labelMonth = labelMonthsState[idx];
-      const nextMonth = labelMonth - 1;
-      if (nextMonth > 0) {
-        const newLabelMonthsState = [...labelMonthsState];
-        newLabelMonthsState[idx] = nextMonth;
-        setLabelMonthsState(newLabelMonthsState);
+      const monthState = monthsState[idx];
+      const newMonthsState = [...monthsState];
+      let nextMonth = monthState - 1;
+      if (monthState > 1) {
+        newMonthsState[idx] = nextMonth;
+        setMonthsState(newMonthsState);
+      } else if (monthState === 1 && yearIndexesState[idx] > 0) {
+        nextMonth = 12;
+        _setYear(idx, -1);
+        newMonthsState[idx] = nextMonth;
+        setMonthsState(newMonthsState);
       }
     },
-    [setLabelMonthsState, labelMonthsState]
+    [monthsState, setMonthsState, yearIndexesState, _setYear]
   );
 
   const padByIndex = useCallback(
@@ -209,7 +222,7 @@ const DatePicker = ({
           values={valuesState}
           years={yearsState}
           year={labelYearsState[padIndex]}
-          month={labelMonthsState[padIndex]}
+          month={monthsState[padIndex]}
           lang={lang}
           yearIdx={yearIndexesState[padIndex]}
           onMonthClick={handleClickMonth}
@@ -231,7 +244,7 @@ const DatePicker = ({
       handleNextMonthClick,
       isMonthsMode,
       lang,
-      labelMonthsState,
+      monthsState,
       labelYearsState,
       valuesState,
       yearIndexesState,
@@ -249,7 +262,7 @@ const DatePicker = ({
 
   useEffect(() => {
     showedState && renderPad();
-  }, [valuesState, showedState, renderPad, labelMonthsState, labelYearsState]);
+  }, [valuesState, showedState, renderPad, monthsState, labelYearsState]);
 
   useEffect(() => {
     if (show && !showedState) {

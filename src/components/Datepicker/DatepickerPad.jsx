@@ -52,9 +52,8 @@ const DatePickerPad = ({
     labelPreText = <b>{months[labelTextKey]}</b>;
   }
 
-  if (month === 1 || (atMinYear && month === ymArr[0].min.month))
-    prevMonthCss = "disable";
-  if (month === 12 || (atMaxYear && month === ymArr[yearMaxIdx].max.month))
+  if (atMinYear && month === ymArr[0].min.month) prevMonthCss = "disable";
+  if (atMaxYear && month === ymArr[yearMaxIdx].max.month)
     nextMonthCss = "disable";
 
   return (
