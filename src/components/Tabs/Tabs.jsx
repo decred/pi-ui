@@ -39,7 +39,6 @@ const Tabs = ({
   mode,
   contentClassName,
   contentAnimation,
-  themes,
   ...props
 }) => {
   const dropdownMode = mode === "dropdown";
@@ -55,7 +54,6 @@ const Tabs = ({
           tabIndex: index,
           isActive: index === activeTabIndex,
           mode,
-          themes
         });
         return dropdownMode ? (
           <DropdownItem className={styles.customDropdownItem}>
@@ -65,7 +63,7 @@ const Tabs = ({
           element
         );
       });
-  }, [children, activeTabIndex, mode, onSelectTab, dropdownMode, themes]);
+  }, [children, activeTabIndex, mode, onSelectTab, dropdownMode]);
 
   const tabs = useMemo(
     () => (
@@ -192,7 +190,6 @@ Tabs.propTypes = {
   mode: PropTypes.oneOf(["horizontal", "vertical", "dropdown"]),
   contentAnimation: PropTypes.oneOf(["none", "fade", "slide"]),
   contentClassName: PropTypes.string,
-  themes: PropTypes.object
 };
 
 Tabs.defaultProps = {

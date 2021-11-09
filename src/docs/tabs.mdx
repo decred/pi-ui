@@ -158,36 +158,3 @@ import { Tabs, Tab } from "../index";
     );
   }}
 </Playground>
-
-### Tabs with custom colors
-
-<Playground>
-  {() => {
-    const [activeTabIndex, setActiveTabIndex] = useState(0);
-    const themes = {
-      "tab-active-color": "gray",
-      "tab-default-color": "lightgray",
-      "tab-active-background": "lightgray",
-      "tab-default-background": "lightgray",
-      "tab-text-active-color": "black",
-      "tab-text-color": "gray",
-    }
-    return (
-      <Fragment>
-        <div style={{ backgroundColor: "lightgray", padding: "40px"}}>
-          <Tabs onSelectTab={setActiveTabIndex} activeTabIndex={activeTabIndex} themes={themes}>
-              <Tab label="tab 1" >
-                  <div key={1}>tab content 1</div>
-              </Tab>
-              <Tab label="tab 2" >
-                  <div key={2}>tab content 2</div>
-              </Tab>
-              <Tab label="tab 3" >
-                  <div key={3}>tab content 3</div>
-              </Tab>
-          </Tabs>
-        </div>
-      </Fragment>
-    );
-  }}
-</Playground>
