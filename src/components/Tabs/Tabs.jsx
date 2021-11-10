@@ -5,6 +5,7 @@ import { classNames } from "../../utils";
 import styles from "./styles.css";
 import Dropdown from "../Dropdown/Dropdown.jsx";
 import DropdownItem from "../Dropdown/DropdownItem.jsx";
+import { usePrevious } from "../../hooks";
 
 const TabDropdownTrigger = ({
   onClick,
@@ -37,10 +38,12 @@ const Tabs = ({
   wrap,
   mode,
   contentClassName,
+  contentAnimation,
   ...props
 }) => {
   const dropdownMode = mode === "dropdown";
   const vertical = mode === "vertical" || dropdownMode;
+  const previousActiveTabIndex = usePrevious(activeTabIndex);
   const renderChildrenTabs = useCallback(() => {
     return React.Children.toArray(children)
       .filter(Boolean)
@@ -50,7 +53,7 @@ const Tabs = ({
           onSelect: onSelectTab,
           tabIndex: index,
           isActive: index === activeTabIndex,
-          mode
+          mode,
         });
         return dropdownMode ? (
           <DropdownItem className={styles.customDropdownItem}>
@@ -88,14 +91,58 @@ const Tabs = ({
     );
   };
 
-  const transition = useTransition(activeTabIndex, {
-    initial: { position: "absolute", opacity: 1 },
-    from: { position: "absolute", opacity: 0 },
-    enter: { opacity: 1 },
-    leave: { opacity: 0 },
-    config: { duration: 350 },
-    keys: (item) => item
-  });
+  const dir = previousActiveTabIndex > activeTabIndex ? "l2r" : "r2l";
+  const slideMaxPosition = 1000;
+  const transition =
+    contentAnimation === "slide"
+      ? useTransition(activeTabIndex, {
+          initial: {
+            position: "absolute",
+            overflowY: "hidden",
+            opacity: 0,
+            left: "40px",
+            right: "40px"
+          },
+          from: {
+            position: "absolute",
+            overflowY: "hidden",
+            opacity: 0,
+            left:
+              dir === "r2l"
+                ? `${slideMaxPosition}px`
+                : `-${slideMaxPosition}px`,
+            right:
+              dir === "r2l" ? `-${slideMaxPosition}px` : `${slideMaxPosition}px`
+          },
+          enter: () => [
+            { left: "0px", right: "0px", opacity: 1, overflowY: "hidden" },
+            { overflowY: "auto" }
+          ],
+          leave: () => async (next) => {
+            await next({ overflowY: "hidden" });
+            await next({
+              opacity: 0,
+              left:
+                dir === "r2l"
+                  ? `-${slideMaxPosition}px`
+                  : `${slideMaxPosition}px`,
+              right:
+                dir === "r2l"
+                  ? `${slideMaxPosition}px`
+                  : `-${slideMaxPosition}px`
+            });
+          },
+          config: { mass: 1, tension: 210, friction: 26 },
+          key: children[activeTabIndex]?.props?.children?.key
+        })
+      : useTransition(activeTabIndex, {
+          initial: { position: "absolute", opacity: 1 },
+          from: { position: "absolute", opacity: 0 },
+          enter: { opacity: 1 },
+          leave: { opacity: 0 },
+          config: { duration: 350 },
+          keys: (item) => item
+        });
 
   return (
     <>
@@ -110,11 +157,17 @@ const Tabs = ({
       ) : (
         tabs
       )}
-      {transition((style, item) => (
-        <animated.div style={style} className={contentClassName}>
-          {children[item] && children[item].props.children}
-        </animated.div>
-      ))}
+      {contentAnimation === "none" ? (
+        <div className={contentClassName}>
+          {children[activeTabIndex] && children[activeTabIndex].props.children}
+        </div>
+      ) : (
+        transition((contentStyle, item) => (
+          <animated.div style={contentStyle} className={contentClassName}>
+            {children[item] && children[item].props.children}
+          </animated.div>
+        ))
+      )}
     </>
   );
 };
@@ -135,12 +188,14 @@ Tabs.propTypes = {
   children: PropTypes.node.isRequired,
   wrap: PropTypes.bool,
   mode: PropTypes.oneOf(["horizontal", "vertical", "dropdown"]),
-  contentClassName: PropTypes.string
+  contentAnimation: PropTypes.oneOf(["none", "fade", "slide"]),
+  contentClassName: PropTypes.string,
 };
 
 Tabs.defaultProps = {
   wrap: false,
-  mode: "horizontal"
+  mode: "horizontal",
+  contentAnimation: "fade"
 };
 
 export default Tabs;
