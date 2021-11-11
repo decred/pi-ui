@@ -29,7 +29,6 @@
     "lint:css": "stylelint --fix 'src/**/*.css'",
     "lint:js": "eslint --ext .js,.jsx ./src",
     "lint:js:fix": "npm run lint:js -- --fix",
-    "husky:pre-commit": "npm-run-all --sequential prettify lint test"
   },
   "peerDependencies": {
     "prop-types": "^15.5.4",
