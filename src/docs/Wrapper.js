@@ -47,8 +47,7 @@ const DoczWrapper = ({ children }) => (
       },
     }}
     defaultThemeName={DEFAULT_LIGHT_THEME_NAME}
-    fonts={fonts}
-  >
+    fonts={fonts}>
     {children}
   </ThemeProvider>
 );

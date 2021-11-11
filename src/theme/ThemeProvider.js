@@ -34,8 +34,7 @@ export const ThemeProvider = ({
         themeName,
         setThemeName,
         theme,
-      }}
-    >
+      }}>
       {children}
     </ThemeContext.Provider>
   );

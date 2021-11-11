@@ -14,13 +14,12 @@ const Badge = ({ children, icon, show, onClose, ...props }) => {
         show ? styles.badgeWrapperVisible : styles.badgeWrapper
       )}
       {...props}>
-      <a
+      <button
         className={styles.badgeClose}
         onClick={onCloseClick}
-        data-testid="close-button"
-        href="#">
+        data-testid="close-button">
         &times;
-      </a>
+      </button>
       <div className={styles.badgeIcon}>{icon}</div>
       {children}
     </div>
@@ -31,7 +30,7 @@ Badge.propTypes = {
   children: PropTypes.node.isRequired,
   show: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
-  icon: PropTypes.node,
+  icon: PropTypes.node
 };
 
 export default Badge;

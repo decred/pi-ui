@@ -4,10 +4,7 @@
  * @returns {String}
  */
 export const classNames = (...args) =>
-  args
-    .filter(Boolean)
-    .filter(isString)
-    .join(" ");
+  args.filter(Boolean).filter(isString).join(" ");
 
 export const isString = (arg) => typeof arg == "string";
 export const isObject = (arg) =>

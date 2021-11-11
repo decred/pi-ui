@@ -5,7 +5,7 @@ import {
   ThemeProvider,
   DEFAULT_LIGHT_THEME_NAME,
 } from "../../../theme";
-import { render, fireEvent, wait } from "@testing-library/react";
+import { render, fireEvent, waitFor } from "@testing-library/react";
 import Tabs from "../Tabs";
 import Tab from "../Tab";
 
@@ -14,8 +14,7 @@ describe("Tabs Component", () => {
     const tabs = create(
       <ThemeProvider
         themes={{ [DEFAULT_LIGHT_THEME_NAME]: defaultLightTheme }}
-        defaultThemeName={DEFAULT_LIGHT_THEME_NAME}
-      >
+        defaultThemeName={DEFAULT_LIGHT_THEME_NAME}>
         <Tabs onSelectTab={jest.fn()} activeTabIndex={0}>
           <Tab label="tab1" count={1}>
             <div>test1</div>
@@ -38,8 +37,7 @@ describe("Tabs Component", () => {
       return (
         <ThemeProvider
           themes={{ [DEFAULT_LIGHT_THEME_NAME]: defaultLightTheme }}
-          defaultThemeName={DEFAULT_LIGHT_THEME_NAME}
-        >
+          defaultThemeName={DEFAULT_LIGHT_THEME_NAME}>
           <Tabs onSelectTab={setActiveTabIndex} activeTabIndex={activeTabIndex}>
             <Tab label="tab1" count={1}>
               <div>test1</div>
@@ -59,7 +57,7 @@ describe("Tabs Component", () => {
     fireEvent.click(getByTestId("tab-1"));
 
     // wait until `test2` content appears entirely
-    await wait(() =>
+    await waitFor(() =>
       expect(getByText("test2").parentNode.style.opacity).toBe("1")
     );
     expect(queryByText(/test1/i)).toBeFalsy();

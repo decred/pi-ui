@@ -44,9 +44,10 @@
   transform: scale(1);
 }
 
-.modalClose,
-.modalClose:link,
-.modalClose:visited {
+.modalClose {
+  background: none;
+  border: none;
+  cursor: pointer;
   position: absolute;
   font-size: var(--font-size-xxlarge);
   top: 2rem;
@@ -55,9 +56,8 @@
   transition: all 0.3s;
 }
 
-.modalClose:hover,
-.modalClose:link:hover,
-.modalClose:visited:hover {
+.modalClose:hover {
+  background: none;
   color: var(--color-primary);
 }
 

@@ -12,8 +12,7 @@ describe("StatusBar component", () => {
     const statusBar = create(
       <ThemeProvider
         themes={{ [DEFAULT_LIGHT_THEME_NAME]: defaultLightTheme }}
-        defaultThemeName={DEFAULT_LIGHT_THEME_NAME}
-      >
+        defaultThemeName={DEFAULT_LIGHT_THEME_NAME}>
         <StatusBar
           status={[
             {

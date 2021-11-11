@@ -12,8 +12,7 @@ describe("TextArea component", () => {
     const textArea = create(
       <ThemeProvider
         themes={{ [DEFAULT_LIGHT_THEME_NAME]: defaultLightTheme }}
-        defaultThemeName={DEFAULT_LIGHT_THEME_NAME}
-      >
+        defaultThemeName={DEFAULT_LIGHT_THEME_NAME}>
         <TextArea id="test" />
       </ThemeProvider>
     );

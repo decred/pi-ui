@@ -26,8 +26,7 @@ describe("Table Component", () => {
     const table = create(
       <ThemeProvider
         themes={{ [DEFAULT_LIGHT_THEME_NAME]: defaultLightTheme }}
-        defaultThemeName={DEFAULT_LIGHT_THEME_NAME}
-      >
+        defaultThemeName={DEFAULT_LIGHT_THEME_NAME}>
         <Table data={mockData} headers={mockHeaders} />
       </ThemeProvider>
     );
@@ -38,8 +37,7 @@ describe("Table Component", () => {
     const { getByTestId, queryByText, queryByTestId } = render(
       <ThemeProvider
         themes={{ [DEFAULT_LIGHT_THEME_NAME]: defaultLightTheme }}
-        defaultThemeName={DEFAULT_LIGHT_THEME_NAME}
-      >
+        defaultThemeName={DEFAULT_LIGHT_THEME_NAME}>
         <Table linesPerPage={1} data={mockData} headers={mockHeaders} />
       </ThemeProvider>
     );

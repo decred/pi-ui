@@ -33,8 +33,7 @@ describe("DatePicker component", () => {
         lang={monthsTranslations}
         years={years}
         value={{ year: 2019, month: 11, day: 15 }}
-        show={true}
-      >
+        show={true}>
         <></>
       </DatePicker>
     );
@@ -46,8 +45,7 @@ describe("DatePicker component", () => {
         lang={monthsTranslations}
         years={years}
         value={{ year: 2019, month: 12, day: 15 }}
-        show={true}
-      >
+        show={true}>
         <></>
       </DatePicker>
     );

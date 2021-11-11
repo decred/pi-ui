@@ -19,9 +19,10 @@
   opacity: 1;
 }
 
-.badgeClose,
-.badgeClose:link,
-.badgeClose:visited {
+.badgeClose {
+  background: none;
+  border: none;
+  cursor: pointer;
   position: absolute;
   top: 0;
   right: 1rem;
@@ -29,9 +30,8 @@
   color: var(--text-color-light);
 }
 
-.badgeClose:hover,
-.badgeClose:link:hover,
-.badgeClose:visited:hover {
+.badgeClose:hover {
+  background: none;
   color: var(--color-primary);
 }
 

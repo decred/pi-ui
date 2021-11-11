@@ -88,7 +88,7 @@
       repeat(
         12,
         [col-start] minmax(var(--min-column-size-md), var(--max-column-size-md))
-          [col-end]
+        [col-end]
       )
       [center-end] var(--grid-center-padding) [full-end];
     column-gap: var(--layout-column-gap-md);
@@ -104,7 +104,7 @@
       repeat(
         12,
         [col-start] minmax(var(--min-column-size-md), var(--max-column-size-md))
-          [col-end]
+        [col-end]
       )
       [center-end] var(--grid-center-padding) [full-end];
     column-gap: var(--layout-column-gap-md);
@@ -135,7 +135,7 @@
       repeat(
         12,
         [col-start] minmax(var(--min-column-size-sm), var(--max-column-size-sm))
-          [col-end]
+        [col-end]
       )
       [center-end] var(--grid-center-padding) [full-end];
     column-gap: var(--layout-column-gap-sm);

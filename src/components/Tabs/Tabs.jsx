@@ -7,6 +7,72 @@ import Dropdown from "../Dropdown/Dropdown.jsx";
 import DropdownItem from "../Dropdown/DropdownItem.jsx";
 import { usePrevious } from "../../hooks";
 
+const SlideAnimatedChild = ({activeTabIndex, dir, slideMaxPosition, children, contentClassName}) => {
+  const slideTransition = useTransition(activeTabIndex, {
+    initial: {
+      position: "absolute",
+      overflowY: "hidden",
+      opacity: 0,
+      left: "40px",
+      right: "40px",
+    },
+    from: {
+      position: "absolute",
+      overflowY: "hidden",
+      opacity: 0,
+      left:
+        dir === "r2l"
+          ? `${slideMaxPosition}px`
+          : `-${slideMaxPosition}px`,
+      right:
+        dir === "r2l"
+          ? `-${slideMaxPosition}px`
+          : `${slideMaxPosition}px`,
+    },
+    enter: () => [
+      { left: "0px", right: "0px", opacity: 1, overflowY: "hidden" },
+      { overflowY: "auto" },
+    ],
+    leave: () => async (next) => {
+      await next({ overflowY: "hidden" });
+      await next({
+        opacity: 0,
+        left:
+          dir === "r2l"
+            ? `-${slideMaxPosition}px`
+            : `${slideMaxPosition}px`,
+        right:
+          dir === "r2l"
+            ? `${slideMaxPosition}px`
+            : `-${slideMaxPosition}px`,
+      });
+    },
+    config: { mass: 1, tension: 210, friction: 26 },
+    key: children[activeTabIndex]?.props?.children?.key,
+  })
+  return (slideTransition((contentStyle, item) => (
+    <animated.div style={contentStyle} className={contentClassName}>
+      {children[item] && children[item].props.children}
+    </animated.div>
+  )))
+}
+
+const FadeAnimatedChild = ({activeTabIndex, dir, slideMaxPosition, children, contentClassName}) => {
+  const fadeTransition = useTransition(activeTabIndex, {
+    initial: { position: "absolute", opacity: 1 },
+    from: { position: "absolute", opacity: 0 },
+    enter: { opacity: 1 },
+    leave: { opacity: 0 },
+    config: { duration: 350 },
+    keys: (item) => item,
+  });
+  return (fadeTransition((contentStyle, item) => (
+    <animated.div style={contentStyle} className={contentClassName}>
+      {children[item] && children[item].props.children}
+    </animated.div>
+  )))
+}
+
 const TabDropdownTrigger = ({
   onClick,
   open,
@@ -93,58 +159,6 @@ const Tabs = ({
 
   const dir = previousActiveTabIndex > activeTabIndex ? "l2r" : "r2l";
   const slideMaxPosition = 1000;
-  const transition =
-    contentAnimation === "slide"
-      ? useTransition(activeTabIndex, {
-          initial: {
-            position: "absolute",
-            overflowY: "hidden",
-            opacity: 0,
-            left: "40px",
-            right: "40px",
-          },
-          from: {
-            position: "absolute",
-            overflowY: "hidden",
-            opacity: 0,
-            left:
-              dir === "r2l"
-                ? `${slideMaxPosition}px`
-                : `-${slideMaxPosition}px`,
-            right:
-              dir === "r2l"
-                ? `-${slideMaxPosition}px`
-                : `${slideMaxPosition}px`,
-          },
-          enter: () => [
-            { left: "0px", right: "0px", opacity: 1, overflowY: "hidden" },
-            { overflowY: "auto" },
-          ],
-          leave: () => async (next) => {
-            await next({ overflowY: "hidden" });
-            await next({
-              opacity: 0,
-              left:
-                dir === "r2l"
-                  ? `-${slideMaxPosition}px`
-                  : `${slideMaxPosition}px`,
-              right:
-                dir === "r2l"
-                  ? `${slideMaxPosition}px`
-                  : `-${slideMaxPosition}px`,
-            });
-          },
-          config: { mass: 1, tension: 210, friction: 26 },
-          key: children[activeTabIndex]?.props?.children?.key,
-        })
-      : useTransition(activeTabIndex, {
-          initial: { position: "absolute", opacity: 1 },
-          from: { position: "absolute", opacity: 0 },
-          enter: { opacity: 1 },
-          leave: { opacity: 0 },
-          config: { duration: 350 },
-          keys: (item) => item,
-        });
 
   return (
     <>
@@ -163,12 +177,10 @@ const Tabs = ({
         <div className={contentClassName}>
           {children[activeTabIndex] && children[activeTabIndex].props.children}
         </div>
+      ) : contentAnimation === "slide" ? (
+        <SlideAnimatedChild activeTabIndex={activeTabIndex} dir={dir} slideMaxPosition={slideMaxPosition} children={children} contentClassName={contentClassName} />
       ) : (
-        transition((contentStyle, item) => (
-          <animated.div style={contentStyle} className={contentClassName}>
-            {children[item] && children[item].props.children}
-          </animated.div>
-        ))
+        <FadeAnimatedChild activeTabIndex={activeTabIndex} dir={dir} slideMaxPosition={slideMaxPosition} children={children} contentClassName={contentClassName} />
       )}
     </>
   );

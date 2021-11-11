@@ -12,8 +12,7 @@ describe("NumberInput component", () => {
     const numberInput = create(
       <ThemeProvider
         themes={{ [DEFAULT_LIGHT_THEME_NAME]: defaultLightTheme }}
-        defaultThemeName={DEFAULT_LIGHT_THEME_NAME}
-      >
+        defaultThemeName={DEFAULT_LIGHT_THEME_NAME}>
         <NumberInput id="test" />
       </ThemeProvider>
     );

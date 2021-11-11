@@ -13,8 +13,7 @@ describe("Toggle Component", () => {
     const toggle = create(
       <ThemeProvider
         themes={{ [DEFAULT_LIGHT_THEME_NAME]: defaultLightTheme }}
-        defaultThemeName={DEFAULT_LIGHT_THEME_NAME}
-      >
+        defaultThemeName={DEFAULT_LIGHT_THEME_NAME}>
         <Toggle toggled={false} />
       </ThemeProvider>
     );
@@ -26,8 +25,7 @@ describe("Toggle Component", () => {
     const { getByTestId } = render(
       <ThemeProvider
         themes={{ [DEFAULT_LIGHT_THEME_NAME]: defaultLightTheme }}
-        defaultThemeName={DEFAULT_LIGHT_THEME_NAME}
-      >
+        defaultThemeName={DEFAULT_LIGHT_THEME_NAME}>
         <Toggle toggled={false} onToggle={mockHandleToggle} />
       </ThemeProvider>
     );

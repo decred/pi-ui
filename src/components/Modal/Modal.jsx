@@ -89,13 +89,13 @@ const Modal = ({
           {children}
         </div>
         {!disableClose && (
-          <a
+          <button
             className={styles.modalClose}
             onClick={onCloseClick}
             data-testid="close"
             href="#">
             &times;
-          </a>
+          </button>
         )}
       </div>
     </ModalWrapper>,

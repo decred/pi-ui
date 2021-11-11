@@ -12,8 +12,7 @@ describe("CopyableText component", () => {
     const copyableText = create(
       <ThemeProvider
         themes={{ [DEFAULT_LIGHT_THEME_NAME]: defaultLightTheme }}
-        defaultThemeName={DEFAULT_LIGHT_THEME_NAME}
-      >
+        defaultThemeName={DEFAULT_LIGHT_THEME_NAME}>
         <CopyableText id="copy-id">test</CopyableText>
       </ThemeProvider>
     );

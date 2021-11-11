@@ -35,6 +35,5 @@ describe("Dropdown component", () => {
     expect(itemMockClick).toBeCalled();
     const afterClickItemsList = queryByTestId("items-list");
     expect(afterClickItemsList).toBeFalsy();
-    await wait();
   });
 });
