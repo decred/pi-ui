@@ -12,7 +12,7 @@ const TabDropdownTrigger = ({
   open,
   ArrowComponent,
   childrenTabs,
-  activeTabIndex
+  activeTabIndex,
 }) => (
   <div className={styles.activeDropdownTabWrapper}>
     {React.Children.map(childrenTabs, (child, index) => {
@@ -21,7 +21,7 @@ const TabDropdownTrigger = ({
           onClick: onClick,
           className: styles.activeDropdownTabClass,
           isActive: true,
-          mode: "dropdown"
+          mode: "dropdown",
         });
       }
     })}
@@ -101,7 +101,7 @@ const Tabs = ({
             overflowY: "hidden",
             opacity: 0,
             left: "40px",
-            right: "40px"
+            right: "40px",
           },
           from: {
             position: "absolute",
@@ -112,11 +112,13 @@ const Tabs = ({
                 ? `${slideMaxPosition}px`
                 : `-${slideMaxPosition}px`,
             right:
-              dir === "r2l" ? `-${slideMaxPosition}px` : `${slideMaxPosition}px`
+              dir === "r2l"
+                ? `-${slideMaxPosition}px`
+                : `${slideMaxPosition}px`,
           },
           enter: () => [
             { left: "0px", right: "0px", opacity: 1, overflowY: "hidden" },
-            { overflowY: "auto" }
+            { overflowY: "auto" },
           ],
           leave: () => async (next) => {
             await next({ overflowY: "hidden" });
@@ -129,11 +131,11 @@ const Tabs = ({
               right:
                 dir === "r2l"
                   ? `${slideMaxPosition}px`
-                  : `-${slideMaxPosition}px`
+                  : `-${slideMaxPosition}px`,
             });
           },
           config: { mass: 1, tension: 210, friction: 26 },
-          key: children[activeTabIndex]?.props?.children?.key
+          key: children[activeTabIndex]?.props?.children?.key,
         })
       : useTransition(activeTabIndex, {
           initial: { position: "absolute", opacity: 1 },
@@ -141,7 +143,7 @@ const Tabs = ({
           enter: { opacity: 1 },
           leave: { opacity: 0 },
           config: { duration: 350 },
-          keys: (item) => item
+          keys: (item) => item,
         });
 
   return (
@@ -177,7 +179,7 @@ TabDropdownTrigger.propTypes = {
   open: PropTypes.bool,
   ArrowComponent: PropTypes.func,
   childrenTabs: PropTypes.node,
-  activeTabIndex: PropTypes.number
+  activeTabIndex: PropTypes.number,
 };
 
 Tabs.propTypes = {
@@ -195,7 +197,7 @@ Tabs.propTypes = {
 Tabs.defaultProps = {
   wrap: false,
   mode: "horizontal",
-  contentAnimation: "fade"
+  contentAnimation: "fade",
 };
 
 export default Tabs;

@@ -4,7 +4,7 @@ import styles from "./styles.css";
 import { classNames } from "../../utils";
 import { mapToArray, convertObjectToUnixTimestamp } from "./helpers";
 
-const isValidDate = (date) => date && date.day && date.month && date.year
+const isValidDate = (date) => date && date.day && date.month && date.year;
 
 const DatePickerPad = ({
   padIndex,
@@ -20,7 +20,7 @@ const DatePickerPad = ({
   onPrevMonthClick,
   onNextMonthClick,
   onMonthClick,
-  onDayClick
+  onDayClick,
 }) => {
   const value = values[padIndex];
   const ymArr = years;
@@ -188,7 +188,7 @@ const DatePickerPad = ({
                     convertObjectToUnixTimestamp({
                       day: otherValue.day,
                       month: otherValue.month,
-                      year: otherValue.year
+                      year: otherValue.year,
                     })))
             ) {
               css = "select";
@@ -209,7 +209,7 @@ const DatePickerPad = ({
                     convertObjectToUnixTimestamp({
                       day: otherValue.day,
                       month: otherValue.month,
-                      year: otherValue.year
+                      year: otherValue.year,
                     })))
             ) {
               css = "select";
@@ -234,12 +234,12 @@ const DatePickerPad = ({
               const currentTimestamp = convertObjectToUnixTimestamp({
                 day: d,
                 month,
-                year
+                year,
               });
               const otherValueTimestamp = convertObjectToUnixTimestamp({
                 day: otherValue.day,
                 month: otherValue.month,
-                year: otherValue.year
+                year: otherValue.year,
               });
               switch (padIndex) {
                 case 0:
@@ -284,14 +284,14 @@ DatePickerPad.propTypes = {
   onPrevMonthClick: PropTypes.func,
   onNextMonthClick: PropTypes.func,
   onDayClick: PropTypes.func,
-  onMonthClick: PropTypes.func
+  onMonthClick: PropTypes.func,
 };
 
 DatePickerPad.defaultProps = {
   padIndex: 0,
   isMonthsMode: false,
   enableAllMonths: false,
-  lang: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  lang: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
 };
 
 export default DatePickerPad;

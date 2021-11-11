@@ -49,7 +49,7 @@ Button.propTypes = {
   size: PropTypes.oneOf(["sm", "md", "lg"]),
   type: PropTypes.oneOf(["button", "submit"]),
   kind: PropTypes.oneOf(["primary", "secondary", "disabled"]),
-  noBorder: PropTypes.bool
+  noBorder: PropTypes.bool,
 };
 
 Button.defaultProps = {
@@ -59,7 +59,7 @@ Button.defaultProps = {
   icon: false,
   loading: false,
   fullWidth: false,
-  noBorder: false
+  noBorder: false,
 };
 
 export default Button;

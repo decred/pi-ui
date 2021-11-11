@@ -50,7 +50,7 @@ const Table = ({
   rowClassName,
   bodyClassName,
   bodyCellClassName,
-  paginationGap
+  paginationGap,
 }) => {
   if (linesPerPage < 1) {
     throw new Error("Invalid prop. linesPerPage should be bigger than 1");
@@ -145,13 +145,13 @@ Table.propTypes = {
   rowClassName: PropTypes.string,
   bodyClassName: PropTypes.string,
   bodyCellClassName: PropTypes.string,
-  paginationGap: PropTypes.number
+  paginationGap: PropTypes.number,
 };
 
 Table.defaultProps = {
   linesPerPage: 10,
   disablePagination: false,
-  paginationGap: 2
+  paginationGap: 2,
 };
 
 export default Table;

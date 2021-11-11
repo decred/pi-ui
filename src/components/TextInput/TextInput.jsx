@@ -92,11 +92,11 @@ TextInput.propTypes = {
   wrapperClassNames: PropTypes.string,
   inputClassNames: PropTypes.string,
   labelClassNames: PropTypes.string,
-  messageClassNames: PropTypes.string
+  messageClassNames: PropTypes.string,
 };
 
 TextInput.defaultProps = {
-  type: "text"
+  type: "text",
 };
 
 export default TextInput;

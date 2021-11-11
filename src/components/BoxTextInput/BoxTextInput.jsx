@@ -75,13 +75,13 @@ const BoxTextInput = ({
 FormWrapper.propTypes = {
   className: PropTypes.string,
   onSubmit: PropTypes.func.isRequired,
-  children: PropTypes.node
+  children: PropTypes.node,
 };
 
 DefaultWrapper.propTypes = {
   className: PropTypes.string,
   onSubmit: PropTypes.func.isRequired,
-  children: PropTypes.node
+  children: PropTypes.node,
 };
 
 BoxTextInput.propTypes = {
@@ -94,12 +94,12 @@ BoxTextInput.propTypes = {
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   onChange: PropTypes.func,
   className: PropTypes.string,
-  inputClassName: PropTypes.string
+  inputClassName: PropTypes.string,
 };
 
 BoxTextInput.defaultProps = {
   rounded: false,
-  searchInput: false
+  searchInput: false,
 };
 
 export default BoxTextInput;

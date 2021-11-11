@@ -4,7 +4,7 @@ import { create } from "react-test-renderer";
 import {
   defaultLightTheme,
   ThemeProvider,
-  DEFAULT_LIGHT_THEME_NAME
+  DEFAULT_LIGHT_THEME_NAME,
 } from "../../../theme";
 
 describe("CopyableText component", () => {
@@ -12,7 +12,8 @@ describe("CopyableText component", () => {
     const copyableText = create(
       <ThemeProvider
         themes={{ [DEFAULT_LIGHT_THEME_NAME]: defaultLightTheme }}
-        defaultThemeName={DEFAULT_LIGHT_THEME_NAME}>
+        defaultThemeName={DEFAULT_LIGHT_THEME_NAME}
+      >
         <CopyableText id="copy-id">test</CopyableText>
       </ThemeProvider>
     );

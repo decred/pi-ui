@@ -35,7 +35,7 @@ SliderHandle.propTypes = {
   onTouchStart: PropTypes.func.isRequired,
   onMouseDown: PropTypes.func.isRequired,
   className: PropTypes.string,
-  dataTestId: PropTypes.string
+  dataTestId: PropTypes.string,
 };
 
 export default SliderHandle;

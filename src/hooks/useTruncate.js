@@ -22,7 +22,7 @@ const simpleClamp = (element) => {
       display: "block",
       overflow: "hidden",
       whiteSpace: "nowrap",
-      textOverflow: "ellipsis"
+      textOverflow: "ellipsis",
     },
     element
   );

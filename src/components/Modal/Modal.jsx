@@ -118,11 +118,11 @@ Modal.propTypes = {
   iconSize: PropTypes.string,
   iconComponent: PropTypes.node,
   disableClose: PropTypes.bool,
-  disableDismiss: PropTypes.bool
+  disableDismiss: PropTypes.bool,
 };
 
 Modal.defaultProps = {
-  disableClose: false
+  disableClose: false,
 };
 
 export default Modal;

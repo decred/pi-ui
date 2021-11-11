@@ -62,12 +62,12 @@ TextArea.propTypes = {
   wrapperClassNames: PropTypes.string,
   inputClassNames: PropTypes.string,
   placeholder: PropTypes.string,
-  wrapped: PropTypes.bool
+  wrapped: PropTypes.bool,
 };
 
 TextArea.defaultProps = {
   type: "text",
-  placeholder: ""
+  placeholder: "",
 };
 
 export default TextArea;

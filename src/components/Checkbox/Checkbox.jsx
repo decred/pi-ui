@@ -38,7 +38,7 @@ Checkbox.propTypes = {
   style: PropTypes.object,
   checked: PropTypes.bool,
   name: PropTypes.string,
-  id: PropTypes.string.isRequired
+  id: PropTypes.string.isRequired,
 };
 
 export default Checkbox;

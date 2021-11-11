@@ -4,7 +4,7 @@ import { create } from "react-test-renderer";
 import {
   defaultLightTheme,
   ThemeProvider,
-  DEFAULT_LIGHT_THEME_NAME
+  DEFAULT_LIGHT_THEME_NAME,
 } from "../../../theme";
 import { fireEvent, render } from "@testing-library/react";
 
@@ -13,7 +13,8 @@ describe("BoxTextInput component", () => {
     const boxTextInputForm = create(
       <ThemeProvider
         themes={{ [DEFAULT_LIGHT_THEME_NAME]: defaultLightTheme }}
-        defaultThemeName={DEFAULT_LIGHT_THEME_NAME}>
+        defaultThemeName={DEFAULT_LIGHT_THEME_NAME}
+      >
         <BoxTextInput searchInput={true} />
       </ThemeProvider>
     );
@@ -22,7 +23,8 @@ describe("BoxTextInput component", () => {
     const boxTextInputDefault = create(
       <ThemeProvider
         themes={{ [DEFAULT_LIGHT_THEME_NAME]: defaultLightTheme }}
-        defaultThemeName={DEFAULT_LIGHT_THEME_NAME}>
+        defaultThemeName={DEFAULT_LIGHT_THEME_NAME}
+      >
         <BoxTextInput />
       </ThemeProvider>
     );
@@ -35,7 +37,8 @@ describe("BoxTextInput component", () => {
     const { getByTestId, queryByTestId } = render(
       <ThemeProvider
         themes={{ [DEFAULT_LIGHT_THEME_NAME]: defaultLightTheme }}
-        defaultThemeName={DEFAULT_LIGHT_THEME_NAME}>
+        defaultThemeName={DEFAULT_LIGHT_THEME_NAME}
+      >
         <BoxTextInput onSubmit={mockedOnSubmit} searchInput={true} />
       </ThemeProvider>
     );

@@ -10,7 +10,7 @@ const DefaultLinkComponent = React.forwardRef(({ children, ...props }, ref) => (
 ));
 
 DefaultLinkComponent.propTypes = {
-  children: PropTypes.node
+  children: PropTypes.node,
 };
 
 const Link = React.forwardRef(
@@ -53,11 +53,11 @@ Link.propTypes = {
   dark: PropTypes.bool,
   className: PropTypes.string,
   noHoverEffect: PropTypes.bool,
-  truncate: PropTypes.bool
+  truncate: PropTypes.bool,
 };
 
 Link.defaultProps = {
-  customComponent: null
+  customComponent: null,
 };
 
 export default Link;

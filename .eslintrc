@@ -1,41 +1,6 @@
 {
-  "parser": "babel-eslint",
-  "extends": ["standard", "standard-react", "prettier"],
-  "env": {
-    "es6": true
-  },
-  "plugins": ["prettier", "react", "react-hooks"],
-  "parserOptions": {
-    "sourceType": "module",
-    "ecmaVersion": 6
-  },
-  "settings": {
-    "react": {
-      "version": "detect"
-    }
-  },
+  "extends": ["react-app", "react-app/jest", "prettier"],
   "rules": {
-    // don't force es6 functions to include space before paren
-    "space-before-function-paren": 0,
-    // allow specifying true explicitly for boolean props
-    "react/jsx-boolean-value": 0,
-    "react-hooks/exhaustive-deps": 2,
-    "react/jsx-closing-bracket-location": [
-      1,
-      { "selfClosing": "tag-aligned", "nonEmpty": "after-props" }
-    ],
-    // prettier config
-    "prettier/prettier": "error",
-    "eqeqeq": ["error", "smart"],
-    "comma-dangle": ["error", "never"],
-    "react/jsx-handler-names": 0
-  },
-  "overrides": [
-    {
-      "files": ["*test.js"],
-      "rules": {
-        "no-undef": "off"
-      }
-    }
-  ]
+    "eqeqeq": 0
+  }
 }

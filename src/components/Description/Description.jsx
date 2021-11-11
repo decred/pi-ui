@@ -6,7 +6,7 @@ const Description = ({ body }) =>
   body ? <div className={styles.description}>{body}</div> : null;
 
 Description.propTypes = {
-  body: PropTypes.node
+  body: PropTypes.node,
 };
 
 export default Description;

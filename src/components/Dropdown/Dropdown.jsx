@@ -17,7 +17,7 @@ const DefaultTrigger = ({
   title,
   open,
   dropdownArrowClassName,
-  ArrowComponent = Arrow
+  ArrowComponent = Arrow,
 }) => (
   <div className={styles.headerWrapper} data-testid="trigger" onClick={onClick}>
     <span className={styles.dropdownHeader}>{title}</span>
@@ -82,12 +82,12 @@ const Dropdown = ({
             // special for tabs-dropdown child won't have 'handleClose' prop
             return React.cloneElement(child, {
               itemindex: index,
-              onClick: handleCloseOnItemClick
+              onClick: handleCloseOnItemClick,
             });
           default:
             return React.cloneElement(child, {
               handleClose: handleCloseOnItemClick,
-              itemindex: index
+              itemindex: index,
             });
         }
       });
@@ -97,14 +97,14 @@ const Dropdown = ({
     from: { opacity: 0 },
     enter: { opacity: 1 },
     leave: { opacity: 0 },
-    duration: 200
+    duration: 200,
   });
   return (
     <div
       ref={dropdownRef}
       className={classNames(styles.dropdownWrapper, className)}
       style={{
-        width: customDropdownTrigger && customTriggerWidth
+        width: customDropdownTrigger && customTriggerWidth,
       }}
       {...props}>
       <Trigger
@@ -133,13 +133,13 @@ DefaultTrigger.propTypes = {
   title: PropTypes.string,
   open: PropTypes.bool,
   dropdownArrowClassName: PropTypes.string,
-  ArrowComponent: PropTypes.func
+  ArrowComponent: PropTypes.func,
 };
 
 Arrow.propTypes = {
   open: PropTypes.bool,
   onClick: PropTypes.func,
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 Dropdown.propTypes = {
@@ -152,12 +152,12 @@ Dropdown.propTypes = {
   children: PropTypes.node.isRequired,
   onDropdownClick: PropTypes.func,
   closeOnOutsideClick: PropTypes.bool,
-  closeOnItemClick: PropTypes.bool
+  closeOnItemClick: PropTypes.bool,
 };
 
 Dropdown.defaultProps = {
   closeOnOutsideClick: true,
-  closeOnItemClick: true
+  closeOnItemClick: true,
 };
 
 export default Dropdown;

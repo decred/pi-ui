@@ -3,7 +3,7 @@ import React, {
   useLayoutEffect,
   useMemo,
   createContext,
-  useContext
+  useContext,
 } from "react";
 import PropTypes from "prop-types";
 
@@ -15,7 +15,7 @@ export const ThemeProvider = ({
   themes,
   defaultThemeName,
   fonts,
-  children
+  children,
 }) => {
   const [themeName, setThemeName] = useState(defaultThemeName);
   const theme = useMemo(() => themes[themeName], [themes, themeName]);
@@ -33,8 +33,9 @@ export const ThemeProvider = ({
       value={{
         themeName,
         setThemeName,
-        theme
-      }}>
+        theme,
+      }}
+    >
       {children}
     </ThemeContext.Provider>
   );
@@ -49,7 +50,7 @@ ThemeProvider.propTypes = {
     }
   },
   fonts: PropTypes.array,
-  children: PropTypes.node
+  children: PropTypes.node,
 };
 
 const applyFontAsset = (fonts) => {

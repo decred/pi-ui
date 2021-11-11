@@ -17,8 +17,8 @@ const DarkLightToggle = ({ onToggle, toggled }) => {
       cx: toggled ? 39 : 13,
       cFill: getThemeProperty(theme, toggled ? "color-primary" : "color-gray"),
       lightOpacity: toggled ? 0 : 1,
-      darkOpacity: toggled ? 1 : 0
-    }
+      darkOpacity: toggled ? 1 : 0,
+    },
   });
 
   return (
@@ -92,7 +92,7 @@ const DarkLightToggle = ({ onToggle, toggled }) => {
 
 DarkLightToggle.propTypes = {
   onToggle: PropTypes.func,
-  toggled: PropTypes.bool.isRequired
+  toggled: PropTypes.bool.isRequired,
 };
 
 export default DarkLightToggle;

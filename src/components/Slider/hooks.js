@@ -4,7 +4,7 @@ import {
   addEventListeners,
   DIMENSIONS_MAP,
   POSITIONS_MAP,
-  POSITIONS_MAP_CAPITALIZED
+  POSITIONS_MAP_CAPITALIZED,
 } from "./helpers";
 
 function useSliderHandle(
@@ -79,7 +79,7 @@ function useSliderHandle(
     e.preventDefault();
     document.removeEventListener("mousemove", handleDrag);
     document.removeEventListener("touchmove", handleDrag, {
-      passive: false
+      passive: false,
     });
     document.removeEventListener("mouseup", handleDragEnd);
     document.removeEventListener("touchend", handleDragEnd);
@@ -109,7 +109,7 @@ function useSliderHandle(
     handle,
     handleDrag,
     handleDragEnd,
-    change
+    change,
   };
 }
 
@@ -119,10 +119,10 @@ function useSlider(double, disabled, axis, min, max, step, handles) {
   if (double) {
     const [leftHandle, rightHandle] = handles;
     leftHandle.barrier = useCallback((value) => value <= rightHandle.value, [
-      rightHandle.value
+      rightHandle.value,
     ]);
     rightHandle.barrier = useCallback((value) => value >= leftHandle.value, [
-      leftHandle.value
+      leftHandle.value,
     ]);
   }
 
@@ -188,7 +188,7 @@ function useSlider(double, disabled, axis, min, max, step, handles) {
     container,
     handleTrackMouseDown,
     valueStyle,
-    handleHooks
+    handleHooks,
   };
 }
 

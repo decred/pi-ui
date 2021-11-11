@@ -6,7 +6,7 @@ const sizes = {
   sm: "7",
   md: "16",
   lg: "20",
-  xlg: "30"
+  xlg: "30",
 };
 
 const icons = (type, backgroundColor, iconColor) => {
@@ -862,7 +862,7 @@ const icons = (type, backgroundColor, iconColor) => {
           d="M445.5,356.2V157.9c0-95-94.8-94.8-94.8-94.8h-31.6V0l-94.8,94.8l94.8,94.8v-63.2c0,0,13.2,0,31.6,0 c27.9,0,31.6,31.6,31.6,31.6v198.3c-18.8,10.9-31.6,31-31.6,54.4c0,34.9,28.3,63.2,63.2,63.2c34.9,0,63.2-28.3,63.2-63.2 C477.1,387.3,464.4,367.2,445.5,356.2L445.5,356.2z M413.9,442.2c-17.4,0-31.6-14.1-31.6-31.6c0-17.4,14.2-31.6,31.6-31.6 c17.5,0,31.6,14.2,31.6,31.6C445.5,428.1,431.4,442.2,413.9,442.2z M66.5,155.8V354c0,95,94.8,94.8,94.8,94.8h31.6V512l94.8-94.8 l-94.8-94.8v63.2c0,0-13.2,0-31.6,0c-27.9,0-31.6-31.6-31.6-31.6V155.8c18.8-11,31.6-31.1,31.6-54.4c0-34.9-28.3-63.2-63.2-63.2 c-34.9,0-63.2,28.3-63.2,63.2C34.9,124.7,47.6,144.8,66.5,155.8L66.5,155.8z M98.1,134.3c-17.4,0-31.6-14.1-31.6-31.6 c0-17.4,14.2-31.6,31.6-31.6c17.5,0,31.6,14.2,31.6,31.6C129.6,120.2,115.5,134.3,98.1,134.3z"
         />
       </g>
-    )
+    ),
   }[type];
 };
 export const IconWrapper = React.forwardRef(
@@ -906,19 +906,19 @@ IconWrapper.propTypes = {
   className: PropTypes.string,
   size: PropTypes.oneOfType([
     PropTypes.oneOf(["sm", "md", "lg", "xlg"]),
-    PropTypes.number
+    PropTypes.number,
   ]),
   backgroundColor: PropTypes.string,
   onClick: PropTypes.func,
   iconColor: PropTypes.string,
   viewBox: PropTypes.string,
   height: PropTypes.number,
-  width: PropTypes.number
+  width: PropTypes.number,
 };
 
 IconWrapper.defaultProps = {
   size: "md",
-  viewBox: "0 0 450 450"
+  viewBox: "0 0 450 450",
 };
 
 export default React.memo(IconWrapper);

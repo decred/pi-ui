@@ -20,7 +20,7 @@ const DropdownIndicator = (props) => {
 };
 
 DropdownIndicator.propTypes = {
-  selectProps: PropTypes.object
+  selectProps: PropTypes.object,
 };
 
 const Select = ({ ...props }) => {
@@ -47,11 +47,11 @@ Select.propTypes = {
   isSearchable: PropTypes.bool,
   value: PropTypes.object,
   onChange: PropTypes.func,
-  mini: PropTypes.bool
+  mini: PropTypes.bool,
 };
 
 Select.defaultProps = {
-  isSearchable: false
+  isSearchable: false,
 };
 
 export default React.memo(Select);

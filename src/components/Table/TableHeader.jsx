@@ -7,7 +7,7 @@ const TableHeader = ({
   headers,
   headerCellClassName,
   rowClassName,
-  className
+  className,
 }) => {
   return (
     <thead className={classNames(styles.tableHead, className)}>
@@ -29,7 +29,7 @@ TableHeader.propTypes = {
   headers: PropTypes.arrayOf(PropTypes.string).isRequired,
   headerCellClassName: PropTypes.string,
   rowClassName: PropTypes.string,
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 export default TableHeader;

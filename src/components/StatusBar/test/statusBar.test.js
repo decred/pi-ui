@@ -4,7 +4,7 @@ import { create } from "react-test-renderer";
 import {
   defaultLightTheme,
   ThemeProvider,
-  DEFAULT_LIGHT_THEME_NAME
+  DEFAULT_LIGHT_THEME_NAME,
 } from "../../../theme";
 
 describe("StatusBar component", () => {
@@ -12,19 +12,20 @@ describe("StatusBar component", () => {
     const statusBar = create(
       <ThemeProvider
         themes={{ [DEFAULT_LIGHT_THEME_NAME]: defaultLightTheme }}
-        defaultThemeName={DEFAULT_LIGHT_THEME_NAME}>
+        defaultThemeName={DEFAULT_LIGHT_THEME_NAME}
+      >
         <StatusBar
           status={[
             {
               label: "Yes",
               amount: 300,
-              color: "green"
+              color: "green",
             },
             {
               label: "No",
               amount: 200,
-              color: "orange"
-            }
+              color: "orange",
+            },
           ]}
         />
       </ThemeProvider>

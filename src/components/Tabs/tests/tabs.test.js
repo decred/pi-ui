@@ -3,7 +3,7 @@ import { create } from "react-test-renderer";
 import {
   defaultLightTheme,
   ThemeProvider,
-  DEFAULT_LIGHT_THEME_NAME
+  DEFAULT_LIGHT_THEME_NAME,
 } from "../../../theme";
 import { render, fireEvent, wait } from "@testing-library/react";
 import Tabs from "../Tabs";
@@ -14,7 +14,8 @@ describe("Tabs Component", () => {
     const tabs = create(
       <ThemeProvider
         themes={{ [DEFAULT_LIGHT_THEME_NAME]: defaultLightTheme }}
-        defaultThemeName={DEFAULT_LIGHT_THEME_NAME}>
+        defaultThemeName={DEFAULT_LIGHT_THEME_NAME}
+      >
         <Tabs onSelectTab={jest.fn()} activeTabIndex={0}>
           <Tab label="tab1" count={1}>
             <div>test1</div>
@@ -37,7 +38,8 @@ describe("Tabs Component", () => {
       return (
         <ThemeProvider
           themes={{ [DEFAULT_LIGHT_THEME_NAME]: defaultLightTheme }}
-          defaultThemeName={DEFAULT_LIGHT_THEME_NAME}>
+          defaultThemeName={DEFAULT_LIGHT_THEME_NAME}
+        >
           <Tabs onSelectTab={setActiveTabIndex} activeTabIndex={activeTabIndex}>
             <Tab label="tab1" count={1}>
               <div>test1</div>

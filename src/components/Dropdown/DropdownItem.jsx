@@ -28,7 +28,7 @@ DropdownItem.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node,
   handleClose: PropTypes.func,
-  onClick: PropTypes.func
+  onClick: PropTypes.func,
 };
 
 export default DropdownItem;

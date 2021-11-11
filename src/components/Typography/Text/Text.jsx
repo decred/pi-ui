@@ -3,28 +3,28 @@ import React from "react";
 import { useTruncate } from "../../../hooks";
 import {
   classNames,
-  idPropTypeCheckForTruncatedComponents
+  idPropTypeCheckForTruncatedComponents,
 } from "../../../utils";
 import styles from "./styles.css";
 
 const TEXT_ALIGN_MAP = {
   center: styles.textAlignCenter,
   start: styles.textAlignStart,
-  end: styles.textAlignEnd
+  end: styles.textAlignEnd,
 };
 
 const SIZE_MAP = {
   small: styles.sizeSmall,
   normal: styles.sizeNormal,
   large: styles.sizeLarge,
-  xlarge: styles.sizeXLarge
+  xlarge: styles.sizeXLarge,
 };
 
 const WEIGHT_MAP = {
   light: styles.weightLight,
   regular: styles.weightRegular,
   semibold: styles.weightSemiBold,
-  bold: styles.weightBold
+  bold: styles.weightBold,
 };
 
 const COLOR_MAP = {
@@ -36,11 +36,11 @@ const COLOR_MAP = {
   grayDark: styles.colorGrayDark,
   green: styles.colorGreen,
   yellow: styles.colorYellow,
-  orange: styles.colorOrange
+  orange: styles.colorOrange,
 };
 
 const BG_COLOR_MAP = {
-  blueLighter: styles.bgColorBlueLighter
+  blueLighter: styles.bgColorBlueLighter,
 };
 
 const Text = ({
@@ -93,7 +93,7 @@ Text.propTypes = {
   monospace: PropTypes.bool,
   linesBeforeTruncate: PropTypes.number,
   id: idPropTypeCheckForTruncatedComponents,
-  truncateTrigger: PropTypes.bool
+  truncateTrigger: PropTypes.bool,
 };
 
 Text.defaultProps = {
@@ -103,7 +103,7 @@ Text.defaultProps = {
   color: "default",
   truncate: false,
   monospace: false,
-  linesBeforeTruncate: 1
+  linesBeforeTruncate: 1,
 };
 
 export default Text;

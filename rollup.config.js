@@ -14,13 +14,13 @@ export default {
     {
       file: pkg.main,
       format: "cjs",
-      sourcemap: true
+      sourcemap: true,
     },
     {
       file: pkg.module,
       format: "es",
-      sourcemap: true
-    }
+      sourcemap: true,
+    },
   ],
   external: ["react-select"],
   plugins: [
@@ -28,19 +28,19 @@ export default {
     postcss({
       extract: true,
       modules: {
-        globalModulePaths: ["src/components/Select/styles.css"]
-      }
+        globalModulePaths: ["src/components/Select/styles.css"],
+      },
     }),
     url({
       include: ["**/*.woff", "**/*.ttf", "**/*.png", "**/*.svg"],
-      limit: Infinity // This allows files from any size to be bundled. If we want larger files copied
+      limit: Infinity, // This allows files from any size to be bundled. If we want larger files copied
       // we need to reduce the limit.
     }),
     svgr(),
     babel({
-      exclude: "node_modules/**"
+      exclude: "node_modules/**",
     }),
     resolve(),
-    commonjs()
-  ]
+    commonjs(),
+  ],
 };

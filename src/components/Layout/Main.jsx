@@ -18,7 +18,7 @@ Main.propTypes = {
   children: PropTypes.node,
   style: PropTypes.object,
   fill: PropTypes.bool,
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 export default Main;

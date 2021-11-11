@@ -31,11 +31,11 @@ P.propTypes = {
   style: PropTypes.object,
   truncate: PropTypes.bool,
   linesBeforeTruncate: PropTypes.number,
-  id: idPropTypeCheckForTruncatedComponents
+  id: idPropTypeCheckForTruncatedComponents,
 };
 
 P.defaultProps = {
   truncate: false,
-  linesBeforeTruncate: 1
+  linesBeforeTruncate: 1,
 };
 export default P;

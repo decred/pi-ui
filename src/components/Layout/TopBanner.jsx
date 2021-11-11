@@ -17,7 +17,7 @@ const TopBanner = ({ children, style, className, ...props }) => {
 TopBanner.propTypes = {
   children: PropTypes.node,
   style: PropTypes.object,
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 export default TopBanner;

@@ -32,7 +32,7 @@ TableBody.propTypes = {
   data: PropTypes.array.isRequired,
   className: PropTypes.string,
   rowClassName: PropTypes.string,
-  bodyCellClassName: PropTypes.string
+  bodyCellClassName: PropTypes.string,
 };
 
 export default TableBody;

@@ -17,7 +17,7 @@ const Sidebar = ({ children, style, className, ...props }) => {
 Sidebar.propTypes = {
   children: PropTypes.node,
   style: PropTypes.object,
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 export default Sidebar;

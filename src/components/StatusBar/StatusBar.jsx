@@ -17,7 +17,7 @@ const StatusBar = ({
   className,
   decimalPlaces,
   layout,
-  showPercent
+  showPercent,
 }) => {
   const currenttotal = status.reduce((acc, cur) => acc + cur.amount, 0);
   const totalPercentage = max ? (currenttotal / max) * 100 : 100;
@@ -29,7 +29,7 @@ const StatusBar = ({
     return {
       ...item,
       percentage,
-      widthPercentage
+      widthPercentage,
     };
   });
 
@@ -82,7 +82,7 @@ const StatusBar = ({
                   <div
                     className={styles.markerWrapper}
                     style={{
-                      left: markerPosition
+                      left: markerPosition,
                     }}>
                     <Tooltip
                       content={markerTooltipText || markerPosition}
@@ -129,7 +129,7 @@ const DefaultInfoComp = ({ currenttotal, max }) => (
 
 DefaultInfoComp.propTypes = {
   currenttotal: PropTypes.number,
-  max: PropTypes.number
+  max: PropTypes.number,
 };
 
 const StatusOption = ({ percentage, color, className }) => (
@@ -137,7 +137,7 @@ const StatusOption = ({ percentage, color, className }) => (
     className={className}
     style={{
       width: `${percentage}%`,
-      backgroundColor: color
+      backgroundColor: color,
     }}
   />
 );
@@ -145,7 +145,7 @@ const StatusOption = ({ percentage, color, className }) => (
 StatusOption.propTypes = {
   percentage: PropTypes.number,
   color: PropTypes.string,
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 StatusBar.propTypes = {
@@ -160,7 +160,7 @@ StatusBar.propTypes = {
   className: PropTypes.string,
   decimalPlaces: PropTypes.number,
   layout: PropTypes.string,
-  showPercent: PropTypes.bool
+  showPercent: PropTypes.bool,
 };
 
 StatusBar.defaultProps = {
@@ -169,7 +169,7 @@ StatusBar.defaultProps = {
   showMarker: true,
   decimalPlaces: 1,
   layout: "default",
-  showPercent: true
+  showPercent: true,
 };
 
 export default StatusBar;

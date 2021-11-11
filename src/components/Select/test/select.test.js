@@ -8,8 +8,8 @@ describe("Select component", () => {
   const options = [
     {
       value: "top",
-      label: "Top"
-    }
+      label: "Top",
+    },
   ];
   test("Matches the snapshot", () => {
     const select = create(<Select options={options} />);
