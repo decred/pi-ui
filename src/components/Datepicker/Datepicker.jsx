@@ -45,11 +45,10 @@ const DatePicker = ({
     setYearsState(yearArr);
   }, [yearArr]);
   const yearIndexes = useMemo(() => [0, 0], []);
-  const values = useMemo(() => validValues(value, yearArr, yearIndexes), [
-    value,
-    yearArr,
-    yearIndexes,
-  ]);
+  const values = useMemo(
+    () => validValues(value, yearArr, yearIndexes),
+    [value, yearArr, yearIndexes]
+  );
 
   const isDefaultPicker = useMemo(() => !children, [children]);
 

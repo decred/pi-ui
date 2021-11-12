@@ -17,12 +17,8 @@ const Slider = ({
   rangeClassName,
   ...props
 }) => {
-  const {
-    container,
-    handleTrackMouseDown,
-    valueStyle,
-    handleHooks,
-  } = useSlider(double, disabled, axis, min, max, step, handles);
+  const { container, handleTrackMouseDown, valueStyle, handleHooks } =
+    useSlider(double, disabled, axis, min, max, step, handles);
 
   const [leftHandleHook, rightHandleHook] = handleHooks;
 

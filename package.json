@@ -13,7 +13,7 @@
     "npm": ">=5"
   },
   "scripts": {
-    "prettier": "prettier \"src/**/*.js\"",
+    "prettier": "prettier \"src/**/*.(js|jsx)\"",
     "format": "yarn prettier --write",
     "test:format": "yarn prettier --check",
     "test:ci": "npm run test:format && npm run lint:css && npm run lint:js && cross-env NODE_OPTIONS=--experimental-vm-modules jest --no-cache",

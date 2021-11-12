@@ -252,7 +252,8 @@ const DatePickerPad = ({
                     css = "disable";
                   }
                   break;
-                default: break;
+                default:
+                  break;
               }
             }
             const clickHandler = css !== "disable" ? onDayClick : undefined;
