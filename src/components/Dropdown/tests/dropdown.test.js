@@ -2,7 +2,7 @@ import React from "react";
 import Dropdown from "../Dropdown";
 import DropdownItem from "../DropdownItem";
 import { create } from "react-test-renderer";
-import { fireEvent, render, wait } from "@testing-library/react";
+import { fireEvent, render } from "@testing-library/react";
 
 describe("Dropdown component", () => {
   test("Matches snapshot", () => {
