@@ -7,23 +7,24 @@ jobs:
     strategy:
       matrix:
         node-version: [14.x, 15.x]
+      fail-fast: false
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Use nodejs ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-    - name: yarn
-      run: yarn
-    - name: linter checks
-      run: yarn lint
-    - name: tests
-      run: |
-        yarn test
-      env:
-        CI: true
-    - name: build
-      run: yarn build
-    - name: docz build
-      run: yarn docz:build
+      - uses: actions/checkout@v2
+      - name: Use nodejs ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: yarn
+        run: yarn
+      - name: linter checks
+        run: yarn lint
+      - name: tests
+        run: |
+          yarn test
+        env:
+          CI: true
+      - name: build
+        run: yarn build
+      - name: docz build
+        run: yarn docz:build
