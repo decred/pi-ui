@@ -9,30 +9,45 @@
 .radioButton .circle {
   display: inline-block;
   position: relative;
-  top: 0.5rem;
+  top: 0.1rem;
   margin: 0 0.5rem 0 0;
-  width: 2rem;
-  height: 2rem;
+  width: 1.4rem;
+  height: 1.4rem;
   border-radius: 1.1rem;
-  border: 0.2rem solid var(--color-primary-dark);
+  border: 0.1rem solid var(--radio-button-stroke-color);
   background-color: transparent;
+}
+
+.checked {
+  border: 0.1rem solid var(--radio-button-selected-stroke-color) !important;
 }
 
 .radioButton .dot {
   border-radius: 1.1rem;
-  width: 1.2rem;
-  height: 1.2rem;
+  width: 0.6rem;
+  height: 0.6rem;
   position: absolute;
-  top: 0.9rem;
+  top: 0.7rem;
   left: 1rem;
   display: block;
-  background: var(--color-primary-dark);
+  background: var(--radio-button-dot-color);
 }
 
 .radioButton.disabled,
 .radioButton.disabled .dot,
 .radioButton.disabled .circle {
   cursor: not-allowed;
+  color: var(--color-gray-light);
+}
+
+.radioButton.disabled .dot {
+  background: var(--radio-button-dot-color);
+  opacity: 0.5;
+}
+
+.radioButton.disabled .circle {
+  border: 0.1rem solid var(--radio-button-stroke-color);
+  opacity: 0.5;
 }
 
 .radioButton input[type="radio"] {
@@ -41,7 +56,7 @@
 }
 
 .radioButton input[type="radio"]:focus + label > .circle {
-  box-shadow: 0 0 0.3rem 0.1rem var(--color-primary-dark);
+  box-shadow: 0 0 0.2rem 0.05rem var(--color-primary);
 }
 
 .radioButton input[type="radio"]:disabled {

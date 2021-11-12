@@ -9,11 +9,12 @@ const customPlugin = () =>
     },
   });
 
-export default {
+const configs = {
   title: "pi-ui",
   description: "Politeia UI library",
   src: "./src",
   wrapper: "src/docs/Wrapper",
+  playground: "src/docs/Playground",
   plugins: [css({ preprocessor: "postcss", cssmodules: true }), customPlugin()],
   themeConfig: {
     showPlaygroundEditor: true,
@@ -25,3 +26,5 @@ export default {
     },
   },
 };
+
+export default configs;
