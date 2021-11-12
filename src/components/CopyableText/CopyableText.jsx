@@ -46,8 +46,8 @@ const CopyableText = ({
 
 CopyableText.propTypes = {
   truncate: PropTypes.bool,
-  children: PropTypes.string,
-  hoverText: PropTypes.string,
+  children: PropTypes.node,
+  hoverText: PropTypes.node,
   className: PropTypes.string,
   tooltipPlacement: PropTypes.string,
   id: idPropTypeCheckForTruncatedComponents,

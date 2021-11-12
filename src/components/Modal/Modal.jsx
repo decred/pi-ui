@@ -113,7 +113,7 @@ Modal.propTypes = {
   children: PropTypes.node.isRequired,
   show: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
-  title: PropTypes.string,
+  title: PropTypes.node,
   iconType: PropTypes.string,
   iconSize: PropTypes.string,
   iconComponent: PropTypes.node,

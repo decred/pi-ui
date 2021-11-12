@@ -151,7 +151,7 @@ StatusOption.propTypes = {
 StatusBar.propTypes = {
   status: PropTypes.array.isRequired,
   markerPosition: PropTypes.string,
-  markerTooltipText: PropTypes.string,
+  markerTooltipText: PropTypes.node,
   markerTooltipClassName: PropTypes.string,
   renderMarkerComponent: PropTypes.element,
   renderStatusInfoComponent: PropTypes.element,

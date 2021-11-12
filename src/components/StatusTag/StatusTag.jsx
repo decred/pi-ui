@@ -38,7 +38,7 @@ const StatusTag = ({ type, text, className }) => {
 
 StatusTag.propTypes = {
   type: PropTypes.oneOf(Object.keys(ICONS_MAP)),
-  text: PropTypes.string,
+  text: PropTypes.node,
   className: PropTypes.string,
 };
 

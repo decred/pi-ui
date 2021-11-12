@@ -85,10 +85,10 @@ DefaultWrapper.propTypes = {
 };
 
 BoxTextInput.propTypes = {
-  placeholder: PropTypes.string,
+  placeholder: PropTypes.node,
   id: PropTypes.string,
   onSubmit: PropTypes.func,
-  error: PropTypes.string,
+  error: PropTypes.node,
   rounded: PropTypes.bool,
   searchInput: PropTypes.bool,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
