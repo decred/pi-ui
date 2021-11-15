@@ -55,10 +55,6 @@
   position: fixed;
 }
 
-.radioButton input[type="radio"]:focus + label > .circle {
-  box-shadow: 0 0 0.2rem 0.05rem var(--color-primary);
-}
-
 .radioButton input[type="radio"]:disabled {
   pointer-events: none;
 }
