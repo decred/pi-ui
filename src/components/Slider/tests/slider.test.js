@@ -21,12 +21,12 @@ describe("Slider component", () => {
         handles={[
           {
             value: value0,
-            onChange: mockHandleChange0
+            onChange: mockHandleChange0,
           },
           {
             value: value1,
-            onChange: mockHandleChange1
-          }
+            onChange: mockHandleChange1,
+          },
         ]}
       />
     );

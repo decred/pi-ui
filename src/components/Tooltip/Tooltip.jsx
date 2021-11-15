@@ -46,12 +46,12 @@ Tooltip.propTypes = {
   content: PropTypes.node,
   placement: PropTypes.string,
   className: PropTypes.string,
-  contentClassName: PropTypes.string
+  contentClassName: PropTypes.string,
 };
 
 Tooltip.defaultProps = {
   placement: "top",
-  content: "content"
+  content: "content",
 };
 
 export default Tooltip;

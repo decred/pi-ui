@@ -17,7 +17,7 @@ const PageDetails = ({ children, style, className, ...props }) => {
 PageDetails.propTypes = {
   children: PropTypes.node,
   style: PropTypes.object,
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 export default PageDetails;

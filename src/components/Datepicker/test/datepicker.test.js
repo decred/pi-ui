@@ -12,7 +12,7 @@ describe("DatePicker component", () => {
   test("lang prop values are used as months", () => {
     const years = {
       min: { year: 2018, month: 1, day: 25 },
-      max: { year: 2020, month: 2, day: 4 }
+      max: { year: 2020, month: 2, day: 4 },
     };
     const monthsTranslations = [
       "Jan",
@@ -26,7 +26,7 @@ describe("DatePicker component", () => {
       "Sep",
       "Oct",
       "Nov",
-      "Dec"
+      "Dec",
     ];
     const { queryByText, rerender, unmount } = render(
       <DatePicker

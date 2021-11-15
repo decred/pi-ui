@@ -3,7 +3,7 @@ import React, {
   useMemo,
   useEffect,
   useCallback,
-  useLayoutEffect
+  useLayoutEffect,
 } from "react";
 import PropTypes from "prop-types";
 import Tappable from "react-tapper";
@@ -20,7 +20,7 @@ import {
   hasDateValueChanged,
   getIndexByYear,
   duplicateToArray,
-  makeLabelText
+  makeLabelText,
 } from "./helpers";
 
 const DatePicker = ({
@@ -36,7 +36,7 @@ const DatePicker = ({
   onChange,
   onShow,
   onYearChange,
-  isMonthsMode
+  isMonthsMode,
 }) => {
   const { themeName } = useTheme();
   const yearArr = useMemo(() => getYearArray(years), [years]);
@@ -45,11 +45,10 @@ const DatePicker = ({
     setYearsState(yearArr);
   }, [yearArr]);
   const yearIndexes = useMemo(() => [0, 0], []);
-  const values = useMemo(() => validValues(value, yearArr, yearIndexes), [
-    value,
-    yearArr,
-    yearIndexes
-  ]);
+  const values = useMemo(
+    () => validValues(value, yearArr, yearIndexes),
+    [value, yearArr, yearIndexes]
+  );
 
   const isDefaultPicker = useMemo(() => !children, [children]);
 
@@ -60,7 +59,7 @@ const DatePicker = ({
   );
   const [monthsState, setMonthsState] = useState([
     values[0] ? values[0].month : yearsState[0].min.month,
-    values[1] ? values[1].month : yearsState[0].min.month
+    values[1] ? values[1].month : yearsState[0].min.month,
   ]);
   const [showedState, setShowedState] = useState(show);
   const [yearIndexesState, setYearIndexesState] = useState(yearIndexes);
@@ -90,7 +89,7 @@ const DatePicker = ({
       setLabelYearsState,
       setValuesState,
       yearIndexesState,
-      setYearIndexesState
+      setYearIndexesState,
     ]
   );
 
@@ -148,7 +147,7 @@ const DatePicker = ({
       labelYearsState,
       monthsState,
       yearsState,
-      yearIndexesState
+      yearIndexesState,
     ]
   );
 
@@ -248,7 +247,7 @@ const DatePicker = ({
       labelYearsState,
       valuesState,
       yearIndexesState,
-      yearsState
+      yearsState,
     ]
   );
 
@@ -292,7 +291,7 @@ const DatePicker = ({
       setValuesState,
       setYearIndexesState,
       setLabelYearsState,
-      yearArr
+      yearArr,
     ]
   );
 
@@ -384,7 +383,7 @@ DatePicker.propTypes = {
   years: PropTypes.oneOfType([
     PropTypes.array,
     PropTypes.object,
-    PropTypes.number
+    PropTypes.number,
   ]),
   value: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
   isRange: PropTypes.bool,
@@ -397,7 +396,7 @@ DatePicker.propTypes = {
   show: PropTypes.bool,
   isMonthsMode: PropTypes.bool,
   className: PropTypes.string,
-  children: PropTypes.node
+  children: PropTypes.node,
 };
 
 DatePicker.defaultProps = {
@@ -405,7 +404,7 @@ DatePicker.defaultProps = {
   onChange(year, month, idx) {},
   show: false,
   isMonthsMode: false,
-  isRange: false
+  isRange: false,
 };
 
 export default DatePicker;

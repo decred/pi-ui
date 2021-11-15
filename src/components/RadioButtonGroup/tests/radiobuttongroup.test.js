@@ -5,7 +5,7 @@ import { RadioButtonGroup } from "../RadioButtonGroup";
 
 const options = [
   { label: "foo", value: 1 },
-  { label: "bar", value: 2 }
+  { label: "bar", value: 2 },
 ];
 describe("RadioButtonGroup component", () => {
   test("Matches snapshot", () => {

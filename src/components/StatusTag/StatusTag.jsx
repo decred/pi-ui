@@ -20,7 +20,7 @@ const ICONS_MAP = {
   bluePending: pendingIcon,
   yellowTime: timeYellowIcon,
   blackTime: timeBlackIcon,
-  blueTime: timeBlueIcon
+  blueTime: timeBlueIcon,
 };
 
 const getIcon = (type) => ICONS_MAP[type];
@@ -39,11 +39,11 @@ const StatusTag = ({ type, text, className }) => {
 StatusTag.propTypes = {
   type: PropTypes.oneOf(Object.keys(ICONS_MAP)),
   text: PropTypes.string,
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 StatusTag.defaultProps = {
-  type: "grayNegative"
+  type: "grayNegative",
 };
 
 export default StatusTag;

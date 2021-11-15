@@ -3,7 +3,7 @@
   "rules": {
     "block-no-empty": null,
     "no-empty-source": null,
-    "unit-blacklist": [
+    "unit-disallowed-list": [
       "cm",
       "mm",
       "in",

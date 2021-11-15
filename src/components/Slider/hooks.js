@@ -1,10 +1,10 @@
-import { useCallback, useEffect, useMemo, useRef } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import {
   getClientPosition,
   addEventListeners,
   DIMENSIONS_MAP,
   POSITIONS_MAP,
-  POSITIONS_MAP_CAPITALIZED
+  POSITIONS_MAP_CAPITALIZED,
 } from "./helpers";
 
 function useSliderHandle(
@@ -33,10 +33,12 @@ function useSliderHandle(
     if (value < min) onChange(min);
   }, [value, min, max, step, onChange, unavailable]);
 
-  if (double && !barrier(value)) {
-    if (unavailable) return;
-    onChange(value - step);
-  }
+  useEffect(() => {
+    if (double && !barrier(value)) {
+      if (unavailable) return;
+      onChange(value - step);
+    }
+  }, [double, barrier, value, step, onChange, unavailable]);
 
   const position = useMemo(() => {
     let newValue = ((value - min) / (max - min)) * 100;
@@ -49,9 +51,8 @@ function useSliderHandle(
 
   const change = (position) => {
     if (unavailable) return;
-    const dimension = container.current.getBoundingClientRect()[
-      DIMENSIONS_MAP[axis]
-    ];
+    const dimension =
+      container.current.getBoundingClientRect()[DIMENSIONS_MAP[axis]];
     let ds = 0;
     if (position < 0) position = 0;
     if (position > dimension) position = dimension;
@@ -79,7 +80,7 @@ function useSliderHandle(
     e.preventDefault();
     document.removeEventListener("mousemove", handleDrag);
     document.removeEventListener("touchmove", handleDrag, {
-      passive: false
+      passive: false,
     });
     document.removeEventListener("mouseup", handleDragEnd);
     document.removeEventListener("touchend", handleDragEnd);
@@ -109,24 +110,22 @@ function useSliderHandle(
     handle,
     handleDrag,
     handleDragEnd,
-    change
+    change,
   };
 }
 
 function useSlider(double, disabled, axis, min, max, step, handles) {
   const container = useRef(null);
   const unavailable = max - min <= step || disabled;
+  const [leftHandle, rightHandle] = handles;
+
   if (double) {
-    const [leftHandle, rightHandle] = handles;
-    leftHandle.barrier = useCallback((value) => value <= rightHandle.value, [
-      rightHandle.value
-    ]);
-    rightHandle.barrier = useCallback((value) => value >= leftHandle.value, [
-      leftHandle.value
-    ]);
+    leftHandle.barrier = (value) => value <= rightHandle.value;
+    rightHandle.barrier = (value) => value >= leftHandle.value;
   }
 
   const handleHooks = handles.map((handle) =>
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     useSliderHandle(
       container,
       double,
@@ -188,7 +187,7 @@ function useSlider(double, disabled, axis, min, max, step, handles) {
     container,
     handleTrackMouseDown,
     valueStyle,
-    handleHooks
+    handleHooks,
   };
 }
 

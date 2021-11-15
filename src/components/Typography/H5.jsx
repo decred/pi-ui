@@ -31,12 +31,12 @@ H5.propTypes = {
   style: PropTypes.object,
   truncate: PropTypes.bool,
   linesBeforeTruncate: PropTypes.number,
-  id: idPropTypeCheckForTruncatedComponents
+  id: idPropTypeCheckForTruncatedComponents,
 };
 
 H5.defaultProps = {
   truncate: false,
-  linesBeforeTruncate: 1
+  linesBeforeTruncate: 1,
 };
 
 export default H5;

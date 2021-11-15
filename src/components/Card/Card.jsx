@@ -25,7 +25,7 @@ const Card = ({
         className={styles.marker}
         style={{
           borderLeftColor: markerColor,
-          borderTopColor: markerColor
+          borderTopColor: markerColor,
         }}
       />
     )}
@@ -39,11 +39,11 @@ Card.propTypes = {
   paddingSize: PropTypes.oneOf(["small", "medium", "large"]),
   marker: PropTypes.bool,
   markerColor: PropTypes.string,
-  style: PropTypes.object
+  style: PropTypes.object,
 };
 
 Card.defaultProps = {
-  markerColor: "var(--color-yellow)"
+  markerColor: "var(--color-yellow)",
 };
 
 export default Card;

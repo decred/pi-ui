@@ -5,18 +5,18 @@ import Table from "../Table";
 import {
   defaultLightTheme,
   ThemeProvider,
-  DEFAULT_LIGHT_THEME_NAME
+  DEFAULT_LIGHT_THEME_NAME,
 } from "../../../theme";
 
 const mockData = [
   {
     Test1: "testl1c1",
-    Test2: "testl1c2"
+    Test2: "testl1c2",
   },
   {
     Test1: "testl2c1",
-    Test2: "testl2c2"
-  }
+    Test2: "testl2c2",
+  },
 ];
 
 const mockHeaders = Object.keys(mockData[0]);

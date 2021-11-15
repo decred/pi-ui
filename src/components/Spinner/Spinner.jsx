@@ -14,7 +14,7 @@ const Spinner = ({ invert, width, height }) => {
 Spinner.propTypes = {
   width: PropTypes.string,
   height: PropTypes.string,
-  invert: PropTypes.bool
+  invert: PropTypes.bool,
 };
 
 export default Spinner;

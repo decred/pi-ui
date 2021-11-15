@@ -89,13 +89,13 @@ const Modal = ({
           {children}
         </div>
         {!disableClose && (
-          <a
+          <button
             className={styles.modalClose}
             onClick={onCloseClick}
             data-testid="close"
             href="#">
             &times;
-          </a>
+          </button>
         )}
       </div>
     </ModalWrapper>,
@@ -118,11 +118,11 @@ Modal.propTypes = {
   iconSize: PropTypes.string,
   iconComponent: PropTypes.node,
   disableClose: PropTypes.bool,
-  disableDismiss: PropTypes.bool
+  disableDismiss: PropTypes.bool,
 };
 
 Modal.defaultProps = {
-  disableClose: false
+  disableClose: false,
 };
 
 export default Modal;

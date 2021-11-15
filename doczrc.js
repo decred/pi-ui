@@ -6,7 +6,7 @@ const customPlugin = () =>
   createPlugin({
     onPostBuild: () => {
       copyFileSync("./_redirects", "./.docz/dist/_redirects");
-    }
+    },
   });
 
 export default {
@@ -21,7 +21,7 @@ export default {
       primary: "#2970ff",
       grayDark: "#3d5873",
       grayLight: "#c4cbd2",
-      grayExtraLight: "#e6eaed"
-    }
-  }
+      grayExtraLight: "#e6eaed",
+    },
+  },
 };

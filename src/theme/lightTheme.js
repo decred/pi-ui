@@ -196,7 +196,7 @@ const lightTheme = {
   /** Datasheet */
   "datasheet-read-only-text-color": "var(--color-gray)",
   "datasheet-read-only-background": "var(--color-gray-lightest)",
-  "datasheet-border-color": "var(--color-gray-lightest)"
+  "datasheet-border-color": "var(--color-gray-lightest)",
 };
 
 export default lightTheme;

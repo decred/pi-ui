@@ -27,7 +27,7 @@ const Container = ({
       className={classNames(styles.container, className)}
       style={{
         gridTemplateRows: gridRows,
-        ...style
+        ...style,
       }}
       {...props}>
       {children}
@@ -42,11 +42,11 @@ Container.propTypes = {
   bannerAndMainGap: PropTypes.number,
   style: PropTypes.object,
   singleContent: PropTypes.bool,
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 Container.defaultProps = {
-  singleContent: false
+  singleContent: false,
 };
 
 export default Container;

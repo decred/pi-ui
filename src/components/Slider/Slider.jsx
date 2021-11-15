@@ -17,12 +17,8 @@ const Slider = ({
   rangeClassName,
   ...props
 }) => {
-  const {
-    container,
-    handleTrackMouseDown,
-    valueStyle,
-    handleHooks
-  } = useSlider(double, disabled, axis, min, max, step, handles);
+  const { container, handleTrackMouseDown, valueStyle, handleHooks } =
+    useSlider(double, disabled, axis, min, max, step, handles);
 
   const [leftHandleHook, rightHandleHook] = handleHooks;
 
@@ -81,11 +77,11 @@ Slider.propTypes = {
       onChange: PropTypes.func,
       onDragStart: PropTypes.func,
       onDragEnd: PropTypes.func,
-      className: PropTypes.string
+      className: PropTypes.string,
     })
   ),
   className: PropTypes.string,
-  rangeClassName: PropTypes.string
+  rangeClassName: PropTypes.string,
 };
 
 Slider.defaultProps = {
@@ -96,7 +92,7 @@ Slider.defaultProps = {
   max: 100,
   step: 1,
   handles: [{ value: 0 }, { value: 40 }],
-  className: ""
+  className: "",
 };
 
 export default Slider;

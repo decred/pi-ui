@@ -15,7 +15,7 @@ const Toggle = ({ onToggle, toggled }) => {
     borderColor: toggled
       ? getThemeProperty(theme, "color-white")
       : getThemeProperty(theme, "color-gray-light"),
-    borderWidth: toggled ? 0 : 2
+    borderWidth: toggled ? 0 : 2,
   });
 
   return (
@@ -26,14 +26,14 @@ const Toggle = ({ onToggle, toggled }) => {
           transform: x
             .interpolate({
               range: [0, 0.4, 0.8, 1],
-              output: [0, 5, 10, 16]
+              output: [0, 5, 10, 16],
             })
             .interpolate((x) => `translateX(${x}px)`),
           backgroundColor,
           border: interpolate(
             [borderWidth, borderColor],
             (bw, bc) => `${bw}px solid ${bc}`
-          )
+          ),
         }}>
         &nbsp;
       </animated.div>
@@ -44,7 +44,7 @@ const Toggle = ({ onToggle, toggled }) => {
 
 Toggle.propTypes = {
   onToggle: PropTypes.func,
-  toggled: PropTypes.bool.isRequired
+  toggled: PropTypes.bool.isRequired,
 };
 
 export default Toggle;

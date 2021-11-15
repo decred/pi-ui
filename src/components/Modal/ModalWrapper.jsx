@@ -38,7 +38,7 @@ ModalWrapper.propTypes = {
   show: PropTypes.bool.isRequired,
   className: PropTypes.string,
   onClose: PropTypes.func.isRequired,
-  disableClose: PropTypes.bool
+  disableClose: PropTypes.bool,
 };
 
 export default ModalWrapper;

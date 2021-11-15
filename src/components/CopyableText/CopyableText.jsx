@@ -50,13 +50,13 @@ CopyableText.propTypes = {
   hoverText: PropTypes.string,
   className: PropTypes.string,
   tooltipPlacement: PropTypes.string,
-  id: idPropTypeCheckForTruncatedComponents
+  id: idPropTypeCheckForTruncatedComponents,
 };
 
 CopyableText.defaultProps = {
   truncate: true,
   hoverText: "Copy to clipboard",
-  tooltipPlacement: "right"
+  tooltipPlacement: "right",
 };
 
 export default CopyableText;

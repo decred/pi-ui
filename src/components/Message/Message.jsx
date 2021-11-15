@@ -11,7 +11,7 @@ const typeToIcons = {
   warning: "alert",
   success: "checkmark",
   error: "alert",
-  blocked: "blocked"
+  blocked: "blocked",
 };
 
 const Message = ({
@@ -59,10 +59,10 @@ Message.propTypes = {
   iconContainerClassName: PropTypes.string,
   children: PropTypes.node.isRequired,
   kind: PropTypes.oneOf(["info", "warning", "error", "success", "blocked"]),
-  title: PropTypes.string
+  title: PropTypes.string,
 };
 Message.defaultProps = {
-  kind: "info"
+  kind: "info",
 };
 
 export default Message;

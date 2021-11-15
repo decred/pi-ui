@@ -13,92 +13,75 @@
     "npm": ">=5"
   },
   "scripts": {
-    "test": "cross-env CI=1 jest --passWithNoTests",
-    "test:watch": "jest --watch",
+    "prettier": "prettier \"src/**/*.(js|jsx)\"",
+    "format": "yarn prettier --write",
+    "test:format": "yarn prettier --check",
+    "test:ci": "npm run test:format && npm run lint:css && npm run lint:js && cross-env NODE_OPTIONS=--experimental-vm-modules jest --no-cache",
+    "test:dev": "npm run test:format && npm run lint:css && npm run lint:js && cross-env NODE_OPTIONS=--experimental-vm-modules jest --watchAll --no-cache",
+    "test": "is-ci \"test:ci\" \"test:dev\"",
     "build": "rollup -c",
     "start": "rollup -c -w",
     "prepare": "yarn run build",
-    "prettify": "prettier --write 'src/**/*.{js,css,json}'",
     "docz:dev": "docz dev",
     "docz:build": "docz build",
     "docz:deploy": "gh-pages -d .docz/dist",
-    "lint": "npm-run-all --parallel lint:*",
-    "lint:css": "stylelint --fix 'src/**/*.css'",
-    "lint:js": "eslint --fix --ext=.js,.jsx src",
-    "husky:pre-commit": "npm-run-all --sequential prettify lint test"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "./src/**/*.{js,jsx},!./src/vendors/*": [
-      "yarn prettify",
-      "yarn lint:js",
-      "yarn test"
-    ],
-    "./src/**/*.css": [
-      "yarn prettify",
-      "yarn lint:css"
-    ]
+    "lint:css": "stylelint 'src/**/*.css'",
+    "lint:css:fix": "npm run lint:css -- --fix",
+    "lint:js": "eslint --ext .js,.jsx ./src",
+    "lint:js:fix": "npm run lint:js -- --fix"
   },
   "peerDependencies": {
     "prop-types": "^15.5.4",
-    "react": "^15.0.0 || ^16.0.0",
-    "react-dom": "^15.0.0 || ^16.0.0"
+    "react": "^16.8.0",
+    "react-dom": "^16.8.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.12.10",
-    "@babel/core": "^7.12.10",
-    "@babel/plugin-proposal-function-bind": "^7.12.1",
-    "@babel/plugin-transform-runtime": "^7.12.10",
-    "@babel/preset-env": "^7.12.11",
-    "@babel/preset-react": "^7.12.10",
+    "@babel/cli": "^7.16.0",
+    "@babel/core": "^7.16.0",
+    "@babel/plugin-transform-runtime": "^7.16.0",
+    "@babel/preset-env": "^7.16.0",
+    "@babel/preset-react": "^7.16.0",
     "@mdx-js/react": "^1.6.22",
-    "@rollup/plugin-url": "^4.0.2",
+    "@rollup/plugin-url": "^6.1.0",
     "@svgr/rollup": "^5.5.0",
-    "@testing-library/react": "^9.5.0",
+    "@testing-library/react": "^12.1.2",
     "babel-eslint": "^10.1.0",
-    "babel-jest": "^25.1.0",
-    "babel-loader": "^8.2.2",
+    "babel-jest": "^27.3.1",
+    "babel-loader": "^8.2.3",
     "cross-env": "^7.0.3",
     "docz": "^1.2.0",
     "docz-core": "^1.2.0",
     "docz-plugin-css": "^0.11.0",
     "docz-theme-default": "^1.2.0",
-    "eslint": "^6.8.0",
-    "eslint-config-prettier": "^6.15.0",
-    "eslint-config-standard": "^14.1.0",
-    "eslint-config-standard-react": "^9.2.0",
-    "eslint-plugin-import": "^2.22.1",
-    "eslint-plugin-node": "^11.0.0",
-    "eslint-plugin-prettier": "^3.3.0",
-    "eslint-plugin-promise": "^4.0.0",
-    "eslint-plugin-react": "^7.21.5",
-    "eslint-plugin-react-hooks": "^4.2.0",
-    "eslint-plugin-standard": "^4.1.0",
+    "eslint": "^7.5.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-config-react-app": "^6.0.0",
+    "eslint-plugin-flowtype": "^5.2.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-jest": "^24.0.0",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-react": "^7.20.3",
+    "eslint-plugin-react-hooks": "^4.0.8",
+    "eslint-plugin-testing-library": "^3.9.0",
     "fs-copy-file-sync": "^1.1.1",
-    "gh-pages": "^1.2.0",
-    "husky": "^1.3.1",
+    "gh-pages": "^3.2.3",
     "identity-obj-proxy": "^3.0.0",
-    "jest": "^25.1.0",
-    "lint-staged": "^10.5.3",
+    "is-ci-cli": "^2.2.0",
+    "jest": "^27.3.1",
     "npm-run-all": "^4.1.5",
-    "prettier": "^1.19.1",
-    "react": "^16.14.0",
-    "react-dom": "^16.14.0",
+    "prettier": "^2.4.1",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
     "react-hot-loader": "^4.13.0",
-    "react-test-renderer": "^16.14.0",
+    "react-test-renderer": "^16.8.6",
     "rollup": "^1.32.1",
     "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-commonjs": "10.1.0",
     "rollup-plugin-node-resolve": "5.2.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-postcss": "^2.4.1",
-    "stylelint": "^13.8.0",
-    "stylelint-config-recommended": "^3.0.0",
-    "webpack": "^4.44.2"
+    "stylelint": "^14.0.1",
+    "stylelint-config-recommended": "^6.0.0"
   },
   "files": [
     "dist"
@@ -106,10 +89,11 @@
   "dependencies": {
     "clamp-js-main": "^0.11.5",
     "lodash": "^4.17.15",
+    "prop-types": "^15.7.2",
     "react-select": "2.4.4",
     "react-select-event": "^4.1.4",
-    "react-spring": "^9.0.0-rc.3",
-    "react-tapper": "^0.1.18"
+    "react-spring": "^9.3.0",
+    "react-tapper": "^0.1.23"
   },
   "resolutions": {
     "minimist": "^1.2.5"

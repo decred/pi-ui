@@ -95,7 +95,7 @@ const darkTheme = {
 
   "datasheet-read-only-text-color": "var(--color-gray)",
   "datasheet-read-only-background": "var(--color-primary-darkest)",
-  "datasheet-border-color": "var(--color-gray-blue)"
+  "datasheet-border-color": "var(--color-gray-blue)",
 };
 
 export default darkTheme;

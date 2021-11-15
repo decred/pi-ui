@@ -19,7 +19,7 @@ export const RadioButton = ({
 }) => {
   const buttonRef = useRef(null);
   const { x } = useSpring({
-    x: checked ? 1 : 0
+    x: checked ? 1 : 0,
   });
   return (
     <div
@@ -50,9 +50,9 @@ export const RadioButton = ({
             transform: x
               .interpolate({
                 range: [0, 0.4, 0.8, 1],
-                output: [0, 0.55, 1.2, 1]
+                output: [0, 0.55, 1.2, 1],
               })
-              .interpolate((x) => `scale(${x})`)
+              .interpolate((x) => `scale(${x})`),
           }}
         />
       </label>
@@ -71,7 +71,7 @@ export const RadioButtonGroup = ({
   vertical,
   disabled,
   optionsListClassName,
-  optionsClassName
+  optionsClassName,
 }) => (
   <div className={classNames(styles.radioGroup, className)}>
     <label className={styles.radioGroupLabel}>{label}</label>
@@ -113,7 +113,7 @@ RadioButton.propTypes = {
   label: PropTypes.node,
   description: PropTypes.node,
   disabled: PropTypes.bool,
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 RadioButtonGroup.propTypes = {
@@ -126,9 +126,9 @@ RadioButtonGroup.propTypes = {
   vertical: PropTypes.bool,
   optionsListClassName: PropTypes.string,
   disabled: PropTypes.bool,
-  optionsClassName: PropTypes.oneOfType([PropTypes.string, PropTypes.array])
+  optionsClassName: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
 };
 
 RadioButtonGroup.defaultProps = {
-  disabled: false
+  disabled: false,
 };

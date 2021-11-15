@@ -26,7 +26,7 @@ export function useMediaQuery(queryInput, options = {}) {
   const {
     defaultMatches = false,
     noSsr = false,
-    ssrMatchMedia = null
+    ssrMatchMedia = null,
   } = options;
 
   const [matches, setMatches] = useState(() => {

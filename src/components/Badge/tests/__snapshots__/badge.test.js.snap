@@ -4,14 +4,13 @@ exports[`Badge component Matches the snapshot 1`] = `
 <div
   className="badgeWrapperVisible"
 >
-  <a
+  <button
     className="badgeClose"
     data-testid="close-button"
-    href="#"
     onClick={[Function]}
   >
     ×
-  </a>
+  </button>
   <div
     className="badgeIcon"
   />

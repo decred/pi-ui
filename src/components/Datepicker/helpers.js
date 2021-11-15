@@ -58,11 +58,11 @@ export const getYearArray = (years) => {
     if (last >= 0) {
       arr[0].min = {
         month: ymin.month || arr[0].min.month,
-        day: ymin.day || arr[0].min.day
+        day: ymin.day || arr[0].min.day,
       };
       arr[last].max = {
         month: ymax.month || arr[last].max.month,
-        day: ymax.day || arr[last].max.day
+        day: ymax.day || arr[last].max.day,
       };
     }
     return arr;
