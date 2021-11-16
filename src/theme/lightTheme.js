@@ -188,6 +188,7 @@ const lightTheme = {
   /** RadioButton */
   "radio-button-stroke-color": "var(--color-gray)",
   "radio-button-selected-stroke-color": "var(--color-primary)",
+  "radio-button-option-label-color": "var(--color-gray-dark)",
   "radio-button-dot-color": "var(--color-primary)",
 
   /** Select */

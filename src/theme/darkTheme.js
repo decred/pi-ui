@@ -96,6 +96,10 @@ const darkTheme = {
   "datasheet-read-only-text-color": "var(--color-gray)",
   "datasheet-read-only-background": "var(--color-primary-darkest)",
   "datasheet-border-color": "var(--color-gray-blue)",
+
+  /** RadioButton */
+  "radio-button-stroke-color": "var(--color-primary)",
+  "radio-button-option-label-color": "var(--color-powder-blue)"
 };
 
 export default darkTheme;

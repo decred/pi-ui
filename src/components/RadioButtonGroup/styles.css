@@ -70,5 +70,9 @@
 
 .radioGroupLabel {
   font-size: var(--font-size-small);
-  color: var(--color-gray);
+  color: var(--text-secondary-color);
+}
+
+.radioButtonOptionLabel {
+  color: var(--radio-button-option-label-color);
 }

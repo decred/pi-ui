@@ -18,7 +18,7 @@ import styles from "../css/base.css";
 
 <Playground>
   {() => {
-    const options = [{ label: "foo", value: 1, description: "this is foo!"}, 
+    const options = [{ label: "foo", value: 1, description: "this is foo!"},
       {label: "bar", value: 2, description: "this is bar!"}];
     const [value, setValue] = useState(1)
     const handleChange = (option) => {
@@ -29,7 +29,7 @@ import styles from "../css/base.css";
       <RadioButtonGroup vertical  label="Select an option" options={options} value={value} onChange={handleChange} />
       </Fragment>
     );
-  }    
+  }
 }
 </Playground>
 
@@ -47,7 +47,7 @@ import styles from "../css/base.css";
       <RadioButtonGroup optionsClassName={[styles.radioButton1, styles.radioButton2]} label="Select an option" options={options} value={value} onChange={handleChange} />
       </Fragment>
     );
-  }    
+  }
 }
 </Playground>
 
@@ -65,7 +65,7 @@ import styles from "../css/base.css";
       <RadioButtonGroup optionsClassName={styles.radioButton1} label="Select an option" options={options} value={value} onChange={handleChange} />
       </Fragment>
     );
-  }    
+  }
 }
 </Playground>
 
@@ -83,6 +83,6 @@ import styles from "../css/base.css";
       <RadioButtonGroup disabled={true} label="Select an option" options={options} value={value} onChange={handleChange} />
       </Fragment>
     );
-  }    
+  }
 }
 </Playground>
