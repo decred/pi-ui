@@ -30,7 +30,11 @@ const CopyableText = ({
   };
   return (
     <div className={classNames(styles.copyableWrapper, className)} {...props}>
-      <Text id={id} truncate={truncate} className={classNames(styles.contentWrapper, textClassName)} style={textStyle}>
+      <Text
+        id={id}
+        truncate={truncate}
+        className={classNames(styles.contentWrapper, textClassName)}
+        style={textStyle}>
         {children}
       </Text>
       <Tooltip
