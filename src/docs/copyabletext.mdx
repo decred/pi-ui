@@ -7,6 +7,7 @@ route: /components/copyable
 
 import { Playground, Props } from "docz";
 import { CopyableText } from "../index";
+import styles from "../css/base.css";
 
 # CopyableText
 
@@ -26,4 +27,16 @@ import { CopyableText } from "../index";
 
 <Playground>
   <CopyableText id="copyable" truncate>I am a big big big big big text, please truncate me</CopyableText>
+</Playground>
+
+### Custom styles
+
+<Playground>
+  <CopyableText id="copyable" textStyle={{color: "red"}} buttonStyle={{width: "2.8rem", height: "2.8rem"}}>I am a text</CopyableText>
+</Playground>
+
+### Custom classNames
+
+<Playground>
+  <CopyableText id="copyable" textClassName={styles.copyableTextText} buttonClassName={styles.copyableTextButton}>I am a text</CopyableText>
 </Playground>

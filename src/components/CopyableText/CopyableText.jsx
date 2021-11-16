@@ -13,6 +13,10 @@ const CopyableText = ({
   children,
   className,
   hoverText,
+  textClassName,
+  textStyle,
+  buttonClassName,
+  buttonStyle,
   tooltipPlacement,
   ...props
 }) => {
@@ -22,11 +26,11 @@ const CopyableText = ({
     setFeedbackActive(true);
     setTimeout(() => {
       setFeedbackActive(false);
-    }, 800);
+    }, 1000);
   };
   return (
     <div className={classNames(styles.copyableWrapper, className)} {...props}>
-      <Text id={id} truncate={truncate} className={styles.contentWrapper}>
+      <Text id={id} truncate={truncate} className={classNames(styles.contentWrapper, textClassName)} style={textStyle}>
         {children}
       </Text>
       <Tooltip
@@ -34,10 +38,11 @@ const CopyableText = ({
         content={feedbackActive ? "Copied!" : hoverText}>
         <Icon
           type="copyToClipboard"
-          backgroundColor="#2970ff"
-          iconColor="#f7f8f9"
+          backgroundColor="var(--color-primary)"
+          iconColor="var(--color-gray-lightest2)"
           onClick={() => onCopyToClipboard(children)}
-          className={styles.copyToClipboard}
+          className={classNames(styles.copyToClipboard, buttonClassName)}
+          style={buttonStyle}
         />
       </Tooltip>
     </div>
@@ -49,6 +54,10 @@ CopyableText.propTypes = {
   children: PropTypes.string,
   hoverText: PropTypes.string,
   className: PropTypes.string,
+  textClassName: PropTypes.string,
+  textStyle: PropTypes.object,
+  buttonClassName: PropTypes.string,
+  buttonStyle: PropTypes.object,
   tooltipPlacement: PropTypes.string,
   id: idPropTypeCheckForTruncatedComponents,
 };

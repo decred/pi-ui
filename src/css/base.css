@@ -107,3 +107,16 @@ a:visited {
 .radioButton2 > label > span:nth-child(2) {
   background: var(--color-green);
 }
+
+/*
+CopyableText accepts classNames for text and button
+*/
+
+.copyableTextText {
+  color: green !important;
+}
+
+.copyableTextButton {
+  width: 2rem !important;
+  height: 2rem !important;
+}
