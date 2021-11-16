@@ -39,9 +39,12 @@ export const RadioButton = ({
         ref={buttonRef}
         {...props}
       />
-      <label onClick={() => buttonRef.current && buttonRef.current.click()}
+      <label
+        onClick={() => buttonRef.current && buttonRef.current.click()}
         htmlFor={id}>
-        <span className={classNames(styles.circle, checked && styles.checked)} />
+        <span
+          className={classNames(styles.circle, checked && styles.checked)}
+        />
         <label className={styles.radioButtonOptionLabel}>{label}</label>
         <animated.span
           className={styles.dot}

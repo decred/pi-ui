@@ -99,7 +99,7 @@ const darkTheme = {
 
   /** RadioButton */
   "radio-button-stroke-color": "var(--color-primary)",
-  "radio-button-option-label-color": "var(--color-powder-blue)"
+  "radio-button-option-label-color": "var(--color-powder-blue)",
 };
 
 export default darkTheme;
