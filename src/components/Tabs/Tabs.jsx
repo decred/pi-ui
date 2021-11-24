@@ -105,6 +105,7 @@ const Tabs = ({
   children,
   wrap,
   mode,
+  kind,
   contentClassName,
   contentAnimation,
   ...props
@@ -122,6 +123,7 @@ const Tabs = ({
           tabIndex: index,
           isActive: index === activeTabIndex,
           mode,
+          kind,
         });
         return dropdownMode ? (
           <DropdownItem className={styles.customDropdownItem}>
@@ -216,6 +218,7 @@ Tabs.propTypes = {
   children: PropTypes.node.isRequired,
   wrap: PropTypes.bool,
   mode: PropTypes.oneOf(["horizontal", "vertical", "dropdown"]),
+  kind: PropTypes.oneOf(["primary", "secondary"]),
   contentAnimation: PropTypes.oneOf(["none", "fade", "slide"]),
   contentClassName: PropTypes.string,
 };
@@ -223,6 +226,7 @@ Tabs.propTypes = {
 Tabs.defaultProps = {
   wrap: false,
   mode: "horizontal",
+  kind: "primary",
   contentAnimation: "fade",
 };
 

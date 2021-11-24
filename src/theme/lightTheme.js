@@ -136,6 +136,7 @@ const lightTheme = {
   "tab-default-background": "transparent",
   "tab-count-background": "var(--color-gray-lighter)",
   "tab-active-color": "var(--color-primary-light)",
+  "tab-secondary-active-color": "var(--color-gray-dark)",
   "tab-default-color": "var(--topbanner-color)",
   "tab-text-color": "var(--color-gray-dark)",
   "tab-text-active-color": "var(--color-primary-dark)",
