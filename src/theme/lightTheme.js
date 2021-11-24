@@ -183,6 +183,7 @@ const lightTheme = {
 
   /** Checkbox */
   "checkbox-stroke-color": "var(--color-gray)",
+  "checkbox-active-stroke-color": "var(--color-primary)",
   "checkbox-hovered-background-color": "var(--color-gray-lighter)",
 
   /** Select */
