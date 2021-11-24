@@ -96,6 +96,14 @@ const darkTheme = {
   "datasheet-read-only-text-color": "var(--color-gray)",
   "datasheet-read-only-background": "var(--color-primary-darkest)",
   "datasheet-border-color": "var(--color-gray-blue)",
+
+  /** Paginator */
+  "paginator-arrow-color": "#99C1E3",
+  "paginator-disabled-arrow-color": "#3d5873",
+  "paginator-selected-background": "#E6EAED",
+  "paginator-selected-color": "#2F4D8C",
+  "paginator-button-color": "#b7deee",
+  "paginator-brake-color": "#608ACE",
 };
 
 export default darkTheme;

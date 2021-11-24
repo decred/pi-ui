@@ -197,6 +197,14 @@ const lightTheme = {
   "datasheet-read-only-text-color": "var(--color-gray)",
   "datasheet-read-only-background": "var(--color-gray-lightest)",
   "datasheet-border-color": "var(--color-gray-lightest)",
+
+  /** Paginator */
+  "paginator-arrow-color": "#2970FF",
+  "paginator-disabled-arrow-color": "#C4CBD2",
+  "paginator-selected-background": "#E6EAED",
+  "paginator-selected-color": "#2970FF",
+  "paginator-button-color": "#3D5873",
+  "paginator-brake-color": "#C4CBD2",
 };
 
 export default lightTheme;
