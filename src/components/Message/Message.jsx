@@ -59,7 +59,7 @@ Message.propTypes = {
   iconContainerClassName: PropTypes.string,
   children: PropTypes.node.isRequired,
   kind: PropTypes.oneOf(["info", "warning", "error", "success", "blocked"]),
-  title: PropTypes.string,
+  title: PropTypes.node,
 };
 Message.defaultProps = {
   kind: "info",

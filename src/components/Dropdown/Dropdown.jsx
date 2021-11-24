@@ -130,7 +130,7 @@ const Dropdown = ({
 
 DefaultTrigger.propTypes = {
   onClick: PropTypes.func.isRequired,
-  title: PropTypes.string,
+  title: PropTypes.node,
   open: PropTypes.bool,
   dropdownArrowClassName: PropTypes.string,
   ArrowComponent: PropTypes.func,
@@ -147,7 +147,7 @@ Dropdown.propTypes = {
   itemsListClassName: PropTypes.string,
   dropdownArrowClassName: PropTypes.string,
   customDropdownTrigger: PropTypes.func,
-  title: PropTypes.string,
+  title: PropTypes.node,
   show: PropTypes.bool,
   children: PropTypes.node.isRequired,
   onDropdownClick: PropTypes.func,

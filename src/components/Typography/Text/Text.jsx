@@ -88,6 +88,7 @@ Text.propTypes = {
   size: PropTypes.oneOf(Object.keys(SIZE_MAP)),
   color: PropTypes.oneOf(Object.keys(COLOR_MAP)),
   className: PropTypes.string,
+  children: PropTypes.node.isRequired,
   backgroundColor: PropTypes.oneOf(Object.keys(BG_COLOR_MAP)),
   truncate: PropTypes.bool,
   monospace: PropTypes.bool,

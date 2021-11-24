@@ -135,7 +135,7 @@ const Table = ({
 
 Table.propTypes = {
   data: PropTypes.array.isRequired,
-  headers: PropTypes.arrayOf(PropTypes.string).isRequired,
+  headers: PropTypes.arrayOf(PropTypes.node).isRequired,
   linesPerPage: PropTypes.number,
   disablePagination: PropTypes.bool,
   className: PropTypes.string,

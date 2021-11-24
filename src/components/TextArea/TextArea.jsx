@@ -58,10 +58,10 @@ const TextArea = ({
 TextArea.propTypes = {
   type: PropTypes.string,
   id: PropTypes.string.isRequired,
-  error: PropTypes.string,
+  error: PropTypes.node,
   wrapperClassNames: PropTypes.string,
   inputClassNames: PropTypes.string,
-  placeholder: PropTypes.string,
+  placeholder: PropTypes.node,
   wrapped: PropTypes.bool,
 };
 

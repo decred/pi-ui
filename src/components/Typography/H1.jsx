@@ -26,7 +26,7 @@ const H1 = ({
 };
 
 H1.propTypes = {
-  children: PropTypes.node,
+  children: PropTypes.node.isRequired,
   className: PropTypes.string,
   style: PropTypes.object,
   truncate: PropTypes.bool,
