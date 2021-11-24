@@ -63,11 +63,13 @@
 .primary:focus,
 .primary:hover {
   background-color: var(--color-blue-alt);
+  border: 1px solid var(--color-blue-alt);
 }
 
 .secondary:focus,
 .secondary:hover {
   color: var(--color-blue-alt);
+  border: 1px solid var(--color-blue-alt);
 }
 
 .primary:focus,
