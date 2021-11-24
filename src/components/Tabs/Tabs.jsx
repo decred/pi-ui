@@ -133,7 +133,7 @@ const Tabs = ({
           element
         );
       });
-  }, [children, activeTabIndex, mode, onSelectTab, dropdownMode]);
+  }, [children, activeTabIndex, mode, onSelectTab, dropdownMode, kind]);
 
   const tabs = useMemo(
     () => (
