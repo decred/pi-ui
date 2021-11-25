@@ -73,6 +73,10 @@
   color: var(--text-secondary-color);
 }
 
+.radioGroup.disabled .radioButtonOptionLabel {
+  color: var(--radio-button-option-label-disabled-color);
+}
+
 .radioButtonOptionLabel {
   color: var(--radio-button-option-label-color);
 }

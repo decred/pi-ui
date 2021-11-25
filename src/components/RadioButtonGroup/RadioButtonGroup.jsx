@@ -75,7 +75,7 @@ export const RadioButtonGroup = ({
   optionsListClassName,
   optionsClassName,
 }) => (
-  <div className={classNames(styles.radioGroup, className)}>
+  <div className={classNames(styles.radioGroup, disabled && styles.disabled, className)}>
     <label className={styles.radioGroupLabel}>{label}</label>
     <ul
       className={classNames(
