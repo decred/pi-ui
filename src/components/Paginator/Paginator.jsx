@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import styles from "./styles.css";
 import Icon from "../Icon/Icon.jsx";
 import { classNames } from "../../utils";
+import { useTheme, getThemeProperty } from "../../theme";
 
 const PageButton = ({ onClick, index }) => (
   <button onClick={() => onClick(index)}>{`${index + 1}`}</button>
@@ -16,9 +17,12 @@ const SelectedPageButton = ({ index }) => (
   <button disabled className={styles.selected}>{`${index + 1}`}</button>
 );
 
+const BRAKE = 1;
+const SELECTED = 1;
+
 const Paginator = ({
   pageCount,
-  pageRangeDisplayed,
+  paginationGap,
   marginPagesDisplayed,
   onPageChange,
   className,
@@ -37,80 +41,107 @@ const Paginator = ({
     [onPageChange, limitIndex]
   );
 
+  const { theme } = useTheme();
+  const arrowColor = getThemeProperty(theme, "color-primary");
+  const disabledArrowColor = getThemeProperty(theme, "color-gray");
+  const canGoBack = selectedPage > 0;
+  const canGoNext = selectedPage < pageCount - 1;
+
   if (pageCount <= 0) {
     return null;
   }
 
   const pageButtons = [];
-  const halfOfTheSiblings = Math.floor(pageRangeDisplayed / 2);
-  let leftSiblingIndex = limitIndex(selectedPage - halfOfTheSiblings);
-  let rightSiblingIndex = limitIndex(selectedPage + halfOfTheSiblings);
-  const leftSiblingCount = selectedPage - leftSiblingIndex;
-  const rightSiblingCount = rightSiblingIndex - selectedPage;
+  const pageRangeDisplayed = paginationGap * 2;
 
-  // e.g. 12345...10
-  //      !^  *
-  // increase the siblings on the right side(*), if the selected page(^) is at
-  // the beginning of the list and there is no space on the left side(!)
-  if (leftSiblingCount < halfOfTheSiblings) {
-    rightSiblingIndex = limitIndex(
-      rightSiblingIndex + halfOfTheSiblings - leftSiblingCount
-    );
-  }
-  // e.g. 1.....6789
-  //            * ^!
-  // increase the siblings on the left side(*), if the selected page(^) is at
-  // the end of the list and there is no space on the right side(!)
-  if (rightSiblingCount < halfOfTheSiblings) {
-    leftSiblingIndex = limitIndex(
-      leftSiblingIndex - (halfOfTheSiblings - rightSiblingCount)
-    );
-  }
-
-  let startIndex = 0;
-
-  // add the left margin and the brake button if necessary
-  if (leftSiblingIndex > marginPagesDisplayed) {
-    for (let i = 0; i < marginPagesDisplayed; i++) {
+  // there is no space for collapsing
+  if (
+    pageRangeDisplayed + marginPagesDisplayed * 2 + BRAKE + SELECTED >=
+    pageCount
+  ) {
+    // add the left siblings
+    for (let i = 0; i < selectedPage; i++) {
       pageButtons.push(<PageButton onClick={onClickHandler} index={i} />);
     }
-    pageButtons.push(
-      <BrakeButton
-        onClick={() => onClickHandler(selectedPage - pageRangeDisplayed)}
-      />
-    );
-    startIndex = leftSiblingIndex;
-  }
 
-  // add the left siblings
-  for (let i = startIndex; i < selectedPage; i++) {
-    pageButtons.push(<PageButton onClick={onClickHandler} index={i} />);
-  }
+    // add the selected page button
+    pageButtons.push(<SelectedPageButton index={selectedPage} />);
 
-  // add the selected page button
-  pageButtons.push(<SelectedPageButton index={selectedPage} />);
-
-  // add the right siblings
-  for (let i = selectedPage + 1; i <= rightSiblingIndex; i++) {
-    pageButtons.push(<PageButton onClick={onClickHandler} index={i} />);
-  }
-
-  // add the right margin and the brake button if necessary,
-  // or just the right siblings
-  if (rightSiblingIndex < pageCount - marginPagesDisplayed - 1) {
-    pageButtons.push(
-      <BrakeButton
-        onClick={() =>
-          onClickHandler(Math.min(pageCount, selectedPage + pageRangeDisplayed))
-        }
-      />
-    );
-    for (let i = pageCount - marginPagesDisplayed; i < pageCount; i++) {
+    // add the right siblings
+    for (let i = selectedPage + 1; i < pageCount; i++) {
       pageButtons.push(<PageButton onClick={onClickHandler} index={i} />);
     }
   } else {
-    for (let i = rightSiblingIndex + 1; i < pageCount; i++) {
+    let leftSiblingIndex = limitIndex(selectedPage - paginationGap);
+    let rightSiblingIndex = limitIndex(selectedPage + paginationGap);
+    let startIndex = 0;
+
+    // add the left margin and the brake button if necessary
+    if (leftSiblingIndex >= marginPagesDisplayed + BRAKE) {
+      for (let i = 0; i < marginPagesDisplayed; i++) {
+        pageButtons.push(<PageButton onClick={onClickHandler} index={i} />);
+      }
+      pageButtons.push(
+        <BrakeButton
+          onClick={() => onClickHandler(selectedPage - pageRangeDisplayed)}
+        />
+      );
+      startIndex = leftSiblingIndex;
+    } else {
+      // e.g. 12345...10
+      //      !^  *
+      // increase the siblings on the right side(*), if the selected page(^) is at
+      // the beginning of the list and there is no space on the left side(!)
+      rightSiblingIndex = limitIndex(
+        marginPagesDisplayed + BRAKE + pageRangeDisplayed
+      );
+    }
+
+    const isTailCollapsed =
+      rightSiblingIndex < pageCount - marginPagesDisplayed - BRAKE;
+
+    if (!isTailCollapsed) {
+      // e.g. 1.....6789
+      //            * ^!
+      // increase the siblings on the left side(*), if the selected page(^) is at
+      // the end of the list and there is no space on the right side(!)
+      startIndex = limitIndex(
+        pageCount - marginPagesDisplayed - pageRangeDisplayed - BRAKE - SELECTED
+      );
+    }
+
+    // add the left siblings
+    for (let i = startIndex; i < selectedPage; i++) {
       pageButtons.push(<PageButton onClick={onClickHandler} index={i} />);
+    }
+
+    // add the selected page button
+    pageButtons.push(<SelectedPageButton index={selectedPage} />);
+
+    // add the right siblings
+    for (let i = selectedPage + 1; i <= rightSiblingIndex; i++) {
+      pageButtons.push(<PageButton onClick={onClickHandler} index={i} />);
+    }
+
+    // add the right margin and the brake button if necessary,
+    // or just the right siblings
+    if (isTailCollapsed) {
+      pageButtons.push(
+        <BrakeButton
+          onClick={() =>
+            onClickHandler(
+              Math.min(pageCount, selectedPage + pageRangeDisplayed)
+            )
+          }
+        />
+      );
+      for (let i = pageCount - marginPagesDisplayed; i < pageCount; i++) {
+        pageButtons.push(<PageButton onClick={onClickHandler} index={i} />);
+      }
+    } else {
+      for (let i = rightSiblingIndex + 1; i < pageCount; i++) {
+        pageButtons.push(<PageButton onClick={onClickHandler} index={i} />);
+      }
     }
   }
 
@@ -119,13 +150,15 @@ const Paginator = ({
       <button
         onClick={() => onClickHandler(selectedPage - 1)}
         aria-label="Previous page"
-        disabled={selectedPage === 0}
+        disabled={!canGoBack}
         className={classNames(styles.arrowButton, styles.previous)}>
         <Icon
           type="arrow"
           viewBox="0 0 14 13"
           width={14}
           height={13}
+          iconColor={canGoBack ? arrowColor : disabledArrowColor}
+          data-testid="back"
           className={styles.icon}
         />
       </button>
@@ -137,13 +170,15 @@ const Paginator = ({
       <button
         onClick={() => onClickHandler(selectedPage + 1)}
         aria-label="Next page"
-        disabled={selectedPage === pageCount - 1}
+        disabled={!canGoNext}
         className={classNames(styles.arrowButton, styles.next)}>
         <Icon
           type="arrow"
           viewBox="0 0 14 13"
           width={14}
           height={13}
+          iconColor={canGoNext ? arrowColor : disabledArrowColor}
+          data-testid="next"
           className={styles.icon}
         />
       </button>
@@ -166,14 +201,14 @@ SelectedPageButton.propTypes = {
 
 Paginator.propTypes = {
   pageCount: PropTypes.number.isRequired,
-  pageRangeDisplayed: PropTypes.number,
+  paginationGap: PropTypes.number,
   marginPagesDisplayed: PropTypes.number,
   onPageChange: PropTypes.func,
   className: PropTypes.string,
 };
 
 Paginator.defaultProps = {
-  pageRangeDisplayed: 4,
+  paginationGap: 2,
   marginPagesDisplayed: 1,
 };
 

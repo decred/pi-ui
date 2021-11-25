@@ -9,7 +9,6 @@
   height: 24px;
   min-width: 24px;
   display: flex;
-  padding: 0 5px;
   margin-right: 5px;
   align-items: center;
   justify-content: center;
@@ -37,14 +36,6 @@
 
 .paginator button.brake {
   color: var(--paginator-brake-color);
-}
-
-.arrowButton path {
-  fill: var(--paginator-arrow-color);
-}
-
-.arrowButton:disabled path {
-  fill: var(--paginator-disabled-arrow-color);
 }
 
 .arrowButton.previous {

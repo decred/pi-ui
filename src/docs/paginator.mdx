@@ -34,14 +34,14 @@ import { Paginator } from "../index";
 </Playground>
 
 
-### Paginator with custom pageRangeDisplayed and marginPagesDisplayed
+### Paginator with custom paginationGap and marginPagesDisplayed
 
 <Playground>
   {() => {
     const pageCount = 20;
     return (
       <Fragment>
-        <Paginator pageCount={pageCount} pageRangeDisplayed={6} marginPagesDisplayed={2}/>
+        <Paginator pageCount={pageCount} paginationGap={2} marginPagesDisplayed={2}/>
       </Fragment>
     );
   }}

@@ -45,6 +45,19 @@ const render = (ui) =>
     </ThemeProvider>
   );
 
+const checkNotCollapsablePagination = (pageCount) => {
+  render(<Paginator pageCount={pageCount} />);
+  const nextPageButton = getNextPageButton();
+  const expectedButtons = [...Array(pageCount).keys()]
+    .map((_, i) => i + 1)
+    .join("");
+
+  for (let i = 1; i <= pageCount; i++) {
+    checkPageButtons(i, expectedButtons);
+    fireEvent.click(nextPageButton);
+  }
+};
+
 describe("Paginator component", () => {
   test("render a 1-page length Paginator component", () => {
     render(<Paginator pageCount={1} />);
@@ -71,82 +84,31 @@ describe("Paginator component", () => {
   });
 
   test("render a 3-page length Paginator component", () => {
-    render(<Paginator pageCount={3} />);
-    const nextPageButton = getNextPageButton();
-    // init (1)
-    checkPageButtons(1, "123");
-    // 2
-    fireEvent.click(nextPageButton);
-    checkPageButtons(2, "123");
-    // 3
-    fireEvent.click(nextPageButton);
-    checkPageButtons(3, "123");
+    checkNotCollapsablePagination(3);
   });
 
-  test("render a 6-page length Paginator component", () => {
-    render(<Paginator pageCount={6} />);
-    const nextPageButton = getNextPageButton();
-    // init (1)
-    checkPageButtons(1, "123456");
-    // 2
-    fireEvent.click(nextPageButton);
-    checkPageButtons(2, "123456");
-    // 3
-    fireEvent.click(nextPageButton);
-    checkPageButtons(3, "123456");
-    // 4
-    fireEvent.click(nextPageButton);
-    checkPageButtons(4, "123456");
-    // 5
-    fireEvent.click(nextPageButton);
-    checkPageButtons(5, "123456");
-    // 6
-    fireEvent.click(nextPageButton);
-    checkPageButtons(6, "123456");
+  test("render a 7-page length Paginator component", () => {
+    checkNotCollapsablePagination(7);
   });
 
   test("render a 8-page length Paginator component", () => {
-    render(<Paginator pageCount={8} />);
-    const nextPageButton = getNextPageButton();
-    // init (1)
-    checkPageButtons(1, "12345...8");
-    // 2
-    fireEvent.click(nextPageButton);
-    checkPageButtons(2, "12345...8");
-    // 3
-    fireEvent.click(nextPageButton);
-    checkPageButtons(3, "12345...8");
-    // 4
-    fireEvent.click(nextPageButton);
-    checkPageButtons(4, "123456...8");
-    // 5
-    fireEvent.click(nextPageButton);
-    checkPageButtons(5, "1...345678");
-    // 6
-    fireEvent.click(nextPageButton);
-    checkPageButtons(6, "1...45678");
-    // 7
-    fireEvent.click(nextPageButton);
-    checkPageButtons(7, "1...45678");
-    // 8
-    fireEvent.click(nextPageButton);
-    checkPageButtons(8, "1...45678");
+    checkNotCollapsablePagination(8);
   });
 
-  test.only("render a 10-page length Paginator component", () => {
+  test("render a 10-page length Paginator component", () => {
     render(<Paginator pageCount={10} />);
     const nextPageButton = getNextPageButton();
     // init (1)
-    checkPageButtons(1, "12345...10");
+    checkPageButtons(1, "1234567...10");
     // 2
     fireEvent.click(nextPageButton);
-    checkPageButtons(2, "12345...10");
+    checkPageButtons(2, "1234567...10");
     // 3
     fireEvent.click(nextPageButton);
-    checkPageButtons(3, "12345...10");
+    checkPageButtons(3, "1234567...10");
     // 4
     fireEvent.click(nextPageButton);
-    checkPageButtons(4, "123456...10");
+    checkPageButtons(4, "1234567...10");
     // 5
     fireEvent.click(nextPageButton);
     checkPageButtons(5, "1...34567...10");
@@ -155,28 +117,24 @@ describe("Paginator component", () => {
     checkPageButtons(6, "1...45678...10");
     // 7
     clickOnPageButton(7);
-    checkPageButtons(7, "1...5678910");
+    checkPageButtons(7, "1...45678910");
     // 8
     clickOnPageButton(8);
-    checkPageButtons(8, "1...678910");
+    checkPageButtons(8, "1...45678910");
     // 9
     clickOnPageButton(9);
-    checkPageButtons(9, "1...678910");
+    checkPageButtons(9, "1...45678910");
     // 10
     clickOnPageButton(10);
-    checkPageButtons(10, "1...678910");
+    checkPageButtons(10, "1...45678910");
   });
 
   test("render a 20-page length Paginator component, clicking on the brake buttons", () => {
     render(
-      <Paginator
-        pageCount={20}
-        pageRangeDisplayed={6}
-        marginPagesDisplayed={2}
-      />
+      <Paginator pageCount={20} paginationGap={3} marginPagesDisplayed={2} />
     );
     // init (1)
-    checkPageButtons(1, "1234567...1920");
+    checkPageButtons(1, "12345678910...1920");
     // 7
     fireEvent.click(screen.getByRole("button", { name: "..." }));
     checkPageButtons(7, "12...45678910...1920");
@@ -185,9 +143,9 @@ describe("Paginator component", () => {
     checkPageButtons(13, "12...10111213141516...1920");
     // 19
     fireEvent.click(screen.getAllByRole("button", { name: "..." })[1]);
-    checkPageButtons(19, "12...14151617181920");
+    checkPageButtons(19, "12...11121314151617181920");
     // go back to 13
-    fireEvent.click(screen.getAllByRole("button", { name: "..." })[0]);
+    fireEvent.click(screen.getByRole("button", { name: "..." }));
     checkPageButtons(13, "12...10111213141516...1920");
   });
 });

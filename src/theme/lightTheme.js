@@ -199,8 +199,6 @@ const lightTheme = {
   "datasheet-border-color": "var(--color-gray-lightest)",
 
   /** Paginator */
-  "paginator-arrow-color": "#2970FF",
-  "paginator-disabled-arrow-color": "#C4CBD2",
   "paginator-selected-background": "#E6EAED",
   "paginator-selected-color": "#2970FF",
   "paginator-button-color": "#3D5873",
