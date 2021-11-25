@@ -14,7 +14,6 @@ const configs = {
   description: "Politeia UI library",
   src: "./src",
   wrapper: "src/docs/Wrapper",
-  playground: "src/docs/Playground",
   plugins: [css({ preprocessor: "postcss", cssmodules: true }), customPlugin()],
   themeConfig: {
     showPlaygroundEditor: true,
