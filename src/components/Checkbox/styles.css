@@ -46,12 +46,9 @@
 
 .container input:checked ~ .checkmark {
   background-color: var(--color-primary);
+  border: 1px solid var(--checkbox-active-stroke-color);
 }
 
 .container input:checked ~ .checkmark:after {
   display: block;
-}
-
-.container input:focus ~ .checkmark {
-  box-shadow: 0 0 0.3rem 0.1rem var(--color-primary);
 }
