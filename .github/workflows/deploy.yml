@@ -17,8 +17,9 @@ jobs:
           env DOCZ_BASE=/pi-ui/ yarn docz:build
 
       - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@4.1.5
+        uses: JamesIves/github-pages-deploy-action@3.7.1
         with:
-          branch: gh-pages
-          folder: .docz/dist
-          token: ${{ secrets.ACCESS_TOKEN }}
+          BRANCH: gh-pages
+          FOLDER: .docz/dist
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          CLEAN: true
