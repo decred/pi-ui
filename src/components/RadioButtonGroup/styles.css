@@ -9,11 +9,11 @@
 .radioButton .circle {
   display: inline-block;
   position: relative;
-  top: 0.1rem;
+  top: 0.2rem;
   margin: 0 0.5rem 0 0;
   width: 1.4rem;
   height: 1.4rem;
-  border-radius: 1.1rem;
+  border-radius: 50%;
   border: 0.1rem solid var(--radio-button-stroke-color);
   background-color: transparent;
 }
@@ -23,13 +23,12 @@
 }
 
 .radioButton .dot {
-  border-radius: 1.1rem;
+  border-radius: 50%;
   width: 0.6rem;
   height: 0.6rem;
   position: absolute;
-  top: 0.7rem;
-  left: 1rem;
-  display: block;
+  top: calc(50% - 0.3rem);
+  left: calc(50% - 0.3rem);
   background: var(--radio-button-dot-color);
 }
 

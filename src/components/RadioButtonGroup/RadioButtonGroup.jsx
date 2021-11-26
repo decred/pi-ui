@@ -42,21 +42,20 @@ export const RadioButton = ({
       <label
         onClick={() => buttonRef.current && buttonRef.current.click()}
         htmlFor={id}>
-        <span
-          className={classNames(styles.circle, checked && styles.checked)}
-        />
+        <span className={classNames(styles.circle, checked && styles.checked)}>
+          <animated.span
+            className={styles.dot}
+            style={{
+              transform: x
+                .to({
+                  range: [0, 0.4, 0.8, 1],
+                  output: [0, 0.55, 1.2, 1],
+                })
+                .to((x) => `scale(${x})`),
+            }}
+          />
+        </span>
         <label className={styles.radioButtonOptionLabel}>{label}</label>
-        <animated.span
-          className={styles.dot}
-          style={{
-            transform: x
-              .to({
-                range: [0, 0.4, 0.8, 1],
-                output: [0, 0.55, 1.2, 1],
-              })
-              .to((x) => `scale(${x})`),
-          }}
-        />
       </label>
       <Description body={description} />
     </div>
