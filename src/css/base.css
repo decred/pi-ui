@@ -120,3 +120,11 @@ CopyableText accepts classNames for text and button
   width: 2rem !important;
   height: 2rem !important;
 }
+
+/*
+TextHighlighted accepts classNames for text 
+*/
+
+.textHighlighted {
+  padding: 1rem 10rem !important;
+}
