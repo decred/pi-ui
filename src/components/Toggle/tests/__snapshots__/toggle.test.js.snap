@@ -2,25 +2,15 @@
 
 exports[`Toggle Component Matches snapshot 1`] = `
 <div
-  className="switch"
-  data-testid="switch"
+  className="toggle"
 >
   <div
-    className="circle"
-    style={
-      Object {
-        "backgroundColor": "rgba(255, 255, 255, 1)",
-        "border": "2px solid rgba(196, 203, 210, 1)",
-        "transform": " translateX(0px)",
-      }
-    }
+    className="notToggled"
+    data-testid="switch"
   >
-     
-  </div>
-  <div
-    className="bar"
-  >
-     
+    <div
+      className="knob"
+    />
   </div>
 </div>
 `;
