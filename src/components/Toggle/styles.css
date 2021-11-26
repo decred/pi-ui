@@ -14,6 +14,7 @@
 }
 
 .toggle > div:hover:not([disabled]) {
+  cursor: pointer;
   width: 4.7rem;
   margin-right: 0.3rem;
 }
