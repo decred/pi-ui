@@ -64,9 +64,9 @@ const darkTheme = {
   "md-table-odd-row-background": "var(--color-primary-darker)",
   "md-table-even-row-background": "var(--color-primary-darkest)",
 
-  "toggle-bar-color": "var(--color-primary-darkest)",
+  "toggle-bar-color": "var(--color-primary-dark)",
   "toggle-toggled-knob-color": "var(--color-primary)",
-  "toggle-knob-color": "var(--color-primary-dark)",
+  "toggle-knob-color": "#E9F8FE",
 
   "dropdown-item-active-color": "var(--color-powder-blue)",
   "dropdown-item-hover-color": "var(--color-powder-blue)",
