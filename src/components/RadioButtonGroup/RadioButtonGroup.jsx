@@ -57,7 +57,10 @@ export const RadioButton = ({
         </span>
         <label className={styles.radioButtonOptionLabel}>{label}</label>
       </label>
-      <Description body={description} />
+      <Description
+        body={description}
+        className={styles.radioButtonDescription}
+      />
     </div>
   );
 };

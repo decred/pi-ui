@@ -79,3 +79,7 @@
 .radioGroup.disabled .radioButtonOptionLabel {
   color: var(--radio-button-option-label-disabled-color);
 }
+
+.radioButtonDescription {
+  margin-left: 1.9rem;
+}
