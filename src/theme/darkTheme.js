@@ -66,7 +66,7 @@ const darkTheme = {
 
   "toggle-bar-color": "var(--color-primary-darkest)",
   "toggle-toggled-knob-color": "var(--color-primary)",
-  "toggle-knob-color": "#8997A5",
+  "toggle-knob-color": "var(--color-primary-dark)",
 
   "dropdown-item-active-color": "var(--color-powder-blue)",
   "dropdown-item-hover-color": "var(--color-powder-blue)",
