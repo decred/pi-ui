@@ -30,20 +30,21 @@ exports[`RadioButtonGroup component Matches snapshot 1`] = `
         >
           <span
             className="circle checked"
-          />
+          >
+            <span
+              className="dot"
+              style={
+                Object {
+                  "transform": " scale(1)",
+                }
+              }
+            />
+          </span>
           <label
             className="radioButtonOptionLabel"
           >
             foo
           </label>
-          <span
-            className="dot"
-            style={
-              Object {
-                "transform": " scale(1)",
-              }
-            }
-          />
         </label>
       </div>
     </li>
@@ -65,20 +66,21 @@ exports[`RadioButtonGroup component Matches snapshot 1`] = `
         >
           <span
             className="circle"
-          />
+          >
+            <span
+              className="dot"
+              style={
+                Object {
+                  "transform": " scale(0)",
+                }
+              }
+            />
+          </span>
           <label
             className="radioButtonOptionLabel"
           >
             bar
           </label>
-          <span
-            className="dot"
-            style={
-              Object {
-                "transform": " scale(0)",
-              }
-            }
-          />
         </label>
       </div>
     </li>

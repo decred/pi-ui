@@ -88,20 +88,20 @@ a:visited {
   color: var(--color-orange);
 }
 
-.radioButton1 > label > span {
-  border-color: var(--color-orange) !important;
-}
-
-.radioButton1 > label > span > span {
-  background: var(--color-orange) !important;
-}
-
 .radioButton2 > label > label {
   color: var(--color-green);
 }
 
+.radioButton1 > label > span {
+  border-color: var(--color-orange) !important;
+}
+
 .radioButton2 > label > span {
   border-color: var(--color-green) !important;
+}
+
+.radioButton1 > label > span > span {
+  background: var(--color-orange) !important;
 }
 
 .radioButton2 > label > span > span {
