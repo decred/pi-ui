@@ -1,20 +1,43 @@
-.switch {
-  position: relative;
-  cursor: pointer;
+.toggle {
+  display: inline-block;
+  vertical-align: middle;
 }
 
-.circle {
-  position: absolute;
-  height: 2.1rem;
-  width: 2.1rem;
-  margin-top: 0.2rem;
-  border-radius: 50%;
-}
-
-.bar {
-  width: 3.7rem;
-  height: 1.7rem;
-  border-radius: 2.5rem;
-  margin-top: 0.4rem;
+.toggle > div {
+  display: block;
+  width: 5rem;
+  height: 2rem;
+  border-radius: 0.3rem;
+  transition: all 200ms ease-in-out;
   background-color: var(--toggle-bar-color);
+  float: left;
+}
+
+.toggle > div:hover:not([disabled]) {
+  cursor: pointer;
+  width: 4.7rem;
+  margin-right: 0.3rem;
+}
+
+.toggle > div.toggled:hover:not([disabled]) {
+  padding-right: 0.3rem;
+}
+
+.toggle > div.notToggled:hover:not([disabled]) {
+  padding-left: 0.3rem;
+}
+
+.knob {
+  width: 2.5rem;
+  height: 100%;
+  border-radius: 0.3rem;
+}
+
+.toggled .knob {
+  float: right;
+  background-color: var(--toggle-toggled-knob-color);
+}
+
+.notToggled .knob {
+  background-color: var(--toggle-knob-color);
 }

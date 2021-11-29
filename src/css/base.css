@@ -107,3 +107,24 @@ a:visited {
 .radioButton2 > label > span > span {
   background: var(--color-green) !important;
 }
+
+/*
+CopyableText accepts classNames for text and button
+*/
+
+.copyableTextText {
+  color: green !important;
+}
+
+.copyableTextButton {
+  width: 2rem !important;
+  height: 2rem !important;
+}
+
+/*
+TextHighlighted accepts classNames for text 
+*/
+
+.textHighlighted {
+  padding: 1rem 10rem !important;
+}

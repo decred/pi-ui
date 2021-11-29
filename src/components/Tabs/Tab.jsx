@@ -14,6 +14,7 @@ const Tab = ({
   label,
   count,
   mode,
+  kind,
   ...props
 }) => {
   const { theme } = useTheme();
@@ -22,6 +23,10 @@ const Tab = ({
     onSelect(tabIndex);
   };
   const activeBorderColor = getThemeProperty(theme, "tab-active-color");
+  const secondaryActiveBorderColor = getThemeProperty(
+    theme,
+    "tab-secondary-active-color"
+  );
   const defaultBorderColor = getThemeProperty(theme, "tab-default-color");
   const activeBackgroundColor = getThemeProperty(
     theme,
@@ -34,7 +39,11 @@ const Tab = ({
   const activeTextColor = getThemeProperty(theme, "tab-text-active-color");
   const defaultTextColor = getThemeProperty(theme, "tab-text-color");
   const slide = useSpring({
-    borderColor: isActive ? activeBorderColor : defaultBorderColor,
+    borderColor: isActive
+      ? kind == "secondary"
+        ? secondaryActiveBorderColor
+        : activeBorderColor
+      : defaultBorderColor,
     color: isActive ? activeTextColor : defaultTextColor,
     backgroundColor: isActive ? activeBackgroundColor : defaultBackgroundColor,
     duration: 350,
@@ -73,10 +82,12 @@ Tab.propTypes = {
   label: PropTypes.node,
   count: PropTypes.node,
   mode: PropTypes.oneOf(["horizontal", "vertical", "dropdown"]),
+  kind: PropTypes.oneOf(["primary", "secondary"]),
 };
 
 Tab.defaultProps = {
   mode: "horizontal",
+  kind: "primary",
 };
 
 export default Tab;

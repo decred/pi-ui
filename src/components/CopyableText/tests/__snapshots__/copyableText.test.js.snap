@@ -29,7 +29,7 @@ exports[`CopyableText component Matches snapshot 1`] = `
       <g>
         <g>
           <g
-            fill="#2970ff"
+            fill="var(--color-primary)"
             transform="translate(40.909091, 51.660000)"
           >
             <polygon
@@ -37,25 +37,25 @@ exports[`CopyableText component Matches snapshot 1`] = `
             />
           </g>
           <polygon
-            fill="#2970ff"
+            fill="var(--color-primary)"
             points="136.227273 95.16 313.854545 95.16 313.854545 30.03 136.227273 30.03"
           />
           <rect
-            fill="#f7f8f9"
+            fill="var(--color-gray-lightest2)"
             height="21.75"
             width="249.75"
             x="100.063636"
             y="165.36"
           />
           <rect
-            fill="#f7f8f9"
+            fill="var(--color-gray-lightest2)"
             height="21.75"
             width="249.75"
             x="100.063636"
             y="233.04"
           />
           <rect
-            fill="#f7f8f9"
+            fill="var(--color-gray-lightest2)"
             height="21.75"
             width="249.75"
             x="100.063636"

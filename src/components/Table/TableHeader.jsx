@@ -26,7 +26,7 @@ const TableHeader = ({
 };
 
 TableHeader.propTypes = {
-  headers: PropTypes.arrayOf(PropTypes.string).isRequired,
+  headers: PropTypes.arrayOf(PropTypes.node).isRequired,
   headerCellClassName: PropTypes.string,
   rowClassName: PropTypes.string,
   className: PropTypes.string,

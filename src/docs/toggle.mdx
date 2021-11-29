@@ -43,3 +43,20 @@ import styles from "../css/base.css";
     
   }
 </Playground>
+
+### Disabled
+
+<Playground>
+  {() => {
+      return (
+        <Fragment>
+          <div className={styles.toggleWrapperExample}>
+            <Toggle toggled={false} disabled/> 
+            <div className={styles.toggleLabelExample}>I'm disabled!</div>
+          </div>
+        </Fragment>
+      );
+  }
+    
+  }
+</Playground>

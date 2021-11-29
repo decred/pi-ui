@@ -1,11 +1,11 @@
 import PropTypes from "prop-types";
 import React, { useState } from "react";
-import Text from "../Typography/Text/Text.jsx";
 import { copyToClipboard as copy } from "./helpers";
 import { classNames, idPropTypeCheckForTruncatedComponents } from "../../utils";
 import styles from "./styles.css";
 import Tooltip from "../Tooltip/Tooltip.jsx";
 import Icon from "../Icon/Icon.jsx";
+import TextHighlighted from "../TextHighlighted/TextHighlighted.jsx";
 
 const CopyableText = ({
   id,
@@ -13,6 +13,10 @@ const CopyableText = ({
   children,
   className,
   hoverText,
+  textClassName,
+  textStyle,
+  buttonClassName,
+  buttonStyle,
   tooltipPlacement,
   ...props
 }) => {
@@ -22,22 +26,27 @@ const CopyableText = ({
     setFeedbackActive(true);
     setTimeout(() => {
       setFeedbackActive(false);
-    }, 800);
+    }, 1000);
   };
   return (
     <div className={classNames(styles.copyableWrapper, className)} {...props}>
-      <Text id={id} truncate={truncate} className={styles.contentWrapper}>
+      <TextHighlighted
+        id={id}
+        truncate={truncate}
+        className={textClassName}
+        style={textStyle}>
         {children}
-      </Text>
+      </TextHighlighted>
       <Tooltip
         placement={tooltipPlacement}
         content={feedbackActive ? "Copied!" : hoverText}>
         <Icon
           type="copyToClipboard"
-          backgroundColor="#2970ff"
-          iconColor="#f7f8f9"
+          backgroundColor="var(--color-primary)"
+          iconColor="var(--color-gray-lightest2)"
           onClick={() => onCopyToClipboard(children)}
-          className={styles.copyToClipboard}
+          className={classNames(styles.copyToClipboard, buttonClassName)}
+          style={buttonStyle}
         />
       </Tooltip>
     </div>
@@ -46,9 +55,13 @@ const CopyableText = ({
 
 CopyableText.propTypes = {
   truncate: PropTypes.bool,
-  children: PropTypes.string,
-  hoverText: PropTypes.string,
+  children: PropTypes.node,
+  hoverText: PropTypes.node,
   className: PropTypes.string,
+  textClassName: PropTypes.string,
+  textStyle: PropTypes.object,
+  buttonClassName: PropTypes.string,
+  buttonStyle: PropTypes.object,
   tooltipPlacement: PropTypes.string,
   id: idPropTypeCheckForTruncatedComponents,
 };

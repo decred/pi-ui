@@ -863,6 +863,12 @@ const icons = (type, backgroundColor, iconColor) => {
         />
       </g>
     ),
+    arrow: (
+      <path
+        fill={iconColor}
+        d="M13.2002 6.6L6.6002 13L5.6002 11.9L10.5002 7.4L0.000195503 7.4V5.8L10.5002 5.8L5.7002 1.3L6.7002 0.2L13.2002 6.6Z"
+      />
+    ),
   }[type];
 };
 export const IconWrapper = React.forwardRef(

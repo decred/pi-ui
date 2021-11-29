@@ -64,7 +64,9 @@ const darkTheme = {
   "md-table-odd-row-background": "var(--color-primary-darker)",
   "md-table-even-row-background": "var(--color-primary-darkest)",
 
-  "toggle-bar-color": "var(--color-primary-darkest)",
+  "toggle-bar-color": "var(--color-primary-dark)",
+  "toggle-toggled-knob-color": "var(--color-primary)",
+  "toggle-knob-color": "#E9F8FE",
 
   "dropdown-item-active-color": "var(--color-powder-blue)",
   "dropdown-item-hover-color": "var(--color-powder-blue)",
@@ -97,9 +99,17 @@ const darkTheme = {
   "datasheet-read-only-background": "var(--color-primary-darkest)",
   "datasheet-border-color": "var(--color-gray-blue)",
 
+<<<<<<< HEAD
   /** RadioButton */
   "radio-button-stroke-color": "var(--color-primary)",
   "radio-button-option-label-color": "var(--color-powder-blue)",
+=======
+  /** Paginator */
+  "paginator-selected-background": "#E6EAED",
+  "paginator-selected-color": "#2F4D8C",
+  "paginator-button-color": "#b7deee",
+  "paginator-brake-color": "#608ACE",
+>>>>>>> upstream/master
 };
 
 export default darkTheme;

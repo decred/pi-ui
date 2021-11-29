@@ -9,38 +9,9 @@
   width: 100%;
 }
 
-.pages {
+.paginator {
   margin-top: 3rem;
-  display: flex;
-  align-items: center;
   justify-content: flex-end;
-}
-
-.pageItem {
-  cursor: pointer;
-  padding: 0.2rem 0.5rem;
-  border-radius: 0.3rem;
-  margin: 0 0.3rem;
-  width: 2.5rem;
-  text-align: center;
-  user-select: none;
-  color: var(--table-page-arrow-text-color);
-}
-
-.pageItemArrow {
-  cursor: pointer;
-  user-select: none;
-}
-
-.pageItemArrowDisabled {
-  composes: pageItemArrow;
-  cursor: not-allowed;
-}
-
-.pageItemActive {
-  background-color: var(--table-active-page-arrow-background);
-  color: var(--table-active-page-arrow-text-color);
-  composes: pageItem;
 }
 
 .tableCell {

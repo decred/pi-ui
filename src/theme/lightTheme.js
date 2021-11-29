@@ -90,7 +90,7 @@ const lightTheme = {
   "text-heading3-color": "var(--color-gray-blueish)",
   "text-input-color": "var(--color-gray)",
   "text-secondary-color": "var(--color-gray)",
-  "input-border-color": "var(--color-gray-lighter)",
+  "input-border-color": "var(--color-gray-light)",
   "active-nav-border-color": "var(--color-primary-light)",
   "separator-color": "var(--color-gray-lighter)",
   "subtitle-color": "var(--color-gray)",
@@ -136,6 +136,7 @@ const lightTheme = {
   "tab-default-background": "transparent",
   "tab-count-background": "var(--color-gray-lighter)",
   "tab-active-color": "var(--color-primary-light)",
+  "tab-secondary-active-color": "var(--color-gray-dark)",
   "tab-default-color": "var(--topbanner-color)",
   "tab-text-color": "var(--color-gray-dark)",
   "tab-text-active-color": "var(--color-primary-dark)",
@@ -166,6 +167,8 @@ const lightTheme = {
 
   /** Toggle */
   "toggle-bar-color": "var(--color-gray-light)",
+  "toggle-toggled-knob-color": "var(--color-primary)",
+  "toggle-knob-color": "var(--color-gray)",
 
   /** Dropdown */
   "dropdown-item-active-color": "var(--color-primary-dark)",
@@ -183,6 +186,7 @@ const lightTheme = {
 
   /** Checkbox */
   "checkbox-stroke-color": "var(--color-gray)",
+  "checkbox-active-stroke-color": "var(--color-primary)",
   "checkbox-hovered-background-color": "var(--color-gray-lighter)",
 
   /** RadioButton */
@@ -204,6 +208,12 @@ const lightTheme = {
   "datasheet-read-only-text-color": "var(--color-gray)",
   "datasheet-read-only-background": "var(--color-gray-lightest)",
   "datasheet-border-color": "var(--color-gray-lightest)",
+
+  /** Paginator */
+  "paginator-selected-background": "#E6EAED",
+  "paginator-selected-color": "#2970FF",
+  "paginator-button-color": "#3D5873",
+  "paginator-brake-color": "#C4CBD2",
 };
 
 export default lightTheme;
