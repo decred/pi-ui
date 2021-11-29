@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import React from "react";
-import Icon from "../Icon/Icon";
+import Icon from "../Icon/Icon.jsx";
 import { classNames } from "../../utils";
 import Spinner from "../Spinner/Spinner";
 import styles from "./styles.css";
