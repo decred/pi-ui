@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import React from "react";
 import Icon from "../Icon/Icon.jsx";
 import { classNames } from "../../utils";
-import Spinner from "../Spinner/Spinner";
+import Spinner from "../Spinner/Spinner.jsx";
 import styles from "./styles.css";
 
 const ButtonIcon = ({
