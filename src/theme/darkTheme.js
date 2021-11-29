@@ -99,6 +99,9 @@ const darkTheme = {
   "datasheet-read-only-background": "var(--color-primary-darkest)",
   "datasheet-border-color": "var(--color-gray-blue)",
 
+  /** RadioButton */
+  "radio-button-stroke-color": "var(--color-primary)",
+  "radio-button-option-label-color": "var(--color-powder-blue)",
   /** Paginator */
   "paginator-selected-background": "#E6EAED",
   "paginator-selected-color": "#2F4D8C",

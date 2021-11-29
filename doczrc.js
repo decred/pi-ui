@@ -9,7 +9,7 @@ const customPlugin = () =>
     },
   });
 
-export default {
+const configs = {
   title: "pi-ui",
   description: "Politeia UI library",
   src: "./src",
@@ -25,3 +25,5 @@ export default {
     },
   },
 };
+
+export default configs;

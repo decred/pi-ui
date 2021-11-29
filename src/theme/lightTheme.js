@@ -189,6 +189,13 @@ const lightTheme = {
   "checkbox-active-stroke-color": "var(--color-primary)",
   "checkbox-hovered-background-color": "var(--color-gray-lighter)",
 
+  /** RadioButton */
+  "radio-button-stroke-color": "var(--color-gray)",
+  "radio-button-selected-stroke-color": "var(--color-primary)",
+  "radio-button-option-label-color": "var(--color-gray-dark)",
+  "radio-button-option-label-disabled-color": "var(--color-light)",
+  "radio-button-dot-color": "var(--color-primary)",
+
   /** Select */
   "select-anchor-color": "var(--color-gray)",
 

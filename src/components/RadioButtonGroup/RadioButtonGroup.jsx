@@ -42,21 +42,25 @@ export const RadioButton = ({
       <label
         onClick={() => buttonRef.current && buttonRef.current.click()}
         htmlFor={id}>
-        <span className={styles.circle} />
-        {label}
-        <animated.span
-          className={styles.dot}
-          style={{
-            transform: x
-              .interpolate({
-                range: [0, 0.4, 0.8, 1],
-                output: [0, 0.55, 1.2, 1],
-              })
-              .interpolate((x) => `scale(${x})`),
-          }}
-        />
+        <span className={classNames(styles.circle, checked && styles.checked)}>
+          <animated.span
+            className={styles.dot}
+            style={{
+              transform: x
+                .to({
+                  range: [0, 0.4, 0.8, 1],
+                  output: [0, 0.55, 1.2, 1],
+                })
+                .to((x) => `scale(${x})`),
+            }}
+          />
+        </span>
+        <label className={styles.radioButtonOptionLabel}>{label}</label>
       </label>
-      <Description body={description} />
+      <Description
+        body={description}
+        className={styles.radioButtonDescription}
+      />
     </div>
   );
 };
@@ -73,7 +77,12 @@ export const RadioButtonGroup = ({
   optionsListClassName,
   optionsClassName,
 }) => (
-  <div className={classNames(styles.radioGroup, className)}>
+  <div
+    className={classNames(
+      styles.radioGroup,
+      disabled && styles.disabled,
+      className
+    )}>
     <label className={styles.radioGroupLabel}>{label}</label>
     <ul
       className={classNames(
