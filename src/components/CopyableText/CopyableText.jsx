@@ -1,11 +1,11 @@
 import PropTypes from "prop-types";
 import React, { useState } from "react";
-import Text from "../Typography/Text/Text.jsx";
 import { copyToClipboard as copy } from "./helpers";
 import { classNames, idPropTypeCheckForTruncatedComponents } from "../../utils";
 import styles from "./styles.css";
 import Tooltip from "../Tooltip/Tooltip.jsx";
 import Icon from "../Icon/Icon.jsx";
+import TextHighlighted from "../TextHighlighted/TextHighlighted.jsx";
 
 const CopyableText = ({
   id,
@@ -30,13 +30,13 @@ const CopyableText = ({
   };
   return (
     <div className={classNames(styles.copyableWrapper, className)} {...props}>
-      <Text
+      <TextHighlighted
         id={id}
         truncate={truncate}
-        className={classNames(styles.contentWrapper, textClassName)}
+        className={textClassName}
         style={textStyle}>
         {children}
-      </Text>
+      </TextHighlighted>
       <Tooltip
         placement={tooltipPlacement}
         content={feedbackActive ? "Copied!" : hoverText}>
