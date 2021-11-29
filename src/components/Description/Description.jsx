@@ -4,14 +4,14 @@ import styles from "./styles.css";
 import { classNames } from "../../utils";
 
 const Description = ({ body, style, className }) =>
-  body && (
+  body ? (
     <div className={classNames(styles.description, className)} style={style}>
       {body}
     </div>
-  );
+  ) : null;
 
 Description.propTypes = {
-  body: PropTypes.node.isRequired,
+  body: PropTypes.node,
   style: PropTypes.object,
   className: PropTypes.string,
 };

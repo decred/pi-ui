@@ -4,6 +4,7 @@
   padding: 0 0.6rem;
   margin: 1rem 1rem 0 0;
   user-select: none;
+  box-sizing: border-box;
 }
 
 .radioButton .circle {
