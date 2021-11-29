@@ -167,6 +167,8 @@ const lightTheme = {
 
   /** Toggle */
   "toggle-bar-color": "var(--color-gray-light)",
+  "toggle-toggled-knob-color": "var(--color-primary)",
+  "toggle-knob-color": "var(--color-gray)",
 
   /** Dropdown */
   "dropdown-item-active-color": "var(--color-primary-dark)",
