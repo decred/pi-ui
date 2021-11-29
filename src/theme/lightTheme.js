@@ -214,6 +214,11 @@ const lightTheme = {
   "paginator-selected-color": "#2970FF",
   "paginator-button-color": "#3D5873",
   "paginator-brake-color": "#C4CBD2",
+
+  /** Button Icon */
+  "button-icon-background": "var(--color-white)",
+  "button-icon-color-1": "var(--icon-color)",
+  "button-icon-color-2": "var(--color-primary-dark)",
 };
 
 export default lightTheme;

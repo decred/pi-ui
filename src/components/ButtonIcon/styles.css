@@ -8,7 +8,7 @@
   height: 2.4rem;
   padding: 0.3rem;
   cursor: pointer;
-  background: var(--color-white);
+  background: var(--button-icon-background);
   box-shadow: 0 0.2rem 0.8rem 0 rgba(0, 0, 0, 0.12);
 }
 
@@ -18,4 +18,23 @@
 
 .buttonIcon:active {
   box-shadow: 0 0 0.4rem 0 rgba(0, 0, 0, 0.24);
+}
+
+.disabled {
+  cursor: not-allowed;
+  color: var(--btn-disabled-text-color);
+  background-color: var(--btn-disabled-background-color);
+  box-shadow: 0 0.2rem 0.8rem 0 rgba(0, 0, 0, 0.12);
+}
+
+.disabled:hover {
+  box-shadow: 0 0.2rem 0.8rem 0 rgba(0, 0, 0, 0.12);
+}
+
+.disabled:active {
+  box-shadow: 0 0.2rem 0.8rem 0 rgba(0, 0, 0, 0.12);
+}
+
+.loading {
+  pointer-events: none;
 }

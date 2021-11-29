@@ -5,7 +5,14 @@ route: /components/buttonicon
 ---
 
 import { Playground, Props } from "docz";
-import { ButtonIcon } from "../index";
+import {
+  ButtonIcon,
+  defaultDarkTheme,
+  ThemeProvider,
+  DEFAULT_DARK_THEME_NAME,
+} from "../index";
+
+console.log(defaultDarkTheme);
 
 # ButtonIcon
 
@@ -27,4 +34,24 @@ import { ButtonIcon } from "../index";
   <ButtonIcon type="markdown" viewBox="0 0 208 128" />
   <br />
   <ButtonIcon type="search" />
+</Playground>
+
+### Disabled
+
+<Playground>
+  <ButtonIcon type="mail" disabled />
+  <br />
+  <ButtonIcon type="link" disabled />
+  <br />
+  <ButtonIcon type="chart" disabled />
+  <br />
+  <ButtonIcon type="markdown" viewBox="0 0 208 128" disabled />
+  <br />
+  <ButtonIcon type="search" disabled />
+</Playground>
+
+### Loading
+
+<Playground>
+  <ButtonIcon type="mail" loading />
 </Playground>

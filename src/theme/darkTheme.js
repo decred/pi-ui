@@ -107,6 +107,11 @@ const darkTheme = {
   "paginator-selected-color": "#2F4D8C",
   "paginator-button-color": "#b7deee",
   "paginator-brake-color": "#608ACE",
+
+  /** Button Icon */
+  "button-icon-background": "#2F4D8C",
+  "button-icon-color-1": "#9ac1e3",
+  "button-icon-color-2": "#9ac1e3",
 };
 
 export default darkTheme;
