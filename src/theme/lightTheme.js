@@ -193,7 +193,7 @@ const lightTheme = {
   "radio-button-stroke-color": "var(--color-gray)",
   "radio-button-selected-stroke-color": "var(--color-primary)",
   "radio-button-option-label-color": "var(--color-gray-dark)",
-  "radio-button-option-label-disabled-color": "var(--color-light)",
+  "radio-button-option-label-disabled-color": "var(--text-color-light)",
   "radio-button-dot-color": "var(--color-primary)",
 
   /** Select */
@@ -219,6 +219,8 @@ const lightTheme = {
   "button-icon-background": "var(--color-white)",
   "button-icon-color-1": "var(--icon-color)",
   "button-icon-color-2": "var(--color-primary-dark)",
+  "button-icon-color-1-disabled": "var(--color-gray-light",
+  "button-icon-color-2-disabled": "var(--color-gray)",
 };
 
 export default lightTheme;

@@ -18,11 +18,15 @@ const ButtonIcon = ({
   onClick,
   loading,
   viewBox,
+  iconColor,
+  iconBackgroundColor,
   ...props
 }) => {
   const { theme, themeName } = useTheme();
-  const iconColor = getThemeProperty(theme, "button-icon-color-1");
-  const iconBgColor = getThemeProperty(theme, "button-icon-color-2");
+  const btnIconColor = iconColor || getThemeProperty(theme, "button-icon-color-1");
+  const btnIconBgColor = iconBackgroundColor || getThemeProperty(theme, "button-icon-color-2");
+  const disabledBtnIconColor = getThemeProperty(theme, "button-icon-color-1-disabled");
+  const disabledBtnIconBgColor = getThemeProperty(theme, "button-icon-color-2-disabled");
   const isDarkTheme = themeName === DEFAULT_DARK_THEME_NAME;
   return (
     <button
@@ -43,8 +47,8 @@ const ButtonIcon = ({
         <Icon
           type={type}
           viewBox={viewBox}
-          iconColor={iconColor}
-          backgroundColor={iconBgColor}
+          iconColor={disabled ? disabledBtnIconColor : btnIconColor}
+          backgroundColor={disabled ? disabledBtnIconBgColor : btnIconBgColor}
         />
       )}
     </button>
