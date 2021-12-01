@@ -219,7 +219,7 @@ const lightTheme = {
   "button-icon-background": "var(--color-white)",
   "button-icon-color-1": "var(--icon-color)",
   "button-icon-color-2": "var(--color-primary-dark)",
-  "button-icon-color-1-disabled": "var(--color-gray-light",
+  "button-icon-color-1-disabled": "var(--color-gray-light)",
   "button-icon-color-2-disabled": "var(--color-gray)",
 };
 
