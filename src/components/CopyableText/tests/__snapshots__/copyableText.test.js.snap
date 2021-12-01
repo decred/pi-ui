@@ -27,41 +27,26 @@ exports[`CopyableText component Matches snapshot 1`] = `
       width="16"
     >
       <g>
-        <g>
-          <g
-            fill="var(--color-primary)"
-            transform="translate(40.909091, 51.660000)"
-          >
-            <polygon
-              points="306.818182 0 306.818182 67.68 61.3636364 67.68 61.3636364 0 0 0 0 338.37 368.181818 338.37 368.181818 0"
-            />
-          </g>
-          <polygon
-            fill="var(--color-primary)"
-            points="136.227273 95.16 313.854545 95.16 313.854545 30.03 136.227273 30.03"
-          />
-          <rect
-            fill="var(--color-gray-lightest2)"
-            height="21.75"
-            width="249.75"
-            x="100.063636"
-            y="165.36"
-          />
-          <rect
-            fill="var(--color-gray-lightest2)"
-            height="21.75"
-            width="249.75"
-            x="100.063636"
-            y="233.04"
-          />
-          <rect
-            fill="var(--color-gray-lightest2)"
-            height="21.75"
-            width="249.75"
-            x="100.063636"
-            y="300.69"
-          />
-        </g>
+        <path
+          d="M328.086 43.8162V121.449H121.617V43.8162H70V431.943H379.703V43.8162H328.086Z"
+          fill="var(--color-primary)"
+        />
+        <path
+          d="M150.172 93.7074H299.586V19H150.172V93.7074Z"
+          fill="var(--color-primary)"
+        />
+        <path
+          d="M329.823 174.225H119.741V199.174H329.823V174.225Z"
+          fill="var(--color-gray-lightest2)"
+        />
+        <path
+          d="M329.823 251.869H119.741V276.817H329.823V251.869Z"
+          fill="var(--color-gray-lightest2)"
+        />
+        <path
+          d="M329.823 329.45H119.741V354.399H329.823V329.45Z"
+          fill="var(--color-gray-lightest2)"
+        />
       </g>
     </svg>
   </div>
