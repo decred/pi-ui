@@ -13,7 +13,6 @@ import {
 const ButtonIcon = ({
   type,
   className,
-  style,
   disabled,
   onClick,
   loading,
@@ -45,7 +44,6 @@ const ButtonIcon = ({
         loading && styles.loading,
         className
       )}
-      style={style}
       disabled={disabled}
       onClick={onClick}
       {...props}>
@@ -67,7 +65,6 @@ ButtonIcon.propTypes = {
   type: PropTypes.string.isRequired,
   className: PropTypes.string,
   viewBox: PropTypes.string,
-  style: PropTypes.object,
   disabled: PropTypes.bool,
   onClick: PropTypes.func,
   loading: PropTypes.bool,
