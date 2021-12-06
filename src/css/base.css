@@ -128,3 +128,23 @@ TextHighlighted accepts classNames for text
 .textHighlighted {
   padding: 1rem 10rem !important;
 }
+
+/*
+ButtonIcon accepts classNames 
+*/
+
+.exampleButtonIconsWrapper {
+  display: flex;
+}
+
+.exampleButtonIconsWrapper > button {
+  margin-right: 1rem;
+}
+
+.blueButtonIcon {
+  background: var(--color-primary) !important;
+}
+
+.darkBlueButtonIcon {
+  background: var(--paginator-button-color) !important;
+}

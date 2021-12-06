@@ -11,6 +11,7 @@ import {
   ThemeProvider,
   DEFAULT_DARK_THEME_NAME,
 } from "../index";
+import styles from "../css/base.css";
 
 # ButtonIcon
 
@@ -22,30 +23,38 @@ import {
 
 ### Normal
 
-<Playground>
+<Playground className={styles.exampleButtonIconsWrapper}>
   <ButtonIcon type="mail" />
-  <br />
   <ButtonIcon type="link" />
-  <br />
   <ButtonIcon type="chart" />
-  <br />
   <ButtonIcon type="markdown" viewBox="0 0 208 128" />
-  <br />
   <ButtonIcon type="search" />
+  <ButtonIcon type="sendMax" />
+  <ButtonIcon type="copyToClipboard" iconBackgroundColor="#2970ff" />
+  <ButtonIcon type="accounts" className={styles.blueButtonIcon} iconColor="white" />
+  <ButtonIcon type="qr" iconColor="#2970ff" />
+  <ButtonIcon type="plus" className={styles.blueButtonIcon} iconColor="#f7f8f9" />
+  <ButtonIcon type="cancel" className={styles.darkBlueButtonIcon} iconColor="#f7f8f9" />
+  <ButtonIcon type="refresh" iconColor="#3D5873" />
+  <ButtonIcon type="searchBlock" />
 </Playground>
 
 ### Disabled
 
-<Playground>
+<Playground className={styles.exampleButtonIconsWrapper}>
   <ButtonIcon type="mail" disabled />
-  <br />
   <ButtonIcon type="link" disabled />
-  <br />
   <ButtonIcon type="chart" disabled />
-  <br />
   <ButtonIcon type="markdown" viewBox="0 0 208 128" disabled />
-  <br />
   <ButtonIcon type="search" disabled />
+  <ButtonIcon type="sendMax" disabled />
+  <ButtonIcon type="copyToClipboard" disabled />
+  <ButtonIcon type="accounts" disabled />
+  <ButtonIcon type="qr" disabled />
+  <ButtonIcon type="plus" disabled iconColor="#f7f8f9" />
+  <ButtonIcon type="cancel" disabled iconColor="#f7f8f9" />
+  <ButtonIcon type="refresh" disabled iconColor="#3D5873" />
+  <ButtonIcon type="searchBlock" disabled />
 </Playground>
 
 ### Loading
