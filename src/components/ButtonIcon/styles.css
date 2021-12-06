@@ -1,0 +1,40 @@
+.buttonIcon {
+  border: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.5rem;
+  width: 2.4rem;
+  height: 2.4rem;
+  padding: 0.3rem;
+  cursor: pointer;
+  background: var(--button-icon-background);
+  box-shadow: 0 0.2rem 0.8rem 0 rgba(0, 0, 0, 0.12);
+}
+
+.buttonIcon:hover {
+  box-shadow: 0 0.1rem 0.4rem 0 rgba(0, 0, 0, 0.24);
+}
+
+.buttonIcon:active {
+  box-shadow: 0 0 0.4rem 0 rgba(0, 0, 0, 0.24);
+}
+
+.disabled {
+  cursor: not-allowed;
+  color: var(--btn-disabled-text-color);
+  background-color: var(--btn-disabled-background-color);
+  box-shadow: 0 0.2rem 0.8rem 0 rgba(0, 0, 0, 0.12);
+}
+
+.disabled:hover {
+  box-shadow: 0 0.2rem 0.8rem 0 rgba(0, 0, 0, 0.12);
+}
+
+.disabled:active {
+  box-shadow: 0 0.2rem 0.8rem 0 rgba(0, 0, 0, 0.12);
+}
+
+.loading {
+  pointer-events: none;
+}

@@ -1,0 +1,55 @@
+---
+name: ButtonIcon
+menu: Components
+route: /components/buttonicon
+---
+
+import { Playground, Props } from "docz";
+import {
+  ButtonIcon,
+  defaultDarkTheme,
+  ThemeProvider,
+  DEFAULT_DARK_THEME_NAME,
+} from "../index";
+
+# ButtonIcon
+
+## Properties
+
+<Props of={ButtonIcon} />
+
+## Usage
+
+### Normal
+
+<Playground>
+  <ButtonIcon type="mail" />
+  <br />
+  <ButtonIcon type="link" />
+  <br />
+  <ButtonIcon type="chart" />
+  <br />
+  <ButtonIcon type="markdown" viewBox="0 0 208 128" />
+  <br />
+  <ButtonIcon type="search" />
+</Playground>
+
+### Disabled
+
+<Playground>
+  <ButtonIcon type="mail" disabled />
+  <br />
+  <ButtonIcon type="link" disabled />
+  <br />
+  <ButtonIcon type="chart" disabled />
+  <br />
+  <ButtonIcon type="markdown" viewBox="0 0 208 128" disabled />
+  <br />
+  <ButtonIcon type="search" disabled />
+</Playground>
+
+### Loading
+
+<Playground>
+  <ButtonIcon type="mail" loading />
+</Playground>
