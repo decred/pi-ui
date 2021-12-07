@@ -24,39 +24,39 @@ DropdownIndicator.propTypes = {
 const Select = ({ width, ...props }) => {
   const customStyles = {
     indicatorSeparator: () => ({
-      display: "none"
+      display: "none",
     }),
     container: (provided) => ({
       ...provided,
       width: width ? width : provided.width,
-      padding: "0.2rem 0 0.2rem 0.4rem"
+      padding: "0.2rem 0 0.2rem 0.4rem",
     }),
     control: (provided) => ({
-        ...provided,
-        "user-select": "none",
-        "box-shadow": "none",
-        "border-radius": "0.2rem",
-        "min-height": "3rem",
-        "min-width": "6rem",
+      ...provided,
+      "user-select": "none",
+      "box-shadow": "none",
+      "border-radius": "0.2rem",
+      "min-height": "3rem",
+      "min-width": "6rem",
+      "border-color": "var(--input-border-color)",
+      "background-color": "var(--card-background)",
+      "&:hover": {
         "border-color": "var(--input-border-color)",
-        "background-color": "var(--card-background)",
-        "&:hover": {
-          "border-color": "var(--input-border-color)",
-        }
+      },
     }),
     menu: (provided) => ({
-        ...provided,
-        "z-index": "999",
-        "box-shadow": "0px 1rem 2rem rgba(0, 0, 0, 0.16)",
-        "border-radius": "0.2rem",
-        "background-color": "var(--card-background)",
-      }),
+      ...provided,
+      "z-index": "999",
+      "box-shadow": "0px 1rem 2rem rgba(0, 0, 0, 0.16)",
+      "border-radius": "0.2rem",
+      "background-color": "var(--card-background)",
+    }),
     menuList: () => ({
-      padding: "0"
+      padding: "0",
     }),
     singleValue: (provided) => ({
       ...provided,
-      color: "var(--color-primary-dark)"
+      color: "var(--color-primary-dark)",
     }),
     option: (provided) => ({
       ...provided,
@@ -64,10 +64,10 @@ const Select = ({ width, ...props }) => {
       "background-color": "var(--card-background)",
       cursor: "pointer",
       "&:hover": {
-        "background-color": "var(--color-blue-lighter)"
-      }
-    })
-  }
+        "background-color": "var(--color-blue-lighter)",
+      },
+    }),
+  };
   return (
     <div>
       <ReactSelect
@@ -84,7 +84,7 @@ Select.propTypes = {
   isSearchable: PropTypes.bool,
   width: PropTypes.string,
   value: PropTypes.object,
-  onChange: PropTypes.func
+  onChange: PropTypes.func,
 };
 
 Select.defaultProps = {
