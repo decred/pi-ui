@@ -21,7 +21,7 @@ DropdownIndicator.propTypes = {
   selectProps: PropTypes.object,
 };
 
-const Select = ({ width, ...props }) => {
+const Select = ({ width, isMobile, ...props }) => {
   const customStyles = {
     indicatorSeparator: () => ({
       display: "none",
@@ -36,7 +36,7 @@ const Select = ({ width, ...props }) => {
       "user-select": "none",
       "box-shadow": "none",
       "border-radius": "0.2rem",
-      "min-height": "3rem",
+      "min-height": isMobile ? "4.4rem" : "3rem",
       "min-width": "6rem",
       "border-color": "var(--input-border-color)",
       "background-color": "var(--card-background)",
@@ -84,6 +84,7 @@ Select.propTypes = {
   isSearchable: PropTypes.bool,
   width: PropTypes.string,
   value: PropTypes.object,
+  isMobile: PropTypes.bool,
   onChange: PropTypes.func,
 };
 
