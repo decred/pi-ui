@@ -3,43 +3,62 @@
 exports[`Select component Matches the snapshot 1`] = `
 <div>
   <div
-    className="css-1pcexqc-container"
+    className=" css-1n3r0gh-container"
     onKeyDown={[Function]}
   >
+    <span
+      className="css-1f43avz-a11yText-A11yText"
+      id="react-select-2-live-region"
+    />
+    <span
+      aria-atomic="false"
+      aria-live="polite"
+      aria-relevant="additions text"
+      className="css-1f43avz-a11yText-A11yText"
+    />
     <div
-      className="css-bg1rzq-control miniCustomSelect__control"
+      className=" css-n1d6tz-control"
       onMouseDown={[Function]}
       onTouchEnd={[Function]}
     >
       <div
-        className="css-1hwfws3 miniCustomSelect__value-container"
+        className=" css-319lph-ValueContainer"
       >
         <div
-          className="css-151xaom-placeholder miniCustomSelect__placeholder"
+          className=" css-14el2xx-placeholder"
+          id="react-select-2-placeholder"
         >
           Select...
         </div>
         <input
-          className="css-gj7qu5-dummyInput"
+          aria-autocomplete="list"
+          aria-controls="react-select-2-listbox"
+          aria-describedby="react-select-2-placeholder"
+          aria-expanded={false}
+          aria-haspopup={true}
+          aria-owns="react-select-2-listbox"
+          aria-readonly={true}
+          className="css-mohuvp-dummyInput-DummyInput"
           disabled={false}
           id="react-select-2-input"
+          inputMode="none"
           onBlur={[Function]}
           onChange={[Function]}
           onFocus={[Function]}
-          readOnly={true}
-          tabIndex="0"
+          role="combobox"
+          tabIndex={0}
           value=""
         />
       </div>
       <div
-        className="css-1wy0on6 miniCustomSelect__indicators"
+        className=" css-1hb7zxy-IndicatorsContainer"
       >
         <span
-          className="css-bgvzuu-indicatorSeparator miniCustomSelect__indicator-separator"
+          className=" css-1xjgjl1-IndicatorSeparator"
         />
         <div
           aria-hidden="true"
-          className="css-16pqwjk-indicatorContainer miniCustomSelect__indicator miniCustomSelect__dropdown-indicator"
+          className=" css-tlfecz-indicatorContainer"
           onMouseDown={[Function]}
           onTouchEnd={[Function]}
         >
