@@ -11,6 +11,7 @@ import { Select } from "../index";
 # Select
 
 ## Select props
+
 <Props of={Select} />
 
 ## Usage
@@ -19,26 +20,107 @@ import { Select } from "../index";
 
 <Playground>
   {() => {
-    const options = [{
-      value: 'top',
-      label: 'Top'
-    }, {
-      value: 'new',
-      label: 'New'
-    }, {
-      value: 'old',
-      label: 'Old'
-    }];
+    const options = [
+      {
+        value: "top",
+        label: "Top",
+      },
+      {
+        value: "new",
+        label: "New",
+      },
+      {
+        value: "old",
+        label: "Old",
+      },
+    ];
     const [selected, setSelected] = useState({
-      value: 'old',
-      label: 'Old'
+      value: "old",
+      label: "Old",
     });
     const selectChangeHandler = (option) => {
       setSelected(option);
     };
     return (
       <Fragment>
-      	<Select 
+        <Select
+          options={options}
+          value={selected}
+          onChange={selectChangeHandler}
+        />
+      </Fragment>
+    );
+  }}
+</Playground>
+
+### Mini select
+
+<Playground>
+  {() => {
+    const options = [
+      {
+        value: "top",
+        label: "Top",
+      },
+      {
+        value: "new",
+        label: "New",
+      },
+      {
+        value: "old",
+        label: "Old",
+      },
+    ];
+    const [selected, setSelected] = useState({
+      value: "old",
+      label: "Old",
+    });
+    const selectChangeHandler = (option) => {
+      setSelected(option);
+    };
+    return (
+      <Fragment>
+        <Select
+          width={100}
+          options={options}
+          value={selected}
+          onChange={selectChangeHandler}
+        />
+      </Fragment>
+    );
+  }}
+</Playground>
+
+### Mobile select
+
+<Playground>
+  {() => {
+    const options = [
+      {
+        value: "top",
+        label: "Top",
+      },
+      {
+        value: "new",
+        label: "New",
+      },
+      {
+        value: "old",
+        label: "Old",
+      },
+    ];
+    const [selected, setSelected] = useState({
+      value: "old",
+      label: "Old",
+    });
+    const selectChangeHandler = (option) => {
+      setSelected(option);
+    };
+    return (
+      <Fragment>
+        <Select
+          width={100}
+          isMobile
           options={options}
           value={selected}
           onChange={selectChangeHandler}
