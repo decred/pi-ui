@@ -1,8 +1,5 @@
 name: Deploy
-on:
-  push:
-    branches:
-      - master
+on: [push, pull_request]
 
 jobs:
   build-and-deploy:
@@ -10,6 +7,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@master
+
+      - name: Setup node
+        uses: actions/setup-node@v2
+        with:
+          node-version: "14"
 
       - name: Install and Build
         run: |
