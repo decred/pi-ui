@@ -14,7 +14,7 @@ The recommended way to create a custom theme is to create a file named `theme.js
 
 export default {
   "color-primary": "red",
-  "btn-color": "var(--color-primary)"
+  "btn-color": "var(--color-primary)",
 };
 ```
 
@@ -25,7 +25,11 @@ Pi-ui exposes a `ThemeProvider` that accepts a `themes` object, `defaultThemeNam
 ```js
 import React from "react";
 import { render } from "react-dom";
-import { ThemeProvider, defaultLightTheme, DEFAULT_LIGHT_THEME_NAME } from "pi-ui";
+import {
+  ThemeProvider,
+  defaultLightTheme,
+  DEFAULT_LIGHT_THEME_NAME,
+} from "pi-ui";
 
 import customTheme from "./theme";
 import SourceSansProLight from "../assets/fonts/source-sans-pro/SourceSansPro-Light.ttf";
@@ -38,22 +42,22 @@ const fonts = [
     src: `url(${SourceSansProLight}) format("truetype")`,
     "font-weight": defaultLightTheme["font-weight-light"], // 300
     "font-style": "normal",
-    "font-display": "swap"
+    "font-display": "swap",
   },
   {
     "font-family": "Source Sans Pro",
     src: `url(${SourceSansProRegular}) format("truetype")`,
     "font-weight": defaultLightTheme["font-weight-regular"], // 400
     "font-style": "normal",
-    "font-display": "swap"
+    "font-display": "swap",
   },
   {
     "font-family": "Source Sans Pro",
     src: `url(${SourceSansProSemiBold}) format("truetype")`,
     "font-weight": defaultLightTheme["font-weight-semi-bold"], // 600
     "font-style": "normal",
-    "font-display": "swap"
-  }
+    "font-display": "swap",
+  },
 ];
 
 const App = () => {
@@ -78,7 +82,12 @@ It's recommended to use `DEFAULT_LIGHT_THEME_NAME` and `DEFAULT_DARK_THEME_NAME`
 internally in some components to use dark default styling variables or the light ones.
 
 ```js
-import { defaultLightTheme, defaultDarkTheme, DEFAULT_LIGHT_THEME_NAME, DEFAULT_DARK_THEME_NAME } from "pi-ui";
+import {
+  defaultLightTheme,
+  defaultDarkTheme,
+  DEFAULT_LIGHT_THEME_NAME,
+  DEFAULT_DARK_THEME_NAME,
+} from "pi-ui";
 ```
 
 ## UseTheme hook in deep children
@@ -87,23 +96,27 @@ import { defaultLightTheme, defaultDarkTheme, DEFAULT_LIGHT_THEME_NAME, DEFAULT_
 
 ```js
 import React from "react";
-import { useTheme, Button, getThemeProperty, DEFAULT_LIGHT_THEME_NAME, DEFAULT_DARK_THEME_NAME } from "pi-ui";
+import {
+  useTheme,
+  Button,
+  getThemeProperty,
+  DEFAULT_LIGHT_THEME_NAME,
+  DEFAULT_DARK_THEME_NAME,
+} from "pi-ui";
 
 const DeepChild = () => {
   const { themeName, setThemeName, theme } = useTheme();
 
-  const colorGreen = getThemeProperty(theme, "color-green"); // get theme property 
-  
+  const colorGreen = getThemeProperty(theme, "color-green"); // get theme property
+
   const handleToggleTheme = () => {
     if (themeName === DEFAULT_LIGHT_THEME_NAME) {
       setThemeName(DEFAULT_LIGHT_THEME_NAME);
     } else {
       setThemeName(DEFAULT_LIGHT_THEME_NAME);
     }
-  }
+  };
 
-  return (
-    <Button onClick={handleToggleTheme}>Toggle theme</Button>
-  )
+  return <Button onClick={handleToggleTheme}>Toggle theme</Button>;
 };
 ```

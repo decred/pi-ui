@@ -12,6 +12,7 @@ import { DatePicker } from "../index";
 # DatePicker
 
 ## DatePicker props
+
 <Props of={DatePicker} />
 
 ## Usage
@@ -35,7 +36,7 @@ import { DatePicker } from "../index";
     return (
       <Fragment>
       	<DatePicker
-          years={years} 
+          years={years}
           value={value}
           lang={[
             "Jan",
@@ -55,7 +56,9 @@ import { DatePicker } from "../index";
         />
       </Fragment>
     );
-  }}
+
+}}
+
 </Playground>
 
 ### using a custom picker
@@ -92,7 +95,7 @@ You can specify a **custom picker component**. If you go for this approach, don'
     return (
       <Fragment>
       	<DatePicker
-          years={years} 
+          years={years}
           value={value}
           show={isOpen}
           onChange={onChange}
@@ -107,10 +110,10 @@ You can specify a **custom picker component**. If you go for this approach, don'
         </DatePicker>
       </Fragment>
     );
-  }}
+
+}}
+
 </Playground>
-
-
 
 ### month picker
 
@@ -129,12 +132,12 @@ Obs: the `onChange` function will not return the `day` value, obviously because 
     // specify min, max properties in years object to limit selection
     const years = {
       min: { year: 2018, month: 1 },
-      max: { year: 2020, month: 2}
-    }
+      max: { year: 2020, month: 2 },
+    };
     return (
       <Fragment>
-      	<DatePicker
-          years={years} 
+        <DatePicker
+          years={years}
           value={value}
           // enable isMonthsMode prop
           isMonthsMode={true}
@@ -145,30 +148,28 @@ Obs: the `onChange` function will not return the `day` value, obviously because 
   }}
 </Playground>
 
-
 ### month picker with range option
 
 To use the range option, just enable the `isRange` prop. In this case, `value` is treated as an array, where the first element is the initial range value, and the second is the last range value.
-
 
 <Playground>
   {() => {
     const initialValues = [
       { year: 2019, month: 3 },
-      { year: 2020, month: 2 }
-    ]
+      { year: 2020, month: 2 },
+    ];
     const [values, setValues] = useState(initialValues);
     const onChange = (year, month, idx) => {
       if (!!year && !!month) {
-        const newValues = values ? [...values] : []
-        newValues[idx] = { year, month }
+        const newValues = values ? [...values] : [];
+        newValues[idx] = { year, month };
         setValues(newValues);
       }
     };
     // specify min, max properties in years object to limit selection
     return (
       <Fragment>
-      	<DatePicker
+        <DatePicker
           value={values}
           isMonthsMode={true}
           // enable isRange prop
@@ -184,22 +185,22 @@ To use the range option, just enable the `isRange` prop. In this case, `value` i
 
 <Playground>
   {() => {
-    const initialValues = null
+    const initialValues = null;
     const [values, setValues] = useState(initialValues);
     const onChange = (year, month, day, idx) => {
       if (!!year && !!month && !!day) {
-        const newValues = values ? [...values] : []
-        newValues[idx] = { year, month, day }
+        const newValues = values ? [...values] : [];
+        newValues[idx] = { year, month, day };
         setValues(newValues);
       }
     };
     // specify min, max properties in years object to limit selection
     return (
       <Fragment>
-      	<DatePicker
+        <DatePicker
           years={{
             min: { day: 1, month: 2, year: 2020 },
-            max: { day: 1, month: 3, year: 2021 }
+            max: { day: 1, month: 3, year: 2021 },
           }}
           value={values}
           // enable isRange prop
@@ -237,7 +238,7 @@ To use the range option, just enable the `isRange` prop. In this case, `value` i
     return (
       <Fragment>
       	<DatePicker
-          years={[2015,2017,2019]}  
+          years={[2015,2017,2019]}
           value={value}
           show={isOpen}
           onChange={onChange}
@@ -250,7 +251,7 @@ To use the range option, just enable the `isRange` prop. In this case, `value` i
         </DatePicker>
       </Fragment>
     );
-  }}
+
+}}
+
 </Playground>
-
-

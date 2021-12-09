@@ -3,7 +3,15 @@ name: Layout
 route: /layout
 ---
 
-import { Container, Header, TopBanner, PageDetails, SearchBox, Sidebar, Main } from "../index";
+import {
+  Container,
+  Header,
+  TopBanner,
+  PageDetails,
+  SearchBox,
+  Sidebar,
+  Main,
+} from "../index";
 import { Playground, Props } from "docz";
 
 # Layout
@@ -17,15 +25,13 @@ Container implements a default grid to position `pi-ui` layout elements.
 For screens width bigger than 560px:
 
 ```css
---layout-grid-columns: [full-start] var(--grid-center-padding) [center-start]
-    repeat(
-      12,
-      [col-start]
-      minmax(var(--min-column-size), var(--max-column-size))
-      [col-end]
-    )
-    [center-end] var(--grid-center-padding) [full-end];
+--layout-grid-columns: [full-start] var(--grid-center-padding) [center-start] repeat(
+    12,
+    [col-start] minmax(var(--min-column-size), var(--max-column-size)) [col-end]
+  )
+  [center-end] var(--grid-center-padding) [full-end];
 ```
+
 ```css
 --layout-grid-rows: 6rem 12rem 3rem minmax(30rem, max-content);
 ```
@@ -35,6 +41,7 @@ For screens width smaller or equal than 560px:
 ```css
 --layout-grid-columns: [full-start] 1fr [full-end];
 ```
+
 ```css
 --layout-grid-rows: 6rem 12rem 3rem minmax(30rem, max-content);
 ```
@@ -42,9 +49,9 @@ For screens width smaller or equal than 560px:
 ## Breakpoints
 
 | **Extra Small** | **Small** | **Medium** | **Large** |
-|      :---:      |   :---:   |    :---:   |   :---:   |
-|      <= 560px   |  > 560px  |   > 768px  |  > 1000px |
-|      xs         |    sm     |     md     |     lg    |
+| :-------------: | :-------: | :--------: | :-------: |
+|    <= 560px     |  > 560px  |  > 768px   | > 1000px  |
+|       xs        |    sm     |     md     |    lg     |
 
 ## Header
 

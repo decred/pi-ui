@@ -19,105 +19,117 @@ import { classNames } from "../utils";
 
 <Playground>
   <StatusBar
-    status = {[
+    status={[
       {
         label: "Yes",
         amount: 300,
-        color: "green"
+        color: "green",
       },
       {
         label: "No",
         amount: 200,
-        color: "orange"
+        color: "orange",
       },
       {
         label: "Maybe",
         amount: 500,
-        color: "blue"
-      }
+        color: "blue",
+      },
     ]}
-    markerPosition = "50%"
-    markerTooltipText = "50% Yes votes required for approval"
+    markerPosition="50%"
+    markerTooltipText="50% Yes votes required for approval"
     markerTooltipClassName={classNames(styles.statusBarMarkerTooltipExample)}
     max={5000}
   />
-  <br/>
-  <br/>
+  <br />
+  <br />
   <StatusBar
-    status = {[
+    status={[
       {
         label: "Yes",
         amount: 300,
-        color: "green"
+        color: "green",
       },
       {
         label: "No",
         amount: 200,
-        color: "orange"
-      }
+        color: "orange",
+      },
     ]}
-    markerPosition = "50%"
+    markerPosition="50%"
     max={5000}
   />
-  <br/>
-  <br/>
+  <br />
+  <br />
   <StatusBar
-    status = {[
+    status={[
       {
         label: "Yes",
         amount: 300,
-        color: "green"
+        color: "green",
       },
       {
         label: "No",
         amount: 200,
-        color: "orange"
-      }
+        color: "orange",
+      },
     ]}
     showMarker={false}
   />
-  <br/>
-  <br/>
+  <br />
+  <br />
   <StatusBar
-    status = {[
+    status={[
       {
         label: "Yes",
         amount: 300,
-        color: "green"
+        color: "green",
       },
       {
         label: "No",
         amount: 200,
-        color: "orange"
-      }
+        color: "orange",
+      },
     ]}
     renderStatusInfoComponent={<div>I am custom</div>}
     showMarker={false}
   />
-  <br/>
-  <br/>
+  <br />
+  <br />
   <StatusBar
-    status = {[
+    status={[
       {
         label: "Local",
         amount: 9.45931345,
         color: "green",
-        renderAmountComponent: <span>9.45931345 DCR</span>
+        renderAmountComponent: <span>9.45931345 DCR</span>,
       },
       {
         label: "Remote",
         amount: 1.45931345,
         color: "orange",
-        renderAmountComponent: <span>1.45931345 DCR</span>
-      }
+        renderAmountComponent: <span>1.45931345 DCR</span>,
+      },
     ]}
-    markerPosition = "50%"
+    markerPosition="50%"
     max={10.9431937482}
     layout="balance"
     showPercent={false}
-    renderStatusInfoComponent={<div/>}
-    renderMarkerComponent={<div style={{width:"35px",height:"35px",maxWidth:"35px",marginTop:"-13px", backgroundColor:"white",display:"flex", justifyContent:"center", alignItems:"center"}}>
-                              <Icon type="checkmark" size="md" />
-                           </div>}
+    renderStatusInfoComponent={<div />}
+    renderMarkerComponent={
+      <div
+        style={{
+          width: "35px",
+          height: "35px",
+          maxWidth: "35px",
+          marginTop: "-13px",
+          backgroundColor: "white",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}>
+        <Icon type="checkmark" size="md" />
+      </div>
+    }
   />
 </Playground>
