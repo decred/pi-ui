@@ -16,23 +16,21 @@ import { Paginator } from "../index";
 
 ## Usage
 
-
 ### Default Paginator
 
 <Playground>
   {() => {
     const [selectedPage, setSelectedPage] = useState(0);
-    const onPageChange = ({ selected }) =>  setSelectedPage(selected);
+    const onPageChange = ({ selected }) => setSelectedPage(selected);
     const pageCount = 20;
     return (
       <Fragment>
         <div>{`${selectedPage + 1}/${pageCount}`}</div>
-        <Paginator pageCount={pageCount} onPageChange={onPageChange}/>
+        <Paginator pageCount={pageCount} onPageChange={onPageChange} />
       </Fragment>
     );
   }}
 </Playground>
-
 
 ### Paginator with custom paginationGap and marginPagesDisplayed
 
@@ -41,7 +39,11 @@ import { Paginator } from "../index";
     const pageCount = 20;
     return (
       <Fragment>
-        <Paginator pageCount={pageCount} paginationGap={2} marginPagesDisplayed={2}/>
+        <Paginator
+          pageCount={pageCount}
+          paginationGap={2}
+          marginPagesDisplayed={2}
+        />
       </Fragment>
     );
   }}

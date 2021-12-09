@@ -17,16 +17,19 @@ import { Button, Badge, Icon } from "../index";
 ## Usage
 
 <Playground>
-	{() => {
+  {() => {
     const [showBadge, setShowBadge] = useState(false);
     const openBadge = () => setShowBadge(true);
     const closeBadge = () => setShowBadge(false);
     return (
       <Fragment>
         <Button onClick={openBadge}>Open Badge</Button>
-        <Badge icon={<Icon type="timer"/>} show={showBadge} onClose={closeBadge}>
-    			Your proposal has expired
-    		</Badge>
+        <Badge
+          icon={<Icon type="timer" />}
+          show={showBadge}
+          onClose={closeBadge}>
+          Your proposal has expired
+        </Badge>
       </Fragment>
     );
   }}

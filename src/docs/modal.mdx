@@ -17,6 +17,7 @@ import { Modal, Button, P, ModalWrapper } from "../index";
 ## Usage
 
 ### Simple Modal
+
 <Playground>
   {() => {
     const [showModal, setShowModal] = useState(false);
@@ -34,6 +35,7 @@ import { Modal, Button, P, ModalWrapper } from "../index";
 </Playground>
 
 ### Modal with title
+
 <Playground>
   {() => {
     const [showModal, setShowModal] = useState(false);
@@ -42,7 +44,11 @@ import { Modal, Button, P, ModalWrapper } from "../index";
     return (
       <Fragment>
         <Button onClick={openModal}>Open Modal</Button>
-        <Modal title="Title" iconType="mail" show={showModal} onClose={closeModal}>
+        <Modal
+          title="Title"
+          iconType="mail"
+          show={showModal}
+          onClose={closeModal}>
           Content!
         </Modal>
       </Fragment>
@@ -51,6 +57,7 @@ import { Modal, Button, P, ModalWrapper } from "../index";
 </Playground>
 
 ### Unclosable Modal
+
 <Playground>
   {() => {
     const [showModal, setShowModal] = useState(false);
@@ -59,9 +66,14 @@ import { Modal, Button, P, ModalWrapper } from "../index";
     return (
       <Fragment>
         <Button onClick={openModal}>Open Modal</Button>
-        <Modal title="Title" iconType="mail" show={showModal} disableClose="true" onClose={closeModal}>
+        <Modal
+          title="Title"
+          iconType="mail"
+          show={showModal}
+          disableClose="true"
+          onClose={closeModal}>
           <P>Content!</P>
-          <br/>
+          <br />
           <Button onClick={closeModal}>close me!</Button>
         </Modal>
       </Fragment>
@@ -70,6 +82,7 @@ import { Modal, Button, P, ModalWrapper } from "../index";
 </Playground>
 
 ### Modal with huge contet
+
 <Playground>
   {() => {
     const [showModal, setShowModal] = useState(false);
@@ -80,22 +93,38 @@ import { Modal, Button, P, ModalWrapper } from "../index";
         <Button onClick={openModal}>Open Modal</Button>
         <Modal title="Title" show={showModal} onClose={closeModal}>
           <P>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita, veniam distinctio illum, nesciunt dolorum tempore minus voluptate omnis facilis illo earum inventore quibusdam iste dolores id unde neque ipsum rerum?
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita,
+            veniam distinctio illum, nesciunt dolorum tempore minus voluptate
+            omnis facilis illo earum inventore quibusdam iste dolores id unde
+            neque ipsum rerum?
           </P>
           <P>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam beatae perspiciatis, natus dolorum adipisci repellendus debitis temporibus fuga dicta dolorem veniam doloribus maxime nostrum? Dolores ullam at voluptate saepe ipsa!
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam beatae
+            perspiciatis, natus dolorum adipisci repellendus debitis temporibus
+            fuga dicta dolorem veniam doloribus maxime nostrum? Dolores ullam at
+            voluptate saepe ipsa!
           </P>
           <P>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt, eligendi! Cum vero non saepe eius ratione quam ea laudantium dolor autem, illo aliquam commodi sequi iure at totam fugit dolores.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt,
+            eligendi! Cum vero non saepe eius ratione quam ea laudantium dolor
+            autem, illo aliquam commodi sequi iure at totam fugit dolores.
           </P>
           <P>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita, veniam distinctio illum, nesciunt dolorum tempore minus voluptate omnis facilis illo earum inventore quibusdam iste dolores id unde neque ipsum rerum?
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita,
+            veniam distinctio illum, nesciunt dolorum tempore minus voluptate
+            omnis facilis illo earum inventore quibusdam iste dolores id unde
+            neque ipsum rerum?
           </P>
           <P>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam beatae perspiciatis, natus dolorum adipisci repellendus debitis temporibus fuga dicta dolorem veniam doloribus maxime nostrum? Dolores ullam at voluptate saepe ipsa!
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam beatae
+            perspiciatis, natus dolorum adipisci repellendus debitis temporibus
+            fuga dicta dolorem veniam doloribus maxime nostrum? Dolores ullam at
+            voluptate saepe ipsa!
           </P>
           <P>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt, eligendi! Cum vero non saepe eius ratione quam ea laudantium dolor autem, illo aliquam commodi sequi iure at totam fugit dolores.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt,
+            eligendi! Cum vero non saepe eius ratione quam ea laudantium dolor
+            autem, illo aliquam commodi sequi iure at totam fugit dolores.
           </P>
         </Modal>
       </Fragment>

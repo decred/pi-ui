@@ -12,77 +12,109 @@ import styles from "../css/base.css";
 # Radio Button Group
 
 ## Properties
+
 <Props of={RadioButtonGroup} />
 
 ## Usage
 
 <Playground>
   {() => {
-    const options = [{ label: "foo", value: 1, description: "this is foo!"},
-      {label: "bar", value: 2, description: "this is bar!"}];
-    const [value, setValue] = useState(1)
+    const options = [
+      { label: "foo", value: 1, description: "this is foo!" },
+      { label: "bar", value: 2, description: "this is bar!" },
+    ];
+    const [value, setValue] = useState(1);
     const handleChange = (option) => {
-        setValue(option.value);
-    }
+      setValue(option.value);
+    };
     return (
       <Fragment>
-      <RadioButtonGroup vertical  label="Select an option" options={options} value={value} onChange={handleChange} />
+        <RadioButtonGroup
+          vertical
+          label="Select an option"
+          options={options}
+          value={value}
+          onChange={handleChange}
+        />
       </Fragment>
     );
-  }
-}
+  }}
 </Playground>
 
 ## optionsClassName as Array
 
 <Playground>
   {() => {
-    const options = [{ label: "foo", value: 1}, {label: "bar", value: 2}];
-    const [value, setValue] = useState(1)
+    const options = [
+      { label: "foo", value: 1 },
+      { label: "bar", value: 2 },
+    ];
+    const [value, setValue] = useState(1);
     const handleChange = (option) => {
-        setValue(option.value);
-    }
+      setValue(option.value);
+    };
     return (
       <Fragment>
-      <RadioButtonGroup optionsClassName={[styles.radioButton1, styles.radioButton2]} label="Select an option" options={options} value={value} onChange={handleChange} />
+        <RadioButtonGroup
+          optionsClassName={[styles.radioButton1, styles.radioButton2]}
+          label="Select an option"
+          options={options}
+          value={value}
+          onChange={handleChange}
+        />
       </Fragment>
     );
-  }
-}
+  }}
 </Playground>
 
 ## optionsClassName as String
 
 <Playground>
   {() => {
-    const options = [{ label: "foo", value: 1}, {label: "bar", value: 2}];
-    const [value, setValue] = useState(1)
+    const options = [
+      { label: "foo", value: 1 },
+      { label: "bar", value: 2 },
+    ];
+    const [value, setValue] = useState(1);
     const handleChange = (option) => {
-        setValue(option.value);
-    }
+      setValue(option.value);
+    };
     return (
       <Fragment>
-      <RadioButtonGroup optionsClassName={styles.radioButton1} label="Select an option" options={options} value={value} onChange={handleChange} />
+        <RadioButtonGroup
+          optionsClassName={styles.radioButton1}
+          label="Select an option"
+          options={options}
+          value={value}
+          onChange={handleChange}
+        />
       </Fragment>
     );
-  }
-}
+  }}
 </Playground>
 
 ## Disabled
 
 <Playground>
   {() => {
-    const options = [{ label: "foo", value: 1}, {label: "bar", value: 2}];
-    const [value, setValue] = useState(1)
+    const options = [
+      { label: "foo", value: 1 },
+      { label: "bar", value: 2 },
+    ];
+    const [value, setValue] = useState(1);
     const handleChange = (option) => {
-        setValue(option.value);
-    }
+      setValue(option.value);
+    };
     return (
       <Fragment>
-      <RadioButtonGroup disabled={true} label="Select an option" options={options} value={value} onChange={handleChange} />
+        <RadioButtonGroup
+          disabled={true}
+          label="Select an option"
+          options={options}
+          value={value}
+          onChange={handleChange}
+        />
       </Fragment>
     );
-  }
-}
+  }}
 </Playground>

@@ -13,11 +13,12 @@ import { classNames } from "../utils";
 # Dropdown
 
 ## Dropdown props
+
 <Props of={Dropdown} />
 
 ## DropdownItem props
-<Props of={DropdownItem} />
 
+<Props of={DropdownItem} />
 
 ## Usage
 
@@ -27,17 +28,12 @@ import { classNames } from "../utils";
   {() => {
     return (
       <Fragment>
-      	<Dropdown 
-      		title='username'>
-	        <DropdownItem  onClick={() => alert('my proposals')}>
+        <Dropdown title="username">
+          <DropdownItem onClick={() => alert("my proposals")}>
             My proposals
           </DropdownItem>
-          <DropdownItem  onClick={() => alert('account')}>
-            Account
-          </DropdownItem>
-          <DropdownItem  onClick={() => alert('logout')}>
-            Logout
-          </DropdownItem>
+          <DropdownItem onClick={() => alert("account")}>Account</DropdownItem>
+          <DropdownItem onClick={() => alert("logout")}>Logout</DropdownItem>
         </Dropdown>
       </Fragment>
     );
@@ -48,24 +44,20 @@ import { classNames } from "../utils";
 
 <Playground>
   {() => {
-    const [showDropdown, setShowDropdown] = useState(false)
-    const openDropdown = () => setShowDropdown(true)
-    const closeDropdown = () => setShowDropdown(false)
+    const [showDropdown, setShowDropdown] = useState(false);
+    const openDropdown = () => setShowDropdown(true);
+    const closeDropdown = () => setShowDropdown(false);
     return (
       <Fragment>
-      	<Dropdown 
-      		title='username' 
-      		show={showDropdown} 
-      		onDropdownClick={showDropdown ? closeDropdown : openDropdown}>
-	        <DropdownItem  onClick={() => alert('my proposals')}>
+        <Dropdown
+          title="username"
+          show={showDropdown}
+          onDropdownClick={showDropdown ? closeDropdown : openDropdown}>
+          <DropdownItem onClick={() => alert("my proposals")}>
             My proposals
           </DropdownItem>
-          <DropdownItem  onClick={() => alert('account')}>
-            Account
-          </DropdownItem>
-          <DropdownItem  onClick={() => alert('logout')}>
-            Logout
-          </DropdownItem>
+          <DropdownItem onClick={() => alert("account")}>Account</DropdownItem>
+          <DropdownItem onClick={() => alert("logout")}>Logout</DropdownItem>
         </Dropdown>
       </Fragment>
     );
@@ -80,12 +72,12 @@ import { classNames } from "../utils";
     const CustomTrigger = ({ onClick, open }) => <Button onClick={onClick}>{open ? "close" : "open"}</Button>
     return (
       <Fragment>
-      	<Dropdown 
+      	<Dropdown
       		customDropdownTrigger={CustomTrigger}
       		closeOnOutsideClick={true}
           dropdownArrowClassName={classNames(styles.dropdownCustomArrowExample)}
           itemsListClassName={classNames(styles.dropdownCustomListExample)}>
-	        <DropdownItem  onClick={() => alert('my proposals')}>
+            <DropdownItem  onClick={() => alert('my proposals')}>
             My proposals
           </DropdownItem>
           <DropdownItem  onClick={() => alert('account')}>
@@ -97,5 +89,7 @@ import { classNames } from "../utils";
         </Dropdown>
       </Fragment>
     );
-  }}
+
+}}
+
 </Playground>
