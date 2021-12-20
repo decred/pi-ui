@@ -126,3 +126,10 @@
     margin-right: 1rem;
   }
 }
+
+@media screen and (max-width: 560px) {
+  .statusInfo {
+    flex-direction: column-reverse;
+    align-items: flex-end;
+  }
+}
