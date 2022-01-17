@@ -27,9 +27,7 @@ const config = {
     external(),
     postcss({
       extract: true,
-      modules: {
-        globalModulePaths: ["src/components/Select/styles.css"],
-      },
+      modules: true,
     }),
     url({
       include: ["**/*.woff", "**/*.ttf", "**/*.png", "**/*.svg"],

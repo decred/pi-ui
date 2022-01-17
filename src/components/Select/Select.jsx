@@ -3,38 +3,19 @@ import ReactSelect, { components } from "react-select";
 import AsyncSelect from "react-select/async";
 import CreatableSelect from "react-select/creatable";
 import PropTypes from "prop-types";
+import { classNames } from "../../utils";
+import styles from "./styles.css";
 
-const DropdownIndicator = (props) => {
-  return (
-    <components.DropdownIndicator {...props}>
-      <div
-        style={{
-          position: "relative",
-          height: "100%",
-          width: "2rem",
-        }}>
-        <div
-          style={{
-            content: "",
-            width: "0",
-            height: "0",
-            border: "0.5rem solid transparent",
-            borderColor:
-              "var(--select-anchor-color) transparent transparent transparent",
-            position: "absolute",
-            top: "-0.3rem",
-            right: "0.3rem",
-            ...(props.selectProps.menuIsOpen && {
-              top: "-0.9rem",
-              borderColor:
-                "transparent transparent var(--color-primary) transparent",
-            }),
-          }}
-        />
-      </div>
-    </components.DropdownIndicator>
-  );
-};
+const DropdownIndicator = (props) => (
+  <components.DropdownIndicator {...props}>
+    <div
+      className={classNames(
+        styles.arrowAnchor,
+        props.selectProps.menuIsOpen && styles.arrowAnchorOpen
+      )}
+    />
+  </components.DropdownIndicator>
+);
 
 DropdownIndicator.propTypes = {
   selectProps: PropTypes.object,
@@ -45,7 +26,7 @@ const Select = ({
   isMobile,
   isAsync,
   isCreatable,
-  styles,
+  customStyles,
   customComponents,
   ...props
 }) => {
@@ -91,14 +72,14 @@ const Select = ({
     }),
   };
 
-  const customStyles = [
-    ...new Set([...Object.keys(defaultStyles), ...Object.keys(styles)]),
+  const mergedCustomStyles = [
+    ...new Set([...Object.keys(defaultStyles), ...Object.keys(customStyles)]),
   ]
     .map((key) => ({
       [key]: (provided, state) => ({
         ...provided,
         ...(defaultStyles[key] && defaultStyles[key](provided, state)),
-        ...(styles[key] && styles[key](provided, state)),
+        ...(customStyles[key] && customStyles[key](provided, state)),
       }),
     }))
     .reduce((prev, curr) => ({ ...prev, ...curr }), {});
@@ -112,7 +93,7 @@ const Select = ({
   return (
     <div>
       <SelectComponent
-        styles={customStyles}
+        styles={mergedCustomStyles}
         components={{
           DropdownIndicator,
           ...(customComponents && customComponents),
@@ -131,14 +112,14 @@ Select.propTypes = {
   value: PropTypes.object,
   isMobile: PropTypes.bool,
   onChange: PropTypes.func,
-  styles: PropTypes.object,
+  customStyles: PropTypes.object,
   customComponents: PropTypes.object,
 };
 
 Select.defaultProps = {
   isSearchable: false,
   isCreatable: false,
-  styles: {},
+  customStyles: {},
   customComponents: {},
 };
 

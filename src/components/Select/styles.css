@@ -1,0 +1,22 @@
+.arrowAnchor {
+  position: relative;
+  height: 100%;
+  width: 2rem;
+}
+
+.arrowAnchor:after {
+  content: "";
+  width: 0;
+  height: 0;
+
+  border: 0.5rem solid transparent;
+  border-color: var(--select-anchor-color) transparent transparent transparent;
+  position: absolute;
+  top: -0.3rem;
+  right: 0.3rem;
+}
+
+.arrowAnchorOpen:after {
+  top: -0.9rem;
+  border-color: transparent transparent var(--color-primary) transparent;
+}

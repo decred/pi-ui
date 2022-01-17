@@ -63,29 +63,8 @@ exports[`Select component Matches the snapshot 1`] = `
           onTouchEnd={[Function]}
         >
           <div
-            style={
-              Object {
-                "height": "100%",
-                "position": "relative",
-                "width": "2rem",
-              }
-            }
-          >
-            <div
-              style={
-                Object {
-                  "border": "0.5rem solid transparent",
-                  "borderColor": "var(--select-anchor-color) transparent transparent transparent",
-                  "content": "",
-                  "height": "0",
-                  "position": "absolute",
-                  "right": "0.3rem",
-                  "top": "-0.3rem",
-                  "width": "0",
-                }
-              }
-            />
-          </div>
+            className="arrowAnchor"
+          />
         </div>
       </div>
     </div>
