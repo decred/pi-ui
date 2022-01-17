@@ -129,3 +129,137 @@ import { Select } from "../index";
     );
   }}
 </Playground>
+
+### Async select
+
+<Playground>
+  {() => {
+    const options = [
+      {
+        value: "top",
+        label: "Top",
+      },
+      {
+        value: "new",
+        label: "New",
+      },
+      {
+        value: "old",
+        label: "Old",
+      },
+    ];
+
+    const loadOptions = (
+      inputValue,
+      callback
+    ) => {
+      callback(options.filter((i) =>
+        i.label.toLowerCase().includes(inputValue.toLowerCase())
+      ));
+    };
+
+    return (
+      <Fragment>
+        <Select
+          isAsync
+          isSearchable
+          defaultOptions
+          options={options}
+          loadOptions={loadOptions}
+          placeholder=""
+        />
+      </Fragment>
+    );
+
+}}
+
+</Playground>
+
+### Custom select
+
+<Playground>
+  {() => {
+    const options = [
+      {
+        value: "top",
+        label: "Top",
+      },
+      {
+        value: "new",
+        label: "New",
+      },
+      {
+        value: "old",
+        label: "Old",
+      },
+    ];
+    const [selected, setSelected] = useState({
+      value: "old",
+      label: "Old",
+    });
+    const selectChangeHandler = (option) => {
+      setSelected(option);
+    };
+
+    const customStyles = {
+      control: () => ({
+        borderRadius: "none",
+        borderLeft: "none",
+        borderRight: "none",
+        borderTop: "none",
+      }),
+      dropdownIndicator: () => ({
+        paddingRight: 0
+      }),
+    };
+    return (
+      <Fragment>
+        <Select
+          options={options}
+          value={selected}
+          onChange={selectChangeHandler}
+          customStyles={customStyles}
+        />
+      </Fragment>
+    );
+
+}}
+
+</Playground>
+
+### Creatable select
+
+<Playground>
+  {() => {
+    const options = [
+      {
+        value: "top",
+        label: "Top",
+      },
+      {
+        value: "new",
+        label: "New",
+      },
+      {
+        value: "old",
+        label: "Old",
+      },
+    ];
+    const [selected, setSelected] = useState(null);
+    const selectChangeHandler = (option) => {
+      setSelected(option);
+    };
+    return (
+      <Fragment>
+        <Select
+          isCreatable
+          isSearchable
+          isClearable
+          options={options}
+          value={selected}
+          onChange={selectChangeHandler}
+        />
+      </Fragment>
+    );
+  }}
+</Playground>

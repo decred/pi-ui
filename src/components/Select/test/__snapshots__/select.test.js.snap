@@ -17,7 +17,7 @@ exports[`Select component Matches the snapshot 1`] = `
       className="css-1f43avz-a11yText-A11yText"
     />
     <div
-      className=" css-n1d6tz-control"
+      className=" css-1jhmgce-control"
       onMouseDown={[Function]}
       onTouchEnd={[Function]}
     >
@@ -54,7 +54,7 @@ exports[`Select component Matches the snapshot 1`] = `
         className=" css-1hb7zxy-IndicatorsContainer"
       >
         <span
-          className=" css-1xjgjl1-IndicatorSeparator"
+          className=" css-43ykx9-indicatorSeparator"
         />
         <div
           aria-hidden="true"
