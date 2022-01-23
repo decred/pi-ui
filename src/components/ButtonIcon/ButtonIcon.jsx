@@ -19,6 +19,7 @@ const ButtonIcon = ({
   viewBox,
   iconColor,
   iconBackgroundColor,
+  text,
   ...props
 }) => {
   const { theme, themeName } = useTheme();
@@ -42,6 +43,7 @@ const ButtonIcon = ({
         styles.buttonIcon,
         disabled && styles.disabled,
         loading && styles.loading,
+        text && styles.text,
         className
       )}
       disabled={disabled}
@@ -50,12 +52,15 @@ const ButtonIcon = ({
       {loading ? (
         <Spinner invert={!isDarkTheme} width="1.4rem" height="1.4rem" />
       ) : (
-        <Icon
-          type={type}
-          viewBox={viewBox}
-          iconColor={disabled ? disabledBtnIconColor : btnIconColor}
-          backgroundColor={disabled ? disabledBtnIconBgColor : btnIconBgColor}
-        />
+        <>
+          <Icon
+            type={type}
+            viewBox={viewBox}
+            iconColor={disabled ? disabledBtnIconColor : btnIconColor}
+            backgroundColor={disabled ? disabledBtnIconBgColor : btnIconBgColor}
+          />
+          {text && <span>{text}</span>}
+        </>
       )}
     </button>
   );
@@ -68,6 +73,7 @@ ButtonIcon.propTypes = {
   disabled: PropTypes.bool,
   onClick: PropTypes.func,
   loading: PropTypes.bool,
+  text: PropTypes.string,
 };
 
 export default ButtonIcon;
