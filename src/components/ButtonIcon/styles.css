@@ -16,6 +16,11 @@
   box-shadow: 0 0.1rem 0.4rem 0 rgba(0, 0, 0, 0.24);
 }
 
+.buttonIcon.text:hover {
+  width: max-content;
+  padding-left: 0.4rem;
+}
+
 .buttonIcon:active {
   box-shadow: 0 0 0.4rem 0 rgba(0, 0, 0, 0.24);
 }
@@ -37,4 +42,15 @@
 
 .loading {
   pointer-events: none;
+}
+
+.buttonIcon > span {
+  display: none;
+  margin: 0 1rem 0 0.6rem;
+  font-size: 1.3rem;
+  line-height: 1.6rem;
+}
+
+.buttonIcon:hover > span {
+  display: inline;
 }
