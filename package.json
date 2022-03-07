@@ -51,7 +51,7 @@
     "cross-env": "^7.0.3",
     "docz": "^1.2.0",
     "docz-core": "^1.2.0",
-    "docz-plugin-css": "^0.11.0",
+    "docz-plugin-css": "https://github.com/matheusd/docz-plugin-css",
     "docz-theme-default": "^1.2.0",
     "eslint": "^7.5.0",
     "eslint-config-prettier": "^8.3.0",
@@ -96,6 +96,8 @@
     "react-tapper": "^0.1.23"
   },
   "resolutions": {
-    "minimist": "^1.2.5"
+    "minimist": "^1.2.5",
+    "ws": "7.4.2",
+    "get-pkg-repo": "4.1.1"
   }
 }
