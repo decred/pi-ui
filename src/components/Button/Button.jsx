@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import React from "react";
 import { classNames } from "../../utils";
 import Spinner from "../Spinner/Spinner.jsx";
-import styles from "./styles.css";
+import styles from "./styles.module.css";
 
 const Button = ({
   children,
