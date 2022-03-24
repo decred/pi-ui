@@ -8,7 +8,7 @@ import React, {
 import PropTypes from "prop-types";
 import Tappable from "react-tapper";
 import { classNames } from "../../utils";
-import styles from "./styles.css";
+import styles from "./styles.module.css";
 import DatePickerPad from "./DatepickerPad.jsx";
 import { useTheme } from "../../theme";
 import {

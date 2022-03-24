@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { POSITIONS_MAP } from "./helpers";
 import { classNames } from "../../utils";
-import styles from "./styles.css";
+import styles from "./styles.module.css";
 
 const SliderHandle = React.forwardRef(
   (

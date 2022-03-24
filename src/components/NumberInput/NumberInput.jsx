@@ -1,6 +1,6 @@
 import React from "react";
 import TextInput from "../TextInput/TextInput.jsx";
-import styles from "./styles.css";
+import styles from "./styles.module.css";
 
 const NumberInput = ({ ...props }) => {
   return (

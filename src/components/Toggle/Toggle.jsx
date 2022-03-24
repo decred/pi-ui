@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { classNames } from "../../utils";
 
-import styles from "./styles.css";
+import styles from "./styles.module.css";
 
 const Toggle = ({ onToggle, toggled, disabled, className }) => {
   return (

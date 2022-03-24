@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { classNames } from "../../utils";
 import SliderHandle from "./SliderHandle.jsx";
 import useSlider from "./hooks";
-import styles from "./styles.css";
+import styles from "./styles.module.css";
 
 const Slider = ({
   double,

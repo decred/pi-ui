@@ -1,0 +1,7 @@
+.blueButtonIcon {
+  background: var(--color-primary) !important;
+}
+
+.darkBlueButtonIcon {
+  background: var(--paginator-button-color) !important;
+}

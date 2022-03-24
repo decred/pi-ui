@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import TableHeader from "./TableHeader.jsx";
 import TableBody from "./TableBody.jsx";
 import Paginator from "../Paginator/Paginator.jsx";
-import styles from "./styles.css";
+import styles from "./styles.module.css";
 import { classNames } from "../../utils";
 
 const Table = ({

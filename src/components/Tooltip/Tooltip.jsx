@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import styles from "./styles.css";
+import styles from "./styles.module.css";
 import { classNames } from "../../utils";
 import useMediaQuery from "../../hooks/useMediaQuery";
 import useClickOutside from "../../hooks/useClickOutside";

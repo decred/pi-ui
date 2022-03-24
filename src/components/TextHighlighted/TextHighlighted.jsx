@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import React from "react";
 import Text from "../Typography/Text/Text.jsx";
 import { classNames, idPropTypeCheckForTruncatedComponents } from "../../utils";
-import styles from "./styles.css";
+import styles from "./styles.module.css";
 
 const TextHighlighted = ({ id, truncate, className, style, children }) => (
   <Text

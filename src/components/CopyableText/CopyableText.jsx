@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import React, { useState } from "react";
 import { copyToClipboard as copy } from "./helpers";
 import { classNames, idPropTypeCheckForTruncatedComponents } from "../../utils";
-import styles from "./styles.css";
+import styles from "./styles.module.css";
 import Tooltip from "../Tooltip/Tooltip.jsx";
 import Icon from "../Icon/Icon.jsx";
 import TextHighlighted from "../TextHighlighted/TextHighlighted.jsx";

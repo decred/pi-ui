@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import React from "react";
 import { classNames } from "../../utils";
 import Icon from "../Icon/Icon.jsx";
-import styles from "./styles.css";
+import styles from "./styles.module.css";
 
 const TextArea = ({
   type,
