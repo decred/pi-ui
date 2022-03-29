@@ -54,6 +54,7 @@ Link.propTypes = {
   className: PropTypes.string,
   noHoverEffect: PropTypes.bool,
   truncate: PropTypes.bool,
+  style: PropTypes.object,
 };
 
 Link.defaultProps = {
