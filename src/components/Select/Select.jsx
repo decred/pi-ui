@@ -4,7 +4,7 @@ import AsyncSelect from "react-select/async";
 import CreatableSelect from "react-select/creatable";
 import PropTypes from "prop-types";
 import { classNames } from "../../utils";
-import styles from "./styles.css";
+import styles from "./styles.module.css";
 
 const DropdownIndicator = (props) => (
   <components.DropdownIndicator {...props}>

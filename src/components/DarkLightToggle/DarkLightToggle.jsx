@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { useSpring, animated } from "react-spring";
 import { useTheme, getThemeProperty } from "../../theme";
-import styles from "./styles.css";
+import styles from "./styles.module.css";
 
 const DarkLightToggle = ({ onToggle, toggled }) => {
   const { theme } = useTheme();

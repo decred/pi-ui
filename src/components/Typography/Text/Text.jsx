@@ -5,7 +5,7 @@ import {
   classNames,
   idPropTypeCheckForTruncatedComponents,
 } from "../../../utils";
-import styles from "./styles.css";
+import styles from "./styles.module.css";
 
 const TEXT_ALIGN_MAP = {
   center: styles.textAlignCenter,

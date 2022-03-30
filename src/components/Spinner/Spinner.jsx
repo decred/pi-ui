@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./styles.css";
+import styles from "./styles.module.css";
 import PropTypes from "prop-types";
 
 const Spinner = ({ invert, width, height }) => {

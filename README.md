@@ -53,7 +53,7 @@ class Example extends Component {
 - Install all deps by running:
   `yarn`
 - If you're developing only on pi-ui, serving the live documentation should be enough:
-  `yarn docz:dev`
+  `yarn storybook`
 
 - If you want to see your changes reflected in a project consuming pi-ui, you can use yarn link:
   - Go to the pi-ui directory on your machine and run:

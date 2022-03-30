@@ -5,7 +5,7 @@ import { classNames } from "../../utils";
 import H1 from "../Typography/H1.jsx";
 import Icon from "../Icon/Icon.jsx";
 import ModalWrapper from "./ModalWrapper.jsx";
-import styles from "./styles.css";
+import styles from "./styles.module.css";
 import useLockBodyScrollOnTrue from "../../hooks/useLockBodyScrollOnTrue";
 import useKeyPress from "../../hooks/useKeyPress";
 
@@ -38,10 +38,6 @@ const Modal = ({
     modalRoot.appendChild(el);
     return () => modalRoot.removeChild(el);
   });
-  const onCloseClick = (e) => {
-    e.preventDefault();
-    onClose();
-  };
   const hasIcon = !!iconComponent || !!iconType;
   const iconSizeToUse = iconSize || "xlg";
   useLockBodyScrollOnTrue(show);
@@ -91,9 +87,8 @@ const Modal = ({
         {!disableClose && (
           <button
             className={styles.modalClose}
-            onClick={onCloseClick}
-            data-testid="close"
-            href="#">
+            onClick={onClose}
+            data-testid="close">
             &times;
           </button>
         )}

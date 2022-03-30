@@ -3,7 +3,7 @@ import React from "react";
 import Icon from "../Icon/Icon.jsx";
 import { classNames } from "../../utils";
 import Spinner from "../Spinner/Spinner.jsx";
-import styles from "./styles.css";
+import styles from "./styles.module.css";
 import {
   useTheme,
   getThemeProperty,

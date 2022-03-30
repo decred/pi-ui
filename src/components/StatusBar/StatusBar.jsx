@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import styles from "./styles.css";
+import styles from "./styles.module.css";
 import { classNames } from "../../utils";
 import { useTheme, DEFAULT_DARK_THEME_NAME } from "../../theme";
 import Tooltip from "../Tooltip/Tooltip.jsx";

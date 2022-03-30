@@ -1,6 +1,7 @@
 import React from "react";
+import PropTypes from "prop-types";
 import TextInput from "../TextInput/TextInput.jsx";
-import styles from "./styles.css";
+import styles from "./styles.module.css";
 
 const NumberInput = ({ ...props }) => {
   return (
@@ -12,6 +13,11 @@ const NumberInput = ({ ...props }) => {
       {...props}
     />
   );
+};
+
+NumberInput.propTypes = {
+  min: PropTypes.number,
+  max: PropTypes.number,
 };
 
 export default NumberInput;

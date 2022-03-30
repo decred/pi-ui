@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Card from "../Card/Card.jsx";
-import styles from "./styles.css";
+import styles from "./styles.module.css";
 import Icon from "../Icon/Icon.jsx";
 import { classNames } from "../../utils";
 import H2 from "../Typography/H2.jsx";
