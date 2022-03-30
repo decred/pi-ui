@@ -18,6 +18,8 @@ Basic.args = {
   id: "test-input",
   label: "Input",
   name: "test-input",
+  error: "",
+  success: "",
 };
 
 export const Password = Template.bind({});
@@ -26,6 +28,8 @@ Password.args = {
   label: "Password",
   name: "test-password",
   type: "password",
+  error: "",
+  success: "",
 };
 
 export const Error = Template.bind({});
@@ -34,6 +38,7 @@ Error.args = {
   label: "Input",
   name: "test-input2",
   error: "Incorrect input",
+  success: "",
 };
 
 export const Success = Template.bind({});
@@ -42,6 +47,7 @@ Success.args = {
   label: "Input",
   name: "test-input3",
   success: "Correct input",
+  error: "",
 };
 
 export const Placeholder = Template.bind({});
@@ -50,6 +56,8 @@ Placeholder.args = {
   label: "Input",
   name: "test-input4",
   placeholder: "Write here",
+  error: "",
+  success: "",
 };
 
 export const WithChildren = Template.bind({});
@@ -58,4 +66,6 @@ WithChildren.args = {
   label: "Input",
   name: "test-input4",
   children: <Icon type="search" />,
+  error: "",
+  success: "",
 };

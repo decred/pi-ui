@@ -16,6 +16,7 @@ Basic.args = {
   id: "test-statement",
   placeholder: "Statement",
   name: "test-statement",
+  error: "",
 };
 
 export const Error = Template.bind({});
