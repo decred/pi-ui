@@ -14,6 +14,7 @@ export const Basic = Template.bind({});
 Basic.args = {
   placeholder: "Censorship Token",
   name: "search",
+  error: "",
 };
 
 export const Error = Template.bind({});
@@ -28,6 +29,7 @@ Rounded.args = {
   placeholder: "Censorship Token",
   name: "search",
   rounded: true,
+  error: "",
 };
 
 export const Searchable = Template.bind({});
@@ -35,4 +37,5 @@ Searchable.args = {
   placeholder: "Censorship Token",
   name: "search",
   searchInput: true,
+  error: "",
 };

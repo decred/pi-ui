@@ -14,16 +14,19 @@ const Template = ({ children, ...args }) => <StatusTag {...args} />;
 export const GrayNegative = Template.bind({});
 GrayNegative.args = {
   type: "grayNegative",
+  text: "",
 };
 
 export const GreenCheck = Template.bind({});
 GreenCheck.args = {
   type: "greenCheck",
+  text: "",
 };
 
 export const OrangeNegativeCircled = Template.bind({});
 OrangeNegativeCircled.args = {
   type: "orangeNegativeCircled",
+  text: "",
 };
 
 export const BluePendingWithText = Template.bind({});
