@@ -81,6 +81,7 @@ Slider.propTypes = {
     })
   ),
   className: PropTypes.string,
+  style: PropTypes.object,
   rangeClassName: PropTypes.string,
 };
 
