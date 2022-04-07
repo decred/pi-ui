@@ -63,3 +63,12 @@ WithText.args = {
   iconColor: "#2970FF",
   text: "Create a New Wallet",
 };
+
+export const WithTooltip = Template.bind({});
+
+WithTooltip.args = {
+  type: "create",
+  iconColor: "#2970FF",
+  tooltipText: "Create a New Wallet",
+  tooltipPlacement: "bottom",
+};

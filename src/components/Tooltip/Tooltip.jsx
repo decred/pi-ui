@@ -15,8 +15,9 @@ const Tooltip = ({
   contentClassName,
   ...props
 }) => {
-  // Uses 1024px screen width to include big iPad sizes
-  const isMobile = useMediaQuery("(max-width: 1024px)");
+  // Uses "coarse" pointer to check if device is mobile and then enable tooltip
+  // clickable toggle.
+  const isMobile = useMediaQuery("(pointer: coarse)");
   const [isActive, toggleIsActive] = useState(false);
   const showTooltip = () => toggleIsActive(true);
   const hideTooltip = () => toggleIsActive(false);
@@ -44,7 +45,7 @@ const Tooltip = ({
 Tooltip.propTypes = {
   children: PropTypes.node,
   content: PropTypes.node,
-  placement: PropTypes.string,
+  placement: PropTypes.oneOf(["top", "bottom", "right", "left"]),
   className: PropTypes.string,
   contentClassName: PropTypes.string,
 };
