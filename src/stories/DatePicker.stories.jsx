@@ -11,9 +11,9 @@ export default DatePickerObj;
 
 const ControlledTemplate = ({ children, ...args }) => {
   const [value, setValue] = useState({ year: 2019, month: 11, day: 15 });
-  const onChange = (year, month, day) => {
-    if (!!year && !!month && !!day) {
-      setValue({ year, month, day });
+  const onChange = (year, month) => {
+    if (!!year && !!month) {
+      setValue({ year, month });
     }
   };
 
