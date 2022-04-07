@@ -989,7 +989,7 @@ const icons = (type, backgroundColor, iconColor) => {
     ),
     cancel: (
       <>
-        <g clip-path="url(#clip0_10_15)">
+        <g clipPath="url(#clip0_10_15)">
           <path d="M141.229 140.771L309.687 309.229Z" fill={iconColor} />
           <path d="M141.229 309.229L309.687 140.771Z" fill={iconColor} />
           <path

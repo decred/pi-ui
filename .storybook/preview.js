@@ -1,5 +1,4 @@
 import { addDecorator } from "@storybook/react";
-import themeDecorator from "./themeDecorator";
 import { withThemes } from "@react-theming/storybook-addon";
 import {
   DEFAULT_DARK_THEME_NAME,
