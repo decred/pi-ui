@@ -134,6 +134,7 @@ ButtonIcon.propTypes = {
   onClick: PropTypes.func,
   loading: PropTypes.bool,
   text: PropTypes.string,
+  style: PropTypes.object,
 };
 
 export default ButtonIcon;
