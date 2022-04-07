@@ -1,4 +1,5 @@
 import "./css/base.css";
+import "./theme/defaultTheme.js";
 
 export { default as BoxTextInput } from "./components/BoxTextInput/BoxTextInput.jsx";
 export { default as Button } from "./components/Button/Button.jsx";
