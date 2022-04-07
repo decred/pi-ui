@@ -93,6 +93,7 @@ TextInput.propTypes = {
   inputClassNames: PropTypes.string,
   labelClassNames: PropTypes.string,
   messageClassNames: PropTypes.string,
+  style: PropTypes.object
 };
 
 TextInput.defaultProps = {

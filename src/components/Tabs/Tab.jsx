@@ -62,7 +62,7 @@ const Tab = ({
           : styles.tabHorizontal,
         className
       )}
-      style={{ ...slide, style }}
+      style={{ ...slide, ...style }}
       onClick={handleOnClick}
       {...props}>
       <span className={styles.tabLabel} style={style}>

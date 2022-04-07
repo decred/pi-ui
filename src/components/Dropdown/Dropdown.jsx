@@ -40,6 +40,7 @@ const Dropdown = ({
   closeOnItemClick,
   customDropdownTrigger,
   dropdownArrowClassName,
+  style,
   ...props
 }) => {
   const [innerStateShow, setInnerStateShow] = useState(false);
@@ -105,6 +106,7 @@ const Dropdown = ({
       className={classNames(styles.dropdownWrapper, className)}
       style={{
         width: customDropdownTrigger && customTriggerWidth,
+        ...style
       }}
       {...props}>
       <Trigger
@@ -153,6 +155,7 @@ Dropdown.propTypes = {
   onDropdownClick: PropTypes.func,
   closeOnOutsideClick: PropTypes.bool,
   closeOnItemClick: PropTypes.bool,
+  style: PropTypes.object,
 };
 
 Dropdown.defaultProps = {

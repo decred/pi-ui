@@ -24,7 +24,6 @@ const Slider = ({
 
   return (
     <div
-      {...props}
       ref={container}
       className={classNames(
         styles[axis],
@@ -34,7 +33,8 @@ const Slider = ({
       )}
       onTouchStart={handleTrackMouseDown}
       onMouseDown={handleTrackMouseDown}
-      data-testid="slider-body">
+      data-testid="slider-body"
+      {...props}>
       {double && (
         <SliderHandle
           ref={rightHandleHook.handle}

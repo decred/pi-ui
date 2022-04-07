@@ -92,6 +92,7 @@ BoxTextInput.propTypes = {
   rounded: PropTypes.bool,
   searchInput: PropTypes.bool,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  style: PropTypes.object,
   onChange: PropTypes.func,
   className: PropTypes.string,
   inputClassName: PropTypes.string,

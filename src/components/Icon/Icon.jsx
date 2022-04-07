@@ -1423,6 +1423,7 @@ IconWrapper.propTypes = {
   viewBox: PropTypes.string,
   height: PropTypes.number,
   width: PropTypes.number,
+  style: PropTypes.object
 };
 
 IconWrapper.defaultProps = {

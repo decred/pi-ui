@@ -25,8 +25,8 @@ const Tooltip = ({
     <div
       ref={tooltipRef}
       className={classNames(styles.tooltip, className)}
-      {...props}
-      onClick={isMobile ? showTooltip : noop}>
+      onClick={isMobile ? showTooltip : noop}
+      {...props}>
       <div
         className={classNames(
           styles.tooltipContent,
@@ -47,6 +47,7 @@ Tooltip.propTypes = {
   placement: PropTypes.string,
   className: PropTypes.string,
   contentClassName: PropTypes.string,
+  style: PropTypes.object
 };
 
 Tooltip.defaultProps = {
