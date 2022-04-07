@@ -63,7 +63,7 @@ TextArea.propTypes = {
   inputClassNames: PropTypes.string,
   placeholder: PropTypes.node,
   wrapped: PropTypes.bool,
-  style: PropTypes.object
+  style: PropTypes.object,
 };
 
 TextArea.defaultProps = {

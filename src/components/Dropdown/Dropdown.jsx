@@ -106,7 +106,7 @@ const Dropdown = ({
       className={classNames(styles.dropdownWrapper, className)}
       style={{
         width: customDropdownTrigger && customTriggerWidth,
-        ...style
+        ...style,
       }}
       {...props}>
       <Trigger

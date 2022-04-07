@@ -18,7 +18,7 @@ const NumberInput = ({ ...props }) => {
 NumberInput.propTypes = {
   min: PropTypes.number,
   max: PropTypes.number,
-  style: PropTypes.object
+  style: PropTypes.object,
 };
 
 export default NumberInput;

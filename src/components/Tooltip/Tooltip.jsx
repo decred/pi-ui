@@ -47,7 +47,7 @@ Tooltip.propTypes = {
   placement: PropTypes.string,
   className: PropTypes.string,
   contentClassName: PropTypes.string,
-  style: PropTypes.object
+  style: PropTypes.object,
 };
 
 Tooltip.defaultProps = {

@@ -9,9 +9,9 @@ const DescriptionObj = {
 
 export default DescriptionObj;
 
-const Template = ({...args }) => <Description {...args} />;
+const Template = ({ ...args }) => <Description {...args} />;
 
 export const Basic = Template.bind({});
 Basic.args = {
-  body: "Test Description"
+  body: "Test Description",
 };
