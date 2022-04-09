@@ -391,9 +391,10 @@ DatePicker.propTypes = {
   onChange: function (props, propName) {
     var fn = props[propName];
     if (
+      !fn ||
       !fn.prototype ||
       typeof fn.prototype.constructor !== "function" ||
-      (fn.prototype.constructor.length < 2 &&
+      (fn.prototype.constructor.length < 2 ||
         fn.prototype.constructor.length > 3)
     ) {
       return new Error(
