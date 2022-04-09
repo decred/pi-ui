@@ -394,8 +394,8 @@ DatePicker.propTypes = {
       !fn ||
       !fn.prototype ||
       typeof fn.prototype.constructor !== "function" ||
-      (fn.prototype.constructor.length < 2 ||
-        fn.prototype.constructor.length > 3)
+      fn.prototype.constructor.length < 2 ||
+      fn.prototype.constructor.length > 3
     ) {
       return new Error(
         `${propName} must be a function with 2 (if isMonthsMode is on) or 3 args. Args are: year, month and day.`
