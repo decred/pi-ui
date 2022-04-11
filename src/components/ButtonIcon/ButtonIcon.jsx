@@ -3,12 +3,22 @@ import React from "react";
 import Icon from "../Icon/Icon.jsx";
 import { classNames } from "../../utils";
 import Spinner from "../Spinner/Spinner.jsx";
+import Tooltip from "../Tooltip/Tooltip.jsx";
 import styles from "./styles.module.css";
 import {
   useTheme,
   getThemeProperty,
   DEFAULT_DARK_THEME_NAME,
 } from "../../theme";
+
+const Wrapper = ({ tooltipText, tooltipPlacement, children }) =>
+  tooltipText ? (
+    <Tooltip content={tooltipText} placement={tooltipPlacement}>
+      {children}
+    </Tooltip>
+  ) : (
+    children
+  );
 
 const ButtonIcon = ({
   type,
@@ -20,6 +30,8 @@ const ButtonIcon = ({
   iconColor,
   iconBackgroundColor,
   text,
+  tooltipText,
+  tooltipPlacement,
   ...props
 }) => {
   const { theme, themeName } = useTheme();
@@ -37,32 +49,36 @@ const ButtonIcon = ({
   );
   const isDarkTheme = themeName === DEFAULT_DARK_THEME_NAME;
   return (
-    <button
-      type="button"
-      className={classNames(
-        styles.buttonIcon,
-        disabled && styles.disabled,
-        loading && styles.loading,
-        text && styles.text,
-        className
-      )}
-      disabled={disabled}
-      onClick={onClick}
-      {...props}>
-      {loading ? (
-        <Spinner invert={!isDarkTheme} width="1.4rem" height="1.4rem" />
-      ) : (
-        <>
-          <Icon
-            type={type}
-            viewBox={viewBox}
-            iconColor={disabled ? disabledBtnIconColor : btnIconColor}
-            backgroundColor={disabled ? disabledBtnIconBgColor : btnIconBgColor}
-          />
-          {text && <span>{text}</span>}
-        </>
-      )}
-    </button>
+    <Wrapper tooltipText={tooltipText} tooltipPlacement={tooltipPlacement}>
+      <button
+        type="button"
+        className={classNames(
+          styles.buttonIcon,
+          disabled && styles.disabled,
+          loading && styles.loading,
+          text && styles.text,
+          className
+        )}
+        disabled={disabled}
+        onClick={onClick}
+        {...props}>
+        {loading ? (
+          <Spinner invert={!isDarkTheme} width="1.4rem" height="1.4rem" />
+        ) : (
+          <>
+            <Icon
+              type={type}
+              viewBox={viewBox}
+              iconColor={disabled ? disabledBtnIconColor : btnIconColor}
+              backgroundColor={
+                disabled ? disabledBtnIconBgColor : btnIconBgColor
+              }
+            />
+            {text && <span>{text}</span>}
+          </>
+        )}
+      </button>
+    </Wrapper>
   );
 };
 
@@ -134,6 +150,8 @@ ButtonIcon.propTypes = {
   onClick: PropTypes.func,
   loading: PropTypes.bool,
   text: PropTypes.string,
+  tooltipText: PropTypes.string,
+  tooltipPlacement: PropTypes.oneOf(["top", "bottom", "right", "left"]),
   style: PropTypes.object,
 };
 

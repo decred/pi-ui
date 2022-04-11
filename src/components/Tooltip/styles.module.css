@@ -55,8 +55,7 @@
   transform: translateY(-50%);
 }
 
-/* Media query to target devices with bigger screens */
-@media screen and (min-width: 1025px) {
+@media (pointer: fine) {
   .tooltip:hover .tooltipContent {
     visibility: visible;
     opacity: 1;
