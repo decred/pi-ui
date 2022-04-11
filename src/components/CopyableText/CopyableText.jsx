@@ -59,6 +59,7 @@ CopyableText.propTypes = {
   hoverText: PropTypes.node,
   className: PropTypes.string,
   textClassName: PropTypes.string,
+  style: PropTypes.object,
   textStyle: PropTypes.object,
   buttonClassName: PropTypes.string,
   buttonStyle: PropTypes.object,

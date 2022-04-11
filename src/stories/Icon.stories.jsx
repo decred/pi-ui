@@ -11,17 +11,9 @@ export default IconObj;
 
 const Template = ({ children, ...args }) => <Icon {...args} />;
 
-export const Search = Template.bind({});
-Search.args = {
+export const Type = Template.bind({});
+Type.args = {
   type: "search",
-};
-export const Chart = Template.bind({});
-Chart.args = {
-  type: "chart",
-};
-export const Github = Template.bind({});
-Github.args = {
-  type: "github",
 };
 export const Small = Template.bind({});
 Small.args = {

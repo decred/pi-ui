@@ -30,6 +30,7 @@ Badge.propTypes = {
   children: PropTypes.node.isRequired,
   show: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
+  style: PropTypes.object,
   icon: PropTypes.node,
 };
 

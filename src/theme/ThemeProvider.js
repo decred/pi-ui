@@ -6,8 +6,14 @@ import React, {
   useContext,
 } from "react";
 import PropTypes from "prop-types";
+import defaultLightTheme from "./lightTheme";
+import { DEFAULT_LIGHT_THEME_NAME } from "./constants";
 
-const ThemeContext = createContext();
+const ThemeContext = createContext({
+  theme: defaultLightTheme,
+  themeName: DEFAULT_LIGHT_THEME_NAME,
+  setThemeName: () => {},
+});
 
 export const useTheme = () => useContext(ThemeContext) || {};
 
@@ -20,9 +26,7 @@ export const ThemeProvider = ({
   const [themeName, setThemeName] = useState(defaultThemeName);
   const theme = useMemo(() => themes[themeName], [themes, themeName]);
   useLayoutEffect(() => {
-    Object.keys(theme).forEach((key) => {
-      document.documentElement.style.setProperty(`--${key}`, theme[key]);
-    });
+    applyTheme(theme);
     if (fonts) {
       applyFontAsset(fonts);
     }
@@ -71,3 +75,9 @@ const applyFontAsset = (fonts) => {
   newStyle.type = "text/css";
   document.head.appendChild(newStyle);
 };
+
+function applyTheme(theme) {
+  Object.keys(theme).forEach((key) => {
+    document.documentElement.style.setProperty(`--${key}`, theme[key]);
+  });
+}

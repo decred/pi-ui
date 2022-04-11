@@ -1,4 +1,5 @@
 import "./css/base.css";
+import "./theme/defaultTheme.js";
 
 export { default as BoxTextInput } from "./components/BoxTextInput/BoxTextInput.jsx";
 export { default as Button } from "./components/Button/Button.jsx";
@@ -47,6 +48,7 @@ export { default as Slider } from "./components/Slider/Slider.jsx";
 export { default as Paginator } from "./components/Paginator/Paginator.jsx";
 export { default as TextHighlighted } from "./components/TextHighlighted/TextHighlighted.jsx";
 export { default as ButtonIcon } from "./components/ButtonIcon/ButtonIcon.jsx";
+export { default as Description } from "./components/Description/Description.jsx";
 export * from "./hooks";
 export * from "./theme";
 export * from "./utils";

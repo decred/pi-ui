@@ -10,7 +10,7 @@ const sizes = {
 };
 
 const icons = (type, backgroundColor, iconColor) => {
-  return {
+  const icons = {
     alert: (
       <>
         <path
@@ -989,7 +989,7 @@ const icons = (type, backgroundColor, iconColor) => {
     ),
     cancel: (
       <>
-        <g clip-path="url(#clip0_10_15)">
+        <g clipPath="url(#clip0_10_15)">
           <path d="M141.229 140.771L309.687 309.229Z" fill={iconColor} />
           <path d="M141.229 309.229L309.687 140.771Z" fill={iconColor} />
           <path
@@ -1372,7 +1372,8 @@ const icons = (type, backgroundColor, iconColor) => {
         d="M2.5 2.75a.25.25 0 01.25-.25h10.5a.25.25 0 01.25.25v10.5a.25.25 0 01-.25.25H2.75a.25.25 0 01-.25-.25V2.75zM2.75 1A1.75 1.75 0 001 2.75v10.5c0 .966.784 1.75 1.75 1.75h10.5A1.75 1.75 0 0015 13.25V2.75A1.75 1.75 0 0013.25 1H2.75zm9.03 5.28a.75.75 0 00-1.06-1.06L6.75 9.19 5.28 7.72a.75.75 0 00-1.06 1.06l2 2a.75.75 0 001.06 0l4.5-4.5z"
         fill={iconColor}></path>
     ),
-  }[type];
+  };
+  return icons[type];
 };
 export const IconWrapper = React.forwardRef(
   (
@@ -1411,7 +1412,67 @@ export const IconWrapper = React.forwardRef(
 );
 
 IconWrapper.propTypes = {
-  type: PropTypes.string.isRequired,
+  type: PropTypes.PropTypes.oneOf([
+    "alert",
+    "chart",
+    "copyToClipboard",
+    "search",
+    "chain",
+    "checkmark",
+    "discuss",
+    "down",
+    "info",
+    "right",
+    "proposal",
+    "questionmark",
+    "left",
+    "star",
+    "timer",
+    "transaction",
+    "trash",
+    "up",
+    "user",
+    "wallet",
+    "like",
+    "dislike",
+    "link",
+    "sign",
+    "world",
+    "blocked",
+    "edit",
+    "expand",
+    "mail",
+    "mailCheck",
+    "github",
+    "calendar",
+    "horizontalLink",
+    "clickArrow",
+    "markdown",
+    "compare",
+    "arrow",
+    "sendMax",
+    "accounts",
+    "qr",
+    "plus",
+    "cancel",
+    "refresh",
+    "searchBlock",
+    "decredLogo",
+    "privacy",
+    "ln",
+    "trezor",
+    "create",
+    "restore",
+    "watchOnly",
+    "bold",
+    "italic",
+    "bulletList",
+    "code",
+    "image",
+    "numberedList",
+    "quote",
+    "taskList",
+  ]).isRequired,
   className: PropTypes.string,
   size: PropTypes.oneOfType([
     PropTypes.oneOf(["sm", "md", "lg", "xlg"]),
@@ -1423,6 +1484,7 @@ IconWrapper.propTypes = {
   viewBox: PropTypes.string,
   height: PropTypes.number,
   width: PropTypes.number,
+  style: PropTypes.object,
 };
 
 IconWrapper.defaultProps = {
