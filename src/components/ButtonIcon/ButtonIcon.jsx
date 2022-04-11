@@ -17,7 +17,7 @@ const Wrapper = ({ tooltipText, tooltipPlacement, children }) =>
       {children}
     </Tooltip>
   ) : (
-    <>{children}</>
+    children
   );
 
 const ButtonIcon = ({
@@ -91,6 +91,7 @@ ButtonIcon.propTypes = {
   loading: PropTypes.bool,
   text: PropTypes.string,
   tooltipText: PropTypes.string,
+  tooltipPlacement: PropTypes.oneOf(["top", "bottom", "right", "left"]),
 };
 
 export default ButtonIcon;
