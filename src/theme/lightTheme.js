@@ -63,6 +63,7 @@ const lightTheme = {
 
   /** COMPONENTS */
   /** Layout */
+  "layout-column-gap-xs": "0.8rem",
   "layout-column-gap-sm": "1.9rem",
   "layout-column-gap-md": "2.4rem",
   "layout-column-gap-lg": "2.6rem",
