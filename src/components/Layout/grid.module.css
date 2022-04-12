@@ -1,250 +1,331 @@
 /* Extra Small Screens*/
+.xs-0 {
+  display: none;
+}
+
 .xs-1 {
+  display: block;
   grid-column: span 1;
 }
 
 .xs-2 {
+  display: block;
   grid-column: span 2;
 }
 
 .xs-3 {
+  display: block;
   grid-column: span 3;
 }
 
 .xs-4 {
+  display: block;
   grid-column: span 4;
 }
 
 .xs-5 {
+  display: block;
   grid-column: span 5;
 }
 
 .xs-6 {
+  display: block;
   grid-column: span 6;
 }
 
 .xs-7 {
+  display: block;
   grid-column: span 7;
 }
 
 .xs-8 {
+  display: block;
   grid-column: span 8;
 }
 
 .xs-9 {
+  display: block;
   grid-column: span 9;
 }
 
 .xs-10 {
+  display: block;
   grid-column: span 10;
 }
 
 .xs-11 {
+  display: block;
   grid-column: span 11;
 }
 
 .xs-12 {
+  display: block;
   grid-column: span 12;
 }
 
 /* Small Screens*/
 @media screen and (min-width: 561px) {
+  .sm-0 {
+    display: none;
+    grid-column: span 1;
+  }
+
   .sm-1 {
+    display: block;
     grid-column: span 1;
   }
 
   .sm-2 {
+    display: block;
     grid-column: span 2;
   }
 
   .sm-3 {
+    display: block;
     grid-column: span 3;
   }
 
   .sm-4 {
+    display: block;
     grid-column: span 4;
   }
 
   .sm-5 {
+    display: block;
     grid-column: span 5;
   }
 
   .sm-6 {
+    display: block;
     grid-column: span 6;
   }
 
   .sm-7 {
+    display: block;
     grid-column: span 7;
   }
 
   .sm-8 {
+    display: block;
     grid-column: span 8;
   }
 
   .sm-9 {
+    display: block;
     grid-column: span 9;
   }
 
   .sm-10 {
+    display: block;
     grid-column: span 10;
   }
 
   .sm-11 {
+    display: block;
     grid-column: span 11;
   }
 
   .sm-12 {
+    display: block;
     grid-column: span 12;
   }
 }
 /* Medium Screens*/
 @media screen and (min-width: 769px) {
+  .md-0 {
+    display: none;
+  }
+
   .md-1 {
+    display: block;
     grid-column: span 1;
   }
 
   .md-2 {
+    display: block;
     grid-column: span 2;
   }
 
   .md-3 {
+    display: block;
     grid-column: span 3;
   }
 
   .md-4 {
+    display: block;
     grid-column: span 4;
   }
 
   .md-5 {
+    display: block;
     grid-column: span 5;
   }
 
   .md-6 {
+    display: block;
     grid-column: span 6;
   }
 
   .md-7 {
+    display: block;
     grid-column: span 7;
   }
 
   .md-8 {
+    display: block;
     grid-column: span 8;
   }
 
   .md-9 {
+    display: block;
     grid-column: span 9;
   }
 
   .md-10 {
+    display: block;
     grid-column: span 10;
   }
 
   .md-11 {
+    display: block;
     grid-column: span 11;
   }
 
   .md-12 {
+    display: block;
     grid-column: span 12;
   }
 }
 
 /* Large Screens*/
 @media screen and (min-width: 1001px) {
+  .lg-0 {
+    display: none;
+  }
+
   .lg-1 {
+    display: block;
     grid-column: span 1;
   }
 
   .lg-2 {
+    display: block;
     grid-column: span 2;
   }
 
   .lg-3 {
+    display: block;
     grid-column: span 3;
   }
 
   .lg-4 {
+    display: block;
     grid-column: span 4;
   }
 
   .lg-5 {
+    display: block;
     grid-column: span 5;
   }
 
   .lg-6 {
+    display: block;
     grid-column: span 6;
   }
 
   .lg-7 {
+    display: block;
     grid-column: span 7;
   }
 
   .lg-8 {
+    display: block;
     grid-column: span 8;
   }
 
   .lg-9 {
+    display: block;
     grid-column: span 9;
   }
 
   .lg-10 {
+    display: block;
     grid-column: span 10;
   }
 
   .lg-11 {
+    display: block;
     grid-column: span 11;
   }
 
   .lg-12 {
+    display: block;
     grid-column: span 12;
   }
 }
 /* Extra Large Screens*/
 @media screen and (min-width: 1550px) {
+  .xl-0 {
+    display: none;
+  }
+
   .xl-1 {
+    display: block;
     grid-column: span 1;
   }
 
   .xl-2 {
+    display: block;
     grid-column: span 2;
   }
 
   .xl-3 {
+    display: block;
     grid-column: span 3;
   }
 
   .xl-4 {
+    display: block;
     grid-column: span 4;
   }
 
   .xl-5 {
+    display: block;
     grid-column: span 5;
   }
 
   .xl-6 {
+    display: block;
     grid-column: span 6;
   }
 
   .xl-7 {
+    display: block;
     grid-column: span 7;
   }
 
   .xl-8 {
+    display: block;
     grid-column: span 8;
   }
 
   .xl-9 {
+    display: block;
     grid-column: span 9;
   }
 
   .xl-10 {
+    display: block;
     grid-column: span 10;
   }
 
   .xl-11 {
+    display: block;
     grid-column: span 11;
   }
 
   .xl-12 {
+    display: block;
     grid-column: span 12;
   }
 }
