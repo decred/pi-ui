@@ -67,7 +67,6 @@
 @media screen and (min-width: 561px) {
   .sm-0 {
     display: none;
-    grid-column: span 1;
   }
 
   .sm-1 {
