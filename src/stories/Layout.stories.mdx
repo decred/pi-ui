@@ -1,4 +1,5 @@
-import { Meta } from "@storybook/addon-docs";
+import { Meta, Canvas, Story } from "@storybook/addon-docs";
+import { Row, Column, Button } from "..";
 
 <Meta title="General/Layout" />
 
@@ -36,10 +37,10 @@ For screens width smaller or equal than 560px:
 
 ## Breakpoints
 
-| **Extra Small** | **Small** | **Medium** | **Large** |
-| :-------------: | :-------: | :--------: | :-------: |
-|    <= 560px     |  > 560px  |  > 768px   | > 1000px  |
-|       xs        |    sm     |     md     |    lg     |
+| **Extra Small** | **Small** | **Medium** | **Large** | **Extra Large** |
+| :-------------: | :-------: | :--------: | :-------: | :-------------: |
+|    <= 560px     |  > 560px  |  > 768px   | > 1000px  |    > 1550px     |
+|       xs        |    sm     |     md     |    lg     |       xl        |
 
 ## Header
 
@@ -60,6 +61,38 @@ TopBanner goes from `center-start` to `col-end 8` and occupies the fourth row of
 ## Sidebar
 
 Sidebar goes from `col-start 9` to `center-end` and occupies the fourth row of the grid.
+
+## StaticContainer
+
+Implements the static container with left and right margins, but without
+pre-defined rows. **The StaticContainer has no grid system**.
+
+## Row
+
+Row implements the columns grid template. Each Row is splitted in 12 columns using
+the following rule:
+
+```css
+.row {
+  grid-template-columns:
+    [full-start] repeat(12, [col-start] 1fr [col-end])
+    [full-end];
+}
+```
+
+## Column
+
+Column implements the columns for some grid system. Each Column has its own
+breakpoint rule, which will define its grid size for the corresponding
+breakpoint.
+
+<Canvas>
+  <Row>
+    <Column xs={12} sm={10} md={8} lg={6} xl={4}>
+      <Button fullWidth>Button</Button>
+    </Column>
+  </Row>
+</Canvas>
 
 ## Example
 
