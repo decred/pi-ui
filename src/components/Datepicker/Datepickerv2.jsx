@@ -85,7 +85,7 @@ const DatePicker = ({
                 tabIndex={tabIndex}
                 isMonthsMode={isMonthsMode}
                 minTimestamp={minTimestamp}
-                maxTimestmap={maxTimestamp}
+                maxTimestamp={maxTimestamp}
               />
             </div>
           </div>

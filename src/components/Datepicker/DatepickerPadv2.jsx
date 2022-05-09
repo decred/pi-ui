@@ -76,7 +76,7 @@ function DatePickerPad({
   onChange,
   isMonthsMode,
   minTimestamp = Date.now(),
-  maxTimestmap = 8640000000000000,
+  maxTimestamp = 8640000000000000,
 }) {
   const wrapperRef = useRef();
   // Min and Max date ranges
@@ -86,7 +86,7 @@ function DatePickerPad({
     month: minDate.getMonth() + 1,
     year: minDate.getFullYear(),
   };
-  const maxDate = new Date(maxTimestmap);
+  const maxDate = new Date(maxTimestamp);
   const max = {
     day: maxDate.getDate(),
     month: maxDate.getMonth() + 1,
@@ -318,7 +318,7 @@ DatePickerPad.propTypes = {
   onChange: PropTypes.func,
   isMonthsMode: PropTypes.bool,
   minTimestamp: PropTypes.number,
-  maxTimestmap: PropTypes.number,
+  maxTimestamp: PropTypes.number,
   currentTimestamp: PropTypes.number,
   value: PropTypes.shape({
     day: PropTypes.number,
