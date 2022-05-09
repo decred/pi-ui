@@ -47,6 +47,7 @@ export { default as Toggle } from "./components/Toggle/Toggle.jsx";
 export { default as DarkLightToggle } from "./components/DarkLightToggle/DarkLightToggle.jsx";
 export { default as Select } from "./components/Select/Select.jsx";
 export { default as DatePicker } from "./components/Datepicker/Datepicker.jsx";
+export { default as DatePickerV2 } from "./components/Datepicker/Datepickerv2.jsx";
 export { default as Slider } from "./components/Slider/Slider.jsx";
 export { default as Paginator } from "./components/Paginator/Paginator.jsx";
 export { default as TextHighlighted } from "./components/TextHighlighted/TextHighlighted.jsx";
