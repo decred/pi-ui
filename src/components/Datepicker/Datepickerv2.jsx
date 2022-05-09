@@ -6,6 +6,14 @@ import styles from "./stylesv2.module.css";
 import DatePickerPad from "./DatepickerPadv2.jsx";
 import { useTheme } from "../../theme";
 
+function DefaultLabel({ value }) {
+  return value ? (
+    <div>{`${value.month}/${value.day}/${value.year}`}</div>
+  ) : (
+    "Pick a Date"
+  );
+}
+
 const DatePicker = ({
   value,
   lang,
@@ -21,6 +29,7 @@ const DatePicker = ({
 }) => {
   const { themeName } = useTheme();
   const [showedState, setShowedState] = useState(false);
+  const [valueState, setValueState] = useState(value);
 
   function handleClose() {
     onDismiss && onDismiss();
@@ -33,6 +42,7 @@ const DatePicker = ({
 
   function handleChange(value) {
     onChange(value);
+    setValueState(value);
   }
 
   return (
@@ -48,7 +58,9 @@ const DatePicker = ({
         onFocus={defaultToggle}
         className={styles.hidden}
       />
-      <div onClick={defaultToggle}>{children}</div>
+      <div onClick={defaultToggle}>
+        {children || <DefaultLabel value={value} />}
+      </div>
       {showedState && (
         <div
           className={classNames(
@@ -69,7 +81,7 @@ const DatePicker = ({
                 onClose={handleClose}
                 onChange={handleChange}
                 lang={lang}
-                value={value}
+                value={valueState}
                 tabIndex={tabIndex}
                 isMonthsMode={isMonthsMode}
                 minTimestamp={minTimestamp}
