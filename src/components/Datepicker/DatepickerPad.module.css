@@ -1,0 +1,49 @@
+.container {
+  font-size: var(--font-size-small);
+  background-color: var(--card-background);
+  text-align: center;
+  justify-items: center;
+  align-items: center;
+}
+
+.container > * > *:not(label):not(.disabled):not(.selected):hover {
+  cursor: pointer;
+  background-color: var(--separator-color);
+}
+
+.row {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.element {
+  width: 60%;
+  padding: 1rem;
+  border: 0;
+  text-align: center;
+  color: var(--text-color);
+  background-color: var(--card-background);
+}
+
+.padRow {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  justify-items: center;
+}
+
+.disabled {
+  cursor: default;
+  color: var(--btn-disabled-background-color);
+}
+
+.selected {
+  color: var(--card-background);
+  background-color: var(--text-input-color);
+}
+
+.label {
+  min-width: 15rem;
+}
