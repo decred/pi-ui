@@ -6,11 +6,21 @@ import styles from "./stylesv2.module.css";
 import DatePickerPad from "./DatepickerPadv2.jsx";
 import { useTheme } from "../../theme";
 
-function DefaultLabel({ value }) {
-  return value ? (
-    <div>{`${value.month}/${value.day}/${value.year}`}</div>
-  ) : (
-    "Pick a Date"
+function DefaultLabel({ value, isOpen }) {
+  return (
+    <div className={styles.defaultPickerWrapper}>
+      {value ? (
+        <div>{`${value.month}/${value.day}/${value.year}`}</div>
+      ) : (
+        "Pick a Date"
+      )}
+      <span
+        className={classNames(
+          styles.pickerArrow,
+          isOpen && styles.pickerArrowOpen
+        )}
+      />
+    </div>
   );
 }
 
@@ -59,7 +69,7 @@ const DatePicker = ({
         className={styles.hidden}
       />
       <div onClick={defaultToggle}>
-        {children || <DefaultLabel value={value} />}
+        {children || <DefaultLabel value={value} isOpen={showedState} />}
       </div>
       {showedState && (
         <div

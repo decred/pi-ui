@@ -1,3 +1,21 @@
+.defaultPickerWrapper {
+  display: inline-flex;
+  align-items: center;
+}
+
+.pickerArrow {
+  width: 0;
+  height: 0;
+  border-left: 0.5rem solid transparent;
+  border-right: 0.5rem solid transparent;
+  border-top: 0.7rem solid var(--text-input-color);
+  margin-left: 1rem;
+}
+
+.pickerArrowOpen {
+  transform: rotate(180deg);
+}
+
 .monthPicker {
   position: relative;
   cursor: pointer;

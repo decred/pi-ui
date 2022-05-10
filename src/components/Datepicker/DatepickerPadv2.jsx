@@ -188,6 +188,8 @@ function DatePickerPad({
         return;
       }
 
+      // Prevent default browser navigation conflicts
+      e.preventDefault();
       let nextCoords;
       if (isUndefined(selectedCoords)) {
         // Undefined coords means no value has been selected on the pad.
