@@ -116,20 +116,7 @@ DatePicker.propTypes = {
   activeClassName: PropTypes.string,
   children: PropTypes.node,
   onDismiss: PropTypes.func,
-  onChange: function (props, propName) {
-    var fn = props[propName];
-    if (
-      !fn ||
-      !fn.prototype ||
-      typeof fn.prototype.constructor !== "function" ||
-      fn.prototype.constructor.length < 2 ||
-      fn.prototype.constructor.length > 3
-    ) {
-      return new Error(
-        `${propName} must be a function with 2 (if isMonthsMode is on) or 3 args. Args are: year, month and day.`
-      );
-    }
-  },
+  onChange: PropTypes.func,
   isMonthsMode: PropTypes.bool,
   minTimestamp: PropTypes.number,
   maxTimestamp: PropTypes.number,
