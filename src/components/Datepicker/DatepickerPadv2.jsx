@@ -126,7 +126,14 @@ function DatePickerPad({
 
   // Change Handlers
   const handleChangeYear = (accValue) => () => {
-    const newDate = { ...currentDate, year: currentDate.year + accValue };
+    let month = currentDate.month;
+    const year = currentDate.year + accValue;
+    if (year === max.year && month > max.month) {
+      month = max.month;
+    } else if (year === min.year && month < min.month) {
+      month = min.month;
+    }
+    const newDate = { day: currentDate.day, month, year };
     setCurrentDate(newDate);
   };
   const handleChangeMonth = (accValue) => () => {
@@ -230,7 +237,9 @@ function DatePickerPad({
           value="<"
           onClick={handleChangeYear(-1)}
         />
-        <label className={styles.label}>{currentDate.year}</label>
+        <label data-testid="datepicker-pad-year-label" className={styles.label}>
+          {currentDate.year}
+        </label>
         <Element
           tabIndex={tabIndex}
           onClick={handleChangeYear(1)}
@@ -246,7 +255,11 @@ function DatePickerPad({
             value="<"
             disabled={disablePreviousMonth}
           />
-          <label className={styles.label}>{currentMonthLabel}</label>
+          <label
+            className={styles.label}
+            data-testid="datepicker-pad-month-label">
+            {currentMonthLabel}
+          </label>
           <Element
             tabIndex={tabIndex}
             onClick={handleChangeMonth(1)}
