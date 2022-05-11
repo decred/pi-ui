@@ -107,7 +107,7 @@ BoxTextInput.propTypes = {
   className: PropTypes.string,
   inputClassName: PropTypes.string,
   tooltipInfo: PropTypes.node,
-  tooltipPlacement: PropTypes.string,
+  tooltipPlacement: PropTypes.oneOf(["top", "bottom", "right", "left"]),
 };
 
 BoxTextInput.defaultProps = {

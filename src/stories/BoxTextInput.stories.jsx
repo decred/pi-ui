@@ -39,3 +39,11 @@ Searchable.args = {
   searchInput: true,
   error: "",
 };
+
+export const WithInfoTooltip = Template.bind({});
+WithInfoTooltip.args = {
+  placeholder: "Censorship Token",
+  name: "token",
+  tooltipInfo: "Record Censorship Token",
+  tooltipPlacement: "bottom",
+};
