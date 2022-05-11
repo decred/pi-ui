@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import styles from "./styles.module.css";
 import { classNames } from "../../utils";
 import Icon from "../Icon/Icon.jsx";
+import Tooltip from "../Tooltip/Tooltip.jsx";
 
 const FormWrapper = ({ className, onSubmit, children }) => {
   return (
@@ -31,6 +32,8 @@ const BoxTextInput = ({
   searchInput,
   className,
   inputClassName,
+  tooltipInfo,
+  tooltipPlacement,
   ...props
 }) => {
   const handleSubmit = (e) => {
@@ -64,6 +67,13 @@ const BoxTextInput = ({
           <Icon type="search" />
         </button>
       )}
+      {tooltipInfo && (
+        <span className={styles.boxtextinputButton}>
+          <Tooltip content={tooltipInfo} placement={tooltipPlacement}>
+            <Icon type="info" />
+          </Tooltip>
+        </span>
+      )}
       <p
         className={classNames(styles.errorMsg, error && styles.errorMsgActive)}>
         {error}
@@ -96,6 +106,8 @@ BoxTextInput.propTypes = {
   onChange: PropTypes.func,
   className: PropTypes.string,
   inputClassName: PropTypes.string,
+  tooltipInfo: PropTypes.node,
+  tooltipPlacement: PropTypes.oneOf(["top", "bottom", "right", "left"]),
 };
 
 BoxTextInput.defaultProps = {
