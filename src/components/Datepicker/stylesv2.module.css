@@ -118,6 +118,7 @@
 .rmpPopup .rmpPad {
   position: relative;
 }
+
 .rmpPad:focus {
   border: 1px solid red;
 }
@@ -126,6 +127,7 @@
   width: 0;
   height: 0;
 }
+
 .rmpInput:focus {
   border: none;
 }
