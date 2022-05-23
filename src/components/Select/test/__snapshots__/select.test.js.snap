@@ -32,11 +32,9 @@ exports[`Select component Matches the snapshot 1`] = `
         </div>
         <input
           aria-autocomplete="list"
-          aria-controls="react-select-2-listbox"
           aria-describedby="react-select-2-placeholder"
           aria-expanded={false}
           aria-haspopup={true}
-          aria-owns="react-select-2-listbox"
           aria-readonly={true}
           className="css-mohuvp-dummyInput-DummyInput"
           disabled={false}
