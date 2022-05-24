@@ -101,9 +101,9 @@ function DatePickerPad({
     year: now.getFullYear(),
   };
 
-  const [currentDate, setCurrentDate] = useState(today || value);
-  const [selectedDate, setSelectedDate] = useState();
-  // const [hoverId, setHoverId] = useState(undefined);
+  const [currentDate, setCurrentDate] = useState(value || today);
+  const [selectedDate, setSelectedDate] = useState(value);
+
   const [selectedCoords, setSelectedCoords] = useState();
   // Number of days from current month and year
   const daysLength = new Date(currentDate.year, currentDate.month, 0).getDate();
