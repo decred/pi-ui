@@ -10,7 +10,7 @@ const DatePickerV2Obj = {
 export default DatePickerV2Obj;
 
 const ControlledTemplate = ({ children, ...args }) => {
-  const [value, setValue] = useState({ year: 2022, month: 5, day: 15 });
+  const [value, setValue] = useState();
 
   return <DatePickerV2 {...args} value={value} onChange={setValue} />;
 };
