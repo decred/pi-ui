@@ -24,7 +24,15 @@ const TextInput = ({
   useMountEffect(() => {
     autoFocus && input && input.current.focus();
   });
-
+  
+  const isPlaceholder = (placeholder) => {
+    if (placeholder == undefined)
+      return false;
+    
+    if (placeholder.lenght)
+      return true;
+  }
+  
   return (
     <div
       className={classNames(
@@ -33,11 +41,12 @@ const TextInput = ({
         success && styles.success,
         wrapperClassNames,
         !label && styles.withoutLabel
-      )}>
+      )}> 
       <input
         id={id}
         ref={input}
         placeholder={placeholder || " "}
+        size={isPlaceholder(placeholder) ? placeholder.length : undefined}
         className={classNames(styles.textinput, inputClassNames)}
         type={type}
         {...props}
