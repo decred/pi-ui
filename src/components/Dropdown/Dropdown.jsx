@@ -16,11 +16,15 @@ const DefaultTrigger = ({
   onClick,
   title,
   open,
+  dropdownHeaderClassName,
   dropdownArrowClassName,
   ArrowComponent = Arrow,
 }) => (
   <div className={styles.headerWrapper} data-testid="trigger" onClick={onClick}>
-    <span className={styles.dropdownHeader}>{title}</span>
+    <span
+      className={classNames(styles.dropdownHeader, dropdownHeaderClassName)}>
+      {title}
+    </span>
     <ArrowComponent
       onClick={onClick}
       open={open}
@@ -40,6 +44,7 @@ const Dropdown = ({
   closeOnItemClick,
   customDropdownTrigger,
   dropdownArrowClassName,
+  dropdownHeaderClassName,
   style,
   ...props
 }) => {
@@ -114,6 +119,7 @@ const Dropdown = ({
         onClick={handleTriggerClick}
         open={dropdownOpenned}
         dropdownArrowClassName={dropdownArrowClassName}
+        dropdownHeaderClassName={dropdownHeaderClassName}
         ArrowComponent={Arrow}
       />
       {dropdownOpenned &&
@@ -135,6 +141,7 @@ DefaultTrigger.propTypes = {
   title: PropTypes.node,
   open: PropTypes.bool,
   dropdownArrowClassName: PropTypes.string,
+  dropdownHeaderClassName: PropTypes.string,
   ArrowComponent: PropTypes.func,
 };
 
@@ -148,6 +155,7 @@ Dropdown.propTypes = {
   className: PropTypes.string,
   itemsListClassName: PropTypes.string,
   dropdownArrowClassName: PropTypes.string,
+  dropdownHeaderClassName: PropTypes.string,
   customDropdownTrigger: PropTypes.func,
   title: PropTypes.node,
   show: PropTypes.bool,
