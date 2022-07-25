@@ -45,6 +45,7 @@ const SlideAnimatedChild = ({
     },
     config: { mass: 1, tension: 210, friction: 26 },
     key: children[activeTabIndex]?.props?.children?.key,
+    delay: 100,
   });
   return slideTransition((contentStyle, item) => (
     <animated.div style={contentStyle} className={contentClassName}>
