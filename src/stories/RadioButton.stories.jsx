@@ -9,7 +9,14 @@ const RadioButtonGroupObj = {
 
 export default RadioButtonGroupObj;
 
-const Template = ({ children, ...args }) => <RadioButtonGroup {...args} />;
+const Template = ({ children, ...args }) => {
+  const [selectedValue, setSelectedValue] = React.useState(args.value);
+  args.value = selectedValue;
+  args.onChange = (e) => {
+    setSelectedValue(e.value);
+  };
+  return <RadioButtonGroup {...args} />;
+};
 
 export const Basic = Template.bind({});
 Basic.args = {

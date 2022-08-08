@@ -20,6 +20,19 @@ describe("RadioButtonGroup component", () => {
     expect(radiogroup.toJSON()).toMatchSnapshot();
   });
 
+  test("Matches snapshot (set name property)", () => {
+    const radiogroup = create(
+      <RadioButtonGroup
+        label="Test"
+        options={options}
+        value={1}
+        onChange={jest.fn()}
+        name="name"
+      />
+    );
+    expect(radiogroup.toJSON()).toMatchSnapshot();
+  });
+
   test("RadioButton click triggers change function and updates value", () => {
     let value = 1;
     const mockHandleChange = jest.fn(() => {

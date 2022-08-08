@@ -1,5 +1,95 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`RadioButtonGroup component Matches snapshot (set name property) 1`] = `
+<div
+  className="radioGroup"
+>
+  <label
+    className="radioGroupLabel"
+  >
+    Test
+  </label>
+  <ul
+    className="radioGroupList"
+  >
+    <li>
+       
+      <div
+        className="radioButton"
+      >
+        <input
+          checked={true}
+          disabled={false}
+          id="radio-btn-0-name"
+          name="name"
+          onChange={[Function]}
+          type="radio"
+        />
+        <label
+          htmlFor="radio-btn-0-name"
+          onClick={[Function]}
+        >
+          <span
+            className="circle checked"
+          >
+            <span
+              className="dot"
+              style={
+                Object {
+                  "transform": " scale(1)",
+                }
+              }
+            />
+          </span>
+          <label
+            className="radioButtonOptionLabel"
+          >
+            foo
+          </label>
+        </label>
+      </div>
+    </li>
+    <li>
+       
+      <div
+        className="radioButton"
+      >
+        <input
+          checked={false}
+          disabled={false}
+          id="radio-btn-1-name"
+          name="name"
+          onChange={[Function]}
+          type="radio"
+        />
+        <label
+          htmlFor="radio-btn-1-name"
+          onClick={[Function]}
+        >
+          <span
+            className="circle"
+          >
+            <span
+              className="dot"
+              style={
+                Object {
+                  "transform": " scale(0)",
+                }
+              }
+            />
+          </span>
+          <label
+            className="radioButtonOptionLabel"
+          >
+            bar
+          </label>
+        </label>
+      </div>
+    </li>
+  </ul>
+</div>
+`;
+
 exports[`RadioButtonGroup component Matches snapshot 1`] = `
 <div
   className="radioGroup"
