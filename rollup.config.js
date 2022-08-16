@@ -26,8 +26,8 @@ const config = {
   plugins: [
     external(),
     postcss({
-      extract: true,
       modules: true,
+      extract: true,
     }),
     url({
       include: ["**/*.woff", "**/*.ttf", "**/*.png", "**/*.svg"],
