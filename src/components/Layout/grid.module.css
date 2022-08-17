@@ -1,70 +1,70 @@
-/* Extra Small Screens*/
-.xs-0 {
-  display: none;
+@media (--xs-viewport) {
+  .xs-0 {
+    display: none;
+  }
+
+  .xs-1 {
+    display: block;
+    grid-column: span 1;
+  }
+
+  .xs-2 {
+    display: block;
+    grid-column: span 2;
+  }
+
+  .xs-3 {
+    display: block;
+    grid-column: span 3;
+  }
+
+  .xs-4 {
+    display: block;
+    grid-column: span 4;
+  }
+
+  .xs-5 {
+    display: block;
+    grid-column: span 5;
+  }
+
+  .xs-6 {
+    display: block;
+    grid-column: span 6;
+  }
+
+  .xs-7 {
+    display: block;
+    grid-column: span 7;
+  }
+
+  .xs-8 {
+    display: block;
+    grid-column: span 8;
+  }
+
+  .xs-9 {
+    display: block;
+    grid-column: span 9;
+  }
+
+  .xs-10 {
+    display: block;
+    grid-column: span 10;
+  }
+
+  .xs-11 {
+    display: block;
+    grid-column: span 11;
+  }
+
+  .xs-12 {
+    display: block;
+    grid-column: span 12;
+  }
 }
 
-.xs-1 {
-  display: block;
-  grid-column: span 1;
-}
-
-.xs-2 {
-  display: block;
-  grid-column: span 2;
-}
-
-.xs-3 {
-  display: block;
-  grid-column: span 3;
-}
-
-.xs-4 {
-  display: block;
-  grid-column: span 4;
-}
-
-.xs-5 {
-  display: block;
-  grid-column: span 5;
-}
-
-.xs-6 {
-  display: block;
-  grid-column: span 6;
-}
-
-.xs-7 {
-  display: block;
-  grid-column: span 7;
-}
-
-.xs-8 {
-  display: block;
-  grid-column: span 8;
-}
-
-.xs-9 {
-  display: block;
-  grid-column: span 9;
-}
-
-.xs-10 {
-  display: block;
-  grid-column: span 10;
-}
-
-.xs-11 {
-  display: block;
-  grid-column: span 11;
-}
-
-.xs-12 {
-  display: block;
-  grid-column: span 12;
-}
-
-/* Small Screens*/
-@media screen and (min-width: 561px) {
+@media (--sm-viewport) {
   .sm-0 {
     display: none;
   }
@@ -129,8 +129,7 @@
     grid-column: span 12;
   }
 }
-/* Medium Screens*/
-@media screen and (min-width: 769px) {
+@media (--md-viewport) {
   .md-0 {
     display: none;
   }
@@ -196,8 +195,7 @@
   }
 }
 
-/* Large Screens*/
-@media screen and (min-width: 1001px) {
+@media (--lg-viewport) {
   .lg-0 {
     display: none;
   }
@@ -263,7 +261,7 @@
   }
 }
 /* Extra Large Screens*/
-@media screen and (min-width: 1550px) {
+@media (--xl-viewport) {
   .xl-0 {
     display: none;
   }

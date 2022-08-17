@@ -12,6 +12,17 @@
   -webkit-transition: left 0ms cubic-bezier(0.23, 1, 0.32, 1) 450ms;
   -moz-transition: left 0ms cubic-bezier(0.23, 1, 0.32, 1) 450ms;
   transition: left 0ms cubic-bezier(0.23, 1, 0.32, 1) 450ms;
+
+  @media (--sm-viewport) {
+    position: fixed;
+    top: 0;
+    left: -1000rem;
+    width: 100%;
+    height: 100%;
+    -webkit-transition: left 0ms cubic-bezier(0.23, 1, 0.32, 1) 450ms;
+    -moz-transition: left 0ms cubic-bezier(0.23, 1, 0.32, 1) 450ms;
+    transition: left 0ms cubic-bezier(0.23, 1, 0.32, 1) 450ms;
+  }
 }
 
 .rmpContainer.show {
@@ -46,6 +57,10 @@
     opacity 400ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
   transition: left 0ms cubic-bezier(0.23, 1, 0.32, 1) 0ms,
     opacity 400ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+
+    @media (--sm-viewport){
+      background-color: rgba(0, 0, 0, 0.25);
+    }
 }
 
 .rmpContainer.show .rmpOverlay {
@@ -58,6 +73,9 @@
   box-sizing: border-box;
   width: 100%;
   height: 100%;
+  @media (--sm-viewport) {
+    vertical-align: bottom;
+  }
 }
 
 .rmpPopup {
@@ -243,30 +261,7 @@
   background-color: #262828;
 }
 
-@media screen and (max-width: 767px) {
-  .rmpContainer {
-    position: fixed;
-    top: 0;
-    left: -1000rem;
-    width: 100%;
-    height: 100%;
-    -webkit-transition: left 0ms cubic-bezier(0.23, 1, 0.32, 1) 450ms;
-    -moz-transition: left 0ms cubic-bezier(0.23, 1, 0.32, 1) 450ms;
-    transition: left 0ms cubic-bezier(0.23, 1, 0.32, 1) 450ms;
-  }
-}
-
-@media screen and (max-width: 767px) {
-  .rmpOverlay {
-    background-color: rgba(0, 0, 0, 0.25);
-  }
-}
-@media screen and (max-width: 767px) {
-  .rmpCell {
-    vertical-align: bottom;
-  }
-}
-@media screen and (max-width: 767px) {
+@media (--sm-viewport) {
   .rmpPopup {
     box-sizing: border-box;
     bottom: 0;
@@ -302,7 +297,7 @@
   }
 }
 
-@media screen and (min-width: 768px) {
+@media (--not-sm-viewport) {
   .rmpPopup {
     -webkit-transform: translate3d(0, -6.4rem, 0);
     -moz-transform: translate3d(0, -6.4rem, 0);
@@ -327,7 +322,7 @@
   }
 }
 
-@media screen and (min-width: 768px) {
+@media (--not-sm-viewport) {
   .rmpPopup .rmpPad {
     box-sizing: border-box;
     float: left;
@@ -343,19 +338,19 @@
   }
 }
 
-@media screen and (max-width: 767px) {
+@media (--sm-viewport) {
   .rmpPopup .rmpPad li {
     width: 25%;
   }
 }
 
-@media screen and (min-width: 768px) {
+@media (--not-sm-viewport) {
   .rmpPopup .rmpPad li {
     width: 20%;
   }
 }
 
-@media screen and (max-width: 767px) {
+@media (--sm-viewport) {
   .rmpPopup.light {
     border-top: 0.1rem solid #ccc;
     box-shadow: 0 -0.1rem 0.5rem rgba(0, 0, 0, 0.08);
@@ -375,7 +370,7 @@
   }
 }
 
-@media screen and (min-width: 768px) {
+@media (--not-sm-viewport) {
   .rmpPopup.light {
     border: 0.1rem solid #ccc;
     box-shadow: 0 0.1rem 0.5rem #ddd;
@@ -386,13 +381,13 @@
   }
 }
 
-@media screen and (min-width: 768px) {
+@media (--not-sm-viewport) {
   .rmpPopup.light .rmpPad .rmpBtn:hover {
     background-color: rgba(255, 227, 160, 0.59);
   }
 }
 
-@media screen and (max-width: 767px) {
+@media (--sm-viewport) {
   .rmpPopup.dark.range .rmpPad {
     border-top: 0.1rem solid rgba(113, 113, 113, 0.41);
   }
@@ -402,13 +397,13 @@
   }
 }
 
-@media screen and (min-width: 768px) {
+@media (--not-sm-viewport) {
   .rmpPopup.dark.range .rmpPad {
     background-color: rgba(70, 70, 70, 0.9);
   }
 }
 
-@media screen and (min-width: 768px) {
+@media (--not-sm-viewport) {
   .rmpPopup.dark .rmpPad .rmpBtn:hover {
     background-color: rgba(255, 210, 96, 0.33);
   }

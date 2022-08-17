@@ -15,6 +15,7 @@ module.exports = {
           importLoaders: 1,
         },
         postcssLoaderOptions: {
+          sourceMap: true,
           implementation: require("postcss"),
         },
       },

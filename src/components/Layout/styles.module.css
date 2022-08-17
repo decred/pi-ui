@@ -96,8 +96,7 @@
   grid-column-end: full-end;
 }
 
-/* HUGE SCREENS */
-@media screen and (min-width: 1560px) {
+@media (--xl-viewport) {
   .container {
     grid-template-columns:
       [full-start] 1fr [center-start]
@@ -123,8 +122,7 @@
   }
 }
 
-/* MEDIUM SCREENS */
-@media screen and (max-width: 1000px) {
+@media (-md-viewport) {
   .container,
   .topBanner {
     --grid-center-padding: minmax(
@@ -156,8 +154,7 @@
   }
 }
 
-/* SMALL SCREENS */
-@media screen and (max-width: 768px) {
+@media (-md-viewport) {
   .container {
     --grid-center-padding: minmax(
       calc(3rem - var(--layout-column-gap-sm)),
@@ -204,8 +201,7 @@
   }
 }
 
-/* EXTRA SMALL SCREENS */
-@media screen and (max-width: 560px) {
+@media (--xs-viewport) {
   .container {
     grid-template-columns: [full-start] 1fr [full-end];
   }

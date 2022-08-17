@@ -37,7 +37,7 @@
   background-color: var(--table-header-background);
 }
 
-@media screen and (max-width: 768px) {
+@media (--sm-viewport) {
   .table {
     border: 0;
   }
