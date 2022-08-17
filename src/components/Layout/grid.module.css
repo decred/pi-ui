@@ -1,70 +1,68 @@
-@media (--xs-viewport) {
-  .xs-0 {
-    display: none;
-  }
-
-  .xs-1 {
-    display: block;
-    grid-column: span 1;
-  }
-
-  .xs-2 {
-    display: block;
-    grid-column: span 2;
-  }
-
-  .xs-3 {
-    display: block;
-    grid-column: span 3;
-  }
-
-  .xs-4 {
-    display: block;
-    grid-column: span 4;
-  }
-
-  .xs-5 {
-    display: block;
-    grid-column: span 5;
-  }
-
-  .xs-6 {
-    display: block;
-    grid-column: span 6;
-  }
-
-  .xs-7 {
-    display: block;
-    grid-column: span 7;
-  }
-
-  .xs-8 {
-    display: block;
-    grid-column: span 8;
-  }
-
-  .xs-9 {
-    display: block;
-    grid-column: span 9;
-  }
-
-  .xs-10 {
-    display: block;
-    grid-column: span 10;
-  }
-
-  .xs-11 {
-    display: block;
-    grid-column: span 11;
-  }
-
-  .xs-12 {
-    display: block;
-    grid-column: span 12;
-  }
+.xs-0 {
+  display: none;
 }
 
-@media (--sm-viewport) {
+.xs-1 {
+  display: block;
+  grid-column: span 1;
+}
+
+.xs-2 {
+  display: block;
+  grid-column: span 2;
+}
+
+.xs-3 {
+  display: block;
+  grid-column: span 3;
+}
+
+.xs-4 {
+  display: block;
+  grid-column: span 4;
+}
+
+.xs-5 {
+  display: block;
+  grid-column: span 5;
+}
+
+.xs-6 {
+  display: block;
+  grid-column: span 6;
+}
+
+.xs-7 {
+  display: block;
+  grid-column: span 7;
+}
+
+.xs-8 {
+  display: block;
+  grid-column: span 8;
+}
+
+.xs-9 {
+  display: block;
+  grid-column: span 9;
+}
+
+.xs-10 {
+  display: block;
+  grid-column: span 10;
+}
+
+.xs-11 {
+  display: block;
+  grid-column: span 11;
+}
+
+.xs-12 {
+  display: block;
+  grid-column: span 12;
+}
+
+@media (--bigger-than-xs-viewpor) {
   .sm-0 {
     display: none;
   }
@@ -129,7 +127,8 @@
     grid-column: span 12;
   }
 }
-@media (--md-viewport) {
+
+@media (--bigger-than-sm-viewport) {
   .md-0 {
     display: none;
   }
@@ -195,7 +194,7 @@
   }
 }
 
-@media (--lg-viewport) {
+@media (--bigger-than-md-viewport) {
   .lg-0 {
     display: none;
   }
@@ -260,7 +259,7 @@
     grid-column: span 12;
   }
 }
-/* Extra Large Screens*/
+
 @media (--xl-viewport) {
   .xl-0 {
     display: none;
