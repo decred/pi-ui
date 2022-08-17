@@ -199,7 +199,7 @@
   }
 }
 
-@media (--not-sm-viewport) {
+@media (--bigger-than-sm-viewport) {
   .rmpPopup {
     -webkit-transform: translate3d(0, -6.4rem, 0);
     -moz-transform: translate3d(0, -6.4rem, 0);
@@ -220,7 +220,7 @@
   }
 }
 
-@media (--not-sm-viewport) {
+@media (--bigger-than-sm-viewport) {
   .rmpPopup .rmpPad {
     box-sizing: border-box;
     float: left;
@@ -238,7 +238,7 @@
   }
 }
 
-@media (--not-sm-viewport) {
+@media (--bigger-than-sm-viewport) {
   .rmpPopup .rmpPad li {
     width: 20%;
   }
@@ -264,7 +264,7 @@
   }
 }
 
-@media (--not-sm-viewport) {
+@media (--bigger-than-sm-viewport) {
   .rmpPopup.light {
     border: 0.1rem solid #ccc;
     box-shadow: 0 0.1rem 0.5rem #ddd;
@@ -275,7 +275,7 @@
   }
 }
 
-@media (--not-sm-viewport) {
+@media (--bigger-than-sm-viewport) {
   .rmpPopup.light .rmpPad .rmpBtn:hover {
     background-color: rgba(255, 227, 160, 0.59);
   }
@@ -291,13 +291,13 @@
   }
 }
 
-@media (--not-sm-viewport) {
+@media (--bigger-than-sm-viewport) {
   .rmpPopup.dark.range .rmpPad {
     background-color: rgba(70, 70, 70, 0.9);
   }
 }
 
-@media (--not-sm-viewport) {
+@media (--bigger-than-sm-viewport) {
   .rmpPopup.dark .rmpPad .rmpBtn:hover {
     background-color: rgba(255, 210, 96, 0.33);
   }

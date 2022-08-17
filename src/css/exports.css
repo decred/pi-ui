@@ -3,4 +3,6 @@
 @custom-media --md-viewport screen and (max-width: 1000px);
 @custom-media --lg-viewport screen and (max-width: 1400px);
 @custom-media --xl-viewport screen and (min-width: 1401px);
-@custom-media --not-sm-viewport screen and (min-width: 769px);
+@custom-media --bigger-than-xs-viewport screen and (min-width: 561px);
+@custom-media --bigger-than-sm-viewport screen and (min-width: 769px);
+@custom-media --bigger-than-md-viewport screen and (min-width: 1001px);
