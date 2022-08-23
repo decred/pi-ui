@@ -30,6 +30,11 @@
   flex-wrap: wrap-reverse;
   justify-content: space-between;
   align-items: center;
+
+  @media (--xs-viewport) {
+    flex-direction: column-reverse;
+    align-items: flex-end;
+  }
 }
 
 .infoCurrent {
@@ -51,6 +56,10 @@
 
 .legendLine:not(:last-child) {
   margin-right: 3rem;
+
+  @media (--sm-viewport) {
+    margin-right: 1rem;
+  }
 }
 
 .statusBar.balance .legendLine:last-of-type {
@@ -119,17 +128,4 @@
   cursor: pointer;
   color: var(--color-green);
   font-size: var(--font-size-small);
-}
-
-@media screen and (max-width: 768px) {
-  .legendLine:not(:last-child) {
-    margin-right: 1rem;
-  }
-}
-
-@media screen and (max-width: 560px) {
-  .statusInfo {
-    flex-direction: column-reverse;
-    align-items: flex-end;
-  }
 }

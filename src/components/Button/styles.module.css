@@ -89,7 +89,9 @@
   width: 100%;
 }
 
-/* EXTRA SMALL ADJUSTMENTS */
+/* EXTRA SMALL ADJUSTMENTS
+This breakpoint is used only here
+Thats why we're not using a custom media export */
 @media screen and (max-width: 380px) {
   .sm {
     padding: 0.45rem 0.75rem;
