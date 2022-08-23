@@ -47,6 +47,45 @@ class Example extends Component {
 }
 ```
 
+### Breakpoints
+
+Pi-ui's custom breakpoints make use of the [postcss-preset-env](https://github.com/csstools/postcss-plugins/tree/main/plugin-packs/postcss-preset-env) plugin. In order to use the breakpoints you have to add the plugin to your environment. For this, see the [postcss install page](https://github.com/csstools/postcss-plugins/blob/main/plugin-packs/postcss-preset-env/INSTALL.md#webpack).
+
+In your `postcss.config.js`, you will have to `importFrom` pi-ui's `export.css` file. If you are developing with a linked pi-ui, import from your local pi-ui. Example:
+
+```
+const { resolveOwn } = require("../../utils");
+
+module.exports = {
+  plugins: [
+    [
+      "postcss-preset-env",
+      {
+        // When developing with a linked `pi-ui`
+        // Point the importFrom to the path of the linked package in your env
+        importFrom: resolveOwn("../../../../pi-ui/dist/exports.css")
+      }
+    ]
+  ]
+};
+```
+
+If you are developing with a npm/yarn installed pi-ui package, import from your `node-modules`. Example:
+
+```
+module.exports = {
+  plugins: [
+    [
+      "postcss-preset-env",
+      {
+        // When developing with an installed `pi-ui`
+        // Point the importFrom to the path of the package in your node_modules
+        importFrom: "./node_modules/pi-ui/dist/exports.css"
+      }
+    ]
+  ]
+};
+```
 ## Developing
 
 - Clone this repository
