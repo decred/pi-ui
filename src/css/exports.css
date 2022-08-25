@@ -1,6 +1,7 @@
 @custom-media --xs-viewport screen and (max-width: 560px);
 @custom-media --sm-viewport screen and (max-width: 768px);
 @custom-media --md-viewport screen and (max-width: 1000px);
+@custom-media --bg-viewport screen and (max-width: 1180px);
 @custom-media --lg-viewport screen and (max-width: 1400px);
 @custom-media --xl-viewport screen and (min-width: 1401px);
 @custom-media --bigger-than-xs-viewport screen and (min-width: 561px);
