@@ -122,7 +122,7 @@
   }
 }
 
-@media (-md-viewport) {
+@media (--md-viewport) {
   .container,
   .topBanner {
     --grid-center-padding: minmax(
@@ -154,7 +154,7 @@
   }
 }
 
-@media (-md-viewport) {
+@media (--sm-viewport) {
   .container {
     --grid-center-padding: minmax(
       calc(3rem - var(--layout-column-gap-sm)),
@@ -169,7 +169,7 @@
   }
 
   .staticContainer {
-    max-width: calc(100% - 5rem);
+    max-width: 100%;
     margin: 0 2.5rem;
   }
 
@@ -208,6 +208,10 @@
 
   .row {
     column-gap: var(--layout-column-gap-xs);
+  }
+
+  .staticContainer {
+    margin: 0;
   }
 
   .header {
