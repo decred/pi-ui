@@ -13,6 +13,8 @@ const modalRoot = document.createElement("div");
 modalRoot.setAttribute("id", "modal-root");
 document.body.appendChild(modalRoot);
 
+const el = document.createElement("div");
+
 // TODO: use svg icons when we have them
 const Modal = ({
   style,
@@ -33,7 +35,6 @@ const Modal = ({
   disableDismiss,
   ...props
 }) => {
-  const el = document.createElement("div");
   useEffect(() => {
     modalRoot.appendChild(el);
     return () => modalRoot.removeChild(el);
@@ -54,6 +55,7 @@ const Modal = ({
       handleCloseModal();
     }
   }, [escPressed, handleCloseModal]);
+
   return createPortal(
     <ModalWrapper
       show={show}
