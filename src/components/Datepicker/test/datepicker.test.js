@@ -5,7 +5,12 @@ import { render } from "@testing-library/react";
 
 describe("DatePicker component", () => {
   test("Matches the snapshot", () => {
-    const datePicker = create(<DatePicker value={{ year: 2020, month: 12 }} />);
+    const datePicker = create(
+      <DatePicker
+        value={{ year: 2020, month: 12 }}
+        onChange={(a, b, c) => {}}
+      />
+    );
     expect(datePicker.toJSON()).toMatchSnapshot();
   });
 
@@ -32,6 +37,7 @@ describe("DatePicker component", () => {
       <DatePicker
         lang={monthsTranslations}
         years={years}
+        onChange={(a, b, c) => {}}
         value={{ year: 2019, month: 11, day: 15 }}
         show={true}>
         <></>
@@ -44,6 +50,7 @@ describe("DatePicker component", () => {
       <DatePicker
         lang={monthsTranslations}
         years={years}
+        onChange={(a, b, c) => {}}
         value={{ year: 2019, month: 12, day: 15 }}
         show={true}>
         <></>
