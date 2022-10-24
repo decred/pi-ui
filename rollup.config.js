@@ -6,8 +6,13 @@ import postcss from "rollup-plugin-postcss";
 import resolve from "rollup-plugin-node-resolve";
 import url from "@rollup/plugin-url";
 import svgr from "@svgr/rollup";
+import { visualizer } from "rollup-plugin-visualizer";
+import { uglify } from "rollup-plugin-uglify";
+import gzipPlugin from "rollup-plugin-gzip";
 
 import pkg from "./package.json";
+
+const isProduction = process.env.NODE_ENV === "production";
 
 const config = {
   input: "src/index.js",
@@ -15,12 +20,12 @@ const config = {
     {
       file: pkg.main,
       format: "cjs",
-      sourcemap: true,
+      sourcemap: "inline",
     },
     {
       file: pkg.module,
       format: "es",
-      sourcemap: true,
+      sourcemap: "inline",
     },
   ],
   external: ["react-select"],
@@ -41,9 +46,12 @@ const config = {
     }),
     resolve(),
     commonjs(),
+    isProduction && uglify(),
+    isProduction && gzipPlugin(),
     copy({
       targets: [{ src: "src/css/exports.css", dest: "dist" }],
     }),
+    isProduction && visualizer({ sourcemap: true, gzipSize: true }),
   ],
 };
 
