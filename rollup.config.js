@@ -22,11 +22,6 @@ const config = {
       format: "cjs",
       sourcemap: "inline",
     },
-    {
-      file: pkg.module,
-      format: "es",
-      sourcemap: "inline",
-    },
   ],
   external: ["react-select"],
   plugins: [
