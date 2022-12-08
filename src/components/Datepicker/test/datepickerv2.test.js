@@ -67,9 +67,10 @@ describe("Given DatePickerV2 component", () => {
       expect(
         screen.getByTestId("datepicker-pad-year-label").textContent
       ).toEqual(`${date.getFullYear() + 1}`);
+      // First month of next year
       expect(
         screen.getByTestId("datepicker-pad-month-label").textContent
-      ).toEqual(`${date.getMonth() + 1}`);
+      ).toEqual("1");
     });
   });
   describe("when pressing previous year arrow", () => {
