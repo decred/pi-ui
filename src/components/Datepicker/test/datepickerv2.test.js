@@ -3,6 +3,7 @@ import DatePicker from "../Datepickerv2";
 import { render, screen } from "@testing-library/react";
 
 describe("Given DatePickerV2 component", () => {
+  jest.useFakeTimers().setSystemTime(new Date("2022-02-02"));
   const date = new Date();
   describe("when props are default", () => {
     it("should render date pads correctly", () => {
@@ -54,9 +55,7 @@ describe("Given DatePickerV2 component", () => {
     });
     it("should change year and move to max month if target month is greater than allowed", () => {
       // one year from now
-      const max = new Date(
-        new Date().setFullYear(date.getFullYear() + 1)
-      ).getTime();
+      const max = new Date("2023-01-02").getTime();
       render(<DatePicker maxTimestamp={max} />);
       screen.getByText(/pick a date/i).click();
       expect(
@@ -75,9 +74,7 @@ describe("Given DatePickerV2 component", () => {
   });
   describe("when pressing previous year arrow", () => {
     // previous year
-    const min = new Date(
-      new Date().setFullYear(date.getFullYear() - 1)
-    ).getTime();
+    const min = new Date("2021-02-02").getTime();
     it("should change year", () => {
       render(<DatePicker minTimestamp={min} />);
       screen.getByText(/pick a date/i).click();
