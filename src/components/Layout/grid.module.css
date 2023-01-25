@@ -62,7 +62,7 @@
   grid-column: span 12;
 }
 
-@media (--bigger-than-xs-viewpor) {
+@media (--bigger-than-xs-viewport) {
   .sm-0 {
     display: none;
   }
