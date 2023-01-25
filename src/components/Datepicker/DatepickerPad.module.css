@@ -24,7 +24,13 @@
   border: 0;
   text-align: center;
   color: var(--text-color);
+  border: 1px solid transparent;
   background-color: var(--card-background);
+  outline: none;
+}
+
+.element:focus-visible {
+  border: 1px solid var(--color-primary);
 }
 
 .padRow {
@@ -36,7 +42,7 @@
 
 .disabled {
   cursor: default;
-  color: var(--btn-disabled-background-color);
+  color: var(--btn-disabled-text-color);
 }
 
 .selected {

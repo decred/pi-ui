@@ -148,9 +148,9 @@
   background-color: rgba(255, 255, 255, 0.96);
 }
 
-.rmpPopup .rmpPopup.dark {
+.rmpPopup.dark {
   color: #fff;
-  background-color: rgba(50, 50, 50, 0.96);
+  background-color: var(--card-background);
 }
 
 @media (--sm-viewport) {
@@ -268,6 +268,10 @@
   .rmpPopup.light {
     border: 0.1rem solid #ccc;
     box-shadow: 0 0.1rem 0.5rem #ddd;
+  }
+  .rmpPopup.dark {
+    border: 0.1rem solid #717171;
+    box-shadow: 0 0.1rem 0.5rem rgba(113, 113, 113, 0.41);
   }
 
   .rmpPopup.light.range .rmpPad {
