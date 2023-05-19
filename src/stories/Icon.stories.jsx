@@ -19,7 +19,7 @@ export const CustomHeightWidth = Template.bind({});
 CustomHeightWidth.args = {
   type: "ledger",
   width: "148",
-  height: "128"
+  height: "128",
 };
 export const Small = Template.bind({});
 Small.args = {
