@@ -15,6 +15,12 @@ export const Type = Template.bind({});
 Type.args = {
   type: "search",
 };
+export const CustomHeightWidth = Template.bind({});
+CustomHeightWidth.args = {
+  type: "ledger",
+  width: "148",
+  height: "128",
+};
 export const Small = Template.bind({});
 Small.args = {
   type: "github",
