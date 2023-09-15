@@ -132,6 +132,7 @@ ButtonIcon.propTypes = {
     "privacy",
     "ln",
     "trezor",
+    "ledger",
     "create",
     "restore",
     "watchOnly",
